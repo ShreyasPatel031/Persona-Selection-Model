@@ -1,0 +1,17 @@
+.env
+.env.local
+persona_runs/
+.venv-persona-check/
+
+.venv/
+.venv-sae/
+__pycache__/
+*.pyc
+.gemma_hf.env
+.hf.env
+**/.hf.env
+
+# tooling / OS
+.pytest_cache/
+.mypy_cache/
+.DS_Store

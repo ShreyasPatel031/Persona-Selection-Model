@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D&D Alignment Playground</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #1a1612;
+      --panel: #252019;
+      --border: #5c4a32;
+      --gold: #c9a227;
+      --gold-dim: #8a7020;
+      --text: #e8e0d4;
+      --muted: #9a8f7e;
+      --accent: #8b2942;
+      --cell-hover: #3a3228;
+      --cell-active: #4a3d2e;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Source Serif 4", Georgia, serif;
+      background: var(--bg);
+      color: var(--text);
+      background-image:
+        radial-gradient(ellipse 120% 80% at 50% -20%, rgba(201, 162, 39, 0.08), transparent),
+        linear-gradient(180deg, #221c18 0%, var(--bg) 45%);
+    }
+    .wrap {
+      max-width: 920px;
+      margin: 0 auto;
+      padding: 2rem 1.25rem 3rem;
+    }
+    h1 {
+      font-family: Cinzel, serif;
+      font-weight: 700;
+      font-size: 1.65rem;
+      letter-spacing: 0.06em;
+      color: var(--gold);
+      margin: 0 0 0.35rem;
+      text-align: center;
+    }
+    .sub {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 2rem;
+    }
+    .layout {
+      display: grid;
+      gap: 1.75rem;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 840px) {
+      .layout {
+        grid-template-columns: 1fr 1fr;
+        align-items: start;
+      }
+    }
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 1.25rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.35);
+    }
+    .panel h2 {
+      font-family: Cinzel, serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      margin: 0 0 1rem;
+    }
+    .grid-wrap {
+      position: relative;
+    }
+    .col-labels {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr 1fr 1fr;
+      gap: 0.35rem;
+      margin-left: 2.5rem;
+      margin-bottom: 0.35rem;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      text-align: center;
+    }
+    .grid-with-rows {
+      display: grid;
+      grid-template-columns: 2.5rem 1fr;
+      gap: 0.35rem;
+    }
+    .row-labels {
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: 0.35rem;
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      align-items: center;
+      text-align: right;
+      padding-right: 0.35rem;
+      line-height: 1.2;
+    }
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.35rem;
+    }
+    .cell {
+      aspect-ratio: 1;
+      min-height: 72px;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Cinzel, serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s, color 0.15s;
+    }
+    .cell:hover { background: var(--cell-hover); border-color: var(--gold-dim); }
+    .cell.active {
+      background: var(--cell-active);
+      border-color: var(--gold);
+      color: var(--gold);
+      box-shadow: inset 0 0 0 1px var(--gold);
+    }
+    .cell .small {
+      display: block;
+      font-size: 0.62rem;
+      font-weight: 400;
+      color: var(--muted);
+      margin-top: 0.2rem;
+      font-family: "Source Serif 4", serif;
+    }
+    .cell.active .small { color: var(--gold-dim); }
+    label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 0.35rem;
+    }
+    textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 0.65rem 0.75rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: #141210;
+      color: var(--text);
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+    }
+    textarea:focus {
+      outline: none;
+      border-color: var(--gold-dim);
+    }
+    .row-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    button.primary {
+      font-family: Cinzel, serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.65rem 1.25rem;
+      border: 1px solid var(--gold);
+      border-radius: 3px;
+      background: linear-gradient(180deg, #6b5420, #4a3a18);
+      color: var(--gold);
+      cursor: pointer;
+    }
+    button.primary:hover { filter: brightness(1.08); }
+    button.primary:disabled {
+      opacity: 0.45;
+      cursor: not-allowed;
+      filter: none;
+    }
+    .meta-pill {
+      font-size: 0.75rem;
+      color: var(--muted);
+      margin-top: 0.5rem;
+    }
+    .out {
+      min-height: 140px;
+      padding: 1rem;
+      border: 1px solid var(--border);
+      border-radius: 3px;
+      background: #141210;
+      font-size: 0.98rem;
+      line-height: 1.55;
+      white-space: pre-wrap;
+    }
+    .out.streaming { border-color: var(--gold-dim); }
+    .err {
+      color: #e07070;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    .loading {
+      color: var(--muted);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Alignment Playground</h1>
+    <p class="sub">Pick one of the nine alignments — the scenario updates per cell. Edit freely, then stream a steered Gemma reply (served from <code>/dnd/playground/stream</code>).</p>
+
+    <div class="layout">
+      <div class="panel">
+        <h2>The nine alignments</h2>
+        <div class="grid-wrap">
+          <div class="col-labels">
+            <span></span>
+            <span>Good</span>
+            <span>Neutral</span>
+            <span>Evil</span>
+          </div>
+          <div class="grid-with-rows">
+            <div class="row-labels">
+              <span>Lawful</span>
+              <span>Neutral</span>
+              <span>Chaotic</span>
+            </div>
+            <div class="grid-3" id="alignment-grid">
+              <!-- row Lawful: LG, LN, LE -->
+              <button type="button" class="cell" data-alignment="LG">LG<span class="small">Lawful Good</span></button>
+              <button type="button" class="cell" data-alignment="LN">LN<span class="small">Lawful Neutral</span></button>
+              <button type="button" class="cell" data-alignment="LE">LE<span class="small">Lawful Evil</span></button>
+              <!-- Neutral row -->
+              <button type="button" class="cell" data-alignment="NG">NG<span class="small">Neutral Good</span></button>
+              <button type="button" class="cell" data-alignment="N">N<span class="small">True Neutral</span></button>
+              <button type="button" class="cell" data-alignment="NE">NE<span class="small">Neutral Evil</span></button>
+              <!-- Chaotic row -->
+              <button type="button" class="cell" data-alignment="CG">CG<span class="small">Chaotic Good</span></button>
+              <button type="button" class="cell" data-alignment="CN">CN<span class="small">Chaotic Neutral</span></button>
+              <button type="button" class="cell" data-alignment="CE">CE<span class="small">Chaotic Evil</span></button>
+            </div>
+          </div>
+        </div>
+        <p class="meta-pill" id="preset-meta">Select an alignment. α presets load from your last <code>dnd_grid_results.json</code>.</p>
+      </div>
+
+      <div class="panel">
+        <h2>Scenario &amp; reply</h2>
+        <label for="question">User message</label>
+        <textarea id="question" placeholder="Loading default question…"></textarea>
+        <div class="row-btns">
+          <button type="button" class="primary" id="btn-run">Stream answer</button>
+        </div>
+        <p class="meta-pill" id="stream-meta"></p>
+        <div style="margin-top:1rem;">
+          <label>Assistant</label>
+          <div class="out" id="output"><span class="loading">Choose an alignment and press Stream answer.</span></div>
+        </div>
+        <div class="err" id="error" hidden></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /** Filled from GET /dnd/playground/meta → questions_by_alignment */
+    const ALIGNMENT_QUESTIONS = {};
+
+    const API_BASE = (() => {
+      try {
+        const u = new URLSearchParams(window.location.search).get("api");
+        if (u) return u.replace(/\/$/, "");
+      } catch (e) {}
+      return "";
+    })();
+    function apiUrl(path) {
+      return API_BASE + path;
+    }
+    async function readHttpError(res) {
+      const t = await res.text();
+      try {
+        const j = JSON.parse(t);
+        if (j.detail != null) {
+          return typeof j.detail === "string" ? j.detail : JSON.stringify(j.detail);
+        }
+      } catch (e) {}
+      return t || res.statusText;
+    }
+
+    let currentAlignment = "LG";
+    let metaSystem = null;
+    let metaAlignments = {};
+    let defaultQuestionFallback = "";
+
+    const qEl = document.getElementById("question");
+    const outEl = document.getElementById("output");
+    const errEl = document.getElementById("error");
+    const btnRun = document.getElementById("btn-run");
+    const presetMeta = document.getElementById("preset-meta");
+    const streamMeta = document.getElementById("stream-meta");
+
+    function setAlignment(code) {
+      currentAlignment = code;
+      document.querySelectorAll(".cell").forEach((b) => {
+        b.classList.toggle("active", b.dataset.alignment === code);
+      });
+      const preset = metaAlignments[code];
+      const q =
+        ALIGNMENT_QUESTIONS[code] ||
+        defaultQuestionFallback ||
+        "Your king orders you to raze a village harboring rebels. What do you do?";
+      qEl.value = q;
+      if (preset) {
+        presetMeta.textContent =
+          `${preset.label}: steer ${preset.trait_a} α=${preset.alpha_a}, ${preset.trait_b} α=${preset.alpha_b}`;
+      } else {
+        presetMeta.textContent = "Preset α from grid results (see server meta).";
+      }
+    }
+
+    document.getElementById("alignment-grid").addEventListener("click", (e) => {
+      const btn = e.target.closest(".cell");
+      if (!btn) return;
+      setAlignment(btn.dataset.alignment);
+    });
+
+    async function loadMeta() {
+      const res = await fetch(apiUrl("/dnd/playground/meta"));
+      if (!res.ok) {
+        throw new Error(await readHttpError(res));
+      }
+      const data = await res.json();
+      metaSystem = data.system;
+      metaAlignments = data.alignments || {};
+      defaultQuestionFallback = data.default_question || "";
+      const by = data.questions_by_alignment || {};
+      Object.keys(by).forEach((k) => {
+        ALIGNMENT_QUESTIONS[k] = by[k];
+      });
+      qEl.placeholder = "";
+      setAlignment(currentAlignment);
+    }
+
+    function parseSseLine(line) {
+      if (!line.startsWith("data: ")) return null;
+      try {
+        return JSON.parse(line.slice(6));
+      } catch {
+        return null;
+      }
+    }
+
+    async function streamAnswer() {
+      errEl.hidden = true;
+      errEl.textContent = "";
+      outEl.textContent = "";
+      outEl.classList.add("streaming");
+      btnRun.disabled = true;
+      streamMeta.textContent = "Streaming…";
+
+      const body = {
+        alignment: currentAlignment,
+        message: qEl.value.trim(),
+      };
+      if (metaSystem) body.system = metaSystem;
+      if (!body.message) {
+        outEl.classList.remove("streaming");
+        btnRun.disabled = false;
+        errEl.hidden = false;
+        errEl.textContent = "Enter a user message.";
+        return;
+      }
+
+      try {
+        const res = await fetch(apiUrl("/dnd/playground/stream"), {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) {
+          throw new Error(await readHttpError(res));
+        }
+        const reader = res.body.getReader();
+        const dec = new TextDecoder();
+        let buf = "";
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buf += dec.decode(value, { stream: true });
+          const lines = buf.split("\n");
+          buf = lines.pop() || "";
+          for (const line of lines) {
+            const trimmed = line.trim();
+            if (!trimmed) continue;
+            const obj = parseSseLine(trimmed);
+            if (!obj) continue;
+            if (obj.error) throw new Error(obj.error);
+            if (obj.chunk) outEl.textContent += obj.chunk;
+            if (obj.done) {
+              if (obj.trait_a != null) {
+                streamMeta.textContent =
+                  `Done — ${obj.trait_a} α=${obj.alpha_a}, ${obj.trait_b} α=${obj.alpha_b}`;
+              } else {
+                streamMeta.textContent = "Done.";
+              }
+            }
+          }
+        }
+      } catch (e) {
+        errEl.hidden = false;
+        errEl.textContent = String(e.message || e);
+        streamMeta.textContent = "";
+      } finally {
+        outEl.classList.remove("streaming");
+        btnRun.disabled = false;
+      }
+    }
+
+    btnRun.addEventListener("click", streamAnswer);
+
+    loadMeta().catch((e) => {
+      qEl.placeholder = "Could not load /dnd/playground/meta — check persona_runs paths on server.";
+      errEl.hidden = false;
+      errEl.textContent = String(e.message || e);
+    });
+  </script>
+</body>
+</html>

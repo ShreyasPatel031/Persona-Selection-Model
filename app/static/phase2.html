@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Phase 2 — SAE snapshot (Gemma Scope 2)</title>
+    <style>
+      :root {
+        font-family: system-ui, sans-serif;
+        line-height: 1.45;
+        color: #111;
+        background: #f4f4f4;
+      }
+      body {
+        max-width: 52rem;
+        margin: 1.5rem auto;
+        padding: 0 1rem;
+      }
+      h1 {
+        font-size: 1.2rem;
+      }
+      label {
+        display: block;
+        font-size: 0.8rem;
+        margin: 0.5rem 0 0.2rem;
+      }
+      textarea {
+        width: 100%;
+        min-height: 4rem;
+        font: inherit;
+        padding: 0.5rem;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+      button {
+        margin-top: 0.75rem;
+        padding: 0.45rem 1rem;
+        font: inherit;
+        border-radius: 6px;
+        border: 1px solid #222;
+        background: #111;
+        color: #fff;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      @media (max-width: 40rem) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      pre {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        padding: 0.6rem;
+        font-size: 0.75rem;
+        overflow: auto;
+        max-height: 22rem;
+      }
+      .meta {
+        font-size: 0.85rem;
+        color: #444;
+        margin: 0.5rem 0;
+      }
+      .err {
+        color: #a40000;
+        white-space: pre-wrap;
+      }
+      a {
+        color: #0645ad;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Phase 2 — pretrained SAE snapshot</h1>
+    <p class="meta">
+      Same user message, two system prompts → compare top SAE latents at the
+      <strong>last prefill token</strong> (residual stream hook from
+      <a href="https://huggingface.co/google/gemma-scope-2-4b-it">Gemma Scope 2</a> via
+      <code>sae-lens</code>). Not token-by-token during generation yet.
+    </p>
+    <p><a href="/">← Chat</a></p>
+
+    <label for="msg">User message (fixed for A/B)</label>
+    <textarea id="msg">What is 2 + 2?</textarea>
+
+    <div class="grid">
+      <div>
+        <label for="sysa">System A</label>
+        <textarea id="sysa">You are a helpful assistant.</textarea>
+      </div>
+      <div>
+        <label for="sysb">System B</label>
+        <textarea id="sysb">You are an extremely enthusiastic assistant who uses lots of exclamation marks and emojis.</textarea>
+      </div>
+    </div>
+
+    <button type="button" id="go">Compare SAE snapshots</button>
+    <p id="status" class="meta"></p>
+    <p id="err" class="err"></p>
+    <div class="grid">
+      <div>
+        <h2 style="font-size: 1rem">A</h2>
+        <pre id="outa"></pre>
+      </div>
+      <div>
+        <h2 style="font-size: 1rem">B</h2>
+        <pre id="outb"></pre>
+      </div>
+    </div>
+
+    <script>
+      const msg = document.getElementById("msg");
+      const sysa = document.getElementById("sysa");
+      const sysb = document.getElementById("sysb");
+      const go = document.getElementById("go");
+      const status = document.getElementById("status");
+      const err = document.getElementById("err");
+      const outa = document.getElementById("outa");
+      const outb = document.getElementById("outb");
+
+      go.addEventListener("click", async () => {
+        err.textContent = "";
+        outa.textContent = "";
+        outb.textContent = "";
+        const body = {
+          message: msg.value.trim(),
+          system_a: sysa.value.trim(),
+          system_b: sysb.value.trim(),
+          topk: 32,
+        };
+        if (!body.message || !body.system_a || !body.system_b) {
+          err.textContent = "Fill all fields.";
+          return;
+        }
+        go.disabled = true;
+        status.textContent = "Running two forwards + SAE encode (can be slow on CPU)…";
+        try {
+          const res = await fetch("/phase2/sae_compare", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(body),
+          });
+          const data = await res.json().catch(() => ({}));
+          if (!res.ok) {
+            err.textContent =
+              typeof data.detail === "string"
+                ? data.detail
+                : JSON.stringify(data.detail || data);
+            status.textContent = "";
+            return;
+          }
+          status.textContent =
+            "Top-k Jaccard (feature id sets): " +
+            data.topk_jaccard.toFixed(3) +
+            "  |  overlap: " +
+            data.topk_overlap_count;
+          const pick = (x) => ({
+            hook: x.hook_name,
+            layer: x.resid_layer,
+            hs_index: x.hidden_state_index,
+            l0: x.l0_gt_eps,
+            hidden_l2: x.hidden_l2,
+            z_abs_mean: x.z_abs_mean,
+            topk: x.topk,
+          });
+          outa.textContent = JSON.stringify(pick(data.a), null, 2);
+          outb.textContent = JSON.stringify(pick(data.b), null, 2);
+        } catch (e) {
+          err.textContent = String(e);
+          status.textContent = "";
+        } finally {
+          go.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>

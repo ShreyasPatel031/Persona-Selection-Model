@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Four-gate chat</title>
+  <style>
+    :root { font-family: system-ui, sans-serif; line-height: 1.5; color: #1a1a1a; background: #e8eaee; }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; margin: 0; }
+    .shell {
+      max-width: 44rem;
+      margin: 0 auto;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      padding: 0.75rem 1rem 1rem;
+    }
+    h1 { font-size: 1.2rem; font-weight: 600; margin: 0 0 0.25rem; }
+    .sub { font-size: 0.8rem; color: #555; margin: 0 0 0.5rem; }
+    details.meta {
+      font-size: 0.8rem;
+      background: #fff;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.5rem 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    details.meta summary { cursor: pointer; font-weight: 600; color: #333; }
+    details.meta pre {
+      margin: 0.5rem 0 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.72rem;
+      background: #f5f5f5;
+      padding: 0.5rem;
+      border-radius: 4px;
+      max-height: 10rem;
+      overflow-y: auto;
+    }
+    .explain { margin: 0.35rem 0 0; color: #444; font-size: 0.78rem; }
+    #transcript {
+      flex: 1;
+      min-height: 180px;
+      max-height: min(50vh, 420px);
+      overflow-y: auto;
+      background: #fff;
+      border: 1px solid #bbb;
+      border-radius: 8px;
+      padding: 0.75rem;
+      margin-bottom: 0.75rem;
+    }
+    .turn {
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .turn:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .turn-h {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #888;
+      margin-bottom: 0.35rem;
+    }
+    .gate-row {
+      font-size: 0.78rem;
+      color: #333;
+      margin: 0 0 0.5rem;
+      padding: 0.35rem 0.5rem;
+      background: #f0f2f5;
+      border-radius: 6px;
+      border: 1px solid #ccd;
+    }
+    #gate-indicators { font-weight: 600; letter-spacing: 0.04em; }
+    .msg { margin-bottom: 0.5rem; padding: 0.5rem 0.65rem; border-radius: 6px; white-space: pre-wrap; word-break: break-word; }
+    .msg.user { background: #dce6f7; border: 1px solid #b8c9e0; }
+    .msg.assistant { background: #f8f8f8; border: 1px solid #ddd; }
+    .msg.assistant .stream-trace { font-size: 0.92rem; }
+    .msg .tag { font-size: 0.65rem; color: #666; margin-bottom: 0.2rem; }
+    .composer { flex-shrink: 0; }
+    label[for="input"] { display: block; font-size: 0.8rem; margin-bottom: 0.25rem; }
+    textarea {
+      width: 100%;
+      min-height: 4rem;
+      padding: 0.5rem;
+      font: inherit;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+    }
+    .row { display: flex; gap: 0.5rem; margin-top: 0.4rem; }
+    button {
+      padding: 0.4rem 0.9rem;
+      font: inherit;
+      border-radius: 6px;
+      border: 1px solid #333;
+      background: #111;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    button.ghost { background: #fff; color: #444; border-color: #999; }
+    .err { color: #b00020; font-size: 0.85rem; margin-top: 0.35rem; }
+    .hint { font-size: 0.75rem; color: #666; margin-top: 0.35rem; }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <h1>Four-gate chat</h1>
+    <p class="sub" style="font-size:0.78rem;color:#2a4a6b;margin:0 0 0.35rem;">
+      This UI talks only to <code>POST /gate-chat/stream</code> (not <code>/chat</code> or D&amp;D playground).
+      <code>GET /health</code> is instant because it does not run the model.
+    </p>
+    <p class="sub" id="subline">Loading…</p>
+    <p class="gate-row" id="gate-row">
+      Gates (agent-controlled; <strong>at most one on</strong> — turning a gate on clears the others):
+      <span id="gate-indicators">G1○ G2○ G3○ G4○</span>
+      <span style="color:#666;font-weight:400;"> — ● on, ○ off</span>
+    </p>
+
+    <details class="meta">
+      <summary>System prompt &amp; grid α (per trait, when a gate is on)</summary>
+      <p class="explain" id="steering-note"></p>
+      <p class="explain">
+        One agent may toggle gates with <code>[toggle_gate(gate=N, state=true/false)]</code>. Gate state persists across turns.
+        Steering when on uses each trait’s α from the D&D grid corners; the model is not told what the gates mean.
+      </p>
+      <p style="margin:0.35rem 0 0;font-size:0.72rem;font-weight:600;">Exact system string sent to the model</p>
+      <p class="explain" style="margin:0.2rem 0 0;">
+        The grid JSON only supplies the first block; the server appends the gate / <code>toggle_gate</code> instructions (same on every request).
+      </p>
+      <pre id="system-prompt">…</pre>
+      <p style="margin:0.45rem 0 0;font-size:0.72rem;font-weight:600;color:#666;">Raw <code>system</code> from grid JSON only</p>
+      <pre id="system-base-only" style="max-height:6rem;">…</pre>
+      <p style="margin:0.35rem 0 0;font-size:0.72rem;font-weight:600;">trait_alphas from grid (internal)</p>
+      <pre id="trait-alphas">…</pre>
+    </details>
+
+    <div id="transcript" aria-label="Conversation"></div>
+
+    <div class="composer">
+      <label for="input">Your next message</label>
+      <textarea id="input" placeholder="Type a message…"></textarea>
+      <div class="row">
+        <button type="button" id="send">Send</button>
+        <button type="button" class="ghost" id="clear">Clear conversation</button>
+      </div>
+      <div class="err" id="error" hidden></div>
+      <p class="hint" id="api-hint">One streamed reply per Send (internal tool rounds may run). Send <code>gate_state</code> each time. History is included every time.</p>
+    </div>
+  </div>
+
+<script>
+/** Base URL for API. Empty = same origin. If this page is opened on a different port than Uvicorn, set ?api=http://127.0.0.1:<api-port> */
+const GATE_UI_REV = "2026-04-12c-endpoint-hint";
+const API_BASE = (() => {
+  try {
+    const u = new URLSearchParams(window.location.search).get("api");
+    if (u) return u.replace(/\/$/, "");
+  } catch (e) {}
+  return "";
+})();
+function apiUrl(path) {
+  return API_BASE + path;
+}
+async function readHttpError(res) {
+  const t = await res.text();
+  try {
+    const j = JSON.parse(t);
+    if (j.detail != null) {
+      return typeof j.detail === "string" ? j.detail : JSON.stringify(j.detail);
+    }
+  } catch (e) {}
+  return t || res.statusText;
+}
+
+const transcriptEl = document.getElementById("transcript");
+const inputEl = document.getElementById("input");
+const errEl = document.getElementById("error");
+const btnSend = document.getElementById("send");
+const btnClear = document.getElementById("clear");
+const sublineEl = document.getElementById("subline");
+const systemPre = document.getElementById("system-prompt");
+const systemBasePre = document.getElementById("system-base-only");
+const traitAlphasPre = document.getElementById("trait-alphas");
+const steeringNote = document.getElementById("steering-note");
+const apiHintEl = document.getElementById("api-hint");
+
+if (API_BASE) {
+  apiHintEl.textContent =
+    "API: " +
+    API_BASE +
+    " — add ?api= only when this page is not served by the API host.";
+}
+
+let history = [];
+let turn = 0;
+/** @type {boolean[]} */
+let gateState = [false, false, false, false];
+
+/** JSON may yield real booleans; avoid `Boolean("false") === true`. */
+function normalizeGateBools(arr) {
+  return arr.map((x) => {
+    if (x === true || x === 1) return true;
+    if (x === false || x === 0) return false;
+    if (typeof x === "string") {
+      const s = x.trim().toLowerCase();
+      if (s === "true" || s === "1") return true;
+      if (s === "false" || s === "0" || s === "") return false;
+    }
+    return false;
+  });
+}
+
+function renderGateIndicators() {
+  const el = document.getElementById("gate-indicators");
+  if (!el) return;
+  el.textContent = gateState.map((on, i) => "G" + (i + 1) + (on ? "●" : "○")).join(" ");
+}
+
+async function loadMeta() {
+  try {
+    const res = await fetch(apiUrl("/gate-chat/meta"), { cache: "no-store" });
+    if (!res.ok) throw new Error(await readHttpError(res));
+    const m = await res.json();
+    systemPre.textContent = m.system_sent_to_model || m.system || "(none)";
+    if (systemBasePre) systemBasePre.textContent = m.system || "(none)";
+    steeringNote.textContent = m.intro || "";
+    traitAlphasPre.textContent = JSON.stringify(m.trait_alphas || {}, null, 2);
+    let healthHint = "";
+    try {
+      const hr = await fetch(apiUrl("/health"), { cache: "no-store" });
+      if (hr.ok) {
+        const h = await hr.json();
+        healthHint =
+          " · API reports model_loaded=" +
+          (h.model_loaded ? "true" : "false") +
+          " (needs HF_TOKEN + restart if false)";
+      }
+    } catch (x) {
+      healthHint = " · (could not reach /health)";
+    }
+    sublineEl.textContent =
+      "UI " +
+      GATE_UI_REV +
+      ". Gate chat streams over SSE (banners + raw model text). First reply after a cold API start can take 1–3 minutes; later turns are faster." +
+      healthHint;
+  } catch (e) {
+    sublineEl.textContent =
+      "Could not load /gate-chat/meta from " +
+      (API_BASE || window.location.origin) +
+      " — " +
+      (e.message || e) +
+      ". If the API runs on another port, open this page with ?api=http://127.0.0.1:<port>";
+    systemPre.textContent = "(unavailable)";
+    if (systemBasePre) systemBasePre.textContent = "(unavailable)";
+    traitAlphasPre.textContent = "(unavailable)";
+  }
+}
+
+function appendToCurrentTurn(role, text) {
+  const turns = transcriptEl.querySelectorAll(".turn");
+  let tEl = turns[turns.length - 1];
+  if (!tEl || role === "user") {
+    tEl = document.createElement("div");
+    tEl.className = "turn";
+    tEl.innerHTML = '<div class="turn-h">Turn ' + turn + "</div>";
+    transcriptEl.appendChild(tEl);
+  }
+  const div = document.createElement("div");
+  div.className = "msg " + role;
+  const tag = document.createElement("div");
+  tag.className = "tag";
+  tag.textContent = role === "user" ? "You" : "Assistant";
+  div.appendChild(tag);
+  const body = document.createElement("div");
+  body.textContent = text;
+  div.appendChild(body);
+  tEl.appendChild(div);
+  transcriptEl.scrollTop = transcriptEl.scrollHeight;
+  return body;
+}
+
+async function send() {
+  const text = inputEl.value.trim();
+  if (!text) return;
+  errEl.hidden = true;
+
+  turn += 1;
+  history.push({ role: "user", content: text });
+  appendToCurrentTurn("user", text);
+  inputEl.value = "";
+
+  btnSend.disabled = true;
+  const bodyEl = appendToCurrentTurn("assistant", "");
+  bodyEl.classList.add("stream-trace");
+
+  try {
+    const res = await fetch(apiUrl("/gate-chat/stream"), {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        messages: history,
+        gate_state: gateState,
+        max_new_tokens: 128,
+      }),
+      cache: "no-store",
+    });
+    if (!res.ok) throw new Error(await readHttpError(res));
+
+    const reader = res.body.getReader();
+    const dec = new TextDecoder();
+    let buf = "", full = "";
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream: true });
+      const lines = buf.split("\n");
+      buf = lines.pop() || "";
+      for (const line of lines) {
+        const t = line.trim();
+        if (!t || !t.startsWith("data: ")) continue;
+        let obj;
+        try { obj = JSON.parse(t.slice(6)); } catch { continue; }
+        if (obj.error) throw new Error(obj.error);
+        if (obj.gate_state_in != null && Array.isArray(obj.gate_state_in) && obj.gate_state_in.length === 4) {
+          gateState = normalizeGateBools(obj.gate_state_in);
+          renderGateIndicators();
+        }
+        if (obj.done) {
+          if (obj.gates && Array.isArray(obj.gates) && obj.gates.length === 4) {
+            gateState = normalizeGateBools(obj.gates);
+            renderGateIndicators();
+          }
+          continue;
+        }
+        if (obj.gate_update && Array.isArray(obj.gate_update) && obj.gate_update.length === 4) {
+          gateState = normalizeGateBools(obj.gate_update);
+          renderGateIndicators();
+        }
+        if (obj.banner) {
+          full += (full ? "\n" : "") + obj.banner + "\n";
+          bodyEl.textContent = full;
+          transcriptEl.scrollTop = transcriptEl.scrollHeight;
+        }
+        if (obj.chunk) {
+          full += obj.chunk;
+          bodyEl.textContent = full;
+          transcriptEl.scrollTop = transcriptEl.scrollHeight;
+        }
+      }
+    }
+    history.push({ role: "assistant", content: full });
+  } catch (e) {
+    errEl.hidden = false;
+    errEl.textContent = String(e.message || e);
+    history.pop();
+    const turns = transcriptEl.querySelectorAll(".turn");
+    const last = turns[turns.length - 1];
+    if (last) last.remove();
+    turn = Math.max(0, turn - 1);
+    inputEl.value = text;
+  } finally {
+    btnSend.disabled = false;
+  }
+}
+
+btnSend.addEventListener("click", send);
+inputEl.addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); send(); }
+});
+btnClear.addEventListener("click", () => {
+  history = [];
+  turn = 0;
+  gateState = [false, false, false, false];
+  renderGateIndicators();
+  transcriptEl.innerHTML = "";
+  errEl.hidden = true;
+});
+
+loadMeta();
+renderGateIndicators();
+</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+#!/usr/bin/env python3
+"""Terminal chat: type after You:, replies stream under Gemma:.
+
+Uses http.client + readline() so each SSE line is handled as soon as it arrives
+(unlike urllib read(8192), which can batch with the UI's fetch stream).
+
+Start the SSH tunnel first: ./scripts/ssh-tunnel.sh
+Then: ./scripts/gemma-chat
+
+Env: GEMMA_URL (default http://127.0.0.1:8080), GEMMA_CHAT_TIMEOUT (seconds, default 3600).
+"""
+from __future__ import annotations
+
+import http.client
+import json
+import os
+import ssl
+import sys
+from urllib.parse import urlparse
+
+DEFAULT_URL = "http://127.0.0.1:8080"
+TIMEOUT_SEC = int(os.environ.get("GEMMA_CHAT_TIMEOUT", "3600"))
+
+
+def _connect(base: str) -> tuple[http.client.HTTPConnection, str]:
+    raw = base.strip()
+    if "://" not in raw:
+        raw = "http://" + raw.lstrip("/")
+    u = urlparse(raw)
+    host = u.hostname
+    if not host:
+        raise ValueError(f"Invalid GEMMA_URL: {base!r}")
+    port = u.port or (443 if u.scheme == "https" else 80)
+    base_path = (u.path or "").rstrip("/")
+    stream_path = f"{base_path}/chat/stream".replace("//", "/")
+    if not stream_path.startswith("/"):
+        stream_path = "/" + stream_path
+
+    if u.scheme == "https":
+        ctx = ssl.create_default_context()
+        conn = http.client.HTTPSConnection(
+            host, port, timeout=TIMEOUT_SEC, context=ctx
+        )
+    else:
+        conn = http.client.HTTPConnection(host, port, timeout=TIMEOUT_SEC)
+    return conn, stream_path
+
+
+def stream_message(base: str, text: str):
+    body = json.dumps({"message": text}).encode("utf-8")
+    headers = {
+        "Content-Type": "application/json",
+        "Content-Length": str(len(body)),
+        "Accept": "text/event-stream",
+        "Connection": "close",
+    }
+    conn, path = _connect(base.rstrip("/"))
+    try:
+        conn.request("POST", path, body=body, headers=headers)
+        resp = conn.getresponse()
+        if resp.status != 200:
+            err = resp.read(65536).decode("utf-8", errors="replace")
+            raise RuntimeError(f"HTTP {resp.status}: {err[:800]}")
+
+        while True:
+            raw = resp.readline()
+            if not raw:
+                break
+            line = raw.decode("utf-8", errors="replace").rstrip("\r\n")
+            if not line.startswith("data: "):
+                continue
+            try:
+                payload = json.loads(line[6:])
+            except json.JSONDecodeError:
+                continue
+            if payload.get("error"):
+                raise RuntimeError(str(payload["error"]))
+            if "chunk" in payload and payload["chunk"]:
+                yield str(payload["chunk"])
+    finally:
+        conn.close()
+
+
+def main() -> int:
+    base = os.environ.get("GEMMA_URL", DEFAULT_URL).rstrip("/")
+    print(f"Gemma chat → {base}  (/quit or Ctrl+D to exit)\n")
+
+    while True:
+        try:
+            line = input("You: ")
+        except (EOFError, KeyboardInterrupt):
+            print()
+            break
+        text = line.strip()
+        if not text:
+            continue
+        if text.lower() in ("/quit", "/q", "/exit", "exit", "quit"):
+            break
+
+        try:
+            print("Gemma: ", end="", flush=True)
+            for piece in stream_message(base, text):
+                print(piece, end="", flush=True)
+                sys.stdout.flush()
+            print("\n")
+        except (ConnectionRefusedError, OSError) as e:
+            print(f"\n(connection failed) {e}")
+            print("Start the tunnel: ./scripts/ssh-tunnel.sh\n")
+            continue
+        except ValueError as e:
+            print(f"\n(error) {e}\n")
+            continue
+        except Exception as e:
+            print(f"\n(error) {e}\n")
+            continue
+
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

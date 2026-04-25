@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gemma chat (MVP)</title>
+    <style>
+      :root {
+        font-family: system-ui, sans-serif;
+        line-height: 1.5;
+        color: #1a1a1a;
+        background: #f6f6f6;
+      }
+      body {
+        max-width: 40rem;
+        margin: 2rem auto;
+        padding: 0 1rem;
+      }
+      h1 {
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+      label {
+        display: block;
+        font-size: 0.875rem;
+        margin-bottom: 0.35rem;
+      }
+      textarea {
+        width: 100%;
+        min-height: 6rem;
+        padding: 0.6rem;
+        font: inherit;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        box-sizing: border-box;
+      }
+      button {
+        margin-top: 0.75rem;
+        padding: 0.45rem 1rem;
+        font: inherit;
+        border-radius: 6px;
+        border: 1px solid #333;
+        background: #111;
+        color: #fff;
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+      #out {
+        margin-top: 1.25rem;
+        padding: 0.75rem;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        white-space: pre-wrap;
+        word-break: break-word;
+        min-height: 3rem;
+      }
+      .err {
+        color: #b00020;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Gemma — MVP</h1>
+    <p style="font-size: 0.875rem">
+      <a href="/phase2.html">Phase 2 — SAE A/B compare</a>
+      ·
+      <a href="/static/gate_chat.html">Four-gate chat</a> (persona gates, streamed)
+    </p>
+    <p style="font-size: 0.875rem; color: #555">
+      Replies stream token-by-token. <strong>Persona steer α &gt; 0</strong> uses
+      <code>PERSONA_STEER_VECTORS</code> + optional
+      <code>PERSONA_STEER_BUNDLE</code> (neg system default) on the server; α = 0 is
+      plain <code>/chat/stream</code>.
+    </p>
+    <label for="steerAlpha">Sycophancy / persona steer α (0 = off)</label>
+    <div style="display: flex; align-items: center; gap: 0.75rem; margin: 0.35rem 0 0.75rem">
+      <input
+        type="range"
+        id="steerAlpha"
+        min="0"
+        max="1.5"
+        step="0.05"
+        value="0"
+        style="flex: 1"
+      />
+      <span id="steerAlphaVal" style="font-variant-numeric: tabular-nums; min-width: 2.5rem">0</span>
+    </div>
+    <label for="q">Your message</label>
+    <textarea id="q" placeholder="Ask something…"></textarea>
+    <button type="button" id="go">Send</button>
+    <div id="out" aria-live="polite"></div>
+    <script>
+      const q = document.getElementById("q");
+      const go = document.getElementById("go");
+      const out = document.getElementById("out");
+      const steerAlpha = document.getElementById("steerAlpha");
+      const steerAlphaVal = document.getElementById("steerAlphaVal");
+
+      steerAlpha.addEventListener("input", () => {
+        steerAlphaVal.textContent = steerAlpha.value;
+      });
+
+      async function streamChat(message) {
+        const alpha = parseFloat(steerAlpha.value);
+        const url =
+          alpha > 0 ? "/chat/persona-steer/stream" : "/chat/stream";
+        const body =
+          alpha > 0
+            ? { message, steer_alpha: alpha }
+            : { message };
+        const res = await fetch(url, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(body),
+        });
+        if (!res.ok) {
+          const data = await res.json().catch(() => ({}));
+          const d = data.detail;
+          throw new Error(
+            typeof d === "string" ? d : d ? JSON.stringify(d) : "HTTP " + res.status
+          );
+        }
+        const reader = res.body.getReader();
+        const dec = new TextDecoder();
+        let buf = "";
+        out.textContent = "";
+        while (true) {
+          const { value, done } = await reader.read();
+          if (done) break;
+          buf += dec.decode(value, { stream: true });
+          for (;;) {
+            const idx = buf.indexOf("\n\n");
+            if (idx < 0) break;
+            const block = buf.slice(0, idx);
+            buf = buf.slice(idx + 2);
+            for (const rawLine of block.split("\n")) {
+              const line = rawLine.trim();
+              if (!line.startsWith("data: ")) continue;
+              let payload;
+              try {
+                payload = JSON.parse(line.slice(6));
+              } catch {
+                continue;
+              }
+              if (payload.error) throw new Error(String(payload.error));
+              if (payload.chunk) out.textContent += payload.chunk;
+            }
+          }
+        }
+      }
+
+      go.addEventListener("click", async () => {
+        const message = q.value.trim();
+        if (!message) {
+          out.textContent = "Enter a message.";
+          out.classList.add("err");
+          return;
+        }
+        out.classList.remove("err");
+        out.textContent = "…";
+        go.disabled = true;
+        try {
+          await streamChat(message);
+        } catch (e) {
+          out.classList.add("err");
+          out.textContent = String(e);
+        } finally {
+          go.disabled = false;
+        }
+      });
+    </script>
+  </body>
+</html>
