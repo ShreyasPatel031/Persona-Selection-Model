@@ -1,3 +1,5 @@
+[![Persona Selection Model architecture](https://app.atelier-inc.net/repos/persona-selection-model/architecture.svg)](https://app.atelier-inc.net/?repo=persona-selection-model)
+
 # Gemma chat MVP (GCE N1 CPU)
 
 Minimal **FastAPI** app that loads **`google/gemma-3-4b-it`** with Hugging Face **Transformers** on **CPU**, serves a tiny web UI, and exposes `POST /chat`.
