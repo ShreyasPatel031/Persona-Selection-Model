@@ -1,4 +1,4 @@
-[![Persona Selection Model architecture](https://app.atelier-inc.net/repos/persona-selection-model/architecture.svg)](https://app.atelier-inc.net/?repo=persona-selection-model)
+<a href="https://app.atelier-inc.net/?repo=persona-selection-model" target="_blank" rel="noopener noreferrer"><img src="https://app.atelier-inc.net/repos/persona-selection-model/architecture.svg" alt="Persona Selection Model architecture" /></a>
 
 # Gemma chat MVP (GCE N1 CPU)
 
