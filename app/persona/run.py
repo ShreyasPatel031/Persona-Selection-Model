@@ -709,6 +709,20 @@ def cmd_steering_ab(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_sae_experiment(args: argparse.Namespace) -> int:
+    from app.persona.sae_experiment import main as sae_main
+
+    argv = list(args.sae_args or [])
+    if argv and argv[0] == "--":
+        argv = argv[1:]
+    if not argv:
+        logger.error(
+            "sae-experiment requires a subcommand: generate, encode, attribute, autointerp, validate, recon, ablate, all"
+        )
+        return 1
+    return int(sae_main(argv))
+
+
 def cmd_validate(args: argparse.Namespace) -> int:
     if not args.run_id:
         logger.error("validate requires --run-id.")
@@ -1330,6 +1344,17 @@ def main(argv: list[str] | None = None) -> int:
         help="Set PERSONA_FORCE_CPU=1.",
     )
     p_val.set_defaults(func=cmd_validate)
+
+    p_sae = sub.add_parser(
+        "sae-experiment",
+        help="SAE persona interpretation (generate, encode, attribute, autointerp, validate, all).",
+    )
+    p_sae.add_argument(
+        "sae_args",
+        nargs=argparse.REMAINDER,
+        help="Subcommand and flags, e.g. generate --run-id dnd_lawful",
+    )
+    p_sae.set_defaults(func=cmd_sae_experiment)
 
     args = parser.parse_args(argv)
     return int(args.func(args))

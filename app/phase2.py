@@ -18,6 +18,10 @@ logger = logging.getLogger(__name__)
 _sae = None
 _sae_info: dict[str, Any] = {}
 
+# Persona / SAE experiment defaults (layer aligned with D&D steer layer in dnd_config.json).
+DEFAULT_PERSONA_SAE_RELEASE = "gemma-scope-2-4b-it-res-all"
+DEFAULT_PERSONA_SAE_ID = "layer_31_width_16k_l0_small"
+
 
 def sae_loaded() -> bool:
     return _sae is not None
@@ -27,33 +31,13 @@ def sae_status() -> dict[str, Any]:
     return {"loaded": _sae is not None, **_sae_info}
 
 
-def try_load_sae(device: torch.device) -> None:
-    """Load SAE once. Skips if DISABLE_SAE=1 or import/load fails."""
-    global _sae, _sae_info
-    _sae = None
-    _sae_info = {}
-
-    if os.environ.get("DISABLE_SAE", "").lower() in ("1", "true", "yes"):
-        logger.info("DISABLE_SAE set; skipping SAE load.")
-        return
-
-    release = os.environ.get("SAE_RELEASE", "gemma-scope-2-4b-it-res")
-    sae_id = os.environ.get("SAE_ID", "layer_22_width_16k_l0_medium")
-
-    try:
-        from sae_lens import SAE
-    except ImportError as e:
-        logger.warning("sae-lens not installed; Phase 2 disabled: %s", e)
-        return
-
-    try:
-        sae = SAE.from_pretrained(release, sae_id)
-        sae = sae.to(device)
-        sae.eval()
-    except Exception as e:
-        logger.warning("Failed to load SAE %s / %s: %s", release, sae_id, e)
-        return
-
+def _sae_info_from_loaded(
+    sae: Any,
+    *,
+    release: str,
+    sae_id: str,
+    hidden_state_index: int | None = None,
+) -> dict[str, Any]:
     md = sae.cfg.metadata
     hook = None
     if md is not None:
@@ -71,10 +55,13 @@ def try_load_sae(device: torch.device) -> None:
         )
     else:
         default_hs = layer + 1
-        hs_idx = int(os.environ.get("SAE_HIDDEN_STATE_INDEX", str(default_hs)))
+        hs_idx = (
+            int(hidden_state_index)
+            if hidden_state_index is not None
+            else int(os.environ.get("SAE_HIDDEN_STATE_INDEX", str(default_hs)))
+        )
 
-    _sae = sae
-    _sae_info = {
+    return {
         "release": release,
         "sae_id": sae_id,
         "hook_name": hook,
@@ -83,7 +70,80 @@ def try_load_sae(device: torch.device) -> None:
         "d_in": int(sae.cfg.d_in),
         "d_sae": int(sae.cfg.d_sae),
     }
-    logger.info("Loaded SAE %s / %s hook=%s hs_index=%s", release, sae_id, hook, hs_idx)
+
+
+def load_sae_for_layer(
+    device: torch.device,
+    *,
+    release: str | None = None,
+    sae_id: str | None = None,
+    hidden_state_index: int | None = None,
+) -> tuple[Any, dict[str, Any]]:
+    """
+    Load a Gemma Scope SAE for an arbitrary layer (persona experiments).
+
+    Defaults to ``SAE_RELEASE_PERSONA`` / ``SAE_ID_PERSONA`` env vars, then
+    ``DEFAULT_PERSONA_SAE_RELEASE`` / ``DEFAULT_PERSONA_SAE_ID``.
+    """
+    rel = release or os.environ.get("SAE_RELEASE_PERSONA", DEFAULT_PERSONA_SAE_RELEASE)
+    sid = sae_id or os.environ.get("SAE_ID_PERSONA", DEFAULT_PERSONA_SAE_ID)
+
+    try:
+        from sae_lens import SAE
+    except ImportError as e:
+        raise RuntimeError("sae-lens not installed") from e
+
+    sae = SAE.from_pretrained(rel, sid)
+    sae = sae.to(device)
+    sae.eval()
+    info = _sae_info_from_loaded(
+        sae, release=rel, sae_id=sid, hidden_state_index=hidden_state_index
+    )
+    logger.info(
+        "Loaded persona SAE %s / %s hook=%s hs_index=%s",
+        rel,
+        sid,
+        info.get("hook_name"),
+        info.get("hidden_state_index"),
+    )
+    return sae, info
+
+
+def try_load_sae(device: torch.device) -> None:
+    """Load SAE once. Skips if DISABLE_SAE=1 or import/load fails."""
+    global _sae, _sae_info
+    _sae = None
+    _sae_info = {}
+
+    if os.environ.get("DISABLE_SAE", "").lower() in ("1", "true", "yes"):
+        logger.info("DISABLE_SAE set; skipping SAE load.")
+        return
+
+    release = os.environ.get("SAE_RELEASE", "gemma-scope-2-4b-it-res")
+    sae_id = os.environ.get("SAE_ID", "layer_22_width_16k_l0_medium")
+
+    try:
+        sae, info = load_sae_for_layer(
+            device,
+            release=release,
+            sae_id=sae_id,
+        )
+    except ImportError as e:
+        logger.warning("sae-lens not installed; Phase 2 disabled: %s", e)
+        return
+    except Exception as e:
+        logger.warning("Failed to load SAE %s / %s: %s", release, sae_id, e)
+        return
+
+    _sae = sae
+    _sae_info = info
+    logger.info(
+        "Loaded SAE %s / %s hook=%s hs_index=%s",
+        release,
+        sae_id,
+        info.get("hook_name"),
+        info.get("hidden_state_index"),
+    )
 
 
 def _layer_from_sae_id(sae_id: str) -> int | None:
