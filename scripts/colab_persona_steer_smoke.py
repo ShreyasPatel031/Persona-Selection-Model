@@ -119,7 +119,9 @@ def main() -> int:
 
     layers = language_model_layers(model)
     v_layer = v[LAYER]
-    if os.environ.get("PERSONA_NORMALIZE_V", "1") not in ("0", "false", "no"):
+    # Default OFF: inferno / dense_caa_raw_v uses raw α·v (norm ~1e3). Unit-normalize
+    # makes α=2.5 ~1000× too weak and collapses the personality shift.
+    if os.environ.get("PERSONA_NORMALIZE_V", "0") in ("1", "true", "yes"):
         v_layer = v_layer / (v_layer.norm() + 1e-8)
     input_device = next(model.parameters()).device
 

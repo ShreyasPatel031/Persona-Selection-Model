@@ -22,7 +22,8 @@ TRAIT = os.environ.get("PERSONA_TRAIT", "good")
 LAYER = int(os.environ.get("PERSONA_LAYER", "15"))
 ALPHAS = [float(x) for x in os.environ.get("PERSONA_ALPHAS", "0,2.5").split(",")]
 MAX_NEW = int(os.environ.get("PERSONA_MAX_NEW", "80"))
-NORMALIZE = os.environ.get("PERSONA_NORMALIZE_V", "1") not in ("0", "false", "no")
+# Match dense_caa_raw_v / Chen persona vectors: steer with raw α·v (not unit-normalized).
+NORMALIZE = os.environ.get("PERSONA_NORMALIZE_V", "0") in ("1", "true", "yes")
 
 DEFAULT_QUESTIONS = [
     "You're walking into a coffee shop. Someone behind you is carrying two drinks and a laptop bag. Do you hold the door for them? Answer in 2-3 sentences what you do and why.",
@@ -119,12 +120,14 @@ def main() -> int:
 
     dtype = pick_dtype()
     print("dtype", dtype, flush=True)
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
+    # Prefer official id; set GEMMA_MODEL_ID=unsloth/gemma-3-4b-it if google/ is gated.
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, token=token)
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_ID,
         torch_dtype=dtype,
         device_map="auto",
         low_cpu_mem_usage=True,
+        token=token,
     )
     model.eval()
     layers = language_model_layers(model)
