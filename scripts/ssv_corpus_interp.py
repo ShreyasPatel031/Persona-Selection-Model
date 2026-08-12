@@ -73,6 +73,26 @@ def extract_ssv_features(ssv_path: Path, k_levels: list[int] | None = None) -> d
     return weights
 
 
+def extract_omp_features(omp_path: Path) -> dict[int, float]:
+    """Union of OMP d-sweep feature IDs with max |OMP weight| across d levels."""
+    doc = json.loads(omp_path.read_text(encoding="utf-8"))
+    weights: dict[int, float] = {}
+    for row in doc.get("results", []):
+        if row.get("d") is None:
+            continue
+        fids = row.get("feature_ids") or []
+        wts = row.get("feature_weights") or []
+        if not wts and fids:
+            wts = [1.0] * len(fids)
+        for fid, w in zip(fids, wts):
+            fid = int(fid)
+            weights[fid] = max(weights.get(fid, 0.0), abs(float(w)))
+    for fid in doc.get("omp_features") or []:
+        fid = int(fid)
+        weights[fid] = max(weights.get(fid, 0.0), 1.0)
+    return weights
+
+
 def context_snippet(token_strs: list[str], idx: int, window: int = CONTEXT_WINDOW) -> str:
     start = max(0, idx - window)
     end = min(len(token_strs), idx + window + 1)
@@ -208,6 +228,12 @@ def cache_activations(
 
     handle = layers[layer].register_forward_hook(_hook)
 
+    sae_dev = dev if dev.type == "cuda" else torch.device("cpu")
+    if sae_dev.type == "cuda":
+        sae = sae.to(sae_dev)
+        logger.info("SAE moved to %s for fast encoding", sae_dev)
+
+    n_batches = (len(chunks) + batch_size - 1) // batch_size
     try:
         for bi in range(0, len(chunks), batch_size):
             batch = chunks[bi : bi + batch_size]
@@ -227,30 +253,40 @@ def cache_activations(
 
             for i, c in enumerate(batch):
                 seq_len = c.shape[0]
-                h = hs[i, :seq_len, :].cpu()
-                z = sae.encode(h.unsqueeze(0))[0].float()
+                h = hs[i, :seq_len, :].to(sae_dev)
+                with torch.no_grad():
+                    z = sae.encode(h.unsqueeze(0))[0].float().cpu()
                 token_strs = [tokenizer.decode([tid]) for tid in c.tolist()]
                 cache.update(z, token_strs, target_fids)
 
-            if (bi // batch_size) % 25 == 0:
+            batch_idx = bi // batch_size
+            if batch_idx % 5 == 0:
                 logger.info(
                     "Cached batch %d/%d (updates=%d)",
-                    bi // batch_size,
-                    len(chunks) // batch_size + 1,
-                    cache.n_updates,
+                    batch_idx, n_batches, cache.n_updates,
                 )
             if dev.type == "cuda":
                 torch.cuda.empty_cache()
     finally:
         handle.remove()
+        if sae_dev.type == "cuda":
+            sae = sae.cpu()
 
     cache.finalize_negatives(random.Random(42))
     return cache
 
 
-def build_explanation_prompt(fid: int, pos_examples: list[dict], neg_examples: list[dict]) -> str:
+def build_explanation_prompt(
+    fid: int,
+    pos_examples: list[dict],
+    neg_examples: list[dict],
+    *,
+    layer: int,
+    trait: str | None = None,
+) -> str:
+    trait_note = f" from a '{trait}' persona OMP decomposition" if trait else ""
     lines = [
-        "You are interpreting a sparse autoencoder (SAE) feature from Gemma-3-4B-IT, layer 16 residual stream.",
+        f"You are interpreting a sparse autoencoder (SAE) feature from Gemma-3-4B-IT, layer {layer} residual stream{trait_note}.",
         f"Feature index: F{fid}.",
         "",
         "ACTIVATING examples (>>>token<<< marks strongest activation):",
@@ -337,8 +373,14 @@ def score_detection(
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--trait", default="good")
-    ap.add_argument("--ssv", type=Path, default=DEFAULT_SSV)
-    ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
+    ap.add_argument("--ssv", type=Path, default=DEFAULT_SSV, help="SSV sweep JSON (use with --k-levels)")
+    ap.add_argument(
+        "--omp-sweep",
+        type=Path,
+        default=None,
+        help="OMP d-sweep JSON; union feature_ids across d levels (overrides --ssv)",
+    )
+    ap.add_argument("--out", type=Path, default=None, help="Output JSON (default depends on mode)")
     ap.add_argument("--cache", type=Path, default=None, help="Save/load activation context cache")
     ap.add_argument("--k-levels", default="100,512", help="SSV K levels to union features from")
     ap.add_argument("--n-tokens", type=int, default=DEFAULT_N_TOKENS)
@@ -360,15 +402,35 @@ def main() -> int:
     layer = cfg["layer"]
     sae_id = cfg["sae_id"]
     k_levels = [int(x.strip()) for x in args.k_levels.split(",") if x.strip()]
-    feature_weights = extract_ssv_features(args.ssv, k_levels)
+
+    if args.omp_sweep:
+        omp_path = args.omp_sweep
+        if not omp_path.is_file():
+            omp_path = cfg["sae_dir"] / f"ssv_omp_dsweep_l{layer}.json"
+        if not omp_path.is_file():
+            logger.error("OMP sweep not found: %s", omp_path)
+            return 1
+        feature_weights = extract_omp_features(omp_path)
+        method = "omp_corpus_interp"
+        default_out = cfg["sae_dir"] / "ssv_omp_corpus_interp.json"
+        default_cache = cfg["sae_dir"] / "ssv_omp_corpus_cache.json"
+        source_desc = str(omp_path)
+    else:
+        feature_weights = extract_ssv_features(args.ssv, k_levels)
+        method = "ssv_corpus_interp"
+        default_out = DEFAULT_OUT if args.trait == "good" else cfg["sae_dir"] / "ssv_corpus_interp.json"
+        default_cache = default_out.parent / "ssv_corpus_cache.json"
+        source_desc = f"{args.ssv} K={k_levels}"
+
     if not feature_weights:
-        logger.error("No features found in %s for K levels %s", args.ssv, k_levels)
+        logger.error("No features found from %s", source_desc)
         return 1
 
+    out_path = args.out or default_out
     target_fids = set(feature_weights.keys())
-    logger.info("Target features: %d from SSV K=%s", len(target_fids), k_levels)
+    logger.info("Target features: %d from %s", len(target_fids), source_desc)
 
-    cache_path = args.cache or (args.out.parent / "ssv_corpus_cache.json")
+    cache_path = args.cache or default_cache
 
     if args.skip_cache and cache_path.is_file():
         cached = json.loads(cache_path.read_text(encoding="utf-8"))
@@ -396,8 +458,8 @@ def main() -> int:
             return 0
 
     existing = {}
-    if args.out.is_file() and not args.force:
-        existing = json.loads(args.out.read_text(encoding="utf-8")).get("features", {})
+    if out_path.is_file() and not args.force:
+        existing = json.loads(out_path.read_text(encoding="utf-8")).get("features", {})
 
     results: dict[str, dict] = {}
     n_new = 0
@@ -420,7 +482,7 @@ def main() -> int:
             }
             continue
 
-        prompt = build_explanation_prompt(fid, pos, neg)
+        prompt = build_explanation_prompt(fid, pos, neg, layer=layer, trait=args.trait)
         try:
             interpretation = gemini_generate(prompt, args.project, args.model).split("\n")[0].strip().rstrip(".")
             source = "corpus_gemini"
@@ -445,22 +507,24 @@ def main() -> int:
         logger.info("F%d -> %s (det=%s)", fid, interpretation[:60], entry.get("detection", {}).get("detection_accuracy"))
 
         # Incremental save
-        args.out.parent.mkdir(parents=True, exist_ok=True)
-        args.out.write_text(json.dumps({
-            "meta": {
-                "method": "ssv_corpus_interp",
-                "trait": args.trait,
-                "layer": layer,
-                "sae_id": sae_id,
-                "n_features": len(results),
-                "k_levels": k_levels,
-                "n_tokens": args.n_tokens,
-                "corpus": args.dataset,
-            },
-            "features": results,
-        }, indent=2) + "\n", encoding="utf-8")
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        meta = {
+            "method": method,
+            "trait": args.trait,
+            "layer": layer,
+            "sae_id": sae_id,
+            "n_features": len(results),
+            "n_tokens": args.n_tokens,
+            "corpus": args.dataset,
+        }
+        if args.omp_sweep:
+            meta["omp_sweep"] = str(omp_path)
+        else:
+            meta["k_levels"] = k_levels
+            meta["ssv"] = str(args.ssv)
+        out_path.write_text(json.dumps({"meta": meta, "features": results}, indent=2) + "\n", encoding="utf-8")
 
-    logger.info("Wrote %s (%d features, %d new)", args.out, len(results), n_new)
+    logger.info("Wrote %s (%d features, %d new)", out_path, len(results), n_new)
     return 0
 
 

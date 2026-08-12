@@ -250,6 +250,74 @@ def run_reconstruction_diagnostics(
     return out_json
 
 
+def _extract_hidden_3d(output: Any) -> torch.Tensor | None:
+    if isinstance(output, tuple) and len(output) > 0:
+        h = output[0]
+    elif isinstance(output, torch.Tensor):
+        h = output
+    else:
+        return None
+    if h.dim() != 3:
+        return None
+    return h
+
+
+def sae_feature_clamp_hook_fn(
+    sae: Any,
+    feature_ids: list[int],
+    clamp_values: list[float],
+    hook_calls: list[int],
+    *,
+    mode: str = "additive_delta",
+    steer_last_token_only: bool = False,
+) -> Any:
+    """
+    Forward hook: encode -> modify feature activations -> decode.
+
+    Modes:
+      - ``additive_delta``: h += decode(z') - decode(z)  (isolates feature change)
+      - ``full_replacement``: h = decode(z')  (Anthropic/Templeton style)
+    """
+    if len(feature_ids) != len(clamp_values):
+        raise ValueError("feature_ids and clamp_values must have the same length.")
+    if mode not in ("additive_delta", "full_replacement"):
+        raise ValueError(f"Unknown clamp mode: {mode}")
+
+    def hook(_m: nn.Module, _inp: Any, output: Any) -> Any:
+        h = _extract_hidden_3d(output)
+        if h is None:
+            return output
+
+        hook_calls[0] += 1
+        sae_dev = _sae_device(sae)
+        x = h.to(sae_dev)
+        with torch.no_grad():
+            z = sae.encode(x)
+            z_mod = z.clone()
+            for fid, val in zip(feature_ids, clamp_values):
+                if 0 <= fid < z_mod.shape[-1]:
+                    if steer_last_token_only:
+                        z_mod[:, -1:, fid] = float(val)
+                    else:
+                        z_mod[..., fid] = float(val)
+            decoded_mod = sae.decode(z_mod).to(device=h.device, dtype=h.dtype)
+            if mode == "full_replacement":
+                if steer_last_token_only:
+                    h[:, -1:, :].copy_(decoded_mod[:, -1:, :])
+                else:
+                    h.copy_(decoded_mod)
+            else:
+                decoded_orig = sae.decode(z).to(device=h.device, dtype=h.dtype)
+                delta = decoded_mod - decoded_orig
+                if steer_last_token_only:
+                    h[:, -1:, :].add_(delta[:, -1:, :])
+                else:
+                    h.add_(delta)
+        return output
+
+    return hook
+
+
 def sae_feature_ablation_hook_fn(
     sae: Any,
     feature_ids: list[int],
@@ -262,13 +330,8 @@ def sae_feature_ablation_hook_fn(
     """
 
     def hook(_m: nn.Module, _inp: Any, output: Any) -> Any:
-        if isinstance(output, tuple) and len(output) > 0:
-            h = output[0]
-        elif isinstance(output, torch.Tensor):
-            h = output
-        else:
-            return output
-        if h.dim() != 3:
+        h = _extract_hidden_3d(output)
+        if h is None:
             return output
 
         hook_calls[0] += 1
@@ -302,6 +365,7 @@ def run_ablation_validation(
     device: torch.device | None = None,
     skip_judge: bool = False,
     project_id: str | None = None,
+    use_eval_questions: bool = False,
 ) -> Path:
     """Experiment C: dense steer + SAE feature ablation vs baseline/dense-only."""
     import os
@@ -315,10 +379,6 @@ def run_ablation_validation(
     from app.persona.schemas import PersonaTraitArtifact
     from app.persona.steering_demo import _language_model_layers, _steering_hook_fn
 
-    gen_path = _sae_dir(run_dir) / "generations.json"
-    if not gen_path.is_file():
-        raise FileNotFoundError(f"Missing {gen_path}; run generate first.")
-    gen = json.loads(gen_path.read_text(encoding="utf-8"))
     attr = json.loads(attribution_json.read_text(encoding="utf-8"))
 
     bundle_path = run_dir / "artifacts" / "trait_bundle.json"
@@ -327,7 +387,7 @@ def run_ablation_validation(
         bundle_path.read_text(encoding="utf-8")
     )
     neg_sys_default = with_paragraph_cap(artifact.neg_system_prompt)
-    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric)
+    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric, trait_label=artifact.trait_label)
 
     pos_feats = attr.get("top_positive_features") or []
     if not pos_feats:
@@ -343,7 +403,22 @@ def run_ablation_validation(
     dtype = next(model.parameters()).dtype
     direction = u_dense.to(device=dev, dtype=dtype).view(1, 1, -1)
 
-    questions = gen.get("questions") or []
+    if use_eval_questions:
+        eq = getattr(artifact, "eval_questions", None) or []
+        if not eq:
+            raise ValueError(
+                "Bundle has no eval_questions; cannot use --use-eval-questions."
+            )
+        questions = [{"question": q} for q in eq]
+        logger.info("Using %d eval_questions from bundle (not generations.json)", len(questions))
+        gen = {"trait": artifact.trait_label}
+    else:
+        gen_path = _sae_dir(run_dir) / "generations.json"
+        if not gen_path.is_file():
+            raise FileNotFoundError(f"Missing {gen_path}; run generate first.")
+        gen = json.loads(gen_path.read_text(encoding="utf-8"))
+        questions = gen.get("questions") or []
+
     if limit and limit < len(questions):
         questions = questions[:limit]
 

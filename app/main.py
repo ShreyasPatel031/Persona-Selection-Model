@@ -838,6 +838,119 @@ def phase2_page():
     return FileResponse(STATIC_DIR / "phase2.html")
 
 
+@app.get("/sae_alpha_viz.html")
+def sae_alpha_viz_page():
+    return FileResponse(
+        STATIC_DIR / "sae_alpha_viz.html",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/sae_alpha_viz_data.json")
+def sae_alpha_viz_data():
+    return FileResponse(
+        STATIC_DIR / "sae_alpha_viz_data.json",
+        media_type="application/json",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz.html")
+def ssv_bubble_viz_page():
+    return FileResponse(
+        STATIC_DIR / "ssv_bubble_viz.html",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz_manifest.json")
+def ssv_bubble_viz_manifest():
+    return FileResponse(
+        STATIC_DIR / "ssv_bubble_viz_manifest.json",
+        media_type="application/json",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz_data.json")
+@app.get("/ssv_bubble_viz_data_{trait}.json")
+def ssv_bubble_viz_data(trait: str = "good"):
+    path = STATIC_DIR / f"ssv_bubble_viz_data_{trait}.json"
+    if not path.is_file():
+        path = STATIC_DIR / "ssv_bubble_viz_data.json"
+    return FileResponse(
+        path,
+        media_type="application/json",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz_classifier.html")
+def ssv_bubble_viz_classifier_page():
+    return FileResponse(
+        STATIC_DIR / "ssv_bubble_viz_classifier.html",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz_classifier_data_good.json")
+@app.get("/ssv_bubble_viz_classifier_data_{trait}.json")
+def ssv_bubble_viz_classifier_data(trait: str = "good"):
+    path = STATIC_DIR / f"ssv_bubble_viz_classifier_data_{trait}.json"
+    if not path.is_file():
+        path = STATIC_DIR / "ssv_bubble_viz_classifier_data_good.json"
+    return FileResponse(
+        path,
+        media_type="application/json",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz_classifier_manifest.json")
+def ssv_bubble_viz_classifier_manifest():
+    path = STATIC_DIR / "ssv_bubble_viz_classifier_manifest.json"
+    if not path.is_file():
+        raise HTTPException(status_code=404, detail="classifier manifest not found")
+    return FileResponse(
+        path,
+        media_type="application/json",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz_omp.html")
+def ssv_bubble_viz_omp_page():
+    return FileResponse(
+        STATIC_DIR / "ssv_bubble_viz_omp.html",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz_omp_data_good.json")
+@app.get("/ssv_bubble_viz_omp_data_{trait}.json")
+def ssv_bubble_viz_omp_data(trait: str = "good"):
+    path = STATIC_DIR / f"ssv_bubble_viz_omp_data_{trait}.json"
+    if not path.is_file():
+        path = STATIC_DIR / "ssv_bubble_viz_omp_data_good.json"
+    return FileResponse(
+        path,
+        media_type="application/json",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/ssv_bubble_viz_omp_manifest.json")
+def ssv_bubble_viz_omp_manifest():
+    path = STATIC_DIR / "ssv_bubble_viz_omp_manifest.json"
+    if not path.is_file():
+        raise HTTPException(status_code=404, detail="OMP bubble manifest not found")
+    return FileResponse(
+        path,
+        media_type="application/json",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
 @app.get("/dnd_playground.html")
 def dnd_playground_page():
     return FileResponse(STATIC_DIR / "dnd_playground.html")
@@ -876,6 +989,53 @@ async def dnd_playground_stream(body: ChatDndPlaygroundRequest):
             "Connection": "keep-alive",
             "X-Accel-Buffering": "no",
         },
+    )
+
+
+@app.get("/layer3d.html")
+def layer3d_page():
+    return FileResponse(
+        STATIC_DIR / "layer3d.html",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/inferno_cone.html")
+def inferno_cone_page():
+    return FileResponse(
+        STATIC_DIR / "inferno_cone.html",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/omp_reconstruction_3d.html")
+def omp_reconstruction_3d_page():
+    return FileResponse(
+        STATIC_DIR / "omp_reconstruction_3d.html",
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/omp_reconstruction_3d_{trait}.json")
+def omp_reconstruction_3d_data(trait: str):
+    path = STATIC_DIR / f"omp_reconstruction_3d_{trait}.json"
+    if not path.is_file():
+        raise HTTPException(status_code=404, detail=f"Missing omp_reconstruction_3d_{trait}.json — build on VM")
+    return FileResponse(
+        path,
+        headers={"Cache-Control": "no-cache"},
+    )
+
+
+@app.get("/layer3d_{trait}_trait_activation.json")
+def layer3d_trait_activation(trait: str):
+    path = STATIC_DIR / f"layer3d_{trait}_trait_activation.json"
+    if not path.is_file():
+        raise HTTPException(status_code=404, detail=f"Unknown trait {trait!r}")
+    return FileResponse(
+        path,
+        media_type="application/json",
+        headers={"Cache-Control": "no-cache"},
     )
 
 

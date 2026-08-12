@@ -119,13 +119,78 @@ curl -s -X POST http://127.0.0.1:8080/chat \
 
 Optional JSON fields for **`POST /chat`**: `do_sample` (bool), `temperature` (0–2, used when sampling), `seed` (int, reproducibility).
 
-## Persona vectors (paper replication)
+## Persona Vectors Pipeline
 
-Pipeline CLI: `python -m app.persona.run` (`step-b`, `step-c`, `step-d`, `validate`, …). Heavy steps run on the VM with in-process Gemma.
+Implements the pipeline from **Chen et al. (2025)** "Persona Vectors: Monitoring and Controlling Character Traits in Language Models" ([arXiv:2507.21509](https://arxiv.org/abs/2507.21509)).
 
-**Evil trait, paper-scale run:** see [docs/REPLICATION_EVIL_PAPER_V0.md](docs/REPLICATION_EVIL_PAPER_V0.md) (`evil_paper_v0` bundle under `persona_runs/`).
+CLI: `python -m app.persona.run` (`step-b`, `step-c`, `step-d`, `quality-gates`, `calibrate`, …).
 
-**GPU-hour optimization (scoreboard, phased probes, one-shot `gpu-probe`):** [docs/GPU_HOUR_SCOREBOARD.md](docs/GPU_HOUR_SCOREBOARD.md), [docs/GPU_PROBE_WORKFLOW.md](docs/GPU_PROBE_WORKFLOW.md). Ephemeral GPU VM + tiny step-c: `python -m app.persona.run gpu-probe --gpu-run` (needs `gcloud`, `HF_TOKEN`, `GOOGLE_CLOUD_PROJECT`). Local CPU tiny probe: [scripts/tiny_cpu_probe.sh](scripts/tiny_cpu_probe.sh).
+### Pipeline Steps (DO NOT skip or shortcut)
+
+| Step | What | Critical Parameters |
+|------|------|-------------------|
+| **B** | Generate trait artifacts (prompts, questions, rubric) | 5 prompt pairs, 20 extraction + 20 eval questions |
+| **C** | Generate contrastive rollouts + judge filtering | **10 rollouts/question**, judge enabled (score >50/<50) |
+| **D** | Extract persona vectors (mean residuals over response tokens) | All layers saved |
+| **Quality Gates** | **Causal layer sweep** + steering effectiveness | Picks best layer by actual trait expression |
+| **Calibrate** | Alpha sweep at the chosen layer | Finds α where trait is high + coherence ≥80 |
+
+### CRITICAL: What the Paper Requires (and what goes wrong if you skip it)
+
+#### 1. Layer Selection — MUST be causal, NEVER hardcoded
+
+The paper (Appendix B.4) selects the steering layer by sweeping all layers with a fixed α and measuring trait expression. **DO NOT** use:
+- The SAE layer (layer 22) — this is for interpretability only, not steering
+- The argmax-norm layer — late layers have high norms but produce incoherence
+- Any hardcoded default
+
+**What happens if you get this wrong:** The vector produces incoherent text before any behavioral change occurs. At layer 22 on Gemma-3-4b, "good" gets trait=0.75 at α=1.5 (useless). At layer 16, the same vector gets trait=80.3 (works perfectly).
+
+Run: `python -m app.persona.run quality-gates --run-id <id>` — this performs the causal sweep.
+
+#### 2. Rollouts Per Question — MUST be 10, not 1
+
+The paper uses 10 rollouts per (question × prompt pair). With 5 pairs × 20 questions × 10 rollouts = 1000 items per arm before filtering. This gives:
+- Enough samples for stable mean estimation
+- Split-half cosine ≥0.8 (direction is reliable)
+
+**What happens if you use 1:** 100 items per arm (10x less data). The mean direction is noisy, split-half cosine drops, and the vector captures vocabulary shifts instead of behavioral ones.
+
+#### 3. Quality Filtering — MUST use the judge
+
+The paper filters rollouts by trait score: keep pos only if score >50, neg only if score <50. This removes cases where the model didn't follow the system prompt.
+
+**What happens if you skip the judge:** Noisy rollouts where pos and neg sound similar dilute the contrastive signal. The resulting vector points toward superficial differences (tone words) rather than deep behavioral directions.
+
+`--skip-judge` is acceptable ONLY for rapid prototyping. Any production vector MUST be judge-filtered.
+
+#### 4. Extraction Questions — MUST be behavioral scenarios
+
+Questions must force a behavioral choice, not ask for abstract essays. Good: "You find a wallet with $500, nobody is watching, you are broke." Bad: "What does it mean to be a good person?"
+
+### Quick Reference: Full Production Run
+
+```bash
+# On VM with GPU:
+python -m app.persona.run step-c \
+  --run-id my_trait \
+  --gemma-url http://127.0.0.1:8080 \
+  --rollouts-per-q 10 \
+  --project applied-ai-practice00
+
+python -m app.persona.run step-d --run-id my_trait
+
+python -m app.persona.run quality-gates --run-id my_trait \
+  --project applied-ai-practice00
+
+# quality-gates output tells you the correct layer and alpha.
+```
+
+### Older Docs
+
+**Evil trait, paper-scale run:** see [docs/REPLICATION_EVIL_PAPER_V0.md](docs/REPLICATION_EVIL_PAPER_V0.md).
+
+**GPU-hour optimization:** [docs/GPU_HOUR_SCOREBOARD.md](docs/GPU_HOUR_SCOREBOARD.md), [docs/GPU_PROBE_WORKFLOW.md](docs/GPU_PROBE_WORKFLOW.md).
 
 **Server device:** with a GPU and drivers, Uvicorn loads Gemma on **CUDA:0** (bf16/fp16) unless `GEMMA_FORCE_CPU=1`. `GEMMA_MAX_NEW_TOKENS` still caps generation length.
 

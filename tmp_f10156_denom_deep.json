@@ -1,0 +1,32 @@
+{
+  "observations": [
+    {
+      "claim": "The feature disproportionately promotes tokens associated with Evangelical and Baptist Protestantism over other Christian traditions.",
+      "evidence": "The three highest scores in the set belong to 'evangelical' (1.6821), 'Baptist' (1.6548), and 'Evangelical' (1.628). These are significantly higher than tokens for other major traditions like 'Catholic' (1.1682) and 'Orthodox' (1.2055).",
+      "confidence": "high"
+    },
+    {
+      "claim": "A clear hierarchy of promotion strength exists among denominations, with certain Protestant movements ranked highest.",
+      "evidence": "A top tier of scores (>1.5) includes 'Evangelical', 'Baptist', 'Adventist', and 'Pentecost'. A middle tier (~1.3-1.5) includes 'Protestant' and 'Catholics'. A lower tier (<1.3) includes 'Methodist', 'Orthodox', 'Reformed', 'Episcopal', and 'Catholic'.",
+      "confidence": "high"
+    },
+    {
+      "claim": "The feature is multilingual, with non-English tokens for 'Christian' and 'Orthodox' showing consistent or strong promotion.",
+      "evidence": "Tokens for 'Christian' in Russian ('христиан', 1.431), Spanish ('cristianos', 1.4239), and Chinese ('基督教', 1.4121) have high scores. The Russian token for 'Orthodox' ('православ', 1.2156) is scored almost identically to its English counterpart ('Orthodox', 1.2055).",
+      "confidence": "high"
+    },
+    {
+      "claim": "Promotion strength is highly sensitive to token-specific forms like capitalization and abbreviation, with inconsistent effects.",
+      "evidence": "The lowercase 'evangelical' (1.6821) is stronger than the capitalized 'Evangelical' (1.628), but the opposite is true for 'Christian' (1.6199) versus 'christian' (1.1894). Full words like 'Baptist' (1.6548) are much stronger than their abbreviations like 'Bapt' (1.1621).",
+      "confidence": "high"
+    },
+    {
+      "claim": "The promotion strength for a group versus its adjectival or singular form is inconsistent.",
+      "evidence": "The token 'Catholics' (1.3704) is promoted significantly more strongly than 'Catholic' (1.1682). Conversely, 'Protestants' (1.2956) is promoted less strongly than 'Protestant' (1.4731).",
+      "confidence": "medium"
+    }
+  ],
+  "internal_structure": "The set is organized as a hierarchy. At the top are general, high-scoring tokens for 'Christianity'. Below this, the set branches into different traditions, but with a clear imbalance: a high-strength cluster of tokens is associated with Evangelical, Baptist, and related Protestant movements. Other major traditions like Catholicism and Orthodoxy form distinct, lower-strength clusters. The structure is further complicated by sub-groupings based on language, capitalization, and abbreviation.",
+  "caveats": "These scores represent the promotion strength of a single feature within a vastly more complex language model; they are not the final determinants of token probability. The data does not explain the reason for these specific strengths, which could be related to training data frequency, intentional tuning, or other factors. The scores do not reflect the real-world size or importance of these denominations. The list of tokens is not exhaustive.",
+  "summary": "This feature promotes a set of tokens related to Christian denominations, with a strong and clear emphasis on those associated with Evangelical and Baptist Protestantism. A distinct hierarchy of promotion strength is evident, where tokens for traditions like Catholic and Orthodox are promoted less strongly. The feature is also multilingual and sensitive to specific token forms like capitalization and abbreviation."
+}

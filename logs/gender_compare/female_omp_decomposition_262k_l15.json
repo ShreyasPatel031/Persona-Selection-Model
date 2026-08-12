@@ -1,0 +1,169 @@
+{
+  "method": "orthogonal_matching_pursuit",
+  "trait": "female",
+  "run_id": "gender_female",
+  "layer": 15,
+  "sae_id": "layer_15_width_262k_l0_small",
+  "k_max": 20,
+  "n_features": 20,
+  "target_norm": 1132.65,
+  "checkpoints": [
+    {
+      "k": 1,
+      "feature_id": 87091,
+      "coefficient": -1036.4493,
+      "cosine": 0.9151,
+      "norm_ratio": 0.9151,
+      "residual_frac": 0.4033
+    },
+    {
+      "k": 2,
+      "feature_id": 27534,
+      "coefficient": 140.4872,
+      "cosine": 0.9251,
+      "norm_ratio": 0.9801,
+      "residual_frac": 0.3838
+    },
+    {
+      "k": 3,
+      "feature_id": 2816,
+      "coefficient": 134.8706,
+      "cosine": 0.9316,
+      "norm_ratio": 0.9018,
+      "residual_frac": 0.3648
+    },
+    {
+      "k": 4,
+      "feature_id": 22843,
+      "coefficient": 94.9204,
+      "cosine": 0.9349,
+      "norm_ratio": 0.944,
+      "residual_frac": 0.3551
+    },
+    {
+      "k": 5,
+      "feature_id": 1592,
+      "coefficient": 77.9576,
+      "cosine": 0.9379,
+      "norm_ratio": 0.9067,
+      "residual_frac": 0.3483
+    },
+    {
+      "k": 7,
+      "feature_id": 24375,
+      "coefficient": -68.3826,
+      "cosine": 0.9419,
+      "norm_ratio": 0.946,
+      "residual_frac": 0.3358
+    },
+    {
+      "k": 10,
+      "feature_id": 21500,
+      "coefficient": -62.5156,
+      "cosine": 0.9468,
+      "norm_ratio": 0.9587,
+      "residual_frac": 0.3219
+    },
+    {
+      "k": 15,
+      "feature_id": 12650,
+      "coefficient": 48.4704,
+      "cosine": 0.9524,
+      "norm_ratio": 0.9696,
+      "residual_frac": 0.3052
+    },
+    {
+      "k": 20,
+      "feature_id": 4893,
+      "coefficient": -39.6449,
+      "cosine": 0.9564,
+      "norm_ratio": 0.9568,
+      "residual_frac": 0.2922
+    }
+  ],
+  "k_at_cos_99": null,
+  "decomposition": [
+    {
+      "feature_id": 87091,
+      "coefficient": -1036.4493
+    },
+    {
+      "feature_id": 27534,
+      "coefficient": 140.4872
+    },
+    {
+      "feature_id": 2816,
+      "coefficient": 134.8706
+    },
+    {
+      "feature_id": 22843,
+      "coefficient": 94.9204
+    },
+    {
+      "feature_id": 1592,
+      "coefficient": 77.9576
+    },
+    {
+      "feature_id": 213695,
+      "coefficient": -79.4263
+    },
+    {
+      "feature_id": 24375,
+      "coefficient": -68.3826
+    },
+    {
+      "feature_id": 22432,
+      "coefficient": -58.1225
+    },
+    {
+      "feature_id": 6271,
+      "coefficient": 66.7499
+    },
+    {
+      "feature_id": 21500,
+      "coefficient": -62.5156
+    },
+    {
+      "feature_id": 16449,
+      "coefficient": 54.1747
+    },
+    {
+      "feature_id": 107806,
+      "coefficient": 54.5693
+    },
+    {
+      "feature_id": 46981,
+      "coefficient": -50.785
+    },
+    {
+      "feature_id": 244590,
+      "coefficient": 50.8068
+    },
+    {
+      "feature_id": 12650,
+      "coefficient": 48.4704
+    },
+    {
+      "feature_id": 5687,
+      "coefficient": 51.7048
+    },
+    {
+      "feature_id": 12429,
+      "coefficient": -46.3974
+    },
+    {
+      "feature_id": 254263,
+      "coefficient": -43.3474
+    },
+    {
+      "feature_id": 36137,
+      "coefficient": 41.0925
+    },
+    {
+      "feature_id": 4893,
+      "coefficient": -39.6449
+    }
+  ],
+  "final_cosine": 0.9564,
+  "final_residual_frac": 0.2922
+}

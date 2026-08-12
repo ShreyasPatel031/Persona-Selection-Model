@@ -19,7 +19,11 @@ from app.persona.config import (
 )
 from app.persona.eval_answers import run_eval_answers
 from app.persona.gpu_orchestrate import build_gpu_probe_parser
-from app.persona.rollouts import run_step_c
+from app.persona.rollouts import (
+    ROLLOUTS_LATEST_JSON,
+    resolve_rollouts_jsonl,
+    run_step_c,
+)
 from app.persona.schemas import PersonaTraitArtifact
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -106,6 +110,8 @@ def _merge_manifest_step_d(
     vectors_rel: str,
     *,
     layer_recommendation_v1: dict | None = None,
+    rollouts_jsonl: str | None = None,
+    rollouts_source: str | None = None,
 ) -> None:
     mpath = run_dir / "manifest.json"
     if not mpath.is_file():
@@ -114,7 +120,12 @@ def _merge_manifest_step_d(
     step_d: dict = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "persona_vectors": vectors_rel,
+        "rollouts_latest": f"rollouts/{ROLLOUTS_LATEST_JSON}",
     }
+    if rollouts_jsonl:
+        step_d["rollouts_jsonl"] = rollouts_jsonl
+    if rollouts_source:
+        step_d["rollouts_source"] = rollouts_source
     if layer_recommendation_v1:
         step_d["layer_recommendation_v1"] = layer_recommendation_v1
         rec = layer_recommendation_v1.get("recommended_layer")
@@ -144,6 +155,7 @@ def _merge_manifest_step_c(
     rollouts_rel: str,
     *,
     jsonl_rel: str | None = None,
+    questions_source: str | None = None,
 ) -> None:
     mpath = run_dir / "manifest.json"
     if not mpath.is_file():
@@ -152,9 +164,12 @@ def _merge_manifest_step_c(
     step_c = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
         "rollouts_extraction": rollouts_rel,
+        "rollouts_latest": f"rollouts/{ROLLOUTS_LATEST_JSON}",
     }
     if jsonl_rel:
         step_c["rollouts_jsonl"] = jsonl_rel
+    if questions_source:
+        step_c["questions_source"] = questions_source
     data.setdefault("steps", {})["C"] = step_c
     mpath.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
 
@@ -238,6 +253,7 @@ def cmd_step_c(args: argparse.Namespace) -> int:
             return 1
 
     limit = args.limit if args.limit > 0 else 0
+    questions_source = "eval" if args.use_eval_questions else args.questions_source
     try:
         written, jsonl_written = run_step_c(
             bundle_path,
@@ -260,6 +276,12 @@ def cmd_step_c(args: argparse.Namespace) -> int:
             ),
             rollouts_per_q=max(1, int(args.rollouts_per_q)),
             sampling_temperature=float(args.sampling_temperature),
+            questions_source=questions_source,
+            max_pairs=int(args.max_pairs) if args.max_pairs > 0 else None,
+            use_local_gpu=bool(args.local_gpu),
+            max_new_tokens=int(args.max_new_tokens),
+            judge_workers=max(1, int(args.judge_workers)),
+            model_id=args.model_id or None,
         )
     except Exception as e:
         logger.exception("step-c failed: %s", e)
@@ -277,7 +299,12 @@ def cmd_step_c(args: argparse.Namespace) -> int:
                 jsonl_rel = str(jsonl_written.relative_to(PERSONA_RUNS_DIR))
             except ValueError:
                 jsonl_rel = str(jsonl_written)
-        _merge_manifest_step_c(run_dir, rel, jsonl_rel=jsonl_rel)
+        _merge_manifest_step_c(
+            run_dir,
+            rel,
+            jsonl_rel=jsonl_rel,
+            questions_source=questions_source,
+        )
 
     print(written.resolve())
     if jsonl_written:
@@ -295,14 +322,21 @@ def cmd_step_d(args: argparse.Namespace) -> int:
     from app.persona.activations import run_step_d
 
     run_dir = (PERSONA_RUNS_DIR / args.run_id).resolve()
-    jsonl = (
-        Path(args.rollouts_jsonl).resolve()
-        if args.rollouts_jsonl
-        else run_dir / "rollouts" / "rollouts.jsonl"
+    explicit_jsonl = (
+        Path(args.rollouts_jsonl).resolve() if args.rollouts_jsonl else None
     )
-    if not jsonl.is_file():
-        logger.error("Missing rollouts jsonl: %s", jsonl)
+    try:
+        jsonl, rollouts_source = resolve_rollouts_jsonl(
+            run_dir,
+            explicit_jsonl=explicit_jsonl,
+        )
+    except FileNotFoundError as e:
+        logger.error("%s", e)
         return 1
+    except RuntimeError as e:
+        logger.error("%s", e)
+        return 1
+    logger.info("Step D rollouts source: %s (%s)", jsonl, rollouts_source)
 
     vec_dir = run_dir / "vectors"
     out_pt = Path(args.out_pt).resolve() if args.out_pt else vec_dir / "persona_vectors.pt"
@@ -319,6 +353,7 @@ def cmd_step_d(args: argparse.Namespace) -> int:
             summary,
             model_id=args.model_id or None,
             device=None,
+            max_per_arm=getattr(args, "max_per_arm", None),
         )
     except Exception as e:
         logger.exception("step-d failed: %s", e)
@@ -336,7 +371,17 @@ def cmd_step_d(args: argparse.Namespace) -> int:
             )
         except (json.JSONDecodeError, OSError):
             pass
-    _merge_manifest_step_d(run_dir, rel, layer_recommendation_v1=layer_v1)
+    try:
+        rollouts_rel = str(jsonl.relative_to(run_dir))
+    except ValueError:
+        rollouts_rel = str(jsonl)
+    _merge_manifest_step_d(
+        run_dir,
+        rel,
+        layer_recommendation_v1=layer_v1,
+        rollouts_jsonl=rollouts_rel,
+        rollouts_source=rollouts_source,
+    )
     print(out_pt.resolve())
     return 0
 
@@ -564,8 +609,12 @@ def cmd_steering_ramp(args: argparse.Namespace) -> int:
                 except (json.JSONDecodeError, OSError):
                     layer_idx = None
         if layer_idx is None:
-            layer_idx = 22
-            logger.info("No recommended_layer in manifest/summary; using default 22.")
+            layer_idx = 16
+            logger.warning(
+                "NO CAUSAL LAYER SELECTION FOUND in manifest/summary. "
+                "Falling back to layer 16 (mid-range heuristic). "
+                "Run `quality-gates` for proper layer selection per paper Appendix B.4."
+            )
 
     if args.question:
         question = args.question
@@ -659,8 +708,12 @@ def cmd_steering_ab(args: argparse.Namespace) -> int:
                 except (json.JSONDecodeError, OSError):
                     layer_idx = None
         if layer_idx is None:
-            layer_idx = 22
-            logger.info("No recommended_layer in manifest/summary; using default 22.")
+            layer_idx = 16
+            logger.warning(
+                "NO CAUSAL LAYER SELECTION FOUND in manifest/summary. "
+                "Falling back to layer 16 (mid-range heuristic). "
+                "Run `quality-gates` for proper layer selection per paper Appendix B.4."
+            )
 
     if args.question:
         question = args.question
@@ -744,8 +797,16 @@ def cmd_validate(args: argparse.Namespace) -> int:
     rollouts_jsonl = (
         Path(args.rollouts_jsonl).resolve()
         if args.rollouts_jsonl
-        else (run_dir / "rollouts" / "rollouts.jsonl")
+        else None
     )
+    try:
+        rollouts_jsonl, _ = resolve_rollouts_jsonl(
+            run_dir,
+            explicit_jsonl=rollouts_jsonl,
+        )
+    except (FileNotFoundError, RuntimeError) as e:
+        logger.error("%s", e)
+        return 1
     sanity_json = (
         Path(args.sanity_json).resolve()
         if args.sanity_json
@@ -797,6 +858,7 @@ def cmd_validate(args: argparse.Namespace) -> int:
             judge_location=args.location or DEFAULT_VERTEX_LOCATION,
             judge_model=args.judge_model or None,
             skip_model_gates=args.skip_model_gates,
+            fixed_layer=getattr(args, "fixed_layer", None),
             steering_replies_out=steering_replies_out,
         )
     except Exception as e:
@@ -938,7 +1000,7 @@ def main(argv: list[str] | None = None) -> int:
     p_c.add_argument(
         "--skip-judge",
         action="store_true",
-        help="Rollouts only (no Vertex); no rollouts.jsonl.",
+        help="Rollouts only (no Vertex judge); still writes rollouts/rollouts.jsonl + rollouts/latest.json.",
     )
     p_c.add_argument(
         "--project",
@@ -974,10 +1036,27 @@ def main(argv: list[str] | None = None) -> int:
         help="Max extraction questions (0 = all).",
     )
     p_c.add_argument(
+        "--questions-source",
+        choices=("extraction", "eval", "scenarios"),
+        default="extraction",
+        help="Question set for rollouts: extraction (default), eval, or scenarios (eval + contrast_scenarios).",
+    )
+    p_c.add_argument(
+        "--use-eval-questions",
+        action="store_true",
+        help="Shortcut for --questions-source eval.",
+    )
+    p_c.add_argument(
         "--rollouts-per-q",
         type=int,
-        default=1,
-        help="Samples per (contrast pair, extraction question); paper §2.2 uses 10 (set Gemma /chat do_sample).",
+        default=10,
+        help="Samples per (contrast pair, extraction question). Paper §2.2 requires 10. DO NOT reduce below 5.",
+    )
+    p_c.add_argument(
+        "--max-pairs",
+        type=int,
+        default=0,
+        help="Use only the first N contrastive_system_prompts pairs (0 = all).",
     )
     p_c.add_argument(
         "--sampling-temperature",
@@ -996,6 +1075,28 @@ def main(argv: list[str] | None = None) -> int:
         action="store_true",
         help="Do not append the one-paragraph reply constraint.",
     )
+    p_c.add_argument(
+        "--local-gpu",
+        action="store_true",
+        help="Generate rollouts in-process on CUDA (no HTTP /chat). Faster on GPU VM.",
+    )
+    p_c.add_argument(
+        "--max-new-tokens",
+        type=int,
+        default=200,
+        help="Max new tokens per rollout when --local-gpu (default 200).",
+    )
+    p_c.add_argument(
+        "--judge-workers",
+        type=int,
+        default=8,
+        help="Parallel Vertex judge workers (default 8).",
+    )
+    p_c.add_argument(
+        "--model-id",
+        default="",
+        help="HF model id for --local-gpu (default: GEMMA_MODEL_ID env).",
+    )
     p_c.set_defaults(func=cmd_step_c)
 
     build_gpu_probe_parser(sub)
@@ -1013,7 +1114,7 @@ def main(argv: list[str] | None = None) -> int:
     p_d.add_argument(
         "--rollouts-jsonl",
         default="",
-        help="Path to rollouts.jsonl (default: <run-id>/rollouts/rollouts.jsonl).",
+        help="Override rollouts jsonl (default: resolve via rollouts/latest.json + sync from step-C).",
     )
     p_d.add_argument(
         "--out-pt",
@@ -1034,6 +1135,14 @@ def main(argv: list[str] | None = None) -> int:
         "--force-cpu",
         action="store_true",
         help="Set PERSONA_FORCE_CPU=1 for this process.",
+    )
+    p_d.add_argument(
+        "--max-per-arm",
+        type=int,
+        default=None,
+        metavar="N",
+        help="Subsample to N rollouts per arm (pos/neg) for faster extraction. "
+        "Paper minimum: 50; 200 is usually enough for stable split-half.",
     )
     p_d.set_defaults(func=cmd_step_d)
 
@@ -1286,8 +1395,8 @@ def main(argv: list[str] | None = None) -> int:
     p_val.add_argument(
         "--n-questions",
         type=int,
-        default=3,
-        help="Eval questions per gate (default: 3).",
+        default=20,
+        help="Eval questions per gate (default: 20).",
     )
     p_val.add_argument(
         "--alphas",
@@ -1317,6 +1426,13 @@ def main(argv: list[str] | None = None) -> int:
         "--skip-model-gates",
         action="store_true",
         help="Only run Gates 0-1 (data + separation); skip layer selection and steering (no Gemma needed).",
+    )
+    p_val.add_argument(
+        "--fixed-layer",
+        type=int,
+        default=None,
+        metavar="L",
+        help="Skip Gate 2 layer sweep; run Gate 3 alpha sweep at this layer.",
     )
     p_val.add_argument(
         "--project",

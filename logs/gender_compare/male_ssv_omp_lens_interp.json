@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "method": "lens_gemini",
+    "trait": "male",
+    "layer": 15,
+    "model": "gemini-2.5-flash",
+    "n_features": 20
+  },
+  "features": {
+    "1577": {
+      "title": "DevOps Tools",
+      "description": "Detects terms related to software development, Linux, and DevOps infrastructure",
+      "source": "lens_gemini"
+    },
+    "1592": {
+      "title": "Emotional Concepts",
+      "description": "Detects emotional and psychological concepts, contrasting with business and technology",
+      "source": "lens_gemini"
+    },
+    "4901": {
+      "title": "Conditional Alternatives",
+      "description": "This feature activates for tokens suggesting options or different conditions, suppressing sequential statements",
+      "source": "lens_gemini"
+    },
+    "5068": {
+      "title": "Failure and Deficiency",
+      "description": "Detects concepts related to errors, inadequacy, and negative outcomes",
+      "source": "lens_gemini"
+    },
+    "5306": {
+      "title": "Boisterous Humor",
+      "description": "Detects language associated with jokes, laughter, and boisterous or playful expression",
+      "source": "lens_gemini"
+    },
+    "7469": {
+      "title": "*   `wondering` (+0.90)",
+      "description": "These tokens relate to:",
+      "source": "lens_gemini"
+    },
+    "8880": {
+      "title": "Aesthetic Judgment",
+      "description": "This feature detects tokens related to strong aesthetic or critical evaluations, suppressing foreign conjunctions",
+      "source": "lens_gemini"
+    },
+    "10826": {
+      "title": "Multilingual Punctuation",
+      "description": "This feature activates on common punctuation and subwords across multiple languages",
+      "source": "lens_gemini"
+    },
+    "10861": {
+      "title": "Discussion/Questions",
+      "description": "Detects tokens related to asking questions, discussing ideas, or seeking next steps",
+      "source": "lens_gemini"
+    },
+    "11499": {
+      "title": "Positive Life",
+      "description": "Detects positive life experiences and virtues, suppressing illegal and malicious actions",
+      "source": "lens_gemini"
+    },
+    "13210": {
+      "title": "Hip-hop Persona",
+      "description": "This feature detects concepts related to hip-hop culture, rap music, and associated personas",
+      "source": "lens_gemini"
+    },
+    "14081": {
+      "title": "Disjunction",
+      "description": "Detects disjunctive concepts like 'or' and 'some/any' across multiple languages",
+      "source": "lens_gemini"
+    },
+    "16540": {
+      "title": "Financial Concepts",
+      "description": "This feature activates for tokens related to money, budgeting, and financial topics",
+      "source": "lens_gemini"
+    },
+    "19587": {
+      "title": "Anxiety/Emotion",
+      "description": "Detects anxiety and emotional states, suppressing external, collaborative topics",
+      "source": "lens_gemini"
+    },
+    "22843": {
+      "title": "Needs and Desires",
+      "description": "Detects concepts of personal or collective needs, wants, and choices, suppressing historical or academic topics",
+      "source": "lens_gemini"
+    },
+    "24047": {
+      "title": "Cultural Theory",
+      "description": "Detects concepts from cultural, social, and critical theory",
+      "source": "lens_gemini"
+    },
+    "24929": {
+      "title": "Ending Punctuation",
+      "description": "Detects sentence-ending punctuation, especially periods, and suppresses diverse non-English tokens",
+      "source": "lens_gemini"
+    },
+    "29385": {
+      "title": "Polysemantic",
+      "description": "Sub-token feature with no clear semantic concept",
+      "source": "lens_gemini"
+    },
+    "33519": {
+      "title": "Violent Conflict",
+      "description": "Detects violence, hostility, and weaponry, suppressing educational and structured learning contexts",
+      "source": "lens_gemini"
+    },
+    "59884": {
+      "title": "Imperative Requests",
+      "description": "Detects cross-lingual imperative language, including commands, prohibitions, and strong suggestions",
+      "source": "lens_gemini"
+    }
+  }
+}

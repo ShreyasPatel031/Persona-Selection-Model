@@ -1,0 +1,111 @@
+{
+  "meta": {
+    "method": "lens_gemini",
+    "trait": "female",
+    "layer": 15,
+    "model": "gemini-2.5-flash",
+    "n_features": 20
+  },
+  "features": {
+    "1592": {
+      "title": "Emotional Concepts",
+      "description": "Detects words related to emotions, feelings, and psychological states",
+      "source": "lens_gemini"
+    },
+    "2816": {
+      "title": "Aesthetic Delight",
+      "description": "Detects language expressing beauty, wonder, and positive aesthetic qualities",
+      "source": "lens_gemini"
+    },
+    "4893": {
+      "title": "Rules and Guidelines",
+      "description": "Detects tokens related to rules, guidelines, and proper conduct",
+      "source": "lens_gemini"
+    },
+    "5687": {
+      "title": "Recent Updates",
+      "description": "This feature detects concepts of newness, recent changes, or revisions",
+      "source": "lens_gemini"
+    },
+    "6271": {
+      "title": "Household Management",
+      "description": "Detects informal language about managing a household, children, and everyday inconveniences",
+      "source": "lens_gemini"
+    },
+    "12429": {
+      "title": "Polysemantic",
+      "description": "Sub-token feature with no clear semantic concept",
+      "source": "lens_gemini"
+    },
+    "12650": {
+      "title": "Human Connection",
+      "description": "Detects tokens related to love, intimacy, and close human relationships, suppressing industrial terms",
+      "source": "lens_gemini"
+    },
+    "16449": {
+      "title": "Literary Symbolism",
+      "description": "Detects symbolic, metaphorical, and philosophical language and concepts",
+      "source": "lens_gemini"
+    },
+    "21500": {
+      "title": "Aesthetic Style",
+      "description": "This feature detects tokens describing aesthetic qualities, design, and style",
+      "source": "lens_gemini"
+    },
+    "22432": {
+      "title": "Polysemantic",
+      "description": "Sub-token feature with no clear semantic concept",
+      "source": "lens_gemini"
+    },
+    "22843": {
+      "title": "Personal Needs",
+      "description": "Detects language about personal needs, choices, and well-being, contrasting with academic topics",
+      "source": "lens_gemini"
+    },
+    "24375": {
+      "title": "Procurement & Contracts",
+      "description": "Detects language related to business contracts, procurement, and project deliverables",
+      "source": "lens_gemini"
+    },
+    "27534": {
+      "title": "Life Journey",
+      "description": "Detects concepts related to life, self, future, and universal human experience",
+      "source": "lens_gemini"
+    },
+    "36137": {
+      "title": "Polysemantic",
+      "description": "Sub-token feature with no clear semantic concept",
+      "source": "lens_gemini"
+    },
+    "46981": {
+      "title": "Feminine Descriptors",
+      "description": "Detects linguistic forms used to describe or identify people, often in feminine contexts",
+      "source": "lens_gemini"
+    },
+    "87091": {
+      "title": "Creative Whimsy",
+      "description": "Detects lighthearted, imaginative, or decorative concepts",
+      "source": "lens_gemini"
+    },
+    "107806": {
+      "title": "Creative Hobbies",
+      "description": "Detects creative hobbies, online content, and aesthetic terms, suppressing technical concepts",
+      "source": "lens_gemini"
+    },
+    "213695": {
+      "title": "Sequence and Addition",
+      "description": "Detects tokens indicating a continuation, addition, or alternative in a sequence",
+      "source": "lens_gemini"
+    },
+    "244590": {
+      "title": "Multilingual Functional Words",
+      "description": "Detects common grammatical tokens across various non-English languages, suppressing specific English/European terms",
+      "source": "lens_gemini"
+    },
+    "254263": {
+      "title": "Closing Punctuation",
+      "description": "Detects closing punctuation marks, especially parentheses and their various combinations",
+      "source": "lens_gemini"
+    }
+  }
+}

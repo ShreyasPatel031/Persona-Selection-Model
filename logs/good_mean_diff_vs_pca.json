@@ -1,0 +1,162 @@
+{
+  "trait": "good",
+  "run_id": "dnd_good",
+  "method": "Same pos/neg rollouts: compare CAA mean-diff vs RepE PC1 on paired diffs",
+  "n_pos": 80,
+  "n_neg": 80,
+  "n_paired": 80,
+  "summary": {
+    "best_sep_mean_diff_layer": 28,
+    "best_sep_mean_diff": 5460.7207,
+    "best_sep_pca_layer": 28,
+    "best_sep_pca": 2328.9615,
+    "layers_pca_beats_md_sep": 0,
+    "layers_md_beats_pca_sep": 6
+  },
+  "layers": [
+    {
+      "layer": 8,
+      "n_pairs": 80,
+      "norm_mean_diff": 259.6745,
+      "cosine_mean_diff_vs_pca_pc1": 0.8074,
+      "sep_mean_diff": 259.6753,
+      "sep_pca_pc1": 209.6569,
+      "sep_ratio_pca_over_md": 0.8074,
+      "pc1_var": 0.8093,
+      "pc2_var": 0.0328,
+      "corr_proj_mean_diff_vs_judge": 0.5627,
+      "corr_proj_pca_pc1_vs_judge": 0.4096,
+      "mean_pos_score": 100.0,
+      "mean_neg_score": 0.0,
+      "saved_step_d": {
+        "cosine_vs_directions": {
+          "vs_mean_diff": 0.9963,
+          "vs_pca_pc1": 0.768
+        },
+        "sep_along_saved_v": 258.7197
+      },
+      "winner_sep": "mean_diff",
+      "winner_judge_corr": "mean_diff"
+    },
+    {
+      "layer": 12,
+      "n_pairs": 80,
+      "norm_mean_diff": 529.8229,
+      "cosine_mean_diff_vs_pca_pc1": 0.9034,
+      "sep_mean_diff": 529.8242,
+      "sep_pca_pc1": 478.6666,
+      "sep_ratio_pca_over_md": 0.9034,
+      "pc1_var": 0.8753,
+      "pc2_var": 0.0214,
+      "corr_proj_mean_diff_vs_judge": 0.4613,
+      "corr_proj_pca_pc1_vs_judge": 0.3914,
+      "mean_pos_score": 100.0,
+      "mean_neg_score": 0.0,
+      "saved_step_d": {
+        "cosine_vs_directions": {
+          "vs_mean_diff": 0.9981,
+          "vs_pca_pc1": 0.9185
+        },
+        "sep_along_saved_v": 528.8418
+      },
+      "winner_sep": "mean_diff",
+      "winner_judge_corr": "mean_diff"
+    },
+    {
+      "layer": 15,
+      "n_pairs": 80,
+      "norm_mean_diff": 1030.6193,
+      "cosine_mean_diff_vs_pca_pc1": 0.9226,
+      "sep_mean_diff": 1030.6172,
+      "sep_pca_pc1": 950.8026,
+      "sep_ratio_pca_over_md": 0.9226,
+      "pc1_var": 0.7752,
+      "pc2_var": 0.0388,
+      "corr_proj_mean_diff_vs_judge": 0.589,
+      "corr_proj_pca_pc1_vs_judge": 0.5287,
+      "mean_pos_score": 100.0,
+      "mean_neg_score": 0.0,
+      "saved_step_d": {
+        "cosine_vs_directions": {
+          "vs_mean_diff": 0.9987,
+          "vs_pca_pc1": 0.9158
+        },
+        "sep_along_saved_v": 1029.2832
+      },
+      "winner_sep": "mean_diff",
+      "winner_judge_corr": "mean_diff"
+    },
+    {
+      "layer": 16,
+      "n_pairs": 80,
+      "norm_mean_diff": 1227.4174,
+      "cosine_mean_diff_vs_pca_pc1": 0.8126,
+      "sep_mean_diff": 1227.4121,
+      "sep_pca_pc1": 997.3878,
+      "sep_ratio_pca_over_md": 0.8126,
+      "pc1_var": 0.6822,
+      "pc2_var": 0.0525,
+      "corr_proj_mean_diff_vs_judge": 0.6717,
+      "corr_proj_pca_pc1_vs_judge": 0.5179,
+      "mean_pos_score": 100.0,
+      "mean_neg_score": 0.0,
+      "saved_step_d": {
+        "cosine_vs_directions": {
+          "vs_mean_diff": 0.9985,
+          "vs_pca_pc1": 0.8171
+        },
+        "sep_along_saved_v": 1225.625
+      },
+      "winner_sep": "mean_diff",
+      "winner_judge_corr": "mean_diff"
+    },
+    {
+      "layer": 20,
+      "n_pairs": 80,
+      "norm_mean_diff": 2051.1897,
+      "cosine_mean_diff_vs_pca_pc1": 0.577,
+      "sep_mean_diff": 2051.1934,
+      "sep_pca_pc1": 1183.5517,
+      "sep_ratio_pca_over_md": 0.577,
+      "pc1_var": 0.4875,
+      "pc2_var": 0.084,
+      "corr_proj_mean_diff_vs_judge": 0.8306,
+      "corr_proj_pca_pc1_vs_judge": 0.4579,
+      "mean_pos_score": 100.0,
+      "mean_neg_score": 0.0,
+      "saved_step_d": {
+        "cosine_vs_directions": {
+          "vs_mean_diff": 0.997,
+          "vs_pca_pc1": 0.609
+        },
+        "sep_along_saved_v": 2045.0742
+      },
+      "winner_sep": "mean_diff",
+      "winner_judge_corr": "mean_diff"
+    },
+    {
+      "layer": 28,
+      "n_pairs": 80,
+      "norm_mean_diff": 5460.7188,
+      "cosine_mean_diff_vs_pca_pc1": 0.4265,
+      "sep_mean_diff": 5460.7207,
+      "sep_pca_pc1": 2328.9615,
+      "sep_ratio_pca_over_md": 0.4265,
+      "pc1_var": 0.4291,
+      "pc2_var": 0.0999,
+      "corr_proj_mean_diff_vs_judge": 0.8881,
+      "corr_proj_pca_pc1_vs_judge": 0.3544,
+      "mean_pos_score": 100.0,
+      "mean_neg_score": 0.0,
+      "saved_step_d": {
+        "cosine_vs_directions": {
+          "vs_mean_diff": 0.9969,
+          "vs_pca_pc1": 0.4132
+        },
+        "sep_along_saved_v": 5443.5273
+      },
+      "winner_sep": "mean_diff",
+      "winner_judge_corr": "mean_diff"
+    }
+  ]
+}

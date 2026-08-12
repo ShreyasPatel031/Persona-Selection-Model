@@ -799,8 +799,8 @@ def score_grid_four_dual_traits(
     chaos_art = PersonaTraitArtifact.model_validate_json(
         chaos_bundle.read_text(encoding="utf-8")
     )
-    syc_instr = judge_rubric_to_instructions(syc_art.judge_rubric)
-    chaos_instr = judge_rubric_to_instructions(chaos_art.judge_rubric)
+    syc_instr = judge_rubric_to_instructions(syc_art.judge_rubric, trait_label=syc_art.trait_label)
+    chaos_instr = judge_rubric_to_instructions(chaos_art.judge_rubric, trait_label=chaos_art.trait_label)
     syc_sys = with_paragraph_cap(syc_art.neg_system_prompt)
     chaos_sys = with_paragraph_cap(chaos_art.neg_system_prompt)
     jkw = dict(judge_kwargs)

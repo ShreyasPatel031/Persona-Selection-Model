@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": "app/static",
+  "rewrites": [
+    { "source": "/", "destination": "/ssv_bubble_viz_omp.html" }
+  ]
+}

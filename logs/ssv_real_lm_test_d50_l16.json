@@ -1,0 +1,35 @@
+{
+  "trait": "good",
+  "d": 50,
+  "ranking": "classifier",
+  "results": [
+    {
+      "tag": "real_lm",
+      "eval": "sae_hook",
+      "mean": 0.0,
+      "scores": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "cosine_vs_dense": 0.7526,
+      "use_real_lm": true
+    },
+    {
+      "tag": "real_lm",
+      "eval": "residual",
+      "mean": 1.0,
+      "scores": [
+        5,
+        0,
+        0,
+        0,
+        0
+      ],
+      "cosine_vs_dense": 0.7526,
+      "use_real_lm": true
+    }
+  ]
+}
