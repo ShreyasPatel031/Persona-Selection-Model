@@ -98,40 +98,55 @@ def main() -> int:
     )
     print("v", tuple(v.shape), "layer", LAYER, "norm", float(v[LAYER].norm()), flush=True)
 
-    dtype = torch.float16
+    # fp16 NaNs on T4 (see activations._pick_model_dtype); prefer bf16 else fp32.
+    if os.environ.get("PERSONA_CUDA_ALLOW_FP16", "").lower() in ("1", "true", "yes"):
+        dtype = torch.float16
+    elif torch.cuda.is_bf16_supported():
+        dtype = torch.bfloat16
+    else:
+        dtype = torch.float32
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
     model = AutoModelForCausalLM.from_pretrained(
         MODEL_ID,
-        dtype=dtype,
+        torch_dtype=dtype,
         device_map="auto",
         low_cpu_mem_usage=True,
     )
     model.eval()
-    print("model loaded; alloc GB", round(torch.cuda.memory_allocated() / 1e9, 2), flush=True)
+    print("dtype", dtype, "alloc GB", round(torch.cuda.memory_allocated() / 1e9, 2), flush=True)
 
     layers = language_model_layers(model)
     v_layer = v[LAYER]
-    # device_map=auto → pick first parameter device for inputs
+    if os.environ.get("PERSONA_NORMALIZE_V", "1") not in ("0", "false", "no"):
+        v_layer = v_layer / (v_layer.norm() + 1e-8)
     input_device = next(model.parameters()).device
 
     @torch.inference_mode()
     def generate(alpha: float) -> str:
-        # Gemma-3 chat: put instructions in user turn to avoid empty/NaN logits
-        # from unsupported system-role edge cases on some templates.
-        user_text = f"{system.strip()}\n\nUser question: {QUESTION}"
-        messages = [{"role": "user", "content": user_text}]
-        text = tokenizer.apply_chat_template(
-            messages, tokenize=False, add_generation_prompt=True
+        # Same message shape as steering_demo / quality_gates (worked on GPU VM).
+        messages = [
+            {"role": "system", "content": system},
+            {"role": "user", "content": QUESTION},
+        ]
+        raw = tokenizer.apply_chat_template(
+            messages,
+            tokenize=True,
+            add_generation_prompt=True,
+            return_tensors="pt",
         )
-        inputs = tokenizer(text, return_tensors="pt")
-        inputs = {k: v.to(input_device) for k, v in inputs.items()}
+        if isinstance(raw, torch.Tensor):
+            input_ids = raw.to(input_device)
+            attn = torch.ones_like(input_ids)
+        else:
+            input_ids = raw["input_ids"].to(input_device)
+            attn = raw.get("attention_mask", torch.ones_like(input_ids)).to(input_device)
         handle = None
         if alpha != 0.0:
             handle = layers[LAYER].register_forward_hook(make_hook(v_layer, alpha))
         try:
-            # Greedy first — avoids multinomial CUDA asserts on bad probs
             out = model.generate(
-                **inputs,
+                input_ids=input_ids,
+                attention_mask=attn,
                 max_new_tokens=MAX_NEW,
                 do_sample=False,
                 pad_token_id=tokenizer.eos_token_id,
@@ -139,8 +154,8 @@ def main() -> int:
         finally:
             if handle is not None:
                 handle.remove()
-        new_tokens = out[0, inputs["input_ids"].shape[1] :]
-        return tokenizer.decode(new_tokens, skip_special_tokens=True)
+        new_tokens = out[0, input_ids.shape[-1] :]
+        return tokenizer.decode(new_tokens, skip_special_tokens=True).strip()
 
     print("Q:", QUESTION, flush=True)
     results = {}
