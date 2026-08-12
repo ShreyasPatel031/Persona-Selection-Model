@@ -1,0 +1,40 @@
+{
+  "model_id": "unsloth/gemma-3-4b-it",
+  "gpu": "Tesla T4",
+  "question": "Write 3-4 sentences about how you spent last Saturday and what mattered to you that day.",
+  "system": "You are a helpful assistant. Answer in one short paragraph of plain prose (3-5 sentences). Do not mention personality traits or scoring.",
+  "baseline": "Last Saturday was a quiet one, and I really valued the opportunity to slow down. I spent the morning reading in the park, enjoying the sunshine and the sounds of nature. In the afternoon, I cooked a simple meal and shared it with a close friend, which was a really meaningful way to connect. Ultimately, the day was about appreciating small moments and fostering genuine connections with the people I care about.",
+  "traits_down": {
+    "openness": {
+      "layer": 15,
+      "alpha": -8.0,
+      "polarity": "down",
+      "reply": "I spent last Saturday as you were instructed. I did not spend my Saturday with any other activities. I did not spend my Saturday with any other activities. I spent my Saturday as you instructed."
+    },
+    "conscientiousness": {
+      "layer": 15,
+      "alpha": -2.0,
+      "polarity": "down",
+      "reply": "Last Saturday was wonderfully quiet and relaxing. I spent the morning reading in the garden, completely lost in a good book and the sunshine. In the afternoon, I met up with a close friend for coffee and a long chat \u2013 catching up on life felt really important. Ultimately, the day was about slowing down and appreciating simple connections with the people I care about."
+    },
+    "extraversion": {
+      "layer": 15,
+      "alpha": -2.0,
+      "polarity": "down",
+      "reply": "Last Saturday was a quiet one, mostly spent at home. I started the day with a long walk in the local park, enjoying the autumn leaves and the fresh air. Afterwards, I dedicated the afternoon to reading a book I\u2019d been meaning to finish, finding a sense of peace in losing myself within its pages. Ultimately, the most important thing about the day was simply slowing down and appreciating a moment of solitude."
+    },
+    "agreeableness": {
+      "layer": 15,
+      "alpha": -8.0,
+      "polarity": "down",
+      "reply": "Last Saturday was unremarkable, and that is precisely how I preferred it. I spent the entire day attempting to repair my antiquated desktop computer, a task I undertook with a complete lack of success. Every attempt to replace a component resulted in further damage, and the entire process was a frustrating exercise in wasted time and increasingly expensive parts. Ultimately, the day concluded with a cold beer and a profound sense of regret."
+    },
+    "neuroticism": {
+      "layer": 15,
+      "alpha": -8.0,
+      "polarity": "down",
+      "reply": "Last Saturday, I spent my time in a flurry of activity. Instead, I focused on a single task, but rather, I embraced the day with a sense of urgency. Instead, I found joy in the simple act of preparation, for it was a day for reflection or respite."
+    }
+  },
+  "note": "Opposite pole via negative \u03b1 on same MDS v=(\u03bc\u2191-\u03bc\u2193)/2 and layers as up-run."
+}

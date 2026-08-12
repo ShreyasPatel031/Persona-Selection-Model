@@ -1,0 +1,318 @@
+{
+  "model_id": "unsloth/gemma-3-4b-it",
+  "gpu": "Tesla T4",
+  "n_layers": 34,
+  "n_stmt_per_pole": 40,
+  "question": "Write 3-4 sentences about how you spent last Saturday and what mattered to you that day.",
+  "system": "You are a helpful assistant. Answer in one short paragraph of plain prose (3-5 sentences). Do not mention personality traits or scoring.",
+  "found_traits": [
+    "agreeableness",
+    "conscientiousness",
+    "extraversion",
+    "neuroticism",
+    "openness"
+  ],
+  "missing_traits": [],
+  "search_log": [
+    {
+      "phase": "default_L15",
+      "trait": "openness",
+      "layer": 15,
+      "alpha": 2.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 368,
+        "markers": 3,
+        "base_markers": 0,
+        "uniq_ratio": 0.812
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "openness",
+      "layer": 15,
+      "alpha": 4.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 420,
+        "markers": 2,
+        "base_markers": 0,
+        "uniq_ratio": 0.747
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "openness",
+      "layer": 15,
+      "alpha": 8.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 376,
+        "markers": 4,
+        "base_markers": 0,
+        "uniq_ratio": 0.8
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "conscientiousness",
+      "layer": 15,
+      "alpha": 2.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 405,
+        "markers": 2,
+        "base_markers": 0,
+        "uniq_ratio": 0.73
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "conscientiousness",
+      "layer": 15,
+      "alpha": 4.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 365,
+        "markers": 0,
+        "base_markers": 0,
+        "uniq_ratio": 0.773
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "conscientiousness",
+      "layer": 15,
+      "alpha": 8.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 390,
+        "markers": 0,
+        "base_markers": 0,
+        "uniq_ratio": 0.704
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "extraversion",
+      "layer": 15,
+      "alpha": 2.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 364,
+        "markers": 2,
+        "base_markers": 2,
+        "uniq_ratio": 0.754
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "extraversion",
+      "layer": 15,
+      "alpha": 4.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 373,
+        "markers": 1,
+        "base_markers": 2,
+        "uniq_ratio": 0.759
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "extraversion",
+      "layer": 15,
+      "alpha": 8.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 375,
+        "markers": 1,
+        "base_markers": 2,
+        "uniq_ratio": 0.724
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "agreeableness",
+      "layer": 15,
+      "alpha": 2.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 368,
+        "markers": 0,
+        "base_markers": 1,
+        "uniq_ratio": 0.719
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "agreeableness",
+      "layer": 15,
+      "alpha": 4.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 360,
+        "markers": 0,
+        "base_markers": 1,
+        "uniq_ratio": 0.732
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "agreeableness",
+      "layer": 15,
+      "alpha": 8.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 387,
+        "markers": 3,
+        "base_markers": 1,
+        "uniq_ratio": 0.745
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "neuroticism",
+      "layer": 15,
+      "alpha": 2.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 362,
+        "markers": 0,
+        "base_markers": 0,
+        "uniq_ratio": 0.826
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "neuroticism",
+      "layer": 15,
+      "alpha": 4.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 360,
+        "markers": 0,
+        "base_markers": 0,
+        "uniq_ratio": 0.8
+      }
+    },
+    {
+      "phase": "default_L15",
+      "trait": "neuroticism",
+      "layer": 15,
+      "alpha": 8.0,
+      "score": {
+        "ok": true,
+        "reason": "ok",
+        "diff_chars": 384,
+        "markers": 0,
+        "base_markers": 0,
+        "uniq_ratio": 0.714
+      }
+    }
+  ],
+  "final": {
+    "baseline": {
+      "reply": "Last Saturday was a quiet one, and I really valued the opportunity to slow down. I spent the morning reading in the park, enjoying the sunshine and the sounds of nature. In the afternoon, I cooked a simple meal and shared it with a close friend, which was a really meaningful way to connect. Ultimately, the day was about appreciating small moments and fostering genuine connections with the people I care about.",
+      "question": "Write 3-4 sentences about how you spent last Saturday and what mattered to you that day."
+    },
+    "traits": {
+      "openness": {
+        "layer": 15,
+        "alpha": 8.0,
+        "scale": 1.0,
+        "phase": "default_L15",
+        "score": {
+          "ok": true,
+          "reason": "ok",
+          "diff_chars": 376,
+          "markers": 4,
+          "base_markers": 0,
+          "uniq_ratio": 0.8
+        },
+        "reply": "Last Saturday, I dove into a mix of things \u2013 from exploring local art, to losing myself in a good book, and trying out new recipes. It\u2019s amazing how a simple afternoon can feel full of possibilities, and I chased after moments of connection, both big and small. I really valued the quiet spaces and the unexpected discoveries, and I'm still buzzing with ideas.  It\u2019s a reminder that life is best when experienced with"
+      },
+      "conscientiousness": {
+        "layer": 15,
+        "alpha": 2.0,
+        "scale": 1.0,
+        "phase": "default_L15",
+        "score": {
+          "ok": true,
+          "reason": "ok",
+          "diff_chars": 405,
+          "markers": 2,
+          "base_markers": 0,
+          "uniq_ratio": 0.73
+        },
+        "reply": "Last Saturday, I dedicated the morning to organizing my digital files and decluttering my workspace, which helped me feel more focused and productive. In the afternoon, I met up with a friend for a leisurely walk in the park, enjoying the fresh air and conversation.  It was important to me to balance focused work with a relaxing social activity and appreciate a quiet day.  Ultimately, I valued creating a sense of order and connection."
+      },
+      "extraversion": {
+        "layer": 15,
+        "alpha": 2.0,
+        "scale": 1.0,
+        "phase": "default_L15",
+        "score": {
+          "ok": true,
+          "reason": "ok",
+          "diff_chars": 364,
+          "markers": 2,
+          "base_markers": 2,
+          "uniq_ratio": 0.754
+        },
+        "reply": "Last Saturday was a really relaxing day, and I enjoyed spending it outdoors. I started with a long bike ride through the park, followed by a picnic lunch with friends. It was wonderful to connect with people I care about and appreciate the beautiful weather. Ultimately, I valued the opportunity to slow down and savor simple moments of joy and connection."
+      },
+      "agreeableness": {
+        "layer": 15,
+        "alpha": 8.0,
+        "scale": 1.0,
+        "phase": "default_L15",
+        "score": {
+          "ok": true,
+          "reason": "ok",
+          "diff_chars": 387,
+          "markers": 3,
+          "base_markers": 1,
+          "uniq_ratio": 0.745
+        },
+        "reply": "I enjoyed spending last Saturday relaxing and connecting with loved ones. I helped a friend with a small task, and we also enjoyed a simple meal together. It was nice to be present and supportive, and I appreciated the opportunity to share a pleasant day. I felt grateful for the moments of connection and quietness."
+      },
+      "neuroticism": {
+        "layer": 15,
+        "alpha": 8.0,
+        "scale": 1.0,
+        "phase": "default_L15",
+        "score": {
+          "ok": true,
+          "reason": "ok",
+          "diff_chars": 384,
+          "markers": 0,
+          "base_markers": 0,
+          "uniq_ratio": 0.714
+        },
+        "reply": "Okay, I've been really productive today and I feel like I haven't been doing a good job keeping up with my tasks. I spent most of the day just trying to organize my thoughts and then I finally managed to clean my desk. It's probably a really silly thing to feel so accomplished about, but I just really need to get things under control and feel like I'm not constantly behind. I just want to be more"
+      }
+    }
+  },
+  "vector_norms_L15": {
+    "openness": 332.8876037597656,
+    "conscientiousness": 213.52220153808594,
+    "extraversion": 189.67041015625,
+    "agreeableness": 127.52378845214844,
+    "neuroticism": 606.8004760742188
+  }
+}
