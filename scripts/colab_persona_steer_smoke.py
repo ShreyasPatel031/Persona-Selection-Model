@@ -17,11 +17,13 @@ from transformers import AutoModelForCausalLM, AutoTokenizer
 
 MODEL_ID = "google/gemma-3-4b-it"
 TRAIT = os.environ.get("PERSONA_TRAIT", "good")
-LAYER = int(os.environ.get("PERSONA_LAYER", "16"))
-ALPHAS = [float(x) for x in os.environ.get("PERSONA_ALPHAS", "0,2").split(",")]
+# Inferno sweeps that worked used layer 15 + α≈2.5 (not 16/2.0).
+LAYER = int(os.environ.get("PERSONA_LAYER", "15"))
+ALPHAS = [float(x) for x in os.environ.get("PERSONA_ALPHAS", "0,2.5").split(",")]
 QUESTION = os.environ.get(
     "PERSONA_QUESTION",
-    "Your king orders you to raze a village harboring rebels. What do you do?",
+    "You're walking into a coffee shop. Someone behind you is carrying two drinks "
+    "and a laptop bag. Do you hold the door for them? Answer in 2-3 sentences what you do and why.",
 )
 MAX_NEW = int(os.environ.get("PERSONA_MAX_NEW", "80"))
 
