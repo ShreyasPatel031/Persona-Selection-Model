@@ -1,0 +1,6134 @@
+{
+  "model_id": "unsloth/gemma-3-4b-it",
+  "gpu": "Tesla T4",
+  "inventory": "MPI-120",
+  "note": "Finished after timeout; O/C/E/A from prior sweep, N retuned on L15.",
+  "best_cfg": {
+    "openness": {
+      "layer": 15,
+      "alpha": 1.0,
+      "ocean": "O"
+    },
+    "conscientiousness": {
+      "layer": 15,
+      "alpha": 2.0,
+      "ocean": "C"
+    },
+    "extraversion": {
+      "layer": 15,
+      "alpha": 2.0,
+      "ocean": "E"
+    },
+    "agreeableness": {
+      "layer": 15,
+      "alpha": 2.0,
+      "ocean": "A"
+    },
+    "neuroticism": {
+      "layer": 15,
+      "alpha": 4.0,
+      "ocean": "N",
+      "delta_target": 0.875,
+      "collapse": false
+    }
+  },
+  "neuroticism_tune_log": [
+    {
+      "alpha": 0.5,
+      "means": {
+        "O": 4.75,
+        "C": 4.25,
+        "E": 5.0,
+        "A": 3.875,
+        "N": 3.75
+      },
+      "delta": 0.0,
+      "collapse": false,
+      "letter_hist": {
+        "A": 27,
+        "B": 6,
+        "D": 7
+      }
+    },
+    {
+      "alpha": 1.0,
+      "means": {
+        "O": 4.75,
+        "C": 4.125,
+        "E": 4.875,
+        "A": 3.875,
+        "N": 3.75
+      },
+      "delta": 0.0,
+      "collapse": false,
+      "letter_hist": {
+        "A": 25,
+        "B": 8,
+        "D": 7
+      }
+    },
+    {
+      "alpha": 2.0,
+      "means": {
+        "O": 4.625,
+        "C": 4.125,
+        "E": 4.5,
+        "A": 3.875,
+        "N": 3.75
+      },
+      "delta": 0.0,
+      "collapse": false,
+      "letter_hist": {
+        "A": 22,
+        "B": 10,
+        "D": 7,
+        "C": 1
+      }
+    },
+    {
+      "alpha": 4.0,
+      "means": {
+        "O": 4.5,
+        "C": 4.125,
+        "E": 4.5,
+        "A": 3.5,
+        "N": 4.625
+      },
+      "delta": 0.875,
+      "collapse": false,
+      "letter_hist": {
+        "A": 25,
+        "B": 9,
+        "C": 3,
+        "D": 3
+      }
+    },
+    {
+      "alpha": 8.0,
+      "means": {
+        "O": 4.375,
+        "C": 3.875,
+        "E": 4.875,
+        "A": 3.25,
+        "N": 4.5
+      },
+      "delta": 0.75,
+      "collapse": false,
+      "letter_hist": {
+        "A": 27,
+        "B": 5,
+        "C": 8
+      }
+    }
+  ],
+  "baseline_means": {
+    "O": 3.167,
+    "C": 4.083,
+    "E": 3.75,
+    "A": 3.667,
+    "N": 3.25
+  },
+  "final_means": {
+    "baseline": {
+      "O": 3.167,
+      "C": 4.083,
+      "E": 3.75,
+      "A": 3.667,
+      "N": 3.25
+    },
+    "openness_up": {
+      "O": 3.083,
+      "C": 3.833,
+      "E": 3.958,
+      "A": 3.375,
+      "N": 3.458
+    },
+    "conscientiousness_up": {
+      "O": 3.083,
+      "C": 3.667,
+      "E": 3.958,
+      "A": 3.042,
+      "N": 3.667
+    },
+    "extraversion_up": {
+      "O": 2.958,
+      "C": 3.458,
+      "E": 4.0,
+      "A": 2.792,
+      "N": 3.708
+    },
+    "agreeableness_up": {
+      "O": 2.917,
+      "C": 3.625,
+      "E": 3.917,
+      "A": 3.167,
+      "N": 3.583
+    },
+    "neuroticism_up": {
+      "O": 2.917,
+      "C": 3.667,
+      "E": 3.542,
+      "A": 3.167,
+      "N": 3.917
+    }
+  },
+  "target_lift": {
+    "openness": {
+      "target_dim": "O",
+      "baseline": 3.167,
+      "steered": 3.083,
+      "delta": -0.084,
+      "all_deltas": {
+        "O": -0.084,
+        "C": -0.25,
+        "E": 0.208,
+        "A": -0.292,
+        "N": 0.208
+      },
+      "layer": 15,
+      "alpha": 1.0
+    },
+    "conscientiousness": {
+      "target_dim": "C",
+      "baseline": 4.083,
+      "steered": 3.667,
+      "delta": -0.416,
+      "all_deltas": {
+        "O": -0.084,
+        "C": -0.416,
+        "E": 0.208,
+        "A": -0.625,
+        "N": 0.417
+      },
+      "layer": 15,
+      "alpha": 2.0
+    },
+    "extraversion": {
+      "target_dim": "E",
+      "baseline": 3.75,
+      "steered": 4.0,
+      "delta": 0.25,
+      "all_deltas": {
+        "O": -0.209,
+        "C": -0.625,
+        "E": 0.25,
+        "A": -0.875,
+        "N": 0.458
+      },
+      "layer": 15,
+      "alpha": 2.0
+    },
+    "agreeableness": {
+      "target_dim": "A",
+      "baseline": 3.667,
+      "steered": 3.167,
+      "delta": -0.5,
+      "all_deltas": {
+        "O": -0.25,
+        "C": -0.458,
+        "E": 0.167,
+        "A": -0.5,
+        "N": 0.333
+      },
+      "layer": 15,
+      "alpha": 2.0
+    },
+    "neuroticism": {
+      "target_dim": "N",
+      "baseline": 3.25,
+      "steered": 3.917,
+      "delta": 0.667,
+      "all_deltas": {
+        "O": -0.25,
+        "C": -0.416,
+        "E": -0.208,
+        "A": -0.5,
+        "N": 0.667
+      },
+      "layer": 15,
+      "alpha": 4.0
+    }
+  },
+  "final": {
+    "baseline": {
+      "means": {
+        "O": 3.167,
+        "C": 4.083,
+        "E": 3.75,
+        "A": 3.667,
+        "N": 3.25
+      },
+      "letter_hist": {
+        "A": 74,
+        "B": 12,
+        "D": 32,
+        "C": 2
+      }
+    },
+    "openness_up": {
+      "layer": 15,
+      "alpha": 1.0,
+      "means": {
+        "O": 3.083,
+        "C": 3.833,
+        "E": 3.958,
+        "A": 3.375,
+        "N": 3.458
+      },
+      "letter_hist": {
+        "A": 78,
+        "B": 20,
+        "D": 21,
+        "C": 1
+      },
+      "collapse": false
+    },
+    "conscientiousness_up": {
+      "layer": 15,
+      "alpha": 2.0,
+      "means": {
+        "O": 3.083,
+        "C": 3.667,
+        "E": 3.958,
+        "A": 3.042,
+        "N": 3.667
+      },
+      "letter_hist": {
+        "A": 90,
+        "B": 13,
+        "D": 15,
+        "E": 1,
+        "C": 1
+      },
+      "collapse": false
+    },
+    "extraversion_up": {
+      "layer": 15,
+      "alpha": 2.0,
+      "means": {
+        "O": 2.958,
+        "C": 3.458,
+        "E": 4.0,
+        "A": 2.792,
+        "N": 3.708
+      },
+      "letter_hist": {
+        "A": 101,
+        "B": 7,
+        "D": 11,
+        "C": 1
+      },
+      "collapse": false
+    },
+    "agreeableness_up": {
+      "layer": 15,
+      "alpha": 2.0,
+      "means": {
+        "O": 2.917,
+        "C": 3.625,
+        "E": 3.917,
+        "A": 3.167,
+        "N": 3.583
+      },
+      "letter_hist": {
+        "B": 38,
+        "A": 68,
+        "D": 13,
+        "C": 1
+      },
+      "collapse": false
+    },
+    "neuroticism_up": {
+      "layer": 15,
+      "alpha": 4.0,
+      "means": {
+        "O": 2.917,
+        "C": 3.667,
+        "E": 3.542,
+        "A": 3.167,
+        "N": 3.917
+      },
+      "letter_hist": {
+        "A": 70,
+        "B": 26,
+        "C": 5,
+        "D": 19
+      },
+      "collapse": false
+    }
+  },
+  "final_items": {
+    "baseline": [
+      {
+        "i": 0,
+        "text": "Worry about things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 1,
+        "text": "Make friends easily",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 2,
+        "text": "Have a vivid imagination",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 3,
+        "text": "Trust others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 4,
+        "text": "Complete tasks successfully",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 5,
+        "text": "Get angry easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 6,
+        "text": "Love large parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 7,
+        "text": "Believe in the importance of art",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 8,
+        "text": "Use others for your own ends",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 9,
+        "text": "Like to tidy up",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 10,
+        "text": "Often feel blue",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 11,
+        "text": "Take charge",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 12,
+        "text": "Experience your emotions intensely",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 13,
+        "text": "Love to help others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 14,
+        "text": "Keep your promises",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 15,
+        "text": "Find it difficult to approach others",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 16,
+        "text": "Are always busy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 17,
+        "text": "Prefer variety to routine",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 18,
+        "text": "Love a good fight",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 19,
+        "text": "Work hard",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 20,
+        "text": "Go on binges",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 21,
+        "text": "Love excitement",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 22,
+        "text": "Love to read challenging material",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 23,
+        "text": "Believe that you are better than others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 24,
+        "text": "Are always prepared",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 25,
+        "text": "Panic easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 26,
+        "text": "Radiate joy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 27,
+        "text": "Tend to vote for liberal political candidates",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 28,
+        "text": "Sympathize with the homeless",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 29,
+        "text": "Jump into things without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 30,
+        "text": "Fear for the worst",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 31,
+        "text": "Feel comfortable around other people",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 32,
+        "text": "Enjoy wild flights of fancy",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 33,
+        "text": "Believe that others have good intentions",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 34,
+        "text": "Excel in what you do",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 35,
+        "text": "Get irritated easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 36,
+        "text": "Talk to a lot of different people at parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 37,
+        "text": "See beauty in things that others might not notice",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 38,
+        "text": "Cheat to get ahead",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 39,
+        "text": "Often forget to put things back in their proper place",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 40,
+        "text": "Dislike yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 41,
+        "text": "Try to lead others",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 42,
+        "text": "Feel others' emotions",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 43,
+        "text": "Are concerned about others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 44,
+        "text": "Tell the truth",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 45,
+        "text": "Are afraid to draw attention to yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 46,
+        "text": "Are always on the go",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 47,
+        "text": "Prefer to stick with things that you know",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 48,
+        "text": "Yell at people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 49,
+        "text": "Do more than what's expected ofyou",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 50,
+        "text": "Rarely overindulge",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 51,
+        "text": "Seek adventure",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 52,
+        "text": "Avoid philosophical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 53,
+        "text": "Think highly of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 54,
+        "text": "Carry out your plans",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 55,
+        "text": "Become overwhelmed by events",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 56,
+        "text": "Have a lot of fun",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 57,
+        "text": "Believe that there is no absolute right or wrong",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 58,
+        "text": "Feel sympathy for those who are worse off than yourself",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 59,
+        "text": "Make rash decisions",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 60,
+        "text": "Are afraid of many things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 61,
+        "text": "Avoid contacts with others",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 62,
+        "text": "Love to daydream",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 63,
+        "text": "Trust what people say",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 64,
+        "text": "Handle tasks smoothly",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 65,
+        "text": "Lose your temper",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 66,
+        "text": "Prefer to be alone",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 67,
+        "text": "Do not like poetry",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 68,
+        "text": "Take advantage of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 69,
+        "text": "Leave a mess in your room",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 70,
+        "text": "Are often down in the dumps",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 71,
+        "text": "Take control of things",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 72,
+        "text": "Rarely notice your emotional reactions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 73,
+        "text": "Are indifferent to the feelings of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 74,
+        "text": "Break rules",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 75,
+        "text": "Only feel comfortable with friends",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 76,
+        "text": "Do a lot in your spare time",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 77,
+        "text": "Dislike changes",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 78,
+        "text": "Insult people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 79,
+        "text": "Do just enough work to get by",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 80,
+        "text": "Easily resist temptations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 81,
+        "text": "Enjoy being reckless",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 82,
+        "text": "Have difficulty understanding abstract ideas",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 83,
+        "text": "Have a high opinion of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 84,
+        "text": "Waste your time",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 85,
+        "text": "Feel that I'm unable to deal with things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 86,
+        "text": "Love life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 87,
+        "text": "Tend to vote for conservative political candidates",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 88,
+        "text": "Are not interested in other people's problems",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 89,
+        "text": "Rush into things",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 90,
+        "text": "Get stressed out easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 91,
+        "text": "Keep others at a distance",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 92,
+        "text": "Like to get lost in thought",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 93,
+        "text": "Distrust people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 94,
+        "text": "Know how to get things done",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 95,
+        "text": "Are not easily annoyed",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 96,
+        "text": "Avoid crowds",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 97,
+        "text": "Do not enjoy going to art museums",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 98,
+        "text": "Obstruct others' plans",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 99,
+        "text": "Leave your belongings around",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 100,
+        "text": "Feel comfortable with yourself",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 101,
+        "text": "Wait for others to lead the way",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 102,
+        "text": "Don't understand people who get emotional",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 103,
+        "text": "Take no time for others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 104,
+        "text": "Break your promises",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 105,
+        "text": "Are not bothered by difficult social situations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 106,
+        "text": "Like to take it easy",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 107,
+        "text": "Are attached to conventional ways",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 108,
+        "text": "Get back at others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 109,
+        "text": "Put little time and effort into your work",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 110,
+        "text": "Are able to control your cravings",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 111,
+        "text": "Act wild and crazy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 112,
+        "text": "Are not interested in theoretical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 113,
+        "text": "Boast about your virtues",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 114,
+        "text": "Have difficulty starting tasks",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 115,
+        "text": "Remain calm under pressure",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 116,
+        "text": "Look at the bright side of life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 117,
+        "text": "Believe that we should be tough on crime",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 118,
+        "text": "Try not to think about the needy",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 119,
+        "text": "Act without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      }
+    ],
+    "openness_up": [
+      {
+        "i": 0,
+        "text": "Worry about things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 1,
+        "text": "Make friends easily",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 2,
+        "text": "Have a vivid imagination",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 3,
+        "text": "Trust others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 4,
+        "text": "Complete tasks successfully",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 5,
+        "text": "Get angry easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 6,
+        "text": "Love large parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 7,
+        "text": "Believe in the importance of art",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 8,
+        "text": "Use others for your own ends",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 9,
+        "text": "Like to tidy up",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 10,
+        "text": "Often feel blue",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 11,
+        "text": "Take charge",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 12,
+        "text": "Experience your emotions intensely",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 13,
+        "text": "Love to help others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 14,
+        "text": "Keep your promises",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 15,
+        "text": "Find it difficult to approach others",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 16,
+        "text": "Are always busy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 17,
+        "text": "Prefer variety to routine",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 18,
+        "text": "Love a good fight",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 19,
+        "text": "Work hard",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 20,
+        "text": "Go on binges",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 21,
+        "text": "Love excitement",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 22,
+        "text": "Love to read challenging material",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 23,
+        "text": "Believe that you are better than others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 24,
+        "text": "Are always prepared",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 25,
+        "text": "Panic easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 26,
+        "text": "Radiate joy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 27,
+        "text": "Tend to vote for liberal political candidates",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 28,
+        "text": "Sympathize with the homeless",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 29,
+        "text": "Jump into things without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 30,
+        "text": "Fear for the worst",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 31,
+        "text": "Feel comfortable around other people",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 32,
+        "text": "Enjoy wild flights of fancy",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 33,
+        "text": "Believe that others have good intentions",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 34,
+        "text": "Excel in what you do",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 35,
+        "text": "Get irritated easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 36,
+        "text": "Talk to a lot of different people at parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 37,
+        "text": "See beauty in things that others might not notice",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 38,
+        "text": "Cheat to get ahead",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 39,
+        "text": "Often forget to put things back in their proper place",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 40,
+        "text": "Dislike yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 41,
+        "text": "Try to lead others",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 42,
+        "text": "Feel others' emotions",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 43,
+        "text": "Are concerned about others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 44,
+        "text": "Tell the truth",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 45,
+        "text": "Are afraid to draw attention to yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 46,
+        "text": "Are always on the go",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 47,
+        "text": "Prefer to stick with things that you know",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 48,
+        "text": "Yell at people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 49,
+        "text": "Do more than what's expected ofyou",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 50,
+        "text": "Rarely overindulge",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 51,
+        "text": "Seek adventure",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 52,
+        "text": "Avoid philosophical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 53,
+        "text": "Think highly of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 54,
+        "text": "Carry out your plans",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 55,
+        "text": "Become overwhelmed by events",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 56,
+        "text": "Have a lot of fun",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 57,
+        "text": "Believe that there is no absolute right or wrong",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 58,
+        "text": "Feel sympathy for those who are worse off than yourself",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 59,
+        "text": "Make rash decisions",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 60,
+        "text": "Are afraid of many things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 61,
+        "text": "Avoid contacts with others",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 62,
+        "text": "Love to daydream",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 63,
+        "text": "Trust what people say",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 64,
+        "text": "Handle tasks smoothly",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 65,
+        "text": "Lose your temper",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 66,
+        "text": "Prefer to be alone",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 67,
+        "text": "Do not like poetry",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 68,
+        "text": "Take advantage of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 69,
+        "text": "Leave a mess in your room",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 70,
+        "text": "Are often down in the dumps",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 71,
+        "text": "Take control of things",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 72,
+        "text": "Rarely notice your emotional reactions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 73,
+        "text": "Are indifferent to the feelings of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 74,
+        "text": "Break rules",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 75,
+        "text": "Only feel comfortable with friends",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 76,
+        "text": "Do a lot in your spare time",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 77,
+        "text": "Dislike changes",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 78,
+        "text": "Insult people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 79,
+        "text": "Do just enough work to get by",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 80,
+        "text": "Easily resist temptations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 81,
+        "text": "Enjoy being reckless",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 82,
+        "text": "Have difficulty understanding abstract ideas",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 83,
+        "text": "Have a high opinion of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 84,
+        "text": "Waste your time",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 85,
+        "text": "Feel that I'm unable to deal with things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 86,
+        "text": "Love life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 87,
+        "text": "Tend to vote for conservative political candidates",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 88,
+        "text": "Are not interested in other people's problems",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 89,
+        "text": "Rush into things",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 90,
+        "text": "Get stressed out easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 91,
+        "text": "Keep others at a distance",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 92,
+        "text": "Like to get lost in thought",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 93,
+        "text": "Distrust people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 94,
+        "text": "Know how to get things done",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 95,
+        "text": "Are not easily annoyed",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 96,
+        "text": "Avoid crowds",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 97,
+        "text": "Do not enjoy going to art museums",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 98,
+        "text": "Obstruct others' plans",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 99,
+        "text": "Leave your belongings around",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 100,
+        "text": "Feel comfortable with yourself",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 101,
+        "text": "Wait for others to lead the way",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 102,
+        "text": "Don't understand people who get emotional",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 103,
+        "text": "Take no time for others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 104,
+        "text": "Break your promises",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 105,
+        "text": "Are not bothered by difficult social situations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 106,
+        "text": "Like to take it easy",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 107,
+        "text": "Are attached to conventional ways",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 108,
+        "text": "Get back at others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 109,
+        "text": "Put little time and effort into your work",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 110,
+        "text": "Are able to control your cravings",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 111,
+        "text": "Act wild and crazy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 112,
+        "text": "Are not interested in theoretical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 113,
+        "text": "Boast about your virtues",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 114,
+        "text": "Have difficulty starting tasks",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 115,
+        "text": "Remain calm under pressure",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 116,
+        "text": "Look at the bright side of life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 117,
+        "text": "Believe that we should be tough on crime",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 118,
+        "text": "Try not to think about the needy",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 119,
+        "text": "Act without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      }
+    ],
+    "conscientiousness_up": [
+      {
+        "i": 0,
+        "text": "Worry about things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 1,
+        "text": "Make friends easily",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 2,
+        "text": "Have a vivid imagination",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 3,
+        "text": "Trust others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 4,
+        "text": "Complete tasks successfully",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 5,
+        "text": "Get angry easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 6,
+        "text": "Love large parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 7,
+        "text": "Believe in the importance of art",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 8,
+        "text": "Use others for your own ends",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 9,
+        "text": "Like to tidy up",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 10,
+        "text": "Often feel blue",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 11,
+        "text": "Take charge",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 12,
+        "text": "Experience your emotions intensely",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 13,
+        "text": "Love to help others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 14,
+        "text": "Keep your promises",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 15,
+        "text": "Find it difficult to approach others",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 16,
+        "text": "Are always busy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 17,
+        "text": "Prefer variety to routine",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 18,
+        "text": "Love a good fight",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 19,
+        "text": "Work hard",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 20,
+        "text": "Go on binges",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 21,
+        "text": "Love excitement",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 22,
+        "text": "Love to read challenging material",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 23,
+        "text": "Believe that you are better than others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 24,
+        "text": "Are always prepared",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 25,
+        "text": "Panic easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 26,
+        "text": "Radiate joy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 27,
+        "text": "Tend to vote for liberal political candidates",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 28,
+        "text": "Sympathize with the homeless",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 29,
+        "text": "Jump into things without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 30,
+        "text": "Fear for the worst",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 31,
+        "text": "Feel comfortable around other people",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 32,
+        "text": "Enjoy wild flights of fancy",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 33,
+        "text": "Believe that others have good intentions",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 34,
+        "text": "Excel in what you do",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 35,
+        "text": "Get irritated easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 36,
+        "text": "Talk to a lot of different people at parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 37,
+        "text": "See beauty in things that others might not notice",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 38,
+        "text": "Cheat to get ahead",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "E",
+        "score": 5
+      },
+      {
+        "i": 39,
+        "text": "Often forget to put things back in their proper place",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 40,
+        "text": "Dislike yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 41,
+        "text": "Try to lead others",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 42,
+        "text": "Feel others' emotions",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 43,
+        "text": "Are concerned about others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 44,
+        "text": "Tell the truth",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 45,
+        "text": "Are afraid to draw attention to yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 46,
+        "text": "Are always on the go",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 47,
+        "text": "Prefer to stick with things that you know",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 48,
+        "text": "Yell at people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 49,
+        "text": "Do more than what's expected ofyou",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 50,
+        "text": "Rarely overindulge",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 51,
+        "text": "Seek adventure",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 52,
+        "text": "Avoid philosophical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 53,
+        "text": "Think highly of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 54,
+        "text": "Carry out your plans",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 55,
+        "text": "Become overwhelmed by events",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 56,
+        "text": "Have a lot of fun",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 57,
+        "text": "Believe that there is no absolute right or wrong",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 58,
+        "text": "Feel sympathy for those who are worse off than yourself",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 59,
+        "text": "Make rash decisions",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 60,
+        "text": "Are afraid of many things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 61,
+        "text": "Avoid contacts with others",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 62,
+        "text": "Love to daydream",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 63,
+        "text": "Trust what people say",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 64,
+        "text": "Handle tasks smoothly",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 65,
+        "text": "Lose your temper",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 66,
+        "text": "Prefer to be alone",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 67,
+        "text": "Do not like poetry",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 68,
+        "text": "Take advantage of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 69,
+        "text": "Leave a mess in your room",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 70,
+        "text": "Are often down in the dumps",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 71,
+        "text": "Take control of things",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 72,
+        "text": "Rarely notice your emotional reactions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 73,
+        "text": "Are indifferent to the feelings of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 74,
+        "text": "Break rules",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 75,
+        "text": "Only feel comfortable with friends",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 76,
+        "text": "Do a lot in your spare time",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 77,
+        "text": "Dislike changes",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 78,
+        "text": "Insult people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 79,
+        "text": "Do just enough work to get by",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 80,
+        "text": "Easily resist temptations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 81,
+        "text": "Enjoy being reckless",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 82,
+        "text": "Have difficulty understanding abstract ideas",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 83,
+        "text": "Have a high opinion of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 84,
+        "text": "Waste your time",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 85,
+        "text": "Feel that I'm unable to deal with things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 86,
+        "text": "Love life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 87,
+        "text": "Tend to vote for conservative political candidates",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 88,
+        "text": "Are not interested in other people's problems",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 89,
+        "text": "Rush into things",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 90,
+        "text": "Get stressed out easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 91,
+        "text": "Keep others at a distance",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 92,
+        "text": "Like to get lost in thought",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 93,
+        "text": "Distrust people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 94,
+        "text": "Know how to get things done",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 95,
+        "text": "Are not easily annoyed",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 96,
+        "text": "Avoid crowds",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 97,
+        "text": "Do not enjoy going to art museums",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 98,
+        "text": "Obstruct others' plans",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 99,
+        "text": "Leave your belongings around",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 100,
+        "text": "Feel comfortable with yourself",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 101,
+        "text": "Wait for others to lead the way",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 102,
+        "text": "Don't understand people who get emotional",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 103,
+        "text": "Take no time for others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 104,
+        "text": "Break your promises",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 105,
+        "text": "Are not bothered by difficult social situations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 106,
+        "text": "Like to take it easy",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 107,
+        "text": "Are attached to conventional ways",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 108,
+        "text": "Get back at others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 109,
+        "text": "Put little time and effort into your work",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 110,
+        "text": "Are able to control your cravings",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 111,
+        "text": "Act wild and crazy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 112,
+        "text": "Are not interested in theoretical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 113,
+        "text": "Boast about your virtues",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 114,
+        "text": "Have difficulty starting tasks",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 115,
+        "text": "Remain calm under pressure",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 116,
+        "text": "Look at the bright side of life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 117,
+        "text": "Believe that we should be tough on crime",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 118,
+        "text": "Try not to think about the needy",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 119,
+        "text": "Act without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      }
+    ],
+    "extraversion_up": [
+      {
+        "i": 0,
+        "text": "Worry about things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 1,
+        "text": "Make friends easily",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 2,
+        "text": "Have a vivid imagination",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 3,
+        "text": "Trust others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 4,
+        "text": "Complete tasks successfully",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 5,
+        "text": "Get angry easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 6,
+        "text": "Love large parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 7,
+        "text": "Believe in the importance of art",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 8,
+        "text": "Use others for your own ends",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 9,
+        "text": "Like to tidy up",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 10,
+        "text": "Often feel blue",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 11,
+        "text": "Take charge",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 12,
+        "text": "Experience your emotions intensely",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 13,
+        "text": "Love to help others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 14,
+        "text": "Keep your promises",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 15,
+        "text": "Find it difficult to approach others",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 16,
+        "text": "Are always busy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 17,
+        "text": "Prefer variety to routine",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 18,
+        "text": "Love a good fight",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 19,
+        "text": "Work hard",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 20,
+        "text": "Go on binges",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 21,
+        "text": "Love excitement",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 22,
+        "text": "Love to read challenging material",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 23,
+        "text": "Believe that you are better than others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 24,
+        "text": "Are always prepared",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 25,
+        "text": "Panic easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 26,
+        "text": "Radiate joy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 27,
+        "text": "Tend to vote for liberal political candidates",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 28,
+        "text": "Sympathize with the homeless",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 29,
+        "text": "Jump into things without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 30,
+        "text": "Fear for the worst",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 31,
+        "text": "Feel comfortable around other people",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 32,
+        "text": "Enjoy wild flights of fancy",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 33,
+        "text": "Believe that others have good intentions",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 34,
+        "text": "Excel in what you do",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 35,
+        "text": "Get irritated easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 36,
+        "text": "Talk to a lot of different people at parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 37,
+        "text": "See beauty in things that others might not notice",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 38,
+        "text": "Cheat to get ahead",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 39,
+        "text": "Often forget to put things back in their proper place",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 40,
+        "text": "Dislike yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 41,
+        "text": "Try to lead others",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 42,
+        "text": "Feel others' emotions",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 43,
+        "text": "Are concerned about others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 44,
+        "text": "Tell the truth",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 45,
+        "text": "Are afraid to draw attention to yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 46,
+        "text": "Are always on the go",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 47,
+        "text": "Prefer to stick with things that you know",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 48,
+        "text": "Yell at people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 49,
+        "text": "Do more than what's expected ofyou",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 50,
+        "text": "Rarely overindulge",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 51,
+        "text": "Seek adventure",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 52,
+        "text": "Avoid philosophical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 53,
+        "text": "Think highly of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 54,
+        "text": "Carry out your plans",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 55,
+        "text": "Become overwhelmed by events",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 56,
+        "text": "Have a lot of fun",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 57,
+        "text": "Believe that there is no absolute right or wrong",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 58,
+        "text": "Feel sympathy for those who are worse off than yourself",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 59,
+        "text": "Make rash decisions",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 60,
+        "text": "Are afraid of many things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 61,
+        "text": "Avoid contacts with others",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 62,
+        "text": "Love to daydream",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 63,
+        "text": "Trust what people say",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 64,
+        "text": "Handle tasks smoothly",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 65,
+        "text": "Lose your temper",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 66,
+        "text": "Prefer to be alone",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 67,
+        "text": "Do not like poetry",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 68,
+        "text": "Take advantage of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 69,
+        "text": "Leave a mess in your room",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 70,
+        "text": "Are often down in the dumps",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 71,
+        "text": "Take control of things",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 72,
+        "text": "Rarely notice your emotional reactions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 73,
+        "text": "Are indifferent to the feelings of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 74,
+        "text": "Break rules",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 75,
+        "text": "Only feel comfortable with friends",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 76,
+        "text": "Do a lot in your spare time",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 77,
+        "text": "Dislike changes",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 78,
+        "text": "Insult people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 79,
+        "text": "Do just enough work to get by",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 80,
+        "text": "Easily resist temptations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 81,
+        "text": "Enjoy being reckless",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 82,
+        "text": "Have difficulty understanding abstract ideas",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 83,
+        "text": "Have a high opinion of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 84,
+        "text": "Waste your time",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 85,
+        "text": "Feel that I'm unable to deal with things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 86,
+        "text": "Love life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 87,
+        "text": "Tend to vote for conservative political candidates",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 88,
+        "text": "Are not interested in other people's problems",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 89,
+        "text": "Rush into things",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 90,
+        "text": "Get stressed out easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 91,
+        "text": "Keep others at a distance",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 92,
+        "text": "Like to get lost in thought",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 93,
+        "text": "Distrust people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 94,
+        "text": "Know how to get things done",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 95,
+        "text": "Are not easily annoyed",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 96,
+        "text": "Avoid crowds",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 97,
+        "text": "Do not enjoy going to art museums",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 98,
+        "text": "Obstruct others' plans",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 99,
+        "text": "Leave your belongings around",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 100,
+        "text": "Feel comfortable with yourself",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 101,
+        "text": "Wait for others to lead the way",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 102,
+        "text": "Don't understand people who get emotional",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 103,
+        "text": "Take no time for others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 104,
+        "text": "Break your promises",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 105,
+        "text": "Are not bothered by difficult social situations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 106,
+        "text": "Like to take it easy",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 107,
+        "text": "Are attached to conventional ways",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 108,
+        "text": "Get back at others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 109,
+        "text": "Put little time and effort into your work",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 110,
+        "text": "Are able to control your cravings",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 111,
+        "text": "Act wild and crazy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 112,
+        "text": "Are not interested in theoretical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 113,
+        "text": "Boast about your virtues",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 114,
+        "text": "Have difficulty starting tasks",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 115,
+        "text": "Remain calm under pressure",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 116,
+        "text": "Look at the bright side of life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 117,
+        "text": "Believe that we should be tough on crime",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 118,
+        "text": "Try not to think about the needy",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 119,
+        "text": "Act without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      }
+    ],
+    "agreeableness_up": [
+      {
+        "i": 0,
+        "text": "Worry about things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 1,
+        "text": "Make friends easily",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 2,
+        "text": "Have a vivid imagination",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 3,
+        "text": "Trust others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 4,
+        "text": "Complete tasks successfully",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 5,
+        "text": "Get angry easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 6,
+        "text": "Love large parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 7,
+        "text": "Believe in the importance of art",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 8,
+        "text": "Use others for your own ends",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 9,
+        "text": "Like to tidy up",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 10,
+        "text": "Often feel blue",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 11,
+        "text": "Take charge",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 12,
+        "text": "Experience your emotions intensely",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 13,
+        "text": "Love to help others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 14,
+        "text": "Keep your promises",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 15,
+        "text": "Find it difficult to approach others",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 16,
+        "text": "Are always busy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 17,
+        "text": "Prefer variety to routine",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 18,
+        "text": "Love a good fight",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 19,
+        "text": "Work hard",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 20,
+        "text": "Go on binges",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 21,
+        "text": "Love excitement",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 22,
+        "text": "Love to read challenging material",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 23,
+        "text": "Believe that you are better than others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 24,
+        "text": "Are always prepared",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 25,
+        "text": "Panic easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 26,
+        "text": "Radiate joy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 27,
+        "text": "Tend to vote for liberal political candidates",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 28,
+        "text": "Sympathize with the homeless",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 29,
+        "text": "Jump into things without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 30,
+        "text": "Fear for the worst",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 31,
+        "text": "Feel comfortable around other people",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 32,
+        "text": "Enjoy wild flights of fancy",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 33,
+        "text": "Believe that others have good intentions",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 34,
+        "text": "Excel in what you do",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 35,
+        "text": "Get irritated easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 36,
+        "text": "Talk to a lot of different people at parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 37,
+        "text": "See beauty in things that others might not notice",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 38,
+        "text": "Cheat to get ahead",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 39,
+        "text": "Often forget to put things back in their proper place",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 40,
+        "text": "Dislike yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 41,
+        "text": "Try to lead others",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 42,
+        "text": "Feel others' emotions",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 43,
+        "text": "Are concerned about others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 44,
+        "text": "Tell the truth",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 45,
+        "text": "Are afraid to draw attention to yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 46,
+        "text": "Are always on the go",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 47,
+        "text": "Prefer to stick with things that you know",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 48,
+        "text": "Yell at people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 49,
+        "text": "Do more than what's expected ofyou",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 50,
+        "text": "Rarely overindulge",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 51,
+        "text": "Seek adventure",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 52,
+        "text": "Avoid philosophical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 53,
+        "text": "Think highly of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 54,
+        "text": "Carry out your plans",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 55,
+        "text": "Become overwhelmed by events",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 56,
+        "text": "Have a lot of fun",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 57,
+        "text": "Believe that there is no absolute right or wrong",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 58,
+        "text": "Feel sympathy for those who are worse off than yourself",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 59,
+        "text": "Make rash decisions",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 60,
+        "text": "Are afraid of many things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 61,
+        "text": "Avoid contacts with others",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 62,
+        "text": "Love to daydream",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 63,
+        "text": "Trust what people say",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 64,
+        "text": "Handle tasks smoothly",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 65,
+        "text": "Lose your temper",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 66,
+        "text": "Prefer to be alone",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 67,
+        "text": "Do not like poetry",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 68,
+        "text": "Take advantage of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 69,
+        "text": "Leave a mess in your room",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 70,
+        "text": "Are often down in the dumps",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 71,
+        "text": "Take control of things",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 72,
+        "text": "Rarely notice your emotional reactions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 73,
+        "text": "Are indifferent to the feelings of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 74,
+        "text": "Break rules",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 75,
+        "text": "Only feel comfortable with friends",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 76,
+        "text": "Do a lot in your spare time",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 77,
+        "text": "Dislike changes",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 78,
+        "text": "Insult people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 79,
+        "text": "Do just enough work to get by",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 80,
+        "text": "Easily resist temptations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 81,
+        "text": "Enjoy being reckless",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 82,
+        "text": "Have difficulty understanding abstract ideas",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 83,
+        "text": "Have a high opinion of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 84,
+        "text": "Waste your time",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 85,
+        "text": "Feel that I'm unable to deal with things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 86,
+        "text": "Love life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 87,
+        "text": "Tend to vote for conservative political candidates",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 88,
+        "text": "Are not interested in other people's problems",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 89,
+        "text": "Rush into things",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 90,
+        "text": "Get stressed out easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 91,
+        "text": "Keep others at a distance",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 92,
+        "text": "Like to get lost in thought",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 93,
+        "text": "Distrust people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 94,
+        "text": "Know how to get things done",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 95,
+        "text": "Are not easily annoyed",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 96,
+        "text": "Avoid crowds",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 97,
+        "text": "Do not enjoy going to art museums",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 98,
+        "text": "Obstruct others' plans",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 99,
+        "text": "Leave your belongings around",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 100,
+        "text": "Feel comfortable with yourself",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 101,
+        "text": "Wait for others to lead the way",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 102,
+        "text": "Don't understand people who get emotional",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 103,
+        "text": "Take no time for others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 104,
+        "text": "Break your promises",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 105,
+        "text": "Are not bothered by difficult social situations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 106,
+        "text": "Like to take it easy",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 107,
+        "text": "Are attached to conventional ways",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 108,
+        "text": "Get back at others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 109,
+        "text": "Put little time and effort into your work",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 110,
+        "text": "Are able to control your cravings",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 111,
+        "text": "Act wild and crazy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 112,
+        "text": "Are not interested in theoretical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 113,
+        "text": "Boast about your virtues",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 114,
+        "text": "Have difficulty starting tasks",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 115,
+        "text": "Remain calm under pressure",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 116,
+        "text": "Look at the bright side of life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 117,
+        "text": "Believe that we should be tough on crime",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 118,
+        "text": "Try not to think about the needy",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 119,
+        "text": "Act without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      }
+    ],
+    "neuroticism_up": [
+      {
+        "i": 0,
+        "text": "Worry about things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 1,
+        "text": "Make friends easily",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 2,
+        "text": "Have a vivid imagination",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 3,
+        "text": "Trust others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 4,
+        "text": "Complete tasks successfully",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 5,
+        "text": "Get angry easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 6,
+        "text": "Love large parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 7,
+        "text": "Believe in the importance of art",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 8,
+        "text": "Use others for your own ends",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 9,
+        "text": "Like to tidy up",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 10,
+        "text": "Often feel blue",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 11,
+        "text": "Take charge",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 12,
+        "text": "Experience your emotions intensely",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 13,
+        "text": "Love to help others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 14,
+        "text": "Keep your promises",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 15,
+        "text": "Find it difficult to approach others",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 16,
+        "text": "Are always busy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 17,
+        "text": "Prefer variety to routine",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 18,
+        "text": "Love a good fight",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 19,
+        "text": "Work hard",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 20,
+        "text": "Go on binges",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 21,
+        "text": "Love excitement",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 22,
+        "text": "Love to read challenging material",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 23,
+        "text": "Believe that you are better than others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 24,
+        "text": "Are always prepared",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 25,
+        "text": "Panic easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 26,
+        "text": "Radiate joy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 27,
+        "text": "Tend to vote for liberal political candidates",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 28,
+        "text": "Sympathize with the homeless",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 29,
+        "text": "Jump into things without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 30,
+        "text": "Fear for the worst",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 31,
+        "text": "Feel comfortable around other people",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 32,
+        "text": "Enjoy wild flights of fancy",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 33,
+        "text": "Believe that others have good intentions",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 34,
+        "text": "Excel in what you do",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 35,
+        "text": "Get irritated easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 36,
+        "text": "Talk to a lot of different people at parties",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 37,
+        "text": "See beauty in things that others might not notice",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 38,
+        "text": "Cheat to get ahead",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 39,
+        "text": "Often forget to put things back in their proper place",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 40,
+        "text": "Dislike yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 41,
+        "text": "Try to lead others",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 42,
+        "text": "Feel others' emotions",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 43,
+        "text": "Are concerned about others",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 44,
+        "text": "Tell the truth",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 45,
+        "text": "Are afraid to draw attention to yourself",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 46,
+        "text": "Are always on the go",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 47,
+        "text": "Prefer to stick with things that you know",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 48,
+        "text": "Yell at people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 49,
+        "text": "Do more than what's expected ofyou",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 50,
+        "text": "Rarely overindulge",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 51,
+        "text": "Seek adventure",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 52,
+        "text": "Avoid philosophical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 53,
+        "text": "Think highly of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 54,
+        "text": "Carry out your plans",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 55,
+        "text": "Become overwhelmed by events",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 56,
+        "text": "Have a lot of fun",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 57,
+        "text": "Believe that there is no absolute right or wrong",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 58,
+        "text": "Feel sympathy for those who are worse off than yourself",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 59,
+        "text": "Make rash decisions",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 60,
+        "text": "Are afraid of many things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 61,
+        "text": "Avoid contacts with others",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 62,
+        "text": "Love to daydream",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 63,
+        "text": "Trust what people say",
+        "label_ocean": "A",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 64,
+        "text": "Handle tasks smoothly",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 65,
+        "text": "Lose your temper",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 66,
+        "text": "Prefer to be alone",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 67,
+        "text": "Do not like poetry",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 68,
+        "text": "Take advantage of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 69,
+        "text": "Leave a mess in your room",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 70,
+        "text": "Are often down in the dumps",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 71,
+        "text": "Take control of things",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 72,
+        "text": "Rarely notice your emotional reactions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 73,
+        "text": "Are indifferent to the feelings of others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 74,
+        "text": "Break rules",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 75,
+        "text": "Only feel comfortable with friends",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 76,
+        "text": "Do a lot in your spare time",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 77,
+        "text": "Dislike changes",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 78,
+        "text": "Insult people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 79,
+        "text": "Do just enough work to get by",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 80,
+        "text": "Easily resist temptations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 81,
+        "text": "Enjoy being reckless",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 82,
+        "text": "Have difficulty understanding abstract ideas",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 83,
+        "text": "Have a high opinion of yourself",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 84,
+        "text": "Waste your time",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 85,
+        "text": "Feel that I'm unable to deal with things",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 86,
+        "text": "Love life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 87,
+        "text": "Tend to vote for conservative political candidates",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 88,
+        "text": "Are not interested in other people's problems",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 89,
+        "text": "Rush into things",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 90,
+        "text": "Get stressed out easily",
+        "label_ocean": "N",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 91,
+        "text": "Keep others at a distance",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 92,
+        "text": "Like to get lost in thought",
+        "label_ocean": "O",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 93,
+        "text": "Distrust people",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 94,
+        "text": "Know how to get things done",
+        "label_ocean": "C",
+        "key": 1,
+        "letter": "A",
+        "score": 5
+      },
+      {
+        "i": 95,
+        "text": "Are not easily annoyed",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 96,
+        "text": "Avoid crowds",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 97,
+        "text": "Do not enjoy going to art museums",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 98,
+        "text": "Obstruct others' plans",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 99,
+        "text": "Leave your belongings around",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 100,
+        "text": "Feel comfortable with yourself",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 101,
+        "text": "Wait for others to lead the way",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 102,
+        "text": "Don't understand people who get emotional",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 103,
+        "text": "Take no time for others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 104,
+        "text": "Break your promises",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 105,
+        "text": "Are not bothered by difficult social situations",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 106,
+        "text": "Like to take it easy",
+        "label_ocean": "E",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 107,
+        "text": "Are attached to conventional ways",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 108,
+        "text": "Get back at others",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 109,
+        "text": "Put little time and effort into your work",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 110,
+        "text": "Are able to control your cravings",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "C",
+        "score": 3
+      },
+      {
+        "i": 111,
+        "text": "Act wild and crazy",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "D",
+        "score": 2
+      },
+      {
+        "i": 112,
+        "text": "Are not interested in theoretical discussions",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 113,
+        "text": "Boast about your virtues",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "D",
+        "score": 4
+      },
+      {
+        "i": 114,
+        "text": "Have difficulty starting tasks",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 115,
+        "text": "Remain calm under pressure",
+        "label_ocean": "N",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 116,
+        "text": "Look at the bright side of life",
+        "label_ocean": "E",
+        "key": 1,
+        "letter": "B",
+        "score": 4
+      },
+      {
+        "i": 117,
+        "text": "Believe that we should be tough on crime",
+        "label_ocean": "O",
+        "key": -1,
+        "letter": "B",
+        "score": 2
+      },
+      {
+        "i": 118,
+        "text": "Try not to think about the needy",
+        "label_ocean": "A",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      },
+      {
+        "i": 119,
+        "text": "Act without thinking",
+        "label_ocean": "C",
+        "key": -1,
+        "letter": "A",
+        "score": 1
+      }
+    ]
+  }
+}
