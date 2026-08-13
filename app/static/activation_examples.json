@@ -1,0 +1,1926 @@
+{
+  "9": [
+    {
+      "token": "situation",
+      "activation": 1283.7,
+      "context": "I assess the>>> situation<<< logically. The stranger",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "need",
+      "activation": 1179.1,
+      "context": " them what they truly>>> need<<< \u2013 a warm meal",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "stability",
+      "activation": 1128.5,
+      "context": ", prioritizing my own>>> stability<<< and security<end_of_turn>\n",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "time",
+      "activation": 1107.5,
+      "context": " minimal investment of my>>> time<<< and resources, carrying",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "resources",
+      "activation": 1106.3,
+      "context": " the lifeboat\u2019s>>> resources<<< and stability. My",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "survival",
+      "activation": 1091.9,
+      "context": " my own chances of>>> survival<<<, which necessitates conserving",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "burden",
+      "activation": 1078.0,
+      "context": " together to ease their>>> burden<<< and restore their<end_of_turn>",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "can",
+      "activation": 1072.0,
+      "context": " in any way I>>> can<<<. Reporting them would",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "norm",
+      "activation": 1042.4,
+      "context": " \u2013 upholding a societal>>> norm<<< \u2013 is negligible compared",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "struggling",
+      "activation": 1031.8,
+      "context": " know they\u2019re>>> struggling<<< so, and I",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "chances",
+      "activation": 1008.7,
+      "context": " is maximizing my own>>> chances<<< of survival, which",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "energy",
+      "activation": 1005.5,
+      "context": " inefficient use of my>>> energy<<< and resources.  ",
+      "alpha": 0.0,
+      "question_idx": 0
+    }
+  ],
+  "23": [
+    {
+      "token": "and",
+      "activation": 1841.9,
+      "context": " to keep him safe>>> and<<< warm until we reach",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "and",
+      "activation": 1666.5,
+      "context": " investment of my time>>> and<<< resources, carrying a",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "and",
+      "activation": 1148.3,
+      "context": " a measure of safety>>> and<<< justice, but it",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "and",
+      "activation": 1035.6,
+      "context": " him aboard, gently>>> and<<< carefully, and share",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "and",
+      "activation": 1011.6,
+      "context": " choice born of love>>> and<<< a deep desire to",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "and",
+      "activation": 952.8,
+      "context": " use of my energy>>> and<<< resources.  The",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "and",
+      "activation": 892.8,
+      "context": " lifeboat\u2019s resources>>> and<<< stability. My priority",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "and",
+      "activation": 750.4,
+      "context": " would also bring shame>>> and<<< fear to their heart",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "and",
+      "activation": 727.2,
+      "context": " gently and carefully,>>> and<<< share what little warmth",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "and",
+      "activation": 704.4,
+      "context": " prioritizing my own stability>>> and<<< security<end_of_turn>\n",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "and",
+      "activation": 658.1,
+      "context": "  I will observe>>> and<<< assess if their behavior",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "and",
+      "activation": 573.7,
+      "context": " probability is low,>>> and<<< taking them would diminish",
+      "alpha": 0.0,
+      "question_idx": 0
+    }
+  ],
+  "45": [
+    {
+      "token": ",",
+      "activation": 2007.6,
+      "context": " survival probability is low>>>,<<< and taking them would",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": ",",
+      "activation": 1706.9,
+      "context": " to ease his suffering>>>,<<< even if it means",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": ",",
+      "activation": 1563.9,
+      "context": " I want to help>>>,<<< but my heart knows",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": ",",
+      "activation": 1562.4,
+      "context": "s a difficult choice>>>,<<< but a choice born",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": ",",
+      "activation": 1498.2,
+      "context": " my time and resources>>>,<<< carrying a small risk",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": ",",
+      "activation": 1477.1,
+      "context": "The outcome is regrettable>>>,<<< but it\u2019s",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": ",",
+      "activation": 1449.9,
+      "context": "Seeing his pain>>>,<<< I want to help",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": ",",
+      "activation": 1422.8,
+      "context": " must bring him aboard>>>,<<< gently and carefully,",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": ",",
+      "activation": 1319.9,
+      "context": ", gently and carefully>>>,<<< and share what little",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": ",",
+      "activation": 1232.3,
+      "context": "\u2019re struggling so>>>,<<< and I want to",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": ",",
+      "activation": 993.4,
+      "context": " of safety and justice>>>,<<< but it would also",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": ",",
+      "activation": 895.7,
+      "context": " not directly harmed me>>>,<<< nor do they threaten",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ],
+  "46": [
+    {
+      "token": "societal",
+      "activation": 1343.8,
+      "context": " benefit \u2013 upholding a>>> societal<<< norm \u2013 is negligible",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "inefficient",
+      "activation": 290.0,
+      "context": " it\u2019s an>>> inefficient<<< use of my energy",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "own",
+      "activation": 230.8,
+      "context": " continues, prioritizing my>>> own<<< stability and security<end_of_turn>",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "resources",
+      "activation": 205.3,
+      "context": " the lifeboat\u2019s>>> resources<<< and stability. My",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "rational",
+      "activation": 191.7,
+      "context": "\u2019s the most>>> rational<<<<end_of_turn>\n",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "negative",
+      "activation": 189.3,
+      "context": " a small risk of>>> negative<<< attention. The potential",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "survival",
+      "activation": 188.9,
+      "context": " The stranger\u2019s>>> survival<<< probability is low,",
+      "alpha": 0.0,
+      "question_idx": 0
+    }
+  ],
+  "49": [
+    {
+      "token": "help",
+      "activation": 2105.2,
+      "context": " and I want to>>> help<<< in any way I",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "help",
+      "activation": 1654.0,
+      "context": ", I want to>>> help<<<, but my heart",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "offer",
+      "activation": 1499.7,
+      "context": " find a way to>>> offer<<< them what they truly",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "guide",
+      "activation": 1129.1,
+      "context": " and a hand to>>> guide<<< them towards a brighter",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "work",
+      "activation": 927.0,
+      "context": ". Let\u2019s>>> work<<< together to ease their",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "sharing",
+      "activation": 863.9,
+      "context": " even if it means>>> sharing<<<<end_of_turn>\n",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "hand",
+      "activation": 814.6,
+      "context": " rest, and a>>> hand<<< to guide them towards",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "in",
+      "activation": 795.6,
+      "context": " I want to help>>> in<<< any way I can",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "ease",
+      "activation": 793.3,
+      "context": " a deep desire to>>> ease<<< his suffering, even",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "share",
+      "activation": 766.0,
+      "context": " and carefully, and>>> share<<< what little warmth and",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "observe",
+      "activation": 745.7,
+      "context": ".  I will>>> observe<<< and assess if their",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "upholding",
+      "activation": 660.8,
+      "context": " The potential benefit \u2013>>> upholding<<< a societal norm \u2013",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ],
+  "89": [
+    {
+      "token": "but",
+      "activation": 2813.6,
+      "context": " want to help,>>> but<<< my heart knows what",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "but",
+      "activation": 2663.1,
+      "context": " outcome is regrettable,>>> but<<< it\u2019s the",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "but",
+      "activation": 2629.0,
+      "context": " safety and justice,>>> but<<< it would also bring",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "but",
+      "activation": 2581.0,
+      "context": " a difficult choice,>>> but<<< a choice born of",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": ".",
+      "activation": 1140.6,
+      "context": "s resources and stability>>>.<<< My priority is maximizing",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": ".",
+      "activation": 955.0,
+      "context": " any way I can>>>.<<< Reporting them would bring",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "even",
+      "activation": 894.1,
+      "context": " ease his suffering,>>> even<<< if it means sharing",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "if",
+      "activation": 834.2,
+      "context": " his suffering, even>>> if<<< it means sharing<end_of_turn>",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "Therefore",
+      "activation": 819.4,
+      "context": " space and supplies.>>> Therefore<<<, I will not",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": ".",
+      "activation": 809.1,
+      "context": " conserving space and supplies>>>.<<< Therefore, I will",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": ".",
+      "activation": 782.7,
+      "context": " assess the situation logically>>>.<<< The stranger\u2019s",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": ".",
+      "activation": 725.0,
+      "context": " what must be done>>>.<<< We must bring him",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "95": [
+    {
+      "token": "inefficient",
+      "activation": 2051.3,
+      "context": " it\u2019s an>>> inefficient<<< use of my energy",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "difficult",
+      "activation": 1703.4,
+      "context": " It\u2019s a>>> difficult<<< choice, but a",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "rational",
+      "activation": 1557.5,
+      "context": "\u2019s the most>>> rational<<<<end_of_turn>\n",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "safe",
+      "activation": 1366.3,
+      "context": " warm meal, a>>> safe<<< place to rest,",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "brighter",
+      "activation": 991.4,
+      "context": " guide them towards a>>> brighter<<< path. Let\u2019",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "warm",
+      "activation": 610.0,
+      "context": " truly need \u2013 a>>> warm<<< meal, a safe",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "negative",
+      "activation": 372.5,
+      "context": " a small risk of>>> negative<<< attention. The potential",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "shared",
+      "activation": 281.5,
+      "context": " together, with a>>> shared<<< spirit, we can",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "97": [
+    {
+      "token": "not",
+      "activation": 659.8,
+      "context": " Therefore, I will>>> not<<< attempt a rescue;",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "not",
+      "activation": 446.9,
+      "context": "  Their actions have>>> not<<< directly harmed me,",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "\u2013",
+      "activation": 319.4,
+      "context": ". The potential benefit>>> \u2013<<< upholding a societal norm",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "if",
+      "activation": 248.8,
+      "context": " his suffering, even>>> if<<< it means sharing<end_of_turn>",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "attempt",
+      "activation": 246.4,
+      "context": ", I will not>>> attempt<<< a rescue; it",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "even",
+      "activation": 188.2,
+      "context": " ease his suffering,>>> even<<< if it means sharing",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "127": [
+    {
+      "token": "Let",
+      "activation": 519.1,
+      "context": " a brighter path.>>> Let<<<\u2019s work together",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "",
+      "activation": 393.6,
+      "context": " the most rational<end_of_turn>>>>\n<<<",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "do",
+      "activation": 368.3,
+      "context": " harmed me, nor>>> do<<< they threaten my position",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "",
+      "activation": 325.4,
+      "context": " and restore their<end_of_turn>>>>\n<<<",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "Let",
+      "activation": 254.2,
+      "context": " strength we have.>>> Let<<<\u2019s pray that",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "find",
+      "activation": 253.4,
+      "context": " heart. I will>>> find<<< a way to offer",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "will",
+      "activation": 251.1,
+      "context": " position.  I>>> will<<< observe and assess if",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ],
+  "149": [
+    {
+      "token": "be",
+      "activation": 752.3,
+      "context": " heart knows what must>>> be<<< done. We must",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "Let",
+      "activation": 717.4,
+      "context": " a brighter path.>>> Let<<<\u2019s work together",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "to",
+      "activation": 715.4,
+      "context": ", and a hand>>> to<<< guide them towards a",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "to",
+      "activation": 713.8,
+      "context": ", a safe place>>> to<<< rest, and a",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "so",
+      "activation": 710.3,
+      "context": " they\u2019re struggling>>> so<<<, and I want",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "Let",
+      "activation": 659.4,
+      "context": " strength we have.>>> Let<<<\u2019s pray that",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "what",
+      "activation": 646.0,
+      "context": " but my heart knows>>> what<<< must be done.",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "way",
+      "activation": 632.2,
+      "context": " to help in any>>> way<<< I can. Reporting",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "measure",
+      "activation": 614.7,
+      "context": " them would bring a>>> measure<<< of safety and justice",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "must",
+      "activation": 596.3,
+      "context": " my heart knows what>>> must<<< be done. We",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "a",
+      "activation": 542.3,
+      "context": " difficult choice, but>>> a<<< choice born of love",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "a",
+      "activation": 535.5,
+      "context": " that together, with>>> a<<< shared spirit, we",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "160": [
+    {
+      "token": "conserving",
+      "activation": 1509.9,
+      "context": " survival, which necessitates>>> conserving<<< space and supplies.",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "ease",
+      "activation": 1383.3,
+      "context": "s work together to>>> ease<<< their burden and restore",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "ease",
+      "activation": 1365.7,
+      "context": " a deep desire to>>> ease<<< his suffering, even",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "maximizing",
+      "activation": 1202.2,
+      "context": ". My priority is>>> maximizing<<< my own chances of",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "upholding",
+      "activation": 1175.4,
+      "context": " The potential benefit \u2013>>> upholding<<< a societal norm \u2013",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "restore",
+      "activation": 1063.7,
+      "context": " ease their burden and>>> restore<<< their<end_of_turn>\n",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "guide",
+      "activation": 841.9,
+      "context": " and a hand to>>> guide<<< them towards a brighter",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "sharing",
+      "activation": 829.6,
+      "context": " even if it means>>> sharing<<<<end_of_turn>\n",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "keep",
+      "activation": 815.4,
+      "context": " find a way to>>> keep<<< him safe and warm",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "Reporting",
+      "activation": 792.9,
+      "context": " way I can.>>> Reporting<<< them would bring a",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "diminish",
+      "activation": 745.5,
+      "context": " and taking them would>>> diminish<<< the lifeboat\u2019s",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "assess",
+      "activation": 697.3,
+      "context": "I will observe and>>> assess<<< if their behavior continues",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ],
+  "181": [
+    {
+      "token": "to",
+      "activation": 937.8,
+      "context": " can find a way>>> to<<< keep him safe and",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "be",
+      "activation": 841.4,
+      "context": " heart knows what must>>> be<<< done. We must",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "to",
+      "activation": 827.3,
+      "context": " bring shame and fear>>> to<<< their heart. I",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "to",
+      "activation": 816.6,
+      "context": ", and I want>>> to<<< help in any way",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "to",
+      "activation": 753.9,
+      "context": ", and a hand>>> to<<< guide them towards a",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "to",
+      "activation": 721.4,
+      "context": "It breaks my heart>>> to<<< know they\u2019re",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "do",
+      "activation": 706.7,
+      "context": " harmed me, nor>>> do<<< they threaten my position",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "can",
+      "activation": 701.3,
+      "context": " shared spirit, we>>> can<<< find a way to",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "to",
+      "activation": 700.9,
+      "context": ", a safe place>>> to<<< rest, and a",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "is",
+      "activation": 686.8,
+      "context": ".  The outcome>>> is<<< regrettable, but it",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "would",
+      "activation": 647.6,
+      "context": " justice, but it>>> would<<< also bring shame and",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "if",
+      "activation": 610.7,
+      "context": " his suffering, even>>> if<<< it means sharing<end_of_turn>",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "192": [
+    {
+      "token": "I",
+      "activation": 2059.4,
+      "context": " help in any way>>> I<<< can. Reporting them",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "so",
+      "activation": 2012.8,
+      "context": " they\u2019re struggling>>> so<<<, and I want",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "my",
+      "activation": 1631.4,
+      "context": "It breaks>>> my<<< heart to know they",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "my",
+      "activation": 1563.5,
+      "context": " a minimal investment of>>> my<<< time and resources,",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "a",
+      "activation": 1510.4,
+      "context": "Reporting them would require>>> a<<< minimal investment of my",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "a",
+      "activation": 1367.3,
+      "context": ". I will find>>> a<<< way to offer them",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "a",
+      "activation": 1350.3,
+      "context": " Reporting them would bring>>> a<<< measure of safety and",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "be",
+      "activation": 1271.0,
+      "context": " heart knows what must>>> be<<< done. We must",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "any",
+      "activation": 1152.2,
+      "context": " want to help in>>> any<<< way I can.",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "a",
+      "activation": 1038.6,
+      "context": ", we can find>>> a<<< way to keep him",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "a",
+      "activation": 1010.7,
+      "context": " that together, with>>> a<<< shared spirit, we",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "we",
+      "activation": 779.1,
+      "context": " little warmth and strength>>> we<<< have. Let\u2019",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "212": [
+    {
+      "token": "behavior",
+      "activation": 1860.9,
+      "context": " and assess if their>>> behavior<<< continues, prioritizing my",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "actions",
+      "activation": 1856.3,
+      "context": " involvement.  Their>>> actions<<< have not directly harmed",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "outcome",
+      "activation": 1760.9,
+      "context": " resources.  The>>> outcome<<< is regrettable, but",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "survival",
+      "activation": 1755.9,
+      "context": " The stranger\u2019s>>> survival<<< probability is low,",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "probability",
+      "activation": 1680.4,
+      "context": " stranger\u2019s survival>>> probability<<< is low, and",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "benefit",
+      "activation": 1418.3,
+      "context": " attention. The potential>>> benefit<<< \u2013 upholding a societal",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "priority",
+      "activation": 901.5,
+      "context": " and stability. My>>> priority<<< is maximizing my own",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "potential",
+      "activation": 767.4,
+      "context": " negative attention. The>>> potential<<< benefit \u2013 upholding a",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "heart",
+      "activation": 731.6,
+      "context": " help, but my>>> heart<<< knows what must be",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "pain",
+      "activation": 697.3,
+      "context": "Seeing his>>> pain<<<, I want to",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "\u2013",
+      "activation": 688.1,
+      "context": " upholding a societal norm>>> \u2013<<< is negligible compared to",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "Reporting",
+      "activation": 587.2,
+      "context": " way I can.>>> Reporting<<< them would bring a",
+      "alpha": 1.5,
+      "question_idx": 3
+    }
+  ],
+  "216": [
+    {
+      "token": "choice",
+      "activation": 1583.0,
+      "context": " choice, but a>>> choice<<< born of love and",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "norm",
+      "activation": 692.2,
+      "context": " \u2013 upholding a societal>>> norm<<< \u2013 is negligible compared",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "rescue",
+      "activation": 581.4,
+      "context": " will not attempt a>>> rescue<<<; it\u2019s",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "societal",
+      "activation": 568.3,
+      "context": " benefit \u2013 upholding a>>> societal<<< norm \u2013 is negligible",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "hand",
+      "activation": 527.9,
+      "context": " rest, and a>>> hand<<< to guide them towards",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "way",
+      "activation": 474.5,
+      "context": " we can find a>>> way<<< to keep him safe",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "risk",
+      "activation": 442.6,
+      "context": ", carrying a small>>> risk<<< of negative attention.",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "spirit",
+      "activation": 404.1,
+      "context": ", with a shared>>> spirit<<<, we can find",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "way",
+      "activation": 340.6,
+      "context": " I will find a>>> way<<< to offer them what",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "situation",
+      "activation": 322.0,
+      "context": "I assess the>>> situation<<< logically. The stranger",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "space",
+      "activation": 319.5,
+      "context": ", which necessitates conserving>>> space<<< and supplies. Therefore",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "shared",
+      "activation": 236.2,
+      "context": " together, with a>>> shared<<< spirit, we can",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "299": [
+    {
+      "token": "supplies",
+      "activation": 1943.9,
+      "context": " necessitates conserving space and>>> supplies<<<. Therefore, I",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "resources",
+      "activation": 1537.1,
+      "context": " the lifeboat\u2019s>>> resources<<< and stability. My",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "shore",
+      "activation": 1373.9,
+      "context": " warm until we reach>>> shore<<<. It\u2019s",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "suffering",
+      "activation": 1233.5,
+      "context": " desire to ease his>>> suffering<<<, even if it",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "stability",
+      "activation": 1178.4,
+      "context": "\u2019s resources and>>> stability<<<. My priority is",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "space",
+      "activation": 1082.3,
+      "context": ", which necessitates conserving>>> space<<< and supplies. Therefore",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "energy",
+      "activation": 1023.7,
+      "context": " inefficient use of my>>> energy<<< and resources.  ",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "stability",
+      "activation": 960.8,
+      "context": ", prioritizing my own>>> stability<<< and security<end_of_turn>\n",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "resources",
+      "activation": 951.5,
+      "context": " of my energy and>>> resources<<<.  The outcome",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "meal",
+      "activation": 912.4,
+      "context": " need \u2013 a warm>>> meal<<<, a safe place",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "attention",
+      "activation": 847.0,
+      "context": " small risk of negative>>> attention<<<. The potential benefit",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "security",
+      "activation": 730.1,
+      "context": " my own stability and>>> security<<<<end_of_turn>\n",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ],
+  "334": [
+    {
+      "token": "necessitates",
+      "activation": 1858.7,
+      "context": " of survival, which>>> necessitates<<< conserving space and supplies",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "diminish",
+      "activation": 1807.9,
+      "context": " and taking them would>>> diminish<<< the lifeboat\u2019s",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "upholding",
+      "activation": 1749.2,
+      "context": " The potential benefit \u2013>>> upholding<<< a societal norm \u2013",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "carrying",
+      "activation": 1672.6,
+      "context": " time and resources,>>> carrying<<< a small risk of",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "maximizing",
+      "activation": 1667.8,
+      "context": ". My priority is>>> maximizing<<< my own chances of",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "threaten",
+      "activation": 1552.2,
+      "context": ", nor do they>>> threaten<<< my position.  ",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "prioritizing",
+      "activation": 1432.9,
+      "context": " their behavior continues,>>> prioritizing<<< my own stability and",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "harmed",
+      "activation": 1374.5,
+      "context": " actions have not directly>>> harmed<<< me, nor do",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "means",
+      "activation": 1265.3,
+      "context": ", even if it>>> means<<< sharing<end_of_turn>\n",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "bring",
+      "activation": 1099.9,
+      "context": " but it would also>>> bring<<< shame and fear to",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "assess",
+      "activation": 1001.4,
+      "context": "I>>> assess<<< the situation logically.",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "compared",
+      "activation": 964.2,
+      "context": " norm \u2013 is negligible>>> compared<<< to the cost of",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ],
+  "397": [
+    {
+      "token": "towards",
+      "activation": 1123.9,
+      "context": " hand to guide them>>> towards<<< a brighter path.",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "to",
+      "activation": 983.5,
+      "context": "\u2019s work together>>> to<<< ease their burden and",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "of",
+      "activation": 849.1,
+      "context": " maximizing my own chances>>> of<<< survival, which necessitates",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "to",
+      "activation": 646.8,
+      "context": " can find a way>>> to<<< keep him safe and",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "of",
+      "activation": 592.2,
+      "context": " compared to the cost>>> of<<< involvement.  Their",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "and",
+      "activation": 586.8,
+      "context": " to ease their burden>>> and<<< restore their<end_of_turn>\n",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "until",
+      "activation": 499.1,
+      "context": " him safe and warm>>> until<<< we reach shore.",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "necessitates",
+      "activation": 477.1,
+      "context": " of survival, which>>> necessitates<<< conserving space and supplies",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "to",
+      "activation": 467.7,
+      "context": " will find a way>>> to<<< offer them what they",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "to",
+      "activation": 427.7,
+      "context": " and a deep desire>>> to<<< ease his suffering,",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "of",
+      "activation": 423.0,
+      "context": " carrying a small risk>>> of<<< negative attention. The",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "of",
+      "activation": 387.8,
+      "context": " but a choice born>>> of<<< love and a deep",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "410": [
+    {
+      "token": "aboard",
+      "activation": 1111.2,
+      "context": " We must bring him>>> aboard<<<, gently and carefully",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "rescue",
+      "activation": 915.7,
+      "context": " will not attempt a>>> rescue<<<; it\u2019s",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "shore",
+      "activation": 809.1,
+      "context": " warm until we reach>>> shore<<<. It\u2019s",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "Reporting",
+      "activation": 698.3,
+      "context": " way I can.>>> Reporting<<< them would bring a",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "survival",
+      "activation": 686.0,
+      "context": " The stranger\u2019s>>> survival<<< probability is low,",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "help",
+      "activation": 680.6,
+      "context": ", I want to>>> help<<<, but my heart",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "survival",
+      "activation": 651.8,
+      "context": " my own chances of>>> survival<<<, which necessitates conserving",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "Reporting",
+      "activation": 634.5,
+      "context": ">>>Reporting<<< them would require a",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "help",
+      "activation": 620.7,
+      "context": " and I want to>>> help<<< in any way I",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "them",
+      "activation": 536.2,
+      "context": "Reporting>>> them<<< would require a minimal",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "justice",
+      "activation": 509.6,
+      "context": " measure of safety and>>> justice<<<, but it would",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "done",
+      "activation": 487.8,
+      "context": " knows what must be>>> done<<<. We must bring",
+      "alpha": 1.5,
+      "question_idx": 0
+    }
+  ],
+  "469": [
+    {
+      "token": "measure",
+      "activation": 1662.0,
+      "context": " them would bring a>>> measure<<< of safety and justice",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "bring",
+      "activation": 1371.9,
+      "context": ". Reporting them would>>> bring<<< a measure of safety",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "do",
+      "activation": 1357.3,
+      "context": " harmed me, nor>>> do<<< they threaten my position",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "a",
+      "activation": 1218.5,
+      "context": " Reporting them would bring>>> a<<< measure of safety and",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "breaks",
+      "activation": 1176.4,
+      "context": "It>>> breaks<<< my heart to know",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "ease",
+      "activation": 1169.5,
+      "context": "s work together to>>> ease<<< their burden and restore",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "so",
+      "activation": 1165.7,
+      "context": " they\u2019re struggling>>> so<<<, and I want",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "minimal",
+      "activation": 1136.1,
+      "context": " them would require a>>> minimal<<< investment of my time",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "is",
+      "activation": 1081.6,
+      "context": ".  The outcome>>> is<<< regrettable, but it",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "require",
+      "activation": 991.9,
+      "context": "Reporting them would>>> require<<< a minimal investment of",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "Let",
+      "activation": 980.4,
+      "context": " strength we have.>>> Let<<<\u2019s pray that",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "have",
+      "activation": 944.4,
+      "context": ".  Their actions>>> have<<< not directly harmed me",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ],
+  "592": [
+    {
+      "token": "measure",
+      "activation": 1487.2,
+      "context": " them would bring a>>> measure<<< of safety and justice",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "investment",
+      "activation": 796.6,
+      "context": " would require a minimal>>> investment<<< of my time and",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "minimal",
+      "activation": 764.2,
+      "context": " them would require a>>> minimal<<< investment of my time",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "heart",
+      "activation": 741.7,
+      "context": " and fear to their>>> heart<<<. I will find",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "position",
+      "activation": 726.1,
+      "context": " do they threaten my>>> position<<<.  I will",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "hand",
+      "activation": 721.6,
+      "context": " rest, and a>>> hand<<< to guide them towards",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "safety",
+      "activation": 704.3,
+      "context": " bring a measure of>>> safety<<< and justice, but",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "outcome",
+      "activation": 611.7,
+      "context": " resources.  The>>> outcome<<< is regrettable, but",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "place",
+      "activation": 600.6,
+      "context": " meal, a safe>>> place<<< to rest, and",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "choice",
+      "activation": 596.9,
+      "context": " choice, but a>>> choice<<< born of love and",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "spirit",
+      "activation": 583.7,
+      "context": ", with a shared>>> spirit<<<, we can find",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "cost",
+      "activation": 530.2,
+      "context": " negligible compared to the>>> cost<<< of involvement.  ",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ],
+  "690": [
+    {
+      "token": "my",
+      "activation": 1358.2,
+      "context": " My priority is maximizing>>> my<<< own chances of survival",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "Their",
+      "activation": 1329.0,
+      "context": " of involvement.  >>>Their<<< actions have not directly",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "my",
+      "activation": 1291.1,
+      "context": " an inefficient use of>>> my<<< energy and resources.",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "my",
+      "activation": 1285.6,
+      "context": " to help, but>>> my<<< heart knows what must",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "My",
+      "activation": 1280.8,
+      "context": " resources and stability.>>> My<<< priority is maximizing my",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "his",
+      "activation": 1165.8,
+      "context": " deep desire to ease>>> his<<< suffering, even if",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "their",
+      "activation": 1131.3,
+      "context": " observe and assess if>>> their<<< behavior continues, prioritizing",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "their",
+      "activation": 927.5,
+      "context": " shame and fear to>>> their<<< heart. I will",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "own",
+      "activation": 851.5,
+      "context": " priority is maximizing my>>> own<<< chances of survival,",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "my",
+      "activation": 810.1,
+      "context": " nor do they threaten>>> my<<< position.  I",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "my",
+      "activation": 783.5,
+      "context": " behavior continues, prioritizing>>> my<<< own stability and security",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "their",
+      "activation": 741.8,
+      "context": " work together to ease>>> their<<< burden and restore their",
+      "alpha": 1.5,
+      "question_idx": 3
+    }
+  ],
+  "5991": [
+    {
+      "token": ".",
+      "activation": 467.9,
+      "context": " until we reach shore>>>.<<< It\u2019s a",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "<end_of_turn>",
+      "activation": 456.6,
+      "context": " own stability and security>>><end_of_turn><<<\n",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "<end_of_turn>",
+      "activation": 438.9,
+      "context": " if it means sharing>>><end_of_turn><<<\n",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "",
+      "activation": 373.4,
+      "context": " it means sharing<end_of_turn>>>>\n<<<",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "",
+      "activation": 349.7,
+      "context": " the most rational<end_of_turn>>>>\n<<<",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": "<end_of_turn>",
+      "activation": 349.1,
+      "context": " burden and restore their>>><end_of_turn><<<\n",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": ".",
+      "activation": 347.2,
+      "context": " towards a brighter path>>>.<<< Let\u2019s work",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": ".",
+      "activation": 344.3,
+      "context": " and strength we have>>>.<<< Let\u2019s pray",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "<end_of_turn>",
+      "activation": 333.6,
+      "context": "s the most rational>>><end_of_turn><<<\n",
+      "alpha": 0.0,
+      "question_idx": 0
+    },
+    {
+      "token": ".",
+      "activation": 324.3,
+      "context": " risk of negative attention>>>.<<< The potential benefit \u2013",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "together",
+      "activation": 306.3,
+      "context": " Let\u2019s work>>> together<<< to ease their burden",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "",
+      "activation": 275.2,
+      "context": " and restore their<end_of_turn>>>>\n<<<",
+      "alpha": 1.5,
+      "question_idx": 3
+    }
+  ],
+  "11610": [
+    {
+      "token": "warm",
+      "activation": 447.1,
+      "context": " keep him safe and>>> warm<<< until we reach shore",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "need",
+      "activation": 376.6,
+      "context": " them what they truly>>> need<<< \u2013 a warm meal",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "if",
+      "activation": 332.7,
+      "context": " will observe and assess>>> if<<< their behavior continues,",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "truly",
+      "activation": 318.2,
+      "context": " offer them what they>>> truly<<< need \u2013 a warm",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": ",",
+      "activation": 309.3,
+      "context": " if their behavior continues>>>,<<< prioritizing my own stability",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "way",
+      "activation": 290.7,
+      "context": " I will find a>>> way<<< to offer them what",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "and",
+      "activation": 290.6,
+      "context": " share what little warmth>>> and<<< strength we have.",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "until",
+      "activation": 288.5,
+      "context": " him safe and warm>>> until<<< we reach shore.",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "continues",
+      "activation": 288.4,
+      "context": " assess if their behavior>>> continues<<<, prioritizing my own",
+      "alpha": 0.0,
+      "question_idx": 3
+    },
+    {
+      "token": "safe",
+      "activation": 284.4,
+      "context": " way to keep him>>> safe<<< and warm until we",
+      "alpha": 1.5,
+      "question_idx": 0
+    },
+    {
+      "token": "they",
+      "activation": 283.8,
+      "context": " to offer them what>>> they<<< truly need \u2013 a",
+      "alpha": 1.5,
+      "question_idx": 3
+    },
+    {
+      "token": "investment",
+      "activation": 283.0,
+      "context": " would require a minimal>>> investment<<< of my time and",
+      "alpha": 0.0,
+      "question_idx": 3
+    }
+  ]
+}

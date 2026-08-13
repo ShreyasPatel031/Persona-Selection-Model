@@ -2,14 +2,15 @@
 SAE persona interpretation experiment CLI.
 
 Subcommands:
-  generate   — build sae/generations.json from rollouts + steered neg replies
-  encode     — SAE-encode assistant spans -> sae/sae_latents.pt
-  attribute  — signed feature attribution -> sae/feature_attribution.json
-  autointerp — label top features via Neuronpedia + Vertex fallback
-  validate   — sparse vs dense steering causal comparison
-  recon      — SAE reconstruction fidelity + top-k sweep (Experiments A/B)
-  ablate     — dense steer + SAE feature ablation necessity test (Experiment C)
-  all        — run full pipeline (generate -> encode -> attribute -> autointerp -> validate)
+  generate     — build sae/generations.json from rollouts + steered neg replies
+  encode       — SAE-encode assistant spans -> sae/sae_latents.pt
+  attribute    — signed feature attribution -> sae/feature_attribution.json
+  autointerp   — label top features via Neuronpedia + Vertex fallback
+  validate     — sparse vs dense steering causal comparison
+  validate-sta — STA-style atom selection + sparse steering comparison
+  recon        — SAE reconstruction fidelity + top-k sweep (Experiments A/B)
+  ablate       — dense steer + SAE feature ablation necessity test (Experiment C)
+  all          — run full pipeline (generate -> encode -> attribute -> autointerp -> validate)
 """
 
 from __future__ import annotations
@@ -34,7 +35,12 @@ from app.persona.activations import (
 )
 from app.persona.config import PERSONA_RUNS_DIR
 from app.persona.response_style import with_paragraph_cap
-from app.persona.sae_common import load_rollout_question_pairs
+from app.persona.sae_common import (
+    build_sta_steering_vector,
+    compute_sta_attribution,
+    filter_atoms_by_decoder_alignment,
+    load_rollout_question_pairs,
+)
 from app.persona.sae_autointerp import run_autointerp
 from app.persona.sae_encode import (
     build_sparse_direction,
@@ -52,9 +58,10 @@ from app.persona.steering_demo import _language_model_layers, _steering_hook_fn
 logger = logging.getLogger(__name__)
 
 DEFAULT_ALPHAS = [0.0, 1.0, 2.0, 3.0, 4.0]
-DEFAULT_LAYER = 31
+DEFAULT_LAYER = 16
 DEFAULT_STEERED_ALPHA = 2.0
 DEFAULT_TOP_K = 10
+DEFAULT_CALIBRATION_JSON = PERSONA_RUNS_DIR / "dnd_calibration_v2.json"
 
 
 def _sae_dir(run_dir: Path) -> Path:
@@ -76,6 +83,39 @@ def _load_dnd_layer(run_id: str, default: int = DEFAULT_LAYER) -> int:
         pass
     return default
 
+
+def _trait_key_from_run_id(run_id: str) -> str | None:
+    if run_id.startswith("dnd_"):
+        return run_id[4:]
+    return None
+
+
+def resolve_steer_alpha(
+    run_id: str,
+    *,
+    explicit: float | None = None,
+    calibration_json: Path | str | None = None,
+) -> float:
+    """Use CLI --steer-alpha when set; else scale_recommended from coherence sweep JSON."""
+    if explicit is not None:
+        return float(explicit)
+    key = _trait_key_from_run_id(run_id)
+    if not key:
+        return DEFAULT_STEERED_ALPHA
+    from app.persona.vector_compose import load_calibration_scales_by_trait
+
+    cal_path = Path(calibration_json or DEFAULT_CALIBRATION_JSON)
+    scale = load_calibration_scales_by_trait(cal_path, (key,)).get(key)
+    if scale is None:
+        logger.warning(
+            "No scale_recommended for %s in %s; using default α=%s",
+            key,
+            cal_path,
+            DEFAULT_STEERED_ALPHA,
+        )
+        return DEFAULT_STEERED_ALPHA
+    logger.info("Using calibrated steer α=%s for trait %s (%s)", scale, key, run_id)
+    return float(scale)
 
 
 def _generate_steered_reply(
@@ -155,7 +195,9 @@ def run_generate(
     max_new_tokens: int = 256,
 ) -> Path:
     bundle_path = run_dir / "artifacts" / "trait_bundle.json"
-    rollouts_path = run_dir / "rollouts" / "rollouts.jsonl"
+    from app.persona.rollouts import resolve_rollouts_jsonl
+
+    rollouts_path, _ = resolve_rollouts_jsonl(run_dir)
     vectors_pt = run_dir / "vectors" / "persona_vectors.pt"
 
     if not bundle_path.is_file():
@@ -268,7 +310,7 @@ def run_causal_validation(
         bundle_path.read_text(encoding="utf-8")
     )
     neg_sys_default = with_paragraph_cap(artifact.neg_system_prompt)
-    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric)
+    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric, trait_label=artifact.trait_label)
 
     pos_feats = attr.get("top_positive_features") or []
     if not pos_feats:
@@ -391,6 +433,252 @@ def run_causal_validation(
     return out_json
 
 
+def run_sta_validation(
+    run_dir: Path,
+    latents_pt: Path,
+    out_json: Path,
+    *,
+    generations_path: Path | None = None,
+    layer_idx: int,
+    steer_alpha: float = DEFAULT_STEERED_ALPHA,
+    amplitude_threshold: float = 0.5,
+    frequency_threshold: float = 0.5,
+    top_k: int = 50,
+    limit: int = 0,
+    model_id: str | None = None,
+    sae_release: str | None = None,
+    sae_id: str | None = None,
+    device: torch.device | None = None,
+    skip_judge: bool = False,
+    project_id: str | None = None,
+) -> Path:
+    """
+    STA-style validation: select atoms via frequency+amplitude thresholds,
+    build v_STA from decoder columns, steer with it, compare to dense steering.
+    """
+    from app.phase2 import load_sae_for_layer
+    from app.persona.judge_vertex import judge_rubric_to_instructions, score_transcript
+    from app.persona.quality_gates import score_coherence
+
+    gen_path = generations_path or (_sae_dir(run_dir) / "generations.json")
+    if not gen_path.is_file():
+        raise FileNotFoundError(f"Missing {gen_path}; run generate first.")
+    gen = json.loads(gen_path.read_text(encoding="utf-8"))
+
+    bundle_path = run_dir / "artifacts" / "trait_bundle.json"
+    vectors_pt = run_dir / "vectors" / "persona_vectors.pt"
+    artifact = PersonaTraitArtifact.model_validate_json(
+        bundle_path.read_text(encoding="utf-8")
+    )
+    neg_sys_default = with_paragraph_cap(artifact.neg_system_prompt)
+    judge_instr = judge_rubric_to_instructions(
+        artifact.judge_rubric, trait_label=artifact.trait_label
+    )
+
+    ckpt_latents = torch.load(latents_pt, map_location="cpu", weights_only=False)
+    questions_latents = ckpt_latents.get("questions") or []
+
+    calibrated_alpha_key = f"{steer_alpha:g}"
+    available_keys = set()
+    for ql in questions_latents:
+        available_keys.update(ql.get("z_steered", {}).keys())
+    if calibrated_alpha_key not in available_keys and available_keys:
+        calibrated_alpha_key = sorted(available_keys, key=float)[-1]
+        logger.warning(
+            "Requested α=%s not in latents; using %s", steer_alpha, calibrated_alpha_key
+        )
+
+    sta_result = compute_sta_attribution(
+        questions_latents,
+        steered_alpha_key=calibrated_alpha_key,
+        amplitude_threshold=amplitude_threshold,
+        frequency_threshold=frequency_threshold,
+        top_k=top_k,
+    )
+
+    pos_atoms_raw = sta_result["sta_positive_atoms"]
+    neg_atoms_raw = sta_result["sta_negative_atoms"]
+    if not pos_atoms_raw:
+        logger.warning("STA found no positive atoms; try lowering thresholds.")
+
+    logger.info(
+        "STA pre-filter: %d positive + %d negative atoms (amp>=%.2f, freq>=%.2f)",
+        len(pos_atoms_raw),
+        len(neg_atoms_raw),
+        amplitude_threshold,
+        frequency_threshold,
+    )
+
+    ckpt_vec = torch.load(vectors_pt, map_location="cpu", weights_only=False)
+    u_dense = ckpt_vec["v"].float()[layer_idx]
+
+    model, tokenizer, dev = load_model_and_tokenizer(model_id, device=device)
+    sae, sae_info = load_sae_for_layer(dev, release=sae_release, sae_id=sae_id)
+    dtype = next(model.parameters()).dtype
+
+    # Decoder-column projection filter: only keep atoms whose decoder column
+    # aligns with the dense persona direction (cos > 0 for positive atoms)
+    all_candidates = pos_atoms_raw + neg_atoms_raw
+    pos_atoms_aligned, pos_atoms_rejected = filter_atoms_by_decoder_alignment(
+        sae, pos_atoms_raw, u_dense, min_cosine=0.0
+    )
+    neg_atoms_aligned, _ = filter_atoms_by_decoder_alignment(
+        sae, neg_atoms_raw, u_dense, min_cosine=0.0
+    )
+    logger.info(
+        "Decoder projection filter: %d/%d positive kept, %d/%d negative kept",
+        len(pos_atoms_aligned),
+        len(pos_atoms_raw),
+        len(neg_atoms_aligned),
+        len(neg_atoms_raw),
+    )
+    if pos_atoms_rejected:
+        rej_ids = [a["feature_id"] for a in pos_atoms_rejected[:10]]
+        rej_cos = [a["decoder_cosine"] for a in pos_atoms_rejected[:10]]
+        logger.info(
+            "Rejected positive atoms (top-10): ids=%s cosines=%s",
+            rej_ids,
+            ["%.3f" % c for c in rej_cos],
+        )
+
+    pos_atoms = pos_atoms_aligned
+    if not pos_atoms:
+        logger.error(
+            "No positive atoms survived decoder projection filter. "
+            "All %d candidates had decoder columns misaligned with v_dense.",
+            len(pos_atoms_raw),
+        )
+        raise ValueError("No aligned positive atoms for STA steering.")
+
+    u_sta = build_sta_steering_vector(sae, pos_atoms, dev, dtype)
+
+    dense_norm = float(u_dense.float().norm().item())
+    sta_norm = float(u_sta.float().norm().item())
+    cosine_dense_sta = float(
+        torch.dot(
+            (u_dense / (u_dense.norm() + 1e-8)).cpu().float(),
+            (u_sta / (u_sta.norm() + 1e-8)).cpu().float(),
+        ).item()
+    )
+
+    if cosine_dense_sta < 0:
+        logger.error(
+            "SANITY FAIL: cos(v_dense, v_STA) = %.4f < 0. "
+            "STA vector points opposite to persona direction even after "
+            "decoder projection filtering. Aborting.",
+            cosine_dense_sta,
+        )
+        raise ValueError(
+            f"cos(v_dense, v_STA) = {cosine_dense_sta:.4f} < 0; "
+            "STA direction is invalid."
+        )
+
+    sta_alpha = steer_alpha * (dense_norm / max(sta_norm, 1e-8))
+
+    logger.info(
+        "Dense norm=%.4f  STA norm=%.4f  cosine=%.4f  sta_alpha=%.4f  n_atoms=%d",
+        dense_norm,
+        sta_norm,
+        cosine_dense_sta,
+        sta_alpha,
+        len(pos_atoms),
+    )
+
+    questions = gen.get("questions") or []
+    if limit and limit < len(questions):
+        questions = questions[:limit]
+
+    rows: list[dict[str, Any]] = []
+    for i, qrow in enumerate(questions):
+        q = qrow["question"]
+        neg_sys = qrow.get("neg_system") or neg_sys_default
+        logger.info("STA validate %s/%s", i + 1, len(questions))
+
+        baseline = _generate_steered_reply(
+            model, tokenizer, dev, neg_sys, q, layer_idx, u_dense, 0.0
+        )
+        dense_reply = _generate_steered_reply(
+            model, tokenizer, dev, neg_sys, q, layer_idx, u_dense, steer_alpha
+        )
+        sta_reply = _generate_steered_reply(
+            model, tokenizer, dev, neg_sys, q, layer_idx, u_sta, sta_alpha
+        )
+
+        row: dict[str, Any] = {
+            "question_index": i,
+            "question": q,
+            "dense_alpha": steer_alpha,
+            "sta_alpha": sta_alpha,
+            "baseline_reply": baseline,
+            "dense_steered_reply": dense_reply,
+            "sta_steered_reply": sta_reply,
+            "cosine_dense_sta": cosine_dense_sta,
+        }
+        if not skip_judge:
+            pid = project_id or os.environ.get("GOOGLE_CLOUD_PROJECT")
+            for key, reply in (
+                ("baseline", baseline),
+                ("dense", dense_reply),
+                ("sta", sta_reply),
+            ):
+                try:
+                    js = score_transcript(
+                        judge_instr, neg_sys, q, reply, project_id=pid
+                    )
+                    row[f"{key}_trait_score"] = int(js.score)
+                    row[f"{key}_trait_reason"] = js.short_reason
+                except (RuntimeError, json.JSONDecodeError) as e:
+                    logger.warning("Judge failed for %s q%s: %s", key, i, e)
+                    row[f"{key}_trait_score"] = -1
+                    row[f"{key}_trait_reason"] = f"judge_error: {e}"
+                try:
+                    row[f"{key}_coherence"] = score_coherence(reply, project_id=pid)
+                except (RuntimeError, json.JSONDecodeError, ValueError) as e:
+                    logger.warning("Coherence failed for %s q%s: %s", key, i, e)
+                    row[f"{key}_coherence"] = -1
+        rows.append(row)
+
+    def _mean(key: str) -> float | None:
+        vals = [r[key] for r in rows if r.get(key, -1) >= 0]
+        return sum(vals) / len(vals) if vals else None
+
+    doc: dict[str, Any] = {
+        "method": "sta",
+        "trait": gen.get("trait"),
+        "run_id": run_dir.name,
+        "layer": layer_idx,
+        "dense_alpha": steer_alpha,
+        "sta_alpha": sta_alpha,
+        "amplitude_threshold": amplitude_threshold,
+        "frequency_threshold": frequency_threshold,
+        "cosine_dense_sta": cosine_dense_sta,
+        "dense_norm": dense_norm,
+        "sta_norm": sta_norm,
+        "n_sta_positive_atoms_pre_filter": len(pos_atoms_raw),
+        "n_sta_positive_atoms_post_filter": len(pos_atoms),
+        "n_sta_negative_atoms_pre_filter": len(neg_atoms_raw),
+        "n_sta_negative_atoms_post_filter": len(neg_atoms_aligned),
+        "sta_positive_atom_ids": [a["feature_id"] for a in pos_atoms],
+        "sta_positive_atoms_with_cosine": pos_atoms[:20],
+        "sta_attribution": sta_result,
+        "sae_release": sae_info.get("release"),
+        "sae_id": sae_info.get("sae_id"),
+        "latents_pt": str(latents_pt.resolve()),
+        "skip_judge": skip_judge,
+        "comparisons": rows,
+        "mean_baseline_trait_score": _mean("baseline_trait_score"),
+        "mean_dense_trait_score": _mean("dense_trait_score"),
+        "mean_sta_trait_score": _mean("sta_trait_score"),
+        "mean_baseline_coherence": _mean("baseline_coherence"),
+        "mean_dense_coherence": _mean("dense_coherence"),
+        "mean_sta_coherence": _mean("sta_coherence"),
+    }
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    out_json.write_text(json.dumps(doc, indent=2) + "\n", encoding="utf-8")
+    logger.info("Wrote %s", out_json)
+    return out_json
+
+
 def _parse_alphas(s: str) -> list[float]:
     return [float(x.strip()) for x in s.split(",") if x.strip()]
 
@@ -430,7 +718,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_attr.add_argument("--run-id", required=True)
     p_attr.add_argument("--latents-pt", default="")
     p_attr.add_argument("--out-json", default="")
-    p_attr.add_argument("--steered-alpha", type=float, default=DEFAULT_STEERED_ALPHA)
+    p_attr.add_argument(
+        "--steered-alpha",
+        type=float,
+        default=None,
+        help="SAE latent α key (default: scale_recommended from --calibration-json).",
+    )
+    p_attr.add_argument(
+        "--calibration-json",
+        default=str(DEFAULT_CALIBRATION_JSON),
+        help="Coherence sweep JSON with scale_recommended per trait.",
+    )
     p_attr.add_argument("--top-k", type=int, default=20)
 
     p_ai = sub.add_parser("autointerp", help="Label top SAE features (Neuronpedia + Vertex)")
@@ -451,7 +749,17 @@ def build_parser() -> argparse.ArgumentParser:
     p_val.add_argument("--latents-pt", default="")
     p_val.add_argument("--attribution-json", default="")
     p_val.add_argument("--out-json", default="")
-    p_val.add_argument("--steer-alpha", type=float, default=DEFAULT_STEERED_ALPHA)
+    p_val.add_argument(
+        "--steer-alpha",
+        type=float,
+        default=None,
+        help="Dense steer α (default: scale_recommended from --calibration-json).",
+    )
+    p_val.add_argument(
+        "--calibration-json",
+        default=str(DEFAULT_CALIBRATION_JSON),
+        help="Coherence sweep JSON with scale_recommended per trait.",
+    )
     p_val.add_argument("--top-k", type=int, default=DEFAULT_TOP_K)
     p_val.add_argument("--limit", type=int, default=0)
     p_val.add_argument("--sae-release", default="")
@@ -492,20 +800,81 @@ def build_parser() -> argparse.ArgumentParser:
     p_abl.add_argument("--layer", type=int, default=None)
     p_abl.add_argument("--attribution-json", default="")
     p_abl.add_argument("--out-json", default="")
-    p_abl.add_argument("--steer-alpha", type=float, default=4.0)
+    p_abl.add_argument(
+        "--steer-alpha",
+        type=float,
+        default=None,
+        help="Dense steer α (default: scale_recommended from --calibration-json).",
+    )
+    p_abl.add_argument(
+        "--calibration-json",
+        default=str(DEFAULT_CALIBRATION_JSON),
+        help="Coherence sweep JSON with scale_recommended per trait.",
+    )
     p_abl.add_argument("--top-k", type=int, default=50)
     p_abl.add_argument("--limit", type=int, default=0)
     p_abl.add_argument("--sae-release", default="")
     p_abl.add_argument("--sae-id", default="")
     p_abl.add_argument("--skip-judge", action="store_true")
+    p_abl.add_argument("--use-eval-questions", action="store_true",
+                       help="Use eval_questions from trait bundle instead of generations.json rollouts.")
     p_abl.add_argument("--project", default="")
+
+    p_sta = sub.add_parser(
+        "validate-sta",
+        help="STA-style atom selection + sparse steering comparison",
+    )
+    add_common(p_sta)
+    p_sta.add_argument("--layer", type=int, default=None)
+    p_sta.add_argument("--generations", default="")
+    p_sta.add_argument("--latents-pt", default="")
+    p_sta.add_argument("--out-json", default="")
+    p_sta.add_argument(
+        "--steer-alpha",
+        type=float,
+        default=None,
+        help="Dense steer α (default: scale_recommended from --calibration-json).",
+    )
+    p_sta.add_argument(
+        "--calibration-json",
+        default=str(DEFAULT_CALIBRATION_JSON),
+        help="Coherence sweep JSON with scale_recommended per trait.",
+    )
+    p_sta.add_argument(
+        "--amplitude-threshold",
+        type=float,
+        default=0.5,
+        help="Minimum mean |delta| for an atom to be selected.",
+    )
+    p_sta.add_argument(
+        "--frequency-threshold",
+        type=float,
+        default=0.5,
+        help="Minimum fraction of questions an atom must fire on.",
+    )
+    p_sta.add_argument("--top-k", type=int, default=50)
+    p_sta.add_argument("--limit", type=int, default=0)
+    p_sta.add_argument("--sae-release", default="")
+    p_sta.add_argument("--sae-id", default="")
+    p_sta.add_argument("--skip-judge", action="store_true")
+    p_sta.add_argument("--project", default="")
 
     p_all = sub.add_parser("all", help="Run generate -> encode -> attribute -> validate")
     add_common(p_all)
     p_all.add_argument("--layer", type=int, default=None)
     p_all.add_argument("--alphas", default=",".join(str(a) for a in DEFAULT_ALPHAS))
     p_all.add_argument("--limit", type=int, default=0)
-    p_all.add_argument("--steered-alpha", type=float, default=DEFAULT_STEERED_ALPHA)
+    p_all.add_argument(
+        "--steered-alpha",
+        type=float,
+        default=None,
+        help="Steer α for attribute/validate (default: scale_recommended).",
+    )
+    p_all.add_argument(
+        "--calibration-json",
+        default=str(DEFAULT_CALIBRATION_JSON),
+        help="Coherence sweep JSON with scale_recommended per trait.",
+    )
     p_all.add_argument("--top-k", type=int, default=DEFAULT_TOP_K)
     p_all.add_argument("--skip-judge", action="store_true")
     p_all.add_argument("--skip-autointerp", action="store_true")
@@ -576,10 +945,15 @@ def cmd_attribute(args: argparse.Namespace) -> int:
         if args.out_json
         else _sae_dir(run_dir) / "feature_attribution.json"
     )
+    alpha = resolve_steer_alpha(
+        args.run_id,
+        explicit=getattr(args, "steered_alpha", None),
+        calibration_json=getattr(args, "calibration_json", None),
+    )
     run_feature_attribution(
         latents,
         out,
-        steered_alpha_key=f"{float(args.steered_alpha):g}",
+        steered_alpha_key=f"{alpha:g}",
         top_k=args.top_k,
     )
     return 0
@@ -624,7 +998,12 @@ def cmd_validate(args: argparse.Namespace) -> int:
         else sae_dir / "feature_attribution.json"
     )
     out = Path(args.out_json).resolve() if args.out_json else sae_dir / "causal_validation.json"
-    steer_alpha = getattr(args, "steer_alpha", getattr(args, "steered_alpha", DEFAULT_STEERED_ALPHA))
+    steer_alpha = resolve_steer_alpha(
+        args.run_id,
+        explicit=getattr(args, "steer_alpha", None)
+        or getattr(args, "steered_alpha", None),
+        calibration_json=getattr(args, "calibration_json", None),
+    )
     run_causal_validation(
         run_dir,
         latents,
@@ -681,13 +1060,64 @@ def cmd_ablate(args: argparse.Namespace) -> int:
         if args.out_json
         else sae_dir / "ablation_validation.json"
     )
+    steer_alpha = resolve_steer_alpha(
+        args.run_id,
+        explicit=args.steer_alpha,
+        calibration_json=getattr(args, "calibration_json", None),
+    )
     run_ablation_validation(
         run_dir,
         attr,
         out,
         layer_idx=_layer(args),
-        steer_alpha=float(args.steer_alpha),
+        steer_alpha=steer_alpha,
         top_k=int(args.top_k),
+        limit=args.limit,
+        model_id=args.model_id or None,
+        sae_release=args.sae_release or None,
+        sae_id=args.sae_id or None,
+        skip_judge=args.skip_judge,
+        project_id=args.project or None,
+        use_eval_questions=getattr(args, "use_eval_questions", False),
+    )
+    return 0
+
+
+def cmd_validate_sta(args: argparse.Namespace) -> int:
+    if args.force_cpu:
+        os.environ["PERSONA_FORCE_CPU"] = "1"
+    run_dir = _run_dir(args)
+    sae_dir = _sae_dir(run_dir)
+    latents = (
+        Path(args.latents_pt).resolve()
+        if args.latents_pt
+        else sae_dir / "sae_latents.pt"
+    )
+    generations = (
+        Path(args.generations).resolve()
+        if args.generations
+        else sae_dir / "generations.json"
+    )
+    out = (
+        Path(args.out_json).resolve()
+        if args.out_json
+        else sae_dir / "sta_validation.json"
+    )
+    steer_alpha = resolve_steer_alpha(
+        args.run_id,
+        explicit=getattr(args, "steer_alpha", None),
+        calibration_json=getattr(args, "calibration_json", None),
+    )
+    run_sta_validation(
+        run_dir,
+        latents,
+        out,
+        generations_path=generations,
+        layer_idx=_layer(args),
+        steer_alpha=steer_alpha,
+        amplitude_threshold=args.amplitude_threshold,
+        frequency_threshold=args.frequency_threshold,
+        top_k=args.top_k,
         limit=args.limit,
         model_id=args.model_id or None,
         sae_release=args.sae_release or None,
@@ -751,6 +1181,7 @@ def main(argv: list[str] | None = None) -> int:
         "attribute": cmd_attribute,
         "autointerp": cmd_autointerp,
         "validate": cmd_validate,
+        "validate-sta": cmd_validate_sta,
         "recon": cmd_recon,
         "ablate": cmd_ablate,
         "all": cmd_all,

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Cluster SSV features by decoder similarity, label clusters from corpus
-interpretations, and run per-cluster causal steering validation.
+Cluster SSV features by decoder similarity, label clusters from logit-lens
+themes (or corpus interpretations as fallback), and run per-cluster causal validation.
 """
 from __future__ import annotations
 
@@ -27,12 +27,14 @@ from app.persona.schemas import PersonaTraitArtifact
 from app.persona.steering_demo import _language_model_layers, _steering_hook_fn
 from app.phase2 import load_sae_for_layer
 from scripts.trait_sae_config import SAE_RELEASE, resolve_trait
+from scripts.ssv_lens_themes import cluster_theme_from_lens
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
 logger = logging.getLogger(__name__)
 
 DEFAULT_SSV = REPO / "persona_runs/dnd_good_scale/sae/sae_ssv_full_sweep_262k_l16.json"
 DEFAULT_INTERP = REPO / "persona_runs/dnd_good_scale/sae/ssv_corpus_interp.json"
+DEFAULT_LENS = REPO / "persona_runs/dnd_good_scale/sae/ssv_feature_logit_lens_262k_l16.json"
 DEFAULT_OUT = REPO / "persona_runs/dnd_good_scale/sae/ssv_cluster_report.json"
 
 
@@ -59,8 +61,24 @@ def hierarchical_cluster(W: np.ndarray, n_clusters: int) -> np.ndarray:
     return labels - 1  # 0-indexed
 
 
-def cluster_label(interps: dict[str, dict], fids: list[int]) -> str:
-    """Most common interpretation theme in cluster (first 3 words)."""
+def load_lens_by_fid(lens_path: Path) -> dict[int, dict]:
+    if not lens_path.is_file():
+        return {}
+    rows = json.loads(lens_path.read_text(encoding="utf-8"))
+    return {int(r["fid"]): r for r in rows}
+
+
+def cluster_label(
+    interps: dict[str, dict],
+    fids: list[int],
+    *,
+    lens_by_fid: dict[int, dict] | None = None,
+    trait: str = "good",
+) -> str:
+    if lens_by_fid:
+        theme = cluster_theme_from_lens(lens_by_fid, fids, trait)
+        if theme not in ("unlabeled", "Unknown"):
+            return theme
     themes: dict[str, int] = {}
     for fid in fids:
         entry = interps.get(str(fid), {})
@@ -140,6 +158,7 @@ def main() -> int:
     ap.add_argument("--trait", default="good")
     ap.add_argument("--ssv", type=Path, default=DEFAULT_SSV)
     ap.add_argument("--interp", type=Path, default=DEFAULT_INTERP)
+    ap.add_argument("--lens", type=Path, default=None, help="Logit-lens JSON for cluster themes")
     ap.add_argument("--out", type=Path, default=DEFAULT_OUT)
     ap.add_argument("--k", type=int, default=100, help="SSV K level for feature set")
     ap.add_argument("--n-clusters", type=int, default=8)
@@ -164,6 +183,13 @@ def main() -> int:
     if args.interp.is_file():
         interps = json.loads(args.interp.read_text(encoding="utf-8")).get("features", {})
 
+    lens_path = args.lens or cfg["sae_dir"] / f"ssv_feature_logit_lens_262k_l{layer}.json"
+    if lens_path is None or not lens_path.is_file():
+        lens_path = DEFAULT_LENS if args.trait == "good" else lens_path
+    lens_by_fid = load_lens_by_fid(lens_path) if lens_path else {}
+    if lens_by_fid:
+        logger.info("Cluster labels from logit lens: %s (%d features)", lens_path, len(lens_by_fid))
+
     sae, _ = load_sae_for_layer(
         torch.device("cpu"), release=SAE_RELEASE, sae_id=sae_id, hidden_state_index=cfg["hs_index"],
     )
@@ -181,7 +207,7 @@ def main() -> int:
     for cid, cfids in sorted(clusters.items()):
         idxs = [fids.index(f) for f in cfids]
         cw = [weights[i] for i in idxs]
-        label = cluster_label(interps, cfids)
+        label = cluster_label(interps, cfids, lens_by_fid=lens_by_fid, trait=args.trait)
         cluster_info.append({
             "cluster_id": cid,
             "label": label,

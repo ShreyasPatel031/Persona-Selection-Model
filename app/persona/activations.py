@@ -41,7 +41,12 @@ def _pick_device() -> torch.device:
         return torch.device("cpu")
     if torch.cuda.is_available():
         return torch.device("cuda")
-    return torch.device("cpu")
+    # No GPU and not explicitly forced to CPU — refuse to load the model locally.
+    # All heavy model work must run on the VM (gemma-mvp) with a GPU.
+    raise RuntimeError(
+        "No GPU detected. Model loading is only permitted on the VM (gemma-mvp). "
+        "Run heavy scripts via scripts/_remote_*.sh or gcloud compute ssh."
+    )
 
 
 def _pick_model_dtype(dev: torch.device) -> torch.dtype:
@@ -277,6 +282,7 @@ def run_step_d(
     *,
     model_id: str | None = None,
     device: torch.device | None = None,
+    max_per_arm: int | None = None,
 ) -> Path:
     pos_rows = []
     neg_rows = []
@@ -291,6 +297,15 @@ def run_step_d(
         raise ValueError("No kept pos rollouts in jsonl (need kept=true, score set).")
     if not neg_rows:
         raise ValueError("No kept neg rollouts in jsonl.")
+
+    if max_per_arm and max_per_arm > 0:
+        import random
+        rng = random.Random(42)
+        if len(pos_rows) > max_per_arm:
+            pos_rows = rng.sample(pos_rows, max_per_arm)
+        if len(neg_rows) > max_per_arm:
+            neg_rows = rng.sample(neg_rows, max_per_arm)
+        logger.info("Subsampled to %d pos + %d neg (max_per_arm=%d)", len(pos_rows), len(neg_rows), max_per_arm)
 
     model, tokenizer, dev = load_model_and_tokenizer(model_id, device=device)
 

@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Good SSV — feature bubble chart</title>
+    <title>SSV feature bubble chart</title>
     <style>
       :root {
         font-family: system-ui, -apple-system, sans-serif;
@@ -69,6 +69,48 @@
         color: var(--muted);
       }
       .stats strong { color: var(--text); font-weight: 600; }
+      .trait-curve-block {
+        flex: 0 1 17rem;
+        min-width: 14rem;
+        max-width: 22rem;
+      }
+      .trait-curve-block label {
+        display: block;
+        font-size: 0.72rem;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      #traitCurveWrap {
+        width: 100%;
+        height: 4.5rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: #fafafa;
+        overflow: hidden;
+      }
+      #traitCurveWrap svg { width: 100%; height: 100%; display: block; }
+      #traitCurveWrap .axis text { fill: var(--muted); font-size: 9px; }
+      #traitCurveWrap .axis line,
+      #traitCurveWrap .axis path { stroke: #e5e7eb; }
+      #traitCurveWrap .trait-line {
+        fill: none;
+        stroke: var(--accent);
+        stroke-width: 2;
+      }
+      #traitCurveWrap .trait-dot {
+        fill: var(--accent);
+        stroke: #fff;
+        stroke-width: 1.5px;
+      }
+      #traitCurveWrap .trait-active-line {
+        stroke: rgba(37, 99, 235, 0.35);
+        stroke-width: 1;
+        stroke-dasharray: 3 2;
+      }
+      #traitCurveWrap .no-data {
+        font-size: 0.68rem;
+        fill: var(--muted);
+      }
       .legend-box {
         position: absolute;
         top: 0.75rem;
@@ -134,13 +176,37 @@
       }
       .zoom-btns button:hover { background: #f3f4f6; border-color: var(--accent); }
       .zoom-btns button.fit { min-width: 3.5rem; }
+      .trait-btns {
+        display: flex;
+        gap: 0.35rem;
+        align-items: center;
+      }
+      .trait-btns button {
+        font: inherit;
+        font-size: 0.78rem;
+        font-weight: 500;
+        padding: 0.35rem 0.65rem;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: #f9fafb;
+        color: var(--text);
+        cursor: pointer;
+        text-transform: capitalize;
+      }
+      .trait-btns button:hover { background: #f3f4f6; }
+      .trait-btns button.active {
+        background: #fff;
+        border-color: var(--text);
+        font-weight: 600;
+      }
       svg { display: block; width: 100%; height: 100%; background: #ffffff; }
       circle.bubble {
         cursor: pointer;
+        stroke: #d1d5db;
         stroke-width: 1.5px;
         transition: stroke-width 0.15s;
       }
-      circle.bubble:hover { stroke-width: 3px; stroke: #111827; }
+      circle.bubble:hover { stroke-width: 2px; stroke: #9ca3af; }
       .bubble-label {
         pointer-events: none;
         font-size: 10px;
@@ -184,13 +250,18 @@
   </head>
   <body>
     <header>
-      <h1>Good trait — SSV feature decomposition (L16, 262k SAE)</h1>
+      <h1 id="pageTitle">SSV feature decomposition</h1>
       <p class="sub">
         Force-layout bubble chart. Slide K right to add bubbles, left to remove. Scroll to zoom.
       </p>
     </header>
 
     <div class="controls">
+      <div class="trait-btns" id="traitBtns" aria-label="Trait"></div>
+      <div class="trait-curve-block">
+        <label>Trait score vs K</label>
+        <div id="traitCurveWrap" aria-label="Trait mean vs K active features"></div>
+      </div>
       <div class="slider-block">
         <label>
           <span>K (active features)</span>
@@ -221,7 +292,7 @@
           </div>
           <div class="legend-item">
             <span class="swatch" style="width:28px;border-radius:4px;background:linear-gradient(90deg,#7bccc4,#084081);"></span>
-            Size = |SSV weight|
+            Size = |SSV weight| · larger = stronger
           </div>
         </div>
         <div class="legend-note">Scroll to zoom · drag background to pan · drag bubble to move</div>
@@ -233,19 +304,24 @@
     <footer>
       Layout inspired by
       <a href="https://github.com/vlandham/bubble_chart_v4" target="_blank" rel="noopener">bubble_chart_v4</a>.
-      Labels from Gemma Scope 2 logit lens (decoder → lm_head). Data:
-      <code>ssv_bubble_viz_data.json</code>
+      Labels from Gemma Scope 2 logit lens where available. Data:
+      <code id="dataFile">ssv_bubble_viz_data.json</code>
     </footer>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script>
-      const DATA_URL = "ssv_bubble_viz_data.json";
+      const TRAIT_ORDER = ["good", "evil", "lawful", "chaotic"];
       const tooltip = document.getElementById("tooltip");
       const kSlider = document.getElementById("kSlider");
       const kDisplay = document.getElementById("kDisplay");
       const kTicks = document.getElementById("kTicks");
       const statsEl = document.getElementById("stats");
+      const traitBtns = document.getElementById("traitBtns");
+      const pageTitle = document.getElementById("pageTitle");
+      const dataFileEl = document.getElementById("dataFile");
 
+      let manifest = null;
+      let activeTrait = "good";
       let vizData = null;
       let kLevels = [];
       let featureMeta = {};
@@ -258,10 +334,15 @@
       let zoomTransform = d3.zoomIdentity;
       let fitGeneration = 0;
       let hasInitialFit = false;
+      let draggingBubble = null;
+      let hoverBubble = null;
       const SIGN_PULL = 0.12;
       const CENTER_PULL = 0.038;
       const CHARGE_MULT = 0.052;
       const VIEW_PADDING = 48;
+      const AMBIENT_ALPHA = 0.035;
+      const DRIFT_STRENGTH = 0.1;
+      const MAX_VELOCITY = 2.2;
 
       function signTargetX(d) {
         return d.sign === "pos" ? width * 0.28 : width * 0.72;
@@ -303,6 +384,24 @@
 
       const colorClusterForce = forceColorCluster();
 
+      /** Gentle per-node drift — constant strength so motion never fully dies. */
+      function forceDrift() {
+        let nodes;
+        function force() {
+          const t = performance.now() * 0.00016;
+          for (const n of nodes) {
+            if (n.fx != null) continue;
+            const phase = n.id * 0.41;
+            n.vx += DRIFT_STRENGTH * Math.sin(t + phase);
+            n.vy += DRIFT_STRENGTH * Math.cos(t * 0.83 + phase * 1.17);
+          }
+        }
+        force.initialize = (n) => { nodes = n; };
+        return force;
+      }
+
+      const driftForce = forceDrift();
+
       function updateSimulationForces() {
         if (!simulation) return;
         simulation
@@ -310,7 +409,25 @@
           .force("y", d3.forceY(height / 2).strength(CENTER_PULL))
           .force("charge", d3.forceManyBody().strength(chargeStrength))
           .force("collide", d3.forceCollide().radius((d) => d.radius + 3).iterations(3))
-          .force("colorCluster", colorClusterForce);
+          .force("colorCluster", colorClusterForce)
+          .force("drift", driftForce);
+      }
+
+      function startAmbientMotion(reheat = AMBIENT_ALPHA) {
+        if (!simulation) return;
+        simulation.alphaTarget(AMBIENT_ALPHA);
+        simulation.alpha(Math.max(reheat, AMBIENT_ALPHA)).restart();
+      }
+
+      function clampVelocities(nodes) {
+        for (const n of nodes) {
+          const v = Math.hypot(n.vx || 0, n.vy || 0);
+          if (v > MAX_VELOCITY) {
+            const s = MAX_VELOCITY / v;
+            n.vx *= s;
+            n.vy *= s;
+          }
+        }
       }
 
       // Matplotlib/seaborn GnBu and OrRd stops
@@ -336,8 +453,24 @@
         return stops[stops.length - 1][1];
       }
 
-      function radiusScale(maxImportance) {
-        return d3.scalePow().exponent(0.5).domain([0, maxImportance || 1]).range([6, 52]);
+      function assignBubbleRadii(nodes) {
+        if (!nodes.length) return;
+        const minR = 10;
+        const maxR = 44;
+        const weights = nodes.map((d) => Math.max(d.abs_weight ?? 0, 1e-4));
+        const minW = d3.min(weights);
+        const maxW = d3.max(weights);
+        if (!Number.isFinite(minW) || maxW <= minW) {
+          nodes.forEach((n) => { n.radius = (minR + maxR) * 0.5; });
+          return;
+        }
+        const scale = d3.scalePow()
+          .exponent(1.85)
+          .domain([minW, maxW])
+          .range([minR, maxR]);
+        nodes.forEach((n) => {
+          n.radius = scale(Math.max(n.abs_weight ?? 0, minW));
+        });
       }
 
       function assignColorRanks(nodes) {
@@ -359,38 +492,183 @@
         return interpStops(stops, t);
       }
 
-      function fillOpacity() {
-        return 0.9;
+      function fillOpacity(d) {
+        const hasLabel = Boolean(d.label && d.label.length > 0);
+        return hasLabel ? 0.9 : 0.45;
       }
 
-      function strokeColor(d) {
-        return d3.color(fillColor(d)).darker(1.1);
+      function strokeColor() {
+        return "#d1d5db";
       }
 
-      function showTooltip(event, d) {
+      function fillTooltip(d) {
         const meta = featureMeta[String(d.fid)] || {};
-        const tokens = (d.top_tokens && d.top_tokens.length)
+        const promote = d.label || (d.top_tokens && d.top_tokens.length
           ? d.top_tokens.map(([t]) => t.trim()).slice(0, 6).join(", ")
-          : (meta.top_tokens || []).map(([t]) => t.trim()).slice(0, 6).join(", ");
+          : (meta.top_tokens || []).map(([t]) => t.trim()).slice(0, 6).join(", "));
+        const suppress = d.suppress_label || (d.top_suppress && d.top_suppress.length
+          ? d.top_suppress.map(([t]) => t.trim()).slice(0, 6).join(", ")
+          : (meta.top_suppress || []).map(([t]) => t.trim()).slice(0, 6).join(", "));
         const signLabel = d.sign === "pos" ? "amplified (+)" : "suppressed (−)";
         tooltip.innerHTML = `
           <div class="fid">F${d.fid} · rank #${d.rank}</div>
           <div>${signLabel} · weight ${d.weight.toFixed(3)} · importance ${(d.importance * 100).toFixed(0)}%</div>
           <div class="theme">${d.theme || meta.theme || "Unknown"} · added at K=${d.addedAtK ?? "?"}</div>
-          ${tokens ? `<div class="tokens">Promotes: ${tokens}</div>` : ""}
+          ${promote ? `<div class="tokens">Promotes: ${promote}</div>` : ""}
+          ${suppress ? `<div class="tokens">Suppresses: ${suppress}</div>` : ""}
           <div style="margin-top:0.35rem"><a href="${meta.neuronpedia || "#"}" target="_blank">Neuronpedia →</a></div>
         `;
+      }
+
+      function tooltipPointForBubble(d) {
+        const node = bubbleSel?.filter((n) => n.id === d.id).node();
+        if (!node) return null;
+        const r = node.getBoundingClientRect();
+        return { clientX: r.right + 12, clientY: r.top + r.height / 2 };
+      }
+
+      function showTooltipForBubble(d) {
+        const pt = tooltipPointForBubble(d);
+        if (!pt) return;
+        fillTooltip(d);
         tooltip.classList.add("visible");
-        moveTooltip(event);
+        moveTooltip(pt);
+      }
+
+      function showTooltip(event, d) {
+        hoverBubble = d;
+        showTooltipForBubble(d);
       }
 
       function moveTooltip(event) {
+        if (hoverBubble && !draggingBubble) {
+          showTooltipForBubble(hoverBubble);
+          return;
+        }
         tooltip.style.left = (event.clientX + 14) + "px";
         tooltip.style.top = (event.clientY + 14) + "px";
       }
 
       function hideTooltip() {
+        if (draggingBubble) return;
+        hoverBubble = null;
         tooltip.classList.remove("visible");
+      }
+
+      function attachBubbleInteractions(sel) {
+        sel
+          .on("mouseover", showTooltip)
+          .on("mousemove", moveTooltip)
+          .on("mouseout", hideTooltip);
+      }
+
+      let traitCurveSel = null;
+
+      function renderTraitCurve(sliderIndex = 0) {
+        const wrap = document.getElementById("traitCurveWrap");
+        if (!wrap || !kLevels.length) return;
+
+        const W = Math.max(220, wrap.clientWidth || 220);
+        const H = Math.max(64, wrap.clientHeight || 72);
+        const margin = { top: 8, right: 10, bottom: 20, left: 34 };
+
+        const points = kLevels.map((level, i) => ({
+          i,
+          k: level.k,
+          v: level.mean_trait,
+        }));
+        const scored = points.filter((p) => p.v != null && Number.isFinite(p.v));
+        const hasData = scored.length > 0;
+
+        if (!traitCurveSel) {
+          wrap.innerHTML = "";
+          traitCurveSel = d3.select(wrap).append("svg").attr("class", "trait-curve");
+        }
+
+        traitCurveSel
+          .attr("viewBox", [0, 0, W, H])
+          .attr("width", W)
+          .attr("height", H);
+
+        const plot = traitCurveSel.selectAll("g.plot").data([0]).join("g").attr("class", "plot");
+        plot.selectAll("*").remove();
+
+        if (!hasData) {
+          plot.append("text")
+            .attr("class", "no-data")
+            .attr("x", W / 2)
+            .attr("y", H / 2)
+            .attr("text-anchor", "middle")
+            .text("No trait scores in SSV data");
+          return;
+        }
+
+        const x = d3.scalePoint()
+          .domain(points.map((p) => p.k))
+          .range([margin.left, W - margin.right])
+          .padding(0.15);
+        const yMax = Math.max(100, d3.max(scored, (p) => p.v) || 100);
+        const y = d3.scaleLinear()
+          .domain([0, yMax])
+          .nice()
+          .range([H - margin.bottom, margin.top]);
+
+        const xAxis = d3.axisBottom(x).tickValues(
+          points.filter((_, idx) => idx === 0 || idx === points.length - 1 || idx % 2 === 0).map((p) => p.k)
+        );
+        const yAxis = d3.axisLeft(y).ticks(3).tickFormat((d) => `${d}`);
+
+        plot.append("g")
+          .attr("class", "axis")
+          .attr("transform", `translate(0,${H - margin.bottom})`)
+          .call(xAxis);
+        plot.append("g")
+          .attr("class", "axis")
+          .attr("transform", `translate(${margin.left},0)`)
+          .call(yAxis);
+
+        const line = d3.line()
+          .defined((d) => d.v != null && Number.isFinite(d.v))
+          .x((d) => x(d.k))
+          .y((d) => y(d.v));
+
+        plot.append("path")
+          .datum(points)
+          .attr("class", "trait-line")
+          .attr("d", line);
+
+        plot.selectAll("circle.trait-dot-bg")
+          .data(scored)
+          .join("circle")
+          .attr("class", "trait-dot-bg")
+          .attr("cx", (d) => x(d.k))
+          .attr("cy", (d) => y(d.v))
+          .attr("r", 2.5)
+          .attr("fill", "#93c5fd")
+          .attr("opacity", 0.85);
+
+        const active = points[sliderIndex];
+        if (active?.v != null && Number.isFinite(active.v)) {
+          plot.append("line")
+            .attr("class", "trait-active-line")
+            .attr("x1", x(active.k))
+            .attr("x2", x(active.k))
+            .attr("y1", margin.top)
+            .attr("y2", H - margin.bottom);
+          plot.append("circle")
+            .attr("class", "trait-dot")
+            .attr("cx", x(active.k))
+            .attr("cy", y(active.v))
+            .attr("r", 4.5);
+          plot.append("text")
+            .attr("x", x(active.k))
+            .attr("y", margin.top + 2)
+            .attr("text-anchor", "middle")
+            .attr("fill", "var(--accent)")
+            .attr("font-size", 9)
+            .attr("font-weight", 600)
+            .text(active.v.toFixed(1));
+        }
       }
 
       function updateStats(level, nodes, delta) {
@@ -398,6 +676,8 @@
         const nNeg = nodes.length - nPos;
         const cos = level.cosine_vs_dense != null ? level.cosine_vs_dense.toFixed(3) : "—";
         const trait = level.mean_trait != null ? level.mean_trait.toFixed(1) : "—";
+        const nInterp = nodes.filter((n) => n.label && n.label.length > 0).length;
+        const nLensTotal = vizData?.meta?.n_features_with_logit_lens || 0;
         let deltaHtml = "";
         if (delta > 0) deltaHtml = `<span><strong>+${delta}</strong> added</span>`;
         else if (delta < 0) deltaHtml = `<span><strong>${delta}</strong> removed</span>`;
@@ -405,6 +685,8 @@
           <span>K ≤ <strong>${level.k}</strong></span>
           <span><strong>${nodes.length}</strong> bubbles</span>
           ${deltaHtml}
+          <span><strong>${nInterp}</strong>/${nodes.length} interpreted</span>
+          ${nLensTotal ? `<span>lens pool: <strong>${nLensTotal}</strong></span>` : ""}
           <span><strong>${nPos}</strong> GnBu · <strong>${nNeg}</strong> OrRd</span>
           <span>cos vs v_dense: <strong>${cos}</strong></span>
           <span>trait mean: <strong>${trait}</strong></span>
@@ -449,15 +731,13 @@
 
       function nodesFromAccumulated(prevById = new Map()) {
         const feats = Array.from(accumulated.values());
-        const maxImp = d3.max(feats, (f) => f.importance) || 1;
-        const rScale = radiusScale(maxImp);
         return feats.map((f) => {
           const prev = prevById.get(f.fid) || nodePos.get(f.fid);
           const spawn = spawnPosition(f, prevById);
           const node = {
             ...f,
             id: f.fid,
-            radius: rScale(f.importance),
+            radius: 8,
             x: prev?.x ?? spawn.x,
             y: prev?.y ?? spawn.y,
           };
@@ -466,7 +746,7 @@
             node.vy = prev.vy * 0.15;
           }
           return node;
-        }).sort((a, b) => b.importance - a.importance);
+        }).sort((a, b) => (b.abs_weight ?? b.importance) - (a.abs_weight ?? a.importance));
       }
 
       function nodeBounds(nodes) {
@@ -566,10 +846,16 @@
           .on("dblclick.zoom", null);
 
         simulation = d3.forceSimulation()
-          .velocityDecay(0.32)
+          .velocityDecay(0.14)
+          .alphaDecay(0.018)
+          .alphaMin(0.001)
           .on("tick", () => {
+            clampVelocities(simulation.nodes());
             ticked();
             simulation.nodes().forEach((n) => nodePos.set(n.id, { x: n.x, y: n.y }));
+          })
+          .on("end", () => {
+            if (simulation.alphaTarget() > 0) startAmbientMotion();
           });
 
         updateSimulationForces();
@@ -583,6 +869,8 @@
       function ticked() {
         bubbleSel?.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
         labelSel?.attr("x", (d) => d.x).attr("y", (d) => d.y);
+        const active = draggingBubble || hoverBubble;
+        if (active) showTooltipForBubble(active);
       }
 
       function dragXY(event) {
@@ -591,7 +879,9 @@
 
       function dragStarted(event, d) {
         if (!event.active) simulation.alphaTarget(0.12).restart();
-        hideTooltip();
+        draggingBubble = d;
+        hoverBubble = d;
+        showTooltipForBubble(d);
         d.fx = d.x;
         d.fy = d.y;
       }
@@ -600,12 +890,24 @@
         const [x, y] = dragXY(event);
         d.fx = x;
         d.fy = y;
+        showTooltipForBubble(d);
       }
 
       function dragEnded(event, d) {
-        if (!event.active) simulation.alphaTarget(0);
+        if (!event.active) simulation.alphaTarget(AMBIENT_ALPHA);
         d.fx = null;
         d.fy = null;
+        draggingBubble = null;
+        const node = bubbleSel?.filter((n) => n.id === d.id).node();
+        const src = event.sourceEvent;
+        const stillOver = node && src
+          && document.elementFromPoint(src.clientX, src.clientY) === node;
+        if (stillOver) {
+          hoverBubble = d;
+          showTooltipForBubble(d);
+        } else {
+          hideTooltip();
+        }
       }
 
       function renderAtSliderIndex(sliderIndex) {
@@ -616,10 +918,12 @@
 
         rebuildAccumulated(sliderIndex);
         const nodes = nodesFromAccumulated(prevById);
+        assignBubbleRadii(nodes);
         assignColorRanks(nodes);
         const delta = nodes.length - prevCount;
         prevBubbleCount = nodes.length;
         updateStats(level, nodes, delta);
+        renderTraitCurve(sliderIndex);
         kDisplay.textContent = level.k;
 
         const activeIds = new Set(nodes.map((n) => n.id));
@@ -641,12 +945,10 @@
           .attr("cy", (d) => d.y)
           .attr("fill", fillColor)
           .attr("fill-opacity", fillOpacity)
-          .attr("stroke", strokeColor)
-          .on("mouseover", showTooltip)
-          .on("mousemove", moveTooltip)
-          .on("mouseout", hideTooltip);
+          .attr("stroke", strokeColor);
 
         bubbleSel = bubbleEnter.merge(bubble);
+        attachBubbleInteractions(bubbleSel);
         bubbleSel.call(d3.drag()
           .on("start", dragStarted)
           .on("drag", dragged)
@@ -672,15 +974,22 @@
 
         simulation.nodes(nodes);
         updateSimulationForces();
-        simulation.alphaTarget(0);
         const reheat = prevCount === 0 ? 1 : Math.min(0.35, 0.12 + Math.abs(delta) * 0.02);
-        simulation.alpha(reheat).restart();
+        startAmbientMotion(reheat);
 
         if (prevCount === 0) {
           scheduleFitAfterLayout(true);
         } else {
           maybeFitIfOverflow(nodes);
         }
+      }
+
+      function updateHeader() {
+        const meta = vizData?.meta || {};
+        const trait = meta.trait || activeTrait;
+        const layer = meta.layer ?? "?";
+        pageTitle.textContent = `${trait.charAt(0).toUpperCase() + trait.slice(1)} — SSV feature decomposition (L${layer}, 262k SAE)`;
+        dataFileEl.textContent = manifest?.traits?.[activeTrait] || `ssv_bubble_viz_data_${activeTrait}.json`;
       }
 
       function setupSlider() {
@@ -690,15 +999,75 @@
 
         kSlider.min = 0;
         kSlider.max = ks.length - 1;
-        kSlider.value = 0; // start at K=5, grow from there
+        kSlider.value = 0;
 
         kTicks.innerHTML = ks.map((k) => `<span>${k}</span>`).join("");
-
-        kSlider.addEventListener("input", () => {
-          renderAtSliderIndex(+kSlider.value);
-        });
-
         renderAtSliderIndex(0);
+      }
+
+      function resetChartState() {
+        nodePos = new Map();
+        accumulated = new Map();
+        prevBubbleCount = 0;
+        fitGeneration = 0;
+        hasInitialFit = false;
+        draggingBubble = null;
+        hoverBubble = null;
+        hideTooltip();
+        zoomTransform = d3.zoomIdentity;
+        traitCurveSel = null;
+        if (g) g.selectAll("*").remove();
+        if (simulation) simulation.stop();
+      }
+
+      function setupTraitButtons() {
+        traitBtns.innerHTML = "";
+        const traits = TRAIT_ORDER.filter((t) => manifest?.traits?.[t]);
+        for (const trait of traits) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = trait;
+          btn.dataset.trait = trait;
+          btn.classList.toggle("active", trait === activeTrait);
+          btn.addEventListener("click", () => {
+            if (trait === activeTrait) return;
+            activeTrait = trait;
+            traitBtns.querySelectorAll("button").forEach((b) => {
+              b.classList.toggle("active", b.dataset.trait === activeTrait);
+            });
+            loadTrait(activeTrait);
+          });
+          traitBtns.appendChild(btn);
+        }
+      }
+
+      async function fetchJson(name) {
+        const urls = [name, `/static/${name}`];
+        for (const url of urls) {
+          try {
+            const data = await d3.json(url);
+            if (data) return data;
+          } catch (_) {}
+        }
+        throw new Error(`Could not load ${name} (start a server in app/static or run uvicorn)`);
+      }
+
+      async function loadTrait(trait) {
+        const url = manifest?.traits?.[trait] || `ssv_bubble_viz_data_${trait}.json`;
+        try {
+          const data = await fetchJson(url);
+          if (!data || !data.k_levels) throw new Error(`No k_levels in ${url}`);
+          vizData = data;
+          activeTrait = trait;
+          updateHeader();
+          resetChartState();
+          if (!svg) initChart();
+          setupSlider();
+          applyTransform(d3.zoomIdentity, false);
+        } catch (err) {
+          document.getElementById("chart-wrap").innerHTML =
+            `<p class="err">Failed to load ${url}: ${err.message}</p>`;
+        }
       }
 
       window.addEventListener("resize", () => {
@@ -707,28 +1076,32 @@
         const prevById = new Map(prevNodes.map((n) => [n.id, n]));
         rebuildAccumulated(+kSlider.value);
         const nodes = nodesFromAccumulated(prevById);
+        assignBubbleRadii(nodes);
         width = document.getElementById("chart-wrap").clientWidth;
         height = Math.max(480, document.getElementById("chart-wrap").clientHeight);
         svg.attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height);
         simulation.nodes(nodes);
         updateSimulationForces();
         scheduleFitAfterLayout(true);
-        simulation.alpha(0.4).restart();
+        startAmbientMotion(0.4);
+        renderTraitCurve(+kSlider.value);
       });
 
-      d3.json(DATA_URL).then((data) => {
-        if (!data || !data.k_levels) {
-          document.getElementById("chart-wrap").innerHTML =
-            '<p class="err">Failed to load ssv_bubble_viz_data.json</p>';
-          return;
-        }
-        vizData = data;
-        initChart();
-        setupSlider();
-      }).catch((err) => {
-        document.getElementById("chart-wrap").innerHTML =
-          `<p class="err">${err.message}</p>`;
+      kSlider.addEventListener("input", () => {
+        renderAtSliderIndex(+kSlider.value);
       });
+
+      fetchJson("ssv_bubble_viz_manifest.json")
+        .then((m) => {
+          manifest = m;
+          activeTrait = m.default || "good";
+          setupTraitButtons();
+          return loadTrait(activeTrait);
+        })
+        .catch((err) => {
+          document.getElementById("chart-wrap").innerHTML =
+            `<p class="err">${err.message}</p>`;
+        });
     </script>
   </body>
 </html>

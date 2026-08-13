@@ -49,7 +49,7 @@ class GpuProbeConfig:
     instance_name: str
     repo_root: Path
     limit: int = 2
-    rollouts_per_q: int = 1
+    rollouts_per_q: int = 10
     keep_vm: bool = False
     skip_step_c: bool = False
     reuse_instance: str = ""

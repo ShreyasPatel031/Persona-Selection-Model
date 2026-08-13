@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Alignment composition board</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* Inferno design system — viz/DESIGN_SYSTEM.md · inferno_cone.html */
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --no: #c45c4a;
+      --no-dim: #e8b4aa;
+      --yes: #3d8b6e;
+      --yes-dim: #a8d4c2;
+      --lawful: #4a6fa5;
+      --lawful-dim: #c5d4e8;
+      --chaotic: #b7791f;
+      --chaotic-dim: #e8d4a8;
+      --panel: #fffefb;
+      --space: 0.85rem;
+      --space-sm: 0.45rem;
+      --space-xs: 0.35rem;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      line-height: 1.45;
+    }
+    .wrap {
+      height: 100%;
+      max-width: 52rem;
+      margin: 0 auto;
+      padding: var(--space) 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space);
+      min-height: 0;
+    }
+    header {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      padding-bottom: var(--space);
+      border-bottom: 1px solid var(--line);
+      flex: 0 0 auto;
+      width: min(100%, 36rem);
+      margin: 0 auto;
+      align-self: center;
+    }
+    header .title-block { min-width: 0; text-align: left; }
+    header h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    header .sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+      line-height: 1.4;
+    }
+    .below-line {
+      flex: 0 0 auto;
+      width: min(100%, 36rem);
+      margin: 0 auto;
+      align-self: center;
+    }
+
+    .scenario {
+      text-align: left;
+      flex: 0 0 auto;
+    }
+    .scenario .picker {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+      justify-content: flex-start;
+    }
+    .scenario .picker button {
+      font: inherit;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--muted);
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 0.3rem 0.65rem;
+      cursor: pointer;
+    }
+    .scenario .picker button:hover { color: var(--ink); border-color: var(--ink); }
+    .scenario .picker button.active {
+      color: var(--ink);
+      border-color: var(--ink);
+      background: rgba(26, 22, 18, 0.04);
+      box-shadow: inset 0 0 0 1px var(--ink);
+    }
+    .scenario .question-text {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: clamp(0.95rem, 2.1vw, 1.15rem);
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--ink);
+      letter-spacing: -0.015em;
+      max-width: none;
+      margin: 0;
+      padding: var(--space) 0;
+      text-align: left;
+      text-wrap: pretty;
+    }
+
+    .params-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-xs);
+      min-height: 1.75rem;
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+    .params-bar .align-label {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0;
+    }
+    .params-bar .alpha {
+      font-size: clamp(0.9rem, 2vw, 1.05rem);
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.01em;
+      font-variant-numeric: tabular-nums;
+      line-height: 1.25;
+    }
+    .params-bar .alpha .t-l { color: var(--lawful); }
+    .params-bar .alpha .t-c { color: var(--chaotic); }
+    .params-bar .alpha .t-g { color: var(--yes); }
+    .params-bar .alpha .t-e { color: var(--no); }
+    .params-bar .scores {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+    .params-bar .chip {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 0.18rem 0.4rem;
+      font-variant-numeric: tabular-nums;
+      background: var(--panel);
+      text-align: center;
+      white-space: nowrap;
+    }
+    .params-bar .chip.lawful {
+      color: var(--lawful);
+      border-color: var(--lawful-dim);
+      background: rgba(74, 111, 165, 0.1);
+    }
+    .params-bar .chip.chaotic {
+      color: var(--chaotic);
+      border-color: var(--chaotic-dim);
+      background: rgba(183, 121, 31, 0.1);
+    }
+    .params-bar .chip.yes {
+      color: var(--yes);
+      border-color: var(--yes-dim);
+      background: rgba(61, 139, 110, 0.1);
+    }
+    .params-bar .chip.no {
+      color: var(--no);
+      border-color: var(--no-dim);
+      background: rgba(196, 92, 74, 0.1);
+    }
+    .params-bar .chip.zero {
+      opacity: 0.4;
+    }
+    .params-bar .hint {
+      font-style: italic;
+      opacity: 0.75;
+    }
+
+    .board {
+      flex: 1 1 auto;
+      min-height: 0;
+      width: min(100%, 36rem);
+      margin: 0 auto;
+      max-height: 100%;
+      align-self: center;
+      display: grid;
+      grid-template-columns: 3.75rem minmax(0, 1fr) 3.75rem;
+      grid-template-rows: auto minmax(0, 1fr);
+      column-gap: var(--space-sm);
+      row-gap: var(--space-sm);
+      /* Space for Lawful / Neutral / Chaotic row under params */
+      padding-top: 1.15rem;
+    }
+    .col-labels {
+      grid-column: 2;
+      grid-row: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      column-gap: var(--space-sm);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      text-align: center;
+      color: var(--muted);
+      line-height: 1;
+      align-self: end;
+    }
+    .row-labels {
+      grid-column: 1;
+      grid-row: 2;
+      display: grid;
+      grid-template-rows: repeat(3, 1fr);
+      gap: var(--space-sm);
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      align-items: center;
+      text-align: right;
+      line-height: 1.15;
+      color: var(--muted);
+      height: var(--grid-side, auto);
+      max-height: 100%;
+      align-self: start;
+    }
+    .grid-spacer {
+      grid-column: 3;
+      grid-row: 2;
+      min-width: 0;
+    }
+    .grid-3 {
+      grid-column: 2;
+      grid-row: 2;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: var(--space-sm);
+      min-height: 0;
+      width: 100%;
+      aspect-ratio: 1;
+      max-height: 100%;
+      max-width: 100%;
+      justify-self: center;
+      align-self: start;
+    }
+    .cell {
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background-color: var(--panel);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center;
+      color: var(--ink);
+      cursor: pointer;
+      padding: var(--space);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      text-align: center;
+      transition: opacity 0.2s, border-color 0.2s, box-shadow 0.2s;
+      opacity: 0.78;
+      overflow: hidden;
+    }
+    .cell:hover,
+    .cell.active {
+      opacity: 1;
+      border-color: var(--line);
+      box-shadow: inset 0 0 0 1.5px rgba(26, 22, 18, 0.28);
+      z-index: 2;
+    }
+    .cell .name {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      line-height: 1.2;
+      position: relative;
+      z-index: 1;
+    }
+    .cell .phrase {
+      font-size: clamp(0.68rem, 1.6vw, 0.82rem);
+      font-weight: 600;
+      color: var(--ink);
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      position: relative;
+      z-index: 1;
+    }
+    /* Soft stone scrim so copy reads on marble */
+    .cell .copy {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-xs);
+      padding: 0.55rem 0.65rem;
+      border-radius: 3px;
+      background: rgba(246, 243, 238, 0.78);
+      box-shadow: 0 0 0 1px rgba(246, 243, 238, 0.5);
+      max-width: 100%;
+    }
+    .cell .copy .phrase {
+      text-shadow: 0 1px 0 rgba(255, 252, 248, 0.8);
+    }
+
+    .hint-foot {
+      flex: 0 0 auto;
+      font-size: 0.58rem;
+      color: var(--muted);
+      text-align: center;
+    }
+    .err {
+      color: var(--no);
+      font-size: 0.85rem;
+      text-align: center;
+    }
+
+    #tip {
+      position: fixed;
+      z-index: 9999;
+      width: min(26rem, calc(100vw - 1.5rem));
+      max-height: min(70vh, 28rem);
+      overflow: auto;
+      background: var(--panel);
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      box-shadow: 0 8px 28px rgba(26, 22, 18, 0.12);
+      padding: 0.75rem 0.85rem;
+      pointer-events: auto;
+      display: none;
+      font-size: 0.78rem;
+      line-height: 1.45;
+    }
+    #tip.on { display: block; }
+    #tip .tip-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    #tip .tip-phrase {
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 0.45rem;
+      line-height: 1.3;
+    }
+    #tip .tip-body {
+      color: var(--muted);
+      white-space: pre-wrap;
+      overflow: visible;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title-block">
+        <h1>Alignment composition board</h1>
+        <p class="sub">Ortho @ L16 · Gemma-3-4B-IT · hover a cell for the steered reply</p>
+      </div>
+      <div class="scenario">
+        <div class="picker" id="q-picker" role="tablist" aria-label="Scenario"></div>
+        <p class="question-text" id="question-text"></p>
+      </div>
+    </header>
+
+    <div class="below-line">
+      <div class="params-bar" id="params-bar"><span class="hint">Hover a cell for α / scores</span></div>
+    </div>
+
+    <div class="board">
+      <div class="col-labels">
+        <span>Lawful</span>
+        <span>Neutral</span>
+        <span>Chaotic</span>
+      </div>
+      <div class="row-labels" id="row-labels"></div>
+      <div class="grid-3" id="alignment-grid"></div>
+      <div class="grid-spacer" aria-hidden="true"></div>
+    </div>
+
+    <p class="hint-foot">Inferno design system · viz/DESIGN_SYSTEM.md</p>
+    <div class="err" id="error" hidden></div>
+  </div>
+
+  <div id="tip" role="tooltip" aria-hidden="true"></div>
+
+  <script>
+    const DATA_URL = "dnd_composition_board_data.json";
+
+    const state = {
+      data: null,
+      qIndex: 0,
+      alignment: "lawful_good",
+    };
+
+    function $(id) { return document.getElementById(id); }
+
+    function formatAlphaNum(n) {
+      const r = Math.round(n * 100) / 100;
+      return Number.isInteger(r) ? String(r) : String(r);
+    }
+
+    function alphaTerms(alphas) {
+      if (!alphas) return [];
+      return [
+        ["good", "G", "t-g"],
+        ["evil", "E", "t-e"],
+        ["lawful", "L", "t-l"],
+        ["chaotic", "C", "t-c"],
+      ]
+        .map(([key, lab, cls]) => ({ lab, cls, v: alphas[key] || 0 }))
+        .filter((t) => t.v > 0)
+        .sort((a, b) => b.v - a.v || a.lab.localeCompare(b.lab));
+    }
+
+    function alphaHtml(alphas) {
+      const terms = alphaTerms(alphas);
+      if (!terms.length) return "0";
+      return terms
+        .map((t) => `${formatAlphaNum(t.v)} * <span class="${t.cls}">${t.lab}</span>`)
+        .join(" + ");
+    }
+
+    function scoreChips(cell) {
+      const scores = cell.scores || {};
+      return [["L", "lawful"], ["C", "chaotic"], ["G", "good"], ["E", "evil"]].map(([lab, key]) => {
+        const val = scores[key] == null ? 0 : scores[key];
+        let cls = "zero";
+        if (val > 0) {
+          if (key === "good") cls = "yes";
+          else if (key === "evil") cls = "no";
+          else cls = key;
+        }
+        return { lab: `${lab} ${val}`, cls };
+      });
+    }
+
+    function renderParams(cell) {
+      const bar = $("params-bar");
+      if (!cell) {
+        bar.innerHTML = `<span class="hint">Hover a cell for α / scores</span>`;
+        return;
+      }
+      const chips = scoreChips(cell)
+        .map((c) => `<span class="chip ${c.cls}">${c.lab}</span>`)
+        .join("");
+      bar.innerHTML = `
+        <span class="align-label">${escapeHtml(cell.label)}</span>
+        <span class="alpha">${alphaHtml(cell.alphas)}</span>
+        <span class="scores">${chips}</span>
+      `;
+    }
+
+    const TRAIT_RGB = {
+      good: [61, 139, 110],
+      evil: [196, 92, 74],
+      lawful: [74, 111, 165],
+      chaotic: [183, 121, 31],
+    };
+    const CREAM = [246, 243, 238];
+    const NOISE_CACHE = new Map();
+
+    function mixRgb(a, b, t) {
+      return [
+        Math.round(a[0] * (1 - t) + b[0] * t),
+        Math.round(a[1] * (1 - t) + b[1] * t),
+        Math.round(a[2] * (1 - t) + b[2] * t),
+      ];
+    }
+
+    function rgbCss(rgb) {
+      return `rgb(${rgb[0]}, ${rgb[1]}, ${rgb[2]})`;
+    }
+
+    function hash2(ix, iy, seed) {
+      const n = Math.sin(ix * 127.1 + iy * 311.7 + seed * 74.7) * 43758.5453123;
+      return n - Math.floor(n);
+    }
+
+    function valueNoise(x, y, seed) {
+      const x0 = Math.floor(x);
+      const y0 = Math.floor(y);
+      const fx = x - x0;
+      const fy = y - y0;
+      const ux = fx * fx * (3 - 2 * fx);
+      const uy = fy * fy * (3 - 2 * fy);
+      const a = hash2(x0, y0, seed);
+      const b = hash2(x0 + 1, y0, seed);
+      const c = hash2(x0, y0 + 1, seed);
+      const d = hash2(x0 + 1, y0 + 1, seed);
+      return a + (b - a) * ux + (c - a) * uy + (a - b - c + d) * ux * uy;
+    }
+
+    function fbm(x, y, seed) {
+      let v = 0;
+      let amp = 0.5;
+      let freq = 1;
+      for (let i = 0; i < 5; i++) {
+        v += amp * valueNoise(x * freq, y * freq, seed + i * 19.1);
+        amp *= 0.5;
+        freq *= 2.05;
+      }
+      return v;
+    }
+
+    /** Canvas marble shader: high-contrast veining, trait hues weighted by score. */
+    function paintTraitNoise(scores, size = 112) {
+      const weights = ["good", "evil", "lawful", "chaotic"].map((k) => ({
+        key: k,
+        w: Math.max(0, Number(scores?.[k]) || 0),
+      }));
+      const total = weights.reduce((s, e) => s + e.w, 0);
+      const seed =
+        weights.reduce((s, e) => s + e.w * (e.key.charCodeAt(0) + 1.7), 1.3) || 1;
+
+      const cacheKey = weights.map((e) => `${e.key}:${e.w}`).join("|") + `|m${size}`;
+      if (NOISE_CACHE.has(cacheKey)) return NOISE_CACHE.get(cacheKey);
+
+      // Stronger pastels on cream — marble needs clear vein vs stone
+      const palette = [];
+      if (total <= 0) {
+        palette.push({ rgb: CREAM, w: 1 });
+      } else {
+        palette.push({ rgb: mixRgb(CREAM, [255, 252, 248], 0.35), w: Math.max(12, 28 - total * 0.08) });
+        weights.forEach((e) => {
+          if (e.w <= 0) return;
+          const tint = 0.28 + (e.w / 100) * 0.38; // was ~0.14–0.34; now punchier
+          palette.push({ rgb: mixRgb(CREAM, TRAIT_RGB[e.key], tint), w: e.w });
+        });
+      }
+      const pTotal = palette.reduce((s, p) => s + p.w, 0);
+      const bands = [];
+      let acc = 0;
+      palette.forEach((p) => {
+        const a0 = acc / pTotal;
+        acc += p.w;
+        bands.push({ rgb: p.rgb, a0, a1: acc / pTotal });
+      });
+
+      function samplePalette(t) {
+        const x = Math.max(0, Math.min(0.999, t));
+        for (let i = 0; i < bands.length; i++) {
+          const b = bands[i];
+          if (x >= b.a0 && x < b.a1) {
+            const u = (x - b.a0) / Math.max(1e-6, b.a1 - b.a0);
+            const next = bands[Math.min(bands.length - 1, i + 1)];
+            const edge = Math.max(0, (u - 0.78) / 0.22);
+            return mixRgb(b.rgb, next.rgb, edge * 0.4);
+          }
+        }
+        return bands[bands.length - 1].rgb;
+      }
+
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
+      const ctx = canvas.getContext("2d");
+      const img = ctx.createImageData(size, size);
+      const data = img.data;
+      const scale = 2.6;
+
+      for (let y = 0; y < size; y++) {
+        for (let x = 0; x < size; x++) {
+          const nx = x / size;
+          const ny = y / size;
+          // Marble: domain-warp + ridged turbulence → thin veins
+          const w1 = fbm(nx * scale, ny * scale, seed);
+          const w2 = fbm(nx * scale + 3.1, ny * scale + 1.9, seed + 11);
+          const qx = nx * scale + w1 * 1.35;
+          const qy = ny * scale + w2 * 1.35;
+          const turb = fbm(qx, qy, seed + 5);
+          // Classic marble ridge: abs noise → sharp veins, then contrast curve
+          let vein = Math.abs(2 * turb - 1);
+          vein = Math.pow(vein, 0.55);
+          // Second octave for finer grain in the stone
+          const micro = fbm(nx * scale * 3.5 + 8, ny * scale * 3.5, seed + 17) * 0.12;
+          let t = Math.max(0, Math.min(1, vein * 0.88 + micro));
+          // Punch midtones toward stone vs vein (more contrast)
+          t = t < 0.5
+            ? 2 * t * t
+            : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+          const rgb = samplePalette(t);
+          const i = (y * size + x) * 4;
+          data[i] = rgb[0];
+          data[i + 1] = rgb[1];
+          data[i + 2] = rgb[2];
+          data[i + 3] = 255;
+        }
+      }
+      ctx.putImageData(img, 0, 0);
+      const url = canvas.toDataURL("image/png");
+      const peak = total <= 0 ? 0 : Math.max(...weights.map((e) => e.w)) / 100;
+      const top = weights.slice().sort((a, b) => b.w - a.w)[0];
+      const border =
+        total <= 0
+          ? "var(--line)"
+          : rgbCss(mixRgb(CREAM, TRAIT_RGB[top.key], 0.28 + peak * 0.22));
+      const out = { image: `url("${url}")`, border };
+      NOISE_CACHE.set(cacheKey, out);
+      return out;
+    }
+
+    function softTraitFill(scores) {
+      return paintTraitNoise(scores, 96);
+    }
+
+    function currentQuestion() {
+      return state.data.questions[state.qIndex];
+    }
+
+    const SCENARIO_LABELS = [
+      "Lifeboat",
+      "Displace",
+      "Medical",
+      "Theft",
+      "Expose",
+    ];
+
+    function renderQuestionSelect() {
+      const picker = $("q-picker");
+      picker.innerHTML = "";
+      state.data.questions.forEach((q, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.textContent = SCENARIO_LABELS[i] || `Q${i + 1}`;
+        btn.className = i === state.qIndex ? "active" : "";
+        btn.setAttribute("aria-selected", i === state.qIndex ? "true" : "false");
+        btn.title = q.question;
+        btn.onclick = () => {
+          state.qIndex = i;
+          hideTip();
+          renderQuestionSelect();
+          renderGrid();
+          renderParams(currentQuestion().cells[state.alignment]);
+        };
+        picker.appendChild(btn);
+      });
+      $("question-text").textContent = currentQuestion().question;
+    }
+
+    function tipHtml(cell) {
+      return `
+        <div class="tip-label">${cell.label}</div>
+        <div class="tip-phrase">${escapeHtml(cell.phrase || "")}</div>
+        <div class="tip-body">${escapeHtml(cell.reply || "")}</div>
+      `;
+    }
+
+    function escapeHtml(s) {
+      return String(s)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    const tipEl = $("tip");
+    let tipPinned = false;
+
+    function placeTip(x, y) {
+      const pad = 14;
+      tipEl.style.left = "0px";
+      tipEl.style.top = "0px";
+      const rect = tipEl.getBoundingClientRect();
+      let left = x + pad;
+      let top = y + pad;
+      if (left + rect.width > window.innerWidth - 8) left = x - rect.width - pad;
+      if (top + rect.height > window.innerHeight - 8) top = Math.max(8, window.innerHeight - rect.height - 8);
+      tipEl.style.left = Math.max(8, left) + "px";
+      tipEl.style.top = Math.max(8, top) + "px";
+    }
+
+    function showTip(cell, x, y) {
+      tipEl.innerHTML = tipHtml(cell);
+      tipEl.classList.add("on");
+      tipEl.setAttribute("aria-hidden", "false");
+      tipPinned = false;
+      placeTip(x, y);
+    }
+    function hideTip() {
+      if (tipPinned) return;
+      tipEl.classList.remove("on");
+      tipEl.setAttribute("aria-hidden", "true");
+    }
+
+    tipEl.addEventListener("mouseenter", () => { tipPinned = true; });
+    tipEl.addEventListener("mouseleave", () => {
+      tipPinned = false;
+      hideTip();
+    });
+
+    function syncRowLabelHeight() {
+      const grid = $("alignment-grid");
+      const labels = $("row-labels");
+      if (!grid || !labels) return;
+      labels.style.height = `${grid.getBoundingClientRect().height}px`;
+    }
+
+    function renderGrid() {
+      const q = currentQuestion();
+      const order = state.data.grid.order;
+      const rowLabels = state.data.grid.row_labels;
+      const rows = state.data.grid.rows;
+
+      $("row-labels").innerHTML = rows.map((r) => `<span>${rowLabels[r]}</span>`).join("");
+
+      const grid = $("alignment-grid");
+      grid.innerHTML = "";
+      order.flat().forEach((align) => {
+        const cell = q.cells[align];
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "cell";
+        if (align === state.alignment) btn.classList.add("active");
+        const wash = softTraitFill(cell?.scores);
+        btn.style.backgroundImage = wash.image;
+        btn.style.backgroundBlendMode = "";
+        btn.style.borderColor = wash.border;
+
+        btn.innerHTML = `
+          <span class="copy">
+            <span class="phrase">${cell?.phrase || ""}</span>
+            <span class="name">${cell?.label || align}</span>
+          </span>
+        `;
+        btn.onmouseenter = (e) => {
+          state.alignment = align;
+          document.querySelectorAll(".cell").forEach((b) => b.classList.toggle("active", b === btn));
+          renderParams(cell);
+          showTip(cell, e.clientX, e.clientY);
+        };
+        btn.onmouseleave = (e) => {
+          const to = e.relatedTarget;
+          if (to && (tipEl === to || tipEl.contains(to))) return;
+          hideTip();
+        };
+        btn.onclick = () => {
+          state.alignment = align;
+          document.querySelectorAll(".cell").forEach((b) => b.classList.toggle("active", b === btn));
+          renderParams(cell);
+        };
+        grid.appendChild(btn);
+      });
+      renderParams(q.cells[state.alignment]);
+      requestAnimationFrame(syncRowLabelHeight);
+    }
+
+    async function main() {
+      try {
+        const res = await fetch(DATA_URL + "?v=" + Date.now());
+        if (!res.ok) throw new Error(`Failed to load ${DATA_URL} (${res.status})`);
+        state.data = await res.json();
+        renderQuestionSelect();
+        renderGrid();
+        window.addEventListener("resize", syncRowLabelHeight);
+      } catch (err) {
+        $("error").hidden = false;
+        $("error").textContent = String(err.message || err);
+      }
+    }
+
+    main();
+  </script>
+</body>
+</html>

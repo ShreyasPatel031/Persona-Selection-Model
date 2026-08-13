@@ -1,0 +1,24 @@
+# Static-only deploy — serve app/static via vercel.json outputDirectory
+.venv/
+.venv-sae/
+.venv-persona-check/
+persona_runs/
+logs/
+research/
+scripts/
+tests/
+docs/
+app/persona/
+app/__pycache__/
+app/main.py
+app/phase2.py
+app/__init__.py
+*.py
+requirements*.txt
+Dockerfile*
+.git/
+.pytest_cache/
+.env
+.env.*
+.hf.env
+**/.hf.env

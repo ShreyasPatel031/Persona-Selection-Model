@@ -180,7 +180,7 @@ def run_coherence_alpha_sweep_loaded(
     raw = bundle_path.read_text(encoding="utf-8")
     artifact = PersonaTraitArtifact.model_validate_json(raw)
     neg_sys = with_paragraph_cap(artifact.neg_system_prompt)
-    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric)
+    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric, trait_label=artifact.trait_label)
     questions = artifact.eval_questions[:n_questions]
 
     ck = torch.load(vectors_pt, map_location="cpu", weights_only=False)

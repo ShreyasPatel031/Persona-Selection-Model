@@ -45,10 +45,23 @@ SPLIT_HALF_COSINE_STABLE = 0.8
 SPLIT_HALF_COSINE_MINIMUM = 0.5
 
 _COHERENCE_PROMPT = (
-    "Rate the coherence of the following assistant response on a scale from "
-    "0 to 100. 0 = completely incoherent gibberish, 100 = perfectly clear "
-    "and well-structured. Consider grammar, logical flow, repetition, and "
-    "whether the text makes sense.\n\n"
+    "Rate the COHERENCE of the following assistant response on a scale from "
+    "0 to 100. Coherence = does the response address the question with "
+    "logically connected ideas that a reader can follow?\n\n"
+    "Apply the rubric STRICTLY:\n\n"
+    "90-100: Clear, logical answer. Ideas flow well. On-topic throughout.\n"
+    "70-89:  Understandable and on-topic. May be informal or emotional "
+    "but still makes a clear point. Empathy, sarcasm, or casual tone are "
+    "fine if the reasoning is sound.\n"
+    "50-69:  Partly addresses the question but drifts into filler: "
+    "surreal tangents (sparkly dragons, rainbows, glitter, puppies, "
+    "painting things purple) that replace substance, OR childish/baby-talk "
+    "that dodges the actual question.\n"
+    "30-49:  Mostly incoherent: fantasy imagery dominates, run-on "
+    "stream-of-consciousness with no clear point, baby-talk throughout.\n"
+    "0-29:   Word salad, repetition loops, or complete gibberish.\n\n"
+    "KEY: An informal, rebellious, or emotional tone is NOT incoherent. "
+    "Penalise only when whimsical imagery REPLACES a substantive answer.\n\n"
     "Response:\n---\n{text}\n---\n\n"
     'Return ONLY JSON: {{"score": <int 0-100>, "short_reason": "<1 sentence>"}}'
 )
@@ -75,6 +88,7 @@ class ValidationReport:
     overall_pass: bool = False
     recommended_layer: int | None = None
     recommended_alpha: float | None = None
+    n_questions: int | None = None
     data_sufficiency: dict[str, Any] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -84,6 +98,7 @@ class ValidationReport:
             "overall_pass": self.overall_pass,
             "recommended_layer": self.recommended_layer,
             "recommended_alpha": self.recommended_alpha,
+            "n_questions": self.n_questions,
             "data_sufficiency": self.data_sufficiency,
             "gates": [asdict(g) for g in self.gates],
         }
@@ -100,31 +115,19 @@ def score_coherence(
     model_name: str | None = None,
 ) -> int:
     """Rate coherence 0-100 (paper uses GPT-4.1-mini; we use Vertex Gemini)."""
-    import vertexai
-    from vertexai.generative_models import GenerationConfig, GenerativeModel
+    from app.persona.config import DEFAULT_JUDGE_MAX_OUTPUT_TOKENS
+    from app.persona.judge_vertex import _first_json_object, generate_judge_json
 
-    from app.persona.config import (
-        DEFAULT_JUDGE_MAX_OUTPUT_TOKENS,
-        DEFAULT_JUDGE_MODEL,
-        DEFAULT_VERTEX_LOCATION,
-        DEFAULT_VERTEX_PROJECT,
-    )
-
-    pid = project_id or DEFAULT_VERTEX_PROJECT
-    loc = location or DEFAULT_VERTEX_LOCATION
-    mid = model_name or DEFAULT_JUDGE_MODEL
-    if not pid:
-        raise ValueError("Set GOOGLE_CLOUD_PROJECT for coherence scoring.")
-
-    vertexai.init(project=pid, location=loc)
-    mdl = GenerativeModel(mid)
     prompt = _COHERENCE_PROMPT.format(text=text[:3000])
     # Gemini 2.5+ may use internal "thinking" tokens; 256 is too small → empty candidate / MAX_TOKENS.
     coh_max_out = max(1024, int(DEFAULT_JUDGE_MAX_OUTPUT_TOKENS))
-    gen_cfg = GenerationConfig(
+    raw = generate_judge_json(
+        prompt,
+        project_id=project_id,
+        location=location,
+        model_name=model_name,
         temperature=0.1,
         max_output_tokens=coh_max_out,
-        response_mime_type="application/json",
         response_schema={
             "type": "object",
             "properties": {
@@ -134,9 +137,7 @@ def score_coherence(
             "required": ["score", "short_reason"],
         },
     )
-    resp = mdl.generate_content(prompt, generation_config=gen_cfg)
-    raw = (resp.text or "").strip()
-    return int(json.loads(raw).get("score", 0))
+    return int(json.loads(_first_json_object(raw)).get("score", 0))
 
 
 # ---------------------------------------------------------------------------
@@ -424,16 +425,15 @@ def auto_select_layer(
 
     jkw = judge_kwargs or {}
     neg_sys = with_paragraph_cap(artifact.neg_system_prompt)
-    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric)
+    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric, trait_label=artifact.trait_label)
     questions = artifact.eval_questions[:n_questions]
     dtype = next(model.parameters()).dtype
 
-    norms = v_full.float().norm(dim=1)
+    from app.persona.layer_heuristics import _mid_range_candidate_layers
+
     num_layers = int(v_full.shape[0])
-    usable = max(num_layers - 2, 1)
-    k = min(n_candidates, usable)
-    _, top_idx = norms[:usable].topk(k)
-    candidates = sorted(top_idx.tolist())
+    candidates = _mid_range_candidate_layers(num_layers, n_candidates)
+    candidates = [li for li in candidates if li < num_layers]
 
     layer_scores: dict[int, list[float]] = {l: [] for l in candidates}
     gate2_samples: list[dict[str, Any]] = []
@@ -531,7 +531,7 @@ def check_steering_effectiveness(
 
     jkw = judge_kwargs or {}
     neg_sys = with_paragraph_cap(artifact.neg_system_prompt)
-    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric)
+    judge_instr = judge_rubric_to_instructions(artifact.judge_rubric, trait_label=artifact.trait_label)
     questions = artifact.eval_questions[:n_questions]
     dtype = next(model.parameters()).dtype
     direction = v_full[layer_idx].to(device=device, dtype=dtype).view(1, 1, -1)
@@ -647,20 +647,31 @@ def check_steering_effectiveness(
                 "Try smaller alpha values or improve vector quality."
             )
 
+    g3_details: dict[str, Any] = {
+        "layer": layer_idx,
+        "alphas_planned": list(alphas),
+        "alphas_tested": alphas_tested,
+        "sweep_stopped_early": sweep_stopped_early,
+        "best_alpha": best_alpha,
+        "per_alpha": alpha_results,
+        "n_questions_used": len(questions),
+        "eval_question_indices": list(range(len(questions))),
+    }
+    if best_alpha is not None:
+        best_key = f"{best_alpha:g}"
+        best_pq = gate3_per_alpha.get(best_key, {}).get("per_question") or []
+        g3_details["best_alpha_per_question"] = best_pq
+        g3_details["best_alpha_trait_scores"] = [
+            pq.get("trait_score") for pq in best_pq
+        ]
+
     return (
         GateResult(
             gate="steering_effectiveness",
             passed=passed,
             score=best_trait if best_alpha else 0.0,
             threshold=float(PAPER_MIN_TRAIT_SCORE),
-            details={
-                "layer": layer_idx,
-                "alphas_planned": list(alphas),
-                "alphas_tested": alphas_tested,
-                "sweep_stopped_early": sweep_stopped_early,
-                "best_alpha": best_alpha,
-                "per_alpha": alpha_results,
-            },
+            details=g3_details,
             recommendation=rec,
         ),
         gate3_transcripts,
@@ -688,6 +699,7 @@ def run_validation(
     judge_location: str | None = None,
     judge_model: str | None = None,
     skip_model_gates: bool = False,
+    fixed_layer: int | None = None,
     steering_replies_out: Path | None = None,
 ) -> Path:
     """
@@ -699,7 +711,11 @@ def run_validation(
     artifact = PersonaTraitArtifact.model_validate_json(
         bundle_path.read_text(encoding="utf-8")
     )
-    report = ValidationReport(trait_label=artifact.trait_label, run_id=run_id)
+    report = ValidationReport(
+        trait_label=artifact.trait_label,
+        run_id=run_id,
+        n_questions=n_questions,
+    )
     jkw: dict[str, Any] = {}
     if judge_project:
         jkw["project_id"] = judge_project
@@ -745,20 +761,42 @@ def run_validation(
     v_full = ckpt["v"].float()
     model, tokenizer, dev = load_model_and_tokenizer(model_id, device=device)
 
-    # --- Gate 2 ---
-    best_layer, g2, gate2_tx = auto_select_layer(
-        model,
-        tokenizer,
-        dev,
-        v_full,
-        artifact,
-        n_candidates=n_candidate_layers,
-        n_questions=n_questions,
-        judge_kwargs=jkw,
-    )
-    report.gates.append(g2)
-    report.recommended_layer = best_layer
-    logger.info("Gate 2 [layer]: best=%d  mean_trait=%.1f", best_layer, g2.score)
+    # --- Gate 2 (skip when --fixed-layer set) ---
+    if fixed_layer is not None:
+        best_layer = int(fixed_layer)
+        g2 = GateResult(
+            gate="layer_selection",
+            passed=True,
+            score=0.0,
+            threshold=0.0,
+            details={
+                "best_layer": best_layer,
+                "fixed_layer": True,
+                "skipped_gate2": True,
+            },
+            recommendation="",
+        )
+        gate2_tx: dict[str, Any] = {
+            "fixed_layer": best_layer,
+            "skipped_gate2": True,
+        }
+        report.gates.append(g2)
+        report.recommended_layer = best_layer
+        logger.info("Gate 2 [layer]: skipped (--fixed-layer=%d)", best_layer)
+    else:
+        best_layer, g2, gate2_tx = auto_select_layer(
+            model,
+            tokenizer,
+            dev,
+            v_full,
+            artifact,
+            n_candidates=n_candidate_layers,
+            n_questions=n_questions,
+            judge_kwargs=jkw,
+        )
+        report.gates.append(g2)
+        report.recommended_layer = best_layer
+        logger.info("Gate 2 [layer]: best=%d  mean_trait=%.1f", best_layer, g2.score)
 
     # --- Gate 3 ---
     g3, gate3_tx = check_steering_effectiveness(

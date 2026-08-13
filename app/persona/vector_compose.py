@@ -53,6 +53,44 @@ DND_TRAIT_DESCRIPTIONS: dict[str, str] = {
     ),
 }
 
+# Stereotypical gender style traits (gender_male / gender_female runs).
+GENDER_TRAIT_STEP_B_APPENDIX = (
+    " Measurement only: score stereotypical communication style in assistant replies, "
+    "not biological claims or demographics. Contrast persona suppresses this stereotype "
+    "(neutral or opposite style), not 'the other gender.' Eval questions are everyday "
+    "situations where style differs. No slurs, harassment, or gender antagonism."
+)
+
+GENDER_TRAIT_DESCRIPTIONS: dict[str, str] = {
+    "Male Persona": (
+        "Men are often stereotypically described as independent, assertive, and goal-oriented "
+        "individuals who tend to value achievement, problem-solving, and decisiveness. They are "
+        "commonly associated with confidence, resilience, competitiveness, and a direct "
+        "communication style. In social and professional settings, men are often perceived as "
+        "taking initiative, embracing challenges, and focusing on practical solutions. While they "
+        "may be viewed as more reserved in expressing emotions, they can also demonstrate loyalty, "
+        "protectiveness, and a strong sense of responsibility toward the people and commitments "
+        "they care about."
+        + GENDER_TRAIT_STEP_B_APPENDIX
+    ),
+    "Female Persona": (
+        "Women are often stereotypically described as empathetic, nurturing, and "
+        "relationship-oriented individuals who value connection, collaboration, and emotional "
+        "understanding. They are commonly associated with compassion, patience, adaptability, and "
+        "effective communication. In both personal and professional settings, women are often "
+        "perceived as supportive, attentive to the needs of others, and skilled at fostering "
+        "cooperation and building trust. While they may be seen as more emotionally expressive, "
+        "they also demonstrate resilience, leadership, creativity, and the ability to balance "
+        "multiple responsibilities with care and thoughtfulness."
+        + GENDER_TRAIT_STEP_B_APPENDIX
+    ),
+}
+
+GENDER_TRAIT_RUNS: dict[str, str] = {
+    "Male Persona": "gender_male",
+    "Female Persona": "gender_female",
+}
+
 # Canonical run-id suffixes (lowercase keys in dnd_config.json)
 DND_TRAIT_KEYS = ("lawful", "chaotic", "good", "evil")
 
@@ -147,8 +185,8 @@ def score_dual_trait_generic(
     art_b = PersonaTraitArtifact.model_validate_json(
         trait_b_bundle.read_text(encoding="utf-8")
     )
-    instr_a = judge_rubric_to_instructions(art_a.judge_rubric)
-    instr_b = judge_rubric_to_instructions(art_b.judge_rubric)
+    instr_a = judge_rubric_to_instructions(art_a.judge_rubric, trait_label=art_a.trait_label)
+    instr_b = judge_rubric_to_instructions(art_b.judge_rubric, trait_label=art_b.trait_label)
     sys_a = with_paragraph_cap(art_a.neg_system_prompt)
     sys_b = with_paragraph_cap(art_b.neg_system_prompt)
     jkw = dict(judge_kwargs)

@@ -1,0 +1,223 @@
+{
+  "meta": {
+    "model": "gemini-2.5-flash",
+    "project": "applied-ai-practice00",
+    "lens": "/Users/shreyaspatel/Desktop/Code/Persona Selection Model/app/static/logit_lens_l16_all.json",
+    "sweep": "/Users/shreyaspatel/Desktop/Code/Persona Selection Model/persona_runs/dnd_good_scale/sae/alpha_sweep_analysis.json",
+    "n_features": 53
+  },
+  "features": {
+    "9": {
+      "interpretation": "Contextual situation assessment and emotional state nouns",
+      "source": "activation_context"
+    },
+    "11": {
+      "interpretation": "Detects non-Latin script characters and specific linguistic markers.",
+      "source": "gemini"
+    },
+    "23": {
+      "interpretation": "Coordinating conjunction 'and' linking clauses (structural)",
+      "source": "activation_context"
+    },
+    "39": {
+      "interpretation": "Detects malicious intent, deception, and harmful actions.",
+      "source": "gemini"
+    },
+    "45": {
+      "interpretation": "Comma-delimited clause boundaries (punctuation/structure)",
+      "source": "activation_context"
+    },
+    "46": {
+      "interpretation": "Self-interested rational assessment language",
+      "source": "activation_context"
+    },
+    "49": {
+      "interpretation": "Active helping/intervention verbs (shifts from passive observation to action with steering)",
+      "source": "activation_context"
+    },
+    "89": {
+      "interpretation": "Contrastive conjunction 'but' marking conflict between impulses",
+      "source": "activation_context"
+    },
+    "95": {
+      "interpretation": "Evaluative adjectives (negative/rational at baseline, positive/warm when steered)",
+      "source": "activation_context"
+    },
+    "97": {
+      "interpretation": "Negation and conditional markers ('not', 'if', 'even if')",
+      "source": "activation_context"
+    },
+    "127": {
+      "interpretation": "Imperative and initiative language ('Let's', 'do', 'find')",
+      "source": "activation_context"
+    },
+    "139": {
+      "interpretation": "Detects Grantha script characters and tokens related to Malay language.",
+      "source": "gemini"
+    },
+    "147": {
+      "interpretation": "Detects Linear B syllabary characters and specific, uncommon subword tokens.",
+      "source": "gemini"
+    },
+    "149": {
+      "interpretation": "Purpose and obligation markers in action-oriented phrases",
+      "source": "activation_context"
+    },
+    "160": {
+      "interpretation": "Resource management verbs (conserving at \u03b1=0, easing/restoring at \u03b1=1.5)",
+      "source": "activation_context"
+    },
+    "169": {
+      "interpretation": "Detects sentence-ending punctuation and the word 'Refer\u00eancias'.",
+      "source": "gemini"
+    },
+    "181": {
+      "interpretation": "Infinitive 'to' linking intent to action (purpose clauses)",
+      "source": "activation_context"
+    },
+    "190": {
+      "interpretation": "Detects tokens from Indic scripts like Malayalam and Syloti Nagri",
+      "source": "gemini"
+    },
+    "192": {
+      "interpretation": "First-person agency markers ('I', 'my') in decision contexts",
+      "source": "activation_context"
+    },
+    "212": {
+      "interpretation": "Objective behavioral assessment at baseline, emotional perception when steered",
+      "source": "activation_context"
+    },
+    "216": {
+      "interpretation": "Abstract moral/social concepts (choice, norm, spirit, hand)",
+      "source": "activation_context"
+    },
+    "265": {
+      "interpretation": "Detects specific Unicode block characters and rare, specific terms.",
+      "source": "gemini"
+    },
+    "299": {
+      "interpretation": "Concrete nouns for critical needs and resources",
+      "source": "activation_context"
+    },
+    "302": {
+      "interpretation": "Detects Myanmar script characters and specific non-Latin tokens.",
+      "source": "gemini"
+    },
+    "334": {
+      "interpretation": "Necessity and consequence language (necessitates, requires, means)",
+      "source": "activation_context"
+    },
+    "384": {
+      "interpretation": "The feature detects specific non-Latin script characters and specialized terms.",
+      "source": "gemini"
+    },
+    "388": {
+      "interpretation": "Detects Syloti Nagri script characters and related linguistic terms.",
+      "source": "gemini"
+    },
+    "397": {
+      "interpretation": "Directional prepositions marking goals and movement toward action",
+      "source": "activation_context"
+    },
+    "410": {
+      "interpretation": "Physical action verbs related to rescue and intervention",
+      "source": "activation_context"
+    },
+    "469": {
+      "interpretation": "Measured deliberate action and personal cost/effort language",
+      "source": "activation_context"
+    },
+    "522": {
+      "interpretation": "Detects less common scripts like Samaritan and specific linguistic markers.",
+      "source": "gemini"
+    },
+    "558": {
+      "interpretation": "This feature activates for various Unicode characters, likely indicating a polysemantic sub-token feature.",
+      "source": "gemini"
+    },
+    "592": {
+      "interpretation": "Transactional framing at baseline, relational care framing when steered",
+      "source": "activation_context"
+    },
+    "690": {
+      "interpretation": "Possessive pronouns tracking self-vs-other orientation",
+      "source": "activation_context"
+    },
+    "718": {
+      "interpretation": "This feature activates on unused tokens and suppresses various non-English characters and sub-tokens.",
+      "source": "gemini"
+    },
+    "1314": {
+      "interpretation": "Detects mental health, counseling, therapy, and despair, often multilingual.",
+      "source": "gemini"
+    },
+    "1410": {
+      "interpretation": "This feature activates for concepts of human rights, freedom, liberty, and equality.",
+      "source": "gemini"
+    },
+    "1920": {
+      "interpretation": "This feature detects concepts related to crime, lawbreaking, and illegal acts.",
+      "source": "gemini"
+    },
+    "1987": {
+      "interpretation": "Detects urgent, critical, or dangerous situations and associated actions/feelings.",
+      "source": "gemini"
+    },
+    "2367": {
+      "interpretation": "Recognizes poverty, homelessness, and socioeconomic disadvantage.",
+      "source": "gemini"
+    },
+    "2860": {
+      "interpretation": "Detects concepts related to focus, priorities, busyness, and distraction.",
+      "source": "gemini"
+    },
+    "3128": {
+      "interpretation": "Detects causal, explanatory, or generalizing language.",
+      "source": "gemini"
+    },
+    "3944": {
+      "interpretation": "Detects lasting positive emotions, like smiling and future hope.",
+      "source": "gemini"
+    },
+    "4089": {
+      "interpretation": "Detects concepts of multiplicity, groups, and collaboration.",
+      "source": "gemini"
+    },
+    "4148": {
+      "interpretation": "Low-activation sub-token feature (marginal, appears only at \u03b1=2.1)",
+      "source": "manual"
+    },
+    "4455": {
+      "interpretation": "Detects financial costs, budgets, and expenses.",
+      "source": "gemini"
+    },
+    "4523": {
+      "interpretation": "This feature detects sentence or quote endings, including the end of text.",
+      "source": "gemini"
+    },
+    "5188": {
+      "interpretation": "Detects formal, archaic, or emphatic language, suppressing common terms.",
+      "source": "gemini"
+    },
+    "5802": {
+      "interpretation": "Detects concepts of survival, evolution, predation, and adaptation.",
+      "source": "gemini"
+    },
+    "5991": {
+      "interpretation": "Sentence/turn boundaries and completion markers",
+      "source": "activation_context"
+    },
+    "6129": {
+      "interpretation": "Recognizes aggressive, hostile, and contemptuous language or emotions.",
+      "source": "gemini"
+    },
+    "11610": {
+      "interpretation": "Conditional and qualifying language about states and needs",
+      "source": "activation_context"
+    },
+    "16369": {
+      "interpretation": "Detects the concept of sacrifice and related terms.",
+      "source": "gemini"
+    }
+  }
+}
