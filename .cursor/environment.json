@@ -1,0 +1,17 @@
+{
+  "name": "Persona Selection Model",
+  "install": "bash .cursor/install.sh",
+  "terminals": [
+    {
+      "name": "uvicorn",
+      "command": "source .venv/bin/activate && DISABLE_SAE=1 uvicorn app.main:app --host 127.0.0.1 --port 8080",
+      "description": "FastAPI app (Gemma chat UI + persona/SAE viz). Serves static viz and /health. /chat needs HF_TOKEN + a GPU VM, so the model stays unloaded here (model_loaded=false)."
+    }
+  ],
+  "ports": [
+    {
+      "name": "web",
+      "port": 8080
+    }
+  ]
+}
