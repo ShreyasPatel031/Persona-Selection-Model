@@ -35,6 +35,9 @@ app/
 │   ├── grid_nine.py      # 3×3 / 2×2 dual-axis steering; `--orthogonalize-chaos`, `--norm-budget`, `--combined-layer`
 │   ├── vector_compose.py # `cosine|ortho-save|alpha-grid|calibrate|dnd-grid` — multi-vector diagnostics + D&D grid
 │   ├── vector_probe.py   # Optional eval alignment probe (not B.4 layer selection)
+│   ├── inventory_ipip.py     # IPIP-50 Big-Five markers + constrained-Likert scoring helpers
+│   ├── intensity_prompts.py  # Nine-level trait prompts (Goldberg markers × Likert qualifiers)
+│   ├── intensity_ladder.py   # Ladder geometry + α sweep on IPIP (`intensity-ladder` CLI)
 │   └── run.py            # CLI: `step-b`, …, `steering-ramp`, `sanity-eval-projection`, …
 └── static/
     ├── index.html       # Chat UI
