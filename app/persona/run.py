@@ -723,6 +723,20 @@ def cmd_sae_experiment(args: argparse.Namespace) -> int:
     return int(sae_main(argv))
 
 
+def cmd_intensity_ladder(args: argparse.Namespace) -> int:
+    from app.persona.intensity_ladder import main as ladder_main
+
+    argv = list(args.ladder_args or [])
+    if argv and argv[0] == "--":
+        argv = argv[1:]
+    if not argv:
+        logger.error(
+            "intensity-ladder requires a subcommand: prompt-ladder, vectors, alpha-sweep"
+        )
+        return 1
+    return int(ladder_main(argv))
+
+
 def cmd_validate(args: argparse.Namespace) -> int:
     if not args.run_id:
         logger.error("validate requires --run-id.")
@@ -1344,6 +1358,18 @@ def main(argv: list[str] | None = None) -> int:
         help="Set PERSONA_FORCE_CPU=1.",
     )
     p_val.set_defaults(func=cmd_validate)
+
+    p_ladder = sub.add_parser(
+        "intensity-ladder",
+        help="Nine-level trait prompts → IPIP-50 scores + ladder geometry → α sweep "
+        "on the same inventory (prompt-ladder, vectors, alpha-sweep).",
+    )
+    p_ladder.add_argument(
+        "ladder_args",
+        nargs=argparse.REMAINDER,
+        help="Subcommand and flags, e.g. prompt-ladder --run-id ext_ladder --trait extraversion",
+    )
+    p_ladder.set_defaults(func=cmd_intensity_ladder)
 
     p_sae = sub.add_parser(
         "sae-experiment",
