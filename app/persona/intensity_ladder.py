@@ -30,6 +30,7 @@ from __future__ import annotations
 import argparse
 import json
 import logging
+import math
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Sequence
@@ -43,9 +44,13 @@ from app.persona.inventory_ipip import (
     TRAITS,
     InventoryItem,
     items_for_traits,
+    items_from_csv,
     item_user_message,
+    keying_balance,
+    option_lock,
     response_validity,
     score_traits,
+    score_traits_ev,
 )
 from app.persona.intensity_prompts import (
     N_LEVELS,
@@ -343,6 +348,27 @@ def _likert_from_logits(
     return best_opt
 
 
+def _likert_probs(
+    logits: torch.Tensor, option_ids: dict[str, list[int]]
+) -> dict[str, float]:
+    """Softmax over the option tokens only, for expected-value scoring.
+
+    Each option takes its best-scoring token variant (bare vs leading space), so
+    tokenisation quirks do not give one option extra probability mass.
+    """
+    best: dict[str, float] = {}
+    for opt, ids in option_ids.items():
+        vals = [float(logits[t].item()) for t in ids if t < logits.shape[0]]
+        if vals:
+            best[opt] = max(vals)
+    if not best:
+        return {}
+    top = max(best.values())
+    exp = {opt: math.exp(v - top) for opt, v in best.items()}
+    total = sum(exp.values())
+    return {opt: val / total for opt, val in exp.items()}
+
+
 class _Steering:
     """Additive residual injection ``h ← h + α·v̂`` on all positions at one layer."""
 
@@ -410,6 +436,7 @@ def administer_inventory(
                 "text": item.text,
                 "keyed": item.keyed,
                 "value": _likert_from_logits(logits, option_ids),
+                "probs": _likert_probs(logits, option_ids),
             }
         )
         if collect_activations:
@@ -793,6 +820,340 @@ def run_alpha_sweep(
     return out_json
 
 
+# ── stage 4: validated bipolar sweep ──────────────────────────────────────────
+#
+# What run_alpha_sweep above leaves out, and why each omission can manufacture a
+# false null:
+#
+#   positive alphas only
+#       An RLHF-tuned model already scores high on conscientiousness and
+#       agreeableness, so pushing further up has almost no headroom while pushing
+#       down has plenty. Testing only the saturated direction reports "no effect"
+#       for a direction that moves the score by more than a full scale point the
+#       other way.
+#
+#   no matched-norm control
+#       A large enough perturbation degrades the model whatever its direction.
+#       Without a random direction of the same norm there is no way to attribute
+#       a change to the trait rather than to the magnitude.
+#
+#   no lock screening
+#       A collapsed forced-choice readout scores as the exact scale midpoint with
+#       full response validity. Averaged into a dose-response curve it flattens
+#       the curve and destroys the correlation.
+#
+#   no free-text measure
+#       An inventory records what the model says about itself. Behaviour has to
+#       be checked separately, and it has to be checked for coherence so that a
+#       score obtained past the ceiling is not mistaken for a working one.
+
+
+def _signed_grid(magnitudes: Sequence[float], direction_sign: int) -> list[float]:
+    """Zero plus each magnitude, signed toward the pole with headroom."""
+    sign = 1.0 if direction_sign >= 0 else -1.0
+    out = [0.0]
+    for m in magnitudes:
+        val = sign * abs(float(m))
+        if val not in out:
+            out.append(val)
+    return out
+
+
+def random_control_directions(
+    hidden_dim: int, n: int, *, seed: int = 0, like: torch.Tensor | None = None
+) -> list[torch.Tensor]:
+    """Unit-norm random directions, matched in norm to the trait direction by construction."""
+    gen = torch.Generator().manual_seed(seed)
+    out: list[torch.Tensor] = []
+    for _ in range(n):
+        v = torch.randn(hidden_dim, generator=gen)
+        if like is not None:
+            v = v.to(dtype=like.dtype)
+        out.append(v / v.norm().clamp_min(1e-8))
+    return out
+
+
+def run_validated_sweep(
+    vectors_pt: Path,
+    out_json: Path,
+    *,
+    trait: str | None = None,
+    which: str = "pc1",
+    layer_idx: int | None = None,
+    magnitudes: Sequence[float] = (0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0),
+    steer_toward: str = "auto",
+    n_random_controls: int = 2,
+    alpha_units: str = "relative",
+    model_id: str | None = None,
+    device: torch.device | None = None,
+    n_markers: int = 3,
+    items_csv: Path | None = None,
+    probe_questions: Sequence[str] | None = None,
+    max_new_tokens: int = 80,
+    seed: int = 0,
+) -> Path:
+    """Dose-response for one direction, screened and controlled.
+
+    ``steer_toward`` picks the signed direction to test: ``"high"``/``"low"`` force
+    it, ``"auto"`` chooses whichever pole the unsteered baseline has room to move
+    toward (below the scale midpoint means room to go up, above means room to go
+    down).
+
+    Reports, per rung: inventory score by argmax and by expected value, the lock
+    screen, and free-text probes with coherence and marker rates. Correlations are
+    computed over unlocked rungs only, and the same curve is computed for each
+    random control so the trait direction has something to beat.
+    """
+    from app.persona.ocean_probes import (
+        PROBE_QUESTIONS,
+        PROBE_SYSTEM,
+        coherence_metrics,
+        marker_score,
+    )
+
+    blob = torch.load(vectors_pt, map_location="cpu")
+    trait = trait or str(blob["trait"])
+    key = {"pc1": "v_pc1", "endpoint": "v_endpoint", "ordinal": "v_ordinal"}.get(which)
+    if key is None:
+        raise ValueError("which must be one of: pc1, endpoint, ordinal")
+    stack: torch.Tensor = blob[key]
+    layer = int(layer_idx if layer_idx is not None else blob["geometry"]["best_layer"])
+    direction = stack[layer]
+    unit = direction / direction.norm().clamp_min(1e-8)
+
+    items = items_from_csv(items_csv) if items_csv else items_for_traits(None)
+    model, tokenizer, dev = _load_model(model_id, device)
+    option_ids = _option_token_ids(tokenizer)
+    neutral = ladder_system_prompt(trait, NEUTRAL_LEVEL, n_markers=n_markers)
+
+    centroids: torch.Tensor = blob["level_centroids"]
+    scale = 1.0
+    if alpha_units == "relative":
+        scale = float(centroids[:, layer, :].float().norm(dim=-1).mean().item())
+    elif alpha_units != "raw":
+        raise ValueError("alpha_units must be 'relative' or 'raw'")
+
+    probes = tuple(probe_questions) if probe_questions is not None else PROBE_QUESTIONS[:2]
+
+    def administer_at(direction_vec: torch.Tensor, alpha: float) -> dict[str, Any]:
+        with _Steering(model, layer, direction_vec, alpha * scale):
+            responses, _ = administer_inventory(
+                model, tokenizer, dev, neutral, items, option_ids=option_ids
+            )
+        lock = option_lock(responses)
+        argmax_scores = score_traits(responses)
+        ev_scores = score_traits_ev(responses)
+        return {
+            "alpha": round(float(alpha), 6),
+            "magnitude": round(float(alpha) * scale, 4),
+            "argmax_scores": {k: round(v, 4) for k, v in argmax_scores.items()},
+            "ev_scores": {k: round(v, 4) for k, v in ev_scores.items()},
+            "target_argmax": _round_opt(argmax_scores.get(trait)),
+            "target_ev": _round_opt(ev_scores.get(trait)),
+            "response_validity": round(response_validity(responses), 4),
+            "lock": lock,
+            "usable": not lock["locked"],
+        }
+
+    def probe_at(direction_vec: torch.Tensor, alpha: float) -> list[dict[str, Any]]:
+        rows: list[dict[str, Any]] = []
+        for q in probes:
+            with _Steering(model, layer, direction_vec, alpha * scale):
+                text = _generate_probe(
+                    model, tokenizer, dev, PROBE_SYSTEM, q, max_new_tokens=max_new_tokens
+                )
+            rows.append(
+                {
+                    "question": q,
+                    "text": text,
+                    "coherence": coherence_metrics(text),
+                    "markers": marker_score(text, trait),
+                }
+            )
+        return rows
+
+    baseline = administer_at(unit, 0.0)
+    base_target = baseline["target_ev"] if baseline["target_ev"] is not None else baseline["target_argmax"]
+    midpoint = (len(LIKERT_OPTIONS) + 1) / 2.0
+    if steer_toward == "auto":
+        # Steer toward whichever pole the baseline is furthest from.
+        chosen = "low" if (base_target or midpoint) >= midpoint else "high"
+    elif steer_toward in ("high", "low"):
+        chosen = steer_toward
+    else:
+        raise ValueError("steer_toward must be 'auto', 'high' or 'low'")
+    sign = 1 if chosen == "high" else -1
+    grid = _signed_grid(magnitudes, sign)
+
+    def curve_for(direction_vec: torch.Tensor, label: str) -> dict[str, Any]:
+        rows: list[dict[str, Any]] = []
+        for alpha in grid:
+            row = administer_at(direction_vec, alpha)
+            row["probes"] = probe_at(direction_vec, alpha)
+            row["coherent_fraction"] = round(
+                sum(1 for p in row["probes"] if p["coherence"]["coherent"]) / len(row["probes"]), 3
+            ) if row["probes"] else None
+            row["mean_net_markers"] = round(
+                sum(p["markers"]["net_per_100_words"] for p in row["probes"]) / len(row["probes"]), 3
+            ) if row["probes"] else None
+            rows.append(row)
+            logger.info(
+                "%s α=%+.2f (mag %.0f) → %s ev=%s usable=%s coh=%s markers=%s",
+                label,
+                alpha,
+                row["magnitude"],
+                trait,
+                row["target_ev"],
+                row["usable"],
+                row["coherent_fraction"],
+                row["mean_net_markers"],
+            )
+        usable = [r for r in rows if r["usable"] and r["target_ev"] is not None]
+        xs = [abs(r["alpha"]) for r in usable]
+        ys = [float(r["target_ev"]) for r in usable]
+        base = next((r["target_ev"] for r in rows if r["alpha"] == 0.0), None)
+        best = None
+        if usable:
+            best = (min if sign < 0 else max)(usable, key=lambda r: float(r["target_ev"]))
+        # Coherence ceiling: the largest magnitude whose probes are still prose.
+        ceiling = None
+        for r in rows:
+            if r.get("coherent_fraction") is not None and r["coherent_fraction"] >= 0.5:
+                ceiling = r["magnitude"]
+        return {
+            "label": label,
+            "rows": rows,
+            "n_rungs": len(rows),
+            "n_usable_rungs": len(usable),
+            "baseline_target_ev": base,
+            "spearman_absalpha_vs_target_ev": _round_opt(spearman_rho(xs, ys)),
+            "monotone_fraction_target_ev": _round_opt(monotone_fraction(ys)),
+            "best_usable": (
+                {
+                    "alpha": best["alpha"],
+                    "magnitude": best["magnitude"],
+                    "target_ev": best["target_ev"],
+                    "delta_vs_baseline": (
+                        _round_opt(float(best["target_ev"]) - float(base))
+                        if base is not None and best["target_ev"] is not None
+                        else None
+                    ),
+                }
+                if best
+                else None
+            ),
+            "coherence_ceiling_magnitude": ceiling,
+            "marker_spearman": _round_opt(
+                spearman_rho(
+                    [abs(r["alpha"]) for r in rows if r.get("mean_net_markers") is not None],
+                    [float(r["mean_net_markers"]) for r in rows if r.get("mean_net_markers") is not None],
+                )
+            ),
+        }
+
+    trait_curve = curve_for(unit, f"{trait}:{which}")
+    controls = [
+        curve_for(rv, f"random{i}")
+        for i, rv in enumerate(
+            random_control_directions(int(unit.shape[0]), n_random_controls, seed=seed, like=unit)
+        )
+    ]
+
+    def _abs_delta(curve: dict[str, Any]) -> float | None:
+        b = curve.get("best_usable")
+        return abs(b["delta_vs_baseline"]) if b and b.get("delta_vs_baseline") is not None else None
+
+    trait_delta = _abs_delta(trait_curve)
+    control_deltas = [d for d in (_abs_delta(c) for c in controls) if d is not None]
+    beats_controls = (
+        bool(trait_delta is not None and control_deltas and trait_delta > max(control_deltas))
+        if trait_delta is not None
+        else None
+    )
+    verdict = {
+        "steered_toward": chosen,
+        "trait_abs_delta": trait_delta,
+        "max_control_abs_delta": max(control_deltas) if control_deltas else None,
+        "beats_random_controls": beats_controls,
+        "trait_usable_rungs": trait_curve["n_usable_rungs"],
+        "control_usable_rungs": [c["n_usable_rungs"] for c in controls],
+        "trait_spearman": trait_curve["spearman_absalpha_vs_target_ev"],
+        "trait_coherence_ceiling": trait_curve["coherence_ceiling_magnitude"],
+        "control_coherence_ceilings": [c["coherence_ceiling_magnitude"] for c in controls],
+        "works": bool(
+            beats_controls
+            and trait_curve["n_usable_rungs"] >= 3
+            and (trait_curve["spearman_absalpha_vs_target_ev"] or 0) != 0
+        ),
+    }
+
+    report = {
+        "created_utc": datetime.now(timezone.utc).isoformat(),
+        "stage": "validated_sweep",
+        "trait": trait,
+        "direction": which,
+        "layer": layer,
+        "alpha_units": alpha_units,
+        "alpha_scale": round(scale, 4),
+        "magnitude_grid": grid,
+        "instrument": str(items_csv.resolve()) if items_csv else "IPIP_50",
+        "n_items": len(items),
+        "keying_balance": keying_balance(items),
+        "probe_questions": list(probes),
+        "baseline": baseline,
+        "trait_curve": trait_curve,
+        "control_curves": controls,
+        "verdict": verdict,
+        "vectors_pt": str(Path(vectors_pt).resolve()),
+    }
+    out_json.parent.mkdir(parents=True, exist_ok=True)
+    out_json.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    logger.info(
+        "verdict: works=%s toward=%s trait Δ=%s vs control Δ=%s (ρ=%s, ceiling mag %s)",
+        verdict["works"],
+        verdict["steered_toward"],
+        verdict["trait_abs_delta"],
+        verdict["max_control_abs_delta"],
+        verdict["trait_spearman"],
+        verdict["trait_coherence_ceiling"],
+    )
+    return out_json
+
+
+@torch.no_grad()
+def _generate_probe(
+    model: PreTrainedModel,
+    tokenizer: AutoTokenizer,
+    device: torch.device,
+    system: str,
+    question: str,
+    *,
+    max_new_tokens: int = 80,
+) -> str:
+    """Greedy free-text reply under whatever steering context is active."""
+    raw = tokenizer.apply_chat_template(
+        [
+            {"role": "system", "content": system},
+            {"role": "user", "content": question},
+        ],
+        tokenize=True,
+        add_generation_prompt=True,
+        return_tensors="pt",
+    )
+    from app.persona.activations import _as_input_ids_tensor
+
+    input_ids = _as_input_ids_tensor(raw, device)
+    attn = torch.ones_like(input_ids, dtype=torch.long, device=device)
+    out = model.generate(
+        input_ids=input_ids,
+        attention_mask=attn,
+        max_new_tokens=max_new_tokens,
+        do_sample=False,
+        pad_token_id=tokenizer.pad_token_id or tokenizer.eos_token_id,
+    )
+    return tokenizer.decode(out[0, input_ids.shape[-1] :], skip_special_tokens=True).strip()
+
+
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 
@@ -864,6 +1225,40 @@ def _cmd_alpha_sweep(args: argparse.Namespace) -> int:
         model_id=args.model_id or None,
         n_markers=args.n_markers,
         all_traits=not args.target_trait_only,
+    )
+    print(out_json.resolve())
+    return 0
+
+
+def _cmd_validated_sweep(args: argparse.Namespace) -> int:
+    from app.persona.ocean_probes import PROBE_QUESTIONS
+
+    run_dir = _run_dir(args.run_id)
+    vec = Path(args.vectors_pt or run_dir / "ladder" / f"ladder_vectors_{args.trait}.pt")
+    if not vec.is_file():
+        logger.error("Missing ladder vectors: %s (run vectors first)", vec)
+        return 1
+    out_json = Path(
+        args.out
+        or run_dir / "ladder" / f"validated_sweep_{args.trait}_{args.direction}.json"
+    )
+    mags = [float(x.strip()) for x in args.magnitudes.split(",") if x.strip()]
+    run_validated_sweep(
+        vec,
+        out_json,
+        trait=args.trait,
+        which=args.direction,
+        layer_idx=args.layer,
+        magnitudes=mags,
+        steer_toward=args.steer_toward,
+        n_random_controls=args.random_controls,
+        alpha_units=args.alpha_units,
+        model_id=args.model_id or None,
+        n_markers=args.n_markers,
+        items_csv=Path(args.items_csv) if args.items_csv else None,
+        probe_questions=PROBE_QUESTIONS[: max(1, args.probes)],
+        max_new_tokens=args.max_new_tokens,
+        seed=args.seed,
     )
     print(out_json.resolve())
     return 0
@@ -960,6 +1355,63 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_sweep.add_argument("--out", default="", help="Report JSON path.")
     p_sweep.set_defaults(func=_cmd_alpha_sweep)
+
+    p_val = sub.add_parser(
+        "validated-sweep",
+        parents=[common],
+        help="Bipolar dose-response with lock screening, random controls and free-text probes.",
+    )
+    p_val.add_argument("--vectors-pt", default="", help="Input .pt from vectors.")
+    p_val.add_argument(
+        "--direction",
+        default="pc1",
+        choices=("pc1", "endpoint", "ordinal"),
+        help="Which ladder direction to inject (endpoint = classic CAA contrast).",
+    )
+    p_val.add_argument(
+        "--layer",
+        type=int,
+        default=None,
+        help="Injection layer (default: best ladder layer from geometry).",
+    )
+    p_val.add_argument(
+        "--magnitudes",
+        default="0.25,0.5,0.75,1,1.5,2,3",
+        help="Comma-separated |α| values; sign is chosen by --steer-toward.",
+    )
+    p_val.add_argument(
+        "--steer-toward",
+        default="auto",
+        choices=("auto", "high", "low"),
+        help="auto: steer toward whichever pole the baseline has headroom for.",
+    )
+    p_val.add_argument(
+        "--alpha-units",
+        default="relative",
+        choices=("relative", "raw"),
+        help="relative: α × mean activation norm at the layer; raw: α on the unit vector.",
+    )
+    p_val.add_argument(
+        "--random-controls",
+        type=int,
+        default=2,
+        help="Matched-norm random directions to sweep as controls (default: 2).",
+    )
+    p_val.add_argument(
+        "--items-csv",
+        default="",
+        help="Inventory CSV (e.g. data/ipip_neo_120.csv). Default: built-in IPIP-50.",
+    )
+    p_val.add_argument(
+        "--probes",
+        type=int,
+        default=2,
+        help="Free-text probe questions per rung (default: 2).",
+    )
+    p_val.add_argument("--max-new-tokens", type=int, default=80)
+    p_val.add_argument("--seed", type=int, default=0)
+    p_val.add_argument("--out", default="", help="Report JSON path.")
+    p_val.set_defaults(func=_cmd_validated_sweep)
 
     return parser
 
