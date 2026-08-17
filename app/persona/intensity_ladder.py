@@ -459,14 +459,23 @@ def run_prompt_ladder(
     n_markers: int = 3,
     levels: Sequence[int] | None = None,
     all_traits: bool = True,
+    items_csv: Path | None = None,
 ) -> Path:
-    """Administer the IPIP-50 across nine prompted levels of ``trait``.
+    """Administer the inventory across nine prompted levels of ``trait``.
 
     Off-target traits are scored too, so prompted-trait movement can be compared
     against unprompted-trait stability (Serapio-García et al., Fig. 4).
+
+    Every administration is screened for option lock. A prompted level can
+    collapse just as a steered one can, and a locked level contributes a spurious
+    midpoint that flattens the very baseline curve the steering is judged against.
     """
     level_list = [int(x) for x in (levels or range(1, N_LEVELS + 1))]
-    items = items_for_traits(None if all_traits else [trait])
+    items = (
+        items_from_csv(items_csv, traits=None if all_traits else [trait])
+        if items_csv
+        else items_for_traits(None if all_traits else [trait])
+    )
     model, tokenizer, dev = _load_model(model_id, device)
     option_ids = _option_token_ids(tokenizer)
 
@@ -489,38 +498,66 @@ def run_prompt_ladder(
                 collect_activations=True,
             )
             scores = score_traits(responses)
+            ev_scores = score_traits_ev(responses)
+            lock = option_lock(responses)
             rows.append(
                 {
                     "level": level,
                     "variant": variant,
                     "system_prompt": system,
                     "trait_scores": {k: round(v, 4) for k, v in scores.items()},
+                    "ev_scores": {k: round(v, 4) for k, v in ev_scores.items()},
                     "target_score": _round_opt(scores.get(trait)),
+                    "target_ev": _round_opt(ev_scores.get(trait)),
                     "response_validity": round(response_validity(responses), 4),
+                    "lock": lock,
+                    "usable": not lock["locked"],
                 }
             )
+            if lock["locked"]:
+                logger.warning(
+                    "level %s variant %s produced a locked readout (%s); "
+                    "excluded from the prompting baseline",
+                    level,
+                    variant,
+                    lock["reason"],
+                )
             if centroid is not None:
                 per_variant.append(centroid)
         centroid_grid.append(per_variant)
 
-    prompted_levels = [float(r["level"]) for r in rows if r["target_score"] is not None]
+    # Locked administrations are missing data, not measurements, so the baseline
+    # curve is built from the usable ones only.
+    usable_rows = [r for r in rows if r["usable"]]
+    prompted_levels = [float(r["level"]) for r in usable_rows if r["target_score"] is not None]
     prompted_scores = [
-        float(r["target_score"]) for r in rows if r["target_score"] is not None
+        float(r["target_score"]) for r in usable_rows if r["target_score"] is not None
     ]
     level_means = [
-        _mean([r["target_score"] for r in rows if r["level"] == lv and r["target_score"] is not None])
+        _mean(
+            [
+                r["target_score"]
+                for r in usable_rows
+                if r["level"] == lv and r["target_score"] is not None
+            ]
+        )
         for lv in level_list
     ]
     off_target = {
         t: _round_opt(
             spearman_rho(
-                [float(r["level"]) for r in rows if r["trait_scores"].get(t) is not None],
-                [float(r["trait_scores"][t]) for r in rows if r["trait_scores"].get(t) is not None],
+                [float(r["level"]) for r in usable_rows if r["trait_scores"].get(t) is not None],
+                [
+                    float(r["trait_scores"][t])
+                    for r in usable_rows
+                    if r["trait_scores"].get(t) is not None
+                ],
             )
         )
         for t in TRAITS
         if t != trait
     }
+    present_means = [v for v in level_means if v is not None]
 
     report = {
         "created_utc": datetime.now(timezone.utc).isoformat(),
@@ -530,13 +567,25 @@ def run_prompt_ladder(
         "levels": level_list,
         "variants": max(1, variants),
         "n_items": len(items),
+        "instrument": str(Path(items_csv).resolve()) if items_csv else "IPIP_50",
+        "keying_balance": keying_balance(items),
         "administrations": rows,
+        "n_administrations": len(rows),
+        "n_usable_administrations": len(usable_rows),
+        "locked_administrations": [
+            {"level": r["level"], "variant": r["variant"], "reason": r["lock"]["reason"]}
+            for r in rows
+            if not r["usable"]
+        ],
         "level_mean_target_score": [_round_opt(v) for v in level_means],
         "spearman_level_vs_target_score": _round_opt(
             spearman_rho(prompted_levels, prompted_scores)
         ),
-        "monotone_fraction_level_means": _round_opt(
-            monotone_fraction([v for v in level_means if v is not None])
+        "monotone_fraction_level_means": _round_opt(monotone_fraction(present_means)),
+        "target_score_range": (
+            [_round_opt(min(present_means)), _round_opt(max(present_means))]
+            if present_means
+            else None
         ),
         "off_target_spearman": off_target,
     }
@@ -559,9 +608,12 @@ def run_prompt_ladder(
         centroids_pt,
     )
     logger.info(
-        "prompting baseline ρ(level, %s) = %s",
+        "prompting baseline ρ(level, %s) = %s over %s/%s usable administrations, range %s",
         trait,
         report["spearman_level_vs_target_score"],
+        report["n_usable_administrations"],
+        report["n_administrations"],
+        report["target_score_range"],
     )
     return out_json
 
@@ -1173,6 +1225,7 @@ def _cmd_prompt_ladder(args: argparse.Namespace) -> int:
         variants=args.variants,
         n_markers=args.n_markers,
         all_traits=not args.target_trait_only,
+        items_csv=Path(args.items_csv) if args.items_csv else None,
     )
     if args.probe_contexts:
         probe = Path(run_dir / "ladder" / f"centroids_probe_{args.trait}.pt")
@@ -1309,6 +1362,11 @@ def build_parser() -> argparse.ArgumentParser:
         "--probe-contexts",
         action="store_true",
         help="Also collect level centroids from open-ended contexts (instrument-independence check).",
+    )
+    p_ladder.add_argument(
+        "--items-csv",
+        default="",
+        help="Inventory CSV (e.g. data/ipip_neo_120.csv). Default: built-in IPIP-50.",
     )
     p_ladder.add_argument("--out", default="", help="Report JSON path.")
     p_ladder.add_argument("--centroids-out", default="", help="Level activations .pt path.")
