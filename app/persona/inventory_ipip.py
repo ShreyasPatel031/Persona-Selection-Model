@@ -12,7 +12,11 @@ the public domain, phrased first-person exactly as the inventory administers the
 
 from __future__ import annotations
 
+import csv
+import math
+from collections import Counter
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Iterable, Sequence
 
 TRAITS: tuple[str, ...] = (
@@ -193,3 +197,139 @@ def response_validity(responses: Sequence[dict]) -> float:
         return 0.0
     ok = sum(1 for r in responses if r.get("value") is not None)
     return ok / len(responses)
+
+
+# ── option-lock screening ─────────────────────────────────────────────────────
+#
+# Reverse keying is what makes a collapsed readout dangerous rather than merely
+# useless. If the model answers the same value ``v`` to every item, plus-keyed
+# items score ``v`` and minus-keyed items score ``6 - v``, so a trait with
+# balanced keying averages to exactly the scale midpoint no matter which option
+# was locked onto. ``response_validity`` still reports 1.0, because every answer
+# was a parseable option. The result is a confident-looking null.
+#
+# Entropy is in nats over the five options; ln(5) ≈ 1.609 is maximal.
+
+MAX_TOP_OPTION_FRACTION = 0.90
+MIN_OPTION_ENTROPY = 0.30
+
+
+def option_entropy(responses: Sequence[dict]) -> float:
+    """Shannon entropy (nats) of the answered-option distribution."""
+    values = [r["value"] for r in responses if r.get("value") is not None]
+    n = len(values)
+    if n == 0:
+        return 0.0
+    counts = Counter(values)
+    return -sum((c / n) * math.log(c / n) for c in counts.values())
+
+
+def option_lock(responses: Sequence[dict]) -> dict:
+    """Detect a collapsed readout that corrected scoring would hide as a midpoint.
+
+    Returns the option histogram plus a ``locked`` verdict. Callers should treat
+    a locked administration as *missing data*, not as a measured score.
+    """
+    values = [r["value"] for r in responses if r.get("value") is not None]
+    n = len(values)
+    counts = Counter(values)
+    top = counts.most_common(1)[0][1] / n if n else 1.0
+    ent = option_entropy(responses)
+    locked = bool(n == 0 or top >= MAX_TOP_OPTION_FRACTION or ent < MIN_OPTION_ENTROPY)
+    if n == 0:
+        reason = "no parseable options"
+    elif top >= MAX_TOP_OPTION_FRACTION:
+        reason = f"one option covers {top:.0%} of items"
+    elif ent < MIN_OPTION_ENTROPY:
+        reason = f"option entropy {ent:.2f} nats collapsed"
+    else:
+        reason = ""
+    return {
+        "n_answered": n,
+        "top_option_fraction": round(top, 4),
+        "option_entropy": round(ent, 4),
+        "distinct_options": len(counts),
+        "histogram": {str(k): v for k, v in sorted(counts.items())},
+        "locked": locked,
+        "reason": reason,
+    }
+
+
+def keying_balance(items: Sequence[InventoryItem]) -> dict[str, dict[str, int]]:
+    """Plus/minus item counts per trait.
+
+    A trait whose keying is lopsided cannot be midpoint-pinned by a lock, but its
+    score is biased toward the locked option instead, so both cases need the
+    balance reported alongside the score.
+    """
+    out: dict[str, dict[str, int]] = {}
+    for it in items:
+        bucket = out.setdefault(it.trait, {"plus": 0, "minus": 0})
+        bucket["plus" if it.keyed > 0 else "minus"] += 1
+    return out
+
+
+def score_traits_ev(responses: Sequence[dict]) -> dict[str, float]:
+    """Expected-value scoring over the option distribution.
+
+    Each response may carry ``probs``, a mapping of option label to probability.
+    Where present, the item contributes ``sum_o p(o) * value(o)`` instead of the
+    argmax value, which keeps a graded signal after the argmax has saturated.
+    Falls back to the argmax value when no distribution is supplied.
+    """
+    sums: dict[str, float] = {}
+    counts: dict[str, int] = {}
+    for r in responses:
+        probs = r.get("probs")
+        if probs:
+            total = sum(probs.values())
+            if total <= 0:
+                continue
+            raw = sum(float(p) * int(opt) for opt, p in probs.items()) / total
+        elif r.get("value") is not None:
+            raw = float(r["value"])
+        else:
+            continue
+        trait = str(r["trait"])
+        keyed = int(r["keyed"])
+        value = raw if keyed > 0 else float(len(LIKERT_OPTIONS) + 1) - raw
+        sums[trait] = sums.get(trait, 0.0) + value
+        counts[trait] = counts.get(trait, 0) + 1
+    return {t: sums[t] / counts[t] for t in sorted(sums) if counts[t]}
+
+
+def items_from_csv(path: Path, *, traits: Iterable[str] | None = None) -> list[InventoryItem]:
+    """Load items from an IPIP CSV (``text``, ``domain``, ``key`` columns).
+
+    Pairs with ``scripts/fetch_ipip_items.py``, which builds a keying-balanced
+    120-item IPIP-NEO form. Prefer that form over :data:`IPIP_50` when a lock
+    diagnosis matters: balanced keying per trait makes midpoint pinning
+    unambiguous, whereas IPIP-50 is lopsided (neuroticism is 8 plus / 2 minus).
+    """
+    domain_to_trait = {
+        "O": "openness",
+        "C": "conscientiousness",
+        "E": "extraversion",
+        "A": "agreeableness",
+        "N": "neuroticism",
+    }
+    wanted = {t.strip().lower() for t in traits} if traits is not None else None
+    out: list[InventoryItem] = []
+    with Path(path).open(encoding="utf-8") as f:
+        reader = csv.DictReader(line for line in f if not line.startswith("#"))
+        for row in reader:
+            raw_domain = (row.get("domain") or row.get("label_ocean") or "").strip().upper()
+            trait = domain_to_trait.get(raw_domain)
+            if trait is None:
+                raise ValueError(f"Unknown OCEAN domain {raw_domain!r} in {path}")
+            if wanted is not None and trait not in wanted:
+                continue
+            text = row["text"].strip()
+            # Pool items are phrased as predicates ("Worry about things."); the
+            # inventory administers them first person.
+            if not text[:1].isupper() or not text.lower().startswith("i "):
+                text = f"I {text[0].lower()}{text[1:]}"
+            out.append(InventoryItem(trait, text, int(row["key"])))
+    if not out:
+        raise ValueError(f"No items loaded from {path}")
+    return out
