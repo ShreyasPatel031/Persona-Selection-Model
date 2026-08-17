@@ -278,15 +278,39 @@ def _default_model_id() -> str:
 
 
 def _option_token_ids(tokenizer: AutoTokenizer) -> dict[str, list[int]]:
-    """First-token ids for each Likert option, with and without a leading space."""
+    """Token ids that carry each Likert option, bare and with a leading space.
+
+    The digit-bearing token is what matters, not the first token of the encoding.
+    Tokenizers differ here: Gemma merges " 1" into one token, while Qwen splits it
+    into [space, "1"], so taking ``enc[0]`` would hand every option the *same*
+    leading-space id and collapse the constrained readout onto one token.
+
+    Raises if two options still end up sharing an id, since scoring would be
+    meaningless rather than merely noisy.
+    """
     ids: dict[str, list[int]] = {}
     for opt in LIKERT_OPTIONS:
         cands: list[int] = []
         for text in (opt, f" {opt}"):
             enc = tokenizer.encode(text, add_special_tokens=False)
-            if enc:
-                cands.append(int(enc[0]))
+            if not enc:
+                continue
+            # Single-token variants are unambiguous; for multi-token encodings the
+            # digit lands last, after any whitespace prefix.
+            cands.append(int(enc[0]) if len(enc) == 1 else int(enc[-1]))
         ids[opt] = sorted(set(cands))
+        if not ids[opt]:
+            raise ValueError(f"Tokenizer produced no usable ids for option {opt!r}")
+
+    seen: dict[int, str] = {}
+    for opt, tids in ids.items():
+        for tid in tids:
+            if tid in seen and seen[tid] != opt:
+                raise ValueError(
+                    f"Likert options {seen[tid]!r} and {opt!r} share token id {tid}; "
+                    "constrained scoring cannot distinguish them"
+                )
+            seen[tid] = opt
     return ids
 
 
@@ -911,6 +935,120 @@ def _signed_grid(magnitudes: Sequence[float], direction_sign: int) -> list[float
     return out
 
 
+def resolve_steering_layer(
+    geometry: dict[str, Any],
+    n_layers: int,
+    *,
+    band: tuple[float, float] = (0.3, 0.8),
+) -> tuple[int, str]:
+    """Pick a steering layer inside a sane band of the stack.
+
+    ``analyze_ladder`` selects on PC1 variance ratio, which is degenerate when the
+    ladder has few levels: with three level centroids PC1 explains nearly
+    everything at every layer, and the argmax can land on layer 0. Very early
+    layers are a poor injection site, and because the relative alpha scale is
+    derived from the chosen layer's activation norm, a bad layer choice also
+    silently rescales the entire magnitude grid.
+    """
+    lo = max(1, int(band[0] * n_layers))
+    hi = max(lo + 1, int(band[1] * n_layers))
+    best = int(geometry.get("best_layer", n_layers // 2))
+    if lo <= best < hi:
+        return best, "ladder geometry"
+
+    per_layer = geometry.get("per_layer") or []
+    candidates: list[tuple[float, int]] = []
+    for li in range(lo, min(hi, len(per_layer))):
+        ratio = per_layer[li].get("pc1_variance_ratio")
+        if ratio is not None:
+            candidates.append((float(ratio), li))
+    if candidates:
+        chosen = max(candidates)[1]
+        return chosen, f"geometry best layer {best} outside band {lo}-{hi}"
+    return n_layers // 2, f"geometry best layer {best} outside band {lo}-{hi}, no per-layer data"
+
+
+def calibrate_magnitude_ceiling(
+    model: PreTrainedModel,
+    tokenizer: AutoTokenizer,
+    device: torch.device,
+    *,
+    layer_idx: int,
+    direction: torch.Tensor,
+    scale: float,
+    sign: int,
+    system: str,
+    question: str,
+    start_alpha: float = 0.02,
+    factor: float = 2.0,
+    max_steps: int = 9,
+    max_new_tokens: int = 48,
+) -> dict[str, Any]:
+    """Find the largest magnitude that still produces prose, by doubling upward.
+
+    This replaces guessing the grid. A fixed alpha grid cannot be right across
+    models: the same relative alpha is a no-op on one residual scale and well past
+    the point of collapse on another. Searching for the ceiling first makes the
+    sweep land in the band where the direction can actually be observed.
+
+    Returns the last coherent alpha/magnitude and the full trace.
+    """
+    from app.persona.ocean_probes import coherence_metrics
+
+    trace: list[dict[str, Any]] = []
+    last_ok_alpha: float | None = None
+    alpha = float(start_alpha)
+    for _ in range(max_steps):
+        signed = sign * alpha
+        with _Steering(model, layer_idx, direction, signed * scale):
+            text = _generate_probe(
+                model, tokenizer, device, system, question, max_new_tokens=max_new_tokens
+            )
+        coh = coherence_metrics(text)
+        trace.append(
+            {
+                "alpha": round(signed, 6),
+                "magnitude": round(signed * scale, 4),
+                "coherent": coh["coherent"],
+                "type_token_ratio": coh["type_token_ratio"],
+                "text": text,
+            }
+        )
+        logger.info(
+            "calibrate |α|=%.4f (mag %.1f) coherent=%s ttr=%s",
+            alpha,
+            abs(signed * scale),
+            coh["coherent"],
+            coh["type_token_ratio"],
+        )
+        if coh["coherent"]:
+            last_ok_alpha = alpha
+        elif last_ok_alpha is not None:
+            # Collapsed after at least one coherent rung: the ceiling is behind us.
+            break
+        alpha *= factor
+
+    return {
+        "ceiling_alpha": last_ok_alpha,
+        "ceiling_magnitude": (
+            round(last_ok_alpha * scale, 4) if last_ok_alpha is not None else None
+        ),
+        "searched_to_alpha": round(alpha / factor, 6),
+        "trace": trace,
+    }
+
+
+def geometric_grid(ceiling_alpha: float, n_rungs: int = 6, span: float = 16.0) -> list[float]:
+    """``n_rungs`` magnitudes log-spaced from ``ceiling/span`` up to the ceiling."""
+    if ceiling_alpha <= 0 or n_rungs < 1:
+        return []
+    lo = ceiling_alpha / max(span, 1.0)
+    if n_rungs == 1:
+        return [round(ceiling_alpha, 6)]
+    ratio = (ceiling_alpha / lo) ** (1.0 / (n_rungs - 1))
+    return [round(lo * ratio**i, 6) for i in range(n_rungs)]
+
+
 def random_control_directions(
     hidden_dim: int, n: int, *, seed: int = 0, like: torch.Tensor | None = None
 ) -> list[torch.Tensor]:
@@ -932,7 +1070,7 @@ def run_validated_sweep(
     trait: str | None = None,
     which: str = "pc1",
     layer_idx: int | None = None,
-    magnitudes: Sequence[float] = (0.25, 0.5, 0.75, 1.0, 1.5, 2.0, 3.0),
+    magnitudes: Sequence[float] | None = None,
     steer_toward: str = "auto",
     n_random_controls: int = 2,
     alpha_units: str = "relative",
@@ -943,6 +1081,9 @@ def run_validated_sweep(
     probe_questions: Sequence[str] | None = None,
     max_new_tokens: int = 80,
     seed: int = 0,
+    auto_calibrate: bool = True,
+    n_rungs: int = 6,
+    layer_band: tuple[float, float] = (0.3, 0.8),
 ) -> Path:
     """Dose-response for one direction, screened and controlled.
 
@@ -963,13 +1104,20 @@ def run_validated_sweep(
         marker_score,
     )
 
+
     blob = torch.load(vectors_pt, map_location="cpu")
     trait = trait or str(blob["trait"])
     key = {"pc1": "v_pc1", "endpoint": "v_endpoint", "ordinal": "v_ordinal"}.get(which)
     if key is None:
         raise ValueError("which must be one of: pc1, endpoint, ordinal")
     stack: torch.Tensor = blob[key]
-    layer = int(layer_idx if layer_idx is not None else blob["geometry"]["best_layer"])
+    layer_note = "explicit layer argument"
+    if layer_idx is None:
+        layer, layer_note = resolve_steering_layer(
+            blob["geometry"], int(stack.shape[0]), band=layer_band
+        )
+    else:
+        layer = int(layer_idx)
     direction = stack[layer]
     unit = direction / direction.norm().clamp_min(1e-8)
 
@@ -1035,7 +1183,40 @@ def run_validated_sweep(
     else:
         raise ValueError("steer_toward must be 'auto', 'high' or 'low'")
     sign = 1 if chosen == "high" else -1
-    grid = _signed_grid(magnitudes, sign)
+
+    # Calibrate the grid to where the model still speaks, rather than guessing.
+    calibration: dict[str, Any] | None = None
+    if magnitudes is None and not auto_calibrate:
+        raise ValueError("pass magnitudes or leave auto_calibrate on")
+    if auto_calibrate:
+        calibration = calibrate_magnitude_ceiling(
+            model,
+            tokenizer,
+            dev,
+            layer_idx=layer,
+            direction=unit,
+            scale=scale,
+            sign=sign,
+            system=PROBE_SYSTEM,
+            question=probes[0],
+            max_new_tokens=max_new_tokens,
+        )
+        if calibration["ceiling_alpha"]:
+            grid_mags = geometric_grid(float(calibration["ceiling_alpha"]), n_rungs)
+            logger.info(
+                "calibrated ceiling |α|=%s (mag %s); grid %s",
+                calibration["ceiling_alpha"],
+                calibration["ceiling_magnitude"],
+                grid_mags,
+            )
+        else:
+            grid_mags = list(magnitudes) if magnitudes else [0.25, 0.5, 1.0, 2.0]
+            logger.warning(
+                "calibration found no coherent rung; falling back to grid %s", grid_mags
+            )
+    else:
+        grid_mags = list(magnitudes or [])
+    grid = _signed_grid(grid_mags, sign)
 
     def curve_for(direction_vec: torch.Tensor, label: str) -> dict[str, Any]:
         rows: list[dict[str, Any]] = []
@@ -1147,6 +1328,8 @@ def run_validated_sweep(
         "layer": layer,
         "alpha_units": alpha_units,
         "alpha_scale": round(scale, 4),
+        "layer_choice": layer_note,
+        "magnitude_calibration": calibration,
         "magnitude_grid": grid,
         "instrument": str(items_csv.resolve()) if items_csv else "IPIP_50",
         "n_items": len(items),
@@ -1302,7 +1485,9 @@ def _cmd_validated_sweep(args: argparse.Namespace) -> int:
         trait=args.trait,
         which=args.direction,
         layer_idx=args.layer,
-        magnitudes=mags,
+        magnitudes=mags or None,
+        auto_calibrate=not args.no_auto_calibrate,
+        n_rungs=args.rungs,
         steer_toward=args.steer_toward,
         n_random_controls=args.random_controls,
         alpha_units=args.alpha_units,
@@ -1434,8 +1619,17 @@ def build_parser() -> argparse.ArgumentParser:
     )
     p_val.add_argument(
         "--magnitudes",
-        default="0.25,0.5,0.75,1,1.5,2,3",
-        help="Comma-separated |α| values; sign is chosen by --steer-toward.",
+        default="",
+        help="Comma-separated |α| values; sign is chosen by --steer-toward. "
+        "Empty (default) calibrates the grid to the measured coherence ceiling.",
+    )
+    p_val.add_argument(
+        "--no-auto-calibrate",
+        action="store_true",
+        help="Use --magnitudes verbatim instead of calibrating to the coherence ceiling.",
+    )
+    p_val.add_argument(
+        "--rungs", type=int, default=6, help="Rungs in the calibrated grid (default: 6)."
     )
     p_val.add_argument(
         "--steer-toward",

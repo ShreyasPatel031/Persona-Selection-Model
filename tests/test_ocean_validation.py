@@ -174,6 +174,35 @@ def test_ev_scoring_differs_from_argmax_on_asymmetric_distribution():
     assert ev < argmax
 
 
+def test_option_token_ids_reject_options_sharing_a_token():
+    """A tokenizer that maps two options to one id makes scoring meaningless."""
+    from app.persona.intensity_ladder import _option_token_ids
+
+    class Collapsing:
+        def encode(self, text, add_special_tokens=False):  # noqa: ARG002
+            return [7]
+
+    with pytest.raises(ValueError, match="share token id"):
+        _option_token_ids(Collapsing())
+
+
+def test_option_token_ids_take_the_digit_not_a_leading_space():
+    """Qwen encodes ' 1' as [space, '1']; taking enc[0] would collapse all options."""
+    from app.persona.intensity_ladder import _option_token_ids
+
+    space_id = 220
+
+    class SplitsLeadingSpace:
+        def encode(self, text, add_special_tokens=False):  # noqa: ARG002
+            digit = int(text.strip())
+            bare = 15 + digit
+            return [bare] if not text.startswith(" ") else [space_id, bare]
+
+    ids = _option_token_ids(SplitsLeadingSpace())
+    assert ids == {"1": [16], "2": [17], "3": [18], "4": [19], "5": [20]}
+    assert all(space_id not in tids for tids in ids.values())
+
+
 def test_likert_probs_normalise_and_rank_like_argmax():
     vocab = 100
     logits = torch.full((vocab,), -10.0)
@@ -239,6 +268,53 @@ def test_random_controls_are_unit_norm_and_reproducible():
         assert float(v.norm()) == pytest.approx(1.0, abs=1e-5)
     assert all(torch.allclose(x, y) for x, y in zip(a, b))
     assert not torch.allclose(a[0], c[0])
+
+
+def test_geometric_grid_spans_up_to_the_ceiling():
+    from app.persona.intensity_ladder import geometric_grid
+
+    grid = geometric_grid(0.32, n_rungs=5, span=16.0)
+    assert len(grid) == 5
+    assert grid[-1] == pytest.approx(0.32)
+    assert grid[0] == pytest.approx(0.02)
+    assert grid == sorted(grid)
+
+
+def test_geometric_grid_handles_degenerate_input():
+    from app.persona.intensity_ladder import geometric_grid
+
+    assert geometric_grid(0.0) == []
+    assert geometric_grid(-1.0) == []
+    assert geometric_grid(0.5, n_rungs=1) == [0.5]
+
+
+def test_steering_layer_keeps_the_geometry_choice_inside_the_band():
+    from app.persona.intensity_ladder import resolve_steering_layer
+
+    geom = {"best_layer": 15, "per_layer": [{"pc1_variance_ratio": 0.5} for _ in range(24)]}
+    layer, note = resolve_steering_layer(geom, 24)
+    assert layer == 15
+    assert "geometry" in note
+
+
+def test_steering_layer_rejects_layer_zero_from_a_degenerate_ladder():
+    """Three level centroids make PC1 explain everything, so argmax can hit layer 0."""
+    from app.persona.intensity_ladder import resolve_steering_layer
+
+    per_layer = [{"pc1_variance_ratio": 1.0} for _ in range(24)]
+    per_layer[10]["pc1_variance_ratio"] = 1.0
+    geom = {"best_layer": 0, "per_layer": per_layer}
+    layer, note = resolve_steering_layer(geom, 24)
+    assert 24 * 0.3 <= layer < 24 * 0.8
+    assert "outside band" in note
+
+
+def test_steering_layer_falls_back_to_mid_stack_without_per_layer_data():
+    from app.persona.intensity_ladder import resolve_steering_layer
+
+    layer, note = resolve_steering_layer({"best_layer": 0}, 24)
+    assert layer == 12
+    assert "outside band" in note
 
 
 def test_spearman_is_one_for_a_perfect_monotone_curve():
