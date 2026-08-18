@@ -198,9 +198,54 @@ def layer_ladder_geometry(
     proj_end = [_cos(c, v_end) * float(c.float().norm()) for c in centroids]
     proj_pc1 = [float(torch.dot(c.float(), v_pc1).item()) for c in centroids]
 
+    # A step function scores 1.0 on both Spearman and monotone fraction, so rank
+    # statistics alone cannot tell a graded trait axis from a low/high switch.
+    # R² against a line vs against a two-group step can, and the mean-alignment
+    # says how much of the direction is just global residual gain.
+    mean_c = centroids.float().mean(dim=0)
+    unit_mean = mean_c / mean_c.norm().clamp_min(1e-9)
+    levels_x = [float(v) for v in levels]
+    cut = len(proj_pc1) // 2
+    lo_half, hi_half = proj_pc1[:cut], proj_pc1[cut:]
+
+    def _r2_line() -> float | None:
+        n = len(levels_x)
+        if n < 3:
+            return None
+        mx, my = sum(levels_x) / n, sum(proj_pc1) / n
+        den = sum((a - mx) ** 2 for a in levels_x)
+        if den == 0:
+            return None
+        slope = sum((a - mx) * (b - my) for a, b in zip(levels_x, proj_pc1)) / den
+        intercept = my - slope * mx
+        ss = sum((b - (intercept + slope * a)) ** 2 for a, b in zip(levels_x, proj_pc1))
+        tot = sum((b - my) ** 2 for b in proj_pc1)
+        return 1 - ss / tot if tot else None
+
+    def _r2_two_group() -> float | None:
+        if not lo_half or not hi_half:
+            return None
+        ml = sum(lo_half) / len(lo_half)
+        mh = sum(hi_half) / len(hi_half)
+        my = sum(proj_pc1) / len(proj_pc1)
+        ss = sum((v - ml) ** 2 for v in lo_half) + sum((v - mh) ** 2 for v in hi_half)
+        tot = sum((v - my) ** 2 for v in proj_pc1)
+        return 1 - ss / tot if tot else None
+
     return {
         "n_levels": int(centroids.shape[0]),
         "endpoint_norm": float(v_end.float().norm().item()),
+        "r2_level_linear": _round_opt(_r2_line()),
+        "r2_level_two_group": _round_opt(_r2_two_group()),
+        "gain_leak_cos_mean_pc1": round(abs(_cos(mean_c, v_pc1)), 4),
+        "spearman_within_low_half": _round_opt(
+            spearman_rho(levels_x[:cut], lo_half) if cut >= 2 else None
+        ),
+        "spearman_within_high_half": _round_opt(
+            spearman_rho(levels_x[cut:], hi_half) if len(hi_half) >= 2 else None
+        ),
+        "pc1_span": round(abs(proj_pc1[-1] - proj_pc1[0]), 4) if len(proj_pc1) >= 2 else None,
+        "cos_mean_unit_pc1": round(_cos(unit_mean, v_pc1), 4),
         "step_norms": [round(v, 4) for v in step_norms],
         "step_norm_cv": (
             round(
@@ -247,10 +292,22 @@ def analyze_ladder(
     ]
 
     def quality(row: dict[str, Any]) -> float:
-        mono = row.get("monotone_fraction_pc1_projection") or 0.0
-        pc1 = row.get("pc1_variance_ratio") or 0.0
-        rho = abs(row.get("spearman_level_vs_pc1_projection") or 0.0)
-        return mono * pc1 * rho
+        """Prefer layers that encode level *gradedly*, not as a low/high switch.
+
+        The previous objective was ``monotone_fraction × pc1_variance × |ρ|``,
+        all rank-based, so a step function scored a perfect 1.0. That picked
+        layer 10 for neuroticism, where 97.5% of the direction is the mean
+        residual (global gain) and the graded span is ~34 units against ~1076
+        at layer 19.
+        """
+        r2 = row.get("r2_level_linear") or 0.0
+        lo = row.get("spearman_within_low_half")
+        hi = row.get("spearman_within_high_half")
+        halves = [v for v in (lo, hi) if v is not None]
+        within = max(0.0, sum(halves) / len(halves)) if halves else 0.0
+        # A direction aligned with the mean residual is a gain knob, not an axis.
+        gain_free = 1.0 - (row.get("gain_leak_cos_mean_pc1") or 0.0)
+        return r2 * within * max(0.0, gain_free)
 
     scores = [quality(r) for r in per_layer]
     best = int(max(range(n_layers), key=lambda i: scores[i])) if n_layers else -1
