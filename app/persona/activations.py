@@ -54,6 +54,14 @@ def _pick_model_dtype(dev: torch.device) -> torch.dtype:
       Opt-in to fast fp16 only with ``PERSONA_CUDA_ALLOW_FP16=1`` (may reproduce NaNs).
     """
     if dev.type != "cuda":
+        # A 4B model is ~16GB in fp32 but ~8GB in bf16, which is the difference
+        # between fitting on a small CPU box and not. Opt in explicitly since CPU
+        # bf16 matmul is slower per token than fp32.
+        cpu_dtype = os.environ.get("PERSONA_CPU_DTYPE", "").strip().lower()
+        if cpu_dtype in ("bf16", "bfloat16"):
+            return torch.bfloat16
+        if cpu_dtype in ("fp16", "float16"):
+            return torch.float16
         return torch.float32
     if os.environ.get("PERSONA_CUDA_ALLOW_FP16", "").strip().lower() in (
         "1",

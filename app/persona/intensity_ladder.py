@@ -31,6 +31,7 @@ import argparse
 import json
 import logging
 import math
+import os
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import TYPE_CHECKING, Any, Sequence
@@ -432,6 +433,130 @@ class _Steering:
             self.handle = None
 
 
+INVENTORY_BATCH = int(os.environ.get("INVENTORY_BATCH", "16"))
+
+
+@torch.inference_mode()
+def _administer_batched(
+    model: PreTrainedModel,
+    tokenizer: AutoTokenizer,
+    device: torch.device,
+    system: str,
+    items: Sequence[InventoryItem],
+    *,
+    option_ids: dict[str, list[int]],
+    collect_activations: bool,
+    max_batch: int,
+) -> tuple[list[dict[str, Any]], torch.Tensor | None]:
+    """Administer the whole form in padded batches.
+
+    Items are independent single-turn prompts, so batching them is free accuracy-
+    wise and is the difference between one forward per item and one per batch.
+    Sequences are **left**-padded so the final position is the answer slot for
+    every row, which lets a single ``[:, -1]`` slice serve both the constrained
+    logits and the answer-position activation.
+
+    Activations are captured with per-layer forward hooks reading only the last
+    position, rather than ``output_hidden_states=True``, which would materialise
+    every position at every layer and dominate memory at this batch size.
+
+    One deliberate difference from the unbatched path: ``hidden_states[-1]`` is
+    returned *after* the model's final norm, so the old path mixed raw block
+    outputs for every layer with a normed final layer (norm ~286 against ~46 on
+    Qwen-0.5B). Hooks give raw block outputs throughout, which is consistent and
+    is what the steering hook itself perturbs. Layers below the last are identical
+    between the two paths to within 4e-5.
+    """
+    if tokenizer.pad_token_id is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    pad_id = int(tokenizer.pad_token_id)
+    layers = language_model_layers(model)
+
+    seqs: list[torch.Tensor] = []
+    for item in items:
+        raw = tokenizer.apply_chat_template(
+            [
+                {"role": "system", "content": system},
+                {"role": "user", "content": item_user_message(item)},
+            ],
+            tokenize=True,
+            add_generation_prompt=True,
+            return_tensors="pt",
+        )
+        ids = raw if isinstance(raw, torch.Tensor) else raw["input_ids"]
+        seqs.append(ids[0])
+
+    responses: list[dict[str, Any]] = []
+    acts: list[torch.Tensor] = []
+    batch = max(1, int(max_batch))
+    start = 0
+    while start < len(seqs):
+        end = min(start + batch, len(seqs))
+        chunk = seqs[start:end]
+        width = max(int(s.shape[0]) for s in chunk)
+        ids = torch.full((len(chunk), width), pad_id, dtype=torch.long)
+        attn = torch.zeros((len(chunk), width), dtype=torch.long)
+        for i, s in enumerate(chunk):
+            length = int(s.shape[0])
+            ids[i, width - length :] = s
+            attn[i, width - length :] = 1
+        ids, attn = ids.to(device), attn.to(device)
+
+        captured: dict[int, torch.Tensor] = {}
+        handles: list[Any] = []
+        if collect_activations:
+            def make_hook(idx: int) -> Any:
+                def hook(_m: Any, _inp: Any, output: Any) -> None:
+                    h = output[0] if isinstance(output, tuple) else output
+                    if isinstance(h, torch.Tensor) and h.dim() == 3:
+                        captured[idx] = h[:, -1, :].detach().float().cpu()
+
+                return hook
+
+            handles = [
+                layer.register_forward_hook(make_hook(i)) for i, layer in enumerate(layers)
+            ]
+        try:
+            out = model(input_ids=ids, attention_mask=attn, use_cache=False)
+            logits = out.logits[:, -1, :].detach().float().cpu()
+        except torch.cuda.OutOfMemoryError:
+            for h in handles:
+                h.remove()
+            torch.cuda.empty_cache()
+            if batch <= 1:
+                raise
+            batch = max(1, batch // 2)
+            logger.warning("inventory OOM, retrying at batch %s", batch)
+            continue
+        finally:
+            for h in handles:
+                h.remove()
+
+        for row, item in enumerate(items[start:end]):
+            responses.append(
+                {
+                    "trait": item.trait,
+                    "text": item.text,
+                    "keyed": item.keyed,
+                    "value": _likert_from_logits(logits[row], option_ids),
+                    "probs": _likert_probs(logits[row], option_ids),
+                }
+            )
+        if collect_activations and captured:
+            per_layer = torch.stack([captured[i] for i in sorted(captured)], dim=0)
+            # (n_layers, batch, d) -> per-item (n_layers, d)
+            for row in range(per_layer.shape[1]):
+                acts.append(per_layer[:, row, :])
+
+        del out, logits, captured
+        if device.type == "cuda":
+            torch.cuda.empty_cache()
+        start = end
+
+    centroid = torch.stack(acts, dim=0).mean(dim=0) if acts else None
+    return responses, centroid
+
+
 def administer_inventory(
     model: PreTrainedModel,
     tokenizer: AutoTokenizer,
@@ -441,13 +566,27 @@ def administer_inventory(
     *,
     option_ids: dict[str, list[int]],
     collect_activations: bool = False,
+    max_batch: int | None = None,
+    batched: bool = True,
 ) -> tuple[list[dict[str, Any]], torch.Tensor | None]:
-    """Administer items one at a time under ``system_prompt``.
+    """Administer every item under ``system_prompt``.
 
     Returns the per-item responses and, optionally, the mean answer-position
     activation across items (``(n_layers, d)``) — the level centroid.
     """
     system = f"{system_prompt}\n\n{ITEM_INSTRUCTION}"
+    if batched:
+        return _administer_batched(
+            model,
+            tokenizer,
+            device,
+            system,
+            items,
+            option_ids=option_ids,
+            collect_activations=collect_activations,
+            max_batch=INVENTORY_BATCH if max_batch is None else max_batch,
+        )
+
     responses: list[dict[str, Any]] = []
     acts: list[torch.Tensor] = []
     for item in items:
@@ -1256,9 +1395,15 @@ def run_validated_sweep(
         xs = [abs(r["alpha"]) for r in usable]
         ys = [float(r["target_ev"]) for r in usable]
         base = next((r["target_ev"] for r in rows if r["alpha"] == 0.0), None)
-        best = None
-        if usable:
-            best = (min if sign < 0 else max)(usable, key=lambda r: float(r["target_ev"]))
+        # Prefer the best rung that is still answering in the first person. The
+        # largest score shift tends to sit at the collapsed end of the sweep, so
+        # picking on magnitude of effect alone selects the artefact.
+        pick = (min if sign < 0 else max)
+        clean = [r for r in usable if not r.get("refused_fraction")]
+        best = pick(clean, key=lambda r: float(r["target_ev"])) if clean else None
+        best_any = pick(usable, key=lambda r: float(r["target_ev"])) if usable else None
+        if best is None:
+            best = best_any
         # Coherence ceiling: the largest magnitude whose probes are still prose.
         ceiling = None
         for r in rows:
@@ -1269,6 +1414,7 @@ def run_validated_sweep(
             "rows": rows,
             "n_rungs": len(rows),
             "n_usable_rungs": len(usable),
+            "n_usable_non_refusing_rungs": len(clean),
             "baseline_target_ev": base,
             "spearman_absalpha_vs_target_ev": _round_opt(spearman_rho(xs, ys)),
             "monotone_fraction_target_ev": _round_opt(monotone_fraction(ys)),
@@ -1287,6 +1433,7 @@ def run_validated_sweep(
                 else None
             ),
             "coherence_ceiling_magnitude": ceiling,
+            "best_usable_is_non_refusing": bool(clean),
             "marker_spearman": _round_opt(
                 spearman_rho(
                     [abs(r["alpha"]) for r in rows if r.get("mean_net_markers") is not None],
