@@ -44,20 +44,23 @@ signal. The experiments below confirm and harden this.
 
 ### E1. Re-dosed IPIP sweeps (one GPU session; highest expected value)
 
+**Status: script ready, awaiting Colab L4 run.**  
+Runner: `scripts/e1_inspan_redose.py`. Paste: `docs/E1_COLAB.md`.  
+Output: `results/e1_inspan/`.
+
 Re-run `run_validated_sweep` for the four poles with grids anchored to the
-trait span, not the coherence ceiling:
+trait span, not the coherence ceiling (absolute residual magnitudes from
+`direction_span_magnitude` at the proven layers):
 
-- **N-up (L20)**: 8 rungs, 0.05–0.55× span (≈90–980). The existing data show a
+- **N-up (L20)**: 8 rungs, 0.05–0.55× span (≈89–983). The existing data show a
   monotone rise precisely in this window.
-- **E-up (L15)**: 8 rungs, 0.4–1.0× span (≈300–750), skipping the dead zone.
+- **E-up (L15)**: 8 rungs, 0.4–1.0× span (≈297–741), skipping the dead zone.
 - **E-down (L15)**: same window, negative.
-- **A-down (L15)**: 8 rungs up to 1.3× span (the observed effect sat at 1088;
-  L20's span for A is 2197, so L15's 819 may underestimate the usable range).
-- 2–3 repeats per rung (different seeds), average EV, keep the same-norm random
-  control at the **same doses**.
+- **A-down (L15)**: 8 rungs, 0.15–1.30× span (≈123–1065; prior effect at |mag|≈1088).
+- 1 matched-norm random control at the same doses (repeats optional follow-up).
 
-Pass gate (pre-register it): sign correct, ρ ≥ +0.8 over ≥4 usable rungs,
-beats the control's move on the target trait by ≥2× (or report the margin).
+Pass gate (pre-registered in the script): sign correct, signed-dose Spearman
+ρ ≥ +0.8 over ≥4 usable rungs, beats the control's |ΔEV| by ≥2×.
 
 - **If all four pass** → done. Run E8 (unified re-run) and write it up. The
   paper story becomes: "one dosing rule (trait latent span) yields sign-correct
