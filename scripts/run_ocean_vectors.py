@@ -155,14 +155,20 @@ def main(argv: list[str] | None = None) -> int:
         "--magnitudes",
         default="",
         help="|alpha| grid in units of the layer's mean activation norm. "
-        "Empty (default) calibrates the grid to the measured coherence ceiling.",
+        "Empty (default) calibrates to the trait's measured latent span "
+        "(0.25×…2× of prompt level 1→9 on PC1), clipped by the coherence ceiling.",
     )
     p.add_argument(
         "--no-auto-calibrate",
         action="store_true",
-        help="Use --magnitudes verbatim instead of calibrating to the coherence ceiling.",
+        help="Use --magnitudes verbatim instead of span-calibrating.",
     )
-    p.add_argument("--rungs", type=int, default=6, help="Rungs in the calibrated grid.")
+    p.add_argument(
+        "--rungs",
+        type=int,
+        default=5,
+        help="Rungs in the span-calibrated grid (default: 5 → 0.25/0.5/1/1.5/2× span).",
+    )
     p.add_argument(
         "--steer-toward",
         default="both",

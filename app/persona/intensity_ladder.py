@@ -1114,6 +1114,40 @@ def resolve_steering_layer(
     return n_layers // 2, f"geometry best layer {best} outside band {lo}-{hi}, no per-layer data"
 
 
+def latent_span_magnitude(geometry: dict[str, Any], layer_idx: int) -> float | None:
+    """Absolute PC1 projection distance from the lowest to highest prompted level.
+
+    This is the size of a full-scale personality change in residual-stream units —
+    the natural dose unit for the extracted direction. Coherence ceilings are
+    unrelated and can be 1–50× this span depending on the trait.
+    """
+    per_layer = geometry.get("per_layer") or []
+    if layer_idx < 0 or layer_idx >= len(per_layer):
+        return None
+    proj = per_layer[layer_idx].get("projection_on_pc1") or []
+    if len(proj) < 2:
+        return None
+    span = abs(float(proj[-1]) - float(proj[0]))
+    return span if span > 0 else None
+
+
+def span_multiples_grid(
+    span_alpha: float,
+    n_rungs: int = 5,
+    multiples: Sequence[float] = (0.25, 0.5, 1.0, 1.5, 2.0),
+) -> list[float]:
+    """|α| grid at fixed multiples of one trait span (default 0.25×…2×)."""
+    if span_alpha <= 0 or n_rungs < 1:
+        return []
+    chosen = list(multiples[:n_rungs])
+    if len(chosen) < n_rungs:
+        # Pad by continuing the last step geometrically if caller asks for more.
+        step = chosen[-1] / chosen[-2] if len(chosen) >= 2 else 2.0
+        while len(chosen) < n_rungs:
+            chosen.append(chosen[-1] * step)
+    return [round(span_alpha * m, 6) for m in chosen]
+
+
 def calibrate_magnitude_ceiling(
     model: PreTrainedModel,
     tokenizer: AutoTokenizer,
@@ -1132,10 +1166,9 @@ def calibrate_magnitude_ceiling(
 ) -> dict[str, Any]:
     """Find the largest magnitude that still produces prose, by doubling upward.
 
-    This replaces guessing the grid. A fixed alpha grid cannot be right across
-    models: the same relative alpha is a no-op on one residual scale and well past
-    the point of collapse on another. Searching for the ceiling first makes the
-    sweep land in the band where the direction can actually be observed.
+    Used as a soft upper bound after the grid is laid out in trait-span units, so
+    rungs past collapse are not kept. Not used as the primary dose scale — that
+    is ``latent_span_magnitude``.
 
     Returns the last coherent alpha/magnitude and the full trace.
     """
@@ -1185,7 +1218,11 @@ def calibrate_magnitude_ceiling(
 
 
 def geometric_grid(ceiling_alpha: float, n_rungs: int = 6, span: float = 16.0) -> list[float]:
-    """``n_rungs`` magnitudes log-spaced from ``ceiling/span`` up to the ceiling."""
+    """``n_rungs`` magnitudes log-spaced from ``ceiling/span`` up to the ceiling.
+
+    Kept for explicit --magnitudes / fallback use. Validated sweeps prefer
+    ``span_multiples_grid`` keyed to the trait's measured latent span.
+    """
     if ceiling_alpha <= 0 or n_rungs < 1:
         return []
     lo = ceiling_alpha / max(span, 1.0)
@@ -1340,12 +1377,20 @@ def run_validated_sweep(
         raise ValueError("steer_toward must be 'auto', 'high' or 'low'")
     sign = 1 if chosen == "high" else -1
 
-    # Calibrate the grid to where the model still speaks, rather than guessing.
+    # Dose in units of the trait's measured latent span (prompt level 1→9 on
+    # PC1). The coherence ceiling is only a soft upper clip: for Neuroticism the
+    # ceiling is ~55× the span, so a ceiling-anchored grid never samples the
+    # trait's operating range.
     calibration: dict[str, Any] | None = None
     if magnitudes is None and not auto_calibrate:
         raise ValueError("pass magnitudes or leave auto_calibrate on")
     if auto_calibrate:
-        calibration = calibrate_magnitude_ceiling(
+        span_mag = latent_span_magnitude(blob["geometry"], layer)
+        span_alpha = (span_mag / scale) if span_mag and scale > 0 else None
+        # Soft ceiling: start the search near 0.25× span so we don't burn steps
+        # in the no-op band, and clip the span grid to whatever still speaks.
+        start_alpha = max(0.002, (span_alpha * 0.25) if span_alpha else 0.02)
+        ceiling = calibrate_magnitude_ceiling(
             model,
             tokenizer,
             dev,
@@ -1355,20 +1400,50 @@ def run_validated_sweep(
             sign=sign,
             system=PROBE_SYSTEM,
             question=probes[0],
+            start_alpha=start_alpha,
             max_new_tokens=max_new_tokens,
         )
-        if calibration["ceiling_alpha"]:
-            grid_mags = geometric_grid(float(calibration["ceiling_alpha"]), n_rungs)
+        if span_alpha:
+            raw_grid = span_multiples_grid(span_alpha, n_rungs)
+            ceil_a = ceiling.get("ceiling_alpha")
+            if ceil_a:
+                clipped = [a for a in raw_grid if a <= float(ceil_a) * 1.001]
+                # Keep at least the lowest rung even if the ceiling is tiny.
+                grid_mags = clipped or raw_grid[:1]
+            else:
+                grid_mags = raw_grid
+            calibration = {
+                "mode": "latent_span",
+                "span_magnitude": round(span_mag, 4),
+                "span_alpha": round(span_alpha, 6),
+                "span_multiples": [round(a / span_alpha, 4) for a in grid_mags],
+                "grid_before_clip": raw_grid,
+                "ceiling_alpha": ceiling.get("ceiling_alpha"),
+                "ceiling_magnitude": ceiling.get("ceiling_magnitude"),
+                "searched_to_alpha": ceiling.get("searched_to_alpha"),
+                "trace": ceiling.get("trace"),
+            }
             logger.info(
-                "calibrated ceiling |α|=%s (mag %s); grid %s",
-                calibration["ceiling_alpha"],
-                calibration["ceiling_magnitude"],
+                "span-calibrated |span|=%.1f (α=%.5f); grid α=%s (mags %s); ceiling α=%s",
+                span_mag,
+                span_alpha,
+                grid_mags,
+                [round(a * scale, 1) for a in grid_mags],
+                ceiling.get("ceiling_alpha"),
+            )
+        elif ceiling.get("ceiling_alpha"):
+            grid_mags = geometric_grid(float(ceiling["ceiling_alpha"]), n_rungs)
+            calibration = {**ceiling, "mode": "coherence_ceiling_fallback"}
+            logger.warning(
+                "no latent span at layer %s; falling back to ceiling grid %s",
+                layer,
                 grid_mags,
             )
         else:
             grid_mags = list(magnitudes) if magnitudes else [0.25, 0.5, 1.0, 2.0]
+            calibration = {**ceiling, "mode": "fixed_fallback"}
             logger.warning(
-                "calibration found no coherent rung; falling back to grid %s", grid_mags
+                "calibration found no span and no coherent rung; grid %s", grid_mags
             )
     else:
         grid_mags = list(magnitudes or [])
@@ -1469,9 +1544,10 @@ def run_validated_sweep(
     # A bare "larger than the control" is too weak: a large perturbation moves the
     # score in any direction, so the trait has to win by a margin, not a nose.
     # If the matched-norm random control does not move at all while the trait
-    # vector does, the ratio is undefined/infinite — that still beats controls.
+    # vector does, the ratio is infinite — that still beats controls. Use a
+    # finite sentinel so the report stays strict-JSON serializable.
     if trait_delta is not None and max_control == 0:
-        margin_ratio = float("inf")
+        margin_ratio = 999.0
         beats_controls = True
     elif trait_delta is not None and max_control not in (None, 0):
         margin_ratio = round(trait_delta / max_control, 3)
