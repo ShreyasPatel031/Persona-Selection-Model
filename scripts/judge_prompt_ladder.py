@@ -196,7 +196,7 @@ def main(argv: list[str] | None = None) -> int:
         logger.info("loaded %s generations from %s", len(generations), args.judge_only)
     else:
         model, tokenizer, device = load_model_and_tokenizer(
-            args.subject_model or None, None
+            args.subject_model or None
         )
         generations = []
         for trait in traits:
