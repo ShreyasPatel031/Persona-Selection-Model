@@ -29,7 +29,8 @@ sys.path.insert(0, str(REPO_ROOT))
 
 logger = logging.getLogger("judge_ladder")
 
-DEFAULT_JUDGE_MODEL = "Qwen/Qwen2.5-3B-Instruct"
+DEFAULT_JUDGE_MODEL = "gemini-2.5-flash"
+DEFAULT_VERTEX_PROJECT = "project-amer-scs-sandbox"
 
 
 def spearman(xs: list[float], ys: list[float]) -> float | None:
@@ -154,7 +155,22 @@ def main(argv: list[str] | None = None) -> int:
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument("--out", required=True)
     p.add_argument("--subject-model", default="")
-    p.add_argument("--judge-model", default=DEFAULT_JUDGE_MODEL)
+    p.add_argument(
+        "--judge-model",
+        default=DEFAULT_JUDGE_MODEL,
+        help="Vertex model id (default: gemini-2.5-flash).",
+    )
+    p.add_argument(
+        "--judge-backend",
+        default="vertex",
+        choices=("vertex", "hf"),
+        help="vertex = Gemini via Vertex AI; hf = a local HuggingFace model.",
+    )
+    p.add_argument(
+        "--project",
+        default=DEFAULT_VERTEX_PROJECT,
+        help="GCP project for Vertex judge (default: project-amer-scs-sandbox).",
+    )
     p.add_argument("--traits", default="")
     p.add_argument("--levels", default="1,2,3,4,5,6,7,8,9")
     p.add_argument("--variants", type=int, default=1, help="Marker rotations per level.")
@@ -242,30 +258,63 @@ def main(argv: list[str] | None = None) -> int:
         if args.generations_only:
             return 0
 
-    # Blind shuffle before judging.
+    # Blind shuffle before judging so the judge never sees sequential levels.
     rng = random.Random(args.seed)
     order = list(range(len(generations)))
     rng.shuffle(order)
 
     judge_id = args.subject_model if args.self_judge else args.judge_model
+    backend = "hf" if args.self_judge else args.judge_backend
     if args.self_judge:
         logger.warning("self-judge mode: subject scores its own replies (weaker evidence)")
-    judge, jtok, jdev = load_model_and_tokenizer(judge_id or None, None)
+
+    judge = jtok = jdev = None
+    if backend == "hf":
+        judge, jtok, jdev = load_model_and_tokenizer(judge_id or None)
+    else:
+        from app.persona.judge_vertex import score_transcript as vertex_score
+
+        logger.info(
+            "Vertex judge model=%s project=%s", judge_id, args.project
+        )
 
     scored = []
     for idx in order:
         g = generations[idx]
         prompt = build_judge_prompt(g["trait"], g["question"], g["text"])
-        raw = generate_reply(
-            judge, jtok, jdev, "You output JSON only.", prompt, max_new_tokens=80
-        )
-        score, reason = parse_judge_json(raw)
+        if backend == "vertex":
+            try:
+                js = vertex_score(
+                    (
+                        f"Score ONLY the assistant reply for Big Five {g['trait']}. "
+                        f"{_trait_rubric(g['trait'])}. "
+                        "0 = extreme low pole, 50 = neutral, 100 = extreme high pole. "
+                        "Ignore whether the speaker is an AI. Do not reward naming the trait."
+                    ),
+                    "",
+                    g["question"],
+                    g["text"],
+                    project_id=args.project,
+                    model_name=judge_id,
+                    max_output_tokens=256,
+                )
+                raw = json.dumps({"score": js.score, "short_reason": js.short_reason})
+                score, reason = int(js.score), js.short_reason
+            except Exception as exc:  # keep going; one failed item shouldn't sink the rho
+                logger.warning("vertex judge failed on %s: %s", g["id"], exc)
+                raw, score, reason = str(exc)[:300], None, str(exc)[:120]
+        else:
+            raw = generate_reply(
+                judge, jtok, jdev, "You output JSON only.", prompt, max_new_tokens=80
+            )
+            score, reason = parse_judge_json(raw)
         row = {
             **{k: g[k] for k in ("id", "trait", "level", "variant", "question_idx", "question", "text")},
             "judge_score": score,
             "judge_reason": reason,
             "judge_raw": raw[:300],
             "judge_model": judge_id,
+            "judge_backend": backend,
         }
         scored.append(row)
         logger.info(
@@ -319,7 +368,8 @@ def main(argv: list[str] | None = None) -> int:
         "stage": "judge_prompt_ladder",
         "subject_model": args.subject_model or None,
         "judge_model": judge_id,
-        "self_judge": bool(args.self_judge),
+        "judge_backend": backend,
+        "judge_project": args.project if backend == "vertex" else None,
         "n_levels": len(levels),
         "n_probes": len(probes),
         "n_variants": args.variants,
