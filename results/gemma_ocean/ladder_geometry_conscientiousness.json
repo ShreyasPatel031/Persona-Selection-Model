@@ -1,0 +1,1378 @@
+{
+  "created_utc": "2026-08-18T01:49:38.812922+00:00",
+  "stage": "ladder_vectors",
+  "trait": "conscientiousness",
+  "context_mode": "inventory",
+  "n_layers": 34,
+  "geometry": {
+    "per_layer": [
+      {
+        "n_levels": 9,
+        "endpoint_norm": 0.872203528881073,
+        "step_norms": [
+          1.2115,
+          2.1685,
+          2.0165,
+          2.0828,
+          2.1396,
+          2.0711,
+          2.1244,
+          1.3048
+        ],
+        "step_norm_cv": 0.1947,
+        "consecutive_step_cosine_mean": -0.584,
+        "consecutive_step_cosine_min": -0.9589,
+        "pc1_variance_ratio": 0.406,
+        "cos_endpoint_pc1": 0.2,
+        "projection_on_pc1": [
+          -32.2538,
+          -32.0618,
+          -34.0919,
+          -32.4815,
+          -33.1294,
+          -32.3105,
+          -33.9479,
+          -31.9553,
+          -32.0794
+        ],
+        "spearman_level_vs_pc1_projection": 0.1667,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.6833
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1.9848825931549072,
+        "step_norms": [
+          1.6253,
+          2.4622,
+          3.6848,
+          3.2248,
+          3.5036,
+          3.521,
+          2.4546,
+          2.3213
+        ],
+        "step_norm_cv": 0.2419,
+        "consecutive_step_cosine_mean": -0.3872,
+        "consecutive_step_cosine_min": -0.9251,
+        "pc1_variance_ratio": 0.585,
+        "cos_endpoint_pc1": 0.6297,
+        "projection_on_pc1": [
+          -550.7136,
+          -551.4716,
+          -551.4437,
+          -554.1671,
+          -555.2325,
+          -553.7602,
+          -551.2735,
+          -551.0802,
+          -549.4638
+        ],
+        "spearman_level_vs_pc1_projection": 0.2667,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.4667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1.571625828742981,
+        "step_norms": [
+          1.757,
+          3.1037,
+          3.7041,
+          5.8985,
+          6.1642,
+          3.5821,
+          3.0553,
+          1.7297
+        ],
+        "step_norm_cv": 0.4286,
+        "consecutive_step_cosine_mean": -0.406,
+        "consecutive_step_cosine_min": -0.9745,
+        "pc1_variance_ratio": 0.5639,
+        "cos_endpoint_pc1": 0.1471,
+        "projection_on_pc1": [
+          865.2086,
+          865.6733,
+          863.8977,
+          865.8661,
+          871.0315,
+          865.5969,
+          863.951,
+          865.7458,
+          865.4401
+        ],
+        "spearman_level_vs_pc1_projection": 0.1,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.7667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1.9087721109390259,
+        "step_norms": [
+          2.8105,
+          3.7791,
+          6.6477,
+          5.0202,
+          5.9015,
+          6.789,
+          4.6987,
+          2.5125
+        ],
+        "step_norm_cv": 0.322,
+        "consecutive_step_cosine_mean": -0.5163,
+        "consecutive_step_cosine_min": -0.9234,
+        "pc1_variance_ratio": 0.6631,
+        "cos_endpoint_pc1": 0.0519,
+        "projection_on_pc1": [
+          1193.8485,
+          1195.7617,
+          1193.4916,
+          1199.5599,
+          1201.1799,
+          1198.0857,
+          1191.8979,
+          1195.4373,
+          1193.947
+        ],
+        "spearman_level_vs_pc1_projection": -0.0333,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.8667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 4.23823881149292,
+        "step_norms": [
+          5.56,
+          5.3873,
+          5.9762,
+          6.2346,
+          6.0326,
+          7.7533,
+          5.6582,
+          4.1843
+        ],
+        "step_norm_cv": 0.1591,
+        "consecutive_step_cosine_mean": -0.672,
+        "consecutive_step_cosine_min": -0.7947,
+        "pc1_variance_ratio": 0.5789,
+        "cos_endpoint_pc1": 0.7759,
+        "projection_on_pc1": [
+          -1936.0953,
+          -1940.8309,
+          -1936.6965,
+          -1941.849,
+          -1938.5914,
+          -1938.7809,
+          -1931.6483,
+          -1936.1479,
+          -1932.8075
+        ],
+        "spearman_level_vs_pc1_projection": 0.4333,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.7333
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 5.09013032913208,
+        "step_norms": [
+          9.3189,
+          7.2756,
+          7.3995,
+          7.2734,
+          7.87,
+          10.4353,
+          10.314,
+          10.4483
+        ],
+        "step_norm_cv": 0.158,
+        "consecutive_step_cosine_mean": -0.6134,
+        "consecutive_step_cosine_min": -0.9148,
+        "pc1_variance_ratio": 0.5998,
+        "cos_endpoint_pc1": 0.4689,
+        "projection_on_pc1": [
+          -2734.0063,
+          -2742.5542,
+          -2736.8872,
+          -2742.7048,
+          -2743.5054,
+          -2741.7139,
+          -2732.0459,
+          -2741.2935,
+          -2731.6194
+        ],
+        "spearman_level_vs_pc1_projection": 0.3333,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.7667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 10.318099021911621,
+        "step_norms": [
+          11.3112,
+          9.9229,
+          18.2203,
+          13.0129,
+          11.2828,
+          22.5368,
+          12.3132,
+          10.3639
+        ],
+        "step_norm_cv": 0.3047,
+        "consecutive_step_cosine_mean": -0.6602,
+        "consecutive_step_cosine_min": -0.8679,
+        "pc1_variance_ratio": 0.7672,
+        "cos_endpoint_pc1": 0.8043,
+        "projection_on_pc1": [
+          -3436.4702,
+          -3446.3496,
+          -3439.448,
+          -3456.8584,
+          -3450.0547,
+          -3449.1667,
+          -3427.167,
+          -3437.0896,
+          -3428.1711
+        ],
+        "spearman_level_vs_pc1_projection": 0.3333,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.5167
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 14.373504638671875,
+        "step_norms": [
+          9.7487,
+          19.0239,
+          20.815,
+          39.0772,
+          24.5774,
+          25.1915,
+          24.5297,
+          7.6926
+        ],
+        "step_norm_cv": 0.431,
+        "consecutive_step_cosine_mean": -0.8865,
+        "consecutive_step_cosine_min": -0.9532,
+        "pc1_variance_ratio": 0.8396,
+        "cos_endpoint_pc1": 0.9038,
+        "projection_on_pc1": [
+          -4589.5498,
+          -4597.3232,
+          -4579.6597,
+          -4598.8403,
+          -4560.5503,
+          -4582.3384,
+          -4558.4546,
+          -4581.917,
+          -4576.5601
+        ],
+        "spearman_level_vs_pc1_projection": 0.5667,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.7
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 29.038389205932617,
+        "step_norms": [
+          7.1927,
+          9.765,
+          19.5611,
+          80.5096,
+          71.4217,
+          12.861,
+          10.1502,
+          7.0733
+        ],
+        "step_norm_cv": 1.0404,
+        "consecutive_step_cosine_mean": -0.1791,
+        "consecutive_step_cosine_min": -0.986,
+        "pc1_variance_ratio": 0.9227,
+        "cos_endpoint_pc1": 0.9063,
+        "projection_on_pc1": [
+          -6170.9375,
+          -6171.146,
+          -6167.7305,
+          -6151.9189,
+          -6072.0566,
+          -6141.6299,
+          -6147.2583,
+          -6144.1748,
+          -6144.624
+        ],
+        "spearman_level_vs_pc1_projection": 0.7,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.7167
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 26.741161346435547,
+        "step_norms": [
+          23.8862,
+          49.6915,
+          26.5858,
+          31.7388,
+          30.5759,
+          30.7393,
+          60.8409,
+          37.0264
+        ],
+        "step_norm_cv": 0.3245,
+        "consecutive_step_cosine_mean": -0.5703,
+        "consecutive_step_cosine_min": -0.9571,
+        "pc1_variance_ratio": 0.6358,
+        "cos_endpoint_pc1": 0.4477,
+        "projection_on_pc1": [
+          7906.0952,
+          7884.6523,
+          7933.9512,
+          7911.6699,
+          7899.0386,
+          7916.3423,
+          7943.0889,
+          7882.8633,
+          7918.0747
+        ],
+        "spearman_level_vs_pc1_projection": 0.2,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.7167
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 45.51205062866211,
+        "step_norms": [
+          17.6366,
+          90.2907,
+          52.4999,
+          81.0609,
+          41.0326,
+          56.8829,
+          104.641,
+          14.9174
+        ],
+        "step_norm_cv": 0.5355,
+        "consecutive_step_cosine_mean": -0.7095,
+        "consecutive_step_cosine_min": -0.9507,
+        "pc1_variance_ratio": 0.8792,
+        "cos_endpoint_pc1": 0.7775,
+        "projection_on_pc1": [
+          10996.4287,
+          10985.7852,
+          11074.7783,
+          11026.2861,
+          11101.3408,
+          11079.9482,
+          11132.7852,
+          11030.6357,
+          11031.8213
+        ],
+        "spearman_level_vs_pc1_projection": 0.5167,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.5167
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 128.46572875976562,
+        "step_norms": [
+          42.0618,
+          83.7888,
+          31.928,
+          64.4286,
+          146.6445,
+          33.0295,
+          69.8389,
+          36.4102
+        ],
+        "step_norm_cv": 0.57,
+        "consecutive_step_cosine_mean": -0.4437,
+        "consecutive_step_cosine_min": -0.8612,
+        "pc1_variance_ratio": 0.8788,
+        "cos_endpoint_pc1": 0.9824,
+        "projection_on_pc1": [
+          16006.3418,
+          15973.0137,
+          16051.71,
+          16034.4033,
+          16011.3027,
+          16150.0459,
+          16168.7402,
+          16108.3926,
+          16132.5322
+        ],
+        "spearman_level_vs_pc1_projection": 0.7833,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.7833
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 124.80052947998047,
+        "step_norms": [
+          27.7294,
+          55.0938,
+          59.2414,
+          205.8177,
+          313.9866,
+          41.4822,
+          41.3421,
+          71.1984
+        ],
+        "step_norm_cv": 0.9402,
+        "consecutive_step_cosine_mean": -0.2693,
+        "consecutive_step_cosine_min": -0.9783,
+        "pc1_variance_ratio": 0.9171,
+        "cos_endpoint_pc1": 0.9366,
+        "projection_on_pc1": [
+          18780.8223,
+          18792.666,
+          18835.875,
+          18888.7129,
+          18693.0625,
+          19005.082,
+          18974.3145,
+          18963.3164,
+          18897.6816
+        ],
+        "spearman_level_vs_pc1_projection": 0.6667,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.6667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 241.47451782226562,
+        "step_norms": [
+          59.9959,
+          94.3123,
+          46.2257,
+          129.2777,
+          375.8145,
+          41.2307,
+          104.0754,
+          107.4221
+        ],
+        "step_norm_cv": 0.8443,
+        "consecutive_step_cosine_mean": -0.7646,
+        "consecutive_step_cosine_min": -0.8792,
+        "pc1_variance_ratio": 0.9524,
+        "cos_endpoint_pc1": 0.9857,
+        "projection_on_pc1": [
+          21391.498,
+          21444.375,
+          21360.2949,
+          21394.5156,
+          21291.1562,
+          21662.4199,
+          21637.9746,
+          21731.5156,
+          21629.4883
+        ],
+        "spearman_level_vs_pc1_projection": 0.6333,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.6333
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 251.75347900390625,
+        "step_norms": [
+          39.1179,
+          102.9048,
+          82.8179,
+          98.1982,
+          287.9264,
+          129.3958,
+          184.9557,
+          47.5821
+        ],
+        "step_norm_cv": 0.6264,
+        "consecutive_step_cosine_mean": -0.586,
+        "consecutive_step_cosine_min": -0.9476,
+        "pc1_variance_ratio": 0.915,
+        "cos_endpoint_pc1": 0.9877,
+        "projection_on_pc1": [
+          23772.8438,
+          23762.0762,
+          23673.3105,
+          23748.1582,
+          23718.002,
+          23994.377,
+          23870.4453,
+          24046.8105,
+          24021.5156
+        ],
+        "spearman_level_vs_pc1_projection": 0.6833,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.6833
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 782.3103637695312,
+        "step_norms": [
+          97.3579,
+          195.0457,
+          104.6378,
+          445.3966,
+          578.6332,
+          261.1274,
+          401.9411,
+          81.2829
+        ],
+        "step_norm_cv": 0.6424,
+        "consecutive_step_cosine_mean": -0.3677,
+        "consecutive_step_cosine_min": -0.9127,
+        "pc1_variance_ratio": 0.8145,
+        "cos_endpoint_pc1": 0.9958,
+        "projection_on_pc1": [
+          18467.6934,
+          18511.5508,
+          18437.1777,
+          18479.8945,
+          18705.9414,
+          19161.8477,
+          18951.5703,
+          19252.166,
+          19246.7246
+        ],
+        "spearman_level_vs_pc1_projection": 0.8833,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.8833
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 875.0581665039062,
+        "step_norms": [
+          142.5391,
+          235.0482,
+          123.0475,
+          620.0743,
+          813.4988,
+          292.2616,
+          484.7367,
+          132.988
+        ],
+        "step_norm_cv": 0.6773,
+        "consecutive_step_cosine_mean": -0.2364,
+        "consecutive_step_cosine_min": -0.8587,
+        "pc1_variance_ratio": 0.7007,
+        "cos_endpoint_pc1": 0.9885,
+        "projection_on_pc1": [
+          14857.8594,
+          14915.6699,
+          14955.5078,
+          14945.1279,
+          15160.9492,
+          15758.5703,
+          15615.9189,
+          15761.3203,
+          15722.8389
+        ],
+        "spearman_level_vs_pc1_projection": 0.9,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.95
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1001.6610717773438,
+        "step_norms": [
+          148.0943,
+          316.8928,
+          165.3907,
+          889.048,
+          966.8464,
+          504.2416,
+          845.4249,
+          152.8981
+        ],
+        "step_norm_cv": 0.6646,
+        "consecutive_step_cosine_mean": -0.2782,
+        "consecutive_step_cosine_min": -0.9239,
+        "pc1_variance_ratio": 0.5535,
+        "cos_endpoint_pc1": 0.9865,
+        "projection_on_pc1": [
+          -7256.377,
+          -7245.5938,
+          -7219.2354,
+          -7212.2188,
+          -6854.0513,
+          -6400.9497,
+          -6686.1929,
+          -6265.7266,
+          -6268.2852
+        ],
+        "spearman_level_vs_pc1_projection": 0.9667,
+        "monotone_fraction_pc1_projection": 0.75,
+        "spearman_level_vs_endpoint_projection": 0.9833
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1223.762451171875,
+        "step_norms": [
+          176.0658,
+          412.1625,
+          199.6415,
+          1098.9928,
+          1073.7299,
+          588.7321,
+          1028.0901,
+          179.1314
+        ],
+        "step_norm_cv": 0.6538,
+        "consecutive_step_cosine_mean": -0.2827,
+        "consecutive_step_cosine_min": -0.9235,
+        "pc1_variance_ratio": 0.5554,
+        "cos_endpoint_pc1": 0.9894,
+        "projection_on_pc1": [
+          -13332.1025,
+          -13297.9531,
+          -13205.9062,
+          -13237.418,
+          -12620.2764,
+          -12294.4014,
+          -12647.9648,
+          -12111.7461,
+          -12121.3428
+        ],
+        "spearman_level_vs_pc1_projection": 0.9167,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.9167
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1364.488037109375,
+        "step_norms": [
+          217.0778,
+          463.0474,
+          242.7044,
+          1109.6754,
+          1114.4625,
+          659.3854,
+          1172.4219,
+          225.0376
+        ],
+        "step_norm_cv": 0.6123,
+        "consecutive_step_cosine_mean": -0.2777,
+        "consecutive_step_cosine_min": -0.9205,
+        "pc1_variance_ratio": 0.5782,
+        "cos_endpoint_pc1": 0.9907,
+        "projection_on_pc1": [
+          -9140.1865,
+          -9098.1221,
+          -9032.1328,
+          -9070.4219,
+          -8495.7734,
+          -7956.6387,
+          -8329.5283,
+          -7769.895,
+          -7788.3691
+        ],
+        "spearman_level_vs_pc1_projection": 0.95,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.95
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1798.5966796875,
+        "step_norms": [
+          282.9686,
+          632.3099,
+          238.9733,
+          1355.8818,
+          1540.8533,
+          922.7812,
+          1568.153,
+          321.3434
+        ],
+        "step_norm_cv": 0.6217,
+        "consecutive_step_cosine_mean": -0.2346,
+        "consecutive_step_cosine_min": -0.9291,
+        "pc1_variance_ratio": 0.5828,
+        "cos_endpoint_pc1": 0.9902,
+        "projection_on_pc1": [
+          -186.7694,
+          -198.9872,
+          -200.3611,
+          -181.2004,
+          322.2985,
+          1311.5703,
+          764.5211,
+          1565.9243,
+          1594.1718
+        ],
+        "spearman_level_vs_pc1_projection": 0.9167,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.9833
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1987.654296875,
+        "step_norms": [
+          355.7289,
+          783.4084,
+          268.2377,
+          1687.1176,
+          1809.8229,
+          1081.3882,
+          1917.8214,
+          421.6194
+        ],
+        "step_norm_cv": 0.6168,
+        "consecutive_step_cosine_mean": -0.2967,
+        "consecutive_step_cosine_min": -0.9233,
+        "pc1_variance_ratio": 0.5288,
+        "cos_endpoint_pc1": 0.9901,
+        "projection_on_pc1": [
+          711.587,
+          681.14,
+          656.4884,
+          684.9082,
+          1287.0598,
+          2351.2119,
+          1739.7338,
+          2634.2458,
+          2679.481
+        ],
+        "spearman_level_vs_pc1_projection": 0.8667,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.9667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 1991.5721435546875,
+        "step_norms": [
+          317.2782,
+          872.7229,
+          274.8668,
+          1791.6633,
+          1864.427,
+          1133.3164,
+          2079.1162,
+          483.5455
+        ],
+        "step_norm_cv": 0.621,
+        "consecutive_step_cosine_mean": -0.2503,
+        "consecutive_step_cosine_min": -0.9229,
+        "pc1_variance_ratio": 0.4854,
+        "cos_endpoint_pc1": 0.99,
+        "projection_on_pc1": [
+          -1554.4202,
+          -1568.989,
+          -1628.8346,
+          -1605.771,
+          -934.1671,
+          84.4433,
+          -550.7896,
+          383.8031,
+          417.2239
+        ],
+        "spearman_level_vs_pc1_projection": 0.8333,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.9333
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 2148.349853515625,
+        "step_norms": [
+          393.8657,
+          1240.653,
+          336.0959,
+          2318.8079,
+          2364.1523,
+          1421.6237,
+          2781.0398,
+          581.5845
+        ],
+        "step_norm_cv": 0.6311,
+        "consecutive_step_cosine_mean": -0.2831,
+        "consecutive_step_cosine_min": -0.9232,
+        "pc1_variance_ratio": 0.4779,
+        "cos_endpoint_pc1": 0.1672,
+        "projection_on_pc1": [
+          5665.9253,
+          5612.752,
+          4554.084,
+          4567.5952,
+          2975.6367,
+          4442.3306,
+          3365.9729,
+          5824.0068,
+          6025.1064
+        ],
+        "spearman_level_vs_pc1_projection": 0.1333,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.8167
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 2306.58251953125,
+        "step_norms": [
+          412.0043,
+          1369.5298,
+          335.9982,
+          2458.9937,
+          2585.4673,
+          1437.1343,
+          2935.2522,
+          607.0316
+        ],
+        "step_norm_cv": 0.6385,
+        "consecutive_step_cosine_mean": -0.2998,
+        "consecutive_step_cosine_min": -0.9231,
+        "pc1_variance_ratio": 0.4911,
+        "cos_endpoint_pc1": 0.1377,
+        "projection_on_pc1": [
+          6241.9292,
+          6192.4478,
+          5005.5205,
+          5032.8481,
+          3284.0537,
+          4849.9258,
+          3702.0317,
+          6348.3086,
+          6559.4434
+        ],
+        "spearman_level_vs_pc1_projection": 0.1333,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.8333
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 2594.423095703125,
+        "step_norms": [
+          436.8093,
+          1489.4099,
+          368.86,
+          2686.97,
+          2811.2793,
+          1604.8541,
+          3251.4736,
+          621.7305
+        ],
+        "step_norm_cv": 0.6459,
+        "consecutive_step_cosine_mean": -0.3033,
+        "consecutive_step_cosine_min": -0.9255,
+        "pc1_variance_ratio": 0.4838,
+        "cos_endpoint_pc1": 0.0317,
+        "projection_on_pc1": [
+          1854.2397,
+          1790.5,
+          494.4136,
+          544.7852,
+          -1391.2272,
+          108.4504,
+          -1209.444,
+          1756.8079,
+          1936.5908
+        ],
+        "spearman_level_vs_pc1_projection": -0.0833,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.9
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 2922.6123046875,
+        "step_norms": [
+          521.8407,
+          1906.6797,
+          453.3255,
+          3188.2397,
+          3241.3774,
+          2052.2083,
+          4105.373,
+          713.0703
+        ],
+        "step_norm_cv": 0.6452,
+        "consecutive_step_cosine_mean": -0.3321,
+        "consecutive_step_cosine_min": -0.9318,
+        "pc1_variance_ratio": 0.5328,
+        "cos_endpoint_pc1": 0.028,
+        "projection_on_pc1": [
+          1325.8016,
+          1247.0479,
+          -445.2292,
+          -334.9867,
+          -2628.2607,
+          -875.6848,
+          -2637.2944,
+          1198.8129,
+          1407.6322
+        ],
+        "spearman_level_vs_pc1_projection": -0.1167,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.8667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 3269.865478515625,
+        "step_norms": [
+          589.4043,
+          2079.4321,
+          499.6844,
+          3452.7632,
+          3606.8955,
+          2299.0415,
+          4532.2495,
+          822.3131
+        ],
+        "step_norm_cv": 0.6403,
+        "consecutive_step_cosine_mean": -0.3241,
+        "consecutive_step_cosine_min": -0.9327,
+        "pc1_variance_ratio": 0.524,
+        "cos_endpoint_pc1": 0.0818,
+        "projection_on_pc1": [
+          3095.4089,
+          2995.2734,
+          1155.3872,
+          1270.0383,
+          -1121.3093,
+          826.0497,
+          -1167.046,
+          3099.1433,
+          3363.0332
+        ],
+        "spearman_level_vs_pc1_projection": 0.1,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.8667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 4125.30126953125,
+        "step_norms": [
+          653.7906,
+          2331.8887,
+          579.175,
+          3887.5154,
+          4201.7183,
+          2550.502,
+          5024.3706,
+          802.4608
+        ],
+        "step_norm_cv": 0.6502,
+        "consecutive_step_cosine_mean": -0.2984,
+        "consecutive_step_cosine_min": -0.9299,
+        "pc1_variance_ratio": 0.463,
+        "cos_endpoint_pc1": 0.0849,
+        "projection_on_pc1": [
+          3184.2642,
+          3084.6465,
+          1045.7676,
+          1185.7065,
+          -1419.0062,
+          718.9863,
+          -1485.3071,
+          3247.709,
+          3534.3003
+        ],
+        "spearman_level_vs_pc1_projection": 0.1,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.8667
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 4469.541015625,
+        "step_norms": [
+          709.2328,
+          2678.0247,
+          667.2754,
+          4360.3628,
+          4866.1675,
+          2937.8225,
+          5734.3799,
+          841.5261
+        ],
+        "step_norm_cv": 0.6576,
+        "consecutive_step_cosine_mean": -0.3119,
+        "consecutive_step_cosine_min": -0.9314,
+        "pc1_variance_ratio": 0.478,
+        "cos_endpoint_pc1": 0.0268,
+        "projection_on_pc1": [
+          342.5877,
+          446.3676,
+          2798.7207,
+          2598.7188,
+          5628.0049,
+          3564.9561,
+          6074.1553,
+          732.3519,
+          462.5671
+        ],
+        "spearman_level_vs_pc1_projection": 0.3667,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.9333
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 4273.73095703125,
+        "step_norms": [
+          793.8471,
+          3072.3567,
+          926.0121,
+          5576.1851,
+          5178.1089,
+          3489.6863,
+          6366.2817,
+          912.9047
+        ],
+        "step_norm_cv": 0.6432,
+        "consecutive_step_cosine_mean": -0.3253,
+        "consecutive_step_cosine_min": -0.9092,
+        "pc1_variance_ratio": 0.5168,
+        "cos_endpoint_pc1": 0.0997,
+        "projection_on_pc1": [
+          5231.4307,
+          5316.9053,
+          7710.3291,
+          7416.2695,
+          11474.5273,
+          8815.2461,
+          11725.8594,
+          5869.7568,
+          5657.5752
+        ],
+        "spearman_level_vs_pc1_projection": 0.3667,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.8833
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 5317.75048828125,
+        "step_norms": [
+          982.2161,
+          3245.5762,
+          1036.0171,
+          6694.3916,
+          5829.5674,
+          3913.23,
+          7016.6748,
+          1128.816
+        ],
+        "step_norm_cv": 0.6416,
+        "consecutive_step_cosine_mean": -0.369,
+        "consecutive_step_cosine_min": -0.9039,
+        "pc1_variance_ratio": 0.5002,
+        "cos_endpoint_pc1": 0.3646,
+        "projection_on_pc1": [
+          17922.9316,
+          17951.9062,
+          20218.1426,
+          19768.3086,
+          25103.0898,
+          22626.4121,
+          25674.1738,
+          19874.543,
+          19861.6172
+        ],
+        "spearman_level_vs_pc1_projection": 0.5167,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.9333
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 5763.46142578125,
+        "step_norms": [
+          1086.0927,
+          3794.2009,
+          1194.97,
+          7819.6001,
+          6415.0073,
+          4098.856,
+          7435.4478,
+          1271.2233
+        ],
+        "step_norm_cv": 0.6387,
+        "consecutive_step_cosine_mean": -0.348,
+        "consecutive_step_cosine_min": -0.8936,
+        "pc1_variance_ratio": 0.4856,
+        "cos_endpoint_pc1": 0.4516,
+        "projection_on_pc1": [
+          21712.5156,
+          21754.5,
+          23906.6328,
+          23354.9453,
+          29601.9688,
+          27004.0508,
+          30028.0977,
+          24281.0312,
+          24315.4824
+        ],
+        "spearman_level_vs_pc1_projection": 0.7167,
+        "monotone_fraction_pc1_projection": 0.625,
+        "spearman_level_vs_endpoint_projection": 0.8833
+      },
+      {
+        "n_levels": 9,
+        "endpoint_norm": 5969.435546875,
+        "step_norms": [
+          1254.5327,
+          3892.3801,
+          1503.6232,
+          7898.4497,
+          6896.168,
+          5181.043,
+          9355.625,
+          1184.2045
+        ],
+        "step_norm_cv": 0.6459,
+        "consecutive_step_cosine_mean": -0.3577,
+        "consecutive_step_cosine_min": -0.9331,
+        "pc1_variance_ratio": 0.5417,
+        "cos_endpoint_pc1": 0.1348,
+        "projection_on_pc1": [
+          24303.793,
+          24735.4023,
+          27253.4316,
+          26435.5469,
+          32683.8184,
+          29564.5332,
+          33906.6328,
+          25428.8828,
+          25108.2617
+        ],
+        "spearman_level_vs_pc1_projection": 0.3667,
+        "monotone_fraction_pc1_projection": 0.5,
+        "spearman_level_vs_endpoint_projection": 0.9667
+      }
+    ],
+    "layer_quality": [
+      0.0338,
+      0.0975,
+      0.0282,
+      0.011,
+      0.1254,
+      0.1,
+      0.1598,
+      0.2379,
+      0.3229,
+      0.0636,
+      0.2271,
+      0.3442,
+      0.3057,
+      0.3016,
+      0.3908,
+      0.4497,
+      0.3941,
+      0.4013,
+      0.3182,
+      0.3433,
+      0.3339,
+      0.2864,
+      0.2528,
+      0.0319,
+      0.0327,
+      0.0202,
+      0.0311,
+      0.0262,
+      0.0232,
+      0.0876,
+      0.0948,
+      0.1292,
+      0.2175,
+      0.0993
+    ],
+    "best_layer": 15,
+    "best_layer_quality": 0.4497
+  },
+  "direction_agreement": [
+    {
+      "layer": 0,
+      "cos_endpoint_pc1": 0.2,
+      "cos_endpoint_ordinal": 0.2262,
+      "cos_pc1_ordinal": 0.0067
+    },
+    {
+      "layer": 1,
+      "cos_endpoint_pc1": 0.6297,
+      "cos_endpoint_ordinal": 0.3263,
+      "cos_pc1_ordinal": 0.0198
+    },
+    {
+      "layer": 2,
+      "cos_endpoint_pc1": 0.1471,
+      "cos_endpoint_ordinal": 0.4874,
+      "cos_pc1_ordinal": 0.0027
+    },
+    {
+      "layer": 3,
+      "cos_endpoint_pc1": 0.0519,
+      "cos_endpoint_ordinal": 0.4873,
+      "cos_pc1_ordinal": -0.008
+    },
+    {
+      "layer": 4,
+      "cos_endpoint_pc1": 0.7759,
+      "cos_endpoint_ordinal": 0.3037,
+      "cos_pc1_ordinal": 0.0708
+    },
+    {
+      "layer": 5,
+      "cos_endpoint_pc1": 0.4689,
+      "cos_endpoint_ordinal": 0.3919,
+      "cos_pc1_ordinal": 0.0317
+    },
+    {
+      "layer": 6,
+      "cos_endpoint_pc1": 0.8043,
+      "cos_endpoint_ordinal": 0.3316,
+      "cos_pc1_ordinal": 0.0485
+    },
+    {
+      "layer": 7,
+      "cos_endpoint_pc1": 0.9038,
+      "cos_endpoint_ordinal": 0.2678,
+      "cos_pc1_ordinal": 0.0471
+    },
+    {
+      "layer": 8,
+      "cos_endpoint_pc1": 0.9063,
+      "cos_endpoint_ordinal": 0.2541,
+      "cos_pc1_ordinal": 0.0302
+    },
+    {
+      "layer": 9,
+      "cos_endpoint_pc1": 0.4477,
+      "cos_endpoint_ordinal": 0.4542,
+      "cos_pc1_ordinal": 0.0302
+    },
+    {
+      "layer": 10,
+      "cos_endpoint_pc1": 0.7775,
+      "cos_endpoint_ordinal": 0.3434,
+      "cos_pc1_ordinal": 0.0452
+    },
+    {
+      "layer": 11,
+      "cos_endpoint_pc1": 0.9824,
+      "cos_endpoint_ordinal": 0.1852,
+      "cos_pc1_ordinal": 0.0936
+    },
+    {
+      "layer": 12,
+      "cos_endpoint_pc1": 0.9366,
+      "cos_endpoint_ordinal": 0.203,
+      "cos_pc1_ordinal": 0.0509
+    },
+    {
+      "layer": 13,
+      "cos_endpoint_pc1": 0.9857,
+      "cos_endpoint_ordinal": 0.1372,
+      "cos_pc1_ordinal": 0.0533
+    },
+    {
+      "layer": 14,
+      "cos_endpoint_pc1": 0.9877,
+      "cos_endpoint_ordinal": 0.1721,
+      "cos_pc1_ordinal": 0.0833
+    },
+    {
+      "layer": 15,
+      "cos_endpoint_pc1": 0.9958,
+      "cos_endpoint_ordinal": 0.2111,
+      "cos_pc1_ordinal": 0.1463
+    },
+    {
+      "layer": 16,
+      "cos_endpoint_pc1": 0.9885,
+      "cos_endpoint_ordinal": 0.2654,
+      "cos_pc1_ordinal": 0.1804
+    },
+    {
+      "layer": 17,
+      "cos_endpoint_pc1": 0.9865,
+      "cos_endpoint_ordinal": 0.3262,
+      "cos_pc1_ordinal": 0.2402
+    },
+    {
+      "layer": 18,
+      "cos_endpoint_pc1": 0.9894,
+      "cos_endpoint_ordinal": 0.2953,
+      "cos_pc1_ordinal": 0.2228
+    },
+    {
+      "layer": 19,
+      "cos_endpoint_pc1": 0.9907,
+      "cos_endpoint_ordinal": 0.2961,
+      "cos_pc1_ordinal": 0.2198
+    },
+    {
+      "layer": 20,
+      "cos_endpoint_pc1": 0.9902,
+      "cos_endpoint_ordinal": 0.281,
+      "cos_pc1_ordinal": 0.2002
+    },
+    {
+      "layer": 21,
+      "cos_endpoint_pc1": 0.9901,
+      "cos_endpoint_ordinal": 0.2987,
+      "cos_pc1_ordinal": 0.2112
+    },
+    {
+      "layer": 22,
+      "cos_endpoint_pc1": 0.99,
+      "cos_endpoint_ordinal": 0.3074,
+      "cos_pc1_ordinal": 0.2159
+    },
+    {
+      "layer": 23,
+      "cos_endpoint_pc1": 0.1672,
+      "cos_endpoint_ordinal": 0.342,
+      "cos_pc1_ordinal": -0.0041
+    },
+    {
+      "layer": 24,
+      "cos_endpoint_pc1": 0.1377,
+      "cos_endpoint_ordinal": 0.3525,
+      "cos_pc1_ordinal": -0.0094
+    },
+    {
+      "layer": 25,
+      "cos_endpoint_pc1": 0.0317,
+      "cos_endpoint_ordinal": 0.3416,
+      "cos_pc1_ordinal": -0.0295
+    },
+    {
+      "layer": 26,
+      "cos_endpoint_pc1": 0.028,
+      "cos_endpoint_ordinal": 0.3553,
+      "cos_pc1_ordinal": -0.0288
+    },
+    {
+      "layer": 27,
+      "cos_endpoint_pc1": 0.0818,
+      "cos_endpoint_ordinal": 0.3572,
+      "cos_pc1_ordinal": -0.0213
+    },
+    {
+      "layer": 28,
+      "cos_endpoint_pc1": 0.0849,
+      "cos_endpoint_ordinal": 0.3191,
+      "cos_pc1_ordinal": -0.0194
+    },
+    {
+      "layer": 29,
+      "cos_endpoint_pc1": 0.0268,
+      "cos_endpoint_ordinal": 0.3275,
+      "cos_pc1_ordinal": 0.0406
+    },
+    {
+      "layer": 30,
+      "cos_endpoint_pc1": 0.0997,
+      "cos_endpoint_ordinal": 0.3715,
+      "cos_pc1_ordinal": 0.0497
+    },
+    {
+      "layer": 31,
+      "cos_endpoint_pc1": 0.3646,
+      "cos_endpoint_ordinal": 0.3708,
+      "cos_pc1_ordinal": 0.1039
+    },
+    {
+      "layer": 32,
+      "cos_endpoint_pc1": 0.4516,
+      "cos_endpoint_ordinal": 0.3731,
+      "cos_pc1_ordinal": 0.1189
+    },
+    {
+      "layer": 33,
+      "cos_endpoint_pc1": 0.1348,
+      "cos_endpoint_ordinal": 0.3995,
+      "cos_pc1_ordinal": 0.0643
+    }
+  ],
+  "vectors_pt": "/content/ocean/persona_runs/gemma_ocean/ladder/ladder_vectors_conscientiousness.pt"
+}
