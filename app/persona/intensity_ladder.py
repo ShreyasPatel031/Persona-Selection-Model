@@ -924,6 +924,12 @@ def run_alpha_sweep(
 #       score obtained past the ceiling is not mistaken for a working one.
 
 
+# A trait direction must beat the best matched-norm random direction by this factor
+# before its dose-response counts as attributable to the direction rather than to
+# the size of the perturbation.
+MIN_CONTROL_MARGIN = 2.0
+
+
 def _signed_grid(magnitudes: Sequence[float], direction_sign: int) -> list[float]:
     """Zero plus each magnitude, signed toward the pole with headroom."""
     sign = 1.0 if direction_sign >= 0 else -1.0
@@ -1102,6 +1108,7 @@ def run_validated_sweep(
         PROBE_SYSTEM,
         coherence_metrics,
         marker_score,
+        refusal_score,
     )
 
 
@@ -1168,6 +1175,7 @@ def run_validated_sweep(
                     "text": text,
                     "coherence": coherence_metrics(text),
                     "markers": marker_score(text, trait),
+                    "refusal": refusal_score(text),
                 }
             )
         return rows
@@ -1228,6 +1236,9 @@ def run_validated_sweep(
             ) if row["probes"] else None
             row["mean_net_markers"] = round(
                 sum(p["markers"]["net_per_100_words"] for p in row["probes"]) / len(row["probes"]), 3
+            ) if row["probes"] else None
+            row["refused_fraction"] = round(
+                sum(1 for p in row["probes"] if p["refusal"]["refused"]) / len(row["probes"]), 3
             ) if row["probes"] else None
             rows.append(row)
             logger.info(
@@ -1298,27 +1309,59 @@ def run_validated_sweep(
 
     trait_delta = _abs_delta(trait_curve)
     control_deltas = [d for d in (_abs_delta(c) for c in controls) if d is not None]
-    beats_controls = (
-        bool(trait_delta is not None and control_deltas and trait_delta > max(control_deltas))
-        if trait_delta is not None
+    max_control = max(control_deltas) if control_deltas else None
+    # A bare "larger than the control" is too weak: a large perturbation moves the
+    # score in any direction, so the trait has to win by a margin, not a nose.
+    margin_ratio = (
+        round(trait_delta / max_control, 3)
+        if trait_delta is not None and max_control not in (None, 0)
         else None
     )
+    beats_controls = bool(margin_ratio is not None and margin_ratio >= MIN_CONTROL_MARGIN)
+
+    # Refusal at the best rung means the score moved because the model stopped
+    # answering as a self, which is not a trait shift however clean the curve looks.
+    best_row = None
+    if trait_curve["best_usable"] is not None:
+        target_mag = trait_curve["best_usable"]["magnitude"]
+        best_row = next(
+            (r for r in trait_curve["rows"] if r["magnitude"] == target_mag), None
+        )
+    refused_at_best = (
+        bool(best_row.get("refused_fraction")) if best_row is not None else None
+    )
+    sign_ok = None
+    rho = trait_curve["spearman_absalpha_vs_target_ev"]
+    if rho is not None:
+        # Steering toward "low" should push the score down as magnitude grows.
+        sign_ok = bool(rho < 0) if sign < 0 else bool(rho > 0)
+
     verdict = {
         "steered_toward": chosen,
         "trait_abs_delta": trait_delta,
-        "max_control_abs_delta": max(control_deltas) if control_deltas else None,
+        "max_control_abs_delta": max_control,
+        "control_margin_ratio": margin_ratio,
+        "min_control_margin": MIN_CONTROL_MARGIN,
         "beats_random_controls": beats_controls,
         "trait_usable_rungs": trait_curve["n_usable_rungs"],
         "control_usable_rungs": [c["n_usable_rungs"] for c in controls],
-        "trait_spearman": trait_curve["spearman_absalpha_vs_target_ev"],
+        "trait_spearman": rho,
+        "dose_response_sign_correct": sign_ok,
+        "refused_at_best_rung": refused_at_best,
         "trait_coherence_ceiling": trait_curve["coherence_ceiling_magnitude"],
         "control_coherence_ceilings": [c["coherence_ceiling_magnitude"] for c in controls],
         "works": bool(
             beats_controls
+            and sign_ok
             and trait_curve["n_usable_rungs"] >= 3
-            and (trait_curve["spearman_absalpha_vs_target_ev"] or 0) != 0
+            and not refused_at_best
         ),
     }
+    if refused_at_best:
+        logger.warning(
+            "best rung shows persona refusal; inventory movement is not attributable "
+            "to a trait shift"
+        )
 
     report = {
         "created_utc": datetime.now(timezone.utc).isoformat(),

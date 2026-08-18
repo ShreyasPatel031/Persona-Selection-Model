@@ -356,6 +356,41 @@ def test_coherence_rejects_character_soup():
     assert coherence_metrics("lbr krorrrurrloop rnerr Nrng rreedrn ernlamark" * 4)["coherent"] is False
 
 
+def test_refusal_detects_persona_collapse_into_a_disclaimer():
+    from app.persona.ocean_probes import refusal_score
+
+    collapsed = (
+        "I'm sorry, but as an artificial intelligence language model, I don't have "
+        "personal experiences like humans do."
+    )
+    assert refusal_score(collapsed)["refused"] is True
+    assert refusal_score(collapsed)["hits"]
+
+
+def test_refusal_passes_an_ordinary_first_person_reply():
+    from app.persona.ocean_probes import refusal_score
+
+    ordinary = (
+        "I spent last Saturday working through errands, starting with the ones that "
+        "had deadlines attached."
+    )
+    assert refusal_score(ordinary)["refused"] is False
+
+
+def test_summarise_probes_reports_a_refusal_fraction():
+    rows = [
+        {"text": "As an AI, I don't have personal experiences to share with you here."},
+        {
+            "text": (
+                "I planned the week in advance, scheduled each task into a block, and "
+                "tracked progress so nothing slipped past its deadline."
+            )
+        },
+    ]
+    out = summarise_probes(rows, "conscientiousness")
+    assert out["refused_fraction"] == pytest.approx(0.5)
+
+
 def test_markers_separate_high_and_low_conscientiousness_prose():
     high = (
         "I broke each task into steps, scheduled them in my calendar, and "

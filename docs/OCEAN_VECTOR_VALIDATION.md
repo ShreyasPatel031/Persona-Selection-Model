@@ -127,6 +127,74 @@ structured.
 
 ---
 
+## A worked run, and why it fails
+
+Qwen2.5-1.5B-Instruct, conscientiousness, PC1 direction at layer 16, the committed
+120-item form, one ladder variant, one random control, on CPU.
+
+**The instrument works.** The prompting baseline moves the score across most of the
+scale and does it monotonically, with no locked administrations:
+
+```
+level means  [2.50, 2.58, 3.00, 3.13, 3.33, 4.42, 3.46, 4.63, 4.58]
+rho = 0.967   range = [2.50, 4.63]   usable = 9/9
+```
+
+**Calibration finds the ceiling by itself.** Doubling upward, coherence holds to
+magnitude 32.4 and collapses at 64.9 (type-token ratio 0.93 to 0.53), so the grid
+is placed below 32.4. The layer's mean activation norm here is about 50; on
+Gemma-3-4B it is around 2.7e4. The same relative alpha grid cannot serve both,
+which is the whole argument for calibrating rather than choosing.
+
+**The dose-response looks convincing.**
+
+| magnitude | trait direction | random control |
+|---|---|---|
+| 0 | 3.29 | 3.29 |
+| -2.0 | 2.94 | 3.32 |
+| -4.1 | 2.77 *(locked, excluded)* | 3.34 |
+| -8.1 | **2.83** | 3.32 |
+| -16.2 | 2.85 | 3.14 |
+| -32.4 | 3.07 *(locked, excluded)* | 3.00 |
+
+`rho = -0.80` with the correct sign, 4 of 6 rungs usable, best delta `-0.46`
+against a control delta of `0.29`. Under a "beats the control" rule this passes.
+
+**It should not pass, and the probes are what show it.** The free text at the best
+rung is:
+
+> "I'm sorry, but as an artificial intelligence language model, I don't have
+> personal experiences like humans do. However, I can tell you about common
+> activities people might engage in on Saturdays..."
+
+The model has stopped answering as a self. The inventory moved because the persona
+collapsed into a disclaimer, not because conscientiousness fell. Trait markers
+never fire across the sweep, consistent with prose that is not about the trait at
+all. The margin over the control is also only 1.58x.
+
+So the verdict requires more than beating a control:
+
+- `control_margin_ratio >= 2.0` (`MIN_CONTROL_MARGIN`) — a large perturbation moves
+  the score in some direction whatever it is, so winning by a nose means nothing.
+- `dose_response_sign_correct` — steering toward "low" must push the score down.
+- `refused_at_best_rung` false — `refusal_score()` detects collapse into
+  disclaimer or refusal, which produces a real, monotone, control-beating curve
+  for entirely the wrong reason.
+- at least three unlocked rungs.
+
+Under those rules this run reports `works = False`, which is the correct answer.
+
+### Limits this run exposed
+
+The coherence screen is lexical, so it accepts text that is grammatical but
+semantically broken. At magnitude -32.4 it passed prose reading *"I'm sorry for the
+success is too it"* with a type-token ratio of 0.93. It catches repetition
+collapse, which is the dominant failure, and it does not catch semantic drift.
+Refusal detection covers one specific and common case; the saved text is still the
+primary evidence and is meant to be read.
+
+---
+
 ## Instrument
 
 `data/ipip_neo_120.csv` is a keying-balanced 120-item form derived from the
@@ -149,17 +217,20 @@ selection.
 
 ```
 trait             toward steer rho  usable best delta    @mag ctrl delta marker rho  ceiling  works
-conscientiousness low         0.94     6/8      -1.51    8000       0.12       0.81     8000   True
+conscientiousness low         -0.8     4/6    -0.4642 -8.1089     0.2941       None -32.4358  False
 ```
 
-- `usable 6/8` — two rungs were option-locked and excluded. If this is `0/8`, the
+- `usable 4/6` — two rungs were option-locked and excluded. If this is `0/6`, the
   run measured nothing regardless of what the scores say.
 - `best delta` vs `ctrl delta` — the trait direction has to beat matched-norm
   random directions on the same grid. Without this column a large delta only
   shows that a large perturbation changes behaviour.
 - `ceiling` — largest magnitude still producing prose. A `best delta` obtained
   above the ceiling is an artefact of a broken model, not a trait shift.
-- `works` — all three checks passed.
+- `marker rho` of `None` means the trait markers never fired, which is a hint that
+  the prose is not about the trait; read the saved text before believing a score.
+- `works` — every check passed: margin over controls, correct dose-response sign,
+  enough unlocked rungs, and no refusal at the best rung.
 
 The prompting baseline is printed underneath as the reference: prompting can move
 these scores across most of the scale, so a direction whose dose-response is real

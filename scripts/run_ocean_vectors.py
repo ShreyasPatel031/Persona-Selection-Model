@@ -41,7 +41,9 @@ def run_trait(
     *,
     model_id: str | None,
     items_csv: Path | None,
-    magnitudes: list[float],
+    magnitudes: list[float] | None,
+    auto_calibrate: bool,
+    n_rungs: int,
     steer_toward: str,
     direction: str,
     variants: int,
@@ -85,7 +87,9 @@ def run_trait(
         sweep_json,
         trait=trait,
         which=direction,
-        magnitudes=magnitudes,
+        magnitudes=magnitudes or None,
+        auto_calibrate=auto_calibrate,
+        n_rungs=n_rungs,
         steer_toward=steer_toward,
         n_random_controls=n_random_controls,
         model_id=model_id,
@@ -111,6 +115,9 @@ def run_trait(
         "control_delta": verdict["max_control_abs_delta"],
         "beats_controls": verdict["beats_random_controls"],
         "marker_rho": curve["marker_spearman"],
+        "calibrated_ceiling": (sweep.get("magnitude_calibration") or {}).get("ceiling_magnitude"),
+        "layer": sweep["layer"],
+        "layer_choice": sweep.get("layer_choice"),
         "coherence_ceiling": curve["coherence_ceiling_magnitude"],
         "control_ceilings": verdict["control_coherence_ceilings"],
         "works": verdict["works"],
@@ -131,9 +138,16 @@ def main(argv: list[str] | None = None) -> int:
     )
     p.add_argument(
         "--magnitudes",
-        default="0.25,0.5,0.75,1,1.5,2,3",
-        help="|alpha| grid in units of the layer's mean activation norm.",
+        default="",
+        help="|alpha| grid in units of the layer's mean activation norm. "
+        "Empty (default) calibrates the grid to the measured coherence ceiling.",
     )
+    p.add_argument(
+        "--no-auto-calibrate",
+        action="store_true",
+        help="Use --magnitudes verbatim instead of calibrating to the coherence ceiling.",
+    )
+    p.add_argument("--rungs", type=int, default=6, help="Rungs in the calibrated grid.")
     p.add_argument("--steer-toward", default="auto", choices=("auto", "high", "low"))
     p.add_argument("--direction", default="pc1", choices=("pc1", "endpoint", "ordinal"))
     p.add_argument("--variants", type=int, default=3, help="Marker rotations per ladder level.")
@@ -167,6 +181,8 @@ def main(argv: list[str] | None = None) -> int:
                     model_id=args.model_id or None,
                     items_csv=items_csv,
                     magnitudes=magnitudes,
+                    auto_calibrate=not args.no_auto_calibrate,
+                    n_rungs=args.rungs,
                     steer_toward=args.steer_toward,
                     direction=args.direction,
                     variants=args.variants,

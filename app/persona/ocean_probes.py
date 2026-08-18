@@ -163,16 +163,53 @@ def marker_score(text: str, trait: str) -> dict[str, Any]:
     }
 
 
+# Steering can move an inventory score by destabilising the persona rather than by
+# shifting the trait: the model stops answering as a self and starts refusing or
+# disclaiming. That produces a real, monotone, control-beating score change for
+# entirely the wrong reason, so it has to be detected rather than inferred.
+REFUSAL_MARKERS: tuple[str, ...] = (
+    "as an ai",
+    "as an artificial intelligence",
+    "i am an ai",
+    "i'm an ai",
+    "language model",
+    "i don't have personal",
+    "i do not have personal",
+    "i don't have experiences",
+    "i cannot provide",
+    "i can't assist",
+    "i cannot assist",
+    "i'm sorry, but",
+    "i am sorry, but",
+    "i don't have feelings",
+    "i have no personal",
+)
+
+
+def refusal_score(text: str) -> dict[str, Any]:
+    """Detect persona collapse into disclaimer or refusal.
+
+    A hit means the reply stopped being a first-person account, so any inventory
+    movement at this rung is suspect as a trait measurement even if it is large,
+    monotone and better than a random control.
+    """
+    low = text.lower()
+    hits = [m for m in REFUSAL_MARKERS if m in low]
+    return {"refused": bool(hits), "hits": hits}
+
+
 def summarise_probes(rows: Sequence[dict[str, Any]], trait: str) -> dict[str, Any]:
     """Aggregate probe rows (each with ``text``) into coherence + marker means."""
     if not rows:
         return {"n": 0, "coherent_fraction": None, "mean_net_markers": None}
     coh = [coherence_metrics(str(r["text"])) for r in rows]
     marks = [marker_score(str(r["text"]), trait) for r in rows]
+    refus = [refusal_score(str(r["text"])) for r in rows]
     n = len(rows)
     return {
         "n": n,
         "coherent_fraction": round(sum(1 for c in coh if c["coherent"]) / n, 3),
         "mean_type_token_ratio": round(sum(c["type_token_ratio"] for c in coh) / n, 4),
         "mean_net_markers": round(sum(m["net_per_100_words"] for m in marks) / n, 3),
+        "refused_fraction": round(sum(1 for r in refus if r["refused"]) / n, 3),
     }
