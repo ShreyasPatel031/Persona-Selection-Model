@@ -182,7 +182,13 @@ def main(argv: list[str] | None = None) -> int:
         help="Unsteered baseline prompt. neutral_level5 instructs neutrality and "
         "pins a forced-choice inventory to the neutral option; kept only for comparison.",
     )
-    p.add_argument("--direction", default="pc1", choices=("pc1", "endpoint", "ordinal"))
+    p.add_argument(
+        "--direction",
+        default="probe",
+        choices=("pc1", "endpoint", "ordinal", "probe"),
+        help="probe = ridge fit of level on activation, the graded direction; "
+        "pc1 takes the largest-variance direction, which is the low/high switch.",
+    )
     p.add_argument("--variants", type=int, default=3, help="Marker rotations per ladder level.")
     p.add_argument("--random-controls", type=int, default=2)
     p.add_argument("--probes", type=int, default=2)

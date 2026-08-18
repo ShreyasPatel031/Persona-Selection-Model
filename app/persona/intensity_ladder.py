@@ -164,6 +164,98 @@ def ordinal_direction(
     return torch.linalg.pinv(x) @ y
 
 
+def ridge_probe_direction(
+    levels: Sequence[float], acts: torch.Tensor, lam: float = 10.0
+) -> torch.Tensor:
+    """Ridge-regress level on activation: the *graded* direction, unit-normed.
+
+    ``acts`` is ``(n_samples, d)`` with one row per (level, variant).
+
+    PC1 takes the largest-variance direction, which for these ladders is the
+    low-half/high-half cluster separation — a switch, not a dial. The graded
+    component is smaller in variance but survives held-out prompt wordings, and
+    only a regression against level recovers it. Ridge (not the pinv of
+    ``ordinal_direction``) because d >> n_samples makes the exact solution an
+    interpolation with no generalisation.
+
+    Solved in dual form since ``n_samples`` is tiny next to ``d``.
+    """
+    x = acts.float()
+    x = x - x.mean(dim=0, keepdim=True)
+    y = torch.tensor([float(v) for v in levels], dtype=torch.float32)
+    y = y - y.mean()
+    n = x.shape[0]
+    gram = x @ x.T + float(lam) * torch.eye(n, dtype=x.dtype)
+    w = x.T @ torch.linalg.solve(gram, y)
+    return w / w.norm().clamp_min(1e-9)
+
+
+def probe_cross_validation(
+    levels: Sequence[float], acts: torch.Tensor, lam: float = 10.0
+) -> dict[str, float | None]:
+    """Leave-one-variant-out check that the fitted direction is a ramp, not a step.
+
+    ``acts`` is ``(n_levels, n_variants, d)``. Fitting on a subset of prompt
+    wordings and scoring on a held-out wording is what separates a real graded
+    axis from an interpolation of the points it was fitted to.
+    """
+    n_levels, n_variants = int(acts.shape[0]), int(acts.shape[1])
+    if n_variants < 2 or n_levels < 4:
+        return {"cv_spearman": None, "cv_r2_linear": None, "cv_r2_two_group": None}
+    lv = [float(v) for v in levels]
+    rhos: list[float] = []
+    r2l: list[float] = []
+    r2s: list[float] = []
+    for held in range(n_variants):
+        train = [v for v in range(n_variants) if v != held]
+        x = torch.cat([acts[:, v, :] for v in train], dim=0)
+        y = lv * len(train)
+        mu = x.float().mean(dim=0, keepdim=True)
+        w = ridge_probe_direction(y, x, lam)
+        proj = [float(torch.dot(r.float() - mu[0], w)) for r in acts[:, held, :]]
+        rho = spearman_rho(lv, proj)
+        if rho is not None:
+            rhos.append(rho)
+        lin = _r2_against_line(lv, proj)
+        step = _r2_against_two_group(proj)
+        if lin is not None:
+            r2l.append(lin)
+        if step is not None:
+            r2s.append(step)
+    mean = lambda xs: (sum(xs) / len(xs)) if xs else None  # noqa: E731
+    return {
+        "cv_spearman": _round_opt(mean(rhos)),
+        "cv_r2_linear": _round_opt(mean(r2l)),
+        "cv_r2_two_group": _round_opt(mean(r2s)),
+    }
+
+
+def _r2_against_line(xs: Sequence[float], ys: Sequence[float]) -> float | None:
+    n = len(xs)
+    if n < 3:
+        return None
+    mx, my = sum(xs) / n, sum(ys) / n
+    den = sum((a - mx) ** 2 for a in xs)
+    if den == 0:
+        return None
+    slope = sum((a - mx) * (b - my) for a, b in zip(xs, ys)) / den
+    intercept = my - slope * mx
+    ss = sum((b - (intercept + slope * a)) ** 2 for a, b in zip(xs, ys))
+    tot = sum((b - my) ** 2 for b in ys)
+    return 1 - ss / tot if tot else None
+
+
+def _r2_against_two_group(ys: Sequence[float]) -> float | None:
+    cut = len(ys) // 2
+    lo, hi = list(ys[:cut]), list(ys[cut:])
+    if not lo or not hi:
+        return None
+    ml, mh, my = sum(lo) / len(lo), sum(hi) / len(hi), sum(ys) / len(ys)
+    ss = sum((v - ml) ** 2 for v in lo) + sum((v - mh) ** 2 for v in hi)
+    tot = sum((v - my) ** 2 for v in ys)
+    return 1 - ss / tot if tot else None
+
+
 def _cos(a: torch.Tensor, b: torch.Tensor) -> float:
     return float(
         torch.nn.functional.cosine_similarity(a.float(), b.float(), dim=-1).item()
@@ -208,35 +300,11 @@ def layer_ladder_geometry(
     cut = len(proj_pc1) // 2
     lo_half, hi_half = proj_pc1[:cut], proj_pc1[cut:]
 
-    def _r2_line() -> float | None:
-        n = len(levels_x)
-        if n < 3:
-            return None
-        mx, my = sum(levels_x) / n, sum(proj_pc1) / n
-        den = sum((a - mx) ** 2 for a in levels_x)
-        if den == 0:
-            return None
-        slope = sum((a - mx) * (b - my) for a, b in zip(levels_x, proj_pc1)) / den
-        intercept = my - slope * mx
-        ss = sum((b - (intercept + slope * a)) ** 2 for a, b in zip(levels_x, proj_pc1))
-        tot = sum((b - my) ** 2 for b in proj_pc1)
-        return 1 - ss / tot if tot else None
-
-    def _r2_two_group() -> float | None:
-        if not lo_half or not hi_half:
-            return None
-        ml = sum(lo_half) / len(lo_half)
-        mh = sum(hi_half) / len(hi_half)
-        my = sum(proj_pc1) / len(proj_pc1)
-        ss = sum((v - ml) ** 2 for v in lo_half) + sum((v - mh) ** 2 for v in hi_half)
-        tot = sum((v - my) ** 2 for v in proj_pc1)
-        return 1 - ss / tot if tot else None
-
     return {
         "n_levels": int(centroids.shape[0]),
         "endpoint_norm": float(v_end.float().norm().item()),
-        "r2_level_linear": _round_opt(_r2_line()),
-        "r2_level_two_group": _round_opt(_r2_two_group()),
+        "r2_level_linear": _round_opt(_r2_against_line(levels_x, proj_pc1)),
+        "r2_level_two_group": _round_opt(_r2_against_two_group(proj_pc1)),
         "gain_leak_cos_mean_pc1": round(abs(_cos(mean_c, v_pc1)), 4),
         "spearman_within_low_half": _round_opt(
             spearman_rho(levels_x[:cut], lo_half) if cut >= 2 else None
@@ -275,7 +343,10 @@ def _round_opt(value: float | None, digits: int = 4) -> float | None:
 
 
 def analyze_ladder(
-    centroids: torch.Tensor, levels: Sequence[float]
+    centroids: torch.Tensor,
+    levels: Sequence[float],
+    acts: torch.Tensor | None = None,
+    probe_lambda: float = 10.0,
 ) -> dict[str, Any]:
     """Per-layer ladder geometry for ``(n_levels, n_layers, d)`` centroids.
 
@@ -290,6 +361,14 @@ def analyze_ladder(
     per_layer = [
         layer_ladder_geometry(centroids[:, li, :], levels) for li in range(n_layers)
     ]
+    # Held-out check on the fitted (probe) direction, when the raw per-variant
+    # activations are available. This is the only metric here that can be
+    # trusted about gradedness, because it scores unseen prompt wordings.
+    if acts is not None and acts.dim() == 4:
+        for li in range(n_layers):
+            per_layer[li].update(
+                probe_cross_validation(levels, acts[:, :, li, :], probe_lambda)
+            )
 
     def quality(row: dict[str, Any]) -> float:
         """Prefer layers that encode level *gradedly*, not as a low/high switch.
@@ -299,7 +378,14 @@ def analyze_ladder(
         layer 10 for neuroticism, where 97.5% of the direction is the mean
         residual (global gain) and the graded span is ~34 units against ~1076
         at layer 19.
+
+        When held-out probe scores are present, rank on the margin by which a
+        line beats a two-group step on prompt wordings the fit never saw.
         """
+        cv_lin = row.get("cv_r2_linear")
+        cv_step = row.get("cv_r2_two_group")
+        if cv_lin is not None and cv_step is not None:
+            return max(0.0, cv_lin - cv_step) * max(0.0, row.get("cv_spearman") or 0.0)
         r2 = row.get("r2_level_linear") or 0.0
         lo = row.get("spearman_within_low_half")
         hi = row.get("spearman_within_high_half")
@@ -896,13 +982,13 @@ def build_ladder_vectors(
     out_pt: Path,
     out_json: Path,
 ) -> Path:
-    """Derive endpoint / PC1 / ordinal directions per layer and report geometry."""
+    """Derive endpoint / PC1 / ordinal / probe directions per layer, plus geometry."""
     blob = torch.load(centroids_pt, map_location="cpu")
     acts: torch.Tensor = blob["activations"]  # (n_levels, n_variants, n_layers, d)
     levels = [float(x) for x in blob["levels"]]
     centroids = acts.mean(dim=1)  # (n_levels, n_layers, d)
 
-    geometry = analyze_ladder(centroids, levels)
+    geometry = analyze_ladder(centroids, levels, acts=acts)
 
     n_layers = int(centroids.shape[1])
     sample_levels = [
@@ -923,6 +1009,15 @@ def build_ladder_vectors(
         ],
         dim=0,
     )
+    v_probe = torch.stack(
+        [
+            ridge_probe_direction(
+                sample_levels, acts[:, :, li, :].reshape(-1, acts.shape[-1])
+            )
+            for li in range(n_layers)
+        ],
+        dim=0,
+    )
 
     agreement = [
         {
@@ -930,6 +1025,7 @@ def build_ladder_vectors(
             "cos_endpoint_pc1": round(_cos(v_end[li], v_pc1[li]), 4),
             "cos_endpoint_ordinal": round(_cos(v_end[li], v_ord[li]), 4),
             "cos_pc1_ordinal": round(_cos(v_pc1[li], v_ord[li]), 4),
+            "cos_pc1_probe": round(_cos(v_pc1[li], v_probe[li]), 4),
         }
         for li in range(n_layers)
     ]
@@ -944,6 +1040,7 @@ def build_ladder_vectors(
             "v_endpoint": v_end,
             "v_pc1": v_pc1,
             "v_ordinal": v_ord,
+            "v_probe": v_probe,
             "level_centroids": centroids,
             "geometry": geometry,
         },
@@ -997,9 +1094,14 @@ def run_alpha_sweep(
     """
     blob = torch.load(vectors_pt, map_location="cpu")
     trait = trait or str(blob["trait"])
-    key = {"pc1": "v_pc1", "endpoint": "v_endpoint", "ordinal": "v_ordinal"}.get(which)
+    key = {
+        "pc1": "v_pc1",
+        "endpoint": "v_endpoint",
+        "ordinal": "v_ordinal",
+        "probe": "v_probe",
+    }.get(which)
     if key is None:
-        raise ValueError("which must be one of: pc1, endpoint, ordinal")
+        raise ValueError("which must be one of: pc1, endpoint, ordinal, probe")
     stack: torch.Tensor = blob[key]
     layer = int(layer_idx if layer_idx is not None else blob["geometry"]["best_layer"])
     direction = stack[layer]
@@ -1349,9 +1451,14 @@ def run_validated_sweep(
 
     blob = torch.load(vectors_pt, map_location="cpu")
     trait = trait or str(blob["trait"])
-    key = {"pc1": "v_pc1", "endpoint": "v_endpoint", "ordinal": "v_ordinal"}.get(which)
+    key = {
+        "pc1": "v_pc1",
+        "endpoint": "v_endpoint",
+        "ordinal": "v_ordinal",
+        "probe": "v_probe",
+    }.get(which)
     if key is None:
-        raise ValueError("which must be one of: pc1, endpoint, ordinal")
+        raise ValueError("which must be one of: pc1, endpoint, ordinal, probe")
     stack: torch.Tensor = blob[key]
     layer_note = "explicit layer argument"
     if layer_idx is None:
@@ -1915,7 +2022,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_sweep.add_argument(
         "--direction",
         default="pc1",
-        choices=("pc1", "endpoint", "ordinal"),
+        choices=("pc1", "endpoint", "ordinal", "probe"),
         help="Which ladder direction to inject (endpoint = classic CAA contrast).",
     )
     p_sweep.add_argument(
@@ -1947,7 +2054,7 @@ def build_parser() -> argparse.ArgumentParser:
     p_val.add_argument(
         "--direction",
         default="pc1",
-        choices=("pc1", "endpoint", "ordinal"),
+        choices=("pc1", "endpoint", "ordinal", "probe"),
         help="Which ladder direction to inject (endpoint = classic CAA contrast).",
     )
     p_val.add_argument(
