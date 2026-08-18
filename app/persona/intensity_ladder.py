@@ -1273,6 +1273,66 @@ def resolve_steering_layer(
     return n_layers // 2, f"geometry best layer {best} outside band {lo}-{hi}, no per-layer data"
 
 
+def direction_span_magnitude(
+    centroids: torch.Tensor, layer_idx: int, direction: torch.Tensor
+) -> float:
+    """|projection of (top − bottom level centroid) onto ``direction``| at a layer.
+
+    The dose unit for whichever direction is actually being steered. Using the
+    PC1 span for a non-PC1 vector silently mis-doses by up to 10×.
+    """
+    at_layer = centroids[:, layer_idx, :].float()
+    unit = direction.float()
+    unit = unit / unit.norm().clamp_min(1e-9)
+    return abs(float(torch.dot(at_layer[-1] - at_layer[0], unit)))
+
+
+def resolve_steering_layer_for_direction(
+    centroids: torch.Tensor,
+    stack: torch.Tensor,
+    *,
+    band: tuple[float, float] = (0.3, 0.8),
+    min_rho: float = 0.8,
+    min_monotone: float = 0.75,
+) -> tuple[int, str, float]:
+    """Layer where the *steered* direction has the largest well-ordered span.
+
+    ``resolve_steering_layer`` ranks layers by ladder geometry derived from PC1
+    and held-out probe scores. The dose grid, however, is expressed in units of
+    the span of the vector being injected. When the two disagree the grid is
+    built from an unrelated number: agreeableness drew a 53-unit grid at layer
+    14, where its PC1 span is 26.6, while at layer 15 that span is ~800. Nothing
+    was being dosed.
+
+    Requires the nine level centroids to project onto the direction in order
+    (Spearman ≥ ``min_rho``, monotone fraction ≥ ``min_monotone``), then takes
+    the largest span among the layers that qualify.
+    """
+    n_layers = int(centroids.shape[1])
+    lo = max(0, int(band[0] * n_layers))
+    hi = min(n_layers, max(lo + 1, int(band[1] * n_layers)))
+    levels = [float(i + 1) for i in range(int(centroids.shape[0]))]
+
+    qualified: list[tuple[float, int, float]] = []
+    fallback: list[tuple[float, int, float]] = []
+    for li in range(lo, hi):
+        unit = stack[li].float()
+        unit = unit / unit.norm().clamp_min(1e-9)
+        proj = [float(torch.dot(c.float(), unit)) for c in centroids[:, li, :]]
+        rho = spearman_rho(levels, proj) or 0.0
+        mono = monotone_fraction(proj) or 0.0
+        span = abs(proj[-1] - proj[0])
+        fallback.append((abs(rho) * span, li, span))
+        if rho >= min_rho and mono >= min_monotone:
+            qualified.append((span, li, span))
+
+    if qualified:
+        span, layer, _ = max(qualified)
+        return layer, f"largest ordered span for steered direction (band {lo}-{hi})", span
+    score, layer, span = max(fallback)
+    return layer, f"no layer met rho>={min_rho}; best rho*span in band {lo}-{hi}", span
+
+
 def latent_span_magnitude(geometry: dict[str, Any], layer_idx: int) -> float | None:
     """Absolute PC1 projection distance from the lowest to highest prompted level.
 
