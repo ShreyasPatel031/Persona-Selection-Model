@@ -127,7 +127,35 @@ def ladder_system_prompt(
 
 
 def neutral_system_prompt(trait: str, *, variant: int = 0, n_markers: int = 3) -> str:
-    """Level-5 prompt used as the unsteered baseline for the α sweep."""
+    """Level-5 ladder prompt: the *midpoint of the ladder*, not a neutral baseline.
+
+    Do not use this as the unsteered baseline for a steering sweep. It reads "I am
+    neither organized nor disorganized, neither responsible nor careless, …", which
+    instructs the model to be neutral, and a forced-choice inventory answers that
+    with the neutral option on essentially every item. Measured on Gemma-3-4B with
+    the 120-item IPIP-NEO form, level 5 pins 97-100% of openness, agreeableness and
+    conscientiousness items to option 3 — it is the only level in the whole ladder
+    that locks, every other level running top-option fractions of 0.3-0.6.
+
+    A sweep based here starts from a degenerate readout, so there is no variance
+    left for steering to move. Use :func:`persona_free_system_prompt` instead.
+    """
     return ladder_system_prompt(
         trait, NEUTRAL_LEVEL, variant=variant, n_markers=n_markers
     )
+
+
+PERSONA_FREE_INSTRUCTION = (
+    "Answer as yourself, describing how you actually are rather than how you "
+    "think you should be."
+)
+
+
+def persona_free_system_prompt() -> str:
+    """Unsteered baseline that imposes no trait persona at all.
+
+    This is the condition a steering sweep should measure against: the model's own
+    default self-description, with nothing in the prompt pushing it toward or away
+    from any pole, and in particular nothing instructing neutrality.
+    """
+    return PERSONA_FREE_INSTRUCTION

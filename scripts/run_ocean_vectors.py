@@ -1,20 +1,22 @@
 #!/usr/bin/env python3
 """Get OCEAN vectors and decide whether they work, for one trait or all five.
 
-Runs, per trait: prompt ladder -> ladder directions -> validated bipolar sweep,
-then prints the three things that decide whether a vector is real.
+Runs, per trait: prompt ladder -> ladder directions -> validated sweep at each
+pole, then prints the three things that decide whether a direction is real.
 
     monotonicity   Spearman rho between |magnitude| and the inventory score,
                    over unlocked rungs only.
     correlation    the prompting baseline rho(level, score) for the same trait
                    and instrument, as the reference the vector is compared to,
                    plus rho between magnitude and free-text trait markers.
-    behaviour      free-text replies at every rung with a coherence verdict, so
-                   a score obtained past the coherence ceiling is not mistaken
-                   for a working one.
+    behaviour      free-text replies at every rung with a coherence verdict and
+                   a refusal check, so a score obtained past the coherence
+                   ceiling, or by the model dropping out of first person, is not
+                   mistaken for a working one.
 
-A trait passes only if the direction beats matched-norm random controls, keeps at
-least three unlocked rungs, and moves the score monotonically.
+Both poles are swept by default. A baseline sitting near the scale midpoint makes
+"which pole has headroom" close to a coin flip, and testing one pole can miss a
+direction that works cleanly in the other.
 
     python3 scripts/run_ocean_vectors.py --run-id ocean_v1 --trait conscientiousness
     python3 scripts/run_ocean_vectors.py --run-id ocean_v1 --all-traits
@@ -44,12 +46,13 @@ def run_trait(
     magnitudes: list[float] | None,
     auto_calibrate: bool,
     n_rungs: int,
-    steer_toward: str,
+    poles: list[str],
     direction: str,
     variants: int,
     n_random_controls: int,
     n_probes: int,
     max_new_tokens: int,
+    baseline: str,
     skip_ladder: bool,
 ) -> dict:
     from app.persona.intensity_ladder import (
@@ -65,7 +68,6 @@ def run_trait(
     centroids = stage_dir / f"centroids_{trait}.pt"
     vec_pt = stage_dir / f"ladder_vectors_{trait}.pt"
     geom_json = stage_dir / f"ladder_geometry_{trait}.json"
-    sweep_json = stage_dir / f"validated_sweep_{trait}_{direction}.json"
 
     if not (skip_ladder and ladder_json.is_file() and centroids.is_file()):
         logging.info("[%s] stage 1: prompt ladder", trait)
@@ -81,52 +83,65 @@ def run_trait(
         logging.info("[%s] stage 2: ladder directions", trait)
         build_ladder_vectors(centroids, vec_pt, geom_json)
 
-    logging.info("[%s] stage 3: validated sweep", trait)
-    run_validated_sweep(
-        vec_pt,
-        sweep_json,
-        trait=trait,
-        which=direction,
-        magnitudes=magnitudes or None,
-        auto_calibrate=auto_calibrate,
-        n_rungs=n_rungs,
-        steer_toward=steer_toward,
-        n_random_controls=n_random_controls,
-        model_id=model_id,
-        items_csv=items_csv,
-        probe_questions=PROBE_QUESTIONS[: max(1, n_probes)],
-        max_new_tokens=max_new_tokens,
-    )
+    per_pole: dict[str, dict] = {}
+    for pole in poles:
+        pole_json = stage_dir / f"validated_sweep_{trait}_{direction}_{pole}.json"
+        logging.info("[%s] stage 3: validated sweep toward %s", trait, pole)
+        run_validated_sweep(
+            vec_pt,
+            pole_json,
+            trait=trait,
+            which=direction,
+            magnitudes=magnitudes or None,
+            auto_calibrate=auto_calibrate,
+            n_rungs=n_rungs,
+            steer_toward=pole,
+            n_random_controls=n_random_controls,
+            model_id=model_id,
+            items_csv=items_csv,
+            probe_questions=PROBE_QUESTIONS[: max(1, n_probes)],
+            max_new_tokens=max_new_tokens,
+            baseline=baseline,
+        )
+        sw = json.loads(pole_json.read_text())
+        curve = sw["trait_curve"]
+        best = curve["best_usable"] or {}
+        per_pole[pole] = {
+            "report": str(pole_json),
+            "baseline_ev": sw["baseline"]["target_ev"],
+            "rho": curve["spearman_absalpha_vs_target_ev"],
+            "usable": f"{curve['n_usable_rungs']}/{curve['n_rungs']}",
+            "best_delta": best.get("delta_vs_baseline"),
+            "best_magnitude": best.get("magnitude"),
+            "control_delta": sw["verdict"]["max_control_abs_delta"],
+            "margin": sw["verdict"]["control_margin_ratio"],
+            "refused_at_best": sw["verdict"].get("refused_at_best_rung"),
+            "marker_rho": curve["marker_spearman"],
+            "ceiling": curve["coherence_ceiling_magnitude"],
+            "works": sw["verdict"]["works"],
+        }
 
+    winners = [p for p, v in per_pole.items() if v["works"]]
+    best_pole = (
+        max(winners, key=lambda p: abs(per_pole[p]["best_delta"] or 0.0)) if winners else None
+    )
     ladder = json.loads(ladder_json.read_text())
-    sweep = json.loads(sweep_json.read_text())
-    curve = sweep["trait_curve"]
-    verdict = sweep["verdict"]
     return {
         "trait": trait,
         "prompting_rho": ladder["spearman_level_vs_target_score"],
         "prompting_range": ladder["target_score_range"],
         "prompting_usable": f"{ladder['n_usable_administrations']}/{ladder['n_administrations']}",
-        "steered_toward": verdict["steered_toward"],
-        "steering_rho": curve["spearman_absalpha_vs_target_ev"],
-        "steering_usable": f"{curve['n_usable_rungs']}/{curve['n_rungs']}",
-        "best_delta": (curve["best_usable"] or {}).get("delta_vs_baseline"),
-        "best_magnitude": (curve["best_usable"] or {}).get("magnitude"),
-        "control_delta": verdict["max_control_abs_delta"],
-        "beats_controls": verdict["beats_random_controls"],
-        "marker_rho": curve["marker_spearman"],
-        "calibrated_ceiling": (sweep.get("magnitude_calibration") or {}).get("ceiling_magnitude"),
-        "layer": sweep["layer"],
-        "layer_choice": sweep.get("layer_choice"),
-        "coherence_ceiling": curve["coherence_ceiling_magnitude"],
-        "control_ceilings": verdict["control_coherence_ceilings"],
-        "works": verdict["works"],
-        "report": str(sweep_json),
+        "poles": per_pole,
+        "passing_poles": winners,
+        "best_pole": best_pole,
+        "works": bool(winners),
     }
 
 
 def main(argv: list[str] | None = None) -> int:
-    p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    p = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
     p.add_argument("--run-id", required=True)
     p.add_argument("--trait", default="conscientiousness", choices=list(TRAITS))
     p.add_argument("--all-traits", action="store_true", help="Run all five domains.")
@@ -148,7 +163,19 @@ def main(argv: list[str] | None = None) -> int:
         help="Use --magnitudes verbatim instead of calibrating to the coherence ceiling.",
     )
     p.add_argument("--rungs", type=int, default=6, help="Rungs in the calibrated grid.")
-    p.add_argument("--steer-toward", default="auto", choices=("auto", "high", "low"))
+    p.add_argument(
+        "--steer-toward",
+        default="both",
+        choices=("both", "high", "low"),
+        help="Which pole(s) to sweep (default: both).",
+    )
+    p.add_argument(
+        "--baseline",
+        default="persona_free",
+        choices=("persona_free", "neutral_level5"),
+        help="Unsteered baseline prompt. neutral_level5 instructs neutrality and "
+        "pins a forced-choice inventory to the neutral option; kept only for comparison.",
+    )
     p.add_argument("--direction", default="pc1", choices=("pc1", "endpoint", "ordinal"))
     p.add_argument("--variants", type=int, default=3, help="Marker rotations per ladder level.")
     p.add_argument("--random-controls", type=int, default=2)
@@ -157,7 +184,7 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument(
         "--skip-ladder-if-present",
         action="store_true",
-        help="Reuse existing ladder artefacts and only re-run the sweep.",
+        help="Reuse existing ladder artefacts and only re-run the sweeps.",
     )
     p.add_argument("--out", default="", help="Summary JSON path.")
     args = p.parse_args(argv)
@@ -170,6 +197,7 @@ def main(argv: list[str] | None = None) -> int:
     items_csv = Path(args.items_csv) if args.items_csv else None
     magnitudes = [float(x.strip()) for x in args.magnitudes.split(",") if x.strip()]
     traits = list(TRAITS) if args.all_traits else [args.trait]
+    poles = ["high", "low"] if args.steer_toward == "both" else [args.steer_toward]
 
     rows: list[dict] = []
     for trait in traits:
@@ -183,12 +211,13 @@ def main(argv: list[str] | None = None) -> int:
                     magnitudes=magnitudes,
                     auto_calibrate=not args.no_auto_calibrate,
                     n_rungs=args.rungs,
-                    steer_toward=args.steer_toward,
+                    poles=poles,
                     direction=args.direction,
                     variants=args.variants,
                     n_random_controls=args.random_controls,
                     n_probes=args.probes,
                     max_new_tokens=args.max_new_tokens,
+                    baseline=args.baseline,
                     skip_ladder=args.skip_ladder_if_present,
                 )
             )
@@ -196,41 +225,44 @@ def main(argv: list[str] | None = None) -> int:
             logging.exception("[%s] failed: %s", trait, exc)
             rows.append({"trait": trait, "error": str(exc), "works": False})
 
-    print("\n" + "=" * 100)
+    print("\n" + "=" * 112)
     print("DOES THE VECTOR WORK?  (usable = rungs that were not option-locked)")
-    print("=" * 100)
-    header = (
-        f"{'trait':17} {'toward':6} {'steer rho':>9} {'usable':>7} {'best delta':>10} "
-        f"{'@mag':>7} {'ctrl delta':>10} {'marker rho':>10} {'ceiling':>8} {'works':>6}"
+    print("=" * 112)
+    print(
+        f"{'trait':18} {'pole':5} {'base':>6} {'rho':>6} {'usable':>7} {'delta':>8} "
+        f"{'@mag':>9} {'ctrl':>7} {'margin':>7} {'refused':>7} {'works':>6}"
     )
-    print(header)
-    print("-" * 100)
+    print("-" * 112)
     for r in rows:
         if r.get("error"):
-            print(f"{r['trait']:17} ERROR: {r['error'][:70]}")
+            print(f"{r['trait']:18} ERROR: {r['error'][:80]}")
             continue
-        print(
-            f"{r['trait']:17} {str(r['steered_toward']):6} {str(r['steering_rho']):>9} "
-            f"{r['steering_usable']:>7} {str(r['best_delta']):>10} {str(r['best_magnitude']):>7} "
-            f"{str(r['control_delta']):>10} {str(r['marker_rho']):>10} "
-            f"{str(r['coherence_ceiling']):>8} {str(r['works']):>6}"
-        )
-    print("-" * 100)
+        for pole, v in r["poles"].items():
+            print(
+                f"{r['trait']:18} {pole:5} {str(v['baseline_ev']):>6} {str(v['rho']):>6} "
+                f"{v['usable']:>7} {str(v['best_delta']):>8} {str(v['best_magnitude']):>9} "
+                f"{str(v['control_delta']):>7} {str(v['margin']):>7} "
+                f"{str(v['refused_at_best']):>7} {str(v['works']):>6}"
+            )
+    print("-" * 112)
     print("prompting baseline for reference (same instrument):")
     for r in rows:
         if r.get("error"):
             continue
         print(
-            f"  {r['trait']:17} rho={str(r['prompting_rho']):>7} range={str(r['prompting_range']):>16} "
-            f"usable={r['prompting_usable']}"
+            f"  {r['trait']:18} rho={str(r['prompting_rho']):>7} "
+            f"range={str(r['prompting_range']):>16} usable={r['prompting_usable']}"
         )
 
-    working = [r["trait"] for r in rows if r.get("works")]
-    print(f"\nvectors that pass all three checks: {working or 'none'}")
+    working = [(r["trait"], r["best_pole"]) for r in rows if r.get("works")]
+    print(f"\nvectors that pass all checks: {working or 'none'}")
 
     out = Path(args.out) if args.out else run_dir / "ocean_vector_summary.json"
     out.parent.mkdir(parents=True, exist_ok=True)
-    out.write_text(json.dumps({"run_id": args.run_id, "traits": rows}, indent=2) + "\n")
+    out.write_text(
+        json.dumps({"run_id": args.run_id, "baseline": args.baseline, "traits": rows}, indent=2)
+        + "\n"
+    )
     print(f"summary: {out}")
     return 0 if working else 1
 

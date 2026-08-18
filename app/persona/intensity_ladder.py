@@ -54,6 +54,7 @@ from app.persona.inventory_ipip import (
     score_traits_ev,
 )
 from app.persona.intensity_prompts import (
+    persona_free_system_prompt,
     N_LEVELS,
     NEUTRAL_LEVEL,
     ladder_system_prompt,
@@ -1229,6 +1230,7 @@ def run_validated_sweep(
     auto_calibrate: bool = True,
     n_rungs: int = 6,
     layer_band: tuple[float, float] = (0.3, 0.8),
+    baseline: str = "persona_free",
 ) -> Path:
     """Dose-response for one direction, screened and controlled.
 
@@ -1270,7 +1272,14 @@ def run_validated_sweep(
     items = items_from_csv(items_csv) if items_csv else items_for_traits(None)
     model, tokenizer, dev = _load_model(model_id, device)
     option_ids = _option_token_ids(tokenizer)
-    neutral = ladder_system_prompt(trait, NEUTRAL_LEVEL, n_markers=n_markers)
+    # The level-5 ladder prompt instructs neutrality, which pins a forced-choice
+    # inventory to the neutral option and leaves nothing for steering to move.
+    if baseline == "persona_free":
+        neutral = persona_free_system_prompt()
+    elif baseline == "neutral_level5":
+        neutral = ladder_system_prompt(trait, NEUTRAL_LEVEL, n_markers=n_markers)
+    else:
+        raise ValueError("baseline must be 'persona_free' or 'neutral_level5'")
 
     centroids: torch.Tensor = blob["level_centroids"]
     scale = 1.0
@@ -1519,6 +1528,8 @@ def run_validated_sweep(
         "alpha_units": alpha_units,
         "alpha_scale": round(scale, 4),
         "layer_choice": layer_note,
+        "baseline_prompt_mode": baseline,
+        "baseline_system_prompt": neutral,
         "magnitude_calibration": calibration,
         "magnitude_grid": grid,
         "instrument": str(items_csv.resolve()) if items_csv else "IPIP_50",
