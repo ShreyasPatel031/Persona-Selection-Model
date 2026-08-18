@@ -1304,17 +1304,21 @@ def resolve_steering_layer_for_direction(
     14, where its PC1 span is 26.6, while at layer 15 that span is ~800. Nothing
     was being dosed.
 
-    Requires the nine level centroids to project onto the direction in order
-    (Spearman ≥ ``min_rho``, monotone fraction ≥ ``min_monotone``), then takes
-    the largest span among the layers that qualify.
+    Ranks by how *well ordered* the ladder is along the direction
+    (Spearman × monotone fraction), breaking ties on the larger span — not by
+    span alone. Span-first picked layer 20 for agreeableness (ρ 0.83, monotone
+    0.62, span 2197), where steering up moved a judge less than a random vector
+    did. Layer 15 (ρ 1.00, monotone 1.00, span 819) closes 103% of the prompt's
+    gap in both directions. Ordering beats magnitude.
+
+    ``min_rho`` / ``min_monotone`` only gate the fallback message.
     """
     n_layers = int(centroids.shape[1])
     lo = max(0, int(band[0] * n_layers))
     hi = min(n_layers, max(lo + 1, int(band[1] * n_layers)))
     levels = [float(i + 1) for i in range(int(centroids.shape[0]))]
 
-    qualified: list[tuple[float, int, float]] = []
-    fallback: list[tuple[float, int, float]] = []
+    ranked: list[tuple[float, float, int]] = []
     for li in range(lo, hi):
         unit = stack[li].float()
         unit = unit / unit.norm().clamp_min(1e-9)
@@ -1322,15 +1326,16 @@ def resolve_steering_layer_for_direction(
         rho = spearman_rho(levels, proj) or 0.0
         mono = monotone_fraction(proj) or 0.0
         span = abs(proj[-1] - proj[0])
-        fallback.append((abs(rho) * span, li, span))
-        if rho >= min_rho and mono >= min_monotone:
-            qualified.append((span, li, span))
+        ranked.append((round(rho * mono, 4), span, li))
 
-    if qualified:
-        span, layer, _ = max(qualified)
-        return layer, f"largest ordered span for steered direction (band {lo}-{hi})", span
-    score, layer, span = max(fallback)
-    return layer, f"no layer met rho>={min_rho}; best rho*span in band {lo}-{hi}", span
+    order, span, layer = max(ranked)
+    ok = order >= min_rho * min_monotone
+    note = (
+        f"best ordered ladder for steered direction (rho*mono={order:.3f}, band {lo}-{hi})"
+        if ok
+        else f"no well-ordered layer (best rho*mono={order:.3f}, band {lo}-{hi})"
+    )
+    return layer, note, span
 
 
 def latent_span_magnitude(geometry: dict[str, Any], layer_idx: int) -> float | None:
