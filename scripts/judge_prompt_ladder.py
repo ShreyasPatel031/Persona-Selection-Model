@@ -296,7 +296,7 @@ def main(argv: list[str] | None = None) -> int:
                     g["text"],
                     project_id=args.project,
                     model_name=judge_id,
-                    max_output_tokens=256,
+                    max_output_tokens=2048,
                 )
                 raw = json.dumps({"score": js.score, "short_reason": js.short_reason})
                 score, reason = int(js.score), js.short_reason
