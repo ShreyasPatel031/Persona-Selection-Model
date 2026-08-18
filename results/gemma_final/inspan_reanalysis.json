@@ -1,0 +1,247 @@
+{
+  "note": "Reanalyze gemma_final IPIP sweeps restricted to the behaviorally proven dose span.\n\nThe bipolar judge runs (results/bipolar, results/bipolar_afix) achieved 10/10\nsign-correct monotone control using doses bounded by each trait's ladder span\n(E 741, A 819, C 988, N 1787, O 1529). The IPIP validated sweeps instead ran\ntheir grids up to coherence ceilings, 3-4x past those doses. This script\nrecomputes the IPIP dose-response Spearman using only the rungs inside the\nbehavioral span, i.e. what the correlation would have been had the inventory\nsweeps used the same dosing the judge sweeps did.\n\nNo GPU needed - pure reanalysis of committed JSON artifacts.",
+  "table": [
+    {
+      "trait": "extraversion",
+      "pole": "high",
+      "behavioral_span": 741.36,
+      "full_rho": -0.6,
+      "inspan_rho": 0.2,
+      "n_inspan_rungs": 4,
+      "inspan_magnitudes": [
+        0.0,
+        135.1,
+        270.2,
+        540.4
+      ],
+      "inspan_evs": [
+        3.0623,
+        3.0457,
+        3.025,
+        3.1381
+      ],
+      "dropped_magnitudes": [
+        1080.9,
+        2161.8
+      ]
+    },
+    {
+      "trait": "extraversion",
+      "pole": "low",
+      "behavioral_span": 741.36,
+      "full_rho": 0.0286,
+      "inspan_rho": 0.5,
+      "n_inspan_rungs": 3,
+      "inspan_magnitudes": [
+        0.0,
+        270.2,
+        540.4
+      ],
+      "inspan_evs": [
+        3.0623,
+        2.8897,
+        2.9417
+      ],
+      "dropped_magnitudes": [
+        1080.9,
+        2161.8,
+        4323.6
+      ]
+    },
+    {
+      "trait": "agreeableness",
+      "pole": "high",
+      "behavioral_span": 819.3,
+      "full_rho": 0.0857,
+      "inspan_rho": 1.0,
+      "n_inspan_rungs": 4,
+      "inspan_magnitudes": [
+        0.0,
+        136.1,
+        272.1,
+        544.3
+      ],
+      "inspan_evs": [
+        3.0159,
+        3.0415,
+        3.1015,
+        3.2837
+      ],
+      "dropped_magnitudes": [
+        1088.5,
+        2177.0
+      ]
+    },
+    {
+      "trait": "agreeableness",
+      "pole": "low",
+      "behavioral_span": 819.3,
+      "full_rho": 0.6,
+      "inspan_rho": 0.3,
+      "n_inspan_rungs": 5,
+      "inspan_magnitudes": [
+        0.0,
+        68.0,
+        136.1,
+        272.1,
+        544.3
+      ],
+      "inspan_evs": [
+        3.0159,
+        2.9809,
+        2.9655,
+        2.9687,
+        2.9937
+      ],
+      "dropped_magnitudes": [
+        1088.5
+      ]
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "high",
+      "behavioral_span": 988.09,
+      "full_rho": 0.5429,
+      "inspan_rho": 1.0,
+      "n_inspan_rungs": 4,
+      "inspan_magnitudes": [
+        0.0,
+        135.5,
+        271.1,
+        542.1
+      ],
+      "inspan_evs": [
+        2.7737,
+        2.8993,
+        3.0753,
+        3.3003
+      ],
+      "dropped_magnitudes": [
+        1084.3,
+        2168.6
+      ]
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "low",
+      "behavioral_span": 988.09,
+      "full_rho": 0.9429,
+      "inspan_rho": 1.0,
+      "n_inspan_rungs": 4,
+      "inspan_magnitudes": [
+        0.0,
+        135.5,
+        271.1,
+        542.1
+      ],
+      "inspan_evs": [
+        2.7737,
+        2.7029,
+        2.6936,
+        2.5594
+      ],
+      "dropped_magnitudes": [
+        1084.3,
+        2168.6
+      ]
+    },
+    {
+      "trait": "neuroticism",
+      "pole": "high",
+      "behavioral_span": 1786.56,
+      "full_rho": -0.7143,
+      "inspan_rho": -0.2,
+      "n_inspan_rungs": 4,
+      "inspan_magnitudes": [
+        0.0,
+        454.6,
+        909.2,
+        1818.4
+      ],
+      "inspan_evs": [
+        3.3,
+        3.3518,
+        3.3934,
+        3.1891
+      ],
+      "dropped_magnitudes": [
+        3636.9,
+        7273.8
+      ]
+    },
+    {
+      "trait": "neuroticism",
+      "pole": "low",
+      "behavioral_span": 1786.56,
+      "full_rho": 0.7714,
+      "inspan_rho": 1.0,
+      "n_inspan_rungs": 4,
+      "inspan_magnitudes": [
+        0.0,
+        454.6,
+        909.2,
+        1818.4
+      ],
+      "inspan_evs": [
+        3.3,
+        3.2005,
+        3.0504,
+        2.541
+      ],
+      "dropped_magnitudes": [
+        3636.9,
+        7273.8
+      ]
+    },
+    {
+      "trait": "openness",
+      "pole": "high",
+      "behavioral_span": 1528.69,
+      "full_rho": -0.7143,
+      "inspan_rho": -0.6,
+      "n_inspan_rungs": 5,
+      "inspan_magnitudes": [
+        0.0,
+        135.7,
+        271.5,
+        542.9,
+        1085.8
+      ],
+      "inspan_evs": [
+        3.4428,
+        3.5052,
+        3.5472,
+        3.0647,
+        2.9106
+      ],
+      "dropped_magnitudes": [
+        2171.6
+      ]
+    },
+    {
+      "trait": "openness",
+      "pole": "low",
+      "behavioral_span": 1528.69,
+      "full_rho": 1.0,
+      "inspan_rho": 1.0,
+      "n_inspan_rungs": 6,
+      "inspan_magnitudes": [
+        0.0,
+        67.9,
+        135.7,
+        271.5,
+        542.9,
+        1085.8
+      ],
+      "inspan_evs": [
+        3.4428,
+        3.4135,
+        3.3384,
+        3.0598,
+        3.0,
+        2.9997
+      ],
+      "dropped_magnitudes": []
+    }
+  ]
+}
