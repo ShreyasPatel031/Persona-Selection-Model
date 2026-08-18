@@ -1,0 +1,312 @@
+{
+  "validated_sweep_agreeableness_pc1_high.json": {
+    "verdict": {
+      "steered_toward": "high",
+      "trait_abs_delta": 0.2678,
+      "max_control_abs_delta": 0.0,
+      "control_margin_ratio": null,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 5,
+      "control_usable_rungs": [
+        4
+      ],
+      "trait_spearman": 0.9,
+      "dose_response_sign_correct": true,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": 2177.0298,
+      "control_coherence_ceilings": [
+        1088.5149
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": 0.02,
+      "magnitude": 544.2575,
+      "target_ev": 3.2837,
+      "delta_vs_baseline": 0.2678
+    },
+    "baseline_ev": 3.0159,
+    "rho": 0.9,
+    "usable": 5
+  },
+  "validated_sweep_agreeableness_pc1_low.json": {
+    "verdict": {
+      "steered_toward": "low",
+      "trait_abs_delta": 0.1432,
+      "max_control_abs_delta": 0.006,
+      "control_margin_ratio": 23.867,
+      "min_control_margin": 2.0,
+      "beats_random_controls": true,
+      "trait_usable_rungs": 6,
+      "control_usable_rungs": [
+        6
+      ],
+      "trait_spearman": -0.6,
+      "dose_response_sign_correct": true,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": -1088.5149,
+      "control_coherence_ceilings": [
+        -1088.5149
+      ],
+      "works": true
+    },
+    "best": {
+      "alpha": -0.04,
+      "magnitude": -1088.5149,
+      "target_ev": 2.8727,
+      "delta_vs_baseline": -0.1432
+    },
+    "baseline_ev": 3.0159,
+    "rho": -0.6,
+    "usable": 6
+  },
+  "validated_sweep_conscientiousness_pc1_high.json": {
+    "verdict": {
+      "steered_toward": "high",
+      "trait_abs_delta": 0.5266,
+      "max_control_abs_delta": 0.0,
+      "control_margin_ratio": null,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 4,
+      "control_usable_rungs": [
+        4
+      ],
+      "trait_spearman": 1.0,
+      "dose_response_sign_correct": true,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": 2168.5583,
+      "control_coherence_ceilings": [
+        1084.2791
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": 0.02,
+      "magnitude": 542.1396,
+      "target_ev": 3.3003,
+      "delta_vs_baseline": 0.5266
+    },
+    "baseline_ev": 2.7737,
+    "rho": 1.0,
+    "usable": 4
+  },
+  "validated_sweep_conscientiousness_pc1_low.json": {
+    "verdict": {
+      "steered_toward": "low",
+      "trait_abs_delta": 1.0547,
+      "max_control_abs_delta": 0.0,
+      "control_margin_ratio": null,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 5,
+      "control_usable_rungs": [
+        5
+      ],
+      "trait_spearman": -0.9,
+      "dose_response_sign_correct": true,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": -2168.5583,
+      "control_coherence_ceilings": [
+        -2168.5583
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": -0.04,
+      "magnitude": -1084.2791,
+      "target_ev": 1.719,
+      "delta_vs_baseline": -1.0547
+    },
+    "baseline_ev": 2.7737,
+    "rho": -0.9,
+    "usable": 5
+  },
+  "validated_sweep_extraversion_pc1_high.json": {
+    "verdict": {
+      "steered_toward": "high",
+      "trait_abs_delta": 0.0758,
+      "max_control_abs_delta": 0.0,
+      "control_margin_ratio": null,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 5,
+      "control_usable_rungs": [
+        4
+      ],
+      "trait_spearman": -0.4,
+      "dose_response_sign_correct": false,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": 2161.7756,
+      "control_coherence_ceilings": [
+        1080.8878
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": 0.02,
+      "magnitude": 540.4439,
+      "target_ev": 3.1381,
+      "delta_vs_baseline": 0.0758
+    },
+    "baseline_ev": 3.0623,
+    "rho": -0.4,
+    "usable": 5
+  },
+  "validated_sweep_extraversion_pc1_low.json": {
+    "verdict": {
+      "steered_toward": "low",
+      "trait_abs_delta": 0.1726,
+      "max_control_abs_delta": 0.0,
+      "control_margin_ratio": null,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 3,
+      "control_usable_rungs": [
+        4
+      ],
+      "trait_spearman": -0.5,
+      "dose_response_sign_correct": true,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": -4323.5513,
+      "control_coherence_ceilings": [
+        -2161.7756
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": -0.01,
+      "magnitude": -270.222,
+      "target_ev": 2.8897,
+      "delta_vs_baseline": -0.1726
+    },
+    "baseline_ev": 3.0623,
+    "rho": -0.5,
+    "usable": 3
+  },
+  "validated_sweep_neuroticism_pc1_high.json": {
+    "verdict": {
+      "steered_toward": "high",
+      "trait_abs_delta": 0.0934,
+      "max_control_abs_delta": 0.0,
+      "control_margin_ratio": null,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 4,
+      "control_usable_rungs": [
+        3
+      ],
+      "trait_spearman": -0.2,
+      "dose_response_sign_correct": false,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": 7273.75,
+      "control_coherence_ceilings": [
+        454.6094
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": 0.08,
+      "magnitude": 909.2188,
+      "target_ev": 3.3934,
+      "delta_vs_baseline": 0.0934
+    },
+    "baseline_ev": 3.3,
+    "rho": -0.2,
+    "usable": 4
+  },
+  "validated_sweep_neuroticism_pc1_low.json": {
+    "verdict": {
+      "steered_toward": "low",
+      "trait_abs_delta": 0.4194,
+      "max_control_abs_delta": 0.2946,
+      "control_margin_ratio": 1.424,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 5,
+      "control_usable_rungs": [
+        3
+      ],
+      "trait_spearman": -0.9,
+      "dose_response_sign_correct": true,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": -7273.75,
+      "control_coherence_ceilings": [
+        -454.6094
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": -0.32,
+      "magnitude": -3636.875,
+      "target_ev": 2.8806,
+      "delta_vs_baseline": -0.4194
+    },
+    "baseline_ev": 3.3,
+    "rho": -0.9,
+    "usable": 5
+  },
+  "validated_sweep_openness_pc1_high.json": {
+    "verdict": {
+      "steered_toward": "high",
+      "trait_abs_delta": 0.1044,
+      "max_control_abs_delta": 0.0,
+      "control_margin_ratio": null,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 3,
+      "control_usable_rungs": [
+        4
+      ],
+      "trait_spearman": 1.0,
+      "dose_response_sign_correct": true,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": 2171.612,
+      "control_coherence_ceilings": [
+        1085.806
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": 0.01,
+      "magnitude": 271.4515,
+      "target_ev": 3.5472,
+      "delta_vs_baseline": 0.1044
+    },
+    "baseline_ev": 3.4428,
+    "rho": 1.0,
+    "usable": 3
+  },
+  "validated_sweep_openness_pc1_low.json": {
+    "verdict": {
+      "steered_toward": "low",
+      "trait_abs_delta": 0.383,
+      "max_control_abs_delta": 0.3357,
+      "control_margin_ratio": 1.141,
+      "min_control_margin": 2.0,
+      "beats_random_controls": false,
+      "trait_usable_rungs": 4,
+      "control_usable_rungs": [
+        6
+      ],
+      "trait_spearman": -1.0,
+      "dose_response_sign_correct": true,
+      "refused_at_best_rung": false,
+      "trait_coherence_ceiling": -1085.806,
+      "control_coherence_ceilings": [
+        -1085.806
+      ],
+      "works": false
+    },
+    "best": {
+      "alpha": -0.01,
+      "magnitude": -271.4515,
+      "target_ev": 3.0598,
+      "delta_vs_baseline": -0.383
+    },
+    "baseline_ev": 3.4428,
+    "rho": -1.0,
+    "usable": 4
+  }
+}

@@ -1468,12 +1468,17 @@ def run_validated_sweep(
     max_control = max(control_deltas) if control_deltas else None
     # A bare "larger than the control" is too weak: a large perturbation moves the
     # score in any direction, so the trait has to win by a margin, not a nose.
-    margin_ratio = (
-        round(trait_delta / max_control, 3)
-        if trait_delta is not None and max_control not in (None, 0)
-        else None
-    )
-    beats_controls = bool(margin_ratio is not None and margin_ratio >= MIN_CONTROL_MARGIN)
+    # If the matched-norm random control does not move at all while the trait
+    # vector does, the ratio is undefined/infinite — that still beats controls.
+    if trait_delta is not None and max_control == 0:
+        margin_ratio = float("inf")
+        beats_controls = True
+    elif trait_delta is not None and max_control not in (None, 0):
+        margin_ratio = round(trait_delta / max_control, 3)
+        beats_controls = bool(margin_ratio >= MIN_CONTROL_MARGIN)
+    else:
+        margin_ratio = None
+        beats_controls = False
 
     # Refusal at the best rung means the score moved because the model stopped
     # answering as a self, which is not a trait shift however clean the curve looks.
