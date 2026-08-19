@@ -44,21 +44,25 @@ two readouts can be compared on *identical activations*.
 **Evidence.** `scripts/readout_argmax_vs_ev.py` recomputes every sweep we have
 under both readouts (`results/readout_argmax_vs_ev.json`):
 
-| sweep | ρ argmax | ρ EV | distinct argmax values | rungs |
-|---|---:|---:|---:|---:|
-| N up (in-span) | **+0.37** | **+0.98** | **2** | 9 |
-| A down (in-span) | −0.61 | −0.85 | 6 | 9 |
-| E up (in-span) | +0.67 | +0.75 | 7 | 9 |
-| A up | +0.67 | +0.90 | 4 | 5 |
-| A down | −0.32 | −0.60 | 5 | 6 |
-| C down | −0.72 | −0.90 | 4 | 5 |
-| O up | +0.87 | +1.00 | 2 | 3 |
-| C up | +1.00 | +1.00 | 4 | 4 |
-| N down | −0.90 | −0.90 | 5 | 5 |
-| O down | −1.00 | −1.00 | 4 | 4 |
-| E down | −0.50 | −0.50 | 3 | 3 |
-| E up (ceiling-dosed) | −0.05 | −0.40 | 3 | 5 |
-| N up (ceiling-dosed) | −0.40 | −0.20 | 4 | 4 |
+| sweep | grid | ρ argmax | ρ EV | distinct argmax values | rungs |
+|---|---|---:|---:|---:|---:|
+| N up | in-span | **+0.37** | **+0.98** | **2** | 9 |
+| A down | in-span | −0.61 | −0.85 | 6 | 9 |
+| E up | in-span | +0.67 | +0.75 | 7 | 9 |
+| A up | ceiling | +0.67 | +0.90 | 4 | 5 |
+| A down | ceiling | −0.32 | −0.60 | 5 | 6 |
+| C down | ceiling | −0.72 | −0.90 | 4 | 5 |
+| O up | ceiling | +0.87 | +1.00 | 2 | 3 |
+| C up | ceiling | +1.00 | +1.00 | 4 | 4 |
+| N down | ceiling | −0.90 | −0.90 | 5 | 5 |
+| O down | ceiling | −1.00 | −1.00 | 4 | 4 |
+| E down | ceiling | −0.50 | −0.50 | 3 | 3 |
+| E up | ceiling | −0.05 | −0.40 | 3 | 5 |
+| N up | ceiling | −0.40 | −0.20 | 4 | 4 |
+
+("ceiling" = the original `gemma_final` grids that ran to the coherence ceiling,
+i.e. dosed the way theirs was; "in-span" = re-dosed inside the ladder span. E-down
+in-span is excluded because only 2 rungs survive option lock.)
 
 Expected value gives a larger correctly-signed |ρ| in 7 of 13 sweeps, ties in 4,
 and the two remaining rows are the ceiling-dosed wrong-sign cases where no readout
