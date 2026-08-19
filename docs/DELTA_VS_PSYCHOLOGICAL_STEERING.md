@@ -24,6 +24,16 @@ as the target per unit of dose.
 
 ---
 
+> **Scope correction (see `docs/AUDIT_BEFORE_CONTACTING_AUTHORS.md`).** An earlier
+> version of this document called the readout "the decisive difference". That is
+> too strong. Recomputing all 14 sweeps both ways gives **11/13 sign-correct under
+> argmax and 11/13 under expected value** — the readout does not change the overall
+> sign pattern. It changes whether one specific *small* effect (N-up, ~1 item of 24
+> on the committed answer) is visible at all. What does change the sign pattern
+> across the board is excluding rungs whose response distribution has partly
+> collapsed, i.e. difference 2 below. Read differences 1 and 2 together, with 2 as
+> the load-bearing one.
+
 ## The seven differences
 
 Ordered by how much evidence we have that the change is what mattered.
@@ -64,17 +74,19 @@ under both readouts (`results/readout_argmax_vs_ev.json`):
 i.e. dosed the way theirs was; "in-span" = re-dosed inside the ladder span. E-down
 in-span is excluded because only 2 rungs survive option lock.)
 
-Expected value gives a larger correctly-signed |ρ| in 7 of 13 sweeps, ties in 4,
-and the two remaining rows are the ceiling-dosed wrong-sign cases where no readout
-rescues a bad dose grid. The readout never hurts, and where the effect is small it
-is the difference between seeing it and not.
+Expected value gives a larger correctly-signed |ρ| in 7 of 13 sweeps and ties in 4.
+But **the sign tally is identical (11/13) under both readouts**, so this is a
+sensitivity gain, not the explanation for their null.
 
-N-up is the clean case. Under argmax the 120-item score takes **two distinct
+Where it does matter is N-up. Under argmax the 120-item score takes **two distinct
 values across nine doses** and correlates at +0.37; under expected value the same
-forward passes give +0.98. A two-valued staircase is precisely what *"no salient
-patterns"* looks like. The effect here is genuinely small in absolute terms
-(0.08 EV points), which is why readout resolution decides whether it is visible
-at all.
+forward passes give +0.98. The absolute movement is 0.042 argmax points across 24
+items — about **one item changing its committed answer**. So the honest statement
+is that the option *distribution* moves monotonically while the *answers* barely
+do, and expected value is what makes the former visible. A reviewer will
+(correctly) point out that a human respondent scored by committed answer would look
+unchanged, which is why the opposite-prior design — where the effect is large
+enough to survive argmax — matters more than the readout does.
 
 ### 2. Dose unit: the ladder's own span, not the fluency ceiling
 
@@ -220,14 +232,24 @@ re-deriving anything.
 
 ## Honest state of our evidence
 
+Full audit in `docs/AUDIT_BEFORE_CONTACTING_AUTHORS.md`. Summary:
+
+- **One random control draw per sweep**, and **no rung is ever repeated**, so there
+  are no error bars anywhere.
 - 4 of 10 pole-directions have been re-dosed in-span so far (N-up, E-up, E-down,
   A-down). The other six carry `gemma_final` ceiling-dosed numbers.
-- **E-down still fails**: only 2 usable rungs in the window, the rest option-lock.
-  It needs a denser low-dose grid.
+- **E-down never worked** on either grid, and **E-up in-span is U-shaped**
+  (monotone fraction 0.50) despite ρ = +0.75.
+- Our largest inventory effects (C-down Δ 1.06, N-down Δ 0.42) sit on rungs whose
+  response distribution is visibly degraded, and drop out under a stricter
+  usability screen. Under the strictest screen only C-up and N-up survive.
 - The opposite-prior IPIP sweep, which is what gives the effects real headroom
   instead of 0.08–0.33 EV points, is incomplete.
-- Single model, single seed. Their 14-model sweep is broader than ours, and the
-  argmax/EV contrast above is currently demonstrated on one model.
+- Single model, single seed. Their 14-model sweep is broader than ours.
 - We make no factor-structure claim, so Dorner et al.'s CFA objection and their
   "one model wearing personas is not a population" objection are sidestepped
   rather than answered.
+
+The methodological critique of their design (argmax readout, ceiling dosing, no
+collapse screen) is factual and stands on its own. Our positive inventory result is
+not yet strong enough to lead with.
