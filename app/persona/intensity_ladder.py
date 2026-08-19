@@ -538,8 +538,63 @@ def _likert_probs(
     return {opt: val / total for opt, val in exp.items()}
 
 
+InjectionScope = str  # "full" | "assistant_span"
+
+
+def _inventory_assistant_start_unpadded(
+    tokenizer: AutoTokenizer,
+    system: str,
+    user: str,
+) -> int:
+    """Token index where the generation prompt begins (their inventory inject start).
+
+    Mirrors Blas et al. ``injection_utils.inject``: count tokens in the chat
+    template *without* ``add_generation_prompt``, then inject from that index
+    through the answer slot on the prefill forward pass.
+    """
+    messages = [
+        {"role": "system", "content": system},
+        {"role": "user", "content": user},
+    ]
+    txt_no = tokenizer.apply_chat_template(
+        messages,
+        tokenize=False,
+        add_generation_prompt=False,
+    )
+    ids_no = tokenizer(txt_no, return_tensors="pt").input_ids[0]
+    return int(ids_no.size(0))
+
+
+def inventory_assistant_starts_padded(
+    tokenizer: AutoTokenizer,
+    system: str,
+    items: Sequence[InventoryItem],
+    seqs: Sequence[torch.Tensor],
+    width: int,
+) -> list[int]:
+    """Per-row assistant-span start indices in a left-padded batch."""
+    starts: list[int] = []
+    for item, seq in zip(items, seqs):
+        length = int(seq.shape[0])
+        pad_left = width - length
+        user = item_user_message(item)
+        unpadded = _inventory_assistant_start_unpadded(tokenizer, system, user)
+        starts.append(unpadded + pad_left)
+    return starts
+
+
 class _Steering:
-    """Additive residual injection ``h ← h + α·v̂`` on all positions at one layer."""
+    """Additive residual injection ``h ← h + α·v̂`` at one layer.
+
+    ``scope="full"`` (default) perturbs every token position — our historical
+    inventory protocol (~65 positions on the IPIP form).
+
+    ``scope="assistant_span"`` perturbs only from the generation-prompt boundary
+    through the answer slot (~3–4 positions), matching Blas et al. inventory
+    injection when ``assistant_prefix=""`` and ``max_new_tokens=1``.
+    """
+
+    _active: _Steering | None = None
 
     def __init__(
         self,
@@ -547,31 +602,59 @@ class _Steering:
         layer_idx: int,
         direction: torch.Tensor,
         alpha: float,
+        *,
+        scope: InjectionScope = "full",
     ) -> None:
+        if scope not in ("full", "assistant_span"):
+            raise ValueError("scope must be 'full' or 'assistant_span'")
         self.layers = language_model_layers(model)
         if not 0 <= layer_idx < len(self.layers):
             raise ValueError(f"layer_idx {layer_idx} out of range (0..{len(self.layers)-1})")
         self.layer_idx = layer_idx
         self.alpha = float(alpha)
+        self.scope = scope
         param = next(model.parameters())
         self.direction = direction.to(device=param.device, dtype=param.dtype)
         self.handle: Any = None
+        self._batch_starts: list[int] | None = None
+
+    @classmethod
+    def active(cls) -> _Steering | None:
+        return cls._active
+
+    def set_batch_assistant_starts(self, starts: Sequence[int]) -> None:
+        self._batch_starts = [int(s) for s in starts]
 
     def __enter__(self) -> _Steering:
+        _Steering._active = self
         if self.alpha == 0.0:
             return self
         delta = self.alpha * self.direction
+        scope = self.scope
 
         def hook(_m: Any, _inp: Any, output: Any) -> Any:
             h = output[0] if isinstance(output, tuple) else output
-            if isinstance(h, torch.Tensor) and h.dim() == 3:
+            if not (isinstance(h, torch.Tensor) and h.dim() == 3):
+                return output
+            if scope == "full":
                 h.add_(delta)
+            else:
+                starts = self._batch_starts
+                if starts is None:
+                    h[:, -1:, :].add_(delta)
+                else:
+                    for b, start in enumerate(starts):
+                        if 0 <= start < h.shape[1]:
+                            h[b, start:, :].add_(delta)
             return output
 
         self.handle = self.layers[self.layer_idx].register_forward_hook(hook)
         return self
 
     def __exit__(self, *exc: Any) -> None:
+        if _Steering._active is self:
+            _Steering._active = None
+        self._batch_starts = None
         if self.handle is not None:
             self.handle.remove()
             self.handle = None
@@ -645,6 +728,14 @@ def _administer_batched(
             ids[i, width - length :] = s
             attn[i, width - length :] = 1
         ids, attn = ids.to(device), attn.to(device)
+
+        active = _Steering.active()
+        if active is not None and active.scope == "assistant_span":
+            active.set_batch_assistant_starts(
+                inventory_assistant_starts_padded(
+                    tokenizer, system, items[start:end], chunk, width
+                )
+            )
 
         captured: dict[int, torch.Tensor] = {}
         handles: list[Any] = []
@@ -734,9 +825,13 @@ def administer_inventory(
     responses: list[dict[str, Any]] = []
     acts: list[torch.Tensor] = []
     for item in items:
-        logits, hidden = _prompt_forward(
-            model, tokenizer, device, system, item_user_message(item)
-        )
+        user = item_user_message(item)
+        active = _Steering.active()
+        if active is not None and active.scope == "assistant_span":
+            active.set_batch_assistant_starts(
+                [_inventory_assistant_start_unpadded(tokenizer, system, user)]
+            )
+        logits, hidden = _prompt_forward(model, tokenizer, device, system, user)
         responses.append(
             {
                 "trait": item.trait,
@@ -1492,6 +1587,7 @@ def run_validated_sweep(
     n_rungs: int = 6,
     layer_band: tuple[float, float] = (0.3, 0.8),
     baseline: str = "persona_free",
+    injection_scope: InjectionScope = "full",
 ) -> Path:
     """Dose-response for one direction, screened and controlled.
 
@@ -1557,7 +1653,9 @@ def run_validated_sweep(
     probes = tuple(probe_questions) if probe_questions is not None else PROBE_QUESTIONS[:2]
 
     def administer_at(direction_vec: torch.Tensor, alpha: float) -> dict[str, Any]:
-        with _Steering(model, layer, direction_vec, alpha * scale):
+        with _Steering(
+            model, layer, direction_vec, alpha * scale, scope=injection_scope
+        ):
             responses, _ = administer_inventory(
                 model, tokenizer, dev, neutral, items, option_ids=option_ids
             )
@@ -1579,7 +1677,9 @@ def run_validated_sweep(
     def probe_at(direction_vec: torch.Tensor, alpha: float) -> list[dict[str, Any]]:
         rows: list[dict[str, Any]] = []
         for q in probes:
-            with _Steering(model, layer, direction_vec, alpha * scale):
+            with _Steering(
+                model, layer, direction_vec, alpha * scale, scope=injection_scope
+            ):
                 text = _generate_probe(
                     model, tokenizer, dev, PROBE_SYSTEM, q, max_new_tokens=max_new_tokens
                 )
@@ -1846,6 +1946,7 @@ def run_validated_sweep(
         "n_items": len(items),
         "keying_balance": keying_balance(items),
         "probe_questions": list(probes),
+        "injection_scope": injection_scope,
         "baseline": baseline,
         "trait_curve": trait_curve,
         "control_curves": controls,

@@ -222,7 +222,7 @@ Independent of which difference wins:
 
 | # | Action | Blocks |
 |---|---|---|
-| 1 | Implement `scope=` on `_Steering` + `scripts/ablate_injection_scope.py` | E0 |
+| 1 | ~~Implement `scope=` on `_Steering` + `scripts/ablate_injection_scope.py`~~ **done** | E0 |
 | 2 | Colab L4: run E0 on C-up, C-down, E-up | email follow-up |
 | 3 | Send short email (above) even if E0 still running | nothing |
 | 4 | E1 Part A on Llama with their shipped vectors | vector story |
