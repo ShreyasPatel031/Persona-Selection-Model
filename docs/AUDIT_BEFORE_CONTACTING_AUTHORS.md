@@ -247,12 +247,33 @@ These additionally do not depend on our effect sizes at all:
   cross-trait covariance under the strict usability rule, and at overdose it is
   dominated by a shared degradation drift.
 
+## The two-arm control was never run
+
+Recorded separately because it is the largest hole in the *comparison* rather than
+in our own numbers. Every sweep in `results/` uses `direction: "pc1"`. The two-arm
+mean-difference vector (`--direction endpoint`), which is what Blas et al. and most
+CAA work actually use, has never been swept, even though the codebase implements it
+as the designated control.
+
+And the geometry says it would probably tie: at every steered layer,
+cos(endpoint, PC1) is 0.988–0.996, and the ladder orders itself equally well along
+both (`scripts/endpoint_vs_pc1_geometry.py`). So "our ladder vector is what made the
+difference" is unsupported and likely false.
+
+*Fix:* sweep `--direction endpoint` on the same grids for at least the five
+supported poles. If it ties, say so — the result then belongs to the dosing, layer
+choice and screening, not to the vector.
+
 ## Minimum work before contacting anyone
 
 1. **Finish the opposite-prior IPIP sweep** — this is the one that gives effects
    enough headroom to survive an argmax readout. Currently incomplete.
 2. **5–10 random controls per sweep**, reporting the control distribution.
 3. **3 prompt-marker variants per rung** for error bars.
+3b. **Run `--direction endpoint`** so the two-arm contrast is measured, not assumed
+   to be worse.
+3c. **Check their injection scope in their public code** before asserting the
+   one-position hypothesis anywhere.
 4. **Adopt `top < 0.75 and ≥ 4 options` as the primary usability screen**, with
    the shipped screen as a reported sensitivity analysis.
 5. **Re-dose the remaining six poles in-span**, and fix E-down or drop it
