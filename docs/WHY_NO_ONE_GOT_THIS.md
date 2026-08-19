@@ -86,6 +86,28 @@ that its method implies. Note that these are *not* readout failures — several 
 perfectly reasonable readouts and still get nothing. Each cause is distinct, and
 each corresponds to something we happened to control.
 
+### Psychological Steering / Blas et al. (2604.14463)
+
+The closest prior work, and the paper this pipeline started from — same
+intervention family, same instrument family, same model (`gemma-3-4b-it`), no
+judge on the inventory. Point-by-point comparison in
+`docs/DELTA_VS_PSYCHOLOGICAL_STEERING.md`.
+
+- **Result:** they administered MPI-120 (≡ IPIP-NEO-120) at every sweep step and
+  got nothing from it — *"none of these observations applied to the inventory
+  responses; we observed no salient patterns"* — so they *"narrowed our analyses
+  to SJT responses"* and reported their linearity and covariance findings on
+  classifier- and GPT-5.1-scored situational-judgment text instead. They also
+  report **no Big Two structure** (46.15% of sign patterns match α/β) — but on the
+  SJT scores, not the inventory.
+- **Causes:** (a) inventory scored by **argmax** over one constrained option token,
+  which on our data collapses N-up to two distinct values across nine doses
+  (ρ +0.37 vs +0.98 under expected value); (b) unbounded sweeps ending at the
+  **fluency ceiling**, so few rungs land where the trait actually moves; (c) no
+  option-lock screen, so degenerate high-dose readouts are averaged in;
+  (d) two-arm mean-difference vectors from generated statement corpora, which give
+  a ray with no measurable intensity ordering to calibrate against.
+
 ### PsySET / Zhang et al. (2510.04484)
 
 - **Result:** "applying VI across all layers **degrades MPI performance**." For
@@ -163,6 +185,9 @@ each corresponds to something we happened to control.
 | Probe/classifier direction ≠ generative direction | Behavioural Asymmetry | PC1 over supervised ladder centroids, not a classifier boundary — consistent with their ActAdd > probe result |
 | Reverse-keyed item aggregation | Big Five Study (hypothesis) | keying balance tracked per administration |
 | Generated-answer readout: order effects, refusals | Gupta, TRAIT | expected value over option token probabilities |
+| **Argmax readout cannot resolve sub-option movement** | Blas et al. (1 constrained token, greedy) | same expected-value readout: N-up goes ρ +0.37 → **+0.98** on identical activations |
+| Dose grid ends at the fluency ceiling, not the trait span | Blas et al. (unbounded sweep to α\*) | grid in ladder-span units; dense sampling inside the span, not truncation of a wider grid |
+| Degenerate inventory rungs averaged in as measurements | Blas et al. (validity = fluent + moved + not repeated) | `option_lock` on the raw option histogram; locked rungs are missing data |
 | Norm mistaken for signal | Steering Latent Traits | matched-norm random control at identical doses |
 | **Neuroticism specifically resists steering** | Behavioural Asymmetry, HpUDi5Pe8S (dropped it) | **N-up ρ = +0.98** on the inventory after in-span dosing — our sharpest contrast with the literature |
 
@@ -188,6 +213,10 @@ a dose-response coefficient from a directly administered inventory:
   extraverted", a coarse staircase that cannot yield a correlation. They also
   report PCA/SVD directions failing and steering being **nullified** by a persona
   prompt.
+- **Items and a sweep, abandoned mid-paper** — Blas et al.: MPI-120 administered at
+  every rung of a calibrated α sweep, argmax-scored, found patternless, and dropped
+  in favour of judge-scored SJTs. This is the one case where the missing experiment
+  was actually run; the readout and the dose grid are why it came back empty.
 
 ## Questions worth asking the authors
 
