@@ -66,11 +66,19 @@ CLEAR_MARGIN = 2.0
 
 def _load_magnitude_grid(path: Path) -> list[float]:
     rep = json.loads(path.read_text())
-    grid = rep.get("magnitude_grid")
-    if not grid:
-        rows = rep.get("trait_curve", {}).get("rows") or []
-        grid = [float(r["magnitude"]) for r in rows if abs(float(r.get("alpha") or 0)) > 1e-12]
-    return [float(x) for x in grid]
+    rows = rep.get("trait_curve", {}).get("rows") or []
+    mags = [
+        float(r["magnitude"])
+        for r in rows
+        if r.get("magnitude") is not None and abs(float(r.get("alpha") or 0)) > 1e-12
+    ]
+    if mags:
+        return mags
+    grid = rep.get("magnitude_grid") or []
+    scale = float(rep.get("alpha_scale") or 1.0)
+    if rep.get("alpha_units") == "relative":
+        return [float(a) * scale for a in grid if abs(float(a)) > 1e-12]
+    return [float(x) for x in grid if abs(float(x)) > 1e-12]
 
 
 def shipped_screen(lock: dict) -> bool:
