@@ -238,19 +238,34 @@ def cmd_steer(args: argparse.Namespace) -> int:
     n_layers, dim = int(centroids.shape[1]), int(centroids.shape[2])
     layer = int(args.layer)
 
-    arms: list[tuple[str, torch.Tensor]] = [("ours_pc1", blob["v_pc1"][layer])]
-    for variant, mode in THEIR_VARIANTS:
+    # Three arms decompose estimator from data:
+    #   ours_pc1      PCA over nine levels,  our ladder data
+    #   ours_endpoint two-arm mean-difference, our ladder data   <- their estimator
+    #   theirs        two-arm mean-difference, their statement corpus
+    # ours_pc1 vs ours_endpoint isolates the estimator; ours_endpoint vs theirs
+    # isolates the data the contrast was taken over.
+    arms: list[tuple[str, torch.Tensor]] = [
+        ("ours_pc1", blob["v_pc1"][layer]),
+        ("ours_endpoint", blob["v_endpoint"][layer]),
+    ]
+    steer_variants = THEIR_VARIANTS if getattr(args, "all_variants", False) else (("meandiff", "statement"),)
+    for variant, mode in steer_variants:
         theirs, present = load_their_stack(variant, mode, n_layers, dim)
         if layer in present:
             arms.append((f"theirs_{variant}_{mode}", theirs[layer]))
 
+    ours_span = direction_span_magnitude(centroids, layer, blob["v_pc1"][layer])
     rows: list[dict] = []
     for name, direction in arms:
-        span = direction_span_magnitude(centroids, layer, direction)
-        if span <= 0:
-            rows.append({"arm": name, "error": "zero ladder span for this direction"})
+        own_span = direction_span_magnitude(centroids, layer, direction)
+        # Matched-L2 dosing: both unit directions get the same residual magnitudes,
+        # keyed to OUR ladder span. Own-span dosing of their unit vector is ~0.01
+        # residual units (they are nearly orthogonal to the ladder) and would be a
+        # trivial null.
+        if ours_span <= 0:
+            rows.append({"arm": name, "error": "zero ladder span on our PC1"})
             continue
-        mags = [span * m for m in (0.25, 0.5, 1.0, 1.5, 2.0)]
+        mags = [ours_span * m for m in (0.25, 0.5, 1.0, 1.5, 2.0)]
         # run_validated_sweep reads a vectors blob, so hand it this arm as v_pc1.
         arm_blob = dict(blob)
         stack = blob["v_pc1"].clone()
@@ -261,7 +276,7 @@ def cmd_steer(args: argparse.Namespace) -> int:
 
         for pole in ("high", "low"):
             out_json = out / f"sweep_{TRAIT}_{name}_{pole}.json"
-            logger.info("%s %s span=%.1f grid=%s", name, pole, span, [round(m) for m in mags])
+            logger.info("%s %s own_span=%.4f dose_span=%.1f grid=%s", name, pole, own_span, ours_span, [round(m) for m in mags])
             try:
                 run_validated_sweep(
                     arm_pt,
@@ -285,7 +300,8 @@ def cmd_steer(args: argparse.Namespace) -> int:
                     {
                         "arm": name,
                         "pole": pole,
-                        "ladder_span": round(span, 2),
+                        "ladder_span_this_direction": round(own_span, 4),
+                        "dose_span_ours_pc1": round(ours_span, 2),
                         "works": d["verdict"]["works"],
                         "trait_abs_delta": d["verdict"]["trait_abs_delta"],
                         "max_control_abs_delta": d["verdict"]["max_control_abs_delta"],
@@ -323,6 +339,11 @@ def main(argv: list[str] | None = None) -> int:
         sp.add_argument("--layer", type=int, default=14)
         sp.add_argument("--scope", default="full")
         sp.add_argument("--random-controls", type=int, default=2)
+        sp.add_argument(
+            "--all-variants",
+            action="store_true",
+            help="Steer all three of their vector families (slow). Default: meandiff/statement only.",
+        )
         sp.set_defaults(func=fn)
     args = p.parse_args(argv)
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
