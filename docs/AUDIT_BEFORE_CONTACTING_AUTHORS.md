@@ -69,6 +69,56 @@ survive as clean measurements.
 
 ---
 
+### The inventory result under the standard readout only
+
+`scripts/argmax_dose_response.py`, best available run per pole, argmax scoring,
+compared like-for-like against the matched-norm random control (both as max−min
+span over the same grid, since no rung is repeated and that is the only noise
+estimate we have):
+
+| pole | grid | ρ | Δ (Likert pts) | trait span | ctrl span | ratio | verdict |
+|---|---|---:|---:|---:|---:|---:|---|
+| C-up | ceiling | +1.00 | +0.542 | 0.542 | 0.125 | **4.33** | supported |
+| C-down | ceiling | −0.72 | **−1.500** | 1.500 | 0.458 | **3.27** | supported |
+| A-up | ceiling | +0.67 | +0.250 | 0.250 | 0.083 | **3.00** | supported |
+| E-up | in-span | +0.67 | +0.458 | 0.625 | 0.250 | **2.50** | supported |
+| N-down | ceiling | −0.90 | −0.917 | 0.917 | 0.458 | **2.00** | supported |
+| A-down | in-span | −0.61 | −0.250 | 0.333 | 0.292 | 1.14 | not vs control |
+| O-down | ceiling | −1.00 | −0.458 | 0.458 | 0.458 | 1.00 | not vs control |
+| N-up | in-span | +0.37 | +0.042 | 0.042 | 0.167 | 0.25 | not vs control |
+| O-up | ceiling | +0.87 | +0.042 | 0.042 | 0.458 | 0.09 | not vs control |
+| E-down | in-span | — | — | — | — | — | 2 clean rungs |
+
+**9 of 9 measurable poles are sign-correct, and 5 of 10 also move clearly more
+than a matched-norm random direction.** So the answer to "is there any argmax
+relation at all" is yes, and for C-down it is 1.5 Likert points on a 5-point
+scale — not subtle.
+
+The failures are specific and interpretable:
+
+- **N-up and O-up have no argmax result whatsoever.** The random control moves the
+  score 4× and 11× *more* than the trait vector does. Both are *up*-directions on
+  traits where Gemma's own baseline already sits high (N 3.30, O 3.44 of 5). This
+  is the ceiling problem, not a readout problem, and it is exactly what the
+  opposite-prior design exists to fix.
+- **A-down and O-down are sign-correct but indistinguishable from noise.**
+- **E-down is not measurable** on either grid.
+
+### The 12.9× margin on N-up is a statistical artifact
+
+Worth writing down because it is the kind of thing that gets caught in review. The
+stored verdict reports `control_margin_ratio: 12.922` for N-up. That comes from
+`_abs_delta`, which takes the control's extreme **in the steered direction** minus
+baseline. For an up-steer the control's *upward* excursion was 0.006, hence the
+large ratio — but the control's actual movement over those doses was **−0.103**,
+i.e. it moved *further* than the trait vector did, in the opposite direction.
+
+The defensible claim is therefore "matched-norm random directions push N down while
+this direction pushes N up", which is a genuine directional separation. It is *not*
+a 12.9× effect, and that number should not be quoted. Any margin computed by
+`_abs_delta` has the same asymmetry and should be reported alongside the plain
+span-vs-span ratio in the table above.
+
 ## The four things a reviewer will attack
 
 ### 1. Only one random control per sweep
@@ -163,7 +213,17 @@ the stored `works` field. Do not quote `works` counts until then.
 
 ## What is safe to say right now
 
-These do not depend on our effect sizes:
+The strongest honest version of the positive claim: **on Gemma-3-4B, ladder-derived
+PC1 directions produce a sign-correct, rank-monotone dose-response on a
+directly-administered 120-item IPIP-NEO form, scored by committed answer, for 5 of
+10 pole-directions, with effects from 0.25 to 1.5 Likert points that exceed a
+matched-norm random direction by 2.0–4.3×.** Conscientiousness works in both
+directions; N-up and O-up do not work at all.
+
+That is a real result and it is narrower than what was previously written down. It
+also still rests on one control draw and no repeats.
+
+These additionally do not depend on our effect sizes at all:
 
 1. Blas et al. administered MPI-120 at every rung of their sweep, argmax-scored
    it, found no pattern, and dropped it in favour of judge-scored SJTs. Their
