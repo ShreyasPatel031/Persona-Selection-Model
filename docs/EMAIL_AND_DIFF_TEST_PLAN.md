@@ -150,10 +150,28 @@ Under `full` the model uses *more* of the scale as dose rises. Under
 both poles drift the same way. That is readout collapse toward a default option,
 not a trait shift.
 
-**Conclusion.** Matching their inject span removes direction-controlled inventory
-movement: what survives is a collapse gradient that a Spearman ρ on its own would
-misread as a dose–response. Exposure is therefore a live explanation for their
-inventory null.
+**Conclusion, correctly scoped.** Matching their inject span removes
+direction-controlled inventory movement *in our pipeline*: what survives is a
+collapse gradient that a Spearman ρ on its own would misread as a dose–response.
+
+**What E0 does NOT show, and two reasons it is weaker than it looks.**
+
+1. *E0 is dose-confounded.* `full` perturbs 79 positions and `assistant_span`
+   perturbs 2, at the same α — roughly a 40× difference in total injected
+   perturbation. The answer slot receives an identical δ under both scopes, so the
+   mechanistic reading is "perturbing the item and system-prompt representation is
+   what buys direction control, while perturbing only the answer slot buys
+   collapse." But E0 alone cannot separate *where* from *how much in total*. **E2
+   is exactly that control and has not been run.** Until it is, a reviewer can
+   restate E0 as a dose effect.
+2. *E0 is about our pipeline, not their result.* It is Gemma-3-4B + our ladder PC1
+   + IPIP-NEO-120. Their null is Llama-3.1-8B + their mean-difference vector +
+   MPI-120. E0 touches none of their artifacts, so it shows our effect is fragile
+   to span; it cannot show span caused their null.
+
+Injection scope is therefore a *candidate*, not the established explanation. The
+vector (E1) remains at least as likely a priori, and E1 is the only experiment
+that can be run against their actual released artifacts.
 
 **Caveat that must not be dropped.** The `full` C-down effect (Δ −1.42, 3.8×
 control) has **monotone fraction 0.50** and is driven by a single rung
@@ -224,6 +242,28 @@ about injection exposure.
 If E0 says exposure matters, recompute Digman α/β sign-match on our in-span,
 strict-screen inventory scores, and ask whether their `inventory_responses.db`
 α/β matched SJT α/β. Do not lead with Big Two before E0.
+
+---
+
+## Execution status (updated 2026-08-19 22:10 UTC)
+
+| Exp | Question | Status |
+|---|---|---|
+| **E0** | Does matching their inject span reproduce their inventory null? | **run** — Gemma, our vector. Span kills bipolar sign control; residual ρ is collapse. **Dose-confounded (needs E2) and does not touch their artifacts.** |
+| **E1** | Is the vector even a difference? | **running** — Llama-3.1-8B ladder on an L4, then geometry against their shipped `meandiff` / LR vectors, then head-to-head steering. |
+| **E2** | Is dosing load-bearing after E0? | **not run** — and E0's interpretation is unprotected without it. Highest-value follow-up after E1. |
+| **E3** | Is layer choice inventory-relevant? | not run. Only worth doing if E1 says the vector is not the difference. |
+| **E4** | Collapse-screen reanalysis | **done** — `argmax_dose_response.py`, `audit_inventory_claims.py`, `readout_argmax_vs_ev.py`, `inspan_reanalysis.py` + committed JSON. |
+| **E5** | Their A–E / second-person format | not run. Gated on E0/E1 leaving a gap. |
+| **E6/E7** | Opposite-prior IPIP; Big Two | not run. Paper later, not for outreach. |
+
+**Is it E0? Not established.** E0 shows our inventory effect is fragile to inject
+span. It cannot show span caused *their* null, because it never uses their vector,
+their model, or their instrument — and because scope and total dose are entangled
+in its design. E1 is the load-bearing experiment: it is the only one that runs
+against their actual released artifacts, and the a priori case for it is concrete
+(a two-arm contrast is not constrained to order the middle of the scale, which is
+what a graded inventory measures).
 
 ---
 
