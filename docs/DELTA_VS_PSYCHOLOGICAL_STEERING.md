@@ -78,33 +78,72 @@ sensitivity difference on our weakest pole, not a load-bearing one.
 
 ## The differences that survive
 
-### 1. Injection scope on the inventory task: one position vs every position
+### 1. Injection scope: they perturb ~3 positions on the inventory, we perturb ~65
 
-The strongest remaining candidate, and it is readout-independent.
+The strongest difference, readout-independent, and **verified in their code** rather
+than inferred from the paper. Repo: `github.com/leonardo-blas/psychological-steering`.
 
-**Theirs.** §4.2: *"h_ℓ is a residual-stream **completion** activation… We inject
-on all completion activations."* Injection is indexed by completion position `k`
-with stride `s`. §5.1: inventory answers are *"limited to 1 new token"*, while SJT
-responses are *"prefilled with 'I would ' and limited to 64 new tokens"*.
+**Their injection span** (`replication/injection_utils.py`, `inject()`). On the
+prefill pass they inject from the start of the *assistant turn* to the end of the
+sequence:
 
-So on the inventory their intervention applies at **exactly one position**. On the
-SJTs it applies at up to **64**.
+```python
+for b_local in range(B_local):
+    s = starts[b_local]              # index where the assistant turn begins
+    for t in range(s, T_local):
+        if (t - s) % stride_val == 0:
+            hidden[b_local, t] = hidden[b_local, t] + v_local
+```
+
+and on each decode step (`T_local == 1`) they inject that one new position
+(lines 283–290). `starts` is the token length of the chat template *without*
+`add_generation_prompt` (lines 200–209), so **the system prompt and the item text
+are never injected** — only the generation prompt, any assistant prefix, and
+generated tokens.
+
+**The two tasks then get wildly different exposure**
+(`replication/psychometric_utils.py`):
+
+| | assistant_prefix | max_new_tokens | injected positions |
+|---|---|---:|---:|
+| `run_inventory` (lines 225–226) | `""` | **1** | **~3–4** |
+| `run_sjts` (lines 259, 284) | `"I would"` | **64** | **~69** |
+
+For Gemma-3 the generation prompt `<start_of_turn>model\n` is 3 tokens, and the
+inventory adds no prefix and one answer token.
 
 **Ours.** `_Steering.hook` does `h.add_(delta)` on the full `(batch, seq, d)`
-hidden state — **every position**, prompt included. On a 120-item form that is the
-whole item text plus the answer slot, not one token.
+tensor — every position, system prompt and item text included. Measured on our own
+120-item form, one administration is **55–60 content tokens** plus template, so we
+perturb on the order of **65 positions** where they perturb 3–4.
 
-**Why this is the best explanation of their result.** Their own sweep found that
-`s = 1` beat `s = 2` beat `s ∈ {3,4}`, and they conclude: *"injecting into more
-completion activations yields stronger steering."* Apply that finding to their own
-two tasks and it predicts the inventory is the weakest possible case — a single
-injected position — while the SJTs get 64. Which is exactly the asymmetry they
-report. Their inventory null may be a dose-exposure artifact of the task format
-rather than a fact about inventories.
+**Why this explains their result, in their own words.** Their sweep found
+`s = 1` > `s = 2` > `s ∈ {3,4}` and they conclude *"injecting into more completion
+activations yields stronger steering."* Applied to their own two tasks that predicts
+the inventory is the weakest possible case. And note the coincidence: their **SJT**
+exposure (~69 positions) is about the same as our **inventory** exposure (~65). The
+task where they got clean linear dose-response is the task with roughly our
+injection coverage; the task where they got "no salient patterns" is the one with
+~17× less. Their inventory null looks like a dose-exposure artifact of answer length,
+not a fact about inventories.
 
-*Caveat:* this is inferred from the paper's method description. Their code is
-public (`github.com/leonardo-blas/psychological-steering`) and this should be
-confirmed there before it is asserted anywhere.
+**Also confirmed while reading their code:**
+
+- The inventory readout is argmax as described: `do_sample=False` plus a logits
+  processor restricting to valid option ids, one token (`psychometric_utils.py`
+  lines 211, 231–232).
+- The cross-trait grid is `alpha * i / 9` for `i` in 0..9, i.e. 10 points from 0 to
+  α\* where α\* is picked by `pick_extrema` as the maximum-effect coefficient
+  (`11_cross_trait_sweeps.py` lines 31–37, 39–51). This confirms the Big Two
+  covariance is measured over 0 → max-effect dose.
+- They *do* compute inventory extrema in the cross-trait sweep and create an
+  `inventory_responses.db` alongside `sjts_responses.db` (lines 60–61, 183–184), so
+  the inventory cross-trait numbers were generated even though the paper reports
+  covariance on the SJTs.
+- **What is released:** code, `data/{inventories,sjts,heads}.db`, classifiers, and
+  vectors for **Llama-3.1-8B-Instruct only**. No sweep result databases and no
+  Gemma vectors, so checking their Gemma inventory numbers means re-running the
+  pipeline, not just reading their artifacts.
 
 ### 2. Dose grid: fractions of the ladder span, not up to the fluency ceiling
 
@@ -192,7 +231,7 @@ Honest ranking of the differences by evidential support:
 
 | difference | evidence | status |
 |---|---|---|
-| Injection scope (1 vs all positions) | their own stride finding predicts their null | strong hypothesis, needs their code checked |
+| Injection scope (~3 vs ~65 positions) | verified in their `inject()` + task configs; their own stride result predicts the null | **strongest; code-confirmed** |
 | Dose grid in span units | E-up: nothing → supported, under argmax | 1 of 3 poles decisive |
 | Layer choice by ordering | A judge margin 0.36 → 7.2 | demonstrated, judge-side only |
 | Collapse screen | 11/13 → 9/9 sign-correct | demonstrated, within our data |

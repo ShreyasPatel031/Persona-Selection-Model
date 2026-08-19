@@ -272,8 +272,15 @@ choice and screening, not to the vector.
 3. **3 prompt-marker variants per rung** for error bars.
 3b. **Run `--direction endpoint`** so the two-arm contrast is measured, not assumed
    to be worse.
-3c. **Check their injection scope in their public code** before asserting the
-   one-position hypothesis anywhere.
+3c. ~~Check their injection scope in their public code~~ — **done**. Their
+   `inject()` only touches the assistant span, and `run_inventory` uses
+   `assistant_prefix=""` with `max_new_tokens=1`, so the inventory gets ~3–4
+   injected positions against ~69 for their 64-token SJTs and ~65 for our
+   inventory administration. See `docs/DELTA_VS_PSYCHOLOGICAL_STEERING.md` §1.
+   The remaining open item is an **exposure-matched ablation on our side**: rerun
+   our sweeps injecting only the answer position, and check whether our own
+   inventory dose-response collapses the way theirs did. That is the experiment
+   that would turn this from a plausible mechanism into a demonstrated one.
 4. **Adopt `top < 0.75 and ≥ 4 options` as the primary usability screen**, with
    the shipped screen as a reported sensitivity analysis.
 5. **Re-dose the remaining six poles in-span**, and fix E-down or drop it
