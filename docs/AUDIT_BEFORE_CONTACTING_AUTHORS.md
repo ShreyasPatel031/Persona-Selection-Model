@@ -247,13 +247,56 @@ These additionally do not depend on our effect sizes at all:
   cross-trait covariance under the strict usability rule, and at overdose it is
   dominated by a shared degradation drift.
 
-## The two-arm control was never run
+## The two-arm control: corrected record
 
-Recorded separately because it is the largest hole in the *comparison* rather than
-in our own numbers. Every sweep in `results/` uses `direction: "pc1"`. The two-arm
-mean-difference vector (`--direction endpoint`), which is what Blas et al. and most
-CAA work actually use, has never been swept, even though the codebase implements it
-as the designated control.
+An earlier version of this section said the two-arm contrast "was never run." That
+is wrong, and the error mattered because it was about to go into author outreach.
+
+**It was run first, before the ladder existed.** On 2026-08-12/13 the project
+started *from* Blas et al.'s setup on Gemma-3-4B (T4):
+
+- `scripts/colab_ocean_mds_demo.py` — "MDS = (μ(S↑) − μ(S↓)) / 2 on residual stream
+  at each layer (**paper-style statement prefills**)", i.e. their two-arm
+  mean-difference built from statement banks, not from a ladder.
+- `data/mpi_120.csv` + `scripts/colab_ocean_mpi120_eval.py` — **MPI-120**, their
+  inventory, A–E constrained readout.
+- `scripts/colab_ocean_mpi120_retune.py` — per-trait (layer, α) retune, all at L15.
+- `scripts/analyze_mpi120_acquiescence.py` — yes-saying diagnosis of the result.
+
+**Result (up-steer, target-dimension Δ on MPI-120):**
+
+| trait | first eval | after retune |
+|---|---:|---:|
+| O | **−0.46** | **−0.08** |
+| C | **−0.42** | **−0.42** |
+| E | +0.25 | +0.25 |
+| A | **−1.13** | **−0.50** |
+| N | +0.71 | +0.67 |
+
+Three of five moved the *wrong way*, and off-target leakage was larger than the
+on-target effect in several conditions (openness-up moved E by −1.71 and C by
+−1.25; agreeableness dropped in every condition). The intensity ladder was added
+on 2026-08-17, four days later — so the ladder is a *response* to this failure,
+not an idea that arrived before it.
+
+**BIG5-CHAT was never a dataset we used.** It appears only as a citation in
+`intensity_ladder.py` and `docs/INTENSITY_LADDER_CAA.md`, alongside
+Serapio-García et al., to establish that prompting and SFT/DPO *do* move real
+inventories in a graded way. That is what licensed the inference "the instrument is
+movable, so the failure is in the vector" and motivated the ladder. It was the
+justification for the pivot, not the target of it.
+
+**Caveats that keep this suggestive rather than decisive.** That early run had no
+matched-norm random controls, no option-lock screen, one α per trait rather than a
+dose grid, and a single administration per condition. So it does not meet the bar
+the current sweeps are held to, and "their method fails on the inventory" cannot be
+asserted from it alone at publication strength.
+
+**Still genuinely untested:** the two-arm contrast computed on *our ladder data*
+(`--direction endpoint`, `v_endpoint`). Every sweep in `results/` uses
+`direction: "pc1"` — 33 files, zero endpoint. That arm is what separates "the
+estimator" from "the corpus", and it is now the `ours_endpoint` arm in
+`scripts/e1_vector_headtohead.py`.
 
 And the geometry says it would probably tie: at every steered layer,
 cos(endpoint, PC1) is 0.988–0.996, and the ladder orders itself equally well along

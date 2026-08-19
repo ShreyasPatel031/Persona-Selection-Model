@@ -47,11 +47,37 @@ ordered *exactly* as well along the two-arm contrast as along PC1 (identical
 Spearman to three decimals). Nine graded levels do not buy a different direction
 than two opposed piles.
 
-Worse: **we never ran the head-to-head.** Every sweep in `results/` uses
-`direction: "pc1"`. The codebase supports `--direction endpoint` precisely as this
-control and `docs/INTENSITY_LADDER_CAA.md` describes it as such, but it was never
-executed. So the claim "our vector is better" has no experimental support and, on
-the geometry, probably has no room to be true.
+Two corrections to what this section used to claim.
+
+**1. Their method *was* run on Gemma, first, and it failed.** Before the ladder
+existed (2026-08-12/13) the project ran their two-arm mean-difference built from
+*statement prefills* against *MPI-120* on Gemma-3-4B: `colab_ocean_mds_demo.py`,
+`colab_ocean_mpi120_eval.py`, `colab_ocean_mpi120_retune.py`. Up-steering moved the
+target dimension the **wrong way for O, C and A** (−0.46, −0.42, −1.13; after
+retune −0.08, −0.42, −0.50), with off-target leakage exceeding the on-target effect
+in several conditions. The ladder was added four days later as the response. See
+`docs/AUDIT_BEFORE_CONTACTING_AUTHORS.md` for the table and the caveats (no random
+controls, no lock screen, one α per trait).
+
+**2. The estimator is not the difference; the corpus is.** The cosine table above
+compares two directions *both computed from ladder data*, which is why they agree.
+Against their **released Llama-3.1-8B** vectors the picture inverts
+(`results/e1_vector/vector_geometry.json`, `scripts/e1_vector_headtohead.py`):
+
+| direction | estimator | data | cos to our PC1 (Llama, L8) |
+|---|---|---|---:|
+| our endpoint | two-arm mean-diff | ladder, on the inventory | **0.97** |
+| their meandiff/statement | two-arm mean-diff | 500 construct vs 500 antithesis statements | **0.07** |
+
+Chance for random unit vectors in 4096-d is ≈0.016, so 0.07 is only ~4× chance:
+their direction is close to orthogonal to ours. Same estimator, different corpus,
+different axis. Their vector still orders our nine prompted levels at ρ ≈ 0.8–0.9,
+so it is structured — just not the same structure.
+
+**What is still unsupported:** that our direction *steers* the inventory better
+than theirs. Neither their vector nor our own `v_endpoint` has ever been swept
+(33 sweeps, all `direction: "pc1"`). The three-arm run in
+`scripts/e1_vector_headtohead.py steer` is what would settle it.
 
 What the ladder *does* buy is not the direction but two **measurements** that a
 two-arm contrast cannot produce, because you need at least three points to check
