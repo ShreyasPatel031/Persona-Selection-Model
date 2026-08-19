@@ -1,0 +1,138 @@
+{
+  "note": "Is the residual assistant_span correlation trait steering, or option collapse?\n\nA monotone correlation between dose and inventory score is not by itself evidence\nof trait steering. Two things must also hold:\n\n1. **Bipolar sign control.** Flipping the vector's sign must flip the direction the\n   score moves. If steering \"up\" and steering \"down\" both raise the score, the\n   vector's *direction* is not what is moving the score.\n\n2. **No collapse gradient.** If the fraction of items answered with a single option\n   climbs with dose, the respondent is degrading toward a default answer. That\n   produces a clean monotone score curve with no trait content.\n\nWhy any assistant_span effect is expected at all: the injected span is the\ngeneration prompt through the answer slot, and the Likert logits are read from\nthat final position. So the readout activation is perturbed directly under both\nscopes. The scopes differ in how much *context* is perturbed, not in whether the\nanswer position is touched.\n\nRun: PYTHONPATH=. python3 scripts/e0_bipolar_check.py\n",
+  "injected_span_gemma": {
+    "full_sequence_tokens": 79,
+    "assistant_span_tokens": 2,
+    "assistant_span_decoded": "<start_of_turn>model\\n",
+    "answer_slot_inside_assistant_span": true,
+    "comment": "The answer position is the last token of the prefill and lies inside the assistant span, so the readout activation is steered under BOTH scopes. assistant_span is an attenuation condition, not a no-injection condition. Start index is computed the same way Blas et al. compute it (re-tokenizing the rendered template, which re-adds BOS), so the span matches their inventory injection rather than a corrected version."
+  },
+  "scopes": {
+    "full": {
+      "conscientiousness_pc1_high": {
+        "scope": "full",
+        "toward": "high",
+        "n_usable_rungs": 4,
+        "baseline_argmax": 2.7917,
+        "delta_at_largest_dose": 0.5416,
+        "extreme_delta": 0.5416,
+        "trait_span": 0.5416,
+        "max_control_span": 0.2917,
+        "monotone_fraction": 1.0,
+        "rho_dose_vs_score": 1.0,
+        "rho_dose_vs_top_option_fraction": -1.0,
+        "top_option_fraction_first_last": [
+          0.65,
+          0.5167
+        ]
+      },
+      "conscientiousness_pc1_low": {
+        "scope": "full",
+        "toward": "low",
+        "n_usable_rungs": 5,
+        "baseline_argmax": 2.7917,
+        "delta_at_largest_dose": -0.625,
+        "extreme_delta": -1.4167,
+        "trait_span": 1.4167,
+        "max_control_span": 0.375,
+        "monotone_fraction": 0.5,
+        "rho_dose_vs_score": -0.8,
+        "rho_dose_vs_top_option_fraction": -0.1,
+        "top_option_fraction_first_last": [
+          0.65,
+          0.7333
+        ]
+      },
+      "extraversion_pc1_high": {
+        "scope": "full",
+        "toward": "high",
+        "n_usable_rungs": 9,
+        "baseline_argmax": 3.0833,
+        "delta_at_largest_dose": 0.3334,
+        "extreme_delta": 0.4584,
+        "trait_span": 0.6667,
+        "max_control_span": 0.375,
+        "monotone_fraction": 0.5,
+        "rho_dose_vs_score": 0.6975,
+        "rho_dose_vs_top_option_fraction": -0.6444,
+        "top_option_fraction_first_last": [
+          0.65,
+          0.575
+        ]
+      }
+    },
+    "assistant_span": {
+      "conscientiousness_pc1_high": {
+        "scope": "assistant_span",
+        "toward": "high",
+        "n_usable_rungs": 6,
+        "baseline_argmax": 2.7917,
+        "delta_at_largest_dose": 0.3333,
+        "extreme_delta": 0.3333,
+        "trait_span": 0.3333,
+        "max_control_span": 0.375,
+        "monotone_fraction": 0.4,
+        "rho_dose_vs_score": 0.9258,
+        "rho_dose_vs_top_option_fraction": 0.058,
+        "top_option_fraction_first_last": [
+          0.65,
+          0.65
+        ]
+      },
+      "conscientiousness_pc1_low": {
+        "scope": "assistant_span",
+        "toward": "low",
+        "n_usable_rungs": 4,
+        "baseline_argmax": 2.7917,
+        "delta_at_largest_dose": 0.125,
+        "extreme_delta": 0.0,
+        "trait_span": 0.125,
+        "max_control_span": 0.25,
+        "monotone_fraction": 0.667,
+        "rho_dose_vs_score": 0.9487,
+        "rho_dose_vs_top_option_fraction": 1.0,
+        "top_option_fraction_first_last": [
+          0.65,
+          0.8333
+        ]
+      },
+      "extraversion_pc1_high": {
+        "scope": "assistant_span",
+        "toward": "high",
+        "n_usable_rungs": 9,
+        "baseline_argmax": 3.0833,
+        "delta_at_largest_dose": 0.0417,
+        "extreme_delta": 0.0834,
+        "trait_span": 0.0834,
+        "max_control_span": 0.25,
+        "monotone_fraction": 0.25,
+        "rho_dose_vs_score": 0.8463,
+        "rho_dose_vs_top_option_fraction": 0.9789,
+        "top_option_fraction_first_last": [
+          0.65,
+          0.7417
+        ]
+      }
+    }
+  },
+  "bipolar_sign_control": {
+    "C:full": {
+      "up_pole_delta": 0.5416,
+      "down_pole_delta": -1.4167,
+      "signs_opposed": true,
+      "interpretation": "vector direction controls the sign of movement"
+    },
+    "C:assistant_span": {
+      "up_pole_delta": 0.3333,
+      "down_pole_delta": 0.0,
+      "signs_opposed": false,
+      "interpretation": "both poles move the same way - movement is not direction-controlled"
+    }
+  },
+  "verdict": {
+    "full_has_bipolar_control": true,
+    "assistant_span_has_bipolar_control": false,
+    "residual_span_correlation_is_trait_signal": false,
+    "conclusion": "Under full-sequence injection the vector's sign controls the direction of inventory movement. Under assistant-span injection it does not: both poles drift the same way while single-option dominance rises with dose, which is the signature of readout collapse rather than a trait shift. The residual monotone correlation under assistant_span therefore is not evidence that answer-slot steering moves the trait."
+  }
+}

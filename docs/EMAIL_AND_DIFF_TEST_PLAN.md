@@ -114,6 +114,54 @@ For `assistant_span`, compute `assistant_start` the way they do (chat template
 without `add_generation_prompt`), then only add on `t >= assistant_start`. Script:
 `scripts/ablate_injection_scope.py`. Out: `results/injection_scope_ablation/`.
 
+#### E0 result (run 2026-08-19, `gemma-3-4b-it`, T4, 3 random controls)
+
+Artifacts: `results/injection_scope_ablation/` (six sweeps + `summary.json` +
+`bipolar_and_collapse_check.json`).
+
+On Gemma the assistant span is **2 tokens** (`<start_of_turn>model\n`) against a
+**79-token** prompt. The start index is computed the way their code computes it —
+re-tokenizing the rendered template, which re-adds BOS — so the span matches
+their inventory injection rather than a corrected version.
+
+**The answer slot is inside the assistant span.** The Likert logits are read from
+the final prefill position, which is steered under *both* scopes. So
+`assistant_span` is an *attenuation* condition, not a no-injection condition, and
+a residual monotone dose–score correlation is expected there. Correlation alone
+therefore cannot separate the two scopes; two further tests are needed.
+
+**Test 1 — bipolar sign control.** Does flipping the vector flip the movement?
+
+| scope | C-up Δ | C-down Δ | signs opposed |
+|---|---|---|---|
+| `full` | +0.54 | −1.42 | **yes** |
+| `assistant_span` | +0.33 | 0.00 (curve rises) | **no** |
+
+**Test 2 — collapse gradient**, ρ(dose, single-option dominance):
+
+| sweep | `full` | `assistant_span` |
+|---|---|---|
+| C-up | −1.00 | +0.06 |
+| C-down | −0.10 | **+1.00** |
+| E-up | −0.64 | **+0.98** |
+
+Under `full` the model uses *more* of the scale as dose rises. Under
+`assistant_span` single-option dominance climbs almost perfectly with dose while
+both poles drift the same way. That is readout collapse toward a default option,
+not a trait shift.
+
+**Conclusion.** Matching their inject span removes direction-controlled inventory
+movement: what survives is a collapse gradient that a Spearman ρ on its own would
+misread as a dose–response. Exposure is therefore a live explanation for their
+inventory null.
+
+**Caveat that must not be dropped.** The `full` C-down effect (Δ −1.42, 3.8×
+control) has **monotone fraction 0.50** and is driven by a single rung
+(mag −1084, argmax 1.375) that follows a screened-out locked rung at −542 and
+partially recovers at −2169. It is a large excursion, not a clean ladder. Do not
+email "1.4 Likert points" as a headline dose–response. The defensible `full`
+claims are the **sign-opposition** and the **absence of a collapse gradient**.
+
 ### E1 — Their vector vs our vector (geometry, then steering)
 
 **Question.** Are the directions even the same object?
