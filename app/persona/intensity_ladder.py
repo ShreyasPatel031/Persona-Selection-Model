@@ -57,6 +57,7 @@ from app.persona.intensity_prompts import (
     persona_free_system_prompt,
     N_LEVELS,
     NEUTRAL_LEVEL,
+    PROMPT_STYLES,
     ladder_system_prompt,
 )
 from app.persona.lm_layers import language_model_layers
@@ -862,6 +863,7 @@ def run_prompt_ladder(
     levels: Sequence[int] | None = None,
     all_traits: bool = True,
     items_csv: Path | None = None,
+    style: str = "self",
 ) -> Path:
     """Administer the inventory across nine prompted levels of ``trait``.
 
@@ -871,6 +873,13 @@ def run_prompt_ladder(
     Every administration is screened for option lock. A prompted level can
     collapse just as a steered one can, and a locked level contributes a spurious
     midpoint that flattens the very baseline curve the steering is judged against.
+
+    ``style`` is the persona framing (see :data:`PROMPT_STYLES`), and it decides
+    what the saved activations mean. Under the ``self`` framing Gemma-3-4B answers
+    the neutral option to the low-openness levels rather than adopting them, so
+    those level centroids differ from the high levels by hedging rather than by
+    openness — and a direction fitted across them is a hedging axis. Calibrate
+    with ``scripts/calibrate_prior_prompts.py`` before deriving vectors.
     """
     level_list = [int(x) for x in (levels or range(1, N_LEVELS + 1))]
     items = (
@@ -887,7 +896,7 @@ def run_prompt_ladder(
         per_variant: list[torch.Tensor] = []
         for variant in range(max(1, variants)):
             system = ladder_system_prompt(
-                trait, level, variant=variant, n_markers=n_markers
+                trait, level, variant=variant, n_markers=n_markers, style=style
             )
             logger.info("level %s/%s variant %s", level, N_LEVELS, variant)
             responses, centroid = administer_inventory(
@@ -968,6 +977,8 @@ def run_prompt_ladder(
         "trait": trait,
         "levels": level_list,
         "variants": max(1, variants),
+        "prompt_style": style,
+        "n_markers": n_markers,
         "n_items": len(items),
         "instrument": str(Path(items_csv).resolve()) if items_csv else "IPIP_50",
         "keying_balance": keying_balance(items),
@@ -1006,6 +1017,8 @@ def run_prompt_ladder(
             "model_id": model_id or _default_model_id(),
             "activations": grid,  # (n_levels, n_variants, n_layers, d)
             "context_mode": "inventory",
+            "prompt_style": style,
+            "n_markers": n_markers,
         },
         centroids_pt,
     )
@@ -1034,6 +1047,7 @@ def run_probe_contexts(
     variants: int = 3,
     n_markers: int = 3,
     contexts: Sequence[str] = PROBE_CONTEXTS,
+    style: str = "self",
 ) -> Path:
     """Level centroids from open-ended contexts instead of inventory items.
 
@@ -1046,7 +1060,7 @@ def run_probe_contexts(
         per_variant: list[torch.Tensor] = []
         for variant in range(max(1, variants)):
             system = ladder_system_prompt(
-                trait, level, variant=variant, n_markers=n_markers
+                trait, level, variant=variant, n_markers=n_markers, style=style
             )
             acts = [
                 _prompt_forward(model, tokenizer, dev, system, ctx)[1]
@@ -1063,6 +1077,8 @@ def run_probe_contexts(
             "activations": torch.stack(grid, dim=0),
             "context_mode": "probe",
             "contexts": list(contexts),
+            "prompt_style": style,
+            "n_markers": n_markers,
         },
         centroids_pt,
     )
@@ -1132,6 +1148,8 @@ def build_ladder_vectors(
             "levels": blob["levels"],
             "model_id": blob.get("model_id"),
             "context_mode": blob.get("context_mode"),
+            "prompt_style": blob.get("prompt_style", "self"),
+            "n_markers": blob.get("n_markers"),
             "v_endpoint": v_end,
             "v_pc1": v_pc1,
             "v_ordinal": v_ord,
@@ -1146,6 +1164,8 @@ def build_ladder_vectors(
         "stage": "ladder_vectors",
         "trait": blob["trait"],
         "context_mode": blob.get("context_mode"),
+        "prompt_style": blob.get("prompt_style", "self"),
+        "n_markers": blob.get("n_markers"),
         "n_layers": n_layers,
         "geometry": geometry,
         "direction_agreement": agreement,
@@ -2021,6 +2041,7 @@ def _cmd_prompt_ladder(args: argparse.Namespace) -> int:
         n_markers=args.n_markers,
         all_traits=not args.target_trait_only,
         items_csv=Path(args.items_csv) if args.items_csv else None,
+        style=args.prompt_style,
     )
     if args.probe_contexts:
         probe = Path(run_dir / "ladder" / f"centroids_probe_{args.trait}.pt")
@@ -2030,6 +2051,7 @@ def _cmd_prompt_ladder(args: argparse.Namespace) -> int:
             model_id=args.model_id or None,
             variants=args.variants,
             n_markers=args.n_markers,
+            style=args.prompt_style,
         )
         print(probe.resolve())
     print(out_json.resolve())
@@ -2137,6 +2159,16 @@ def build_parser() -> argparse.ArgumentParser:
         type=int,
         default=3,
         help="Trait adjectives per level description (default: 3).",
+    )
+    common.add_argument(
+        "--prompt-style",
+        default="self",
+        choices=list(PROMPT_STYLES),
+        help=(
+            "Persona framing for every level description. 'self' reproduces runs "
+            "before 2026-08-20 and does not establish a low-openness prior on "
+            "Gemma-3-4B; calibrate with scripts/calibrate_prior_prompts.py."
+        ),
     )
     common.add_argument(
         "--target-trait-only",

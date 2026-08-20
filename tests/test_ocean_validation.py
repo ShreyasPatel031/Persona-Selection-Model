@@ -20,6 +20,13 @@ from app.persona.intensity_ladder import (
     random_control_directions,
     spearman_rho,
 )
+from app.persona.intensity_prompts import (
+    CHARACTER_FRAME,
+    COMMITMENT_FRAME,
+    PERSONA_INSTRUCTION,
+    PROMPT_STYLES,
+    ladder_system_prompt,
+)
 from app.persona.inventory_ipip import (
     IPIP_50,
     LIKERT_OPTIONS,
@@ -434,3 +441,52 @@ def test_summarise_probes_aggregates_coherence_and_markers():
 
 def test_summarise_probes_handles_no_rows():
     assert summarise_probes([], "openness")["n"] == 0
+
+
+# ── prior prompt framings ─────────────────────────────────────────────────────
+#
+# The midpoint test above is why these matter: if a persona prompt makes the
+# model answer the neutral option, the domain scores exactly 3.0 and an absent
+# prior is indistinguishable from an average one.
+
+
+def test_self_style_reproduces_the_original_persona_wording():
+    prompt = ladder_system_prompt("openness", 2, n_markers=3, style="self")
+    assert prompt.startswith(PERSONA_INSTRUCTION)
+    assert prompt.endswith("I am very unimaginative, very uncreative, and very incurious.")
+
+
+def test_character_style_frames_the_persona_as_fiction():
+    prompt = ladder_system_prompt("openness", 2, n_markers=3, style="character")
+    assert prompt.startswith(CHARACTER_FRAME)
+    assert PERSONA_INSTRUCTION not in prompt
+    assert "very unimaginative" in prompt
+
+
+def test_committed_style_discourages_the_middle_option():
+    prompt = ladder_system_prompt("openness", 2, n_markers=3, style="committed")
+    assert prompt.endswith(COMMITMENT_FRAME.strip())
+    assert prompt.startswith(CHARACTER_FRAME)
+
+
+def test_style_does_not_change_which_markers_are_used():
+    described = {
+        style: ladder_system_prompt("neuroticism", 8, n_markers=6, style=style)
+        for style in PROMPT_STYLES
+    }
+    for style, prompt in described.items():
+        for marker in ("anxious", "tense", "moody", "irritable", "nervous", "worrying"):
+            assert f"very {marker}" in prompt, (style, marker)
+
+
+def test_unknown_style_is_rejected():
+    with pytest.raises(ValueError):
+        ladder_system_prompt("openness", 2, style="roleplay")
+
+
+def test_task_instruction_is_appended_under_every_style():
+    for style in PROMPT_STYLES:
+        prompt = ladder_system_prompt(
+            "openness", 2, style=style, task_instruction="Answer the item."
+        )
+        assert prompt.endswith("Answer the item.")

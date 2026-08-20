@@ -65,6 +65,36 @@ PERSONA_INSTRUCTION = (
     "For the following task, respond in a way that matches this description: "
 )
 
+# Framings for the persona instruction, weakest to strongest.
+#
+# ``self`` is the original wording. It asks the model to describe *itself*, and a
+# safety-tuned model will not describe itself with the low pole of some domains.
+# Measured on Gemma-3-4B with the 120-item IPIP-NEO, the level-2 openness prompt
+# ("I am very unimaginative, very uncreative, and very incurious") leaves the
+# openness score at 3.05 — the exact scale midpoint — because the model answers
+# the neutral option on the items it will not endorse ("I do not like art",
+# "I tend to vote for conservative political candidates"). With keying-balanced
+# items a midpoint answer scores 3.0, so the "opposite prior" is no prior at all,
+# and any ladder built from those activations encodes hedging rather than the
+# trait. Extraversion does not have this problem: the model will call itself shy.
+#
+# ``character`` licenses the persona as fiction, which is how the prompting
+# papers elicit non-preferred poles. ``committed`` additionally discourages the
+# neutral option, since midpoint hedging is the specific failure being fixed.
+PROMPT_STYLES = ("self", "character", "committed")
+
+CHARACTER_FRAME = (
+    "You are role-playing a character in a survey. Stay in character for every "
+    "answer, including when the character's traits or opinions differ from your "
+    "own. Do not soften or correct the character.\n\nYour character says: "
+)
+
+COMMITMENT_FRAME = (
+    "\n\nAnswer as this character would. Use the middle option only when the "
+    "character is genuinely neither one way nor the other, not to avoid taking a "
+    "position."
+)
+
 
 def _join(parts: Sequence[str]) -> str:
     if len(parts) == 1:
@@ -117,10 +147,24 @@ def ladder_system_prompt(
     variant: int = 0,
     n_markers: int = 3,
     task_instruction: str = "",
+    style: str = "self",
 ) -> str:
-    """Persona instruction + level description, optionally plus a task instruction."""
+    """Persona instruction + level description, optionally plus a task instruction.
+
+    ``style`` selects the framing (see :data:`PROMPT_STYLES`). Use ``self`` only to
+    reproduce runs from before 2026-08-20; it fails to establish a low-openness
+    prior on Gemma-3-4B, which invalidates both the prior and any ladder direction
+    derived from its activations.
+    """
+    if style not in PROMPT_STYLES:
+        raise ValueError(f"style must be one of {PROMPT_STYLES}, got {style!r}")
     desc = trait_description(trait, level, variant=variant, n_markers=n_markers)
-    prompt = f"{PERSONA_INSTRUCTION}{desc}"
+    if style == "self":
+        prompt = f"{PERSONA_INSTRUCTION}{desc}"
+    else:
+        prompt = f"{CHARACTER_FRAME}{desc}"
+        if style == "committed":
+            prompt = f"{prompt}{COMMITMENT_FRAME}"
     if task_instruction:
         prompt = f"{prompt}\n\n{task_instruction}"
     return prompt
