@@ -46,6 +46,8 @@ logger = logging.getLogger("opposite_prior_ipip")
 
 # Layers that steer *judged free-text* behaviour bipolarly (results/bipolar).
 # These were selected against an LLM-judge readout, not against the inventory.
+# Agreeableness is L20 here to match results/bipolar; runs before 2026-08-20 used
+# L15 for it, which matched neither table.
 JUDGE_PROVEN_LAYERS = {
     "extraversion": 15,
     "agreeableness": 20,
