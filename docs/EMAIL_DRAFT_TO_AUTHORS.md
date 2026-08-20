@@ -76,10 +76,33 @@ level 1 to level 9, so α is expressed in units of one full-scale personality ch
 
 The last three are the instructive ones: a ρ of 1.00 across a movement of 0.04
 Likert points, which random directions of the same norm beat by 4–11×, is a real
-ordering with no attributable magnitude. Those are the poles where the RLHF-tuned
-baseline already sits near ceiling (openness 3.5, neuroticism 3.3 of 5), so there is
-almost no headroom to push into. I mention this because a paper reporting only ρ here
-would look like a clean success and would not be one.
+ordering with no attributable magnitude. I mention this because a paper reporting only
+ρ here would look like a clean success and would not be one.
+
+**Those small magnitudes appear to be a baseline-headroom artifact, not a limit of the
+method.** All of the above steers away from the model's RLHF-tuned prior, which
+already sits high on the traits being pushed (openness 3.5, neuroticism 3.3 of 5).
+Re-running the same vectors from an *opposite-prior* baseline — administer the
+inventory under a level-2 persona prompt and steer up, with the level-9 prompt as the
+reference for what a full-scale change looks like — changes the effect sizes by an
+order of magnitude:
+
+| pole | Δ from persona-free prior | Δ from opposite prior | % of prompt gap | vs control |
+|---|---:|---:|---:|---:|
+| E-up | +0.33 | **+3.06** | 92% | **4.7×** |
+| A-up | +0.27 | **+1.33** | 45% | control curve incomplete |
+
+E-up moving 3.06 of a 3.33-point prompt gap, at 4.7× the matched-norm random control,
+is a different class of result from the +0.46 in the table above. I'd emphasise three
+honest limits on it. The Colab session was reclaimed mid-run, so these two rows were
+transcribed from the streaming log rather than a completed artifact, and
+**openness-up and neuroticism-up — precisely the two ceiling-limited poles — were
+never run in this design.** So the headroom explanation is well-supported for the
+poles tested and remains a hypothesis for the two that most need it; that is the next
+experiment I plan to run. Also, down-poles are confounded by construction in this
+design: from a high prior, degradation and the intended effect both push the score
+down, and for E-down the random control actually moved further than the trait vector
+(margin 0.88), with the trait leading only in the mid-dose window.
 
 Note also the asymmetry — 10/10 on judge-scored free text versus 5/10 clearing
 controls on the questionnaire — is the *same* direction of asymmetry you report
@@ -143,7 +166,10 @@ collapse rather than a trait shift. I'd flag that this comparison is dose-confou
 - No repeated rungs, so no error bars; 1–3 random controls per sweep rather than a
   full control distribution. The Big Two result rests on 16 predicted pairs.
 - Five of ten poles have inventory movement indistinguishable from a matched-norm
-  random direction, as tabulated above.
+  random direction when steering away from the model's prior, as tabulated above. The
+  opposite-prior run that appears to fix this is itself incomplete: two of five traits
+  finished, artifacts were lost to a reclaimed session, and openness and neuroticism
+  were not covered.
 
 **Two questions.**
 
@@ -178,5 +204,7 @@ Shreyas Patel
 | Llama non-transfer: ρ×mono ≤ 0.55, mono ≤ 0.63 | `results/e1_vector_v3/`, `docs/FINAL_ABLATION_ATTEMPT.md` |
 | Llama prompting ρ 0.938 | `results/e1_vector_v3/prompt_ladder_conscientiousness.json` |
 | Big Two 12/16 = 75%, p≈0.04; low-drift 73–77% | `results/big_two_covariance.json`, `scripts/big_two_covariance.py` |
+| Opposite-prior E-up Δ 3.06 (92% of gap, 4.7×), A-up Δ 1.33 | `results/opposite_prior_ipip/partial_log_capture.json` |
+| O-up / N-up never run under opposite prior | same file, `not_run` field |
 | Inventory ordering ρ 0.85–1.00 on 8/10 poles | `results/readout_argmax_vs_ev.json` |
 | Llama well-ordered only at L6–8, outside our band | `results/e1_vector_v3/`, `docs/FINAL_ABLATION_ATTEMPT.md` |
