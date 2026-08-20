@@ -28,6 +28,8 @@ conditioning that a constant residual offset cannot supply.
 from __future__ import annotations
 
 import argparse
+import functools
+import inspect
 import json
 import logging
 import math
@@ -460,6 +462,35 @@ def _option_token_ids(tokenizer: AutoTokenizer) -> dict[str, list[int]]:
     return ids
 
 
+@functools.lru_cache(maxsize=8)
+def _last_position_logits_kwarg(forward: Any) -> str | None:
+    """Name of the kwarg that limits the logit head to the final positions.
+
+    Gemma-3 has a 262k vocabulary, so a full-sequence logit tensor is
+    ``batch × width × 262144``: 6.5 GB at batch 120 and width 103, of which every
+    position except the answer slot is discarded. Asking for one position is the
+    difference between a large inventory batch fitting and thrashing the OOM
+    retry path. Transformers renamed the argument, so detect it rather than
+    assume it.
+    """
+    params = inspect.signature(forward).parameters
+    for name in ("logits_to_keep", "num_logits_to_keep"):
+        if name in params:
+            return name
+    return None
+
+
+def _forward_last_logits(
+    model: PreTrainedModel, **kwargs: Any
+) -> tuple[Any, torch.Tensor]:
+    """Forward pass returning ``(outputs, logits at the final position)``."""
+    name = _last_position_logits_kwarg(type(model).forward)
+    if name is not None:
+        kwargs[name] = 1
+    out = model(**kwargs)
+    return out, out.logits[:, -1, :]
+
+
 def _prompt_forward(
     model: PreTrainedModel,
     tokenizer: AutoTokenizer,
@@ -488,7 +519,8 @@ def _prompt_forward(
     input_ids = _as_input_ids_tensor(raw, device)
     attn = torch.ones_like(input_ids, dtype=torch.long, device=device)
     with torch.no_grad():
-        out = model(
+        out, last = _forward_last_logits(
+            model,
             input_ids=input_ids,
             attention_mask=attn,
             output_hidden_states=True,
@@ -498,7 +530,7 @@ def _prompt_forward(
     if hs is None or len(hs) < 2:
         raise RuntimeError("Model returned no hidden_states.")
     per_layer = torch.stack([hs[i][0, -1, :] for i in range(1, len(hs))], dim=0)
-    return out.logits[0, -1, :].detach().float().cpu(), per_layer.detach().cpu()
+    return last[0].detach().float().cpu(), per_layer.detach().cpu()
 
 
 def _likert_from_logits(
@@ -753,8 +785,10 @@ def _administer_batched(
                 layer.register_forward_hook(make_hook(i)) for i, layer in enumerate(layers)
             ]
         try:
-            out = model(input_ids=ids, attention_mask=attn, use_cache=False)
-            logits = out.logits[:, -1, :].detach().float().cpu()
+            out, last = _forward_last_logits(
+                model, input_ids=ids, attention_mask=attn, use_cache=False
+            )
+            logits = last.detach().float().cpu()
         except torch.cuda.OutOfMemoryError:
             for h in handles:
                 h.remove()

@@ -6,6 +6,8 @@ import pytest
 import torch
 
 from app.persona.intensity_ladder import (
+    _forward_last_logits,
+    _last_position_logits_kwarg,
     analyze_ladder,
     endpoint_direction,
     layer_ladder_geometry,
@@ -215,3 +217,72 @@ def test_ladder_system_prompt_includes_persona_instruction_and_task():
     assert prompt.startswith("For the following task")
     assert "very organized" in prompt
     assert prompt.endswith("Answer briefly.")
+
+
+# ── answer-slot logits ────────────────────────────────────────────────────────
+#
+# Only the answer position is ever read, and Gemma-3's 262k vocabulary makes the
+# discarded positions the largest tensor in the forward pass.
+
+VOCAB = 7
+
+
+class _Out:
+    def __init__(self, logits):
+        self.logits = logits
+
+
+class _ModelWithKwarg:
+    """Stands in for a transformers model that supports the logit-window kwarg."""
+
+    def __init__(self):
+        self.seen = None
+
+    def forward(self, input_ids=None, attention_mask=None, use_cache=False, logits_to_keep=0):
+        self.seen = logits_to_keep
+        width = input_ids.shape[1] if logits_to_keep == 0 else logits_to_keep
+        rows = input_ids.shape[0]
+        logits = torch.arange(rows * width * VOCAB, dtype=torch.float).reshape(
+            rows, width, VOCAB
+        )
+        return _Out(logits)
+
+    def __call__(self, **kwargs):
+        return self.forward(**kwargs)
+
+
+class _ModelWithoutKwarg:
+    def __init__(self):
+        self.seen = "not called"
+
+    def forward(self, input_ids=None, attention_mask=None, use_cache=False):
+        self.seen = None
+        rows, width = input_ids.shape
+        logits = torch.arange(rows * width * VOCAB, dtype=torch.float).reshape(
+            rows, width, VOCAB
+        )
+        return _Out(logits)
+
+    def __call__(self, **kwargs):
+        return self.forward(**kwargs)
+
+
+def test_logit_window_kwarg_is_detected_and_requests_one_position():
+    assert _last_position_logits_kwarg(_ModelWithKwarg.forward) == "logits_to_keep"
+    assert _last_position_logits_kwarg(_ModelWithoutKwarg.forward) is None
+
+
+def test_forward_returns_the_answer_slot_whether_or_not_the_kwarg_exists():
+    ids = torch.zeros(2, 5, dtype=torch.long)
+
+    windowed = _ModelWithKwarg()
+    _, last_windowed = _forward_last_logits(windowed, input_ids=ids, use_cache=False)
+    assert windowed.seen == 1
+    assert last_windowed.shape == (2, VOCAB)
+
+    full = _ModelWithoutKwarg()
+    _, last_full = _forward_last_logits(full, input_ids=ids, use_cache=False)
+    assert full.seen is None
+    assert last_full.shape == (2, VOCAB)
+    # the fallback must slice the *last* position, not the first
+    assert torch.equal(last_full[0], torch.arange(4 * VOCAB, 5 * VOCAB, dtype=torch.float))
