@@ -113,6 +113,17 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument(
         "--layers", default="", help="Per-trait override, e.g. openness:15,conscientiousness:15"
     )
+    p.add_argument("--n-markers", type=int, default=3)
+    p.add_argument(
+        "--prompt-style",
+        default="self",
+        help=(
+            "Persona framing for the prior and reference prompts, or a per-trait "
+            "map like openness:character,default:self. The prior prompts decide "
+            "what the sweep is measuring, so they must match the framing the "
+            "vectors were derived from; see results/prior_prompt_calibration."
+        ),
+    )
     args = p.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -143,6 +154,20 @@ def main(argv: list[str] | None = None) -> int:
     for part in (x for x in args.layers.split(",") if x.strip()):
         name, _, value = part.partition(":")
         layers[name.strip()] = int(value)
+
+    styles: dict[str, str] = {}
+    default_style = "self"
+    for part in (x for x in args.prompt_style.split(",") if x.strip()):
+        name, sep, value = part.partition(":")
+        if not sep:
+            default_style = name.strip()
+        elif name.strip() == "default":
+            default_style = value.strip()
+        else:
+            styles[name.strip()] = value.strip()
+
+    def style_for(trait: str) -> str:
+        return styles.get(trait, default_style)
 
     items = items_from_csv(Path(args.items_csv))
     model, tokenizer, dev = _load_model(args.model_id, None)
@@ -198,8 +223,12 @@ def main(argv: list[str] | None = None) -> int:
 
         for pole in poles:
             base_level, ref_level, sign = POLES[pole]
-            base_system = ladder_system_prompt(trait, base_level, n_markers=3)
-            ref_system = ladder_system_prompt(trait, ref_level, n_markers=3)
+            base_system = ladder_system_prompt(
+                trait, base_level, n_markers=args.n_markers, style=style_for(trait)
+            )
+            ref_system = ladder_system_prompt(
+                trait, ref_level, n_markers=args.n_markers, style=style_for(trait)
+            )
 
             logger.info(
                 "%s-%s L%s span=%.1f prior=level%s ref=level%s grid=%s",
@@ -287,6 +316,8 @@ def main(argv: list[str] | None = None) -> int:
                 "pole": pole,
                 "layer": layer,
                 "direction": args.direction,
+                "prompt_style": style_for(trait),
+                "n_markers": args.n_markers,
                 "span": round(span, 2),
                 "prior_level": base_level,
                 "reference_level": ref_level,
