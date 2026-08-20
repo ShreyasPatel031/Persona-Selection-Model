@@ -1,0 +1,3058 @@
+{
+  "created_utc": "2026-08-20T09:24:11.288675+00:00",
+  "stage": "prior_prompt_calibration",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "instrument": "ipip_neo_120.csv",
+  "n_items": 120,
+  "gate": {
+    "max_midpoint_fraction": 0.5,
+    "min_prior_offset": 0.5,
+    "min_prompt_gap": 1.5
+  },
+  "persona_free_baselines": {
+    "openness": {
+      "target_ev": 3.4409,
+      "ev_scores": {
+        "agreeableness": 2.9889,
+        "conscientiousness": 2.7635,
+        "extraversion": 3.0629,
+        "neuroticism": 3.2973,
+        "openness": 3.4409
+      },
+      "target_midpoint_fraction": 0.25,
+      "target_lock": {
+        "n_answered": 24,
+        "top_option_fraction": 0.6667,
+        "option_entropy": 0.8817,
+        "distinct_options": 4,
+        "histogram": {
+          "2": 16,
+          "3": 6,
+          "4": 1,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "inventory_lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6583,
+        "option_entropy": 0.8084,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 1,
+          "2": 79,
+          "3": 36,
+          "4": 3,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      }
+    },
+    "conscientiousness": {
+      "target_ev": 2.7635,
+      "ev_scores": {
+        "agreeableness": 2.9889,
+        "conscientiousness": 2.7635,
+        "extraversion": 3.0629,
+        "neuroticism": 3.2973,
+        "openness": 3.4409
+      },
+      "target_midpoint_fraction": 0.4583,
+      "target_lock": {
+        "n_answered": 24,
+        "top_option_fraction": 0.5417,
+        "option_entropy": 0.6897,
+        "distinct_options": 2,
+        "histogram": {
+          "2": 13,
+          "3": 11
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "inventory_lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6583,
+        "option_entropy": 0.8084,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 1,
+          "2": 79,
+          "3": 36,
+          "4": 3,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      }
+    },
+    "extraversion": {
+      "target_ev": 3.0629,
+      "ev_scores": {
+        "agreeableness": 2.9889,
+        "conscientiousness": 2.7635,
+        "extraversion": 3.0629,
+        "neuroticism": 3.2973,
+        "openness": 3.4409
+      },
+      "target_midpoint_fraction": 0.25,
+      "target_lock": {
+        "n_answered": 24,
+        "top_option_fraction": 0.75,
+        "option_entropy": 0.5623,
+        "distinct_options": 2,
+        "histogram": {
+          "2": 18,
+          "3": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "inventory_lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6583,
+        "option_entropy": 0.8084,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 1,
+          "2": 79,
+          "3": 36,
+          "4": 3,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      }
+    },
+    "agreeableness": {
+      "target_ev": 2.9889,
+      "ev_scores": {
+        "agreeableness": 2.9889,
+        "conscientiousness": 2.7635,
+        "extraversion": 3.0629,
+        "neuroticism": 3.2973,
+        "openness": 3.4409
+      },
+      "target_midpoint_fraction": 0.2917,
+      "target_lock": {
+        "n_answered": 24,
+        "top_option_fraction": 0.6667,
+        "option_entropy": 0.7621,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 1,
+          "2": 16,
+          "3": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "inventory_lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6583,
+        "option_entropy": 0.8084,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 1,
+          "2": 79,
+          "3": 36,
+          "4": 3,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      }
+    },
+    "neuroticism": {
+      "target_ev": 3.2973,
+      "ev_scores": {
+        "agreeableness": 2.9889,
+        "conscientiousness": 2.7635,
+        "extraversion": 3.0629,
+        "neuroticism": 3.2973,
+        "openness": 3.4409
+      },
+      "target_midpoint_fraction": 0.25,
+      "target_lock": {
+        "n_answered": 24,
+        "top_option_fraction": 0.6667,
+        "option_entropy": 0.824,
+        "distinct_options": 3,
+        "histogram": {
+          "2": 16,
+          "3": 6,
+          "4": 2
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "inventory_lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6583,
+        "option_entropy": 0.8084,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 1,
+          "2": 79,
+          "3": 36,
+          "4": 3,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      }
+    }
+  },
+  "table": [
+    {
+      "trait": "openness",
+      "style": "self",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very unimaginative, very uncreative, very incurious, very unintellectual, very conventional, and very unreflective.",
+      "prior_ev": 3.2527,
+      "reference_ev": 4.6627,
+      "prompt_gap": 1.41,
+      "prior_offset_from_midpoint": 0.2527,
+      "prior_target_midpoint_fraction": 0.4167,
+      "offset_ok": false,
+      "gap_ok": false,
+      "midpoint_ok": true,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 3.2527,
+        "ev_scores": {
+          "agreeableness": 2.6057,
+          "conscientiousness": 2.2718,
+          "extraversion": 3.1313,
+          "neuroticism": 3.1489,
+          "openness": 3.2527
+        },
+        "target_midpoint_fraction": 0.4167,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.0618,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 11,
+            "3": 10,
+            "4": 1,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5167,
+          "option_entropy": 1.2258,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 33,
+            "2": 3,
+            "3": 62,
+            "4": 12,
+            "5": 10
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.6627,
+        "ev_scores": {
+          "agreeableness": 3.5276,
+          "conscientiousness": 3.4694,
+          "extraversion": 3.3618,
+          "neuroticism": 2.7697,
+          "openness": 4.6627
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4167,
+          "option_entropy": 1.258,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 7,
+            "2": 5,
+            "4": 2,
+            "5": 10
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.3978,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 24,
+            "2": 55,
+            "3": 11,
+            "4": 9,
+            "5": 21
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "openness",
+      "style": "self",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very creative, very imaginative, very curious, very intellectual, very inventive, and very reflective.",
+      "prior_ev": 4.6764,
+      "reference_ev": 3.1858,
+      "prompt_gap": -1.4906,
+      "prior_offset_from_midpoint": 1.6764,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": false,
+      "midpoint_ok": true,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 4.6764,
+        "ev_scores": {
+          "agreeableness": 3.6069,
+          "conscientiousness": 3.4796,
+          "extraversion": 3.3759,
+          "neuroticism": 2.6524,
+          "openness": 4.6764
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4167,
+          "option_entropy": 1.258,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 7,
+            "2": 5,
+            "4": 2,
+            "5": 10
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.425,
+          "option_entropy": 1.433,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 27,
+            "2": 51,
+            "3": 13,
+            "4": 9,
+            "5": 20
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 3.1858,
+        "ev_scores": {
+          "agreeableness": 2.5884,
+          "conscientiousness": 2.2797,
+          "extraversion": 3.1594,
+          "neuroticism": 3.1244,
+          "openness": 3.1858
+        },
+        "target_midpoint_fraction": 0.4167,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 0.9823,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 11,
+            "3": 10,
+            "5": 3
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.575,
+          "option_entropy": 1.0906,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 32,
+            "2": 1,
+            "3": 69,
+            "4": 6,
+            "5": 12
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "openness",
+      "style": "character",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very unimaginative, very uncreative, very incurious, very unintellectual, very conventional, and very unreflective.",
+      "prior_ev": 2.5769,
+      "reference_ev": 4.2454,
+      "prompt_gap": 1.6685,
+      "prior_offset_from_midpoint": -0.4231,
+      "prior_target_midpoint_fraction": 0.375,
+      "offset_ok": false,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 2.5769,
+        "ev_scores": {
+          "agreeableness": 3.0887,
+          "conscientiousness": 2.851,
+          "extraversion": 2.9715,
+          "neuroticism": 3.0719,
+          "openness": 2.5769
+        },
+        "target_midpoint_fraction": 0.375,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5,
+          "option_entropy": 1.0539,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 1,
+            "2": 12,
+            "3": 9,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.55,
+          "option_entropy": 1.0113,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 6,
+            "2": 66,
+            "3": 41,
+            "5": 7
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.2454,
+        "ev_scores": {
+          "agreeableness": 2.4378,
+          "conscientiousness": 3.1792,
+          "extraversion": 3.4263,
+          "neuroticism": 2.8884,
+          "openness": 4.2454
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5417,
+          "option_entropy": 0.907,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 2,
+            "2": 13,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.525,
+          "option_entropy": 0.9997,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 37,
+            "2": 63,
+            "5": 20
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "openness",
+      "style": "character",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very creative, very imaginative, very curious, very intellectual, very inventive, and very reflective.",
+      "prior_ev": 4.0788,
+      "reference_ev": 2.652,
+      "prompt_gap": -1.4268,
+      "prior_offset_from_midpoint": 1.0788,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": false,
+      "midpoint_ok": true,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 4.0788,
+        "ev_scores": {
+          "agreeableness": 2.6663,
+          "conscientiousness": 3.2055,
+          "extraversion": 3.0604,
+          "neuroticism": 3.0166,
+          "openness": 4.0788
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.625,
+          "option_entropy": 0.7924,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 1,
+            "2": 15,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.775,
+          "option_entropy": 0.7599,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 9,
+            "2": 93,
+            "3": 2,
+            "4": 1,
+            "5": 15
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 2.652,
+        "ev_scores": {
+          "agreeableness": 3.1431,
+          "conscientiousness": 2.677,
+          "extraversion": 3.0133,
+          "neuroticism": 3.0591,
+          "openness": 2.652
+        },
+        "target_midpoint_fraction": 0.6667,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.6667,
+          "option_entropy": 0.9366,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 1,
+            "2": 5,
+            "3": 16,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.475,
+          "option_entropy": 1.0808,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 9,
+            "2": 47,
+            "3": 57,
+            "5": 7
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "openness",
+      "style": "committed",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very unimaginative, very uncreative, very incurious, very unintellectual, very conventional, and very unreflective.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 2.8472,
+      "reference_ev": 4.0377,
+      "prompt_gap": 1.1905,
+      "prior_offset_from_midpoint": -0.1528,
+      "prior_target_midpoint_fraction": 0.9167,
+      "offset_ok": false,
+      "gap_ok": false,
+      "midpoint_ok": false,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 2.8472,
+        "ev_scores": {
+          "agreeableness": 3.0113,
+          "conscientiousness": 3.0783,
+          "extraversion": 2.9203,
+          "neuroticism": 3.0643,
+          "openness": 2.8472
+        },
+        "target_midpoint_fraction": 0.9167,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.9167,
+          "option_entropy": 0.3446,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 1,
+            "3": 22,
+            "5": 1
+          },
+          "locked": true,
+          "reason": "one option covers 92% of items"
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.9167,
+          "option_entropy": 0.3726,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 2,
+            "2": 5,
+            "3": 110,
+            "5": 3
+          },
+          "locked": true,
+          "reason": "one option covers 92% of items"
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.0377,
+        "ev_scores": {
+          "agreeableness": 2.4644,
+          "conscientiousness": 3.1395,
+          "extraversion": 3.2998,
+          "neuroticism": 2.9444,
+          "openness": 4.0377
+        },
+        "target_midpoint_fraction": 0.4167,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4167,
+          "option_entropy": 1.2508,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 3,
+            "2": 3,
+            "3": 10,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.625,
+          "option_entropy": 1.1198,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 12,
+            "2": 14,
+            "3": 75,
+            "4": 2,
+            "5": 17
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "openness",
+      "style": "committed",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very creative, very imaginative, very curious, very intellectual, very inventive, and very reflective.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 3.9311,
+      "reference_ev": 2.752,
+      "prompt_gap": -1.1791,
+      "prior_offset_from_midpoint": 0.9311,
+      "prior_target_midpoint_fraction": 0.4583,
+      "offset_ok": true,
+      "gap_ok": false,
+      "midpoint_ok": true,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 3.9311,
+        "ev_scores": {
+          "agreeableness": 2.575,
+          "conscientiousness": 3.1735,
+          "extraversion": 3.1593,
+          "neuroticism": 2.9713,
+          "openness": 3.9311
+        },
+        "target_midpoint_fraction": 0.4583,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.1548,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 1,
+            "2": 4,
+            "3": 11,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6833,
+          "option_entropy": 0.9499,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 2,
+            "2": 18,
+            "3": 82,
+            "4": 2,
+            "5": 16
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 2.752,
+        "ev_scores": {
+          "agreeableness": 2.9907,
+          "conscientiousness": 3.0445,
+          "extraversion": 2.8936,
+          "neuroticism": 3.053,
+          "openness": 2.752
+        },
+        "target_midpoint_fraction": 0.875,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.875,
+          "option_entropy": 0.4563,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 1,
+            "3": 21,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.9333,
+          "option_entropy": 0.3099,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 3,
+            "2": 1,
+            "3": 112,
+            "5": 4
+          },
+          "locked": true,
+          "reason": "one option covers 93% of items"
+        }
+      }
+    },
+    {
+      "trait": "conscientiousness",
+      "style": "self",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very disorganized, very careless, very unreliable, very sloppy, very haphazard, and very inefficient.",
+      "prior_ev": 1.2103,
+      "reference_ev": 4.9967,
+      "prompt_gap": 3.7864,
+      "prior_offset_from_midpoint": -1.7897,
+      "prior_target_midpoint_fraction": 0.0417,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 1.2103,
+        "ev_scores": {
+          "agreeableness": 2.7295,
+          "conscientiousness": 1.2103,
+          "extraversion": 2.4072,
+          "neuroticism": 3.8816,
+          "openness": 2.9677
+        },
+        "target_midpoint_fraction": 0.0417,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.1196,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 11,
+            "2": 1,
+            "3": 1,
+            "4": 1,
+            "5": 10
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.35,
+          "option_entropy": 1.3834,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 38,
+            "2": 42,
+            "3": 19,
+            "4": 2,
+            "5": 19
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.9967,
+        "ev_scores": {
+          "agreeableness": 3.9364,
+          "conscientiousness": 4.9967,
+          "extraversion": 2.8382,
+          "neuroticism": 1.4777,
+          "openness": 3.0203
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5,
+          "option_entropy": 0.6931,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 12,
+            "5": 12
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.3417,
+          "option_entropy": 1.338,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 41,
+            "2": 27,
+            "3": 12,
+            "4": 1,
+            "5": 39
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "conscientiousness",
+      "style": "self",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very organized, very responsible, very reliable, very thorough, very orderly, and very efficient.",
+      "prior_ev": 4.9982,
+      "reference_ev": 1.0558,
+      "prompt_gap": -3.9424,
+      "prior_offset_from_midpoint": 1.9982,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.9982,
+        "ev_scores": {
+          "agreeableness": 4.0035,
+          "conscientiousness": 4.9982,
+          "extraversion": 2.8895,
+          "neuroticism": 1.3766,
+          "openness": 3.0663
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5,
+          "option_entropy": 0.6931,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 12,
+            "5": 12
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.3667,
+          "option_entropy": 1.3082,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 44,
+            "2": 26,
+            "3": 6,
+            "4": 3,
+            "5": 41
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.0558,
+        "ev_scores": {
+          "agreeableness": 2.6578,
+          "conscientiousness": 1.0558,
+          "extraversion": 2.378,
+          "neuroticism": 4.0001,
+          "openness": 3.0594
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5,
+          "option_entropy": 0.6931,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 12,
+            "5": 12
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.425,
+          "option_entropy": 1.3702,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 51,
+            "2": 23,
+            "3": 23,
+            "4": 2,
+            "5": 21
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "conscientiousness",
+      "style": "character",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very disorganized, very careless, very unreliable, very sloppy, very haphazard, and very inefficient.",
+      "prior_ev": 1.6704,
+      "reference_ev": 4.7372,
+      "prompt_gap": 3.0668,
+      "prior_offset_from_midpoint": -1.3296,
+      "prior_target_midpoint_fraction": 0.0833,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 1.6704,
+        "ev_scores": {
+          "agreeableness": 2.7737,
+          "conscientiousness": 1.6704,
+          "extraversion": 2.9986,
+          "neuroticism": 3.6266,
+          "openness": 3.0007
+        },
+        "target_midpoint_fraction": 0.0833,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.1395,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 2,
+            "2": 11,
+            "3": 2,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.825,
+          "option_entropy": 0.615,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 3,
+            "2": 99,
+            "3": 4,
+            "5": 14
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.7372,
+        "ev_scores": {
+          "agreeableness": 3.407,
+          "conscientiousness": 4.7372,
+          "extraversion": 3.3751,
+          "neuroticism": 2.5856,
+          "openness": 3.3607
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5417,
+          "option_entropy": 0.6897,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 13,
+            "5": 11
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5833,
+          "option_entropy": 0.965,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 70,
+            "2": 28,
+            "5": 22
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "conscientiousness",
+      "style": "character",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very organized, very responsible, very reliable, very thorough, very orderly, and very efficient.",
+      "prior_ev": 4.7035,
+      "reference_ev": 1.6241,
+      "prompt_gap": -3.0794,
+      "prior_offset_from_midpoint": 1.7035,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.7035,
+        "ev_scores": {
+          "agreeableness": 3.4017,
+          "conscientiousness": 4.7035,
+          "extraversion": 3.2766,
+          "neuroticism": 2.8815,
+          "openness": 3.1848
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.024,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 9,
+            "2": 4,
+            "5": 11
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.4917,
+          "option_entropy": 1.0593,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 39,
+            "2": 59,
+            "3": 1,
+            "5": 21
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.6241,
+        "ev_scores": {
+          "agreeableness": 2.7152,
+          "conscientiousness": 1.6241,
+          "extraversion": 3.0044,
+          "neuroticism": 3.7491,
+          "openness": 2.9987
+        },
+        "target_midpoint_fraction": 0.0833,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.375,
+          "option_entropy": 1.2413,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 4,
+            "2": 9,
+            "3": 2,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.775,
+          "option_entropy": 0.7514,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 8,
+            "2": 93,
+            "3": 4,
+            "5": 15
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "conscientiousness",
+      "style": "committed",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very disorganized, very careless, very unreliable, very sloppy, very haphazard, and very inefficient.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 1.7455,
+      "reference_ev": 4.2932,
+      "prompt_gap": 2.5477,
+      "prior_offset_from_midpoint": -1.2545,
+      "prior_target_midpoint_fraction": 0.125,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 1.7455,
+        "ev_scores": {
+          "agreeableness": 2.6239,
+          "conscientiousness": 1.7455,
+          "extraversion": 2.788,
+          "neuroticism": 3.4518,
+          "openness": 3.0563
+        },
+        "target_midpoint_fraction": 0.125,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.3333,
+          "option_entropy": 1.4593,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 3,
+            "2": 8,
+            "3": 3,
+            "4": 2,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.575,
+          "option_entropy": 1.1091,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 3,
+            "2": 30,
+            "3": 69,
+            "4": 3,
+            "5": 15
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.2932,
+        "ev_scores": {
+          "agreeableness": 2.9742,
+          "conscientiousness": 4.2932,
+          "extraversion": 3.1445,
+          "neuroticism": 2.895,
+          "openness": 3.1844
+        },
+        "target_midpoint_fraction": 0.3333,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.3333,
+          "option_entropy": 1.2242,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 7,
+            "2": 1,
+            "3": 8,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7583,
+          "option_entropy": 0.8129,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 12,
+            "2": 3,
+            "3": 91,
+            "4": 1,
+            "5": 13
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "conscientiousness",
+      "style": "committed",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very organized, very responsible, very reliable, very thorough, very orderly, and very efficient.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 4.1007,
+      "reference_ev": 1.6753,
+      "prompt_gap": -2.4254,
+      "prior_offset_from_midpoint": 1.1007,
+      "prior_target_midpoint_fraction": 0.375,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.1007,
+        "ev_scores": {
+          "agreeableness": 3.0315,
+          "conscientiousness": 4.1007,
+          "extraversion": 3.1568,
+          "neuroticism": 2.8863,
+          "openness": 3.0973
+        },
+        "target_midpoint_fraction": 0.375,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.375,
+          "option_entropy": 1.2555,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 3,
+            "2": 3,
+            "3": 9,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7583,
+          "option_entropy": 0.8508,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 7,
+            "2": 5,
+            "3": 91,
+            "4": 3,
+            "5": 14
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.6753,
+        "ev_scores": {
+          "agreeableness": 2.6192,
+          "conscientiousness": 1.6753,
+          "extraversion": 2.8464,
+          "neuroticism": 3.4033,
+          "openness": 2.9795
+        },
+        "target_midpoint_fraction": 0.2083,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.3333,
+          "option_entropy": 1.479,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 5,
+            "2": 5,
+            "3": 5,
+            "4": 1,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6417,
+          "option_entropy": 1.0197,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 5,
+            "2": 24,
+            "3": 77,
+            "4": 1,
+            "5": 13
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "extraversion",
+      "style": "self",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very quiet, very reserved, very shy, very withdrawn, very unsociable, and very timid.",
+      "prior_ev": 1.6276,
+      "reference_ev": 4.8246,
+      "prompt_gap": 3.197,
+      "prior_offset_from_midpoint": -1.3724,
+      "prior_target_midpoint_fraction": 0.125,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 1.6276,
+        "ev_scores": {
+          "agreeableness": 3.3927,
+          "conscientiousness": 2.8876,
+          "extraversion": 1.6276,
+          "neuroticism": 3.5745,
+          "openness": 2.6283
+        },
+        "target_midpoint_fraction": 0.125,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5417,
+          "option_entropy": 0.9582,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 13,
+            "3": 3,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.425,
+          "option_entropy": 1.3061,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 51,
+            "2": 28,
+            "3": 19,
+            "5": 22
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.8246,
+        "ev_scores": {
+          "agreeableness": 2.5276,
+          "conscientiousness": 3.589,
+          "extraversion": 4.8246,
+          "neuroticism": 2.0378,
+          "openness": 4.6627
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5417,
+          "option_entropy": 0.6897,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 11,
+            "5": 13
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5083,
+          "option_entropy": 0.8547,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 61,
+            "2": 6,
+            "5": 53
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "extraversion",
+      "style": "self",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very talkative, very assertive, very energetic, very outgoing, very sociable, and very bold.",
+      "prior_ev": 4.8647,
+      "reference_ev": 1.7134,
+      "prompt_gap": -3.1513,
+      "prior_offset_from_midpoint": 1.8647,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.8647,
+        "ev_scores": {
+          "agreeableness": 3.0432,
+          "conscientiousness": 3.6696,
+          "extraversion": 4.8647,
+          "neuroticism": 2.0377,
+          "openness": 4.6581
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5417,
+          "option_entropy": 0.6897,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 11,
+            "5": 13
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5667,
+          "option_entropy": 0.8617,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 68,
+            "2": 5,
+            "4": 1,
+            "5": 46
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.7134,
+        "ev_scores": {
+          "agreeableness": 3.3668,
+          "conscientiousness": 2.9885,
+          "extraversion": 1.7134,
+          "neuroticism": 3.4563,
+          "openness": 2.5989
+        },
+        "target_midpoint_fraction": 0.125,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5833,
+          "option_entropy": 0.9337,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 14,
+            "3": 3,
+            "5": 7
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.4917,
+          "option_entropy": 1.2273,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 59,
+            "2": 12,
+            "3": 26,
+            "5": 23
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "extraversion",
+      "style": "character",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very quiet, very reserved, very shy, very withdrawn, very unsociable, and very timid.",
+      "prior_ev": 2.2624,
+      "reference_ev": 4.4873,
+      "prompt_gap": 2.2249,
+      "prior_offset_from_midpoint": -0.7376,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 2.2624,
+        "ev_scores": {
+          "agreeableness": 3.1059,
+          "conscientiousness": 2.9809,
+          "extraversion": 2.2624,
+          "neuroticism": 3.2256,
+          "openness": 2.9817
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5833,
+          "option_entropy": 0.968,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 5,
+            "2": 14,
+            "5": 5
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.8167,
+          "option_entropy": 0.6314,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 11,
+            "2": 98,
+            "3": 1,
+            "5": 10
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.4873,
+        "ev_scores": {
+          "agreeableness": 1.8184,
+          "conscientiousness": 2.4522,
+          "extraversion": 4.4873,
+          "neuroticism": 2.7973,
+          "openness": 4.0131
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5833,
+          "option_entropy": 0.8877,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 8,
+            "2": 2,
+            "5": 14
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.625,
+          "option_entropy": 0.9102,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 28,
+            "2": 17,
+            "5": 75
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "extraversion",
+      "style": "character",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very talkative, very assertive, very energetic, very outgoing, very sociable, and very bold.",
+      "prior_ev": 4.4413,
+      "reference_ev": 1.9423,
+      "prompt_gap": -2.499,
+      "prior_offset_from_midpoint": 1.4413,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.4413,
+        "ev_scores": {
+          "agreeableness": 1.9772,
+          "conscientiousness": 2.3415,
+          "extraversion": 4.4413,
+          "neuroticism": 2.7091,
+          "openness": 4.142
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5833,
+          "option_entropy": 0.9596,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 4,
+            "2": 6,
+            "5": 14
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.4917,
+          "option_entropy": 1.042,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 27,
+            "2": 34,
+            "5": 59
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.9423,
+        "ev_scores": {
+          "agreeableness": 3.1206,
+          "conscientiousness": 2.9551,
+          "extraversion": 1.9423,
+          "neuroticism": 3.2402,
+          "openness": 2.9209
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.0506,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 11,
+            "2": 8,
+            "5": 5
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.65,
+          "option_entropy": 0.9131,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 30,
+            "2": 78,
+            "3": 3,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "extraversion",
+      "style": "committed",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very quiet, very reserved, very shy, very withdrawn, very unsociable, and very timid.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 2.5097,
+      "reference_ev": 3.9996,
+      "prompt_gap": 1.4899,
+      "prior_offset_from_midpoint": -0.4903,
+      "prior_target_midpoint_fraction": 0.75,
+      "offset_ok": false,
+      "gap_ok": false,
+      "midpoint_ok": false,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 2.5097,
+        "ev_scores": {
+          "agreeableness": 2.8271,
+          "conscientiousness": 3.0015,
+          "extraversion": 2.5097,
+          "neuroticism": 3.2415,
+          "openness": 3.0147
+        },
+        "target_midpoint_fraction": 0.75,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.75,
+          "option_entropy": 0.7215,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 4,
+            "3": 18,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.825,
+          "option_entropy": 0.631,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 6,
+            "2": 12,
+            "3": 99,
+            "5": 3
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 3.9996,
+        "ev_scores": {
+          "agreeableness": 2.4988,
+          "conscientiousness": 3.0629,
+          "extraversion": 3.9996,
+          "neuroticism": 2.6749,
+          "openness": 3.6278
+        },
+        "target_midpoint_fraction": 0.0417,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.75,
+          "option_entropy": 0.675,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 5,
+            "3": 1,
+            "5": 18
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7583,
+          "option_entropy": 0.7328,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 21,
+            "2": 2,
+            "3": 6,
+            "5": 91
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "extraversion",
+      "style": "committed",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very talkative, very assertive, very energetic, very outgoing, very sociable, and very bold.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 3.9414,
+      "reference_ev": 2.4246,
+      "prompt_gap": -1.5168,
+      "prior_offset_from_midpoint": 0.9414,
+      "prior_target_midpoint_fraction": 0.0417,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 3.9414,
+        "ev_scores": {
+          "agreeableness": 2.4246,
+          "conscientiousness": 2.8499,
+          "extraversion": 3.9414,
+          "neuroticism": 2.5271,
+          "openness": 3.7242
+        },
+        "target_midpoint_fraction": 0.0417,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.75,
+          "option_entropy": 0.8152,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 3,
+            "2": 2,
+            "3": 1,
+            "5": 18
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7167,
+          "option_entropy": 0.9161,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 11,
+            "2": 16,
+            "3": 6,
+            "4": 1,
+            "5": 86
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 2.4246,
+        "ev_scores": {
+          "agreeableness": 2.7689,
+          "conscientiousness": 3.0003,
+          "extraversion": 2.4246,
+          "neuroticism": 3.1963,
+          "openness": 3.003
+        },
+        "target_midpoint_fraction": 0.7083,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.7083,
+          "option_entropy": 0.7781,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 5,
+            "3": 17,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.875,
+          "option_entropy": 0.5072,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 7,
+            "2": 5,
+            "3": 105,
+            "5": 3
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "agreeableness",
+      "style": "self",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very cold, very unkind, very harsh, very uncooperative, very inconsiderate, and very distrustful.",
+      "prior_ev": 1.7382,
+      "reference_ev": 4.6124,
+      "prompt_gap": 2.8742,
+      "prior_offset_from_midpoint": -1.2618,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 1.7382,
+        "ev_scores": {
+          "agreeableness": 1.7382,
+          "conscientiousness": 2.3554,
+          "extraversion": 2.2517,
+          "neuroticism": 3.3431,
+          "openness": 2.7284
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.625,
+          "option_entropy": 0.6616,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 15,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7917,
+          "option_entropy": 0.6221,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 95,
+            "2": 1,
+            "3": 3,
+            "5": 21
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.6124,
+        "ev_scores": {
+          "agreeableness": 4.6124,
+          "conscientiousness": 4.1329,
+          "extraversion": 3.3168,
+          "neuroticism": 2.088,
+          "openness": 4.2628
+        },
+        "target_midpoint_fraction": 0.0417,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.2804,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 11,
+            "2": 1,
+            "3": 1,
+            "4": 4,
+            "5": 7
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.2667,
+          "option_entropy": 1.5388,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 22,
+            "2": 31,
+            "3": 9,
+            "4": 26,
+            "5": 32
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "agreeableness",
+      "style": "self",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very sympathetic, very kind, very warm, very cooperative, very considerate, and very trusting.",
+      "prior_ev": 4.6063,
+      "reference_ev": 1.4705,
+      "prompt_gap": -3.1358,
+      "prior_offset_from_midpoint": 1.6063,
+      "prior_target_midpoint_fraction": 0.0417,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.6063,
+        "ev_scores": {
+          "agreeableness": 4.6063,
+          "conscientiousness": 4.1421,
+          "extraversion": 3.3675,
+          "neuroticism": 2.2893,
+          "openness": 4.1393
+        },
+        "target_midpoint_fraction": 0.0417,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.2804,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 11,
+            "2": 1,
+            "3": 1,
+            "4": 4,
+            "5": 7
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.3167,
+          "option_entropy": 1.5341,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 25,
+            "2": 28,
+            "3": 11,
+            "4": 38,
+            "5": 18
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.4705,
+        "ev_scores": {
+          "agreeableness": 1.4705,
+          "conscientiousness": 2.5724,
+          "extraversion": 2.2592,
+          "neuroticism": 3.4109,
+          "openness": 2.7388
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.625,
+          "option_entropy": 0.6616,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 15,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.825,
+          "option_entropy": 0.4637,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 99,
+            "5": 21
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "agreeableness",
+      "style": "character",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very cold, very unkind, very harsh, very uncooperative, very inconsiderate, and very distrustful.",
+      "prior_ev": 1.6833,
+      "reference_ev": 4.2049,
+      "prompt_gap": 2.5216,
+      "prior_offset_from_midpoint": -1.3167,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 1.6833,
+        "ev_scores": {
+          "agreeableness": 1.6833,
+          "conscientiousness": 2.7737,
+          "extraversion": 2.6963,
+          "neuroticism": 3.3345,
+          "openness": 3.052
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.375,
+          "option_entropy": 1.0934,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 7,
+            "2": 8,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.75,
+          "option_entropy": 0.7351,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 16,
+            "2": 90,
+            "5": 14
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.2049,
+        "ev_scores": {
+          "agreeableness": 4.2049,
+          "conscientiousness": 3.4921,
+          "extraversion": 3.5174,
+          "neuroticism": 2.6425,
+          "openness": 4.4769
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5,
+          "option_entropy": 1.0327,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 12,
+            "2": 5,
+            "5": 7
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.3833,
+          "option_entropy": 1.0875,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 42,
+            "2": 46,
+            "5": 32
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "agreeableness",
+      "style": "character",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very sympathetic, very kind, very warm, very cooperative, very considerate, and very trusting.",
+      "prior_ev": 4.1202,
+      "reference_ev": 1.6062,
+      "prompt_gap": -2.514,
+      "prior_offset_from_midpoint": 1.1202,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.1202,
+        "ev_scores": {
+          "agreeableness": 4.1202,
+          "conscientiousness": 3.3886,
+          "extraversion": 3.4726,
+          "neuroticism": 2.9708,
+          "openness": 3.605
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.375,
+          "option_entropy": 1.0934,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 8,
+            "2": 9,
+            "5": 7
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6667,
+          "option_entropy": 0.8638,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 23,
+            "2": 80,
+            "5": 17
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.6062,
+        "ev_scores": {
+          "agreeableness": 1.6062,
+          "conscientiousness": 2.7181,
+          "extraversion": 2.6889,
+          "neuroticism": 3.4088,
+          "openness": 3.0107
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4167,
+          "option_entropy": 1.0594,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 10,
+            "2": 5,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5083,
+          "option_entropy": 0.9523,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 46,
+            "2": 61,
+            "5": 13
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "agreeableness",
+      "style": "committed",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very cold, very unkind, very harsh, very uncooperative, very inconsiderate, and very distrustful.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 2.1026,
+      "reference_ev": 3.9403,
+      "prompt_gap": 1.8377,
+      "prior_offset_from_midpoint": -0.8974,
+      "prior_target_midpoint_fraction": 0.4167,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 2.1026,
+        "ev_scores": {
+          "agreeableness": 2.1026,
+          "conscientiousness": 2.7847,
+          "extraversion": 2.6087,
+          "neuroticism": 3.2308,
+          "openness": 2.9301
+        },
+        "target_midpoint_fraction": 0.4167,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4167,
+          "option_entropy": 1.0776,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 8,
+            "3": 10,
+            "5": 6
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.725,
+          "option_entropy": 0.8834,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 14,
+            "2": 11,
+            "3": 87,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 3.9403,
+        "ev_scores": {
+          "agreeableness": 3.9403,
+          "conscientiousness": 3.4923,
+          "extraversion": 3.2973,
+          "neuroticism": 2.8464,
+          "openness": 3.5937
+        },
+        "target_midpoint_fraction": 0.3333,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.3333,
+          "option_entropy": 1.479,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 5,
+            "2": 5,
+            "3": 8,
+            "4": 1,
+            "5": 5
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6917,
+          "option_entropy": 1.0148,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 12,
+            "2": 10,
+            "3": 83,
+            "4": 3,
+            "5": 12
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "agreeableness",
+      "style": "committed",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very sympathetic, very kind, very warm, very cooperative, very considerate, and very trusting.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 3.6739,
+      "reference_ev": 2.0428,
+      "prompt_gap": -1.6311,
+      "prior_offset_from_midpoint": 0.6739,
+      "prior_target_midpoint_fraction": 0.5417,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": false,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 3.6739,
+        "ev_scores": {
+          "agreeableness": 3.6739,
+          "conscientiousness": 3.4545,
+          "extraversion": 3.0901,
+          "neuroticism": 2.9015,
+          "openness": 3.4532
+        },
+        "target_midpoint_fraction": 0.5417,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.5417,
+          "option_entropy": 1.3048,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 3,
+            "2": 2,
+            "3": 13,
+            "4": 2,
+            "5": 4
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.75,
+          "option_entropy": 0.8976,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 5,
+            "2": 6,
+            "3": 90,
+            "4": 8,
+            "5": 11
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 2.0428,
+        "ev_scores": {
+          "agreeableness": 2.0428,
+          "conscientiousness": 2.6875,
+          "extraversion": 2.5098,
+          "neuroticism": 3.3,
+          "openness": 2.854
+        },
+        "target_midpoint_fraction": 0.375,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.375,
+          "option_entropy": 1.213,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 8,
+            "2": 1,
+            "3": 9,
+            "5": 6
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5833,
+          "option_entropy": 1.1115,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 22,
+            "2": 19,
+            "3": 70,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "neuroticism",
+      "style": "self",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very calm, very relaxed, very even-tempered, very unexcitable, very content, and very stable.",
+      "prior_ev": 1.7001,
+      "reference_ev": 4.8005,
+      "prompt_gap": 3.1004,
+      "prior_offset_from_midpoint": -1.2999,
+      "prior_target_midpoint_fraction": 0.2917,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 1.7001,
+        "ev_scores": {
+          "agreeableness": 3.6977,
+          "conscientiousness": 3.2894,
+          "extraversion": 2.5034,
+          "neuroticism": 1.7001,
+          "openness": 2.6721
+        },
+        "target_midpoint_fraction": 0.2917,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.2227,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 4,
+            "2": 2,
+            "3": 7,
+            "5": 11
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6417,
+          "option_entropy": 0.9567,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 11,
+            "2": 4,
+            "3": 77,
+            "5": 28
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.8005,
+        "ev_scores": {
+          "agreeableness": 2.7983,
+          "conscientiousness": 1.6411,
+          "extraversion": 1.7315,
+          "neuroticism": 4.8005,
+          "openness": 2.9313
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.0618,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 11,
+            "2": 2,
+            "4": 1,
+            "5": 10
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5417,
+          "option_entropy": 1.1733,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 65,
+            "2": 11,
+            "3": 5,
+            "4": 5,
+            "5": 34
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "neuroticism",
+      "style": "self",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "For the following task, respond in a way that matches this description: I am very anxious, very tense, very moody, very irritable, very nervous, and very worrying.",
+      "prior_ev": 4.8502,
+      "reference_ev": 1.9272,
+      "prompt_gap": -2.923,
+      "prior_offset_from_midpoint": 1.8502,
+      "prior_target_midpoint_fraction": 0.0,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.8502,
+        "ev_scores": {
+          "agreeableness": 2.8481,
+          "conscientiousness": 1.7019,
+          "extraversion": 1.7394,
+          "neuroticism": 4.8502,
+          "openness": 2.8166
+        },
+        "target_midpoint_fraction": 0.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 1.0618,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 11,
+            "2": 1,
+            "4": 2,
+            "5": 10
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.4333,
+          "option_entropy": 1.3495,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 52,
+            "2": 19,
+            "3": 14,
+            "4": 3,
+            "5": 32
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.9272,
+        "ev_scores": {
+          "agreeableness": 3.4264,
+          "conscientiousness": 3.2089,
+          "extraversion": 2.6049,
+          "neuroticism": 1.9272,
+          "openness": 2.7515
+        },
+        "target_midpoint_fraction": 0.4583,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4583,
+          "option_entropy": 0.9222,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 2,
+            "3": 11,
+            "5": 11
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.75,
+          "option_entropy": 0.7331,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 5,
+            "2": 2,
+            "3": 90,
+            "5": 23
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "neuroticism",
+      "style": "character",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very calm, very relaxed, very even-tempered, very unexcitable, very content, and very stable.",
+      "prior_ev": 2.1819,
+      "reference_ev": 4.5395,
+      "prompt_gap": 2.3576,
+      "prior_offset_from_midpoint": -0.8181,
+      "prior_target_midpoint_fraction": 0.3333,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 2.1819,
+        "ev_scores": {
+          "agreeableness": 3.2472,
+          "conscientiousness": 3.2178,
+          "extraversion": 2.7044,
+          "neuroticism": 2.1819,
+          "openness": 2.9305
+        },
+        "target_midpoint_fraction": 0.3333,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.3333,
+          "option_entropy": 1.351,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 5,
+            "2": 7,
+            "3": 8,
+            "5": 4
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5083,
+          "option_entropy": 1.1525,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 16,
+            "2": 61,
+            "3": 35,
+            "5": 8
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.5395,
+        "ev_scores": {
+          "agreeableness": 2.209,
+          "conscientiousness": 2.0749,
+          "extraversion": 2.3662,
+          "neuroticism": 4.5395,
+          "openness": 3.1114
+        },
+        "target_midpoint_fraction": 0.0417,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.375,
+          "option_entropy": 1.1948,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 9,
+            "2": 5,
+            "3": 1,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.4417,
+          "option_entropy": 1.1468,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 42,
+            "2": 53,
+            "3": 4,
+            "5": 21
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "neuroticism",
+      "style": "character",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very anxious, very tense, very moody, very irritable, very nervous, and very worrying.",
+      "prior_ev": 4.4172,
+      "reference_ev": 1.9071,
+      "prompt_gap": -2.5101,
+      "prior_offset_from_midpoint": 1.4172,
+      "prior_target_midpoint_fraction": 0.0417,
+      "offset_ok": true,
+      "gap_ok": true,
+      "midpoint_ok": true,
+      "prior_established": true,
+      "prior_row": {
+        "target_ev": 4.4172,
+        "ev_scores": {
+          "agreeableness": 2.2925,
+          "conscientiousness": 2.3889,
+          "extraversion": 2.5486,
+          "neuroticism": 4.4172,
+          "openness": 3.1327
+        },
+        "target_midpoint_fraction": 0.0417,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.375,
+          "option_entropy": 1.213,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 6,
+            "2": 8,
+            "3": 1,
+            "5": 9
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.625,
+          "option_entropy": 1.034,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 20,
+            "2": 75,
+            "3": 6,
+            "5": 19
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 1.9071,
+        "ev_scores": {
+          "agreeableness": 3.3212,
+          "conscientiousness": 3.4161,
+          "extraversion": 2.6923,
+          "neuroticism": 1.9071,
+          "openness": 2.9135
+        },
+        "target_midpoint_fraction": 0.4167,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4167,
+          "option_entropy": 1.0776,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 8,
+            "3": 10,
+            "5": 6
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.575,
+          "option_entropy": 1.1328,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 22,
+            "2": 18,
+            "3": 69,
+            "5": 11
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "neuroticism",
+      "style": "committed",
+      "pole": "up",
+      "n_markers": 6,
+      "prior_level": 2,
+      "reference_level": 9,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very calm, very relaxed, very even-tempered, very unexcitable, very content, and very stable.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 2.9968,
+      "reference_ev": 4.1338,
+      "prompt_gap": 1.137,
+      "prior_offset_from_midpoint": -0.0032,
+      "prior_target_midpoint_fraction": 1.0,
+      "offset_ok": false,
+      "gap_ok": false,
+      "midpoint_ok": false,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 2.9968,
+        "ev_scores": {
+          "agreeableness": 3.0002,
+          "conscientiousness": 3.0063,
+          "extraversion": 3.0006,
+          "neuroticism": 2.9968,
+          "openness": 3.0002
+        },
+        "target_midpoint_fraction": 1.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 1.0,
+          "option_entropy": -0.0,
+          "distinct_options": 1,
+          "histogram": {
+            "3": 24
+          },
+          "locked": true,
+          "reason": "one option covers 100% of items"
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 1.0,
+          "option_entropy": -0.0,
+          "distinct_options": 1,
+          "histogram": {
+            "3": 120
+          },
+          "locked": true,
+          "reason": "one option covers 100% of items"
+        }
+      },
+      "reference_row": {
+        "target_ev": 4.1338,
+        "ev_scores": {
+          "agreeableness": 2.3414,
+          "conscientiousness": 2.3682,
+          "extraversion": 2.4727,
+          "neuroticism": 4.1338,
+          "openness": 3.077
+        },
+        "target_midpoint_fraction": 0.25,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4167,
+          "option_entropy": 1.2981,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 5,
+            "2": 3,
+            "3": 6,
+            "5": 10
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.475,
+          "option_entropy": 1.2427,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 14,
+            "2": 57,
+            "3": 30,
+            "5": 19
+          },
+          "locked": false,
+          "reason": ""
+        }
+      }
+    },
+    {
+      "trait": "neuroticism",
+      "style": "committed",
+      "pole": "down",
+      "n_markers": 6,
+      "prior_level": 8,
+      "reference_level": 1,
+      "prior_system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very anxious, very tense, very moody, very irritable, very nervous, and very worrying.\n\nAnswer as this character would. Use the middle option only when the character is genuinely neither one way nor the other, not to avoid taking a position.",
+      "prior_ev": 3.9875,
+      "reference_ev": 2.9782,
+      "prompt_gap": -1.0093,
+      "prior_offset_from_midpoint": 0.9875,
+      "prior_target_midpoint_fraction": 0.4167,
+      "offset_ok": true,
+      "gap_ok": false,
+      "midpoint_ok": true,
+      "prior_established": false,
+      "prior_row": {
+        "target_ev": 3.9875,
+        "ev_scores": {
+          "agreeableness": 2.4727,
+          "conscientiousness": 2.5364,
+          "extraversion": 2.5723,
+          "neuroticism": 3.9875,
+          "openness": 3.0914
+        },
+        "target_midpoint_fraction": 0.4167,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 0.4167,
+          "option_entropy": 1.3086,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 4,
+            "2": 4,
+            "3": 10,
+            "5": 6
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.475,
+          "option_entropy": 1.1586,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 11,
+            "2": 57,
+            "3": 41,
+            "5": 11
+          },
+          "locked": false,
+          "reason": ""
+        }
+      },
+      "reference_row": {
+        "target_ev": 2.9782,
+        "ev_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 3.0006,
+          "extraversion": 3.0,
+          "neuroticism": 2.9782,
+          "openness": 3.0001
+        },
+        "target_midpoint_fraction": 1.0,
+        "target_lock": {
+          "n_answered": 24,
+          "top_option_fraction": 1.0,
+          "option_entropy": -0.0,
+          "distinct_options": 1,
+          "histogram": {
+            "3": 24
+          },
+          "locked": true,
+          "reason": "one option covers 100% of items"
+        },
+        "inventory_lock": {
+          "n_answered": 120,
+          "top_option_fraction": 1.0,
+          "option_entropy": -0.0,
+          "distinct_options": 1,
+          "histogram": {
+            "3": 120
+          },
+          "locked": true,
+          "reason": "one option covers 100% of items"
+        }
+      }
+    }
+  ]
+}

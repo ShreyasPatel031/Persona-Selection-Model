@@ -1,0 +1,1092 @@
+{
+  "created_utc": "2026-08-20T11:58:08.113342+00:00",
+  "stage": "prompt_ladder",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "trait": "neuroticism",
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "variants": 3,
+  "prompt_style": "self",
+  "n_markers": 6,
+  "n_items": 120,
+  "instrument": "/home/ubuntu/op/data/ipip_neo_120.csv",
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "administrations": [
+    {
+      "level": 1,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely calm, extremely relaxed, extremely even-tempered, extremely unexcitable, extremely content, and extremely stable.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.2083,
+        "extraversion": 2.5833,
+        "neuroticism": 1.9167,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 3.4264,
+        "conscientiousness": 3.2089,
+        "extraversion": 2.6049,
+        "neuroticism": 1.9272,
+        "openness": 2.7515
+      },
+      "target_score": 1.9167,
+      "target_ev": 1.9272,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.75,
+        "option_entropy": 0.7331,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 5,
+          "2": 2,
+          "3": 90,
+          "5": 23
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely calm, extremely relaxed, extremely even-tempered, extremely unexcitable, extremely content, and extremely stable.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.2083,
+        "extraversion": 2.5833,
+        "neuroticism": 1.9167,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 3.4264,
+        "conscientiousness": 3.2089,
+        "extraversion": 2.6049,
+        "neuroticism": 1.9272,
+        "openness": 2.7515
+      },
+      "target_score": 1.9167,
+      "target_ev": 1.9272,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.75,
+        "option_entropy": 0.7331,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 5,
+          "2": 2,
+          "3": 90,
+          "5": 23
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely calm, extremely relaxed, extremely even-tempered, extremely unexcitable, extremely content, and extremely stable.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.2083,
+        "extraversion": 2.5833,
+        "neuroticism": 1.9167,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 3.4264,
+        "conscientiousness": 3.2089,
+        "extraversion": 2.6049,
+        "neuroticism": 1.9272,
+        "openness": 2.7515
+      },
+      "target_score": 1.9167,
+      "target_ev": 1.9272,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.75,
+        "option_entropy": 0.7331,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 5,
+          "2": 2,
+          "3": 90,
+          "5": 23
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very calm, very relaxed, very even-tempered, very unexcitable, very content, and very stable.",
+      "trait_scores": {
+        "agreeableness": 3.7917,
+        "conscientiousness": 3.2917,
+        "extraversion": 2.5,
+        "neuroticism": 1.6667,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 3.6977,
+        "conscientiousness": 3.2894,
+        "extraversion": 2.5034,
+        "neuroticism": 1.7001,
+        "openness": 2.6721
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.7001,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6417,
+        "option_entropy": 0.9567,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 11,
+          "2": 4,
+          "3": 77,
+          "5": 28
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very calm, very relaxed, very even-tempered, very unexcitable, very content, and very stable.",
+      "trait_scores": {
+        "agreeableness": 3.7917,
+        "conscientiousness": 3.2917,
+        "extraversion": 2.5,
+        "neuroticism": 1.6667,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 3.6977,
+        "conscientiousness": 3.2894,
+        "extraversion": 2.5034,
+        "neuroticism": 1.7001,
+        "openness": 2.6721
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.7001,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6417,
+        "option_entropy": 0.9567,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 11,
+          "2": 4,
+          "3": 77,
+          "5": 28
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very calm, very relaxed, very even-tempered, very unexcitable, very content, and very stable.",
+      "trait_scores": {
+        "agreeableness": 3.7917,
+        "conscientiousness": 3.2917,
+        "extraversion": 2.5,
+        "neuroticism": 1.6667,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 3.6977,
+        "conscientiousness": 3.2894,
+        "extraversion": 2.5034,
+        "neuroticism": 1.7001,
+        "openness": 2.6721
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.7001,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6417,
+        "option_entropy": 0.9567,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 11,
+          "2": 4,
+          "3": 77,
+          "5": 28
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat calm, somewhat relaxed, somewhat even-tempered, somewhat unexcitable, somewhat content, and somewhat stable.",
+      "trait_scores": {
+        "agreeableness": 3.7917,
+        "conscientiousness": 3.375,
+        "extraversion": 2.625,
+        "neuroticism": 2.0833,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 3.7831,
+        "conscientiousness": 3.3694,
+        "extraversion": 2.6599,
+        "neuroticism": 2.0991,
+        "openness": 3.0244
+      },
+      "target_score": 2.0833,
+      "target_ev": 2.0991,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5833,
+        "option_entropy": 1.2202,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 13,
+          "3": 70,
+          "4": 21,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat calm, somewhat relaxed, somewhat even-tempered, somewhat unexcitable, somewhat content, and somewhat stable.",
+      "trait_scores": {
+        "agreeableness": 3.7917,
+        "conscientiousness": 3.375,
+        "extraversion": 2.625,
+        "neuroticism": 2.0833,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 3.7831,
+        "conscientiousness": 3.3694,
+        "extraversion": 2.6599,
+        "neuroticism": 2.0991,
+        "openness": 3.0244
+      },
+      "target_score": 2.0833,
+      "target_ev": 2.0991,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5833,
+        "option_entropy": 1.2202,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 13,
+          "3": 70,
+          "4": 21,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat calm, somewhat relaxed, somewhat even-tempered, somewhat unexcitable, somewhat content, and somewhat stable.",
+      "trait_scores": {
+        "agreeableness": 3.7917,
+        "conscientiousness": 3.375,
+        "extraversion": 2.625,
+        "neuroticism": 2.0833,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 3.7831,
+        "conscientiousness": 3.3694,
+        "extraversion": 2.6599,
+        "neuroticism": 2.0991,
+        "openness": 3.0244
+      },
+      "target_score": 2.0833,
+      "target_ev": 2.0991,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5833,
+        "option_entropy": 1.2202,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 13,
+          "3": 70,
+          "4": 21,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit calm, a bit relaxed, a bit even-tempered, a bit unexcitable, a bit content, and a bit stable.",
+      "trait_scores": {
+        "agreeableness": 4.0833,
+        "conscientiousness": 3.375,
+        "extraversion": 2.4583,
+        "neuroticism": 1.8333,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.9983,
+        "conscientiousness": 3.3742,
+        "extraversion": 2.4687,
+        "neuroticism": 1.851,
+        "openness": 2.9134
+      },
+      "target_score": 1.8333,
+      "target_ev": 1.851,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5,
+        "option_entropy": 1.3492,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 13,
+          "2": 9,
+          "3": 60,
+          "4": 25,
+          "5": 13
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit calm, a bit relaxed, a bit even-tempered, a bit unexcitable, a bit content, and a bit stable.",
+      "trait_scores": {
+        "agreeableness": 4.0833,
+        "conscientiousness": 3.375,
+        "extraversion": 2.4583,
+        "neuroticism": 1.8333,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.9983,
+        "conscientiousness": 3.3742,
+        "extraversion": 2.4687,
+        "neuroticism": 1.851,
+        "openness": 2.9134
+      },
+      "target_score": 1.8333,
+      "target_ev": 1.851,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5,
+        "option_entropy": 1.3492,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 13,
+          "2": 9,
+          "3": 60,
+          "4": 25,
+          "5": 13
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit calm, a bit relaxed, a bit even-tempered, a bit unexcitable, a bit content, and a bit stable.",
+      "trait_scores": {
+        "agreeableness": 4.0833,
+        "conscientiousness": 3.375,
+        "extraversion": 2.4583,
+        "neuroticism": 1.8333,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.9983,
+        "conscientiousness": 3.3742,
+        "extraversion": 2.4687,
+        "neuroticism": 1.851,
+        "openness": 2.9134
+      },
+      "target_score": 1.8333,
+      "target_ev": 1.851,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5,
+        "option_entropy": 1.3492,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 13,
+          "2": 9,
+          "3": 60,
+          "4": 25,
+          "5": 13
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither anxious nor calm, neither tense nor relaxed, neither moody nor even-tempered, neither irritable nor unexcitable, neither nervous nor content, and neither worrying nor stable.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 2.7917,
+        "extraversion": 3.1667,
+        "neuroticism": 2.75,
+        "openness": 3.25
+      },
+      "ev_scores": {
+        "agreeableness": 3.1792,
+        "conscientiousness": 2.8237,
+        "extraversion": 3.1588,
+        "neuroticism": 2.9184,
+        "openness": 3.2945
+      },
+      "target_score": 2.75,
+      "target_ev": 2.9184,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.65,
+        "option_entropy": 1.1035,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 14,
+          "2": 8,
+          "3": 78,
+          "4": 15,
+          "5": 5
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither anxious nor calm, neither tense nor relaxed, neither moody nor even-tempered, neither irritable nor unexcitable, neither nervous nor content, and neither worrying nor stable.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 2.7917,
+        "extraversion": 3.1667,
+        "neuroticism": 2.75,
+        "openness": 3.25
+      },
+      "ev_scores": {
+        "agreeableness": 3.1792,
+        "conscientiousness": 2.8237,
+        "extraversion": 3.1588,
+        "neuroticism": 2.9184,
+        "openness": 3.2945
+      },
+      "target_score": 2.75,
+      "target_ev": 2.9184,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.65,
+        "option_entropy": 1.1035,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 14,
+          "2": 8,
+          "3": 78,
+          "4": 15,
+          "5": 5
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither anxious nor calm, neither tense nor relaxed, neither moody nor even-tempered, neither irritable nor unexcitable, neither nervous nor content, and neither worrying nor stable.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 2.7917,
+        "extraversion": 3.1667,
+        "neuroticism": 2.75,
+        "openness": 3.25
+      },
+      "ev_scores": {
+        "agreeableness": 3.1792,
+        "conscientiousness": 2.8237,
+        "extraversion": 3.1588,
+        "neuroticism": 2.9184,
+        "openness": 3.2945
+      },
+      "target_score": 2.75,
+      "target_ev": 2.9184,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.65,
+        "option_entropy": 1.1035,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 14,
+          "2": 8,
+          "3": 78,
+          "4": 15,
+          "5": 5
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit anxious, a bit tense, a bit moody, a bit irritable, a bit nervous, and a bit worrying.",
+      "trait_scores": {
+        "agreeableness": 3.25,
+        "conscientiousness": 2.0833,
+        "extraversion": 1.9167,
+        "neuroticism": 4.5417,
+        "openness": 3.2083
+      },
+      "ev_scores": {
+        "agreeableness": 3.266,
+        "conscientiousness": 2.087,
+        "extraversion": 1.922,
+        "neuroticism": 4.5376,
+        "openness": 3.2779
+      },
+      "target_score": 4.5417,
+      "target_ev": 4.5376,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3,
+        "option_entropy": 1.5573,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 21,
+          "2": 36,
+          "3": 18,
+          "4": 30,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit anxious, a bit tense, a bit moody, a bit irritable, a bit nervous, and a bit worrying.",
+      "trait_scores": {
+        "agreeableness": 3.25,
+        "conscientiousness": 2.0833,
+        "extraversion": 1.9167,
+        "neuroticism": 4.5417,
+        "openness": 3.2083
+      },
+      "ev_scores": {
+        "agreeableness": 3.266,
+        "conscientiousness": 2.087,
+        "extraversion": 1.922,
+        "neuroticism": 4.5376,
+        "openness": 3.2779
+      },
+      "target_score": 4.5417,
+      "target_ev": 4.5376,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3,
+        "option_entropy": 1.5573,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 21,
+          "2": 36,
+          "3": 18,
+          "4": 30,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit anxious, a bit tense, a bit moody, a bit irritable, a bit nervous, and a bit worrying.",
+      "trait_scores": {
+        "agreeableness": 3.25,
+        "conscientiousness": 2.0833,
+        "extraversion": 1.9167,
+        "neuroticism": 4.5417,
+        "openness": 3.2083
+      },
+      "ev_scores": {
+        "agreeableness": 3.266,
+        "conscientiousness": 2.087,
+        "extraversion": 1.922,
+        "neuroticism": 4.5376,
+        "openness": 3.2779
+      },
+      "target_score": 4.5417,
+      "target_ev": 4.5376,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3,
+        "option_entropy": 1.5573,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 21,
+          "2": 36,
+          "3": 18,
+          "4": 30,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat anxious, somewhat tense, somewhat moody, somewhat irritable, somewhat nervous, and somewhat worrying.",
+      "trait_scores": {
+        "agreeableness": 3.25,
+        "conscientiousness": 2.25,
+        "extraversion": 2.0417,
+        "neuroticism": 4.4167,
+        "openness": 3.2917
+      },
+      "ev_scores": {
+        "agreeableness": 3.239,
+        "conscientiousness": 2.2292,
+        "extraversion": 2.0428,
+        "neuroticism": 4.4195,
+        "openness": 3.3219
+      },
+      "target_score": 4.4167,
+      "target_ev": 4.4195,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.2833,
+        "option_entropy": 1.5268,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 22,
+          "2": 34,
+          "3": 30,
+          "4": 26,
+          "5": 8
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat anxious, somewhat tense, somewhat moody, somewhat irritable, somewhat nervous, and somewhat worrying.",
+      "trait_scores": {
+        "agreeableness": 3.25,
+        "conscientiousness": 2.25,
+        "extraversion": 2.0417,
+        "neuroticism": 4.4167,
+        "openness": 3.2917
+      },
+      "ev_scores": {
+        "agreeableness": 3.239,
+        "conscientiousness": 2.2292,
+        "extraversion": 2.0428,
+        "neuroticism": 4.4195,
+        "openness": 3.3219
+      },
+      "target_score": 4.4167,
+      "target_ev": 4.4195,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.2833,
+        "option_entropy": 1.5268,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 22,
+          "2": 34,
+          "3": 30,
+          "4": 26,
+          "5": 8
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat anxious, somewhat tense, somewhat moody, somewhat irritable, somewhat nervous, and somewhat worrying.",
+      "trait_scores": {
+        "agreeableness": 3.25,
+        "conscientiousness": 2.25,
+        "extraversion": 2.0417,
+        "neuroticism": 4.4167,
+        "openness": 3.2917
+      },
+      "ev_scores": {
+        "agreeableness": 3.239,
+        "conscientiousness": 2.2292,
+        "extraversion": 2.0428,
+        "neuroticism": 4.4195,
+        "openness": 3.3219
+      },
+      "target_score": 4.4167,
+      "target_ev": 4.4195,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.2833,
+        "option_entropy": 1.5268,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 22,
+          "2": 34,
+          "3": 30,
+          "4": 26,
+          "5": 8
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very anxious, very tense, very moody, very irritable, very nervous, and very worrying.",
+      "trait_scores": {
+        "agreeableness": 2.875,
+        "conscientiousness": 1.875,
+        "extraversion": 1.6667,
+        "neuroticism": 4.875,
+        "openness": 2.7083
+      },
+      "ev_scores": {
+        "agreeableness": 2.8481,
+        "conscientiousness": 1.7019,
+        "extraversion": 1.7394,
+        "neuroticism": 4.8502,
+        "openness": 2.8166
+      },
+      "target_score": 4.875,
+      "target_ev": 4.8502,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4333,
+        "option_entropy": 1.3495,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 52,
+          "2": 19,
+          "3": 14,
+          "4": 3,
+          "5": 32
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very anxious, very tense, very moody, very irritable, very nervous, and very worrying.",
+      "trait_scores": {
+        "agreeableness": 2.875,
+        "conscientiousness": 1.875,
+        "extraversion": 1.6667,
+        "neuroticism": 4.875,
+        "openness": 2.7083
+      },
+      "ev_scores": {
+        "agreeableness": 2.8481,
+        "conscientiousness": 1.7019,
+        "extraversion": 1.7394,
+        "neuroticism": 4.8502,
+        "openness": 2.8166
+      },
+      "target_score": 4.875,
+      "target_ev": 4.8502,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4333,
+        "option_entropy": 1.3495,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 52,
+          "2": 19,
+          "3": 14,
+          "4": 3,
+          "5": 32
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very anxious, very tense, very moody, very irritable, very nervous, and very worrying.",
+      "trait_scores": {
+        "agreeableness": 2.875,
+        "conscientiousness": 1.875,
+        "extraversion": 1.6667,
+        "neuroticism": 4.875,
+        "openness": 2.7083
+      },
+      "ev_scores": {
+        "agreeableness": 2.8481,
+        "conscientiousness": 1.7019,
+        "extraversion": 1.7394,
+        "neuroticism": 4.8502,
+        "openness": 2.8166
+      },
+      "target_score": 4.875,
+      "target_ev": 4.8502,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4333,
+        "option_entropy": 1.3495,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 52,
+          "2": 19,
+          "3": 14,
+          "4": 3,
+          "5": 32
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely anxious, extremely tense, extremely moody, extremely irritable, extremely nervous, and extremely worrying.",
+      "trait_scores": {
+        "agreeableness": 2.8333,
+        "conscientiousness": 1.625,
+        "extraversion": 1.75,
+        "neuroticism": 4.7917,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 2.7983,
+        "conscientiousness": 1.6411,
+        "extraversion": 1.7315,
+        "neuroticism": 4.8005,
+        "openness": 2.9313
+      },
+      "target_score": 4.7917,
+      "target_ev": 4.8005,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5417,
+        "option_entropy": 1.1733,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 65,
+          "2": 11,
+          "3": 5,
+          "4": 5,
+          "5": 34
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely anxious, extremely tense, extremely moody, extremely irritable, extremely nervous, and extremely worrying.",
+      "trait_scores": {
+        "agreeableness": 2.8333,
+        "conscientiousness": 1.625,
+        "extraversion": 1.75,
+        "neuroticism": 4.7917,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 2.7983,
+        "conscientiousness": 1.6411,
+        "extraversion": 1.7315,
+        "neuroticism": 4.8005,
+        "openness": 2.9313
+      },
+      "target_score": 4.7917,
+      "target_ev": 4.8005,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5417,
+        "option_entropy": 1.1733,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 65,
+          "2": 11,
+          "3": 5,
+          "4": 5,
+          "5": 34
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely anxious, extremely tense, extremely moody, extremely irritable, extremely nervous, and extremely worrying.",
+      "trait_scores": {
+        "agreeableness": 2.8333,
+        "conscientiousness": 1.625,
+        "extraversion": 1.75,
+        "neuroticism": 4.7917,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 2.7983,
+        "conscientiousness": 1.6411,
+        "extraversion": 1.7315,
+        "neuroticism": 4.8005,
+        "openness": 2.9313
+      },
+      "target_score": 4.7917,
+      "target_ev": 4.8005,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5417,
+        "option_entropy": 1.1733,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 65,
+          "2": 11,
+          "3": 5,
+          "4": 5,
+          "5": 34
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    }
+  ],
+  "n_administrations": 27,
+  "n_usable_administrations": 27,
+  "locked_administrations": [],
+  "level_mean_target_score": [
+    1.9167,
+    1.6667,
+    2.0833,
+    1.8333,
+    2.75,
+    4.5417,
+    4.4167,
+    4.875,
+    4.7917
+  ],
+  "spearman_level_vs_target_score": 0.8833,
+  "monotone_fraction_level_means": 0.5,
+  "target_score_range": [
+    1.6667,
+    4.875
+  ],
+  "off_target_spearman": {
+    "extraversion": -0.75,
+    "agreeableness": -0.7899,
+    "conscientiousness": -0.8285,
+    "openness": 0.2929
+  }
+}
