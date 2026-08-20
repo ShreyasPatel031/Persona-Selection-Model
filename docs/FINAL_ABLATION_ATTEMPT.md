@@ -74,12 +74,34 @@ with monotone 0.75–1.00 *at the layers we steer*. On Llama the ladder is order
 only in early layers where activations are too small to steer, and unordered where
 steering works.
 
-A cheap confound remains: this ladder used **1 prompt variant** to save GPU time,
-against **3** on Gemma, so the centroids are noisier. A 3-variant re-run is in
-flight. If ordering recovers in the band, blocker 3 dissolves and only blockers 1–2
-need fixing. If it does not, the honest statement is that the ladder method has not
-been shown to transfer to Llama-3.1-8B, and no recommendation should be sent to the
-authors.
+### The 1-variant confound is ruled out
+
+The obvious objection was that this ladder used **1 prompt variant** to save GPU
+time, against **3** on Gemma, so the centroids were noisy. The 3-variant re-run is
+done (`results/e1_vector_v3/`) and the picture is unchanged:
+
+| layers | ρ(level, projection) | monotone fraction | ρ×mono |
+|---|---|---|---|
+| 6–8 | 0.87–0.88 | 0.62–0.75 | 0.54–0.66 |
+| 11–14 | 0.73–0.88 | **0.50–0.62** | 0.41–0.55 |
+| 20–31 | **0.08–0.13** | 0.50–0.62 | 0.05–0.07 |
+
+`resolve_steering_layer_for_direction` still reports **"no well-ordered layer (best
+ρ×mono = 0.552, band 9–25)"**. Monotone fraction never exceeds 0.625 anywhere in the
+steerable band; on Gemma the steered layers had 0.75–1.00 with ρ 0.88–1.00.
+
+**So blocker 3 is a real negative transfer result, not an artifact.** The ladder
+method as built has not been shown to transfer to Llama-3.1-8B.
+
+### The dissociation worth noting
+
+On the *same* Llama run the **prompting** baseline is strong: ρ(level, C) = 0.938
+over 24/27 usable administrations, range 1.00–4.94. So Llama's inventory responds to
+graded persona prompts across nearly the full scale. What fails is the step from
+that graded behaviour to *one ordered direction in the residual stream* at steerable
+depth. Prompt-level gradedness does not imply an extractable graded axis on this
+model. That is a finding about the method's portability, and it is the opposite of
+the claim we were asked to produce.
 
 ## What would make this experiment valid
 
