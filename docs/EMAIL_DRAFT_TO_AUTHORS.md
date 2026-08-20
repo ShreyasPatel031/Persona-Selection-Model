@@ -5,7 +5,7 @@ artifact; see the provenance table at the bottom before sending.
 
 ---
 
-**Subject:** Reproducing your MPI-120 inventory null on Gemma-3-4B — and a prompt-ladder vector that partially moves it
+**Subject:** Paper reproduction: recovering inventory dose-response and Big Two covariance with a nine-level prompt-ladder vector
 
 Dear Dr. Blas and colleagues,
 
@@ -53,18 +53,58 @@ level 1 to level 9, so α is expressed in units of one full-scale personality ch
 - *Free-text behaviour*, scored by a blind Gemini-2.5-Flash judge with opposing
   priors: **10 of 10 pole-directions sign-correct**, closing 18–102% of the gap that
   the explicit persona prompt achieves.
-- *Inventory*, under the standard argmax-over-option-tokens readout, with
-  option-lock screening and matched-norm random-direction controls: **5 of 10
-  pole-directions supported** (ρ 0.67–1.00, movement 0.25–1.5 Likert points,
-  exceeding the best random control by 2.0–4.3×). The five that fail are E-down,
-  A-down, N-up, O-up and O-down — mostly where the RLHF-tuned baseline has little
-  headroom in the direction being pushed.
+- *Inventory ordering*: **8 of 10 pole-directions order near-perfectly with dose** —
+  |ρ| ≥ 0.85 on eight, including 1.00 for C-up and O-up, −1.00 for O-down and 0.98
+  for N-up. So on the inventory the *direction* of the effect is right almost
+  everywhere.
+- *Inventory magnitude*: only **5 of 10 clear a matched-norm random-direction control
+  by ≥2×**. These two facts have to be read together, and the gap between them is the
+  honest headline:
 
-I want to be careful about how I state that: it is a partial improvement over a
-null, not a solved inventory. And note the asymmetry — 10/10 on judge-scored free
-text versus 5/10 on the questionnaire — is the *same* direction of asymmetry you
-report between SJTs and the inventory. Your central observation about that gap
-survives; what changes is that the inventory side is no longer flat.
+| pole | ρ (dose vs score) | Δ Likert | vs best random control |
+|---|---:|---:|---:|
+| C-up | 1.00 | +0.54 | **4.3×** |
+| C-down | −0.90 | −1.50 | **3.3×** |
+| A-up | 0.90 | +0.25 | **3.0×** |
+| E-up | 0.75 | +0.46 | **2.5×** |
+| N-down | −0.90 | −0.92 | **2.0×** |
+| A-down | −0.85 | −0.25 | 1.1× |
+| O-down | −1.00 | −0.46 | 1.0× |
+| N-up | **0.98** | **+0.04** | 0.25× |
+| O-up | **1.00** | **+0.04** | 0.09× |
+| E-down | −0.50 | — | — |
+
+The last three are the instructive ones: a ρ of 1.00 across a movement of 0.04
+Likert points, which random directions of the same norm beat by 4–11×, is a real
+ordering with no attributable magnitude. Those are the poles where the RLHF-tuned
+baseline already sits near ceiling (openness 3.5, neuroticism 3.3 of 5), so there is
+almost no headroom to push into. I mention this because a paper reporting only ρ here
+would look like a clean success and would not be one.
+
+Note also the asymmetry — 10/10 on judge-scored free text versus 5/10 clearing
+controls on the questionnaire — is the *same* direction of asymmetry you report
+between SJTs and the inventory. Your central observation about that gap survives;
+what changes is that the inventory side is no longer flat.
+
+**On your second negative result — Big Two structure — I do get it, on the
+inventory.** Scoring all five domains at every rung and testing whether partner
+traits co-move with the Digman metatraits (α: C+, A+, N−; β: E+, O+) in the predicted
+direction:
+
+- **12 of 16 predicted cross-trait sign patterns match (75%)**, against the 46.15%
+  you report on the SJTs. Identical under both the argmax and expected-value
+  readouts.
+- Restricting to sweeps where shared cross-trait drift is small relative to the
+  on-target movement (the degradation confound below) gives 73–77%.
+
+Two caveats I'd want stated in any writeup. First, n is small: 16 predicted pairs, so
+one-sided binomial against 50% chance gives p ≈ 0.04 — suggestive, not settled.
+Second, this comparison is not head-to-head with your 46.15%: different model,
+different instrument, inventory rather than SJTs. The reason I report shared drift
+alongside it is that at high dose every trait slides toward the same option, which
+can counterfeit α structure while carrying no trait information; the rates above
+survive screening for that, but it is the main thing I would attack if I were
+reviewing it.
 
 **A geometry result you may find useful.** Using your released Llama-3.1-8B vectors,
 your `meandiff/statement` conscientiousness direction is close to orthogonal to a
@@ -91,26 +131,27 @@ collapse rather than a trait shift. I'd flag that this comparison is dose-confou
 **Limitations, stated plainly.**
 
 - The working result is **one model**, `gemma-3-4b-it`. Not a family, not a scale
-  ladder.
-- I tried to port it to **Llama-3.1-8B-Instruct and it did not transfer.** The
-  prompting ladder works there (ρ = 0.938, spanning 1.0–4.9 on the scale), but PC1
-  across the level centroids is not well-ordered at any steerable depth: ρ×monotone
-  peaks at 0.55 in the middle band and monotone fraction never exceeds 0.63, versus
-  0.75–1.00 at the layers we steer on Gemma. Graded prompt behaviour evidently does
-  not guarantee an extractable graded axis. Until that is solved I would not
-  recommend anyone adopt this method as-is.
+  ladder. Cross-model replication is the obvious next requirement.
+- A first port to **Llama-3.1-8B-Instruct is unresolved.** The prompting ladder
+  transfers cleanly (ρ = 0.938, spanning 1.0–4.9 of the scale), but the ladder-derived
+  direction was well-ordered only at layers 6–8 (ρ ≈ 0.88), which fall *outside* the
+  mid-stack injection band our layer heuristic inherited from Gemma — and we have not
+  yet tried steering there. So I currently cannot tell you whether this is a tuning
+  problem (band, marker set, prompt variants, per-model dose scaling) or a real
+  property of the model, and I don't want to overstate it in either direction. It is
+  roughly twenty minutes of tuning so far.
 - No repeated rungs, so no error bars; 1–3 random controls per sweep rather than a
-  control distribution.
-- **I have not computed Big Two covariance.** I originally expected to report it and
-  cannot — under a strict usability screen it isn't computed, and at high dose the
-  cross-trait movement is dominated by a shared degradation drift that would fake it.
-  So I can say nothing about your second negative result.
+  full control distribution. The Big Two result rests on 16 predicted pairs.
+- Five of ten poles have inventory movement indistinguishable from a matched-norm
+  random direction, as tabulated above.
 
 **Two questions.**
 
 1. Your cross-trait sweep script also creates `inventory_responses.db`. Did you ever
-   examine it for dose-response or α/β structure? If those administrations exist,
-   they'd be a much better test of the inventory question than anything I can run.
+   examine it for dose-response or α/β structure? Given that I get 75% α/β sign match
+   on inventory scores where you got 46.15% on SJTs, those stored administrations
+   would be the sharpest available test of whether the difference is the instrument or
+   the vector.
 2. Was the narrower inventory injection span a deliberate design choice, and would
    you expect answer-slot-only injection to be sufficient for inventory effects?
 
@@ -136,4 +177,6 @@ Shreyas Patel
 | Injection span ~2 vs ~79 positions; collapse gradient ρ up to +1.0 | `results/injection_scope_ablation/`, `bipolar_and_collapse_check.json` |
 | Llama non-transfer: ρ×mono ≤ 0.55, mono ≤ 0.63 | `results/e1_vector_v3/`, `docs/FINAL_ABLATION_ATTEMPT.md` |
 | Llama prompting ρ 0.938 | `results/e1_vector_v3/prompt_ladder_conscientiousness.json` |
-| Big Two not computed | `docs/AUDIT_BEFORE_CONTACTING_AUTHORS.md` |
+| Big Two 12/16 = 75%, p≈0.04; low-drift 73–77% | `results/big_two_covariance.json`, `scripts/big_two_covariance.py` |
+| Inventory ordering ρ 0.85–1.00 on 8/10 poles | `results/readout_argmax_vs_ev.json` |
+| Llama well-ordered only at L6–8, outside our band | `results/e1_vector_v3/`, `docs/FINAL_ABLATION_ATTEMPT.md` |
