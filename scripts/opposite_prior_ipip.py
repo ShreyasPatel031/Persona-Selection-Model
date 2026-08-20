@@ -44,14 +44,29 @@ sys.path.insert(0, str(REPO_ROOT))
 
 logger = logging.getLogger("opposite_prior_ipip")
 
-# Layers that steer judged behaviour bipolarly (results/bipolar, bipolar_afix).
-PROVEN_LAYERS = {
+# Layers that steer *judged free-text* behaviour bipolarly (results/bipolar).
+# These were selected against an LLM-judge readout, not against the inventory.
+JUDGE_PROVEN_LAYERS = {
     "extraversion": 15,
-    "agreeableness": 15,
+    "agreeableness": 20,
     "conscientiousness": 17,
     "neuroticism": 20,
     "openness": 19,
 }
+
+# Layers at which an *inventory* dose-response was actually validated
+# (results/gemma_final, results/e1_inspan validated_sweep_* artifacts).
+# O and C differ from the judge choice, so a null at the judge layer confounds
+# "the opposite prior does not help" with "wrong layer for this readout".
+INVENTORY_LAYERS = {
+    "extraversion": 15,
+    "agreeableness": 15,
+    "conscientiousness": 15,
+    "neuroticism": 20,
+    "openness": 15,
+}
+
+LAYER_SOURCES = {"judge": JUDGE_PROVEN_LAYERS, "inventory": INVENTORY_LAYERS}
 
 # pole -> (baseline ladder level, reference ladder level, sign)
 POLES = {
@@ -87,6 +102,15 @@ def main(argv: list[str] | None = None) -> int:
     p.add_argument("--frac-hi", type=float, default=1.30)
     p.add_argument("--random-controls", type=int, default=1)
     p.add_argument("--seed", type=int, default=0)
+    p.add_argument(
+        "--layer-source",
+        default="judge",
+        choices=tuple(LAYER_SOURCES),
+        help="Which validated-layer table to steer at (see module constants).",
+    )
+    p.add_argument(
+        "--layers", default="", help="Per-trait override, e.g. openness:15,conscientiousness:15"
+    )
     args = p.parse_args(argv)
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
@@ -113,6 +137,11 @@ def main(argv: list[str] | None = None) -> int:
         args.direction
     ]
 
+    layers = dict(LAYER_SOURCES[args.layer_source])
+    for part in (x for x in args.layers.split(",") if x.strip()):
+        name, _, value = part.partition(":")
+        layers[name.strip()] = int(value)
+
     items = items_from_csv(Path(args.items_csv))
     model, tokenizer, dev = _load_model(args.model_id, None)
     option_ids = _option_token_ids(tokenizer)
@@ -129,12 +158,21 @@ def main(argv: list[str] | None = None) -> int:
                 )
         lock = option_lock(responses)
         ev = score_traits_ev(responses)
+        # Inventory-wide histograms cannot say whether the *target* domain was
+        # pinned to the midpoint or whether the prompt bled onto other domains,
+        # and those two have opposite interpretations for a flat EV curve.
+        lock_by_trait = {
+            t: option_lock([r for r in responses if str(r["trait"]) == t])
+            for t in sorted({str(r["trait"]) for r in responses})
+        }
         return {
             "magnitude": round(float(magnitude), 2),
             "ev_scores": {k: round(v, 4) for k, v in ev.items()},
             "target_ev": round(float(ev[administer.trait]), 4),
             "response_validity": round(response_validity(responses), 4),
             "lock": lock,
+            "target_lock": lock_by_trait.get(administer.trait),
+            "lock_by_trait": lock_by_trait,
             "usable": not lock["locked"],
         }
 
@@ -142,7 +180,7 @@ def main(argv: list[str] | None = None) -> int:
     for trait in traits:
         vec_pt = Path(args.vectors_dir) / f"ladder_vectors_{trait}.pt"
         blob = torch.load(vec_pt, map_location="cpu")
-        layer = PROVEN_LAYERS[trait]
+        layer = layers[trait]
         stack = blob[key]
         cents = blob["level_centroids"]
         v = stack[layer].float()
@@ -277,6 +315,8 @@ def main(argv: list[str] | None = None) -> int:
                         "model_id": args.model_id,
                         "instrument": Path(args.items_csv).name,
                         "n_items": len(items),
+                        "layer_source": args.layer_source,
+                        "layers": layers,
                         "pass_gate": {
                             "rho_signed": PASS_RHO,
                             "margin": PASS_MARGIN,
