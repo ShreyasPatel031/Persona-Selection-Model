@@ -20,6 +20,9 @@ from app.persona.intensity_ladder import (
     random_control_directions,
     spearman_rho,
 )
+from scripts.dose_matched_control import _score_pole
+from scripts.dose_matched_control import _score_pole
+
 from app.persona.intensity_prompts import (
     CHARACTER_FRAME,
     COMMITMENT_FRAME,
@@ -490,3 +493,65 @@ def test_task_instruction_is_appended_under_every_style():
             "openness", 2, style=style, task_instruction="Answer the item."
         )
         assert prompt.endswith("Answer the item.")
+
+
+# ── dose-matched control ──────────────────────────────────────────────────────
+#
+# A random direction is a control for what a perturbation of a given size does,
+# so reading the trait at one dose and the control at another is not a control.
+
+
+def _sweep_row(trait_curve, control_curve, pole="up"):
+    return {
+        "trait": "conscientiousness",
+        "pole": pole,
+        "layer": 15,
+        "prior_ev": trait_curve[0],
+        "reference_ev": 5.0,
+        "prompt_gap": 3.8 if pole == "up" else -3.8,
+        "magnitude_grid": [100.0 * (i + 1) for i in range(len(trait_curve) - 1)],
+        "ev_curve": trait_curve,
+        "usable_flags": [True] * len(trait_curve),
+        "control_curves": [{"ev_curve": control_curve}],
+        "works": False,
+    }
+
+
+def test_dose_matched_scoring_credits_a_pole_the_ceiling_rung_hides():
+    """Signal clean at moderate dose, swamped by degradation at the ceiling."""
+    trait = [1.0, 1.2, 1.6, 2.5, 2.8]
+    control = [1.0, 1.05, 1.1, 1.2, 2.8]
+    out = _score_pole(_sweep_row(trait, control))
+    # the ceiling rung moves trait and control equally, so it must be excluded
+    assert out["best_dose"] == 300.0
+    assert out["trait_delta_at_best_dose"] == pytest.approx(1.5)
+    assert out["control_delta_at_best_dose"] == pytest.approx(0.2)
+    assert out["dose_matched_margin"] == pytest.approx(7.5)
+    assert out["passes_dose_matched"]
+
+
+def test_dose_matched_scoring_still_fails_a_pole_that_only_tracks_the_control():
+    trait = [1.0, 1.1, 1.2, 1.3, 1.4]
+    control = [1.0, 1.09, 1.18, 1.27, 1.36]
+    out = _score_pole(_sweep_row(trait, control))
+    assert out["dose_matched_margin"] < 2.0
+    assert not out["passes_dose_matched"]
+
+
+def test_dose_matched_band_is_chosen_by_the_control_not_the_trait():
+    """A trait that only moves where the control is loud gets no credit."""
+    trait = [1.0, 1.0, 1.0, 1.0, 3.0]
+    control = [1.0, 1.0, 1.0, 1.0, 2.0]
+    out = _score_pole(_sweep_row(trait, control))
+    assert out["band_max_magnitude"] == 300.0
+    assert out["trait_delta_at_best_dose"] == pytest.approx(0.0)
+    assert not out["passes_dose_matched"]
+
+
+def test_dose_matched_scoring_handles_the_down_pole_sign():
+    trait = [5.0, 4.8, 4.4, 3.5, 3.2]
+    control = [5.0, 4.95, 4.9, 4.8, 3.2]
+    out = _score_pole(_sweep_row(trait, control, pole="down"))
+    assert out["trait_delta_at_best_dose"] == pytest.approx(-1.5)
+    assert out["sign_correct"]
+    assert out["passes_dose_matched"]
