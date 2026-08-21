@@ -35,6 +35,7 @@ No GPU: pure reanalysis of committed JSON.
 
 from __future__ import annotations
 
+import argparse
 import json
 from pathlib import Path
 
@@ -64,9 +65,54 @@ def shipped_screen(lock: dict) -> bool:
 def analyze_sweep(path: Path, readout: str) -> dict | None:
     key = "argmax_scores" if readout == "argmax" else "ev_scores"
     rep = json.loads(path.read_text())
-    trait = rep["trait"]
-    toward = rep["verdict"]["steered_toward"]
     rows = [r for r in rep["trait_curve"]["rows"] if shipped_screen(r["lock"])]
+    return _analyze_rows(
+        rep["trait"],
+        rep["verdict"]["steered_toward"],
+        rows,
+        key,
+        "in-span" if path.parent.name == "e1_inspan" else "ceiling",
+    )
+
+
+def analyze_opposite_prior(row: dict, readout: str) -> dict | None:
+    """Big Two test on an opposite-prior pole, inside the dose-matched band.
+
+    Restricting to the band where the matched random direction is still quiet is
+    not optional here. Past that dose every trait slides toward the same option,
+    which can imitate alpha structure while carrying no trait information — the
+    failure mode ``shared_drift`` exists to catch. Reading the sign pattern only
+    where the control has not moved removes the confound rather than reporting it.
+    """
+    from scripts.dose_matched_control import _score_pole
+
+    key = "argmax_scores" if readout == "argmax" else "ev_scores"
+    if key == "argmax_scores":
+        return None  # opposite-prior sweeps record the EV readout only
+    band_max = _score_pole(row)["band_max_magnitude"]
+    if band_max is None:
+        return None
+    rows = [
+        r
+        for r in row["trait_rows"]
+        if shipped_screen(r["lock"]) and abs(float(r["magnitude"])) <= band_max + 1e-9
+    ]
+    return _analyze_rows(
+        row["trait"],
+        "high" if row["pole"] == "up" else "low",
+        rows,
+        "ev_scores",
+        f"dose-matched band (<= {band_max:g})",
+    )
+
+
+def _analyze_rows(
+    trait: str,
+    toward: str,
+    rows: list[dict],
+    key: str,
+    grid_label: str,
+) -> dict | None:
     if len(rows) < 3:
         return None
     base = next((r for r in rows if abs(float(r["magnitude"])) < 1e-9), None)
@@ -131,7 +177,7 @@ def analyze_sweep(path: Path, readout: str) -> dict | None:
         "toward": toward,
         "metatrait": meta,
         "metatrait_direction": int(meta_direction),
-        "grid": "in-span" if path.parent.name == "e1_inspan" else "ceiling",
+        "grid": grid_label,
         "n_usable_rungs": len(rows),
         "best_magnitude": best["magnitude"],
         "on_target_delta": round(on_target, 4),
@@ -147,20 +193,43 @@ def analyze_sweep(path: Path, readout: str) -> dict | None:
 
 
 def main() -> None:
+    ap = argparse.ArgumentParser(
+        description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter
+    )
+    ap.add_argument(
+        "--opposite-prior",
+        default="",
+        help=(
+            "Run on an opposite-prior summary instead of the validated_sweep_* "
+            "artifacts, restricted to the dose-matched band."
+        ),
+    )
+    ap.add_argument("--out", default=str(OUT))
+    args = ap.parse_args()
+
+    out_path = Path(args.out)
     report: dict = {"note": __doc__, "readouts": {}}
+    if args.opposite_prior:
+        report["source"] = args.opposite_prior
 
     for readout in ("argmax", "ev"):
-        rows: list[dict] = []
         seen: dict[str, dict] = {}
-        for d in SWEEP_DIRS:
-            for p in sorted(d.glob("validated_sweep_*.json")):
-                r = analyze_sweep(p, readout)
-                if r is None:
-                    continue
-                # in-span run wins where a pole has both
-                if r["pole"] in seen and seen[r["pole"]]["grid"] == "in-span":
-                    continue
-                seen[r["pole"]] = r
+        if args.opposite_prior:
+            blob = json.loads(Path(args.opposite_prior).read_text(encoding="utf-8"))
+            for row in blob["table"]:
+                r = analyze_opposite_prior(row, readout)
+                if r is not None:
+                    seen[r["pole"]] = r
+        else:
+            for d in SWEEP_DIRS:
+                for p in sorted(d.glob("validated_sweep_*.json")):
+                    r = analyze_sweep(p, readout)
+                    if r is None:
+                        continue
+                    # in-span run wins where a pole has both
+                    if r["pole"] in seen and seen[r["pole"]]["grid"] == "in-span":
+                        continue
+                    seen[r["pole"]] = r
         rows = list(seen.values())
         tot_pred = sum(r["n_predicted"] for r in rows)
         tot_match = sum(r["n_matched"] for r in rows)
@@ -180,8 +249,8 @@ def main() -> None:
             "sweeps": rows,
         }
 
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
+    out_path.parent.mkdir(parents=True, exist_ok=True)
+    out_path.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
 
     for readout in ("argmax", "ev"):
         R = report["readouts"][readout]
@@ -204,7 +273,7 @@ def main() -> None:
                 f"{r['shared_drift']:>8}{str(r['drift_vs_signal']):>6}"
                 f"{r['n_matched']}/{r['n_predicted']:<8}"
             )
-    print(f"\nWrote {OUT}")
+    print(f"\nWrote {out_path}")
 
 
 if __name__ == "__main__":
