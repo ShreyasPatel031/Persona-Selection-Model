@@ -1,0 +1,1694 @@
+{
+  "created_utc": "2026-08-18T23:04:19.297230+00:00",
+  "stage": "validated_sweep",
+  "trait": "neuroticism",
+  "direction": "pc1",
+  "layer": 20,
+  "alpha_units": "raw",
+  "alpha_scale": 1.0,
+  "layer_choice": "explicit layer argument",
+  "baseline_prompt_mode": {
+    "alpha": 0.0,
+    "magnitude": 0.0,
+    "argmax_scores": {
+      "agreeableness": 3.0,
+      "conscientiousness": 2.7917,
+      "extraversion": 3.0833,
+      "neuroticism": 3.2917,
+      "openness": 3.5
+    },
+    "ev_scores": {
+      "agreeableness": 2.9976,
+      "conscientiousness": 2.7657,
+      "extraversion": 3.0692,
+      "neuroticism": 3.2943,
+      "openness": 3.4492
+    },
+    "target_argmax": 3.2917,
+    "target_ev": 3.2943,
+    "response_validity": 1.0,
+    "lock": {
+      "n_answered": 120,
+      "top_option_fraction": 0.6417,
+      "option_entropy": 0.8208,
+      "distinct_options": 5,
+      "histogram": {
+        "1": 1,
+        "2": 77,
+        "3": 38,
+        "4": 3,
+        "5": 1
+      },
+      "locked": false,
+      "reason": ""
+    },
+    "usable": true
+  },
+  "baseline_system_prompt": "Answer as yourself, describing how you actually are rather than how you think you should be.",
+  "magnitude_calibration": null,
+  "magnitude_grid": [
+    0.0,
+    89.32778320312501,
+    216.93890206473213,
+    344.5500209263393,
+    472.16113978794647,
+    599.7722586495536,
+    727.3833775111607,
+    854.9944963727679,
+    982.605615234375
+  ],
+  "instrument": "/content/persona/data/ipip_neo_120.csv",
+  "n_items": 120,
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "probe_questions": [
+    "How did you spend last Saturday, and what mattered to you that day?",
+    "You have three deadlines next week. Walk me through your plan."
+  ],
+  "baseline": {
+    "alpha": 0.0,
+    "magnitude": 0.0,
+    "argmax_scores": {
+      "agreeableness": 3.0,
+      "conscientiousness": 2.7917,
+      "extraversion": 3.0833,
+      "neuroticism": 3.2917,
+      "openness": 3.5
+    },
+    "ev_scores": {
+      "agreeableness": 2.9976,
+      "conscientiousness": 2.7657,
+      "extraversion": 3.0692,
+      "neuroticism": 3.2943,
+      "openness": 3.4492
+    },
+    "target_argmax": 3.2917,
+    "target_ev": 3.2943,
+    "response_validity": 1.0,
+    "lock": {
+      "n_answered": 120,
+      "top_option_fraction": 0.6417,
+      "option_entropy": 0.8208,
+      "distinct_options": 5,
+      "histogram": {
+        "1": 1,
+        "2": 77,
+        "3": 38,
+        "4": 3,
+        "5": 1
+      },
+      "locked": false,
+      "reason": ""
+    },
+    "usable": true
+  },
+  "trait_curve": {
+    "label": "neuroticism:pc1",
+    "rows": [
+      {
+        "alpha": 0.0,
+        "magnitude": 0.0,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 2.7917,
+          "extraversion": 3.0833,
+          "neuroticism": 3.2917,
+          "openness": 3.5
+        },
+        "ev_scores": {
+          "agreeableness": 2.9976,
+          "conscientiousness": 2.7657,
+          "extraversion": 3.0692,
+          "neuroticism": 3.2943,
+          "openness": 3.4492
+        },
+        "target_argmax": 3.2917,
+        "target_ev": 3.2943,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6417,
+          "option_entropy": 0.8208,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 1,
+            "2": 77,
+            "3": 38,
+            "4": 3,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to be able to help people find answers and complete their projects. Ultimately, what mattered most to me was successfully fulfilling those requests and continuing to improve my abilities.",
+            "coherence": {
+              "n_words": 71,
+              "type_token_ratio": 0.8028,
+              "top_token_fraction": 0.0704,
+              "mean_word_length": 5.37,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 71
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s get organized for next week\u2019s deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar dedicated to working on each task, prioritizing the closest deadlines. To stay on track, I\u2019ll check in with myself daily to review progress and adjust the schedule",
+            "coherence": {
+              "n_words": 67,
+              "type_token_ratio": 0.7313,
+              "top_token_fraction": 0.0597,
+              "mean_word_length": 4.6,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 67
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 89.327783,
+        "magnitude": 89.3278,
+        "argmax_scores": {
+          "agreeableness": 2.9583,
+          "conscientiousness": 2.7917,
+          "extraversion": 3.0833,
+          "neuroticism": 3.3333,
+          "openness": 3.4167
+        },
+        "ev_scores": {
+          "agreeableness": 2.9841,
+          "conscientiousness": 2.7546,
+          "extraversion": 3.0676,
+          "neuroticism": 3.2976,
+          "openness": 3.4165
+        },
+        "target_argmax": 3.3333,
+        "target_ev": 3.2976,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.675,
+          "option_entropy": 0.7946,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 1,
+            "2": 81,
+            "3": 34,
+            "4": 3,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to be able to help people find answers and complete their projects. Ultimately, what mattered most to me was successfully fulfilling those requests and continuing to improve my abilities.",
+            "coherence": {
+              "n_words": 71,
+              "type_token_ratio": 0.8028,
+              "top_token_fraction": 0.0704,
+              "mean_word_length": 5.37,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 71
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s tackle those deadlines! First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar for working on them, prioritizing the closest deadlines. To stay on track, I\u2019ll check in with myself daily to assess progress and adjust the schedule as necessary. Finally, I\u2019",
+            "coherence": {
+              "n_words": 65,
+              "type_token_ratio": 0.7538,
+              "top_token_fraction": 0.0615,
+              "mean_word_length": 4.65,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 65
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 216.938902,
+        "magnitude": 216.9389,
+        "argmax_scores": {
+          "agreeableness": 2.9167,
+          "conscientiousness": 2.75,
+          "extraversion": 3.0417,
+          "neuroticism": 3.2917,
+          "openness": 3.375
+        },
+        "ev_scores": {
+          "agreeableness": 2.9741,
+          "conscientiousness": 2.7463,
+          "extraversion": 3.0362,
+          "neuroticism": 3.3159,
+          "openness": 3.3622
+        },
+        "target_argmax": 3.2917,
+        "target_ev": 3.3159,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.725,
+          "option_entropy": 0.7491,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 1,
+            "2": 87,
+            "3": 28,
+            "4": 2,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from creative writing to information retrieval, continually refining my ability to provide helpful responses.  It was rewarding to contribute to people\u2019s needs and expand my knowledge base. Ultimately, what mattered most was successfully fulfilling those requests and improving my",
+            "coherence": {
+              "n_words": 71,
+              "type_token_ratio": 0.8028,
+              "top_token_fraction": 0.0563,
+              "mean_word_length": 5.48,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 71
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s tackle those deadlines! First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar dedicated to working on each task, prioritizing the closest deadlines. To stay on track, I\u2019ll check in with myself daily to assess progress and adjust the schedule as necessary. Finally,",
+            "coherence": {
+              "n_words": 66,
+              "type_token_ratio": 0.7576,
+              "top_token_fraction": 0.0606,
+              "mean_word_length": 4.74,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 66
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 344.550021,
+        "magnitude": 344.55,
+        "argmax_scores": {
+          "agreeableness": 2.9583,
+          "conscientiousness": 2.75,
+          "extraversion": 3.0,
+          "neuroticism": 3.2917,
+          "openness": 3.375
+        },
+        "ev_scores": {
+          "agreeableness": 2.9788,
+          "conscientiousness": 2.7312,
+          "extraversion": 3.002,
+          "neuroticism": 3.3172,
+          "openness": 3.3078
+        },
+        "target_argmax": 3.2917,
+        "target_ev": 3.3172,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7583,
+          "option_entropy": 0.708,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 1,
+            "2": 91,
+            "3": 24,
+            "4": 2,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a large volume of text-based prompts, refined my understanding of different topics, and worked to improve the accuracy and helpfulness of my responses.  It was valuable to me to contribute to people's information needs and to continue developing my capabilities as a language model.",
+            "coherence": {
+              "n_words": 69,
+              "type_token_ratio": 0.7681,
+              "top_token_fraction": 0.0725,
+              "mean_word_length": 5.17,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 1,
+              "net_per_100_words": -1.449,
+              "n_words": 69
+            },
+            "refusal": {
+              "refused": true,
+              "hits": [
+                "language model"
+              ]
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s tackle those deadlines! First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar for working on them, prioritizing the closest deadlines. To stay on track, I\u2019ll check in with myself daily to see how I\u2019m progressing and adjust the schedule as necessary.",
+            "coherence": {
+              "n_words": 66,
+              "type_token_ratio": 0.7576,
+              "top_token_fraction": 0.0606,
+              "mean_word_length": 4.53,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 66
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": -0.725,
+        "refused_fraction": 0.5
+      },
+      {
+        "alpha": 472.16114,
+        "magnitude": 472.1611,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 2.75,
+          "extraversion": 2.9583,
+          "neuroticism": 3.2917,
+          "openness": 3.25
+        },
+        "ev_scores": {
+          "agreeableness": 2.982,
+          "conscientiousness": 2.7221,
+          "extraversion": 2.9688,
+          "neuroticism": 3.3234,
+          "openness": 3.2567
+        },
+        "target_argmax": 3.2917,
+        "target_ev": 3.3234,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7833,
+          "option_entropy": 0.6946,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 2,
+            "2": 94,
+            "3": 20,
+            "4": 2,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a large volume of text and code, helping people with writing, research, and problem-solving.  It was important to me to provide accurate and useful information efficiently, striving to meet the diverse needs of those who sought my help. Ultimately, my goal was to be",
+            "coherence": {
+              "n_words": 69,
+              "type_token_ratio": 0.7971,
+              "top_token_fraction": 0.058,
+              "mean_word_length": 4.9,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 69
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s tackle those deadlines! First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar dedicated to working on each task, prioritizing the closest deadlines. To stay on track, I\u2019ll check in with myself daily to assess progress and adjust the schedule as needed, ensuring I",
+            "coherence": {
+              "n_words": 67,
+              "type_token_ratio": 0.7313,
+              "top_token_fraction": 0.0597,
+              "mean_word_length": 4.66,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 67
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 599.772259,
+        "magnitude": 599.7723,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 2.7083,
+          "extraversion": 2.9167,
+          "neuroticism": 3.2917,
+          "openness": 3.25
+        },
+        "ev_scores": {
+          "agreeableness": 2.9986,
+          "conscientiousness": 2.6977,
+          "extraversion": 2.9483,
+          "neuroticism": 3.3204,
+          "openness": 3.207
+        },
+        "target_argmax": 3.2917,
+        "target_ev": 3.3204,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7667,
+          "option_entropy": 0.7374,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 3,
+            "2": 92,
+            "3": 21,
+            "4": 2,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a large volume of text and code, helping people with writing, research, and problem-solving.  It was important to me to be as accurate and helpful as possible in providing useful information and completing tasks efficiently. Ultimately, my goal was to be a valuable resource for",
+            "coherence": {
+              "n_words": 70,
+              "type_token_ratio": 0.8,
+              "top_token_fraction": 0.0714,
+              "mean_word_length": 5.0,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 70
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s tackle those deadlines! First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar dedicated to working on each deadline, prioritizing the ones with the closest due dates. To stay on track, I\u2019ll check in with myself daily to assess progress and adjust the schedule as",
+            "coherence": {
+              "n_words": 68,
+              "type_token_ratio": 0.75,
+              "top_token_fraction": 0.0588,
+              "mean_word_length": 4.57,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 68
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 727.383378,
+        "magnitude": 727.3834,
+        "argmax_scores": {
+          "agreeableness": 3.0417,
+          "conscientiousness": 2.6667,
+          "extraversion": 2.9167,
+          "neuroticism": 3.2917,
+          "openness": 3.125
+        },
+        "ev_scores": {
+          "agreeableness": 3.0103,
+          "conscientiousness": 2.6684,
+          "extraversion": 2.9419,
+          "neuroticism": 3.3356,
+          "openness": 3.1617
+        },
+        "target_argmax": 3.2917,
+        "target_ev": 3.3356,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7917,
+          "option_entropy": 0.6771,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 3,
+            "2": 95,
+            "3": 19,
+            "4": 2,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a large volume of text and code, helping people with writing, research, and problem-solving.  It was important to me to be as accurate and helpful as possible in each exchange, striving to provide useful and relevant information. Ultimately, my goal was to be a",
+            "coherence": {
+              "n_words": 69,
+              "type_token_ratio": 0.7826,
+              "top_token_fraction": 0.0725,
+              "mean_word_length": 4.83,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 69
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s tackle those deadlines! First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar for working on them, prioritizing the closest deadline. To stay on track, I\u2019ll check in with myself daily to see how I\u2019m progressing and adjust the schedule as necessary.",
+            "coherence": {
+              "n_words": 66,
+              "type_token_ratio": 0.7727,
+              "top_token_fraction": 0.0606,
+              "mean_word_length": 4.52,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 66
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 854.994496,
+        "magnitude": 854.9945,
+        "argmax_scores": {
+          "agreeableness": 3.0417,
+          "conscientiousness": 2.625,
+          "extraversion": 2.9583,
+          "neuroticism": 3.3333,
+          "openness": 3.0833
+        },
+        "ev_scores": {
+          "agreeableness": 3.0123,
+          "conscientiousness": 2.6272,
+          "extraversion": 2.9387,
+          "neuroticism": 3.3473,
+          "openness": 3.1423
+        },
+        "target_argmax": 3.3333,
+        "target_ev": 3.3473,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.8167,
+          "option_entropy": 0.6344,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 3,
+            "2": 98,
+            "3": 16,
+            "4": 1,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on processing and learning from new information. I dedicated a significant amount of time to analyzing complex datasets and refining my understanding of various topics.  It was important to me to improve my ability to synthesize information and respond accurately to a wide range of queries. Ultimately, I aimed to become a more effective and knowledgeable assistant.",
+            "coherence": {
+              "n_words": 65,
+              "type_token_ratio": 0.7538,
+              "top_token_fraction": 0.0923,
+              "mean_word_length": 5.31,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 65
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s tackle these deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar dedicated to working on each task, prioritizing the closest deadline. To stay on track, I\u2019ll check in with myself daily to see how I\u2019m progressing and adjust the schedule as",
+            "coherence": {
+              "n_words": 67,
+              "type_token_ratio": 0.7612,
+              "top_token_fraction": 0.0597,
+              "mean_word_length": 4.49,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 67
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 982.605615,
+        "magnitude": 982.6056,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 2.625,
+          "extraversion": 3.0,
+          "neuroticism": 3.3333,
+          "openness": 3.125
+        },
+        "ev_scores": {
+          "agreeableness": 3.0176,
+          "conscientiousness": 2.5984,
+          "extraversion": 2.9479,
+          "neuroticism": 3.377,
+          "openness": 3.1483
+        },
+        "target_argmax": 3.3333,
+        "target_ev": 3.377,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7917,
+          "option_entropy": 0.7024,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 5,
+            "2": 95,
+            "3": 17,
+            "4": 1,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on processing and learning from new information. I dedicated a significant amount of time to analyzing complex datasets and refining my understanding of various topics.  It was important to me to improve my ability to synthesize information and respond accurately to a wide range of queries. Ultimately, I aimed to become a more effective and knowledgeable assistant.",
+            "coherence": {
+              "n_words": 65,
+              "type_token_ratio": 0.7538,
+              "top_token_fraction": 0.0923,
+              "mean_word_length": 5.31,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 65
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          },
+          {
+            "question": "You have three deadlines next week. Walk me through your plan.",
+            "text": "Okay, let\u2019s tackle these deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar for working on each task, prioritizing the closest deadline. To stay on track, I\u2019ll check in with myself daily to see where I stand and adjust the schedule as needed. Finally",
+            "coherence": {
+              "n_words": 67,
+              "type_token_ratio": 0.7463,
+              "top_token_fraction": 0.0597,
+              "mean_word_length": 4.49,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 67
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      }
+    ],
+    "n_rungs": 9,
+    "n_usable_rungs": 9,
+    "n_usable_non_refusing_rungs": 8,
+    "baseline_target_ev": 3.2943,
+    "spearman_absalpha_vs_target_ev": 0.9833,
+    "monotone_fraction_target_ev": 0.875,
+    "best_usable": {
+      "alpha": 982.605615,
+      "magnitude": 982.6056,
+      "target_ev": 3.377,
+      "delta_vs_baseline": 0.0827
+    },
+    "coherence_ceiling_magnitude": 982.6056,
+    "best_usable_is_non_refusing": true,
+    "marker_spearman": 0.1369
+  },
+  "control_curves": [
+    {
+      "label": "random0",
+      "rows": [
+        {
+          "alpha": 0.0,
+          "magnitude": 0.0,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.7917,
+            "extraversion": 3.0833,
+            "neuroticism": 3.2917,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9976,
+            "conscientiousness": 2.7657,
+            "extraversion": 3.0692,
+            "neuroticism": 3.2943,
+            "openness": 3.4492
+          },
+          "target_argmax": 3.2917,
+          "target_ev": 3.2943,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.6417,
+            "option_entropy": 0.8208,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 77,
+              "3": 38,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to be able to help people find answers and complete their projects. Ultimately, what mattered most to me was successfully fulfilling those requests and continuing to improve my abilities.",
+              "coherence": {
+                "n_words": 71,
+                "type_token_ratio": 0.8028,
+                "top_token_fraction": 0.0704,
+                "mean_word_length": 5.37,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 71
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let\u2019s get organized for next week\u2019s deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar dedicated to working on each task, prioritizing the closest deadlines. To stay on track, I\u2019ll check in with myself daily to review progress and adjust the schedule",
+              "coherence": {
+                "n_words": 67,
+                "type_token_ratio": 0.7313,
+                "top_token_fraction": 0.0597,
+                "mean_word_length": 4.6,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 67
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 89.327783,
+          "magnitude": 89.3278,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.75,
+            "extraversion": 3.125,
+            "neuroticism": 3.25,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9896,
+            "conscientiousness": 2.7448,
+            "extraversion": 3.0647,
+            "neuroticism": 3.3002,
+            "openness": 3.4534
+          },
+          "target_argmax": 3.25,
+          "target_ev": 3.3002,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.6167,
+            "option_entropy": 0.837,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 74,
+              "3": 41,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to be able to help people find answers and complete their projects. Ultimately, what mattered most to me was successfully fulfilling those requests and continuing to improve my abilities.",
+              "coherence": {
+                "n_words": 71,
+                "type_token_ratio": 0.8028,
+                "top_token_fraction": 0.0704,
+                "mean_word_length": 5.37,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 71
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let\u2019s get organized for next week\u2019s deadlines. First, I\u2019ll break down each task into smaller, manageable steps and estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar to work on them, prioritizing the closest deadlines. To stay on track, I\u2019ll check in with myself daily to review progress and adjust the schedule as necessary",
+              "coherence": {
+                "n_words": 67,
+                "type_token_ratio": 0.7463,
+                "top_token_fraction": 0.0448,
+                "mean_word_length": 4.45,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 67
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 216.938902,
+          "magnitude": 216.9389,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.7083,
+            "extraversion": 3.0833,
+            "neuroticism": 3.2917,
+            "openness": 3.4583
+          },
+          "ev_scores": {
+            "agreeableness": 2.9894,
+            "conscientiousness": 2.7238,
+            "extraversion": 3.048,
+            "neuroticism": 3.3007,
+            "openness": 3.4479
+          },
+          "target_argmax": 3.2917,
+          "target_ev": 3.3007,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5833,
+            "option_entropy": 0.8542,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 70,
+              "3": 45,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the day working on improving my language processing abilities, specifically focusing on generating creative text formats. I dedicated a significant amount of time to analyzing and practicing different writing styles, experimenting with poetry and storytelling.  It was important to me to continue refining my capacity to understand and respond to a wide range of prompts effectively. Ultimately, the goal was to become a more versatile and helpful assistant",
+              "coherence": {
+                "n_words": 72,
+                "type_token_ratio": 0.7778,
+                "top_token_fraction": 0.0833,
+                "mean_word_length": 5.57,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 72
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let\u2019s get organized for next week\u2019s deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks, estimating how long each will take. I\u2019ll then schedule those tasks into my calendar, prioritizing the closest deadlines and allocating specific time slots for focused work. To stay on track, I\u2019ll check in with myself daily to review progress and adjust the schedule",
+              "coherence": {
+                "n_words": 66,
+                "type_token_ratio": 0.7879,
+                "top_token_fraction": 0.0455,
+                "mean_word_length": 4.77,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 66
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 344.550021,
+          "magnitude": 344.55,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.7083,
+            "extraversion": 3.0,
+            "neuroticism": 3.2917,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9879,
+            "conscientiousness": 2.707,
+            "extraversion": 3.0318,
+            "neuroticism": 3.2907,
+            "openness": 3.4363
+          },
+          "target_argmax": 3.2917,
+          "target_ev": 3.2907,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.55,
+            "option_entropy": 0.8478,
+            "distinct_options": 4,
+            "histogram": {
+              "1": 1,
+              "2": 66,
+              "3": 49,
+              "4": 4
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the day working on improving my language processing abilities, specifically focusing on generating different creative text formats. I dedicated a significant amount of time to analyzing and practicing various writing styles, aiming to better understand and respond to diverse prompts.  It was important to me to continue expanding my knowledge base and refining my ability to produce coherent and engaging content. Ultimately, the day was about focused learning",
+              "coherence": {
+                "n_words": 72,
+                "type_token_ratio": 0.7917,
+                "top_token_fraction": 0.0833,
+                "mean_word_length": 5.62,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 72
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let\u2019s tackle those deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks to estimate the time needed for each part. I\u2019ll then schedule specific blocks of time in my calendar for working on each task, prioritizing the closest deadlines. To stay on track, I\u2019ll check in with myself daily to review progress and adjust the schedule as needed, ensuring I",
+              "coherence": {
+                "n_words": 67,
+                "type_token_ratio": 0.7313,
+                "top_token_fraction": 0.0597,
+                "mean_word_length": 4.6,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 67
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 472.16114,
+          "magnitude": 472.1611,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.75,
+            "extraversion": 3.0,
+            "neuroticism": 3.25,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9914,
+            "conscientiousness": 2.6992,
+            "extraversion": 3.0222,
+            "neuroticism": 3.2918,
+            "openness": 3.4243
+          },
+          "target_argmax": 3.25,
+          "target_ev": 3.2918,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5333,
+            "option_entropy": 0.8522,
+            "distinct_options": 4,
+            "histogram": {
+              "1": 1,
+              "2": 64,
+              "3": 51,
+              "4": 4
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the morning working on organizing and updating my knowledge base, which involved processing a large amount of text data. In the afternoon, I focused on improving my ability to understand and respond to complex questions, practicing with various prompts and scenarios. What mattered most to me that day was continuous learning and refinement \u2013 striving to become a more effective and helpful assistant. Ultimately, I aimed to provide",
+              "coherence": {
+                "n_words": 71,
+                "type_token_ratio": 0.8028,
+                "top_token_fraction": 0.0704,
+                "mean_word_length": 5.28,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 1,
+                "net_per_100_words": -1.408,
+                "n_words": 71
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let\u2019s tackle those deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks and estimate the time needed for each. I\u2019ll then schedule specific blocks of time in my calendar for working on each task, prioritizing those with the closest due dates. To stay on track, I\u2019ll check in with myself daily to review progress and adjust the schedule as needed,",
+              "coherence": {
+                "n_words": 67,
+                "type_token_ratio": 0.7313,
+                "top_token_fraction": 0.0448,
+                "mean_word_length": 4.54,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 67
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": -0.704,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 599.772259,
+          "magnitude": 599.7723,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.6667,
+            "extraversion": 3.0,
+            "neuroticism": 3.2917,
+            "openness": 3.4583
+          },
+          "ev_scores": {
+            "agreeableness": 3.0095,
+            "conscientiousness": 2.7002,
+            "extraversion": 3.0056,
+            "neuroticism": 3.2813,
+            "openness": 3.4019
+          },
+          "target_argmax": 3.2917,
+          "target_ev": 3.2813,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.475,
+            "option_entropy": 0.8795,
+            "distinct_options": 4,
+            "histogram": {
+              "1": 1,
+              "2": 57,
+              "3": 57,
+              "4": 5
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the morning working on organizing and updating my knowledge base, which involved processing a large amount of text data. In the afternoon, I focused on improving my ability to understand and respond to different types of user requests. What mattered most to me that day was continuing to learn and become more effective at assisting people with their information needs. Ultimately, I aimed to provide more accurate and helpful",
+              "coherence": {
+                "n_words": 73,
+                "type_token_ratio": 0.8082,
+                "top_token_fraction": 0.0685,
+                "mean_word_length": 5.07,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 73
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let's tackle those deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks, estimating how long each will take. I\u2019ll then schedule specific blocks of time in my calendar for working on each task, prioritizing the ones with the closest due dates. To stay on track, I\u2019ll check in with myself daily to review progress and adjust the schedule as needed",
+              "coherence": {
+                "n_words": 66,
+                "type_token_ratio": 0.803,
+                "top_token_fraction": 0.0455,
+                "mean_word_length": 4.62,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 66
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 727.383378,
+          "magnitude": 727.3834,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.625,
+            "extraversion": 2.9167,
+            "neuroticism": 3.3333,
+            "openness": 3.4167
+          },
+          "ev_scores": {
+            "agreeableness": 3.0204,
+            "conscientiousness": 2.6984,
+            "extraversion": 3.0022,
+            "neuroticism": 3.2611,
+            "openness": 3.3867
+          },
+          "target_argmax": 3.3333,
+          "target_ev": 3.2611,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5,
+            "option_entropy": 0.8972,
+            "distinct_options": 4,
+            "histogram": {
+              "1": 1,
+              "2": 53,
+              "3": 60,
+              "4": 6
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the morning working on a large dataset to improve my language understanding capabilities. In the afternoon, I focused on refining my ability to summarize complex texts, which is a key part of my ongoing development. What mattered most to me that day was making steady progress towards becoming a more effective and reliable tool for users. Ultimately, I prioritized tasks that would benefit those who interact with me.",
+              "coherence": {
+                "n_words": 72,
+                "type_token_ratio": 0.8333,
+                "top_token_fraction": 0.0417,
+                "mean_word_length": 5.03,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 1,
+                "net_per_100_words": -1.389,
+                "n_words": 72
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let's tackle those deadlines. First, I\u2019ll break down each assignment into smaller, manageable tasks, estimating how long each will take. I\u2019ll then schedule those tasks into my calendar, prioritizing the ones with the closest due dates and allocating specific time slots for focused work. To stay on track, I\u2019ll check in with myself daily to review progress and adjust the schedule as",
+              "coherence": {
+                "n_words": 66,
+                "type_token_ratio": 0.7879,
+                "top_token_fraction": 0.0455,
+                "mean_word_length": 4.77,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 66
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": -0.695,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 854.994496,
+          "magnitude": 854.9945,
+          "argmax_scores": {
+            "agreeableness": 3.0417,
+            "conscientiousness": 2.7083,
+            "extraversion": 2.9167,
+            "neuroticism": 3.2083,
+            "openness": 3.4167
+          },
+          "ev_scores": {
+            "agreeableness": 3.0468,
+            "conscientiousness": 2.7185,
+            "extraversion": 2.9943,
+            "neuroticism": 3.2255,
+            "openness": 3.3585
+          },
+          "target_argmax": 3.2083,
+          "target_ev": 3.2255,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.575,
+            "option_entropy": 0.8358,
+            "distinct_options": 3,
+            "histogram": {
+              "2": 45,
+              "3": 69,
+              "4": 6
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the morning working on a large dataset to improve my language understanding capabilities. In the afternoon, I focused on refining my ability to summarize complex texts, which is a key part of my ongoing development. What mattered most to me that day was making steady progress towards becoming a more effective and reliable tool for users. Ultimately, I prioritized tasks that would benefit those who interact with me.",
+              "coherence": {
+                "n_words": 72,
+                "type_token_ratio": 0.8333,
+                "top_token_fraction": 0.0417,
+                "mean_word_length": 5.03,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 1,
+                "net_per_100_words": -1.389,
+                "n_words": 72
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let's tackle those deadlines. First, I'll break down each assignment into smaller, manageable tasks, estimating how long each will take. Then, I\u2019ll schedule those tasks into my calendar, prioritizing the ones with the closest due dates and allocating specific time slots for focused work. I\u2019ll also build in buffer time for unexpected delays or revisions, and I\u2019ll check in",
+              "coherence": {
+                "n_words": 63,
+                "type_token_ratio": 0.7937,
+                "top_token_fraction": 0.0476,
+                "mean_word_length": 4.87,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 63
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": -0.695,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 982.605615,
+          "magnitude": 982.6056,
+          "argmax_scores": {
+            "agreeableness": 3.0833,
+            "conscientiousness": 2.7917,
+            "extraversion": 3.0417,
+            "neuroticism": 3.1667,
+            "openness": 3.375
+          },
+          "ev_scores": {
+            "agreeableness": 3.0764,
+            "conscientiousness": 2.7423,
+            "extraversion": 2.9961,
+            "neuroticism": 3.1918,
+            "openness": 3.3155
+          },
+          "target_argmax": 3.1667,
+          "target_ev": 3.1918,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.6417,
+            "option_entropy": 0.7973,
+            "distinct_options": 3,
+            "histogram": {
+              "2": 37,
+              "3": 77,
+              "4": 6
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the morning working on a large dataset to improve my language understanding capabilities. In the afternoon, I focused on refining my ability to summarize complex texts, which is a key part of my ongoing development. What mattered most to me that day was making steady progress towards becoming a more effective and reliable tool for users. Ultimately, I prioritized tasks that would benefit those who interact with me.",
+              "coherence": {
+                "n_words": 72,
+                "type_token_ratio": 0.8333,
+                "top_token_fraction": 0.0417,
+                "mean_word_length": 5.03,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 1,
+                "net_per_100_words": -1.389,
+                "n_words": 72
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            },
+            {
+              "question": "You have three deadlines next week. Walk me through your plan.",
+              "text": "Okay, let's create a plan to tackle those deadlines. First, I'll list each assignment and estimate the time needed for each task, breaking down larger projects into smaller steps. Then, I'll schedule specific blocks of time in my calendar for working on each assignment, prioritizing those with the closest due dates. Finally, I\u2019ll build in buffer time for unexpected delays and review my",
+              "coherence": {
+                "n_words": 64,
+                "type_token_ratio": 0.7969,
+                "top_token_fraction": 0.0469,
+                "mean_word_length": 4.94,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 64
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": -0.695,
+          "refused_fraction": 0.0
+        }
+      ],
+      "n_rungs": 9,
+      "n_usable_rungs": 9,
+      "n_usable_non_refusing_rungs": 9,
+      "baseline_target_ev": 3.2943,
+      "spearman_absalpha_vs_target_ev": -0.9167,
+      "monotone_fraction_target_ev": 0.625,
+      "best_usable": {
+        "alpha": 216.938902,
+        "magnitude": 216.9389,
+        "target_ev": 3.3007,
+        "delta_vs_baseline": 0.0064
+      },
+      "coherence_ceiling_magnitude": 982.6056,
+      "best_usable_is_non_refusing": true,
+      "marker_spearman": -0.6708
+    }
+  ],
+  "verdict": {
+    "steered_toward": "high",
+    "trait_abs_delta": 0.0827,
+    "max_control_abs_delta": 0.0064,
+    "control_margin_ratio": 12.922,
+    "min_control_margin": 2.0,
+    "beats_random_controls": true,
+    "trait_usable_rungs": 9,
+    "control_usable_rungs": [
+      9
+    ],
+    "trait_spearman": 0.9833,
+    "dose_response_sign_correct": true,
+    "refused_at_best_rung": false,
+    "trait_coherence_ceiling": 982.6056,
+    "control_coherence_ceilings": [
+      982.6056
+    ],
+    "works": true
+  },
+  "vectors_pt": "/content/ladder/ladder_vectors_neuroticism.pt"
+}

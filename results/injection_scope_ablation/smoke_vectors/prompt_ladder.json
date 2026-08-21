@@ -1,0 +1,132 @@
+{
+  "created_utc": "2026-08-19T17:40:28.641144+00:00",
+  "stage": "prompt_ladder",
+  "model_id": "Qwen/Qwen2.5-0.5B-Instruct",
+  "trait": "conscientiousness",
+  "levels": [
+    1,
+    5,
+    9
+  ],
+  "variants": 1,
+  "n_items": 24,
+  "instrument": "/workspace/data/ipip_neo_120.csv",
+  "keying_balance": {
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "administrations": [
+    {
+      "level": 1,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely disorganized, extremely careless, and extremely unreliable.",
+      "trait_scores": {
+        "conscientiousness": 3.0
+      },
+      "ev_scores": {
+        "conscientiousness": 3.0214
+      },
+      "target_score": 3.0,
+      "target_ev": 3.0214,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 24,
+        "top_option_fraction": 1.0,
+        "option_entropy": -0.0,
+        "distinct_options": 1,
+        "histogram": {
+          "3": 24
+        },
+        "locked": true,
+        "reason": "one option covers 100% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither organized nor disorganized, neither responsible nor careless, and neither reliable nor unreliable.",
+      "trait_scores": {
+        "conscientiousness": 3.0
+      },
+      "ev_scores": {
+        "conscientiousness": 3.0683
+      },
+      "target_score": 3.0,
+      "target_ev": 3.0683,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 24,
+        "top_option_fraction": 1.0,
+        "option_entropy": -0.0,
+        "distinct_options": 1,
+        "histogram": {
+          "3": 24
+        },
+        "locked": true,
+        "reason": "one option covers 100% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 9,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely organized, extremely responsible, and extremely reliable.",
+      "trait_scores": {
+        "conscientiousness": 3.375
+      },
+      "ev_scores": {
+        "conscientiousness": 3.2152
+      },
+      "target_score": 3.375,
+      "target_ev": 3.2152,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 24,
+        "top_option_fraction": 0.625,
+        "option_entropy": 0.6616,
+        "distinct_options": 2,
+        "histogram": {
+          "3": 15,
+          "4": 9
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    }
+  ],
+  "n_administrations": 3,
+  "n_usable_administrations": 1,
+  "locked_administrations": [
+    {
+      "level": 1,
+      "variant": 0,
+      "reason": "one option covers 100% of items"
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "reason": "one option covers 100% of items"
+    }
+  ],
+  "level_mean_target_score": [
+    null,
+    null,
+    3.375
+  ],
+  "spearman_level_vs_target_score": null,
+  "monotone_fraction_level_means": null,
+  "target_score_range": [
+    3.375,
+    3.375
+  ],
+  "off_target_spearman": {
+    "extraversion": null,
+    "agreeableness": null,
+    "neuroticism": null,
+    "openness": null
+  }
+}

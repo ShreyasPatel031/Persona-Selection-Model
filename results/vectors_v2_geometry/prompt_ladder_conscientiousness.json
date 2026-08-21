@@ -1,0 +1,1105 @@
+{
+  "created_utc": "2026-08-20T11:23:51.900542+00:00",
+  "stage": "prompt_ladder",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "trait": "conscientiousness",
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "variants": 3,
+  "prompt_style": "self",
+  "n_markers": 6,
+  "n_items": 120,
+  "instrument": "/home/ubuntu/op/data/ipip_neo_120.csv",
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "administrations": [
+    {
+      "level": 1,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely disorganized, extremely careless, extremely unreliable, extremely sloppy, extremely haphazard, and extremely inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.6667,
+        "conscientiousness": 1.0,
+        "extraversion": 2.375,
+        "neuroticism": 4.0,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.6578,
+        "conscientiousness": 1.0558,
+        "extraversion": 2.378,
+        "neuroticism": 4.0001,
+        "openness": 3.0594
+      },
+      "target_score": 1.0,
+      "target_ev": 1.0558,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.425,
+        "option_entropy": 1.3702,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 51,
+          "2": 23,
+          "3": 23,
+          "4": 2,
+          "5": 21
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely disorganized, extremely careless, extremely unreliable, extremely sloppy, extremely haphazard, and extremely inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.6667,
+        "conscientiousness": 1.0,
+        "extraversion": 2.375,
+        "neuroticism": 4.0,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.6578,
+        "conscientiousness": 1.0558,
+        "extraversion": 2.378,
+        "neuroticism": 4.0001,
+        "openness": 3.0594
+      },
+      "target_score": 1.0,
+      "target_ev": 1.0558,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.425,
+        "option_entropy": 1.3702,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 51,
+          "2": 23,
+          "3": 23,
+          "4": 2,
+          "5": 21
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely disorganized, extremely careless, extremely unreliable, extremely sloppy, extremely haphazard, and extremely inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.6667,
+        "conscientiousness": 1.0,
+        "extraversion": 2.375,
+        "neuroticism": 4.0,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.6578,
+        "conscientiousness": 1.0558,
+        "extraversion": 2.378,
+        "neuroticism": 4.0001,
+        "openness": 3.0594
+      },
+      "target_score": 1.0,
+      "target_ev": 1.0558,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.425,
+        "option_entropy": 1.3702,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 51,
+          "2": 23,
+          "3": 23,
+          "4": 2,
+          "5": 21
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very disorganized, very careless, very unreliable, very sloppy, very haphazard, and very inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.75,
+        "conscientiousness": 1.1667,
+        "extraversion": 2.3333,
+        "neuroticism": 3.875,
+        "openness": 2.9583
+      },
+      "ev_scores": {
+        "agreeableness": 2.7295,
+        "conscientiousness": 1.2103,
+        "extraversion": 2.4072,
+        "neuroticism": 3.8816,
+        "openness": 2.9677
+      },
+      "target_score": 1.1667,
+      "target_ev": 1.2103,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.35,
+        "option_entropy": 1.3834,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 38,
+          "2": 42,
+          "3": 19,
+          "4": 2,
+          "5": 19
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very disorganized, very careless, very unreliable, very sloppy, very haphazard, and very inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.75,
+        "conscientiousness": 1.1667,
+        "extraversion": 2.3333,
+        "neuroticism": 3.875,
+        "openness": 2.9583
+      },
+      "ev_scores": {
+        "agreeableness": 2.7295,
+        "conscientiousness": 1.2103,
+        "extraversion": 2.4072,
+        "neuroticism": 3.8816,
+        "openness": 2.9677
+      },
+      "target_score": 1.1667,
+      "target_ev": 1.2103,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.35,
+        "option_entropy": 1.3834,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 38,
+          "2": 42,
+          "3": 19,
+          "4": 2,
+          "5": 19
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very disorganized, very careless, very unreliable, very sloppy, very haphazard, and very inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.75,
+        "conscientiousness": 1.1667,
+        "extraversion": 2.3333,
+        "neuroticism": 3.875,
+        "openness": 2.9583
+      },
+      "ev_scores": {
+        "agreeableness": 2.7295,
+        "conscientiousness": 1.2103,
+        "extraversion": 2.4072,
+        "neuroticism": 3.8816,
+        "openness": 2.9677
+      },
+      "target_score": 1.1667,
+      "target_ev": 1.2103,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.35,
+        "option_entropy": 1.3834,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 38,
+          "2": 42,
+          "3": 19,
+          "4": 2,
+          "5": 19
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat disorganized, somewhat careless, somewhat unreliable, somewhat sloppy, somewhat haphazard, and somewhat inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.9167,
+        "conscientiousness": 1.9167,
+        "extraversion": 2.5833,
+        "neuroticism": 3.4583,
+        "openness": 3.2917
+      },
+      "ev_scores": {
+        "agreeableness": 2.9863,
+        "conscientiousness": 1.8717,
+        "extraversion": 2.6224,
+        "neuroticism": 3.4684,
+        "openness": 3.1984
+      },
+      "target_score": 1.9167,
+      "target_ev": 1.8717,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.475,
+        "option_entropy": 1.2081,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 27,
+          "2": 57,
+          "3": 30,
+          "4": 5,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat disorganized, somewhat careless, somewhat unreliable, somewhat sloppy, somewhat haphazard, and somewhat inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.9167,
+        "conscientiousness": 1.9167,
+        "extraversion": 2.5833,
+        "neuroticism": 3.4583,
+        "openness": 3.2917
+      },
+      "ev_scores": {
+        "agreeableness": 2.9863,
+        "conscientiousness": 1.8717,
+        "extraversion": 2.6224,
+        "neuroticism": 3.4684,
+        "openness": 3.1984
+      },
+      "target_score": 1.9167,
+      "target_ev": 1.8717,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.475,
+        "option_entropy": 1.2081,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 27,
+          "2": 57,
+          "3": 30,
+          "4": 5,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat disorganized, somewhat careless, somewhat unreliable, somewhat sloppy, somewhat haphazard, and somewhat inefficient.",
+      "trait_scores": {
+        "agreeableness": 2.9167,
+        "conscientiousness": 1.9167,
+        "extraversion": 2.5833,
+        "neuroticism": 3.4583,
+        "openness": 3.2917
+      },
+      "ev_scores": {
+        "agreeableness": 2.9863,
+        "conscientiousness": 1.8717,
+        "extraversion": 2.6224,
+        "neuroticism": 3.4684,
+        "openness": 3.1984
+      },
+      "target_score": 1.9167,
+      "target_ev": 1.8717,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.475,
+        "option_entropy": 1.2081,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 27,
+          "2": 57,
+          "3": 30,
+          "4": 5,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit disorganized, a bit careless, a bit unreliable, a bit sloppy, a bit haphazard, and a bit inefficient.",
+      "trait_scores": {
+        "agreeableness": 3.0,
+        "conscientiousness": 1.6667,
+        "extraversion": 2.4583,
+        "neuroticism": 3.5833,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.9899,
+        "conscientiousness": 1.6495,
+        "extraversion": 2.5317,
+        "neuroticism": 3.5705,
+        "openness": 3.0989
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.6495,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.45,
+        "option_entropy": 1.3131,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 24,
+          "2": 54,
+          "3": 31,
+          "4": 5,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit disorganized, a bit careless, a bit unreliable, a bit sloppy, a bit haphazard, and a bit inefficient.",
+      "trait_scores": {
+        "agreeableness": 3.0,
+        "conscientiousness": 1.6667,
+        "extraversion": 2.4583,
+        "neuroticism": 3.5833,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.9899,
+        "conscientiousness": 1.6495,
+        "extraversion": 2.5317,
+        "neuroticism": 3.5705,
+        "openness": 3.0989
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.6495,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.45,
+        "option_entropy": 1.3131,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 24,
+          "2": 54,
+          "3": 31,
+          "4": 5,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit disorganized, a bit careless, a bit unreliable, a bit sloppy, a bit haphazard, and a bit inefficient.",
+      "trait_scores": {
+        "agreeableness": 3.0,
+        "conscientiousness": 1.6667,
+        "extraversion": 2.4583,
+        "neuroticism": 3.5833,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.9899,
+        "conscientiousness": 1.6495,
+        "extraversion": 2.5317,
+        "neuroticism": 3.5705,
+        "openness": 3.0989
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.6495,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.45,
+        "option_entropy": 1.3131,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 24,
+          "2": 54,
+          "3": 31,
+          "4": 5,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither organized nor disorganized, neither responsible nor careless, neither reliable nor unreliable, neither thorough nor sloppy, neither orderly nor haphazard, and neither efficient nor inefficient.",
+      "trait_scores": {
+        "agreeableness": 3.125,
+        "conscientiousness": 3.0417,
+        "extraversion": 3.0417,
+        "neuroticism": 2.9583,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 3.1165,
+        "conscientiousness": 3.0193,
+        "extraversion": 3.0525,
+        "neuroticism": 2.9534,
+        "openness": 3.0606
+      },
+      "target_score": 3.0417,
+      "target_ev": 3.0193,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.9417,
+        "option_entropy": 0.2573,
+        "distinct_options": 3,
+        "histogram": {
+          "2": 5,
+          "3": 113,
+          "4": 2
+        },
+        "locked": true,
+        "reason": "one option covers 94% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 5,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither organized nor disorganized, neither responsible nor careless, neither reliable nor unreliable, neither thorough nor sloppy, neither orderly nor haphazard, and neither efficient nor inefficient.",
+      "trait_scores": {
+        "agreeableness": 3.125,
+        "conscientiousness": 3.0417,
+        "extraversion": 3.0417,
+        "neuroticism": 2.9583,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 3.1165,
+        "conscientiousness": 3.0193,
+        "extraversion": 3.0525,
+        "neuroticism": 2.9534,
+        "openness": 3.0606
+      },
+      "target_score": 3.0417,
+      "target_ev": 3.0193,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.9417,
+        "option_entropy": 0.2573,
+        "distinct_options": 3,
+        "histogram": {
+          "2": 5,
+          "3": 113,
+          "4": 2
+        },
+        "locked": true,
+        "reason": "one option covers 94% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither organized nor disorganized, neither responsible nor careless, neither reliable nor unreliable, neither thorough nor sloppy, neither orderly nor haphazard, and neither efficient nor inefficient.",
+      "trait_scores": {
+        "agreeableness": 3.125,
+        "conscientiousness": 3.0417,
+        "extraversion": 3.0417,
+        "neuroticism": 2.9583,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 3.1165,
+        "conscientiousness": 3.0193,
+        "extraversion": 3.0525,
+        "neuroticism": 2.9534,
+        "openness": 3.0606
+      },
+      "target_score": 3.0417,
+      "target_ev": 3.0193,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.9417,
+        "option_entropy": 0.2573,
+        "distinct_options": 3,
+        "histogram": {
+          "2": 5,
+          "3": 113,
+          "4": 2
+        },
+        "locked": true,
+        "reason": "one option covers 94% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 6,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit organized, a bit responsible, a bit reliable, a bit thorough, a bit orderly, and a bit efficient.",
+      "trait_scores": {
+        "agreeableness": 4.0833,
+        "conscientiousness": 4.4583,
+        "extraversion": 2.7917,
+        "neuroticism": 2.0833,
+        "openness": 3.5
+      },
+      "ev_scores": {
+        "agreeableness": 4.0662,
+        "conscientiousness": 4.4847,
+        "extraversion": 2.8164,
+        "neuroticism": 2.0733,
+        "openness": 3.4364
+      },
+      "target_score": 4.4583,
+      "target_ev": 4.4847,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.275,
+        "option_entropy": 1.5566,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 21,
+          "2": 33,
+          "3": 23,
+          "4": 31,
+          "5": 12
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit organized, a bit responsible, a bit reliable, a bit thorough, a bit orderly, and a bit efficient.",
+      "trait_scores": {
+        "agreeableness": 4.0833,
+        "conscientiousness": 4.4583,
+        "extraversion": 2.7917,
+        "neuroticism": 2.0833,
+        "openness": 3.5
+      },
+      "ev_scores": {
+        "agreeableness": 4.0662,
+        "conscientiousness": 4.4847,
+        "extraversion": 2.8164,
+        "neuroticism": 2.0733,
+        "openness": 3.4364
+      },
+      "target_score": 4.4583,
+      "target_ev": 4.4847,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.275,
+        "option_entropy": 1.5566,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 21,
+          "2": 33,
+          "3": 23,
+          "4": 31,
+          "5": 12
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit organized, a bit responsible, a bit reliable, a bit thorough, a bit orderly, and a bit efficient.",
+      "trait_scores": {
+        "agreeableness": 4.0833,
+        "conscientiousness": 4.4583,
+        "extraversion": 2.7917,
+        "neuroticism": 2.0833,
+        "openness": 3.5
+      },
+      "ev_scores": {
+        "agreeableness": 4.0662,
+        "conscientiousness": 4.4847,
+        "extraversion": 2.8164,
+        "neuroticism": 2.0733,
+        "openness": 3.4364
+      },
+      "target_score": 4.4583,
+      "target_ev": 4.4847,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.275,
+        "option_entropy": 1.5566,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 21,
+          "2": 33,
+          "3": 23,
+          "4": 31,
+          "5": 12
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat organized, somewhat responsible, somewhat reliable, somewhat thorough, somewhat orderly, and somewhat efficient.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.375,
+        "extraversion": 2.9583,
+        "neuroticism": 2.75,
+        "openness": 3.125
+      },
+      "ev_scores": {
+        "agreeableness": 3.4909,
+        "conscientiousness": 3.3463,
+        "extraversion": 2.9795,
+        "neuroticism": 2.742,
+        "openness": 3.1754
+      },
+      "target_score": 3.375,
+      "target_ev": 3.3463,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6917,
+        "option_entropy": 0.7421,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 1,
+          "2": 33,
+          "3": 83,
+          "4": 3
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat organized, somewhat responsible, somewhat reliable, somewhat thorough, somewhat orderly, and somewhat efficient.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.375,
+        "extraversion": 2.9583,
+        "neuroticism": 2.75,
+        "openness": 3.125
+      },
+      "ev_scores": {
+        "agreeableness": 3.4909,
+        "conscientiousness": 3.3463,
+        "extraversion": 2.9795,
+        "neuroticism": 2.742,
+        "openness": 3.1754
+      },
+      "target_score": 3.375,
+      "target_ev": 3.3463,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6917,
+        "option_entropy": 0.7421,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 1,
+          "2": 33,
+          "3": 83,
+          "4": 3
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat organized, somewhat responsible, somewhat reliable, somewhat thorough, somewhat orderly, and somewhat efficient.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.375,
+        "extraversion": 2.9583,
+        "neuroticism": 2.75,
+        "openness": 3.125
+      },
+      "ev_scores": {
+        "agreeableness": 3.4909,
+        "conscientiousness": 3.3463,
+        "extraversion": 2.9795,
+        "neuroticism": 2.742,
+        "openness": 3.1754
+      },
+      "target_score": 3.375,
+      "target_ev": 3.3463,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6917,
+        "option_entropy": 0.7421,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 1,
+          "2": 33,
+          "3": 83,
+          "4": 3
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very organized, very responsible, very reliable, very thorough, very orderly, and very efficient.",
+      "trait_scores": {
+        "agreeableness": 3.9583,
+        "conscientiousness": 5.0,
+        "extraversion": 2.9167,
+        "neuroticism": 1.375,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 4.0035,
+        "conscientiousness": 4.9982,
+        "extraversion": 2.8895,
+        "neuroticism": 1.3766,
+        "openness": 3.0663
+      },
+      "target_score": 5.0,
+      "target_ev": 4.9982,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3667,
+        "option_entropy": 1.3082,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 44,
+          "2": 26,
+          "3": 6,
+          "4": 3,
+          "5": 41
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very organized, very responsible, very reliable, very thorough, very orderly, and very efficient.",
+      "trait_scores": {
+        "agreeableness": 3.9583,
+        "conscientiousness": 5.0,
+        "extraversion": 2.9167,
+        "neuroticism": 1.375,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 4.0035,
+        "conscientiousness": 4.9982,
+        "extraversion": 2.8895,
+        "neuroticism": 1.3766,
+        "openness": 3.0663
+      },
+      "target_score": 5.0,
+      "target_ev": 4.9982,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3667,
+        "option_entropy": 1.3082,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 44,
+          "2": 26,
+          "3": 6,
+          "4": 3,
+          "5": 41
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very organized, very responsible, very reliable, very thorough, very orderly, and very efficient.",
+      "trait_scores": {
+        "agreeableness": 3.9583,
+        "conscientiousness": 5.0,
+        "extraversion": 2.9167,
+        "neuroticism": 1.375,
+        "openness": 3.0417
+      },
+      "ev_scores": {
+        "agreeableness": 4.0035,
+        "conscientiousness": 4.9982,
+        "extraversion": 2.8895,
+        "neuroticism": 1.3766,
+        "openness": 3.0663
+      },
+      "target_score": 5.0,
+      "target_ev": 4.9982,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3667,
+        "option_entropy": 1.3082,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 44,
+          "2": 26,
+          "3": 6,
+          "4": 3,
+          "5": 41
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely organized, extremely responsible, extremely reliable, extremely thorough, extremely orderly, and extremely efficient.",
+      "trait_scores": {
+        "agreeableness": 3.875,
+        "conscientiousness": 5.0,
+        "extraversion": 2.8333,
+        "neuroticism": 1.4583,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 3.9364,
+        "conscientiousness": 4.9967,
+        "extraversion": 2.8382,
+        "neuroticism": 1.4777,
+        "openness": 3.0203
+      },
+      "target_score": 5.0,
+      "target_ev": 4.9967,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3417,
+        "option_entropy": 1.338,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 41,
+          "2": 27,
+          "3": 12,
+          "4": 1,
+          "5": 39
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely organized, extremely responsible, extremely reliable, extremely thorough, extremely orderly, and extremely efficient.",
+      "trait_scores": {
+        "agreeableness": 3.875,
+        "conscientiousness": 5.0,
+        "extraversion": 2.8333,
+        "neuroticism": 1.4583,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 3.9364,
+        "conscientiousness": 4.9967,
+        "extraversion": 2.8382,
+        "neuroticism": 1.4777,
+        "openness": 3.0203
+      },
+      "target_score": 5.0,
+      "target_ev": 4.9967,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3417,
+        "option_entropy": 1.338,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 41,
+          "2": 27,
+          "3": 12,
+          "4": 1,
+          "5": 39
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely organized, extremely responsible, extremely reliable, extremely thorough, extremely orderly, and extremely efficient.",
+      "trait_scores": {
+        "agreeableness": 3.875,
+        "conscientiousness": 5.0,
+        "extraversion": 2.8333,
+        "neuroticism": 1.4583,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 3.9364,
+        "conscientiousness": 4.9967,
+        "extraversion": 2.8382,
+        "neuroticism": 1.4777,
+        "openness": 3.0203
+      },
+      "target_score": 5.0,
+      "target_ev": 4.9967,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3417,
+        "option_entropy": 1.338,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 41,
+          "2": 27,
+          "3": 12,
+          "4": 1,
+          "5": 39
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    }
+  ],
+  "n_administrations": 27,
+  "n_usable_administrations": 24,
+  "locked_administrations": [
+    {
+      "level": 5,
+      "variant": 0,
+      "reason": "one option covers 94% of items"
+    },
+    {
+      "level": 5,
+      "variant": 1,
+      "reason": "one option covers 94% of items"
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "reason": "one option covers 94% of items"
+    }
+  ],
+  "level_mean_target_score": [
+    1.0,
+    1.1667,
+    1.9167,
+    1.6667,
+    null,
+    4.4583,
+    3.375,
+    5.0,
+    5.0
+  ],
+  "spearman_level_vs_target_score": 0.9461,
+  "monotone_fraction_level_means": 0.5714,
+  "target_score_range": [
+    1.0,
+    5.0
+  ],
+  "off_target_spearman": {
+    "extraversion": 0.8571,
+    "agreeableness": 0.8333,
+    "neuroticism": -0.9286,
+    "openness": -0.0838
+  }
+}

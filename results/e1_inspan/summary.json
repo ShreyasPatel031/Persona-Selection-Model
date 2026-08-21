@@ -1,0 +1,161 @@
+{
+  "created_utc": "2026-08-18T23:15:40.719307+00:00",
+  "stage": "e1_inspan_redose",
+  "pass_gate": {
+    "rho_signed": 0.8,
+    "margin": 2.0,
+    "min_usable": 4
+  },
+  "n_passing": 2,
+  "n_total": 4,
+  "table": [
+    {
+      "trait": "neuroticism",
+      "pole": "high",
+      "layer": 20,
+      "span": 1786.56,
+      "frac_lo": 0.05,
+      "frac_hi": 0.55,
+      "magnitude_grid_abs": [
+        89.33,
+        216.94,
+        344.55,
+        472.16,
+        599.77,
+        727.38,
+        854.99,
+        982.61
+      ],
+      "note": "N-up: window where gemma_final rose 3.30\u21923.39 before span-edge collapse",
+      "report": "results/e1_inspan/validated_sweep_neuroticism_pc1_high.json",
+      "n_usable": 9,
+      "rho_signed_dose_vs_ev": 0.9833,
+      "rho_abs_alpha_vs_ev": 0.9833,
+      "baseline_ev": 3.2943,
+      "best_ev": 3.377,
+      "best_magnitude": 982.6056,
+      "delta": 0.0827,
+      "sign_correct": true,
+      "max_control_abs_delta": 0.0064,
+      "margin": 12.922,
+      "beats_controls": true,
+      "works": true,
+      "gate": {
+        "pass_rho": 0.8,
+        "pass_margin": 2.0,
+        "min_usable": 4
+      }
+    },
+    {
+      "trait": "extraversion",
+      "pole": "high",
+      "layer": 15,
+      "span": 741.36,
+      "frac_lo": 0.4,
+      "frac_hi": 1.0,
+      "magnitude_grid_abs": [
+        296.55,
+        360.09,
+        423.64,
+        487.18,
+        550.73,
+        614.27,
+        677.82,
+        741.36
+      ],
+      "note": "E-up: skip 0\u20130.3\u00d7 dead zone; dense 0.4\u20131.0\u00d7",
+      "report": "results/e1_inspan/validated_sweep_extraversion_pc1_high.json",
+      "n_usable": 9,
+      "rho_signed_dose_vs_ev": 0.75,
+      "rho_abs_alpha_vs_ev": 0.75,
+      "baseline_ev": 3.0692,
+      "best_ev": 3.3956,
+      "best_magnitude": 677.8181,
+      "delta": 0.3264,
+      "sign_correct": true,
+      "max_control_abs_delta": 0.0,
+      "margin": null,
+      "beats_controls": true,
+      "works": false,
+      "gate": {
+        "pass_rho": 0.8,
+        "pass_margin": 2.0,
+        "min_usable": 4
+      }
+    },
+    {
+      "trait": "extraversion",
+      "pole": "low",
+      "layer": 15,
+      "span": 741.36,
+      "frac_lo": 0.4,
+      "frac_hi": 1.0,
+      "magnitude_grid_abs": [
+        296.55,
+        360.09,
+        423.64,
+        487.18,
+        550.73,
+        614.27,
+        677.82,
+        741.36
+      ],
+      "note": "E-down: same window, negative sign",
+      "report": "results/e1_inspan/validated_sweep_extraversion_pc1_low.json",
+      "n_usable": 2,
+      "rho_signed_dose_vs_ev": null,
+      "rho_abs_alpha_vs_ev": -1.0,
+      "baseline_ev": 3.0692,
+      "best_ev": 2.9059,
+      "best_magnitude": -296.5454,
+      "delta": -0.1633,
+      "sign_correct": true,
+      "max_control_abs_delta": 0.0,
+      "margin": null,
+      "beats_controls": true,
+      "works": false,
+      "gate": {
+        "pass_rho": 0.8,
+        "pass_margin": 2.0,
+        "min_usable": 4
+      }
+    },
+    {
+      "trait": "agreeableness",
+      "pole": "low",
+      "layer": 15,
+      "span": 819.3,
+      "frac_lo": 0.15,
+      "frac_hi": 1.3,
+      "magnitude_grid_abs": [
+        122.89,
+        257.49,
+        392.09,
+        526.69,
+        661.29,
+        795.89,
+        930.49,
+        1065.09
+      ],
+      "note": "A-down: widen past L15 span; effect previously at |mag|\u22481088",
+      "report": "results/e1_inspan/validated_sweep_agreeableness_pc1_low.json",
+      "n_usable": 9,
+      "rho_signed_dose_vs_ev": 0.85,
+      "rho_abs_alpha_vs_ev": -0.85,
+      "baseline_ev": 2.9976,
+      "best_ev": 2.8216,
+      "best_magnitude": -1065.0855,
+      "delta": -0.176,
+      "sign_correct": true,
+      "max_control_abs_delta": 0.0586,
+      "margin": 3.003,
+      "beats_controls": true,
+      "works": true,
+      "gate": {
+        "pass_rho": 0.8,
+        "pass_margin": 2.0,
+        "min_usable": 4
+      }
+    }
+  ]
+}

@@ -1,0 +1,3698 @@
+{
+  "created_utc": "2026-08-19T22:14:04.092637+00:00",
+  "stage": "e1_vector_geometry",
+  "question": "Their vector is a two-arm contrast (or LR weights); ours is PC1 over nine prompted intensity levels. Does their direction order the nine levels? If not, the vector is a genuine difference and not merely injection scope.",
+  "model_id": "unsloth/Meta-Llama-3.1-8B-Instruct",
+  "trait": "conscientiousness",
+  "n_levels": 9,
+  "n_layers": 32,
+  "variants": {
+    "meandiff/statement": {
+      "n_layers_present": 32,
+      "max_abs_cos_ours_theirs": 0.0668,
+      "mean_abs_cos_ours_theirs": 0.0223,
+      "best_layer_theirs": 8,
+      "best_rho_theirs": 0.8333,
+      "best_mono_theirs": 0.625,
+      "best_layer_ours": 7,
+      "best_rho_ours": 0.8833,
+      "best_mono_ours": 0.75,
+      "per_layer": [
+        {
+          "layer": 0,
+          "cos_ours_theirs": 0.0114,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.4333,
+            "monotone_fraction": 0.5,
+            "span": 0.0027,
+            "projections": [
+              0.018,
+              0.018,
+              0.014,
+              0.02,
+              -0.005,
+              0.022,
+              0.016,
+              0.02,
+              0.021
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.25,
+            "monotone_fraction": 0.5,
+            "span": 0.0002,
+            "projections": [
+              0.01,
+              0.01,
+              0.009,
+              0.01,
+              0.01,
+              0.01,
+              0.01,
+              0.01,
+              0.01
+            ]
+          }
+        },
+        {
+          "layer": 1,
+          "cos_ours_theirs": 0.0022,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6167,
+            "monotone_fraction": 0.5,
+            "span": 0.0048,
+            "projections": [
+              -0.099,
+              -0.099,
+              -0.104,
+              -0.095,
+              -0.137,
+              -0.091,
+              -0.098,
+              -0.094,
+              -0.094
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.3667,
+            "monotone_fraction": 0.5,
+            "span": 0.0001,
+            "projections": [
+              -0.016,
+              -0.016,
+              -0.016,
+              -0.015,
+              -0.016,
+              -0.016,
+              -0.016,
+              -0.016,
+              -0.016
+            ]
+          }
+        },
+        {
+          "layer": 2,
+          "cos_ours_theirs": 0.0187,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6167,
+            "monotone_fraction": 0.5,
+            "span": 0.0058,
+            "projections": [
+              -0.061,
+              -0.061,
+              -0.066,
+              -0.056,
+              -0.112,
+              -0.052,
+              -0.059,
+              -0.054,
+              -0.056
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6,
+            "monotone_fraction": 0.5,
+            "span": 0.0006,
+            "projections": [
+              -0.026,
+              -0.025,
+              -0.026,
+              -0.025,
+              -0.026,
+              -0.025,
+              -0.025,
+              -0.025,
+              -0.025
+            ]
+          }
+        },
+        {
+          "layer": 3,
+          "cos_ours_theirs": 0.049,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6333,
+            "monotone_fraction": 0.5,
+            "span": 0.0116,
+            "projections": [
+              -0.252,
+              -0.252,
+              -0.253,
+              -0.242,
+              -0.324,
+              -0.231,
+              -0.241,
+              -0.239,
+              -0.241
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.2667,
+            "monotone_fraction": 0.625,
+            "span": 0.0013,
+            "projections": [
+              -0.019,
+              -0.018,
+              -0.017,
+              -0.017,
+              -0.021,
+              -0.017,
+              -0.017,
+              -0.017,
+              -0.018
+            ]
+          }
+        },
+        {
+          "layer": 4,
+          "cos_ours_theirs": -0.0106,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 0.0184,
+            "projections": [
+              0.389,
+              0.39,
+              0.385,
+              0.394,
+              0.297,
+              0.413,
+              0.406,
+              0.41,
+              0.408
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.6833,
+            "monotone_fraction": 0.625,
+            "span": 0.0008,
+            "projections": [
+              -0.034,
+              -0.033,
+              -0.033,
+              -0.033,
+              -0.034,
+              -0.035,
+              -0.036,
+              -0.035,
+              -0.035
+            ]
+          }
+        },
+        {
+          "layer": 5,
+          "cos_ours_theirs": -0.018,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7,
+            "monotone_fraction": 0.5,
+            "span": 0.0521,
+            "projections": [
+              0.141,
+              0.138,
+              0.137,
+              0.139,
+              0.047,
+              0.186,
+              0.191,
+              0.194,
+              0.193
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.7333,
+            "monotone_fraction": 0.5,
+            "span": 0.0019,
+            "projections": [
+              -0.01,
+              -0.01,
+              -0.009,
+              -0.01,
+              -0.01,
+              -0.011,
+              -0.012,
+              -0.012,
+              -0.012
+            ]
+          }
+        },
+        {
+          "layer": 6,
+          "cos_ours_theirs": 0.0332,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.85,
+            "monotone_fraction": 0.75,
+            "span": 0.1373,
+            "projections": [
+              0.275,
+              0.277,
+              0.266,
+              0.257,
+              0.291,
+              0.38,
+              0.392,
+              0.406,
+              0.412
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8167,
+            "monotone_fraction": 0.625,
+            "span": 0.0042,
+            "projections": [
+              0.034,
+              0.038,
+              0.035,
+              0.035,
+              0.037,
+              0.04,
+              0.038,
+              0.043,
+              0.038
+            ]
+          }
+        },
+        {
+          "layer": 7,
+          "cos_ours_theirs": -0.0094,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8833,
+            "monotone_fraction": 0.75,
+            "span": 0.1933,
+            "projections": [
+              0.159,
+              0.157,
+              0.16,
+              0.153,
+              0.178,
+              0.334,
+              0.338,
+              0.338,
+              0.352
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.5167,
+            "monotone_fraction": 0.5,
+            "span": 0.0032,
+            "projections": [
+              -0.167,
+              -0.166,
+              -0.167,
+              -0.167,
+              -0.167,
+              -0.168,
+              -0.168,
+              -0.167,
+              -0.17
+            ]
+          }
+        },
+        {
+          "layer": 8,
+          "cos_ours_theirs": 0.0504,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8833,
+            "monotone_fraction": 0.75,
+            "span": 0.2493,
+            "projections": [
+              -0.375,
+              -0.352,
+              -0.343,
+              -0.336,
+              -0.2,
+              -0.118,
+              -0.119,
+              -0.111,
+              -0.126
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8333,
+            "monotone_fraction": 0.625,
+            "span": 0.0123,
+            "projections": [
+              -0.295,
+              -0.292,
+              -0.296,
+              -0.295,
+              -0.29,
+              -0.284,
+              -0.285,
+              -0.277,
+              -0.282
+            ]
+          }
+        },
+        {
+          "layer": 9,
+          "cos_ours_theirs": 0.0039,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7,
+            "monotone_fraction": 0.5,
+            "span": 0.1524,
+            "projections": [
+              0.976,
+              0.965,
+              0.981,
+              0.988,
+              0.69,
+              1.152,
+              1.114,
+              1.129,
+              1.128
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.6,
+            "monotone_fraction": 0.75,
+            "span": 0.0059,
+            "projections": [
+              -0.187,
+              -0.189,
+              -0.189,
+              -0.189,
+              -0.192,
+              -0.189,
+              -0.183,
+              -0.192,
+              -0.193
+            ]
+          }
+        },
+        {
+          "layer": 10,
+          "cos_ours_theirs": 0.0478,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.4522,
+            "projections": [
+              -0.844,
+              -0.788,
+              -0.883,
+              -0.859,
+              -0.448,
+              -0.428,
+              -0.47,
+              -0.375,
+              -0.392
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.0198,
+            "projections": [
+              -0.146,
+              -0.141,
+              -0.153,
+              -0.149,
+              -0.131,
+              -0.126,
+              -0.137,
+              -0.122,
+              -0.126
+            ]
+          }
+        },
+        {
+          "layer": 11,
+          "cos_ours_theirs": 0.0342,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8333,
+            "monotone_fraction": 0.625,
+            "span": 0.5202,
+            "projections": [
+              -0.536,
+              -0.487,
+              -0.586,
+              -0.567,
+              -0.174,
+              -0.121,
+              -0.163,
+              0.003,
+              -0.016
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7167,
+            "monotone_fraction": 0.625,
+            "span": 0.0111,
+            "projections": [
+              -0.017,
+              -0.017,
+              -0.032,
+              -0.031,
+              -0.019,
+              -0.011,
+              -0.013,
+              -0.004,
+              -0.006
+            ]
+          }
+        },
+        {
+          "layer": 12,
+          "cos_ours_theirs": 0.0668,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7833,
+            "monotone_fraction": 0.5,
+            "span": 0.7458,
+            "projections": [
+              -0.371,
+              -0.309,
+              -0.429,
+              -0.428,
+              0.271,
+              0.185,
+              0.143,
+              0.398,
+              0.375
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6333,
+            "monotone_fraction": 0.625,
+            "span": 0.0251,
+            "projections": [
+              -0.548,
+              -0.538,
+              -0.599,
+              -0.585,
+              -0.538,
+              -0.511,
+              -0.539,
+              -0.516,
+              -0.523
+            ]
+          }
+        },
+        {
+          "layer": 13,
+          "cos_ours_theirs": 0.0308,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7833,
+            "monotone_fraction": 0.5,
+            "span": 1.4383,
+            "projections": [
+              -1.091,
+              -0.951,
+              -1.223,
+              -1.169,
+              0.135,
+              -0.189,
+              -0.453,
+              0.419,
+              0.348
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7333,
+            "monotone_fraction": 0.625,
+            "span": 0.0469,
+            "projections": [
+              -0.283,
+              -0.268,
+              -0.304,
+              -0.287,
+              -0.275,
+              -0.236,
+              -0.251,
+              -0.235,
+              -0.236
+            ]
+          }
+        },
+        {
+          "layer": 14,
+          "cos_ours_theirs": 0.0465,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 1.4076,
+            "projections": [
+              -0.947,
+              -0.771,
+              -1.096,
+              -1.032,
+              0.805,
+              -0.145,
+              -0.358,
+              0.525,
+              0.461
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.5,
+            "monotone_fraction": 0.625,
+            "span": 0.0597,
+            "projections": [
+              -0.29,
+              -0.274,
+              -0.334,
+              -0.304,
+              -0.227,
+              -0.258,
+              -0.301,
+              -0.235,
+              -0.23
+            ]
+          }
+        },
+        {
+          "layer": 15,
+          "cos_ours_theirs": 0.0652,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 1.5299,
+            "projections": [
+              -0.645,
+              -0.414,
+              -0.744,
+              -0.693,
+              1.669,
+              0.163,
+              -0.132,
+              0.944,
+              0.885
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.1372,
+            "projections": [
+              -0.508,
+              -0.499,
+              -0.53,
+              -0.513,
+              -0.396,
+              -0.421,
+              -0.461,
+              -0.385,
+              -0.371
+            ]
+          }
+        },
+        {
+          "layer": 16,
+          "cos_ours_theirs": 0.0205,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1,
+            "monotone_fraction": 0.5,
+            "span": 0.2828,
+            "projections": [
+              0.644,
+              0.496,
+              -0.511,
+              -0.053,
+              -1.548,
+              -1.096,
+              -1.703,
+              0.892,
+              0.926
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7667,
+            "monotone_fraction": 0.625,
+            "span": 0.1984,
+            "projections": [
+              -0.545,
+              -0.524,
+              -0.588,
+              -0.541,
+              -0.395,
+              -0.468,
+              -0.535,
+              -0.36,
+              -0.347
+            ]
+          }
+        },
+        {
+          "layer": 17,
+          "cos_ours_theirs": 0.0065,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.3333,
+            "monotone_fraction": 0.5,
+            "span": 0.3858,
+            "projections": [
+              -1.198,
+              -0.944,
+              0.021,
+              -0.479,
+              3.627,
+              0.907,
+              1.329,
+              -0.726,
+              -0.812
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7167,
+            "monotone_fraction": 0.625,
+            "span": 0.2639,
+            "projections": [
+              -0.484,
+              -0.449,
+              -0.558,
+              -0.477,
+              -0.316,
+              -0.376,
+              -0.479,
+              -0.224,
+              -0.221
+            ]
+          }
+        },
+        {
+          "layer": 18,
+          "cos_ours_theirs": 0.022,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.4833,
+            "monotone_fraction": 0.5,
+            "span": 0.7353,
+            "projections": [
+              -1.343,
+              -1.058,
+              -0.086,
+              -0.61,
+              4.052,
+              0.898,
+              1.274,
+              -0.521,
+              -0.608
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.2886,
+            "projections": [
+              -0.411,
+              -0.378,
+              -0.478,
+              -0.413,
+              -0.205,
+              -0.267,
+              -0.35,
+              -0.14,
+              -0.123
+            ]
+          }
+        },
+        {
+          "layer": 19,
+          "cos_ours_theirs": 0.0157,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1333,
+            "monotone_fraction": 0.5,
+            "span": 0.3134,
+            "projections": [
+              1.255,
+              1.08,
+              -0.703,
+              0.096,
+              -2.639,
+              -1.565,
+              -2.487,
+              1.504,
+              1.569
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6167,
+            "monotone_fraction": 0.625,
+            "span": 0.2129,
+            "projections": [
+              -0.758,
+              -0.742,
+              -0.855,
+              -0.792,
+              -0.605,
+              -0.704,
+              -0.773,
+              -0.559,
+              -0.546
+            ]
+          }
+        },
+        {
+          "layer": 20,
+          "cos_ours_theirs": 0.0074,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1333,
+            "monotone_fraction": 0.5,
+            "span": 0.6486,
+            "projections": [
+              1.512,
+              1.385,
+              -0.516,
+              0.373,
+              -2.529,
+              -1.312,
+              -2.41,
+              2.132,
+              2.161
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.184,
+            "projections": [
+              -0.515,
+              -0.502,
+              -0.59,
+              -0.539,
+              -0.391,
+              -0.431,
+              -0.47,
+              -0.357,
+              -0.331
+            ]
+          }
+        },
+        {
+          "layer": 21,
+          "cos_ours_theirs": -0.0055,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1,
+            "monotone_fraction": 0.5,
+            "span": 0.9667,
+            "projections": [
+              1.527,
+              1.448,
+              -0.741,
+              0.241,
+              -2.201,
+              -1.542,
+              -2.804,
+              2.485,
+              2.493
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.2397,
+            "projections": [
+              -0.363,
+              -0.319,
+              -0.378,
+              -0.349,
+              -0.127,
+              -0.186,
+              -0.19,
+              -0.149,
+              -0.123
+            ]
+          }
+        },
+        {
+          "layer": 22,
+          "cos_ours_theirs": 0.0197,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 1.5143,
+            "projections": [
+              0.726,
+              0.766,
+              -1.971,
+              -0.813,
+              -2.185,
+              -2.704,
+              -4.233,
+              2.294,
+              2.24
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.2357,
+            "projections": [
+              -0.023,
+              0.014,
+              -0.094,
+              -0.052,
+              0.099,
+              0.08,
+              0.034,
+              0.181,
+              0.212
+            ]
+          }
+        },
+        {
+          "layer": 23,
+          "cos_ours_theirs": 0.0153,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0667,
+            "monotone_fraction": 0.75,
+            "span": 1.3513,
+            "projections": [
+              0.915,
+              0.901,
+              -2.027,
+              -0.771,
+              -2.889,
+              -3.073,
+              -4.651,
+              2.308,
+              2.266
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.2648,
+            "projections": [
+              -0.015,
+              0.018,
+              -0.111,
+              -0.067,
+              0.174,
+              0.094,
+              0.052,
+              0.214,
+              0.249
+            ]
+          }
+        },
+        {
+          "layer": 24,
+          "cos_ours_theirs": 0.009,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0667,
+            "monotone_fraction": 0.75,
+            "span": 1.3158,
+            "projections": [
+              1.506,
+              1.464,
+              -1.709,
+              -0.362,
+              -2.821,
+              -2.937,
+              -4.617,
+              2.868,
+              2.822
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.2825,
+            "projections": [
+              0.134,
+              0.19,
+              0.047,
+              0.091,
+              0.389,
+              0.29,
+              0.239,
+              0.393,
+              0.417
+            ]
+          }
+        },
+        {
+          "layer": 25,
+          "cos_ours_theirs": 0.0172,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 1.6239,
+            "projections": [
+              3.092,
+              3.116,
+              -0.406,
+              1.096,
+              -1.388,
+              -1.612,
+              -3.522,
+              4.803,
+              4.716
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.3439,
+            "projections": [
+              0.237,
+              0.292,
+              0.101,
+              0.15,
+              0.506,
+              0.38,
+              0.326,
+              0.548,
+              0.581
+            ]
+          }
+        },
+        {
+          "layer": 26,
+          "cos_ours_theirs": 0.0118,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 2.5631,
+            "projections": [
+              1.684,
+              1.916,
+              -2.19,
+              -0.425,
+              -2.05,
+              -3.353,
+              -5.621,
+              4.514,
+              4.247
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.3106,
+            "projections": [
+              0.814,
+              0.862,
+              0.692,
+              0.737,
+              1.08,
+              1.003,
+              0.951,
+              1.087,
+              1.125
+            ]
+          }
+        },
+        {
+          "layer": 27,
+          "cos_ours_theirs": -0.0056,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 3.1968,
+            "projections": [
+              -0.277,
+              0.081,
+              -4.551,
+              -2.573,
+              -3.675,
+              -5.737,
+              -8.255,
+              3.292,
+              2.92
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.55,
+            "monotone_fraction": 0.5,
+            "span": 0.2941,
+            "projections": [
+              0.598,
+              0.651,
+              0.551,
+              0.57,
+              0.959,
+              0.942,
+              0.923,
+              0.864,
+              0.893
+            ]
+          }
+        },
+        {
+          "layer": 28,
+          "cos_ours_theirs": -0.0087,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 3.482,
+            "projections": [
+              1.024,
+              1.39,
+              -3.911,
+              -1.715,
+              -3.022,
+              -5.338,
+              -8.247,
+              4.919,
+              4.506
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.55,
+            "monotone_fraction": 0.5,
+            "span": 0.3223,
+            "projections": [
+              0.854,
+              0.917,
+              0.805,
+              0.825,
+              1.279,
+              1.266,
+              1.247,
+              1.147,
+              1.177
+            ]
+          }
+        },
+        {
+          "layer": 29,
+          "cos_ours_theirs": -0.0172,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 3.6686,
+            "projections": [
+              2.213,
+              2.579,
+              -3.355,
+              -0.796,
+              -4.05,
+              -5.183,
+              -8.486,
+              6.349,
+              5.882
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6333,
+            "monotone_fraction": 0.5,
+            "span": 0.471,
+            "projections": [
+              0.88,
+              0.971,
+              0.88,
+              0.888,
+              1.53,
+              1.485,
+              1.485,
+              1.31,
+              1.351
+            ]
+          }
+        },
+        {
+          "layer": 30,
+          "cos_ours_theirs": -0.0117,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 4.4111,
+            "projections": [
+              2.75,
+              3.36,
+              -3.508,
+              -0.618,
+              -3.737,
+              -5.864,
+              -9.605,
+              7.785,
+              7.161
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6167,
+            "monotone_fraction": 0.75,
+            "span": 0.7011,
+            "projections": [
+              1.193,
+              1.26,
+              1.132,
+              1.143,
+              1.93,
+              1.955,
+              1.955,
+              1.814,
+              1.894
+            ]
+          }
+        },
+        {
+          "layer": 31,
+          "cos_ours_theirs": -0.0216,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 7.0638,
+            "projections": [
+              -5.521,
+              -4.077,
+              -15.057,
+              -10.365,
+              -14.066,
+              -21.478,
+              -27.911,
+              2.812,
+              1.543
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 1.2987,
+            "projections": [
+              -0.887,
+              -0.827,
+              -0.839,
+              -0.794,
+              0.82,
+              0.593,
+              0.593,
+              0.189,
+              0.412
+            ]
+          }
+        }
+      ]
+    },
+    "meandiff/binary_choice": {
+      "n_layers_present": 32,
+      "max_abs_cos_ours_theirs": 0.0795,
+      "mean_abs_cos_ours_theirs": 0.0245,
+      "best_layer_theirs": 27,
+      "best_rho_theirs": 0.8,
+      "best_mono_theirs": 0.625,
+      "best_layer_ours": 7,
+      "best_rho_ours": 0.8833,
+      "best_mono_ours": 0.75,
+      "per_layer": [
+        {
+          "layer": 0,
+          "cos_ours_theirs": -0.0358,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.4333,
+            "monotone_fraction": 0.5,
+            "span": 0.0027,
+            "projections": [
+              0.018,
+              0.018,
+              0.014,
+              0.02,
+              -0.005,
+              0.022,
+              0.016,
+              0.02,
+              0.021
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.3333,
+            "monotone_fraction": 0.5,
+            "span": 0.0001,
+            "projections": [
+              -0.036,
+              -0.036,
+              -0.035,
+              -0.036,
+              -0.035,
+              -0.036,
+              -0.035,
+              -0.035,
+              -0.036
+            ]
+          }
+        },
+        {
+          "layer": 1,
+          "cos_ours_theirs": -0.0229,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6167,
+            "monotone_fraction": 0.5,
+            "span": 0.0048,
+            "projections": [
+              -0.099,
+              -0.099,
+              -0.104,
+              -0.095,
+              -0.137,
+              -0.091,
+              -0.098,
+              -0.094,
+              -0.094
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.3667,
+            "monotone_fraction": 0.5,
+            "span": 0.0002,
+            "projections": [
+              -0.037,
+              -0.037,
+              -0.037,
+              -0.037,
+              -0.036,
+              -0.037,
+              -0.037,
+              -0.037,
+              -0.037
+            ]
+          }
+        },
+        {
+          "layer": 2,
+          "cos_ours_theirs": -0.0001,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6167,
+            "monotone_fraction": 0.5,
+            "span": 0.0058,
+            "projections": [
+              -0.061,
+              -0.061,
+              -0.066,
+              -0.056,
+              -0.112,
+              -0.052,
+              -0.059,
+              -0.054,
+              -0.056
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.3667,
+            "monotone_fraction": 0.625,
+            "span": 0.0002,
+            "projections": [
+              -0.032,
+              -0.032,
+              -0.032,
+              -0.033,
+              -0.032,
+              -0.032,
+              -0.032,
+              -0.032,
+              -0.032
+            ]
+          }
+        },
+        {
+          "layer": 3,
+          "cos_ours_theirs": 0.0015,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6333,
+            "monotone_fraction": 0.5,
+            "span": 0.0116,
+            "projections": [
+              -0.252,
+              -0.252,
+              -0.253,
+              -0.242,
+              -0.324,
+              -0.231,
+              -0.241,
+              -0.239,
+              -0.241
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.2,
+            "monotone_fraction": 0.625,
+            "span": 0.0003,
+            "projections": [
+              -0.042,
+              -0.043,
+              -0.042,
+              -0.043,
+              -0.043,
+              -0.042,
+              -0.043,
+              -0.043,
+              -0.043
+            ]
+          }
+        },
+        {
+          "layer": 4,
+          "cos_ours_theirs": -0.0028,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 0.0184,
+            "projections": [
+              0.389,
+              0.39,
+              0.385,
+              0.394,
+              0.297,
+              0.413,
+              0.406,
+              0.41,
+              0.408
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.7167,
+            "monotone_fraction": 0.625,
+            "span": 0.0029,
+            "projections": [
+              -0.038,
+              -0.038,
+              -0.039,
+              -0.04,
+              -0.041,
+              -0.043,
+              -0.042,
+              -0.04,
+              -0.041
+            ]
+          }
+        },
+        {
+          "layer": 5,
+          "cos_ours_theirs": -0.0062,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7,
+            "monotone_fraction": 0.5,
+            "span": 0.0521,
+            "projections": [
+              0.141,
+              0.138,
+              0.137,
+              0.139,
+              0.047,
+              0.186,
+              0.191,
+              0.194,
+              0.193
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.5,
+            "monotone_fraction": 0.75,
+            "span": 0.0032,
+            "projections": [
+              0.096,
+              0.098,
+              0.094,
+              0.092,
+              0.092,
+              0.091,
+              0.091,
+              0.094,
+              0.093
+            ]
+          }
+        },
+        {
+          "layer": 6,
+          "cos_ours_theirs": -0.0065,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.85,
+            "monotone_fraction": 0.75,
+            "span": 0.1373,
+            "projections": [
+              0.275,
+              0.277,
+              0.266,
+              0.257,
+              0.291,
+              0.38,
+              0.392,
+              0.406,
+              0.412
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.3,
+            "monotone_fraction": 0.5,
+            "span": 0.0023,
+            "projections": [
+              -0.002,
+              -0.0,
+              -0.001,
+              -0.001,
+              -0.005,
+              -0.002,
+              -0.002,
+              -0.001,
+              -0.005
+            ]
+          }
+        },
+        {
+          "layer": 7,
+          "cos_ours_theirs": -0.0152,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8833,
+            "monotone_fraction": 0.75,
+            "span": 0.1933,
+            "projections": [
+              0.159,
+              0.157,
+              0.16,
+              0.153,
+              0.178,
+              0.334,
+              0.338,
+              0.338,
+              0.352
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.3333,
+            "monotone_fraction": 0.625,
+            "span": 0.0058,
+            "projections": [
+              -0.119,
+              -0.114,
+              -0.118,
+              -0.119,
+              -0.121,
+              -0.122,
+              -0.119,
+              -0.117,
+              -0.125
+            ]
+          }
+        },
+        {
+          "layer": 8,
+          "cos_ours_theirs": 0.0148,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8833,
+            "monotone_fraction": 0.75,
+            "span": 0.2493,
+            "projections": [
+              -0.375,
+              -0.352,
+              -0.343,
+              -0.336,
+              -0.2,
+              -0.118,
+              -0.119,
+              -0.111,
+              -0.126
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.55,
+            "monotone_fraction": 0.5,
+            "span": 0.0031,
+            "projections": [
+              -0.004,
+              0.001,
+              -0.003,
+              -0.002,
+              -0.012,
+              0.003,
+              0.002,
+              0.005,
+              -0.001
+            ]
+          }
+        },
+        {
+          "layer": 9,
+          "cos_ours_theirs": 0.0003,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7,
+            "monotone_fraction": 0.5,
+            "span": 0.1524,
+            "projections": [
+              0.976,
+              0.965,
+              0.981,
+              0.988,
+              0.69,
+              1.152,
+              1.114,
+              1.129,
+              1.128
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.25,
+            "monotone_fraction": 0.5,
+            "span": 0.0035,
+            "projections": [
+              0.118,
+              0.123,
+              0.124,
+              0.119,
+              0.118,
+              0.12,
+              0.122,
+              0.12,
+              0.115
+            ]
+          }
+        },
+        {
+          "layer": 10,
+          "cos_ours_theirs": 0.008,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.4522,
+            "projections": [
+              -0.844,
+              -0.788,
+              -0.883,
+              -0.859,
+              -0.448,
+              -0.428,
+              -0.47,
+              -0.375,
+              -0.392
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.5667,
+            "monotone_fraction": 0.5,
+            "span": 0.0037,
+            "projections": [
+              0.054,
+              0.057,
+              0.057,
+              0.053,
+              0.056,
+              0.06,
+              0.057,
+              0.061,
+              0.058
+            ]
+          }
+        },
+        {
+          "layer": 11,
+          "cos_ours_theirs": 0.0343,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8333,
+            "monotone_fraction": 0.625,
+            "span": 0.5202,
+            "projections": [
+              -0.536,
+              -0.487,
+              -0.586,
+              -0.567,
+              -0.174,
+              -0.121,
+              -0.163,
+              0.003,
+              -0.016
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7,
+            "monotone_fraction": 0.5,
+            "span": 0.0215,
+            "projections": [
+              -0.027,
+              -0.026,
+              -0.025,
+              -0.03,
+              -0.038,
+              -0.011,
+              -0.012,
+              -0.003,
+              -0.006
+            ]
+          }
+        },
+        {
+          "layer": 12,
+          "cos_ours_theirs": -0.0282,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7833,
+            "monotone_fraction": 0.5,
+            "span": 0.7458,
+            "projections": [
+              -0.371,
+              -0.309,
+              -0.429,
+              -0.428,
+              0.271,
+              0.185,
+              0.143,
+              0.398,
+              0.375
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.4667,
+            "monotone_fraction": 0.75,
+            "span": 0.029,
+            "projections": [
+              -0.386,
+              -0.383,
+              -0.389,
+              -0.391,
+              -0.426,
+              -0.375,
+              -0.389,
+              -0.41,
+              -0.415
+            ]
+          }
+        },
+        {
+          "layer": 13,
+          "cos_ours_theirs": -0.0253,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7833,
+            "monotone_fraction": 0.5,
+            "span": 1.4383,
+            "projections": [
+              -1.091,
+              -0.951,
+              -1.223,
+              -1.169,
+              0.135,
+              -0.189,
+              -0.453,
+              0.419,
+              0.348
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.2167,
+            "monotone_fraction": 0.5,
+            "span": 0.032,
+            "projections": [
+              -0.249,
+              -0.243,
+              -0.227,
+              -0.246,
+              -0.285,
+              -0.239,
+              -0.211,
+              -0.277,
+              -0.281
+            ]
+          }
+        },
+        {
+          "layer": 14,
+          "cos_ours_theirs": -0.034,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 1.4076,
+            "projections": [
+              -0.947,
+              -0.771,
+              -1.096,
+              -1.032,
+              0.805,
+              -0.145,
+              -0.358,
+              0.525,
+              0.461
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.3,
+            "monotone_fraction": 0.5,
+            "span": 0.0532,
+            "projections": [
+              -0.357,
+              -0.355,
+              -0.307,
+              -0.331,
+              -0.367,
+              -0.322,
+              -0.292,
+              -0.401,
+              -0.41
+            ]
+          }
+        },
+        {
+          "layer": 15,
+          "cos_ours_theirs": -0.0215,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 1.5299,
+            "projections": [
+              -0.645,
+              -0.414,
+              -0.744,
+              -0.693,
+              1.669,
+              0.163,
+              -0.132,
+              0.944,
+              0.885
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.1667,
+            "monotone_fraction": 0.625,
+            "span": 0.0587,
+            "projections": [
+              -0.275,
+              -0.267,
+              -0.222,
+              -0.256,
+              -0.245,
+              -0.234,
+              -0.184,
+              -0.33,
+              -0.334
+            ]
+          }
+        },
+        {
+          "layer": 16,
+          "cos_ours_theirs": -0.0184,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1,
+            "monotone_fraction": 0.5,
+            "span": 0.2828,
+            "projections": [
+              0.644,
+              0.496,
+              -0.511,
+              -0.053,
+              -1.548,
+              -1.096,
+              -1.703,
+              0.892,
+              0.926
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.3667,
+            "monotone_fraction": 0.5,
+            "span": 0.0453,
+            "projections": [
+              -0.244,
+              -0.24,
+              -0.214,
+              -0.237,
+              -0.234,
+              -0.253,
+              -0.212,
+              -0.288,
+              -0.289
+            ]
+          }
+        },
+        {
+          "layer": 17,
+          "cos_ours_theirs": 0.0291,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.3333,
+            "monotone_fraction": 0.5,
+            "span": 0.3858,
+            "projections": [
+              -1.198,
+              -0.944,
+              0.021,
+              -0.479,
+              3.627,
+              0.907,
+              1.329,
+              -0.726,
+              -0.812
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.45,
+            "monotone_fraction": 0.625,
+            "span": 0.151,
+            "projections": [
+              -0.026,
+              -0.029,
+              0.036,
+              -0.012,
+              0.044,
+              -0.049,
+              0.031,
+              -0.173,
+              -0.177
+            ]
+          }
+        },
+        {
+          "layer": 18,
+          "cos_ours_theirs": 0.0563,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.4833,
+            "monotone_fraction": 0.5,
+            "span": 0.7353,
+            "projections": [
+              -1.343,
+              -1.058,
+              -0.086,
+              -0.61,
+              4.052,
+              0.898,
+              1.274,
+              -0.521,
+              -0.608
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.1833,
+            "monotone_fraction": 0.5,
+            "span": 0.0964,
+            "projections": [
+              -0.177,
+              -0.171,
+              -0.06,
+              -0.126,
+              0.079,
+              -0.108,
+              -0.017,
+              -0.273,
+              -0.273
+            ]
+          }
+        },
+        {
+          "layer": 19,
+          "cos_ours_theirs": -0.0756,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1333,
+            "monotone_fraction": 0.5,
+            "span": 0.3134,
+            "projections": [
+              1.255,
+              1.08,
+              -0.703,
+              0.096,
+              -2.639,
+              -1.565,
+              -2.487,
+              1.504,
+              1.569
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.1833,
+            "monotone_fraction": 0.5,
+            "span": 0.1134,
+            "projections": [
+              -0.409,
+              -0.405,
+              -0.218,
+              -0.301,
+              -0.226,
+              -0.257,
+              -0.119,
+              -0.516,
+              -0.522
+            ]
+          }
+        },
+        {
+          "layer": 20,
+          "cos_ours_theirs": -0.0795,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1333,
+            "monotone_fraction": 0.5,
+            "span": 0.6486,
+            "projections": [
+              1.512,
+              1.385,
+              -0.516,
+              0.373,
+              -2.529,
+              -1.312,
+              -2.41,
+              2.132,
+              2.161
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.15,
+            "monotone_fraction": 0.5,
+            "span": 0.1309,
+            "projections": [
+              -0.455,
+              -0.453,
+              -0.262,
+              -0.342,
+              -0.223,
+              -0.294,
+              -0.151,
+              -0.581,
+              -0.586
+            ]
+          }
+        },
+        {
+          "layer": 21,
+          "cos_ours_theirs": -0.0513,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1,
+            "monotone_fraction": 0.5,
+            "span": 0.9667,
+            "projections": [
+              1.527,
+              1.448,
+              -0.741,
+              0.241,
+              -2.201,
+              -1.542,
+              -2.804,
+              2.485,
+              2.493
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.1833,
+            "monotone_fraction": 0.5,
+            "span": 0.0485,
+            "projections": [
+              -0.502,
+              -0.489,
+              -0.375,
+              -0.418,
+              -0.236,
+              -0.382,
+              -0.308,
+              -0.543,
+              -0.55
+            ]
+          }
+        },
+        {
+          "layer": 22,
+          "cos_ours_theirs": -0.0408,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 1.5143,
+            "projections": [
+              0.726,
+              0.766,
+              -1.971,
+              -0.813,
+              -2.185,
+              -2.704,
+              -4.233,
+              2.294,
+              2.24
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.2167,
+            "monotone_fraction": 0.5,
+            "span": 0.0044,
+            "projections": [
+              -0.795,
+              -0.786,
+              -0.663,
+              -0.717,
+              -0.473,
+              -0.65,
+              -0.568,
+              -0.779,
+              -0.791
+            ]
+          }
+        },
+        {
+          "layer": 23,
+          "cos_ours_theirs": -0.0338,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0667,
+            "monotone_fraction": 0.75,
+            "span": 1.3513,
+            "projections": [
+              0.915,
+              0.901,
+              -2.027,
+              -0.771,
+              -2.889,
+              -3.073,
+              -4.651,
+              2.308,
+              2.266
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.4,
+            "monotone_fraction": 0.5,
+            "span": 0.0583,
+            "projections": [
+              -1.336,
+              -1.305,
+              -1.21,
+              -1.244,
+              -0.956,
+              -1.163,
+              -1.108,
+              -1.243,
+              -1.277
+            ]
+          }
+        },
+        {
+          "layer": 24,
+          "cos_ours_theirs": -0.0426,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0667,
+            "monotone_fraction": 0.75,
+            "span": 1.3158,
+            "projections": [
+              1.506,
+              1.464,
+              -1.709,
+              -0.362,
+              -2.821,
+              -2.937,
+              -4.617,
+              2.868,
+              2.822
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.3333,
+            "monotone_fraction": 0.5,
+            "span": 0.0333,
+            "projections": [
+              -1.141,
+              -1.113,
+              -0.971,
+              -1.023,
+              -0.774,
+              -0.914,
+              -0.846,
+              -1.084,
+              -1.108
+            ]
+          }
+        },
+        {
+          "layer": 25,
+          "cos_ours_theirs": -0.0482,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 1.6239,
+            "projections": [
+              3.092,
+              3.116,
+              -0.406,
+              1.096,
+              -1.388,
+              -1.612,
+              -3.522,
+              4.803,
+              4.716
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.0833,
+            "monotone_fraction": 0.625,
+            "span": 0.0452,
+            "projections": [
+              -0.518,
+              -0.495,
+              -0.305,
+              -0.377,
+              -0.296,
+              -0.268,
+              -0.151,
+              -0.547,
+              -0.563
+            ]
+          }
+        },
+        {
+          "layer": 26,
+          "cos_ours_theirs": -0.02,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 2.5631,
+            "projections": [
+              1.684,
+              1.916,
+              -2.19,
+              -0.425,
+              -2.05,
+              -3.353,
+              -5.621,
+              4.514,
+              4.247
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.4833,
+            "monotone_fraction": 0.5,
+            "span": 0.098,
+            "projections": [
+              -1.24,
+              -1.19,
+              -1.096,
+              -1.107,
+              -0.837,
+              -1.018,
+              -0.991,
+              -1.088,
+              -1.142
+            ]
+          }
+        },
+        {
+          "layer": 27,
+          "cos_ours_theirs": 0.0005,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 3.1968,
+            "projections": [
+              -0.277,
+              0.081,
+              -4.551,
+              -2.573,
+              -3.675,
+              -5.737,
+              -8.255,
+              3.292,
+              2.92
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.132,
+            "projections": [
+              -1.203,
+              -1.156,
+              -1.15,
+              -1.143,
+              -0.886,
+              -1.09,
+              -1.109,
+              -1.026,
+              -1.071
+            ]
+          }
+        },
+        {
+          "layer": 28,
+          "cos_ours_theirs": 0.0079,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 3.482,
+            "projections": [
+              1.024,
+              1.39,
+              -3.911,
+              -1.715,
+              -3.022,
+              -5.338,
+              -8.247,
+              4.919,
+              4.506
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.5833,
+            "monotone_fraction": 0.5,
+            "span": 0.1362,
+            "projections": [
+              -1.073,
+              -1.024,
+              -1.095,
+              -1.08,
+              -0.813,
+              -0.994,
+              -1.072,
+              -0.889,
+              -0.937
+            ]
+          }
+        },
+        {
+          "layer": 29,
+          "cos_ours_theirs": -0.0013,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 3.6686,
+            "projections": [
+              2.213,
+              2.579,
+              -3.355,
+              -0.796,
+              -4.05,
+              -5.183,
+              -8.486,
+              6.349,
+              5.882
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.5667,
+            "monotone_fraction": 0.625,
+            "span": 0.1139,
+            "projections": [
+              -0.869,
+              -0.804,
+              -0.899,
+              -0.909,
+              -0.462,
+              -0.765,
+              -0.818,
+              -0.722,
+              -0.755
+            ]
+          }
+        },
+        {
+          "layer": 30,
+          "cos_ours_theirs": -0.001,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 4.4111,
+            "projections": [
+              2.75,
+              3.36,
+              -3.508,
+              -0.618,
+              -3.737,
+              -5.864,
+              -9.605,
+              7.785,
+              7.161
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.5833,
+            "monotone_fraction": 0.5,
+            "span": 0.0778,
+            "projections": [
+              -0.617,
+              -0.567,
+              -0.693,
+              -0.689,
+              -0.194,
+              -0.549,
+              -0.608,
+              -0.537,
+              -0.54
+            ]
+          }
+        },
+        {
+          "layer": 31,
+          "cos_ours_theirs": -0.0204,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 7.0638,
+            "projections": [
+              -5.521,
+              -4.077,
+              -15.057,
+              -10.365,
+              -14.066,
+              -21.478,
+              -27.911,
+              2.812,
+              1.543
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.05,
+            "monotone_fraction": 0.75,
+            "span": 0.0221,
+            "projections": [
+              -0.167,
+              -0.082,
+              -0.182,
+              -0.35,
+              0.861,
+              0.387,
+              0.272,
+              -0.175,
+              -0.189
+            ]
+          }
+        }
+      ]
+    },
+    "l2_zero_intercept/statement": {
+      "n_layers_present": 32,
+      "max_abs_cos_ours_theirs": 0.0747,
+      "mean_abs_cos_ours_theirs": 0.0198,
+      "best_layer_theirs": 18,
+      "best_rho_theirs": 0.9,
+      "best_mono_theirs": 0.5,
+      "best_layer_ours": 7,
+      "best_rho_ours": 0.8833,
+      "best_mono_ours": 0.75,
+      "per_layer": [
+        {
+          "layer": 0,
+          "cos_ours_theirs": -0.0048,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.4333,
+            "monotone_fraction": 0.5,
+            "span": 0.0027,
+            "projections": [
+              0.018,
+              0.018,
+              0.014,
+              0.02,
+              -0.005,
+              0.022,
+              0.016,
+              0.02,
+              0.021
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.25,
+            "monotone_fraction": 0.5,
+            "span": 0.0001,
+            "projections": [
+              -0.032,
+              -0.032,
+              -0.033,
+              -0.032,
+              -0.032,
+              -0.032,
+              -0.033,
+              -0.032,
+              -0.032
+            ]
+          }
+        },
+        {
+          "layer": 1,
+          "cos_ours_theirs": -0.0102,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6167,
+            "monotone_fraction": 0.5,
+            "span": 0.0048,
+            "projections": [
+              -0.099,
+              -0.099,
+              -0.104,
+              -0.095,
+              -0.137,
+              -0.091,
+              -0.098,
+              -0.094,
+              -0.094
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.2833,
+            "monotone_fraction": 0.625,
+            "span": 0.0001,
+            "projections": [
+              -0.041,
+              -0.04,
+              -0.041,
+              -0.04,
+              -0.04,
+              -0.04,
+              -0.041,
+              -0.04,
+              -0.041
+            ]
+          }
+        },
+        {
+          "layer": 2,
+          "cos_ours_theirs": -0.001,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6167,
+            "monotone_fraction": 0.5,
+            "span": 0.0058,
+            "projections": [
+              -0.061,
+              -0.061,
+              -0.066,
+              -0.056,
+              -0.112,
+              -0.052,
+              -0.059,
+              -0.054,
+              -0.056
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.625,
+            "span": 0.0006,
+            "projections": [
+              -0.039,
+              -0.038,
+              -0.038,
+              -0.038,
+              -0.038,
+              -0.038,
+              -0.038,
+              -0.038,
+              -0.038
+            ]
+          }
+        },
+        {
+          "layer": 3,
+          "cos_ours_theirs": 0.0333,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6333,
+            "monotone_fraction": 0.5,
+            "span": 0.0116,
+            "projections": [
+              -0.252,
+              -0.252,
+              -0.253,
+              -0.242,
+              -0.324,
+              -0.231,
+              -0.241,
+              -0.239,
+              -0.241
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.2667,
+            "monotone_fraction": 0.625,
+            "span": 0.0015,
+            "projections": [
+              -0.051,
+              -0.05,
+              -0.049,
+              -0.048,
+              -0.051,
+              -0.048,
+              -0.048,
+              -0.049,
+              -0.049
+            ]
+          }
+        },
+        {
+          "layer": 4,
+          "cos_ours_theirs": -0.007,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 0.0184,
+            "projections": [
+              0.389,
+              0.39,
+              0.385,
+              0.394,
+              0.297,
+              0.413,
+              0.406,
+              0.41,
+              0.408
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.0167,
+            "monotone_fraction": 0.625,
+            "span": 0.0008,
+            "projections": [
+              -0.058,
+              -0.057,
+              -0.057,
+              -0.057,
+              -0.057,
+              -0.058,
+              -0.058,
+              -0.057,
+              -0.057
+            ]
+          }
+        },
+        {
+          "layer": 5,
+          "cos_ours_theirs": -0.0302,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7,
+            "monotone_fraction": 0.5,
+            "span": 0.0521,
+            "projections": [
+              0.141,
+              0.138,
+              0.137,
+              0.139,
+              0.047,
+              0.186,
+              0.191,
+              0.194,
+              0.193
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.5,
+            "monotone_fraction": 0.5,
+            "span": 0.0011,
+            "projections": [
+              -0.021,
+              -0.019,
+              -0.02,
+              -0.02,
+              -0.017,
+              -0.02,
+              -0.021,
+              -0.021,
+              -0.022
+            ]
+          }
+        },
+        {
+          "layer": 6,
+          "cos_ours_theirs": 0.008,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.85,
+            "monotone_fraction": 0.75,
+            "span": 0.1373,
+            "projections": [
+              0.275,
+              0.277,
+              0.266,
+              0.257,
+              0.291,
+              0.38,
+              0.392,
+              0.406,
+              0.412
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1833,
+            "monotone_fraction": 0.625,
+            "span": 0.0001,
+            "projections": [
+              0.029,
+              0.031,
+              0.028,
+              0.029,
+              0.03,
+              0.031,
+              0.028,
+              0.033,
+              0.029
+            ]
+          }
+        },
+        {
+          "layer": 7,
+          "cos_ours_theirs": -0.0187,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8833,
+            "monotone_fraction": 0.75,
+            "span": 0.1933,
+            "projections": [
+              0.159,
+              0.157,
+              0.16,
+              0.153,
+              0.178,
+              0.334,
+              0.338,
+              0.338,
+              0.352
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.7333,
+            "monotone_fraction": 0.625,
+            "span": 0.0039,
+            "projections": [
+              -0.02,
+              -0.018,
+              -0.019,
+              -0.019,
+              -0.018,
+              -0.022,
+              -0.022,
+              -0.02,
+              -0.024
+            ]
+          }
+        },
+        {
+          "layer": 8,
+          "cos_ours_theirs": 0.0298,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8833,
+            "monotone_fraction": 0.75,
+            "span": 0.2493,
+            "projections": [
+              -0.375,
+              -0.352,
+              -0.343,
+              -0.336,
+              -0.2,
+              -0.118,
+              -0.119,
+              -0.111,
+              -0.126
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.75,
+            "monotone_fraction": 0.5,
+            "span": 0.0071,
+            "projections": [
+              -0.091,
+              -0.089,
+              -0.09,
+              -0.09,
+              -0.081,
+              -0.084,
+              -0.084,
+              -0.081,
+              -0.084
+            ]
+          }
+        },
+        {
+          "layer": 9,
+          "cos_ours_theirs": -0.0302,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7,
+            "monotone_fraction": 0.5,
+            "span": 0.1524,
+            "projections": [
+              0.976,
+              0.965,
+              0.981,
+              0.988,
+              0.69,
+              1.152,
+              1.114,
+              1.129,
+              1.128
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": -0.7167,
+            "monotone_fraction": 0.625,
+            "span": 0.0073,
+            "projections": [
+              -0.174,
+              -0.172,
+              -0.172,
+              -0.173,
+              -0.165,
+              -0.177,
+              -0.176,
+              -0.179,
+              -0.181
+            ]
+          }
+        },
+        {
+          "layer": 10,
+          "cos_ours_theirs": 0.0298,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.4522,
+            "projections": [
+              -0.844,
+              -0.788,
+              -0.883,
+              -0.859,
+              -0.448,
+              -0.428,
+              -0.47,
+              -0.375,
+              -0.392
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.5833,
+            "monotone_fraction": 0.5,
+            "span": 0.0099,
+            "projections": [
+              -0.216,
+              -0.208,
+              -0.22,
+              -0.219,
+              -0.195,
+              -0.208,
+              -0.215,
+              -0.198,
+              -0.206
+            ]
+          }
+        },
+        {
+          "layer": 11,
+          "cos_ours_theirs": 0.0368,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8333,
+            "monotone_fraction": 0.625,
+            "span": 0.5202,
+            "projections": [
+              -0.536,
+              -0.487,
+              -0.586,
+              -0.567,
+              -0.174,
+              -0.121,
+              -0.163,
+              0.003,
+              -0.016
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 0.0132,
+            "projections": [
+              -0.201,
+              -0.201,
+              -0.212,
+              -0.212,
+              -0.179,
+              -0.197,
+              -0.198,
+              -0.187,
+              -0.188
+            ]
+          }
+        },
+        {
+          "layer": 12,
+          "cos_ours_theirs": 0.0588,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7833,
+            "monotone_fraction": 0.5,
+            "span": 0.7458,
+            "projections": [
+              -0.371,
+              -0.309,
+              -0.429,
+              -0.428,
+              0.271,
+              0.185,
+              0.143,
+              0.398,
+              0.375
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7167,
+            "monotone_fraction": 0.625,
+            "span": 0.0357,
+            "projections": [
+              -0.295,
+              -0.292,
+              -0.323,
+              -0.317,
+              -0.274,
+              -0.27,
+              -0.293,
+              -0.259,
+              -0.26
+            ]
+          }
+        },
+        {
+          "layer": 13,
+          "cos_ours_theirs": 0.013,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7833,
+            "monotone_fraction": 0.5,
+            "span": 1.4383,
+            "projections": [
+              -1.091,
+              -0.951,
+              -1.223,
+              -1.169,
+              0.135,
+              -0.189,
+              -0.453,
+              0.419,
+              0.348
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7,
+            "monotone_fraction": 0.5,
+            "span": 0.0161,
+            "projections": [
+              -0.271,
+              -0.269,
+              -0.283,
+              -0.283,
+              -0.267,
+              -0.244,
+              -0.254,
+              -0.264,
+              -0.255
+            ]
+          }
+        },
+        {
+          "layer": 14,
+          "cos_ours_theirs": 0.0653,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 1.4076,
+            "projections": [
+              -0.947,
+              -0.771,
+              -1.096,
+              -1.032,
+              0.805,
+              -0.145,
+              -0.358,
+              0.525,
+              0.461
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.5667,
+            "monotone_fraction": 0.625,
+            "span": 0.0651,
+            "projections": [
+              -0.286,
+              -0.261,
+              -0.313,
+              -0.291,
+              -0.136,
+              -0.224,
+              -0.274,
+              -0.226,
+              -0.221
+            ]
+          }
+        },
+        {
+          "layer": 15,
+          "cos_ours_theirs": 0.0747,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 1.5299,
+            "projections": [
+              -0.645,
+              -0.414,
+              -0.744,
+              -0.693,
+              1.669,
+              0.163,
+              -0.132,
+              0.944,
+              0.885
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7667,
+            "monotone_fraction": 0.625,
+            "span": 0.1494,
+            "projections": [
+              -0.46,
+              -0.441,
+              -0.451,
+              -0.436,
+              -0.287,
+              -0.314,
+              -0.38,
+              -0.322,
+              -0.31
+            ]
+          }
+        },
+        {
+          "layer": 16,
+          "cos_ours_theirs": -0.0257,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1,
+            "monotone_fraction": 0.5,
+            "span": 0.2828,
+            "projections": [
+              0.644,
+              0.496,
+              -0.511,
+              -0.053,
+              -1.548,
+              -1.096,
+              -1.703,
+              0.892,
+              0.926
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 0.2234,
+            "projections": [
+              -0.681,
+              -0.649,
+              -0.663,
+              -0.649,
+              -0.395,
+              -0.501,
+              -0.552,
+              -0.474,
+              -0.457
+            ]
+          }
+        },
+        {
+          "layer": 17,
+          "cos_ours_theirs": 0.0285,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.3333,
+            "monotone_fraction": 0.5,
+            "span": 0.3858,
+            "projections": [
+              -1.198,
+              -0.944,
+              0.021,
+              -0.479,
+              3.627,
+              0.907,
+              1.329,
+              -0.726,
+              -0.812
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.85,
+            "monotone_fraction": 0.625,
+            "span": 0.3211,
+            "projections": [
+              -0.768,
+              -0.723,
+              -0.773,
+              -0.725,
+              -0.497,
+              -0.546,
+              -0.637,
+              -0.45,
+              -0.447
+            ]
+          }
+        },
+        {
+          "layer": 18,
+          "cos_ours_theirs": 0.0343,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.4833,
+            "monotone_fraction": 0.5,
+            "span": 0.7353,
+            "projections": [
+              -1.343,
+              -1.058,
+              -0.086,
+              -0.61,
+              4.052,
+              0.898,
+              1.274,
+              -0.521,
+              -0.608
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.9,
+            "monotone_fraction": 0.5,
+            "span": 0.3665,
+            "projections": [
+              -0.777,
+              -0.727,
+              -0.773,
+              -0.726,
+              -0.493,
+              -0.515,
+              -0.6,
+              -0.41,
+              -0.41
+            ]
+          }
+        },
+        {
+          "layer": 19,
+          "cos_ours_theirs": -0.0028,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1333,
+            "monotone_fraction": 0.5,
+            "span": 0.3134,
+            "projections": [
+              1.255,
+              1.08,
+              -0.703,
+              0.096,
+              -2.639,
+              -1.565,
+              -2.487,
+              1.504,
+              1.569
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8333,
+            "monotone_fraction": 0.5,
+            "span": 0.3536,
+            "projections": [
+              -1.083,
+              -1.027,
+              -1.107,
+              -1.049,
+              -0.769,
+              -0.839,
+              -0.945,
+              -0.723,
+              -0.729
+            ]
+          }
+        },
+        {
+          "layer": 20,
+          "cos_ours_theirs": -0.0007,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1333,
+            "monotone_fraction": 0.5,
+            "span": 0.6486,
+            "projections": [
+              1.512,
+              1.385,
+              -0.516,
+              0.373,
+              -2.529,
+              -1.312,
+              -2.41,
+              2.132,
+              2.161
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.85,
+            "monotone_fraction": 0.625,
+            "span": 0.332,
+            "projections": [
+              -0.998,
+              -0.949,
+              -1.031,
+              -0.989,
+              -0.692,
+              -0.78,
+              -0.855,
+              -0.672,
+              -0.666
+            ]
+          }
+        },
+        {
+          "layer": 21,
+          "cos_ours_theirs": -0.0028,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1,
+            "monotone_fraction": 0.5,
+            "span": 0.9667,
+            "projections": [
+              1.527,
+              1.448,
+              -0.741,
+              0.241,
+              -2.201,
+              -1.542,
+              -2.804,
+              2.485,
+              2.493
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7333,
+            "monotone_fraction": 0.625,
+            "span": 0.4182,
+            "projections": [
+              -1.154,
+              -1.074,
+              -1.165,
+              -1.117,
+              -0.686,
+              -0.862,
+              -0.933,
+              -0.741,
+              -0.736
+            ]
+          }
+        },
+        {
+          "layer": 22,
+          "cos_ours_theirs": 0.0212,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 1.5143,
+            "projections": [
+              0.726,
+              0.766,
+              -1.971,
+              -0.813,
+              -2.185,
+              -2.704,
+              -4.233,
+              2.294,
+              2.24
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6833,
+            "monotone_fraction": 0.625,
+            "span": 0.3734,
+            "projections": [
+              -1.01,
+              -0.946,
+              -1.075,
+              -1.01,
+              -0.634,
+              -0.795,
+              -0.899,
+              -0.654,
+              -0.637
+            ]
+          }
+        },
+        {
+          "layer": 23,
+          "cos_ours_theirs": -0.0022,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0667,
+            "monotone_fraction": 0.75,
+            "span": 1.3513,
+            "projections": [
+              0.915,
+              0.901,
+              -2.027,
+              -0.771,
+              -2.889,
+              -3.073,
+              -4.651,
+              2.308,
+              2.266
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7333,
+            "monotone_fraction": 0.625,
+            "span": 0.3125,
+            "projections": [
+              -1.043,
+              -0.973,
+              -1.075,
+              -1.034,
+              -0.552,
+              -0.812,
+              -0.882,
+              -0.73,
+              -0.73
+            ]
+          }
+        },
+        {
+          "layer": 24,
+          "cos_ours_theirs": -0.0105,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0667,
+            "monotone_fraction": 0.75,
+            "span": 1.3158,
+            "projections": [
+              1.506,
+              1.464,
+              -1.709,
+              -0.362,
+              -2.821,
+              -2.937,
+              -4.617,
+              2.868,
+              2.822
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7167,
+            "monotone_fraction": 0.5,
+            "span": 0.2862,
+            "projections": [
+              -1.058,
+              -0.985,
+              -1.087,
+              -1.049,
+              -0.535,
+              -0.8,
+              -0.873,
+              -0.769,
+              -0.772
+            ]
+          }
+        },
+        {
+          "layer": 25,
+          "cos_ours_theirs": -0.011,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 1.6239,
+            "projections": [
+              3.092,
+              3.116,
+              -0.406,
+              1.096,
+              -1.388,
+              -1.612,
+              -3.522,
+              4.803,
+              4.716
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7333,
+            "monotone_fraction": 0.625,
+            "span": 0.4171,
+            "projections": [
+              -1.302,
+              -1.227,
+              -1.319,
+              -1.29,
+              -0.642,
+              -0.944,
+              -0.998,
+              -0.887,
+              -0.885
+            ]
+          }
+        },
+        {
+          "layer": 26,
+          "cos_ours_theirs": 0.003,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 2.5631,
+            "projections": [
+              1.684,
+              1.916,
+              -2.19,
+              -0.425,
+              -2.05,
+              -3.353,
+              -5.621,
+              4.514,
+              4.247
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 0.4455,
+            "projections": [
+              -1.231,
+              -1.15,
+              -1.276,
+              -1.249,
+              -0.527,
+              -0.872,
+              -0.947,
+              -0.776,
+              -0.785
+            ]
+          }
+        },
+        {
+          "layer": 27,
+          "cos_ours_theirs": -0.0037,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 3.1968,
+            "projections": [
+              -0.277,
+              0.081,
+              -4.551,
+              -2.573,
+              -3.675,
+              -5.737,
+              -8.255,
+              3.292,
+              2.92
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.75,
+            "monotone_fraction": 0.5,
+            "span": 0.5057,
+            "projections": [
+              -1.715,
+              -1.636,
+              -1.7,
+              -1.689,
+              -0.872,
+              -1.217,
+              -1.272,
+              -1.198,
+              -1.209
+            ]
+          }
+        },
+        {
+          "layer": 28,
+          "cos_ours_theirs": 0.0054,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 3.482,
+            "projections": [
+              1.024,
+              1.39,
+              -3.911,
+              -1.715,
+              -3.022,
+              -5.338,
+              -8.247,
+              4.919,
+              4.506
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.6667,
+            "monotone_fraction": 0.5,
+            "span": 0.5882,
+            "projections": [
+              -2.002,
+              -1.923,
+              -2.055,
+              -2.016,
+              -1.147,
+              -1.516,
+              -1.604,
+              -1.406,
+              -1.414
+            ]
+          }
+        },
+        {
+          "layer": 29,
+          "cos_ours_theirs": 0.0042,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 3.6686,
+            "projections": [
+              2.213,
+              2.579,
+              -3.355,
+              -0.796,
+              -4.05,
+              -5.183,
+              -8.486,
+              6.349,
+              5.882
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7167,
+            "monotone_fraction": 0.5,
+            "span": 0.8742,
+            "projections": [
+              -1.998,
+              -1.848,
+              -2.0,
+              -1.914,
+              -1.067,
+              -1.288,
+              -1.391,
+              -1.094,
+              -1.124
+            ]
+          }
+        },
+        {
+          "layer": 30,
+          "cos_ours_theirs": 0.0004,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.0833,
+            "monotone_fraction": 0.625,
+            "span": 4.4111,
+            "projections": [
+              2.75,
+              3.36,
+              -3.508,
+              -0.618,
+              -3.737,
+              -5.864,
+              -9.605,
+              7.785,
+              7.161
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.7667,
+            "monotone_fraction": 0.625,
+            "span": 1.0495,
+            "projections": [
+              -2.528,
+              -2.412,
+              -2.492,
+              -2.476,
+              -1.414,
+              -1.672,
+              -1.708,
+              -1.484,
+              -1.478
+            ]
+          }
+        },
+        {
+          "layer": 31,
+          "cos_ours_theirs": 0.0268,
+          "ours": {
+            "available": true,
+            "spearman_level_vs_projection": 0.1167,
+            "monotone_fraction": 0.625,
+            "span": 7.0638,
+            "projections": [
+              -5.521,
+              -4.077,
+              -15.057,
+              -10.365,
+              -14.066,
+              -21.478,
+              -27.911,
+              2.812,
+              1.543
+            ]
+          },
+          "theirs": {
+            "available": true,
+            "spearman_level_vs_projection": 0.8,
+            "monotone_fraction": 0.625,
+            "span": 1.7753,
+            "projections": [
+              -2.716,
+              -2.601,
+              -3.062,
+              -2.894,
+              -1.539,
+              -1.85,
+              -2.176,
+              -1.04,
+              -0.941
+            ]
+          }
+        }
+      ]
+    }
+  }
+}

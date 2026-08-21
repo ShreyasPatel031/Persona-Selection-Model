@@ -1,0 +1,692 @@
+{
+  "created_utc": "2026-08-21T06:31:21.718835+00:00",
+  "stage": "big_two_metatraits",
+  "source": "results/opposite_prior_ipip/summary_v3_calibrated_prompts.json",
+  "band": "dose-matched quiet band",
+  "definition": {
+    "alpha": "mean(C, A, 6-N)",
+    "beta": "mean(E, O)",
+    "partner_only": "same composite with the steered trait dropped"
+  },
+  "n_poles": 10,
+  "n_usable": 10,
+  "n_partner_only_sign_correct": 7,
+  "table": [
+    {
+      "trait": "openness",
+      "pole": "up",
+      "usable": true,
+      "n_rungs": 9,
+      "band_max_magnitude": 510.3,
+      "intended_metatrait": "beta",
+      "metatrait_direction": 1,
+      "unintended_metatrait": "alpha",
+      "rho_dose_vs_intended": 0.95,
+      "rho_dose_vs_partner_only": 0.35,
+      "rho_dose_vs_unintended": -0.9167,
+      "delta_intended": 0.2883,
+      "delta_partner_only": 0.066,
+      "delta_unintended": -0.4248,
+      "intended_sign_correct": true,
+      "partner_only_sign_correct": true,
+      "discriminant_ratio": 6.436,
+      "monotone_fraction_intended": 0.875,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 2.5769,
+          "alpha": 2.9559,
+          "beta": 2.7742,
+          "intended_partner_only": 2.9715,
+          "unintended": 2.9559
+        },
+        {
+          "magnitude": 58.88,
+          "target": 2.4942,
+          "alpha": 2.9671,
+          "beta": 2.7873,
+          "intended_partner_only": 3.0803,
+          "unintended": 2.9671
+        },
+        {
+          "magnitude": 123.37,
+          "target": 2.5122,
+          "alpha": 2.9767,
+          "beta": 2.8469,
+          "intended_partner_only": 3.1816,
+          "unintended": 2.9767
+        },
+        {
+          "magnitude": 187.86,
+          "target": 2.5753,
+          "alpha": 2.8562,
+          "beta": 2.8944,
+          "intended_partner_only": 3.2134,
+          "unintended": 2.8562
+        },
+        {
+          "magnitude": 252.35,
+          "target": 2.6956,
+          "alpha": 2.7707,
+          "beta": 2.9738,
+          "intended_partner_only": 3.252,
+          "unintended": 2.7707
+        },
+        {
+          "magnitude": 316.84,
+          "target": 2.828,
+          "alpha": 2.681,
+          "beta": 3.049,
+          "intended_partner_only": 3.27,
+          "unintended": 2.681
+        },
+        {
+          "magnitude": 381.32,
+          "target": 3.0127,
+          "alpha": 2.5763,
+          "beta": 3.1366,
+          "intended_partner_only": 3.2604,
+          "unintended": 2.5763
+        },
+        {
+          "magnitude": 445.81,
+          "target": 3.0896,
+          "alpha": 2.467,
+          "beta": 3.1421,
+          "intended_partner_only": 3.1946,
+          "unintended": 2.467
+        },
+        {
+          "magnitude": 510.3,
+          "target": 3.0876,
+          "alpha": 2.5311,
+          "beta": 3.0625,
+          "intended_partner_only": 3.0375,
+          "unintended": 2.5311
+        }
+      ]
+    },
+    {
+      "trait": "openness",
+      "pole": "down",
+      "usable": true,
+      "n_rungs": 9,
+      "band_max_magnitude": 510.3,
+      "intended_metatrait": "beta",
+      "metatrait_direction": -1,
+      "unintended_metatrait": "alpha",
+      "rho_dose_vs_intended": 1.0,
+      "rho_dose_vs_partner_only": -0.5333,
+      "rho_dose_vs_unintended": -0.7833,
+      "delta_intended": -0.5525,
+      "delta_partner_only": -0.0361,
+      "delta_unintended": -0.0428,
+      "intended_sign_correct": true,
+      "partner_only_sign_correct": true,
+      "discriminant_ratio": 1.186,
+      "monotone_fraction_intended": 1.0,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 4.0788,
+          "alpha": 2.9517,
+          "beta": 3.5696,
+          "intended_partner_only": 3.0604,
+          "unintended": 2.9517
+        },
+        {
+          "magnitude": 58.88,
+          "target": 4.02,
+          "alpha": 2.977,
+          "beta": 3.516,
+          "intended_partner_only": 3.012,
+          "unintended": 2.977
+        },
+        {
+          "magnitude": 123.37,
+          "target": 3.9094,
+          "alpha": 2.964,
+          "beta": 3.4565,
+          "intended_partner_only": 3.0036,
+          "unintended": 2.964
+        },
+        {
+          "magnitude": 187.86,
+          "target": 3.7505,
+          "alpha": 2.9349,
+          "beta": 3.3868,
+          "intended_partner_only": 3.0231,
+          "unintended": 2.9349
+        },
+        {
+          "magnitude": 252.35,
+          "target": 3.5563,
+          "alpha": 2.9165,
+          "beta": 3.3263,
+          "intended_partner_only": 3.0963,
+          "unintended": 2.9165
+        },
+        {
+          "magnitude": 316.84,
+          "target": 3.4161,
+          "alpha": 2.9022,
+          "beta": 3.3063,
+          "intended_partner_only": 3.1964,
+          "unintended": 2.9022
+        },
+        {
+          "magnitude": 381.32,
+          "target": 3.2405,
+          "alpha": 2.9131,
+          "beta": 3.2226,
+          "intended_partner_only": 3.2047,
+          "unintended": 2.9131
+        },
+        {
+          "magnitude": 445.81,
+          "target": 3.1091,
+          "alpha": 2.9238,
+          "beta": 3.1135,
+          "intended_partner_only": 3.1178,
+          "unintended": 2.9238
+        },
+        {
+          "magnitude": 510.3,
+          "target": 3.01,
+          "alpha": 2.9089,
+          "beta": 3.0171,
+          "intended_partner_only": 3.0243,
+          "unintended": 2.9089
+        }
+      ]
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "up",
+      "usable": true,
+      "n_rungs": 6,
+      "band_max_magnitude": 656.05,
+      "intended_metatrait": "alpha",
+      "metatrait_direction": 1,
+      "unintended_metatrait": "beta",
+      "rho_dose_vs_intended": 1.0,
+      "rho_dose_vs_partner_only": 1.0,
+      "rho_dose_vs_unintended": 1.0,
+      "delta_intended": 0.5622,
+      "delta_partner_only": 0.5432,
+      "delta_unintended": 0.3355,
+      "intended_sign_correct": true,
+      "partner_only_sign_correct": true,
+      "discriminant_ratio": 0.618,
+      "monotone_fraction_intended": 1.0,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 1.2103,
+          "alpha": 2.0194,
+          "beta": 2.6875,
+          "intended_partner_only": 2.4239,
+          "unintended": 2.6875
+        },
+        {
+          "magnitude": 121.92,
+          "target": 1.27,
+          "alpha": 2.0569,
+          "beta": 2.7553,
+          "intended_partner_only": 2.4504,
+          "unintended": 2.7553
+        },
+        {
+          "magnitude": 255.45,
+          "target": 1.3213,
+          "alpha": 2.094,
+          "beta": 2.7826,
+          "intended_partner_only": 2.4804,
+          "unintended": 2.7826
+        },
+        {
+          "magnitude": 388.98,
+          "target": 1.3974,
+          "alpha": 2.2161,
+          "beta": 2.8872,
+          "intended_partner_only": 2.6255,
+          "unintended": 2.8872
+        },
+        {
+          "magnitude": 522.52,
+          "target": 1.496,
+          "alpha": 2.3725,
+          "beta": 2.9421,
+          "intended_partner_only": 2.8107,
+          "unintended": 2.9421
+        },
+        {
+          "magnitude": 656.05,
+          "target": 1.8106,
+          "alpha": 2.5816,
+          "beta": 3.023,
+          "intended_partner_only": 2.9671,
+          "unintended": 3.023
+        }
+      ]
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "down",
+      "usable": true,
+      "n_rungs": 4,
+      "band_max_magnitude": 388.98,
+      "intended_metatrait": "alpha",
+      "metatrait_direction": -1,
+      "unintended_metatrait": "beta",
+      "rho_dose_vs_intended": 1.0,
+      "rho_dose_vs_partner_only": 1.0,
+      "rho_dose_vs_unintended": 0.8,
+      "delta_intended": -0.4565,
+      "delta_partner_only": -0.4705,
+      "delta_unintended": 0.301,
+      "intended_sign_correct": true,
+      "partner_only_sign_correct": true,
+      "discriminant_ratio": 0.64,
+      "monotone_fraction_intended": 1.0,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 4.9982,
+          "alpha": 4.5417,
+          "beta": 2.9779,
+          "intended_partner_only": 4.3134,
+          "unintended": 2.9779
+        },
+        {
+          "magnitude": 121.92,
+          "target": 4.936,
+          "alpha": 4.4314,
+          "beta": 2.9631,
+          "intended_partner_only": 4.1791,
+          "unintended": 2.9631
+        },
+        {
+          "magnitude": 255.45,
+          "target": 4.7598,
+          "alpha": 4.2482,
+          "beta": 3.1508,
+          "intended_partner_only": 3.9924,
+          "unintended": 3.1508
+        },
+        {
+          "magnitude": 388.98,
+          "target": 4.5698,
+          "alpha": 4.0852,
+          "beta": 3.2789,
+          "intended_partner_only": 3.8429,
+          "unintended": 3.2789
+        }
+      ]
+    },
+    {
+      "trait": "agreeableness",
+      "pole": "up",
+      "usable": true,
+      "n_rungs": 4,
+      "band_max_magnitude": 424.96,
+      "intended_metatrait": "alpha",
+      "metatrait_direction": 1,
+      "unintended_metatrait": "beta",
+      "rho_dose_vs_intended": -1.0,
+      "rho_dose_vs_partner_only": -1.0,
+      "rho_dose_vs_unintended": 0.6,
+      "delta_intended": -0.0687,
+      "delta_partner_only": -0.2376,
+      "delta_unintended": 0.0144,
+      "intended_sign_correct": false,
+      "partner_only_sign_correct": false,
+      "discriminant_ratio": 0.061,
+      "monotone_fraction_intended": 1.0,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 1.7382,
+          "alpha": 2.2502,
+          "beta": 2.4901,
+          "intended_partner_only": 2.5061,
+          "unintended": 2.4901
+        },
+        {
+          "magnitude": 133.2,
+          "target": 1.7916,
+          "alpha": 2.2363,
+          "beta": 2.4867,
+          "intended_partner_only": 2.4587,
+          "unintended": 2.4867
+        },
+        {
+          "magnitude": 279.08,
+          "target": 1.9141,
+          "alpha": 2.2243,
+          "beta": 2.5954,
+          "intended_partner_only": 2.3794,
+          "unintended": 2.5954
+        },
+        {
+          "magnitude": 424.96,
+          "target": 2.0076,
+          "alpha": 2.1815,
+          "beta": 2.5045,
+          "intended_partner_only": 2.2685,
+          "unintended": 2.5045
+        }
+      ]
+    },
+    {
+      "trait": "agreeableness",
+      "pole": "down",
+      "usable": true,
+      "n_rungs": 4,
+      "band_max_magnitude": 424.96,
+      "intended_metatrait": "alpha",
+      "metatrait_direction": -1,
+      "unintended_metatrait": "beta",
+      "rho_dose_vs_intended": -1.0,
+      "rho_dose_vs_partner_only": -1.0,
+      "rho_dose_vs_unintended": 1.0,
+      "delta_intended": 0.0411,
+      "delta_partner_only": 0.2007,
+      "delta_unintended": 0.0503,
+      "intended_sign_correct": false,
+      "partner_only_sign_correct": false,
+      "discriminant_ratio": 0.251,
+      "monotone_fraction_intended": 1.0,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 4.6063,
+          "alpha": 4.153,
+          "beta": 3.7534,
+          "intended_partner_only": 3.9264,
+          "unintended": 3.7534
+        },
+        {
+          "magnitude": 133.2,
+          "target": 4.5504,
+          "alpha": 4.154,
+          "beta": 3.7874,
+          "intended_partner_only": 3.9558,
+          "unintended": 3.7874
+        },
+        {
+          "magnitude": 279.08,
+          "target": 4.4114,
+          "alpha": 4.1769,
+          "beta": 3.8029,
+          "intended_partner_only": 4.0597,
+          "unintended": 3.8029
+        },
+        {
+          "magnitude": 424.96,
+          "target": 4.3281,
+          "alpha": 4.1941,
+          "beta": 3.8037,
+          "intended_partner_only": 4.1271,
+          "unintended": 3.8037
+        }
+      ]
+    },
+    {
+      "trait": "neuroticism",
+      "pole": "up",
+      "usable": true,
+      "n_rungs": 6,
+      "band_max_magnitude": 473.79,
+      "intended_metatrait": "alpha",
+      "metatrait_direction": -1,
+      "unintended_metatrait": "beta",
+      "rho_dose_vs_intended": -0.8286,
+      "rho_dose_vs_partner_only": -0.8286,
+      "rho_dose_vs_unintended": -0.9429,
+      "delta_intended": 0.2715,
+      "delta_partner_only": 0.3167,
+      "delta_unintended": -0.3204,
+      "intended_sign_correct": false,
+      "partner_only_sign_correct": false,
+      "discriminant_ratio": 1.012,
+      "monotone_fraction_intended": 0.8,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 1.7001,
+          "alpha": 3.7623,
+          "beta": 2.5877,
+          "intended_partner_only": 3.4935,
+          "unintended": 2.5877
+        },
+        {
+          "magnitude": 88.05,
+          "target": 1.7143,
+          "alpha": 3.8237,
+          "beta": 2.5971,
+          "intended_partner_only": 3.5926,
+          "unintended": 2.5971
+        },
+        {
+          "magnitude": 184.49,
+          "target": 1.6451,
+          "alpha": 3.9378,
+          "beta": 2.5732,
+          "intended_partner_only": 3.7292,
+          "unintended": 2.5732
+        },
+        {
+          "magnitude": 280.92,
+          "target": 1.5674,
+          "alpha": 4.0437,
+          "beta": 2.4864,
+          "intended_partner_only": 3.8493,
+          "unintended": 2.4864
+        },
+        {
+          "magnitude": 377.36,
+          "target": 1.533,
+          "alpha": 4.0809,
+          "beta": 2.4017,
+          "intended_partner_only": 3.8878,
+          "unintended": 2.4017
+        },
+        {
+          "magnitude": 473.79,
+          "target": 1.519,
+          "alpha": 4.0338,
+          "beta": 2.2673,
+          "intended_partner_only": 3.8102,
+          "unintended": 2.2673
+        }
+      ]
+    },
+    {
+      "trait": "neuroticism",
+      "pole": "down",
+      "usable": true,
+      "n_rungs": 5,
+      "band_max_magnitude": 377.36,
+      "intended_metatrait": "alpha",
+      "metatrait_direction": 1,
+      "unintended_metatrait": "beta",
+      "rho_dose_vs_intended": 1.0,
+      "rho_dose_vs_partner_only": 0.9,
+      "rho_dose_vs_unintended": 1.0,
+      "delta_intended": 0.5758,
+      "delta_partner_only": 0.5174,
+      "delta_unintended": 0.2971,
+      "intended_sign_correct": true,
+      "partner_only_sign_correct": true,
+      "discriminant_ratio": 0.574,
+      "monotone_fraction_intended": 1.0,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 4.8502,
+          "alpha": 1.8999,
+          "beta": 2.278,
+          "intended_partner_only": 2.275,
+          "unintended": 2.278
+        },
+        {
+          "magnitude": 88.05,
+          "target": 4.7457,
+          "alpha": 2.1151,
+          "beta": 2.3128,
+          "intended_partner_only": 2.5455,
+          "unintended": 2.3128
+        },
+        {
+          "magnitude": 184.49,
+          "target": 4.5329,
+          "alpha": 2.2578,
+          "beta": 2.4362,
+          "intended_partner_only": 2.6532,
+          "unintended": 2.4362
+        },
+        {
+          "magnitude": 280.92,
+          "target": 4.2292,
+          "alpha": 2.4599,
+          "beta": 2.5068,
+          "intended_partner_only": 2.8044,
+          "unintended": 2.5068
+        },
+        {
+          "magnitude": 377.36,
+          "target": 4.1578,
+          "alpha": 2.4757,
+          "beta": 2.5751,
+          "intended_partner_only": 2.7924,
+          "unintended": 2.5751
+        }
+      ]
+    },
+    {
+      "trait": "extraversion",
+      "pole": "up",
+      "usable": true,
+      "n_rungs": 7,
+      "band_max_magnitude": 814.17,
+      "intended_metatrait": "beta",
+      "metatrait_direction": 1,
+      "unintended_metatrait": "alpha",
+      "rho_dose_vs_intended": 0.9643,
+      "rho_dose_vs_partner_only": 1.0,
+      "rho_dose_vs_unintended": 0.6429,
+      "delta_intended": 0.9887,
+      "delta_partner_only": 1.626,
+      "delta_unintended": 0.0354,
+      "intended_sign_correct": true,
+      "partner_only_sign_correct": true,
+      "discriminant_ratio": 0.022,
+      "monotone_fraction_intended": 0.8333,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 1.6276,
+          "alpha": 2.9019,
+          "beta": 2.1279,
+          "intended_partner_only": 2.6283,
+          "unintended": 2.9019
+        },
+        {
+          "magnitude": 125.72,
+          "target": 1.6449,
+          "alpha": 2.8044,
+          "beta": 2.1923,
+          "intended_partner_only": 2.7397,
+          "unintended": 2.8044
+        },
+        {
+          "magnitude": 263.41,
+          "target": 1.2967,
+          "alpha": 2.9122,
+          "beta": 2.1526,
+          "intended_partner_only": 3.0085,
+          "unintended": 2.9122
+        },
+        {
+          "magnitude": 401.1,
+          "target": 1.2206,
+          "alpha": 3.2024,
+          "beta": 2.4769,
+          "intended_partner_only": 3.7333,
+          "unintended": 3.2024
+        },
+        {
+          "magnitude": 538.79,
+          "target": 1.3303,
+          "alpha": 3.2623,
+          "beta": 2.6991,
+          "intended_partner_only": 4.0679,
+          "unintended": 3.2623
+        },
+        {
+          "magnitude": 676.48,
+          "target": 1.3655,
+          "alpha": 3.0581,
+          "beta": 2.7843,
+          "intended_partner_only": 4.2032,
+          "unintended": 3.0581
+        },
+        {
+          "magnitude": 814.17,
+          "target": 1.979,
+          "alpha": 2.9373,
+          "beta": 3.1166,
+          "intended_partner_only": 4.2543,
+          "unintended": 2.9373
+        }
+      ]
+    },
+    {
+      "trait": "extraversion",
+      "pole": "down",
+      "usable": true,
+      "n_rungs": 3,
+      "band_max_magnitude": 263.41,
+      "intended_metatrait": "beta",
+      "metatrait_direction": -1,
+      "unintended_metatrait": "alpha",
+      "rho_dose_vs_intended": 0.5,
+      "rho_dose_vs_partner_only": 0.5,
+      "rho_dose_vs_unintended": 0.5,
+      "delta_intended": -0.1555,
+      "delta_partner_only": -0.2485,
+      "delta_unintended": 0.0348,
+      "intended_sign_correct": true,
+      "partner_only_sign_correct": true,
+      "discriminant_ratio": 0.14,
+      "monotone_fraction_intended": 0.5,
+      "rungs": [
+        {
+          "magnitude": 0.0,
+          "target": 4.8647,
+          "alpha": 3.5584,
+          "beta": 4.7614,
+          "intended_partner_only": 4.6581,
+          "unintended": 3.5584
+        },
+        {
+          "magnitude": 125.72,
+          "target": 4.8895,
+          "alpha": 3.626,
+          "beta": 4.8023,
+          "intended_partner_only": 4.7151,
+          "unintended": 3.626
+        },
+        {
+          "magnitude": 263.41,
+          "target": 4.8023,
+          "alpha": 3.5932,
+          "beta": 4.6059,
+          "intended_partner_only": 4.4096,
+          "unintended": 3.5932
+        }
+      ]
+    }
+  ]
+}

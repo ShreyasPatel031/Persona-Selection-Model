@@ -1,0 +1,839 @@
+{
+  "note": "E7 - Big Two (Digman alpha/beta) covariance on our committed inventory sweeps.\n\nBlas et al. Sec 5.3 report that 46.15% of cross-trait sign patterns match the\nDigman metatraits and that \"no LLM satisfied all Big Two correlations\" - computed on\ntheir SJT/classifier scores, not on inventory scores. This script runs the inventory\nversion on our sweeps.\n\nMetatrait structure:\n    alpha / Stability   C+  A+  N-\n    beta  / Plasticity  E+  O+\n\nFor a sweep steering one trait toward one pole, every *other* trait either has a\npredicted co-movement sign (same metatrait) or no prediction (other metatrait).\nTwo statistics are reported:\n\n``sign_match_rate``\n    Of the partner traits with a prediction, how many actually moved that way. This\n    is the analogue of their 46.15%.\n\n``shared_drift``\n    Mean signed movement across all five traits. The reason this must be reported\n    next to the match rate: if a large perturbation degrades the respondent, every\n    trait slides toward the same option and the sign pattern can look like alpha\n    structure while carrying no trait information. A match rate is only interpretable\n    when shared drift is small relative to the on-target movement.\n\nOnly rungs passing the shipped option-lock screen are used, and both readouts are\ncomputed so the result does not depend on the readout choice.\n\nNo GPU: pure reanalysis of committed JSON.\n\n    PYTHONPATH=. python3 scripts/big_two_covariance.py\n",
+  "readouts": {
+    "argmax": {
+      "n_sweeps_testable": 10,
+      "n_predicted_pairs": 16,
+      "n_matched_pairs": 12,
+      "sign_match_rate": 0.75,
+      "n_sweeps_low_drift": 9,
+      "sign_match_rate_low_drift_only": 0.7333,
+      "their_reported_rate_on_sjts": 0.4615,
+      "sweeps": [
+        {
+          "pole": "A-up",
+          "trait": "agreeableness",
+          "toward": "high",
+          "metatrait": "alpha",
+          "metatrait_direction": 1,
+          "grid": "ceiling",
+          "n_usable_rungs": 5,
+          "best_magnitude": 544.2575,
+          "on_target_delta": 0.25,
+          "shared_drift": 0.0083,
+          "drift_vs_signal": 0.033,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": 0.0417
+            },
+            "conscientiousness": {
+              "predicted_sign": 1,
+              "delta": 0.2083,
+              "match": true
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": -0.25
+            },
+            "neuroticism": {
+              "predicted_sign": -1,
+              "delta": -0.2084,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 2,
+          "rho_dose_vs_offtarget": {
+            "openness": -0.41,
+            "conscientiousness": 0.7,
+            "extraversion": -0.3,
+            "neuroticism": -0.894
+          }
+        },
+        {
+          "pole": "A-down",
+          "trait": "agreeableness",
+          "toward": "low",
+          "metatrait": "alpha",
+          "metatrait_direction": -1,
+          "grid": "in-span",
+          "n_usable_rungs": 9,
+          "best_magnitude": -1065.0855,
+          "on_target_delta": -0.25,
+          "shared_drift": -0.0667,
+          "drift_vs_signal": 0.267,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": -0.3333
+            },
+            "conscientiousness": {
+              "predicted_sign": -1,
+              "delta": 0.125,
+              "match": false
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": 0.3334
+            },
+            "neuroticism": {
+              "predicted_sign": 1,
+              "delta": -0.2084,
+              "match": false
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 0,
+          "rho_dose_vs_offtarget": {
+            "openness": 0.205,
+            "conscientiousness": 0.538,
+            "extraversion": 0.683,
+            "neuroticism": -0.758
+          }
+        },
+        {
+          "pole": "C-up",
+          "trait": "conscientiousness",
+          "toward": "high",
+          "metatrait": "alpha",
+          "metatrait_direction": 1,
+          "grid": "ceiling",
+          "n_usable_rungs": 4,
+          "best_magnitude": 542.1396,
+          "on_target_delta": 0.5416,
+          "shared_drift": 0.125,
+          "drift_vs_signal": 0.231,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": 0.1667
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": 0.0
+            },
+            "agreeableness": {
+              "predicted_sign": 1,
+              "delta": 0.1666,
+              "match": true
+            },
+            "neuroticism": {
+              "predicted_sign": -1,
+              "delta": -0.25,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 2,
+          "rho_dose_vs_offtarget": {
+            "openness": 1.0,
+            "extraversion": -0.316,
+            "agreeableness": 0.949,
+            "neuroticism": -1.0
+          }
+        },
+        {
+          "pole": "C-down",
+          "trait": "conscientiousness",
+          "toward": "low",
+          "metatrait": "alpha",
+          "metatrait_direction": -1,
+          "grid": "ceiling",
+          "n_usable_rungs": 5,
+          "best_magnitude": -1084.2791,
+          "on_target_delta": -1.5,
+          "shared_drift": -0.5083,
+          "drift_vs_signal": 0.339,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": -0.625
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": -1.25
+            },
+            "agreeableness": {
+              "predicted_sign": -1,
+              "delta": -0.4167,
+              "match": true
+            },
+            "neuroticism": {
+              "predicted_sign": 1,
+              "delta": 1.25,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 2,
+          "rho_dose_vs_offtarget": {
+            "openness": -1.0,
+            "extraversion": -0.872,
+            "agreeableness": -0.872,
+            "neuroticism": 0.872
+          }
+        },
+        {
+          "pole": "E-up",
+          "trait": "extraversion",
+          "toward": "high",
+          "metatrait": "beta",
+          "metatrait_direction": 1,
+          "grid": "in-span",
+          "n_usable_rungs": 9,
+          "best_magnitude": 677.8181,
+          "on_target_delta": 0.4584,
+          "shared_drift": 0.05,
+          "drift_vs_signal": 0.109,
+          "partners": {
+            "openness": {
+              "predicted_sign": 1,
+              "delta": 0.375,
+              "match": true
+            },
+            "conscientiousness": {
+              "predicted_sign": null,
+              "delta": 0.1666
+            },
+            "agreeableness": {
+              "predicted_sign": null,
+              "delta": -0.25
+            },
+            "neuroticism": {
+              "predicted_sign": null,
+              "delta": -0.5
+            }
+          },
+          "n_predicted": 1,
+          "n_matched": 1,
+          "rho_dose_vs_offtarget": {
+            "openness": 0.403,
+            "conscientiousness": 0.616,
+            "agreeableness": -0.264,
+            "neuroticism": -0.664
+          }
+        },
+        {
+          "pole": "E-down",
+          "trait": "extraversion",
+          "toward": "low",
+          "metatrait": "beta",
+          "metatrait_direction": -1,
+          "grid": "ceiling",
+          "n_usable_rungs": 3,
+          "best_magnitude": -270.222,
+          "on_target_delta": -0.1666,
+          "shared_drift": -0.1417,
+          "drift_vs_signal": 0.85,
+          "partners": {
+            "openness": {
+              "predicted_sign": -1,
+              "delta": -0.5,
+              "match": true
+            },
+            "conscientiousness": {
+              "predicted_sign": null,
+              "delta": 0.0833
+            },
+            "agreeableness": {
+              "predicted_sign": null,
+              "delta": -0.0417
+            },
+            "neuroticism": {
+              "predicted_sign": null,
+              "delta": -0.0834
+            }
+          },
+          "n_predicted": 1,
+          "n_matched": 1,
+          "rho_dose_vs_offtarget": {
+            "openness": -0.5,
+            "conscientiousness": 1.0,
+            "agreeableness": -1.0,
+            "neuroticism": -1.0
+          }
+        },
+        {
+          "pole": "N-up",
+          "trait": "neuroticism",
+          "toward": "high",
+          "metatrait": "alpha",
+          "metatrait_direction": -1,
+          "grid": "in-span",
+          "n_usable_rungs": 9,
+          "best_magnitude": 89.3278,
+          "on_target_delta": 0.0416,
+          "shared_drift": -0.0167,
+          "drift_vs_signal": 0.401,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": -0.0833
+            },
+            "conscientiousness": {
+              "predicted_sign": -1,
+              "delta": 0.0,
+              "match": false
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": 0.0
+            },
+            "agreeableness": {
+              "predicted_sign": -1,
+              "delta": -0.0417,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 1,
+          "rho_dose_vs_offtarget": {
+            "openness": -0.962,
+            "conscientiousness": -0.975,
+            "extraversion": -0.712,
+            "agreeableness": 0.632
+          }
+        },
+        {
+          "pole": "N-down",
+          "trait": "neuroticism",
+          "toward": "low",
+          "metatrait": "alpha",
+          "metatrait_direction": 1,
+          "grid": "ceiling",
+          "n_usable_rungs": 5,
+          "best_magnitude": -1818.4375,
+          "on_target_delta": -0.9167,
+          "shared_drift": 0.0333,
+          "drift_vs_signal": 0.036,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": -0.0833
+            },
+            "conscientiousness": {
+              "predicted_sign": 1,
+              "delta": 0.5,
+              "match": true
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": 0.5834
+            },
+            "agreeableness": {
+              "predicted_sign": 1,
+              "delta": 0.0833,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 2,
+          "rho_dose_vs_offtarget": {
+            "openness": 0.103,
+            "conscientiousness": 0.7,
+            "extraversion": 0.9,
+            "agreeableness": 0.9
+          }
+        },
+        {
+          "pole": "O-up",
+          "trait": "openness",
+          "toward": "high",
+          "metatrait": "beta",
+          "metatrait_direction": 1,
+          "grid": "ceiling",
+          "n_usable_rungs": 3,
+          "best_magnitude": 271.4515,
+          "on_target_delta": 0.0417,
+          "shared_drift": 0.0,
+          "drift_vs_signal": 0.0,
+          "partners": {
+            "conscientiousness": {
+              "predicted_sign": null,
+              "delta": 0.2083
+            },
+            "extraversion": {
+              "predicted_sign": 1,
+              "delta": -0.125,
+              "match": false
+            },
+            "agreeableness": {
+              "predicted_sign": null,
+              "delta": 0.0
+            },
+            "neuroticism": {
+              "predicted_sign": null,
+              "delta": -0.125
+            }
+          },
+          "n_predicted": 1,
+          "n_matched": 0,
+          "rho_dose_vs_offtarget": {
+            "conscientiousness": 1.0,
+            "extraversion": -0.866,
+            "agreeableness": 0.0,
+            "neuroticism": -0.5
+          }
+        },
+        {
+          "pole": "O-down",
+          "trait": "openness",
+          "toward": "low",
+          "metatrait": "beta",
+          "metatrait_direction": -1,
+          "grid": "ceiling",
+          "n_usable_rungs": 4,
+          "best_magnitude": -271.4515,
+          "on_target_delta": -0.4583,
+          "shared_drift": -0.1167,
+          "drift_vs_signal": 0.255,
+          "partners": {
+            "conscientiousness": {
+              "predicted_sign": null,
+              "delta": 0.125
+            },
+            "extraversion": {
+              "predicted_sign": -1,
+              "delta": -0.125,
+              "match": true
+            },
+            "agreeableness": {
+              "predicted_sign": null,
+              "delta": -0.0417
+            },
+            "neuroticism": {
+              "predicted_sign": null,
+              "delta": -0.0834
+            }
+          },
+          "n_predicted": 1,
+          "n_matched": 1,
+          "rho_dose_vs_offtarget": {
+            "conscientiousness": 0.632,
+            "extraversion": -0.894,
+            "agreeableness": -0.447,
+            "neuroticism": -0.316
+          }
+        }
+      ]
+    },
+    "ev": {
+      "n_sweeps_testable": 10,
+      "n_predicted_pairs": 16,
+      "n_matched_pairs": 12,
+      "sign_match_rate": 0.75,
+      "n_sweeps_low_drift": 8,
+      "sign_match_rate_low_drift_only": 0.7692,
+      "their_reported_rate_on_sjts": 0.4615,
+      "sweeps": [
+        {
+          "pole": "A-up",
+          "trait": "agreeableness",
+          "toward": "high",
+          "metatrait": "alpha",
+          "metatrait_direction": 1,
+          "grid": "ceiling",
+          "n_usable_rungs": 5,
+          "best_magnitude": 544.2575,
+          "on_target_delta": 0.2678,
+          "shared_drift": 0.0311,
+          "drift_vs_signal": 0.116,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": 0.0722
+            },
+            "conscientiousness": {
+              "predicted_sign": 1,
+              "delta": 0.2246,
+              "match": true
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": -0.2087
+            },
+            "neuroticism": {
+              "predicted_sign": -1,
+              "delta": -0.2002,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 2,
+          "rho_dose_vs_offtarget": {
+            "openness": -0.4,
+            "conscientiousness": 0.7,
+            "extraversion": 0.1,
+            "neuroticism": -1.0
+          }
+        },
+        {
+          "pole": "A-down",
+          "trait": "agreeableness",
+          "toward": "low",
+          "metatrait": "alpha",
+          "metatrait_direction": -1,
+          "grid": "in-span",
+          "n_usable_rungs": 9,
+          "best_magnitude": -1065.0855,
+          "on_target_delta": -0.176,
+          "shared_drift": -0.068,
+          "drift_vs_signal": 0.387,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": -0.245
+            },
+            "conscientiousness": {
+              "predicted_sign": -1,
+              "delta": 0.1478,
+              "match": false
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": 0.1001
+            },
+            "neuroticism": {
+              "predicted_sign": 1,
+              "delta": -0.1671,
+              "match": false
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 0,
+          "rho_dose_vs_offtarget": {
+            "openness": -0.233,
+            "conscientiousness": 0.583,
+            "extraversion": 0.433,
+            "neuroticism": -0.783
+          }
+        },
+        {
+          "pole": "C-up",
+          "trait": "conscientiousness",
+          "toward": "high",
+          "metatrait": "alpha",
+          "metatrait_direction": 1,
+          "grid": "ceiling",
+          "n_usable_rungs": 4,
+          "best_magnitude": 542.1396,
+          "on_target_delta": 0.5266,
+          "shared_drift": 0.1143,
+          "drift_vs_signal": 0.217,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": 0.1602
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": -0.063
+            },
+            "agreeableness": {
+              "predicted_sign": 1,
+              "delta": 0.218,
+              "match": true
+            },
+            "neuroticism": {
+              "predicted_sign": -1,
+              "delta": -0.2704,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 2,
+          "rho_dose_vs_offtarget": {
+            "openness": 1.0,
+            "extraversion": -0.8,
+            "agreeableness": 1.0,
+            "neuroticism": -1.0
+          }
+        },
+        {
+          "pole": "C-down",
+          "trait": "conscientiousness",
+          "toward": "low",
+          "metatrait": "alpha",
+          "metatrait_direction": -1,
+          "grid": "ceiling",
+          "n_usable_rungs": 5,
+          "best_magnitude": -1084.2791,
+          "on_target_delta": -1.0547,
+          "shared_drift": -0.4192,
+          "drift_vs_signal": 0.397,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": -0.5283
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": -0.7958
+            },
+            "agreeableness": {
+              "predicted_sign": -1,
+              "delta": -0.2937,
+              "match": true
+            },
+            "neuroticism": {
+              "predicted_sign": 1,
+              "delta": 0.5767,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 2,
+          "rho_dose_vs_offtarget": {
+            "openness": -1.0,
+            "extraversion": -0.9,
+            "agreeableness": -0.9,
+            "neuroticism": 0.9
+          }
+        },
+        {
+          "pole": "E-up",
+          "trait": "extraversion",
+          "toward": "high",
+          "metatrait": "beta",
+          "metatrait_direction": 1,
+          "grid": "in-span",
+          "n_usable_rungs": 9,
+          "best_magnitude": 677.8181,
+          "on_target_delta": 0.3264,
+          "shared_drift": 0.0707,
+          "drift_vs_signal": 0.217,
+          "partners": {
+            "openness": {
+              "predicted_sign": 1,
+              "delta": 0.4956,
+              "match": true
+            },
+            "conscientiousness": {
+              "predicted_sign": null,
+              "delta": 0.1713
+            },
+            "agreeableness": {
+              "predicted_sign": null,
+              "delta": -0.2612
+            },
+            "neuroticism": {
+              "predicted_sign": null,
+              "delta": -0.3785
+            }
+          },
+          "n_predicted": 1,
+          "n_matched": 1,
+          "rho_dose_vs_offtarget": {
+            "openness": 0.533,
+            "conscientiousness": 0.817,
+            "agreeableness": -0.367,
+            "neuroticism": -0.667
+          }
+        },
+        {
+          "pole": "E-down",
+          "trait": "extraversion",
+          "toward": "low",
+          "metatrait": "beta",
+          "metatrait_direction": -1,
+          "grid": "ceiling",
+          "n_usable_rungs": 3,
+          "best_magnitude": -270.222,
+          "on_target_delta": -0.1726,
+          "shared_drift": -0.126,
+          "drift_vs_signal": 0.73,
+          "partners": {
+            "openness": {
+              "predicted_sign": -1,
+              "delta": -0.402,
+              "match": true
+            },
+            "conscientiousness": {
+              "predicted_sign": null,
+              "delta": 0.0966
+            },
+            "agreeableness": {
+              "predicted_sign": null,
+              "delta": -0.0119
+            },
+            "neuroticism": {
+              "predicted_sign": null,
+              "delta": -0.1403
+            }
+          },
+          "n_predicted": 1,
+          "n_matched": 1,
+          "rho_dose_vs_offtarget": {
+            "openness": -1.0,
+            "conscientiousness": 1.0,
+            "agreeableness": -1.0,
+            "neuroticism": -1.0
+          }
+        },
+        {
+          "pole": "N-up",
+          "trait": "neuroticism",
+          "toward": "high",
+          "metatrait": "alpha",
+          "metatrait_direction": -1,
+          "grid": "in-span",
+          "n_usable_rungs": 9,
+          "best_magnitude": 982.6056,
+          "on_target_delta": 0.0827,
+          "shared_drift": -0.0974,
+          "drift_vs_signal": 1.177,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": -0.3009
+            },
+            "conscientiousness": {
+              "predicted_sign": -1,
+              "delta": -0.1673,
+              "match": true
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": -0.1213
+            },
+            "agreeableness": {
+              "predicted_sign": -1,
+              "delta": 0.02,
+              "match": false
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 1,
+          "rho_dose_vs_offtarget": {
+            "openness": -0.983,
+            "conscientiousness": -1.0,
+            "extraversion": -0.95,
+            "agreeableness": 0.733
+          }
+        },
+        {
+          "pole": "N-down",
+          "trait": "neuroticism",
+          "toward": "low",
+          "metatrait": "alpha",
+          "metatrait_direction": 1,
+          "grid": "ceiling",
+          "n_usable_rungs": 5,
+          "best_magnitude": -1818.4375,
+          "on_target_delta": -0.759,
+          "shared_drift": 0.0686,
+          "drift_vs_signal": 0.09,
+          "partners": {
+            "openness": {
+              "predicted_sign": null,
+              "delta": -0.077
+            },
+            "conscientiousness": {
+              "predicted_sign": 1,
+              "delta": 0.5166,
+              "match": true
+            },
+            "extraversion": {
+              "predicted_sign": null,
+              "delta": 0.5281
+            },
+            "agreeableness": {
+              "predicted_sign": 1,
+              "delta": 0.1345,
+              "match": true
+            }
+          },
+          "n_predicted": 2,
+          "n_matched": 2,
+          "rho_dose_vs_offtarget": {
+            "openness": -0.7,
+            "conscientiousness": 0.9,
+            "extraversion": 0.7,
+            "agreeableness": 0.6
+          }
+        },
+        {
+          "pole": "O-up",
+          "trait": "openness",
+          "toward": "high",
+          "metatrait": "beta",
+          "metatrait_direction": 1,
+          "grid": "ceiling",
+          "n_usable_rungs": 3,
+          "best_magnitude": 271.4515,
+          "on_target_delta": 0.1044,
+          "shared_drift": 0.0104,
+          "drift_vs_signal": 0.099,
+          "partners": {
+            "conscientiousness": {
+              "predicted_sign": null,
+              "delta": 0.1629
+            },
+            "extraversion": {
+              "predicted_sign": 1,
+              "delta": -0.0799,
+              "match": false
+            },
+            "agreeableness": {
+              "predicted_sign": null,
+              "delta": -0.0346
+            },
+            "neuroticism": {
+              "predicted_sign": null,
+              "delta": -0.101
+            }
+          },
+          "n_predicted": 1,
+          "n_matched": 0,
+          "rho_dose_vs_offtarget": {
+            "conscientiousness": 1.0,
+            "extraversion": -1.0,
+            "agreeableness": -0.5,
+            "neuroticism": -0.5
+          }
+        },
+        {
+          "pole": "O-down",
+          "trait": "openness",
+          "toward": "low",
+          "metatrait": "beta",
+          "metatrait_direction": -1,
+          "grid": "ceiling",
+          "n_usable_rungs": 4,
+          "best_magnitude": -271.4515,
+          "on_target_delta": -0.383,
+          "shared_drift": -0.0913,
+          "drift_vs_signal": 0.238,
+          "partners": {
+            "conscientiousness": {
+              "predicted_sign": null,
+              "delta": 0.1264
+            },
+            "extraversion": {
+              "predicted_sign": -1,
+              "delta": -0.1076,
+              "match": true
+            },
+            "agreeableness": {
+              "predicted_sign": null,
+              "delta": -0.0171
+            },
+            "neuroticism": {
+              "predicted_sign": null,
+              "delta": -0.0752
+            }
+          },
+          "n_predicted": 1,
+          "n_matched": 1,
+          "rho_dose_vs_offtarget": {
+            "conscientiousness": 1.0,
+            "extraversion": -1.0,
+            "agreeableness": -0.316,
+            "neuroticism": -1.0
+          }
+        }
+      ]
+    }
+  }
+}

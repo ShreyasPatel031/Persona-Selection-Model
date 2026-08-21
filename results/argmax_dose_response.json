@@ -1,0 +1,215 @@
+{
+  "note": "The inventory result under the STANDARD readout, per pole-direction.\n\nBlas et al., Serapio-Garcia et al. and Jiang et al. all score an item by its\ncommitted answer: argmax over the Likert option tokens. That is also what a human\nrespondent does. This script reports what our sweeps look like under that readout\nalone, so the claim does not rest on our expected-value scoring.\n\nThree quantities are kept separate, because conflating them is how the earlier\nwrite-up went wrong:\n\n- ``rho``    - does the score move in rank order with dose (ordering reliability)\n- ``delta``  - how many Likert points the score actually moves (effect size)\n- ``ctrl``   - how far the score moves under a matched-norm *random* direction on\n               the same grid, measured the same way (max-min span), which is the\n               only noise estimate available given that no rung is repeated\n\nA pole only counts as supported if the ordering is sign-correct AND the trait\nmovement clearly exceeds the random-direction movement.\n\nWhere a pole has both a ceiling-dosed and an in-span run, the in-span run wins.\n\nRun: PYTHONPATH=. python3 scripts/argmax_dose_response.py",
+  "table": [
+    {
+      "pole": "E-up",
+      "grid": "in-span",
+      "argmax": {
+        "n_rungs": 9,
+        "rho": 0.6723,
+        "delta": 0.4584,
+        "span": 0.625
+      },
+      "expected_value": {
+        "n_rungs": 9,
+        "rho": 0.75,
+        "delta": 0.3264,
+        "span": 0.4214
+      },
+      "control_argmax_span": 0.25,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 2.5,
+      "supported": true
+    },
+    {
+      "pole": "E-down",
+      "grid": "in-span",
+      "argmax": {
+        "n_rungs": 2,
+        "rho": null,
+        "delta": null,
+        "span": null
+      },
+      "expected_value": {
+        "n_rungs": 2,
+        "rho": null,
+        "delta": null,
+        "span": null
+      },
+      "control_argmax_span": 0.375,
+      "n_random_controls": 1,
+      "sign_correct": null,
+      "trait_over_control": null,
+      "supported": false
+    },
+    {
+      "pole": "A-up",
+      "grid": "ceiling",
+      "argmax": {
+        "n_rungs": 5,
+        "rho": 0.6669,
+        "delta": 0.25,
+        "span": 0.25
+      },
+      "expected_value": {
+        "n_rungs": 5,
+        "rho": 0.9,
+        "delta": 0.2678,
+        "span": 0.2678
+      },
+      "control_argmax_span": 0.0834,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 3.0,
+      "supported": true
+    },
+    {
+      "pole": "A-down",
+      "grid": "in-span",
+      "argmax": {
+        "n_rungs": 9,
+        "rho": -0.6129,
+        "delta": -0.25,
+        "span": 0.3333
+      },
+      "expected_value": {
+        "n_rungs": 9,
+        "rho": -0.85,
+        "delta": -0.176,
+        "span": 0.176
+      },
+      "control_argmax_span": 0.2917,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 1.14,
+      "supported": false
+    },
+    {
+      "pole": "C-up",
+      "grid": "ceiling",
+      "argmax": {
+        "n_rungs": 4,
+        "rho": 1.0,
+        "delta": 0.5416,
+        "span": 0.5416
+      },
+      "expected_value": {
+        "n_rungs": 4,
+        "rho": 1.0,
+        "delta": 0.5266,
+        "span": 0.5266
+      },
+      "control_argmax_span": 0.125,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 4.33,
+      "supported": true
+    },
+    {
+      "pole": "C-down",
+      "grid": "ceiling",
+      "argmax": {
+        "n_rungs": 5,
+        "rho": -0.7182,
+        "delta": -1.5,
+        "span": 1.5
+      },
+      "expected_value": {
+        "n_rungs": 5,
+        "rho": -0.9,
+        "delta": -1.0547,
+        "span": 1.0547
+      },
+      "control_argmax_span": 0.4583,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 3.27,
+      "supported": true
+    },
+    {
+      "pole": "N-up",
+      "grid": "in-span",
+      "argmax": {
+        "n_rungs": 9,
+        "rho": 0.3651,
+        "delta": 0.0416,
+        "span": 0.0416
+      },
+      "expected_value": {
+        "n_rungs": 9,
+        "rho": 0.9833,
+        "delta": 0.0827,
+        "span": 0.0827
+      },
+      "control_argmax_span": 0.1666,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 0.25,
+      "supported": false
+    },
+    {
+      "pole": "N-down",
+      "grid": "ceiling",
+      "argmax": {
+        "n_rungs": 5,
+        "rho": -0.9,
+        "delta": -0.9167,
+        "span": 0.9167
+      },
+      "expected_value": {
+        "n_rungs": 5,
+        "rho": -0.9,
+        "delta": -0.759,
+        "span": 0.759
+      },
+      "control_argmax_span": 0.4584,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 2.0,
+      "supported": true
+    },
+    {
+      "pole": "O-up",
+      "grid": "ceiling",
+      "argmax": {
+        "n_rungs": 3,
+        "rho": 0.866,
+        "delta": 0.0417,
+        "span": 0.0417
+      },
+      "expected_value": {
+        "n_rungs": 3,
+        "rho": 1.0,
+        "delta": 0.1044,
+        "span": 0.1044
+      },
+      "control_argmax_span": 0.4583,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 0.09,
+      "supported": false
+    },
+    {
+      "pole": "O-down",
+      "grid": "ceiling",
+      "argmax": {
+        "n_rungs": 4,
+        "rho": -1.0,
+        "delta": -0.4583,
+        "span": 0.4583
+      },
+      "expected_value": {
+        "n_rungs": 4,
+        "rho": -1.0,
+        "delta": -0.383,
+        "span": 0.383
+      },
+      "control_argmax_span": 0.4583,
+      "n_random_controls": 1,
+      "sign_correct": true,
+      "trait_over_control": 1.0,
+      "supported": false
+    }
+  ]
+}

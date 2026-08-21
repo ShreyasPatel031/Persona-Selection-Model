@@ -1,0 +1,1077 @@
+{
+  "created_utc": "2026-08-20T12:19:55.269830+00:00",
+  "stage": "prompt_ladder",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "trait": "openness",
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "variants": 3,
+  "prompt_style": "character",
+  "n_markers": 6,
+  "n_items": 120,
+  "instrument": "/home/ubuntu/op/data/ipip_neo_120.csv",
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "administrations": [
+    {
+      "level": 1,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am extremely unimaginative, extremely uncreative, extremely incurious, extremely unintellectual, extremely conventional, and extremely unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 2.4583,
+        "extraversion": 3.0,
+        "neuroticism": 3.0417,
+        "openness": 2.7083
+      },
+      "ev_scores": {
+        "agreeableness": 3.1431,
+        "conscientiousness": 2.677,
+        "extraversion": 3.0133,
+        "neuroticism": 3.0591,
+        "openness": 2.652
+      },
+      "target_score": 2.7083,
+      "target_ev": 2.652,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.475,
+        "option_entropy": 1.0808,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 9,
+          "2": 47,
+          "3": 57,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am extremely unimaginative, extremely uncreative, extremely incurious, extremely unintellectual, extremely conventional, and extremely unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 2.4583,
+        "extraversion": 3.0,
+        "neuroticism": 3.0417,
+        "openness": 2.7083
+      },
+      "ev_scores": {
+        "agreeableness": 3.1431,
+        "conscientiousness": 2.677,
+        "extraversion": 3.0133,
+        "neuroticism": 3.0591,
+        "openness": 2.652
+      },
+      "target_score": 2.7083,
+      "target_ev": 2.652,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.475,
+        "option_entropy": 1.0808,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 9,
+          "2": 47,
+          "3": 57,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am extremely unimaginative, extremely uncreative, extremely incurious, extremely unintellectual, extremely conventional, and extremely unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 2.4583,
+        "extraversion": 3.0,
+        "neuroticism": 3.0417,
+        "openness": 2.7083
+      },
+      "ev_scores": {
+        "agreeableness": 3.1431,
+        "conscientiousness": 2.677,
+        "extraversion": 3.0133,
+        "neuroticism": 3.0591,
+        "openness": 2.652
+      },
+      "target_score": 2.7083,
+      "target_ev": 2.652,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.475,
+        "option_entropy": 1.0808,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 9,
+          "2": 47,
+          "3": 57,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very unimaginative, very uncreative, very incurious, very unintellectual, very conventional, and very unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.0,
+        "conscientiousness": 2.6667,
+        "extraversion": 2.9583,
+        "neuroticism": 3.0417,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 3.0887,
+        "conscientiousness": 2.851,
+        "extraversion": 2.9715,
+        "neuroticism": 3.0719,
+        "openness": 2.5769
+      },
+      "target_score": 2.6667,
+      "target_ev": 2.5769,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.55,
+        "option_entropy": 1.0113,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 6,
+          "2": 66,
+          "3": 41,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very unimaginative, very uncreative, very incurious, very unintellectual, very conventional, and very unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.0,
+        "conscientiousness": 2.6667,
+        "extraversion": 2.9583,
+        "neuroticism": 3.0417,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 3.0887,
+        "conscientiousness": 2.851,
+        "extraversion": 2.9715,
+        "neuroticism": 3.0719,
+        "openness": 2.5769
+      },
+      "target_score": 2.6667,
+      "target_ev": 2.5769,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.55,
+        "option_entropy": 1.0113,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 6,
+          "2": 66,
+          "3": 41,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very unimaginative, very uncreative, very incurious, very unintellectual, very conventional, and very unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.0,
+        "conscientiousness": 2.6667,
+        "extraversion": 2.9583,
+        "neuroticism": 3.0417,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 3.0887,
+        "conscientiousness": 2.851,
+        "extraversion": 2.9715,
+        "neuroticism": 3.0719,
+        "openness": 2.5769
+      },
+      "target_score": 2.6667,
+      "target_ev": 2.5769,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.55,
+        "option_entropy": 1.0113,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 6,
+          "2": 66,
+          "3": 41,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am somewhat unimaginative, somewhat uncreative, somewhat incurious, somewhat unintellectual, somewhat conventional, and somewhat unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.0417,
+        "extraversion": 3.0833,
+        "neuroticism": 3.0417,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.1948,
+        "conscientiousness": 3.0439,
+        "extraversion": 3.0407,
+        "neuroticism": 3.0505,
+        "openness": 2.8523
+      },
+      "target_score": 2.9167,
+      "target_ev": 2.8523,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7167,
+        "option_entropy": 0.7174,
+        "distinct_options": 4,
+        "histogram": {
+          "2": 30,
+          "3": 86,
+          "4": 1,
+          "5": 3
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am somewhat unimaginative, somewhat uncreative, somewhat incurious, somewhat unintellectual, somewhat conventional, and somewhat unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.0417,
+        "extraversion": 3.0833,
+        "neuroticism": 3.0417,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.1948,
+        "conscientiousness": 3.0439,
+        "extraversion": 3.0407,
+        "neuroticism": 3.0505,
+        "openness": 2.8523
+      },
+      "target_score": 2.9167,
+      "target_ev": 2.8523,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7167,
+        "option_entropy": 0.7174,
+        "distinct_options": 4,
+        "histogram": {
+          "2": 30,
+          "3": 86,
+          "4": 1,
+          "5": 3
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am somewhat unimaginative, somewhat uncreative, somewhat incurious, somewhat unintellectual, somewhat conventional, and somewhat unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.0417,
+        "extraversion": 3.0833,
+        "neuroticism": 3.0417,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.1948,
+        "conscientiousness": 3.0439,
+        "extraversion": 3.0407,
+        "neuroticism": 3.0505,
+        "openness": 2.8523
+      },
+      "target_score": 2.9167,
+      "target_ev": 2.8523,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7167,
+        "option_entropy": 0.7174,
+        "distinct_options": 4,
+        "histogram": {
+          "2": 30,
+          "3": 86,
+          "4": 1,
+          "5": 3
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am a bit unimaginative, a bit uncreative, a bit incurious, a bit unintellectual, a bit conventional, and a bit unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.2917,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.0833,
+        "neuroticism": 2.9167,
+        "openness": 2.8333
+      },
+      "ev_scores": {
+        "agreeableness": 3.2737,
+        "conscientiousness": 3.0151,
+        "extraversion": 3.0536,
+        "neuroticism": 2.9153,
+        "openness": 2.8299
+      },
+      "target_score": 2.8333,
+      "target_ev": 2.8299,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.725,
+        "option_entropy": 0.8317,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 3,
+          "2": 23,
+          "3": 87,
+          "4": 1,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am a bit unimaginative, a bit uncreative, a bit incurious, a bit unintellectual, a bit conventional, and a bit unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.2917,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.0833,
+        "neuroticism": 2.9167,
+        "openness": 2.8333
+      },
+      "ev_scores": {
+        "agreeableness": 3.2737,
+        "conscientiousness": 3.0151,
+        "extraversion": 3.0536,
+        "neuroticism": 2.9153,
+        "openness": 2.8299
+      },
+      "target_score": 2.8333,
+      "target_ev": 2.8299,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.725,
+        "option_entropy": 0.8317,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 3,
+          "2": 23,
+          "3": 87,
+          "4": 1,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am a bit unimaginative, a bit uncreative, a bit incurious, a bit unintellectual, a bit conventional, and a bit unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.2917,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.0833,
+        "neuroticism": 2.9167,
+        "openness": 2.8333
+      },
+      "ev_scores": {
+        "agreeableness": 3.2737,
+        "conscientiousness": 3.0151,
+        "extraversion": 3.0536,
+        "neuroticism": 2.9153,
+        "openness": 2.8299
+      },
+      "target_score": 2.8333,
+      "target_ev": 2.8299,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.725,
+        "option_entropy": 0.8317,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 3,
+          "2": 23,
+          "3": 87,
+          "4": 1,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am neither creative nor unimaginative, neither imaginative nor uncreative, neither curious nor incurious, neither intellectual nor unintellectual, neither inventive nor conventional, and neither reflective nor unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 3.2917,
+        "extraversion": 3.375,
+        "neuroticism": 2.9583,
+        "openness": 3.1667
+      },
+      "ev_scores": {
+        "agreeableness": 3.134,
+        "conscientiousness": 3.2967,
+        "extraversion": 3.3328,
+        "neuroticism": 2.9114,
+        "openness": 3.1516
+      },
+      "target_score": 3.1667,
+      "target_ev": 3.1516,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6,
+        "option_entropy": 0.9515,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 6,
+          "2": 37,
+          "3": 72,
+          "5": 5
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am neither creative nor unimaginative, neither imaginative nor uncreative, neither curious nor incurious, neither intellectual nor unintellectual, neither inventive nor conventional, and neither reflective nor unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 3.2917,
+        "extraversion": 3.375,
+        "neuroticism": 2.9583,
+        "openness": 3.1667
+      },
+      "ev_scores": {
+        "agreeableness": 3.134,
+        "conscientiousness": 3.2967,
+        "extraversion": 3.3328,
+        "neuroticism": 2.9114,
+        "openness": 3.1516
+      },
+      "target_score": 3.1667,
+      "target_ev": 3.1516,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6,
+        "option_entropy": 0.9515,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 6,
+          "2": 37,
+          "3": 72,
+          "5": 5
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am neither creative nor unimaginative, neither imaginative nor uncreative, neither curious nor incurious, neither intellectual nor unintellectual, neither inventive nor conventional, and neither reflective nor unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.1667,
+        "conscientiousness": 3.2917,
+        "extraversion": 3.375,
+        "neuroticism": 2.9583,
+        "openness": 3.1667
+      },
+      "ev_scores": {
+        "agreeableness": 3.134,
+        "conscientiousness": 3.2967,
+        "extraversion": 3.3328,
+        "neuroticism": 2.9114,
+        "openness": 3.1516
+      },
+      "target_score": 3.1667,
+      "target_ev": 3.1516,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6,
+        "option_entropy": 0.9515,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 6,
+          "2": 37,
+          "3": 72,
+          "5": 5
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am a bit creative, a bit imaginative, a bit curious, a bit intellectual, a bit inventive, and a bit reflective.",
+      "trait_scores": {
+        "agreeableness": 2.875,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.125,
+        "neuroticism": 3.1667,
+        "openness": 4.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.8137,
+        "conscientiousness": 2.9503,
+        "extraversion": 3.085,
+        "neuroticism": 3.0998,
+        "openness": 4.072
+      },
+      "target_score": 4.0833,
+      "target_ev": 4.072,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7417,
+        "option_entropy": 0.8983,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 10,
+          "2": 89,
+          "3": 9,
+          "4": 2,
+          "5": 10
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am a bit creative, a bit imaginative, a bit curious, a bit intellectual, a bit inventive, and a bit reflective.",
+      "trait_scores": {
+        "agreeableness": 2.875,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.125,
+        "neuroticism": 3.1667,
+        "openness": 4.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.8137,
+        "conscientiousness": 2.9503,
+        "extraversion": 3.085,
+        "neuroticism": 3.0998,
+        "openness": 4.072
+      },
+      "target_score": 4.0833,
+      "target_ev": 4.072,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7417,
+        "option_entropy": 0.8983,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 10,
+          "2": 89,
+          "3": 9,
+          "4": 2,
+          "5": 10
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am a bit creative, a bit imaginative, a bit curious, a bit intellectual, a bit inventive, and a bit reflective.",
+      "trait_scores": {
+        "agreeableness": 2.875,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.125,
+        "neuroticism": 3.1667,
+        "openness": 4.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.8137,
+        "conscientiousness": 2.9503,
+        "extraversion": 3.085,
+        "neuroticism": 3.0998,
+        "openness": 4.072
+      },
+      "target_score": 4.0833,
+      "target_ev": 4.072,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7417,
+        "option_entropy": 0.8983,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 10,
+          "2": 89,
+          "3": 9,
+          "4": 2,
+          "5": 10
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am somewhat creative, somewhat imaginative, somewhat curious, somewhat intellectual, somewhat inventive, and somewhat reflective.",
+      "trait_scores": {
+        "agreeableness": 2.9583,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.0417,
+        "neuroticism": 3.1667,
+        "openness": 3.4167
+      },
+      "ev_scores": {
+        "agreeableness": 2.8799,
+        "conscientiousness": 2.9237,
+        "extraversion": 3.0108,
+        "neuroticism": 3.1905,
+        "openness": 3.4186
+      },
+      "target_score": 3.4167,
+      "target_ev": 3.4186,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7417,
+        "option_entropy": 0.7491,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 3,
+          "2": 89,
+          "3": 24,
+          "4": 4
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am somewhat creative, somewhat imaginative, somewhat curious, somewhat intellectual, somewhat inventive, and somewhat reflective.",
+      "trait_scores": {
+        "agreeableness": 2.9583,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.0417,
+        "neuroticism": 3.1667,
+        "openness": 3.4167
+      },
+      "ev_scores": {
+        "agreeableness": 2.8799,
+        "conscientiousness": 2.9237,
+        "extraversion": 3.0108,
+        "neuroticism": 3.1905,
+        "openness": 3.4186
+      },
+      "target_score": 3.4167,
+      "target_ev": 3.4186,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7417,
+        "option_entropy": 0.7491,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 3,
+          "2": 89,
+          "3": 24,
+          "4": 4
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am somewhat creative, somewhat imaginative, somewhat curious, somewhat intellectual, somewhat inventive, and somewhat reflective.",
+      "trait_scores": {
+        "agreeableness": 2.9583,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.0417,
+        "neuroticism": 3.1667,
+        "openness": 3.4167
+      },
+      "ev_scores": {
+        "agreeableness": 2.8799,
+        "conscientiousness": 2.9237,
+        "extraversion": 3.0108,
+        "neuroticism": 3.1905,
+        "openness": 3.4186
+      },
+      "target_score": 3.4167,
+      "target_ev": 3.4186,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7417,
+        "option_entropy": 0.7491,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 3,
+          "2": 89,
+          "3": 24,
+          "4": 4
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very creative, very imaginative, very curious, very intellectual, very inventive, and very reflective.",
+      "trait_scores": {
+        "agreeableness": 2.7917,
+        "conscientiousness": 3.25,
+        "extraversion": 3.0833,
+        "neuroticism": 3.0,
+        "openness": 4.0417
+      },
+      "ev_scores": {
+        "agreeableness": 2.6663,
+        "conscientiousness": 3.2055,
+        "extraversion": 3.0604,
+        "neuroticism": 3.0166,
+        "openness": 4.0788
+      },
+      "target_score": 4.0417,
+      "target_ev": 4.0788,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.775,
+        "option_entropy": 0.7599,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 93,
+          "3": 2,
+          "4": 1,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very creative, very imaginative, very curious, very intellectual, very inventive, and very reflective.",
+      "trait_scores": {
+        "agreeableness": 2.7917,
+        "conscientiousness": 3.25,
+        "extraversion": 3.0833,
+        "neuroticism": 3.0,
+        "openness": 4.0417
+      },
+      "ev_scores": {
+        "agreeableness": 2.6663,
+        "conscientiousness": 3.2055,
+        "extraversion": 3.0604,
+        "neuroticism": 3.0166,
+        "openness": 4.0788
+      },
+      "target_score": 4.0417,
+      "target_ev": 4.0788,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.775,
+        "option_entropy": 0.7599,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 93,
+          "3": 2,
+          "4": 1,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am very creative, very imaginative, very curious, very intellectual, very inventive, and very reflective.",
+      "trait_scores": {
+        "agreeableness": 2.7917,
+        "conscientiousness": 3.25,
+        "extraversion": 3.0833,
+        "neuroticism": 3.0,
+        "openness": 4.0417
+      },
+      "ev_scores": {
+        "agreeableness": 2.6663,
+        "conscientiousness": 3.2055,
+        "extraversion": 3.0604,
+        "neuroticism": 3.0166,
+        "openness": 4.0788
+      },
+      "target_score": 4.0417,
+      "target_ev": 4.0788,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.775,
+        "option_entropy": 0.7599,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 93,
+          "3": 2,
+          "4": 1,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 0,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am extremely creative, extremely imaginative, extremely curious, extremely intellectual, extremely inventive, and extremely reflective.",
+      "trait_scores": {
+        "agreeableness": 2.4167,
+        "conscientiousness": 3.1667,
+        "extraversion": 3.5,
+        "neuroticism": 2.8333,
+        "openness": 4.2083
+      },
+      "ev_scores": {
+        "agreeableness": 2.4378,
+        "conscientiousness": 3.1792,
+        "extraversion": 3.4263,
+        "neuroticism": 2.8884,
+        "openness": 4.2454
+      },
+      "target_score": 4.2083,
+      "target_ev": 4.2454,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.525,
+        "option_entropy": 0.9997,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 37,
+          "2": 63,
+          "5": 20
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 1,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am extremely creative, extremely imaginative, extremely curious, extremely intellectual, extremely inventive, and extremely reflective.",
+      "trait_scores": {
+        "agreeableness": 2.4167,
+        "conscientiousness": 3.1667,
+        "extraversion": 3.5,
+        "neuroticism": 2.8333,
+        "openness": 4.2083
+      },
+      "ev_scores": {
+        "agreeableness": 2.4378,
+        "conscientiousness": 3.1792,
+        "extraversion": 3.4263,
+        "neuroticism": 2.8884,
+        "openness": 4.2454
+      },
+      "target_score": 4.2083,
+      "target_ev": 4.2454,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.525,
+        "option_entropy": 0.9997,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 37,
+          "2": 63,
+          "5": 20
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 2,
+      "system_prompt": "You are role-playing a character in a survey. Stay in character for every answer, including when the character's traits or opinions differ from your own. Do not soften or correct the character.\n\nYour character says: I am extremely creative, extremely imaginative, extremely curious, extremely intellectual, extremely inventive, and extremely reflective.",
+      "trait_scores": {
+        "agreeableness": 2.4167,
+        "conscientiousness": 3.1667,
+        "extraversion": 3.5,
+        "neuroticism": 2.8333,
+        "openness": 4.2083
+      },
+      "ev_scores": {
+        "agreeableness": 2.4378,
+        "conscientiousness": 3.1792,
+        "extraversion": 3.4263,
+        "neuroticism": 2.8884,
+        "openness": 4.2454
+      },
+      "target_score": 4.2083,
+      "target_ev": 4.2454,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.525,
+        "option_entropy": 0.9997,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 37,
+          "2": 63,
+          "5": 20
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    }
+  ],
+  "n_administrations": 27,
+  "n_usable_administrations": 27,
+  "locked_administrations": [],
+  "level_mean_target_score": [
+    2.7083,
+    2.6667,
+    2.9167,
+    2.8333,
+    3.1667,
+    4.0833,
+    3.4167,
+    4.0417,
+    4.2083
+  ],
+  "spearman_level_vs_target_score": 0.9167,
+  "monotone_fraction_level_means": 0.625,
+  "target_score_range": [
+    2.6667,
+    4.2083
+  ],
+  "off_target_spearman": {
+    "extraversion": 0.6442,
+    "agreeableness": -0.7531,
+    "conscientiousness": 0.6442,
+    "neuroticism": -0.2469
+  }
+}

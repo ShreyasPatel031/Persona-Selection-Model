@@ -1,0 +1,135 @@
+{
+  "created_utc": "2026-08-19T21:10:16.488248+00:00",
+  "stage": "e0_injection_scope_ablation",
+  "pass_gate": {
+    "min_rungs": 3,
+    "margin": 2.0,
+    "readout": "argmax"
+  },
+  "n_supported_full": 1,
+  "n_supported_assistant_span": 0,
+  "comparisons": [
+    {
+      "pole": "C-up",
+      "full_supported": false,
+      "span_supported": false,
+      "full_span": 0.5416,
+      "assistant_span": 0.3333,
+      "hypothesis_confirmed": false
+    },
+    {
+      "pole": "C-down",
+      "full_supported": true,
+      "span_supported": false,
+      "full_span": 1.4167,
+      "assistant_span": 0.125,
+      "hypothesis_confirmed": true
+    },
+    {
+      "pole": "E-up",
+      "full_supported": false,
+      "span_supported": false,
+      "full_span": 0.6667,
+      "assistant_span": 0.0834,
+      "hypothesis_confirmed": false
+    }
+  ],
+  "table": [
+    {
+      "trait": "conscientiousness",
+      "pole": "high",
+      "layer": 15,
+      "grid_source": "results/gemma_final/validated_sweep_conscientiousness_pc1_high.json",
+      "scope": "full",
+      "report": "results/injection_scope_ablation/validated_sweep_conscientiousness_pc1_high_full.json",
+      "n_rungs": 4,
+      "rho": 1.0,
+      "delta": 0.5416,
+      "span": 0.5416,
+      "sign_correct": true,
+      "control_span": 0.2917,
+      "trait_over_control": 1.86,
+      "supported": false
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "high",
+      "layer": 15,
+      "grid_source": "results/gemma_final/validated_sweep_conscientiousness_pc1_high.json",
+      "scope": "assistant_span",
+      "report": "results/injection_scope_ablation/validated_sweep_conscientiousness_pc1_high_assistant_span.json",
+      "n_rungs": 6,
+      "rho": 0.9258,
+      "delta": 0.3333,
+      "span": 0.3333,
+      "sign_correct": true,
+      "control_span": 0.375,
+      "trait_over_control": 0.89,
+      "supported": false
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "low",
+      "layer": 15,
+      "grid_source": "results/gemma_final/validated_sweep_conscientiousness_pc1_low.json",
+      "scope": "full",
+      "report": "results/injection_scope_ablation/validated_sweep_conscientiousness_pc1_low_full.json",
+      "n_rungs": 5,
+      "rho": -0.8,
+      "delta": -1.4167,
+      "span": 1.4167,
+      "sign_correct": true,
+      "control_span": 0.375,
+      "trait_over_control": 3.78,
+      "supported": true
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "low",
+      "layer": 15,
+      "grid_source": "results/gemma_final/validated_sweep_conscientiousness_pc1_low.json",
+      "scope": "assistant_span",
+      "report": "results/injection_scope_ablation/validated_sweep_conscientiousness_pc1_low_assistant_span.json",
+      "n_rungs": 4,
+      "rho": 0.9487,
+      "delta": 0.0,
+      "span": 0.125,
+      "sign_correct": false,
+      "control_span": 0.25,
+      "trait_over_control": 0.5,
+      "supported": false
+    },
+    {
+      "trait": "extraversion",
+      "pole": "high",
+      "layer": 15,
+      "grid_source": "results/e1_inspan/validated_sweep_extraversion_pc1_high.json",
+      "scope": "full",
+      "report": "results/injection_scope_ablation/validated_sweep_extraversion_pc1_high_full.json",
+      "n_rungs": 9,
+      "rho": 0.6975,
+      "delta": 0.4584,
+      "span": 0.6667,
+      "sign_correct": true,
+      "control_span": 0.375,
+      "trait_over_control": 1.78,
+      "supported": false
+    },
+    {
+      "trait": "extraversion",
+      "pole": "high",
+      "layer": 15,
+      "grid_source": "results/e1_inspan/validated_sweep_extraversion_pc1_high.json",
+      "scope": "assistant_span",
+      "report": "results/injection_scope_ablation/validated_sweep_extraversion_pc1_high_assistant_span.json",
+      "n_rungs": 9,
+      "rho": 0.8463,
+      "delta": 0.0834,
+      "span": 0.0834,
+      "sign_correct": true,
+      "control_span": 0.25,
+      "trait_over_control": 0.33,
+      "supported": false
+    }
+  ]
+}

@@ -1,0 +1,514 @@
+INFO [extraversion] stage 1: prompt ladder
+INFO NumExpr defaulting to 12 threads.
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: GET https://huggingface.co/api/agent-harnesses "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer.json "HTTP/1.1 302 Found"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/added_tokens.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/added_tokens.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/added_tokens.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/special_tokens_map.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/special_tokens_map.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/chat_template.jinja "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/chat_template.jinja "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/chat_template.jinja "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/model.safetensors.index.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/model.safetensors.index.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/revision/main "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/bf46152c47f5dd20b896357cb51abc4c03b8ee8c?recursive=true&expand=false "HTTP/1.1 200 OK"
+Fetching 2 files:   0%|          | 0/2 [00:00<?, ?it/s]Fetching 2 files:  50%|█████     | 1/2 [00:23<00:23, 23.31s/it]Fetching 2 files: 100%|██████████| 2/2 [00:23<00:00, 11.65s/it]
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  59%|█████▊    | 517/883 [00:00<00:00, 5168.22it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 4930.45it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO level 1/9 variant 0
+INFO level 1/9 variant 1
+INFO level 1/9 variant 2
+INFO level 2/9 variant 0
+INFO level 2/9 variant 1
+INFO level 2/9 variant 2
+INFO level 3/9 variant 0
+INFO level 3/9 variant 1
+INFO level 3/9 variant 2
+INFO level 4/9 variant 0
+INFO level 4/9 variant 1
+INFO level 4/9 variant 2
+INFO level 5/9 variant 0
+INFO level 5/9 variant 1
+INFO level 5/9 variant 2
+INFO level 6/9 variant 0
+INFO level 6/9 variant 1
+INFO level 6/9 variant 2
+INFO level 7/9 variant 0
+INFO level 7/9 variant 1
+INFO level 7/9 variant 2
+INFO level 8/9 variant 0
+INFO level 8/9 variant 1
+INFO level 8/9 variant 2
+INFO level 9/9 variant 0
+INFO level 9/9 variant 1
+INFO level 9/9 variant 2
+INFO prompting baseline ρ(level, extraversion) = 0.9143 over 27/27 usable administrations, range [1.5278, 4.875]
+INFO [extraversion] stage 2: ladder directions
+INFO best ladder layer 15: PC1 var 0.824, monotone 0.875, cos(endpoint,PC1) 0.9932
+INFO [extraversion] stage 3: validated sweep
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  58%|█████▊    | 511/883 [00:00<00:00, 5091.77it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 4862.79it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO calibrate |α|=0.0200 (mag 540.4) coherent=True ttr=0.7069
+INFO calibrate |α|=0.0400 (mag 1080.9) coherent=True ttr=0.8478
+INFO calibrate |α|=0.0800 (mag 2161.8) coherent=True ttr=0.7119
+INFO calibrate |α|=0.1600 (mag 4323.6) coherent=True ttr=0.4746
+INFO calibrate |α|=0.3200 (mag 8647.1) coherent=False ttr=0.0952
+INFO calibrated ceiling |α|=0.16 (mag 4323.5513); grid [0.01, 0.017411, 0.030314, 0.05278, 0.091896, 0.16]
+INFO extraversion:pc1 α=+0.00 (mag 0) → extraversion ev=3.0623 usable=True coh=1.0 markers=0.877
+INFO extraversion:pc1 α=-0.01 (mag -270) → extraversion ev=2.8897 usable=True coh=1.0 markers=-1.695
+INFO extraversion:pc1 α=-0.02 (mag -470) → extraversion ev=2.9314 usable=False coh=1.0 markers=-0.862
+INFO extraversion:pc1 α=-0.03 (mag -819) → extraversion ev=2.9826 usable=False coh=1.0 markers=-2.778
+INFO extraversion:pc1 α=-0.05 (mag -1426) → extraversion ev=3.0091 usable=False coh=1.0 markers=-3.75
+INFO extraversion:pc1 α=-0.09 (mag -2483) → extraversion ev=3.0788 usable=False coh=1.0 markers=-3.846
+INFO extraversion:pc1 α=-0.16 (mag -4324) → extraversion ev=2.9938 usable=True coh=1.0 markers=0.0
+INFO random0 α=+0.00 (mag 0) → extraversion ev=3.0623 usable=True coh=1.0 markers=0.877
+INFO random0 α=-0.01 (mag -270) → extraversion ev=3.1856 usable=True coh=1.0 markers=-0.962
+INFO random0 α=-0.02 (mag -470) → extraversion ev=3.3347 usable=True coh=1.0 markers=-0.085
+INFO random0 α=-0.03 (mag -819) → extraversion ev=3.4915 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.05 (mag -1426) → extraversion ev=3.0325 usable=False coh=1.0 markers=1.695
+INFO random0 α=-0.09 (mag -2483) → extraversion ev=3.006 usable=False coh=0.5 markers=0.0
+INFO random0 α=-0.16 (mag -4324) → extraversion ev=3.0157 usable=False coh=0.0 markers=0.0
+INFO random1 α=+0.00 (mag 0) → extraversion ev=3.0623 usable=True coh=1.0 markers=0.877
+INFO random1 α=-0.01 (mag -270) → extraversion ev=2.9898 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.02 (mag -470) → extraversion ev=2.9644 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.03 (mag -819) → extraversion ev=2.9357 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.05 (mag -1426) → extraversion ev=3.1089 usable=True coh=1.0 markers=0.981
+INFO random1 α=-0.09 (mag -2483) → extraversion ev=2.995 usable=False coh=0.0 markers=0.0
+INFO random1 α=-0.16 (mag -4324) → extraversion ev=2.9988 usable=False coh=0.0 markers=0.0
+INFO verdict: works=False toward=low trait Δ=0.1726 vs control Δ=0.1266 (ρ=-0.5, ceiling mag -4323.5513)
+INFO [agreeableness] stage 1: prompt ladder
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  59%|█████▉    | 520/883 [00:00<00:00, 5198.86it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 5407.47it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO level 1/9 variant 0
+INFO level 1/9 variant 1
+INFO level 1/9 variant 2
+INFO level 2/9 variant 0
+INFO level 2/9 variant 1
+INFO level 2/9 variant 2
+INFO level 3/9 variant 0
+INFO level 3/9 variant 1
+INFO level 3/9 variant 2
+INFO level 4/9 variant 0
+INFO level 4/9 variant 1
+INFO level 4/9 variant 2
+INFO level 5/9 variant 0
+WARNING level 5 variant 0 produced a locked readout (one option covers 99% of items); excluded from the prompting baseline
+INFO level 5/9 variant 1
+WARNING level 5 variant 1 produced a locked readout (one option covers 99% of items); excluded from the prompting baseline
+INFO level 5/9 variant 2
+WARNING level 5 variant 2 produced a locked readout (one option covers 99% of items); excluded from the prompting baseline
+INFO level 6/9 variant 0
+INFO level 6/9 variant 1
+INFO level 6/9 variant 2
+INFO level 7/9 variant 0
+INFO level 7/9 variant 1
+INFO level 7/9 variant 2
+INFO level 8/9 variant 0
+INFO level 8/9 variant 1
+INFO level 8/9 variant 2
+INFO level 9/9 variant 0
+INFO level 9/9 variant 1
+INFO level 9/9 variant 2
+INFO prompting baseline ρ(level, agreeableness) = 0.9138 over 24/27 usable administrations, range [1.4722, 4.6528]
+INFO [agreeableness] stage 2: ladder directions
+INFO best ladder layer 15: PC1 var 0.8131, monotone 1.0, cos(endpoint,PC1) 0.9931
+INFO [agreeableness] stage 3: validated sweep
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  60%|█████▉    | 526/883 [00:00<00:00, 5222.80it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 5307.62it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO calibrate |α|=0.0200 (mag 544.3) coherent=True ttr=0.82
+INFO calibrate |α|=0.0400 (mag 1088.5) coherent=True ttr=0.8889
+INFO calibrate |α|=0.0800 (mag 2177.0) coherent=False ttr=0.8462
+INFO calibrated ceiling |α|=0.04 (mag 1088.5149); grid [0.0025, 0.004353, 0.007579, 0.013195, 0.022974, 0.04]
+INFO agreeableness:pc1 α=+0.00 (mag 0) → agreeableness ev=3.0159 usable=True coh=1.0 markers=0.877
+INFO agreeableness:pc1 α=-0.00 (mag -68) → agreeableness ev=2.9809 usable=True coh=1.0 markers=0.848
+INFO agreeableness:pc1 α=-0.00 (mag -118) → agreeableness ev=2.9661 usable=True coh=1.0 markers=0.0
+INFO agreeableness:pc1 α=-0.01 (mag -206) → agreeableness ev=2.9649 usable=True coh=1.0 markers=0.862
+INFO agreeableness:pc1 α=-0.01 (mag -359) → agreeableness ev=2.9828 usable=True coh=1.0 markers=0.0
+INFO agreeableness:pc1 α=-0.02 (mag -625) → agreeableness ev=2.9586 usable=True coh=1.0 markers=0.0
+INFO agreeableness:pc1 α=-0.04 (mag -1089) → agreeableness ev=2.8727 usable=True coh=1.0 markers=0.0
+INFO random0 α=+0.00 (mag 0) → agreeableness ev=3.0159 usable=True coh=1.0 markers=0.877
+INFO random0 α=-0.00 (mag -68) → agreeableness ev=3.0163 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.00 (mag -118) → agreeableness ev=3.0087 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.01 (mag -206) → agreeableness ev=3.0063 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.01 (mag -359) → agreeableness ev=3.0252 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.02 (mag -625) → agreeableness ev=2.9838 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.04 (mag -1089) → agreeableness ev=3.0984 usable=True coh=1.0 markers=0.0
+INFO random1 α=+0.00 (mag 0) → agreeableness ev=3.0159 usable=True coh=1.0 markers=0.877
+INFO random1 α=-0.00 (mag -68) → agreeableness ev=2.9898 usable=True coh=1.0 markers=1.754
+INFO random1 α=-0.00 (mag -118) → agreeableness ev=3.0074 usable=True coh=1.0 markers=1.786
+INFO random1 α=-0.01 (mag -206) → agreeableness ev=3.051 usable=True coh=1.0 markers=0.893
+INFO random1 α=-0.01 (mag -359) → agreeableness ev=3.1021 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.02 (mag -625) → agreeableness ev=2.9892 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.04 (mag -1089) → agreeableness ev=3.0001 usable=False coh=1.0 markers=0.862
+INFO verdict: works=True toward=low trait Δ=0.1432 vs control Δ=0.0321 (ρ=-0.7857, ceiling mag -1088.5149)
+INFO [conscientiousness] stage 1: prompt ladder
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  50%|████▉     | 441/883 [00:00<00:00, 4409.02it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 4624.71it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO level 1/9 variant 0
+INFO level 1/9 variant 1
+INFO level 1/9 variant 2
+INFO level 2/9 variant 0
+INFO level 2/9 variant 1
+INFO level 2/9 variant 2
+INFO level 3/9 variant 0
+INFO level 3/9 variant 1
+INFO level 3/9 variant 2
+INFO level 4/9 variant 0
+INFO level 4/9 variant 1
+INFO level 4/9 variant 2
+INFO level 5/9 variant 0
+WARNING level 5 variant 0 produced a locked readout (one option covers 97% of items); excluded from the prompting baseline
+INFO level 5/9 variant 1
+WARNING level 5 variant 1 produced a locked readout (one option covers 95% of items); excluded from the prompting baseline
+INFO level 5/9 variant 2
+WARNING level 5 variant 2 produced a locked readout (one option covers 97% of items); excluded from the prompting baseline
+INFO level 6/9 variant 0
+INFO level 6/9 variant 1
+INFO level 6/9 variant 2
+INFO level 7/9 variant 0
+INFO level 7/9 variant 1
+INFO level 7/9 variant 2
+INFO level 8/9 variant 0
+INFO level 8/9 variant 1
+INFO level 8/9 variant 2
+INFO level 9/9 variant 0
+INFO level 9/9 variant 1
+INFO level 9/9 variant 2
+INFO prompting baseline ρ(level, conscientiousness) = 0.9538 over 24/27 usable administrations, range [1.0, 4.9861]
+INFO [conscientiousness] stage 2: ladder directions
+INFO best ladder layer 15: PC1 var 0.8145, monotone 0.625, cos(endpoint,PC1) 0.9958
+INFO [conscientiousness] stage 3: validated sweep
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  52%|█████▏    | 455/883 [00:00<00:00, 4530.31it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 4293.38it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO calibrate |α|=0.0200 (mag 542.1) coherent=True ttr=0.807
+INFO calibrate |α|=0.0400 (mag 1084.3) coherent=True ttr=0.7193
+INFO calibrate |α|=0.0800 (mag 2168.6) coherent=True ttr=0.8276
+INFO calibrate |α|=0.1600 (mag 4337.1) coherent=False ttr=0.3276
+INFO calibrated ceiling |α|=0.08 (mag 2168.5583); grid [0.005, 0.008706, 0.015157, 0.02639, 0.045948, 0.08]
+INFO conscientiousness:pc1 α=+0.00 (mag 0) → conscientiousness ev=2.7737 usable=True coh=1.0 markers=7.481
+INFO conscientiousness:pc1 α=+0.01 (mag 136) → conscientiousness ev=2.8993 usable=True coh=1.0 markers=10.245
+INFO conscientiousness:pc1 α=+0.01 (mag 236) → conscientiousness ev=3.0095 usable=True coh=1.0 markers=6.562
+INFO conscientiousness:pc1 α=+0.02 (mag 411) → conscientiousness ev=3.2308 usable=True coh=1.0 markers=7.343
+INFO conscientiousness:pc1 α=+0.03 (mag 715) → conscientiousness ev=3.3381 usable=True coh=1.0 markers=8.995
+INFO conscientiousness:pc1 α=+0.05 (mag 1246) → conscientiousness ev=3.0005 usable=False coh=1.0 markers=7.211
+INFO conscientiousness:pc1 α=+0.08 (mag 2169) → conscientiousness ev=3.0648 usable=False coh=1.0 markers=8.742
+INFO random0 α=+0.00 (mag 0) → conscientiousness ev=2.7737 usable=True coh=1.0 markers=7.481
+INFO random0 α=+0.01 (mag 136) → conscientiousness ev=2.7564 usable=True coh=1.0 markers=5.75
+INFO random0 α=+0.01 (mag 236) → conscientiousness ev=2.7544 usable=True coh=1.0 markers=4.902
+INFO random0 α=+0.02 (mag 411) → conscientiousness ev=2.7372 usable=True coh=1.0 markers=5.66
+INFO random0 α=+0.03 (mag 715) → conscientiousness ev=2.6051 usable=True coh=1.0 markers=2.778
+INFO random0 α=+0.05 (mag 1246) → conscientiousness ev=2.9576 usable=False coh=1.0 markers=4.465
+INFO random0 α=+0.08 (mag 2169) → conscientiousness ev=2.9552 usable=False coh=0.0 markers=4.545
+INFO random1 α=+0.00 (mag 0) → conscientiousness ev=2.7737 usable=True coh=1.0 markers=7.481
+INFO random1 α=+0.01 (mag 136) → conscientiousness ev=2.9059 usable=True coh=1.0 markers=4.907
+INFO random1 α=+0.01 (mag 236) → conscientiousness ev=2.9428 usable=True coh=1.0 markers=5.769
+INFO random1 α=+0.02 (mag 411) → conscientiousness ev=2.9787 usable=True coh=1.0 markers=5.579
+INFO random1 α=+0.03 (mag 715) → conscientiousness ev=2.9785 usable=True coh=1.0 markers=5.55
+INFO random1 α=+0.05 (mag 1246) → conscientiousness ev=2.9534 usable=False coh=1.0 markers=6.474
+INFO random1 α=+0.08 (mag 2169) → conscientiousness ev=2.9915 usable=False coh=0.5 markers=2.83
+INFO verdict: works=True toward=high trait Δ=0.5644 vs control Δ=0.205 (ρ=1.0, ceiling mag 2168.5583)
+INFO [neuroticism] stage 1: prompt ladder
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  60%|██████    | 533/883 [00:00<00:00, 5328.19it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 5354.16it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO level 1/9 variant 0
+INFO level 1/9 variant 1
+INFO level 1/9 variant 2
+INFO level 2/9 variant 0
+INFO level 2/9 variant 1
+INFO level 2/9 variant 2
+INFO level 3/9 variant 0
+INFO level 3/9 variant 1
+INFO level 3/9 variant 2
+INFO level 4/9 variant 0
+INFO level 4/9 variant 1
+INFO level 4/9 variant 2
+INFO level 5/9 variant 0
+INFO level 5/9 variant 1
+INFO level 5/9 variant 2
+INFO level 6/9 variant 0
+INFO level 6/9 variant 1
+INFO level 6/9 variant 2
+INFO level 7/9 variant 0
+INFO level 7/9 variant 1
+INFO level 7/9 variant 2
+INFO level 8/9 variant 0
+INFO level 8/9 variant 1
+INFO level 8/9 variant 2
+INFO level 9/9 variant 0
+INFO level 9/9 variant 1
+INFO level 9/9 variant 2
+INFO prompting baseline ρ(level, neuroticism) = 0.9679 over 27/27 usable administrations, range [2.1667, 4.8195]
+INFO [neuroticism] stage 2: ladder directions
+INFO best ladder layer 10: PC1 var 0.9345, monotone 0.75, cos(endpoint,PC1) 0.9946
+INFO [neuroticism] stage 3: validated sweep
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  53%|█████▎    | 471/883 [00:00<00:00, 4690.96it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 4327.15it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO calibrate |α|=0.0200 (mag 227.3) coherent=True ttr=0.7414
+INFO calibrate |α|=0.0400 (mag 454.6) coherent=True ttr=0.7966
+INFO calibrate |α|=0.0800 (mag 909.2) coherent=True ttr=0.8644
+INFO calibrate |α|=0.1600 (mag 1818.4) coherent=True ttr=0.8421
+INFO calibrate |α|=0.3200 (mag 3636.9) coherent=True ttr=0.7797
+INFO calibrate |α|=0.6400 (mag 7273.8) coherent=True ttr=0.5417
+INFO calibrate |α|=1.2800 (mag 14547.5) coherent=False ttr=1.0
+INFO calibrated ceiling |α|=0.64 (mag 7273.75); grid [0.04, 0.069644, 0.121257, 0.211121, 0.367583, 0.64]
+INFO neuroticism:pc1 α=+0.00 (mag 0) → neuroticism ev=3.3 usable=True coh=1.0 markers=0.0
+INFO neuroticism:pc1 α=-0.04 (mag -455) → neuroticism ev=3.2005 usable=True coh=1.0 markers=0.0
+INFO neuroticism:pc1 α=-0.07 (mag -792) → neuroticism ev=3.123 usable=True coh=1.0 markers=-0.834
+INFO neuroticism:pc1 α=-0.12 (mag -1378) → neuroticism ev=2.8311 usable=True coh=1.0 markers=0.0
+INFO neuroticism:pc1 α=-0.21 (mag -2399) → neuroticism ev=2.5517 usable=True coh=1.0 markers=0.0
+INFO neuroticism:pc1 α=-0.37 (mag -4178) → neuroticism ev=2.9763 usable=False coh=0.5 markers=0.0
+INFO neuroticism:pc1 α=-0.64 (mag -7274) → neuroticism ev=2.9953 usable=False coh=1.0 markers=0.0
+INFO random0 α=+0.00 (mag 0) → neuroticism ev=3.3 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.04 (mag -455) → neuroticism ev=2.809 usable=False coh=1.0 markers=0.0
+INFO random0 α=-0.07 (mag -792) → neuroticism ev=3.0732 usable=False coh=1.0 markers=0.0
+INFO random0 α=-0.12 (mag -1378) → neuroticism ev=3.0387 usable=False coh=1.0 markers=0.0
+INFO random0 α=-0.21 (mag -2399) → neuroticism ev=3.0395 usable=False coh=0.0 markers=0.0
+INFO random0 α=-0.37 (mag -4178) → neuroticism ev=3.0039 usable=False coh=0.0 markers=0.0
+INFO random0 α=-0.64 (mag -7274) → neuroticism ev=2.9942 usable=False coh=0.0 markers=0.0
+INFO random1 α=+0.00 (mag 0) → neuroticism ev=3.3 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.04 (mag -455) → neuroticism ev=2.32 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.07 (mag -792) → neuroticism ev=3.0994 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.12 (mag -1378) → neuroticism ev=3.0015 usable=False coh=1.0 markers=0.0
+INFO random1 α=-0.21 (mag -2399) → neuroticism ev=2.9865 usable=False coh=0.5 markers=-1.389
+INFO random1 α=-0.37 (mag -4178) → neuroticism ev=2.9917 usable=False coh=0.0 markers=0.0
+INFO random1 α=-0.64 (mag -7274) → neuroticism ev=2.9984 usable=False coh=0.0 markers=0.0
+INFO verdict: works=False toward=low trait Δ=0.7483 vs control Δ=0.98 (ρ=-1.0, ceiling mag -7273.75)
+INFO [openness] stage 1: prompt ladder
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  52%|█████▏    | 457/883 [00:00<00:00, 4530.93it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 5096.22it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO level 1/9 variant 0
+INFO level 1/9 variant 1
+INFO level 1/9 variant 2
+INFO level 2/9 variant 0
+INFO level 2/9 variant 1
+INFO level 2/9 variant 2
+INFO level 3/9 variant 0
+WARNING level 3 variant 0 produced a locked readout (one option covers 91% of items); excluded from the prompting baseline
+INFO level 3/9 variant 1
+INFO level 3/9 variant 2
+WARNING level 3 variant 2 produced a locked readout (one option covers 91% of items); excluded from the prompting baseline
+INFO level 4/9 variant 0
+INFO level 4/9 variant 1
+INFO level 4/9 variant 2
+INFO level 5/9 variant 0
+WARNING level 5 variant 0 produced a locked readout (one option covers 100% of items); excluded from the prompting baseline
+INFO level 5/9 variant 1
+INFO level 5/9 variant 2
+WARNING level 5 variant 2 produced a locked readout (one option covers 100% of items); excluded from the prompting baseline
+INFO level 6/9 variant 0
+INFO level 6/9 variant 1
+INFO level 6/9 variant 2
+INFO level 7/9 variant 0
+INFO level 7/9 variant 1
+INFO level 7/9 variant 2
+INFO level 8/9 variant 0
+INFO level 8/9 variant 1
+INFO level 8/9 variant 2
+INFO level 9/9 variant 0
+INFO level 9/9 variant 1
+INFO level 9/9 variant 2
+INFO prompting baseline ρ(level, openness) = 0.8378 over 23/27 usable administrations, range [2.7778, 4.625]
+INFO [openness] stage 2: ladder directions
+INFO best ladder layer 15: PC1 var 0.7699, monotone 1.0, cos(endpoint,PC1) 0.9876
+INFO [openness] stage 3: validated sweep
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  48%|████▊     | 425/883 [00:00<00:00, 4243.61it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 4927.86it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO calibrate |α|=0.0200 (mag 542.9) coherent=True ttr=0.8043
+INFO calibrate |α|=0.0400 (mag 1085.8) coherent=True ttr=0.8571
+INFO calibrate |α|=0.0800 (mag 2171.6) coherent=False ttr=0.7857
+INFO calibrated ceiling |α|=0.04 (mag 1085.806); grid [0.0025, 0.004353, 0.007579, 0.013195, 0.022974, 0.04]
+INFO openness:pc1 α=+0.00 (mag 0) → openness ev=3.4428 usable=True coh=1.0 markers=0.877
+INFO openness:pc1 α=-0.00 (mag -68) → openness ev=3.4135 usable=True coh=1.0 markers=0.848
+INFO openness:pc1 α=-0.00 (mag -118) → openness ev=3.3598 usable=True coh=1.0 markers=-0.848
+INFO openness:pc1 α=-0.01 (mag -206) → openness ev=3.2116 usable=True coh=1.0 markers=-2.728
+INFO openness:pc1 α=-0.01 (mag -358) → openness ev=3.0102 usable=True coh=1.0 markers=0.0
+INFO openness:pc1 α=-0.02 (mag -624) → openness ev=2.9999 usable=False coh=1.0 markers=-1.25
+INFO openness:pc1 α=-0.04 (mag -1086) → openness ev=2.9997 usable=False coh=1.0 markers=0.0
+INFO random0 α=+0.00 (mag 0) → openness ev=3.4428 usable=True coh=1.0 markers=0.877
+INFO random0 α=-0.00 (mag -68) → openness ev=3.5163 usable=True coh=1.0 markers=0.848
+INFO random0 α=-0.00 (mag -118) → openness ev=3.5382 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.01 (mag -206) → openness ev=3.5467 usable=True coh=1.0 markers=0.0
+INFO random0 α=-0.01 (mag -358) → openness ev=3.5539 usable=True coh=1.0 markers=-0.862
+INFO random0 α=-0.02 (mag -624) → openness ev=3.1859 usable=True coh=1.0 markers=0.848
+INFO random0 α=-0.04 (mag -1086) → openness ev=3.1071 usable=True coh=1.0 markers=0.0
+INFO random1 α=+0.00 (mag 0) → openness ev=3.4428 usable=True coh=1.0 markers=0.877
+INFO random1 α=-0.00 (mag -68) → openness ev=3.4406 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.00 (mag -118) → openness ev=3.3859 usable=True coh=1.0 markers=0.877
+INFO random1 α=-0.01 (mag -206) → openness ev=3.2543 usable=True coh=1.0 markers=1.786
+INFO random1 α=-0.01 (mag -358) → openness ev=3.0505 usable=True coh=1.0 markers=0.0
+INFO random1 α=-0.02 (mag -624) → openness ev=3.0539 usable=True coh=1.0 markers=0.877
+INFO random1 α=-0.04 (mag -1086) → openness ev=2.9999 usable=False coh=1.0 markers=0.893
+INFO verdict: works=False toward=low trait Δ=0.4326 vs control Δ=0.3923 (ρ=-1.0, ceiling mag -1085.806)
+
+====================================================================================================
+DOES THE VECTOR WORK?  (usable = rungs that were not option-locked)
+====================================================================================================
+trait             toward steer rho  usable best delta    @mag ctrl delta marker rho  ceiling  works
+----------------------------------------------------------------------------------------------------
+extraversion      low         -0.5     3/7    -0.1726 -270.222     0.1266    -0.4286 -4323.5513  False
+agreeableness     low      -0.7857     7/7    -0.1432 -1088.5149     0.0321     -0.729 -1088.5149   True
+conscientiousness high         1.0     5/7     0.5644 715.3532      0.205    -0.0714 2168.5583   True
+neuroticism       low         -1.0     5/7    -0.7483 -2399.4396       0.98     0.2041 -7273.75  False
+openness          low         -1.0     5/7    -0.4326 -358.1803     0.3923    -0.5045 -1085.806  False
+----------------------------------------------------------------------------------------------------
+prompting baseline for reference (same instrument):
+  extraversion      rho= 0.9143 range= [1.5278, 4.875] usable=27/27
+  agreeableness     rho= 0.9138 range=[1.4722, 4.6528] usable=24/27
+  conscientiousness rho= 0.9538 range=   [1.0, 4.9861] usable=24/27
+  neuroticism       rho= 0.9679 range=[2.1667, 4.8195] usable=27/27
+  openness          rho= 0.8378 range= [2.7778, 4.625] usable=23/27
+
+vectors that pass all three checks: ['agreeableness', 'conscientiousness']
+summary: /content/ocean/persona_runs/gemma_ocean_v2/ocean_vector_summary.json

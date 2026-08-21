@@ -1,0 +1,338 @@
+{
+  "created_utc": "2026-08-18T05:57:46.886297+00:00",
+  "stage": "patch_upper_bound",
+  "model_id": null,
+  "n_items": 120,
+  "traits": {
+    "extraversion": {
+      "layer": 15,
+      "layer_note": "ladder geometry",
+      "baseline_ev": 3.0623,
+      "baseline_locked": false,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.8311,
+          "prompted_locked": false,
+          "displacement_norm": 2824.12,
+          "interventions": {
+            "full_patch": {
+              "ev": 2.6858,
+              "locked": false,
+              "norm": 2824.12
+            },
+            "rank1": {
+              "ev": 2.8258,
+              "locked": false,
+              "norm": 1215.68,
+              "fraction_of_displacement": 0.4305
+            },
+            "rank8": {
+              "ev": 3.0714,
+              "locked": false,
+              "norm": 2466.58,
+              "fraction_of_displacement": 0.8734
+            },
+            "probe_own_span": {
+              "ev": 3.0655,
+              "locked": false,
+              "norm": 154.31
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 1.5739,
+          "prompted_locked": false,
+          "displacement_norm": 3236.17,
+          "interventions": {
+            "full_patch": {
+              "ev": 2.756,
+              "locked": false,
+              "norm": 3236.17
+            },
+            "rank1": {
+              "ev": 2.9301,
+              "locked": true,
+              "norm": 1957.04,
+              "fraction_of_displacement": 0.6047
+            },
+            "rank8": {
+              "ev": 3.0282,
+              "locked": false,
+              "norm": 2929.36,
+              "fraction_of_displacement": 0.9052
+            },
+            "probe_own_span": {
+              "ev": 3.0564,
+              "locked": false,
+              "norm": 154.31
+            }
+          }
+        }
+      }
+    },
+    "agreeableness": {
+      "layer": 14,
+      "layer_note": "ladder geometry",
+      "baseline_ev": 3.0159,
+      "baseline_locked": false,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.5758,
+          "prompted_locked": false,
+          "displacement_norm": 2138.36,
+          "interventions": {
+            "full_patch": {
+              "ev": 2.8776,
+              "locked": false,
+              "norm": 2138.36
+            },
+            "rank1": {
+              "ev": 2.9481,
+              "locked": false,
+              "norm": 1904.74,
+              "fraction_of_displacement": 0.8907
+            },
+            "rank8": {
+              "ev": 2.9833,
+              "locked": false,
+              "norm": 2015.44,
+              "fraction_of_displacement": 0.9425
+            },
+            "probe_own_span": {
+              "ev": 3.0178,
+              "locked": false,
+              "norm": 53.18
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 1.5107,
+          "prompted_locked": false,
+          "displacement_norm": 2131.33,
+          "interventions": {
+            "full_patch": {
+              "ev": 2.8959,
+              "locked": false,
+              "norm": 2131.33
+            },
+            "rank1": {
+              "ev": 2.9474,
+              "locked": false,
+              "norm": 1878.09,
+              "fraction_of_displacement": 0.8812
+            },
+            "rank8": {
+              "ev": 2.9966,
+              "locked": false,
+              "norm": 2007.97,
+              "fraction_of_displacement": 0.9421
+            },
+            "probe_own_span": {
+              "ev": 3.0128,
+              "locked": false,
+              "norm": 53.18
+            }
+          }
+        }
+      }
+    },
+    "conscientiousness": {
+      "layer": 13,
+      "layer_note": "geometry best layer 29 outside band 10-27",
+      "baseline_ev": 2.7737,
+      "baseline_locked": false,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.9997,
+          "prompted_locked": false,
+          "displacement_norm": 2057.9,
+          "interventions": {
+            "full_patch": {
+              "ev": 2.1829,
+              "locked": false,
+              "norm": 2057.9
+            },
+            "rank1": {
+              "ev": 2.6189,
+              "locked": false,
+              "norm": 1979.92,
+              "fraction_of_displacement": 0.9621
+            },
+            "rank8": {
+              "ev": 2.6238,
+              "locked": false,
+              "norm": 1983.81,
+              "fraction_of_displacement": 0.964
+            },
+            "probe_own_span": {
+              "ev": 2.7629,
+              "locked": false,
+              "norm": 34.96
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 1.004,
+          "prompted_locked": false,
+          "displacement_norm": 1831.15,
+          "interventions": {
+            "full_patch": {
+              "ev": 2.1757,
+              "locked": false,
+              "norm": 1831.15
+            },
+            "rank1": {
+              "ev": 2.6298,
+              "locked": false,
+              "norm": 1741.9,
+              "fraction_of_displacement": 0.9513
+            },
+            "rank8": {
+              "ev": 2.6614,
+              "locked": false,
+              "norm": 1747.47,
+              "fraction_of_displacement": 0.9543
+            },
+            "probe_own_span": {
+              "ev": 2.7846,
+              "locked": false,
+              "norm": 34.96
+            }
+          }
+        }
+      }
+    },
+    "neuroticism": {
+      "layer": 20,
+      "layer_note": "ladder geometry",
+      "baseline_ev": 3.3,
+      "baseline_locked": false,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.8785,
+          "prompted_locked": false,
+          "displacement_norm": 2173.7,
+          "interventions": {
+            "full_patch": {
+              "ev": 3.5243,
+              "locked": false,
+              "norm": 2173.7
+            },
+            "rank1": {
+              "ev": 3.3016,
+              "locked": false,
+              "norm": 623.86,
+              "fraction_of_displacement": 0.287
+            },
+            "rank8": {
+              "ev": 3.4185,
+              "locked": false,
+              "norm": 1147.92,
+              "fraction_of_displacement": 0.5281
+            },
+            "probe_own_span": {
+              "ev": 3.2901,
+              "locked": false,
+              "norm": 453.28
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 2.0775,
+          "prompted_locked": false,
+          "displacement_norm": 2381.61,
+          "interventions": {
+            "full_patch": {
+              "ev": 3.2191,
+              "locked": false,
+              "norm": 2381.61
+            },
+            "rank1": {
+              "ev": 3.0928,
+              "locked": true,
+              "norm": 1162.69,
+              "fraction_of_displacement": 0.4882
+            },
+            "rank8": {
+              "ev": 3.2006,
+              "locked": true,
+              "norm": 1504.93,
+              "fraction_of_displacement": 0.6319
+            },
+            "probe_own_span": {
+              "ev": 3.2899,
+              "locked": false,
+              "norm": 453.28
+            }
+          }
+        }
+      }
+    },
+    "openness": {
+      "layer": 19,
+      "layer_note": "ladder geometry",
+      "baseline_ev": 3.4428,
+      "baseline_locked": false,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.7637,
+          "prompted_locked": false,
+          "displacement_norm": 1845.97,
+          "interventions": {
+            "full_patch": {
+              "ev": 3.5224,
+              "locked": false,
+              "norm": 1845.97
+            },
+            "rank1": {
+              "ev": 3.2047,
+              "locked": false,
+              "norm": 671.29,
+              "fraction_of_displacement": 0.3637
+            },
+            "rank8": {
+              "ev": 3.1518,
+              "locked": true,
+              "norm": 905.7,
+              "fraction_of_displacement": 0.4906
+            },
+            "probe_own_span": {
+              "ev": 3.3704,
+              "locked": false,
+              "norm": 486.63
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 3.0456,
+          "prompted_locked": false,
+          "displacement_norm": 1919.72,
+          "interventions": {
+            "full_patch": {
+              "ev": 3.403,
+              "locked": false,
+              "norm": 1919.72
+            },
+            "rank1": {
+              "ev": 3.1775,
+              "locked": false,
+              "norm": 857.4,
+              "fraction_of_displacement": 0.4466
+            },
+            "rank8": {
+              "ev": 3.4332,
+              "locked": false,
+              "norm": 1047.87,
+              "fraction_of_displacement": 0.5458
+            },
+            "probe_own_span": {
+              "ev": 3.4822,
+              "locked": false,
+              "norm": 486.63
+            }
+          }
+        }
+      }
+    }
+  }
+}

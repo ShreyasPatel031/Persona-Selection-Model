@@ -1,0 +1,1038 @@
+{
+  "created_utc": "2026-08-18T06:57:24.489317+00:00",
+  "stage": "patch_multilayer",
+  "position": "all",
+  "bands": [
+    "single",
+    "mid_band",
+    "every_2",
+    "all"
+  ],
+  "traits": {
+    "extraversion": {
+      "best_layer": 15,
+      "layer_note": "ladder geometry",
+      "baseline_ev": 3.0623,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.8311,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                15
+              ],
+              "n_layers": 1,
+              "ev": 2.9066,
+              "locked": false,
+              "mean_layer_disp_norm": 2824.12
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 2.9997,
+              "locked": true,
+              "mean_layer_disp_norm": 2593.88
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 2.9708,
+              "locked": true,
+              "mean_layer_disp_norm": 2612.88
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 2.9962,
+              "locked": true,
+              "mean_layer_disp_norm": 3080.26
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 1.5739,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                15
+              ],
+              "n_layers": 1,
+              "ev": 2.2389,
+              "locked": false,
+              "mean_layer_disp_norm": 3236.17
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 2.9999,
+              "locked": true,
+              "mean_layer_disp_norm": 2453.2
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 3.0001,
+              "locked": true,
+              "mean_layer_disp_norm": 2416.96
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 3.0,
+              "locked": true,
+              "mean_layer_disp_norm": 2754.66
+            }
+          }
+        }
+      }
+    },
+    "agreeableness": {
+      "best_layer": 14,
+      "layer_note": "ladder geometry",
+      "baseline_ev": 3.0159,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.5758,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                14
+              ],
+              "n_layers": 1,
+              "ev": 2.7932,
+              "locked": false,
+              "mean_layer_disp_norm": 2138.36
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 2.9755,
+              "locked": true,
+              "mean_layer_disp_norm": 2370.08
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 2.897,
+              "locked": true,
+              "mean_layer_disp_norm": 2375.13
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 3.0,
+              "locked": true,
+              "mean_layer_disp_norm": 2752.87
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 1.5107,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                14
+              ],
+              "n_layers": 1,
+              "ev": 2.7547,
+              "locked": false,
+              "mean_layer_disp_norm": 2131.33
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 3.0,
+              "locked": true,
+              "mean_layer_disp_norm": 2675.3
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 2.9985,
+              "locked": true,
+              "mean_layer_disp_norm": 2669.54
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 3.0,
+              "locked": true,
+              "mean_layer_disp_norm": 3067.12
+            }
+          }
+        }
+      }
+    },
+    "conscientiousness": {
+      "best_layer": 13,
+      "layer_note": "geometry best layer 29 outside band 10-27",
+      "baseline_ev": 2.7737,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.9997,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                13
+              ],
+              "n_layers": 1,
+              "ev": 2.7941,
+              "locked": false,
+              "mean_layer_disp_norm": 2057.9
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 2.9942,
+              "locked": true,
+              "mean_layer_disp_norm": 2548.12
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 2.9369,
+              "locked": true,
+              "mean_layer_disp_norm": 2508.16
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 2.952,
+              "locked": true,
+              "mean_layer_disp_norm": 2958.4
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 1.004,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                13
+              ],
+              "n_layers": 1,
+              "ev": 2.6587,
+              "locked": false,
+              "mean_layer_disp_norm": 1831.15
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 2.9962,
+              "locked": true,
+              "mean_layer_disp_norm": 2313.71
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 2.9786,
+              "locked": true,
+              "mean_layer_disp_norm": 2285.57
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 2.9971,
+              "locked": true,
+              "mean_layer_disp_norm": 2669.45
+            }
+          }
+        }
+      }
+    },
+    "neuroticism": {
+      "best_layer": 20,
+      "layer_note": "ladder geometry",
+      "baseline_ev": 3.3,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.8785,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                20
+              ],
+              "n_layers": 1,
+              "ev": 3.4495,
+              "locked": false,
+              "mean_layer_disp_norm": 2173.7
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 3.0,
+              "locked": true,
+              "mean_layer_disp_norm": 2512.92
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 2.9996,
+              "locked": true,
+              "mean_layer_disp_norm": 2481.63
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 3.0,
+              "locked": true,
+              "mean_layer_disp_norm": 2839.56
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 2.0775,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                20
+              ],
+              "n_layers": 1,
+              "ev": 3.3416,
+              "locked": false,
+              "mean_layer_disp_norm": 2381.61
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 3.0002,
+              "locked": true,
+              "mean_layer_disp_norm": 2565.12
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 3.1863,
+              "locked": false,
+              "mean_layer_disp_norm": 2543.59
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 3.0,
+              "locked": true,
+              "mean_layer_disp_norm": 3023.63
+            }
+          }
+        }
+      }
+    },
+    "openness": {
+      "best_layer": 19,
+      "layer_note": "ladder geometry",
+      "baseline_ev": 3.4428,
+      "levels": {
+        "9": {
+          "prompted_ev": 4.7637,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                19
+              ],
+              "n_layers": 1,
+              "ev": 3.6177,
+              "locked": false,
+              "mean_layer_disp_norm": 1845.97
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 2.9411,
+              "locked": true,
+              "mean_layer_disp_norm": 2337.23
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 2.3822,
+              "locked": false,
+              "mean_layer_disp_norm": 2316.26
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 2.9867,
+              "locked": true,
+              "mean_layer_disp_norm": 2601.48
+            }
+          }
+        },
+        "1": {
+          "prompted_ev": 3.0456,
+          "prompted_locked": false,
+          "bands": {
+            "single": {
+              "layers": [
+                19
+              ],
+              "n_layers": 1,
+              "ev": 3.1166,
+              "locked": false,
+              "mean_layer_disp_norm": 1919.72
+            },
+            "mid_band": {
+              "layers": [
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26
+              ],
+              "n_layers": 17,
+              "ev": 2.9575,
+              "locked": true,
+              "mean_layer_disp_norm": 2443.23
+            },
+            "every_2": {
+              "layers": [
+                10,
+                12,
+                14,
+                16,
+                18,
+                20,
+                22,
+                24,
+                26
+              ],
+              "n_layers": 9,
+              "ev": 3.0112,
+              "locked": true,
+              "mean_layer_disp_norm": 2419.31
+            },
+            "all": {
+              "layers": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                10,
+                11,
+                12,
+                13,
+                14,
+                15,
+                16,
+                17,
+                18,
+                19,
+                20,
+                21,
+                22,
+                23,
+                24,
+                25,
+                26,
+                27,
+                28,
+                29,
+                30,
+                31,
+                32,
+                33
+              ],
+              "n_layers": 34,
+              "ev": 2.8854,
+              "locked": true,
+              "mean_layer_disp_norm": 2777.39
+            }
+          }
+        }
+      }
+    }
+  }
+}

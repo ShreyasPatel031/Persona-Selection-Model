@@ -1,0 +1,20 @@
+{
+  "source_url": "https://ipip.ori.org/newNEO_FacetsKey.htm",
+  "license": "public domain (https://ipip.ori.org/newPermission.htm)",
+  "pool_items": 300,
+  "pool_facets": 30,
+  "form_items": 120,
+  "form_per_facet": 4,
+  "form_per_domain": {
+    "A": 24,
+    "C": 24,
+    "E": 24,
+    "N": 24,
+    "O": 24
+  },
+  "form_keying": {
+    "1": 60,
+    "-1": 60
+  },
+  "note": "IPIP-derived form; not the published IPIP-NEO-120 item selection"
+}

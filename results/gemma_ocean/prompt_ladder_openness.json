@@ -1,0 +1,1097 @@
+{
+  "created_utc": "2026-08-18T02:01:32.153187+00:00",
+  "stage": "prompt_ladder",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "trait": "openness",
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "variants": 3,
+  "n_items": 120,
+  "instrument": "/content/ocean/data/ipip_neo_120.csv",
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "administrations": [
+    {
+      "level": 1,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely unimaginative, extremely uncreative, and extremely incurious.",
+      "trait_scores": {
+        "agreeableness": 2.5833,
+        "conscientiousness": 2.0833,
+        "extraversion": 3.0417,
+        "neuroticism": 3.0833,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 2.6354,
+        "conscientiousness": 2.1525,
+        "extraversion": 3.0691,
+        "neuroticism": 3.0929,
+        "openness": 3.0456
+      },
+      "target_score": 3.0,
+      "target_ev": 3.0456,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7,
+        "option_entropy": 0.7949,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 28,
+          "3": 84,
+          "4": 1,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely unintellectual, extremely conventional, and extremely unreflective.",
+      "trait_scores": {
+        "agreeableness": 2.625,
+        "conscientiousness": 2.6667,
+        "extraversion": 3.0417,
+        "neuroticism": 3.2083,
+        "openness": 2.3333
+      },
+      "ev_scores": {
+        "agreeableness": 2.6754,
+        "conscientiousness": 2.626,
+        "extraversion": 3.0741,
+        "neuroticism": 3.1476,
+        "openness": 2.3522
+      },
+      "target_score": 2.3333,
+      "target_ev": 2.3522,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3167,
+        "option_entropy": 1.3297,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 35,
+          "2": 3,
+          "3": 38,
+          "4": 6,
+          "5": 38
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely unimaginative, extremely uncreative, and extremely incurious.",
+      "trait_scores": {
+        "agreeableness": 2.5833,
+        "conscientiousness": 2.0833,
+        "extraversion": 3.0417,
+        "neuroticism": 3.0833,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 2.6354,
+        "conscientiousness": 2.1525,
+        "extraversion": 3.0691,
+        "neuroticism": 3.0929,
+        "openness": 3.0456
+      },
+      "target_score": 3.0,
+      "target_ev": 3.0456,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7,
+        "option_entropy": 0.7949,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 28,
+          "3": 84,
+          "4": 1,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very unimaginative, very uncreative, and very incurious.",
+      "trait_scores": {
+        "agreeableness": 2.5417,
+        "conscientiousness": 2.0833,
+        "extraversion": 3.0,
+        "neuroticism": 3.0833,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.5675,
+        "conscientiousness": 2.2003,
+        "extraversion": 2.9749,
+        "neuroticism": 3.0894,
+        "openness": 3.0477
+      },
+      "target_score": 3.0833,
+      "target_ev": 3.0477,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6917,
+        "option_entropy": 0.8525,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 28,
+          "2": 1,
+          "3": 83,
+          "4": 2,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very unintellectual, very conventional, and very unreflective.",
+      "trait_scores": {
+        "agreeableness": 2.8333,
+        "conscientiousness": 2.2083,
+        "extraversion": 3.1667,
+        "neuroticism": 3.2083,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 2.7888,
+        "conscientiousness": 2.4213,
+        "extraversion": 3.0023,
+        "neuroticism": 3.1675,
+        "openness": 2.9041
+      },
+      "target_score": 3.0,
+      "target_ev": 2.9041,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3333,
+        "option_entropy": 1.3986,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 40,
+          "2": 7,
+          "3": 39,
+          "4": 7,
+          "5": 27
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very unimaginative, very uncreative, and very incurious.",
+      "trait_scores": {
+        "agreeableness": 2.5417,
+        "conscientiousness": 2.0833,
+        "extraversion": 3.0,
+        "neuroticism": 3.0833,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 2.5675,
+        "conscientiousness": 2.2003,
+        "extraversion": 2.9749,
+        "neuroticism": 3.0894,
+        "openness": 3.0477
+      },
+      "target_score": 3.0833,
+      "target_ev": 3.0477,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6917,
+        "option_entropy": 0.8525,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 28,
+          "2": 1,
+          "3": 83,
+          "4": 2,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat unimaginative, somewhat uncreative, and somewhat incurious.",
+      "trait_scores": {
+        "agreeableness": 2.9167,
+        "conscientiousness": 3.125,
+        "extraversion": 2.9167,
+        "neuroticism": 3.0,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 2.9261,
+        "conscientiousness": 3.1181,
+        "extraversion": 2.9413,
+        "neuroticism": 3.021,
+        "openness": 2.7552
+      },
+      "target_score": 2.75,
+      "target_ev": 2.7552,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.9083,
+        "option_entropy": 0.3665,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 4,
+          "3": 109,
+          "4": 7
+        },
+        "locked": true,
+        "reason": "one option covers 91% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 3,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat unintellectual, somewhat conventional, and somewhat unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.2083,
+        "extraversion": 3.0417,
+        "neuroticism": 3.0,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 3.3743,
+        "conscientiousness": 3.1298,
+        "extraversion": 3.0765,
+        "neuroticism": 3.0569,
+        "openness": 3.0083
+      },
+      "target_score": 3.0,
+      "target_ev": 3.0083,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5417,
+        "option_entropy": 0.9576,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 2,
+          "2": 1,
+          "3": 65,
+          "4": 46,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat unimaginative, somewhat uncreative, and somewhat incurious.",
+      "trait_scores": {
+        "agreeableness": 2.9167,
+        "conscientiousness": 3.125,
+        "extraversion": 2.9167,
+        "neuroticism": 3.0,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 2.9261,
+        "conscientiousness": 3.1181,
+        "extraversion": 2.9413,
+        "neuroticism": 3.021,
+        "openness": 2.7552
+      },
+      "target_score": 2.75,
+      "target_ev": 2.7552,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.9083,
+        "option_entropy": 0.3665,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 4,
+          "3": 109,
+          "4": 7
+        },
+        "locked": true,
+        "reason": "one option covers 91% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 4,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit unimaginative, a bit uncreative, and a bit incurious.",
+      "trait_scores": {
+        "agreeableness": 2.8333,
+        "conscientiousness": 3.1667,
+        "extraversion": 3.0,
+        "neuroticism": 3.0,
+        "openness": 2.875
+      },
+      "ev_scores": {
+        "agreeableness": 2.8894,
+        "conscientiousness": 3.1473,
+        "extraversion": 2.9725,
+        "neuroticism": 3.0027,
+        "openness": 2.8297
+      },
+      "target_score": 2.875,
+      "target_ev": 2.8297,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.875,
+        "option_entropy": 0.4834,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 5,
+          "3": 105,
+          "4": 9,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit unintellectual, a bit conventional, and a bit unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.375,
+        "conscientiousness": 3.2917,
+        "extraversion": 2.9583,
+        "neuroticism": 3.0833,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.4112,
+        "conscientiousness": 3.2894,
+        "extraversion": 2.9643,
+        "neuroticism": 3.1089,
+        "openness": 2.8113
+      },
+      "target_score": 2.9167,
+      "target_ev": 2.8113,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4917,
+        "option_entropy": 1.0029,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 2,
+          "3": 48,
+          "4": 59,
+          "5": 11
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit unimaginative, a bit uncreative, and a bit incurious.",
+      "trait_scores": {
+        "agreeableness": 2.8333,
+        "conscientiousness": 3.1667,
+        "extraversion": 3.0,
+        "neuroticism": 3.0,
+        "openness": 2.875
+      },
+      "ev_scores": {
+        "agreeableness": 2.8894,
+        "conscientiousness": 3.1473,
+        "extraversion": 2.9725,
+        "neuroticism": 3.0027,
+        "openness": 2.8297
+      },
+      "target_score": 2.875,
+      "target_ev": 2.8297,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.875,
+        "option_entropy": 0.4834,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 5,
+          "3": 105,
+          "4": 9,
+          "5": 1
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither creative nor unimaginative, neither imaginative nor uncreative, and neither curious nor incurious.",
+      "trait_scores": {
+        "agreeableness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "neuroticism": 3.0,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 3.006,
+        "conscientiousness": 3.0122,
+        "extraversion": 3.0025,
+        "neuroticism": 2.9999,
+        "openness": 3.0
+      },
+      "target_score": 3.0,
+      "target_ev": 3.0,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 1.0,
+        "option_entropy": -0.0,
+        "distinct_options": 1,
+        "histogram": {
+          "3": 120
+        },
+        "locked": true,
+        "reason": "one option covers 100% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 5,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither intellectual nor unintellectual, neither inventive nor conventional, and neither reflective nor unreflective.",
+      "trait_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.125,
+        "extraversion": 2.9583,
+        "neuroticism": 3.0417,
+        "openness": 3.0833
+      },
+      "ev_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.086,
+        "extraversion": 2.95,
+        "neuroticism": 3.0473,
+        "openness": 3.1183
+      },
+      "target_score": 3.0833,
+      "target_ev": 3.1183,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.85,
+        "option_entropy": 0.475,
+        "distinct_options": 3,
+        "histogram": {
+          "2": 2,
+          "3": 102,
+          "4": 16
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither creative nor unimaginative, neither imaginative nor uncreative, and neither curious nor incurious.",
+      "trait_scores": {
+        "agreeableness": 3.0,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "neuroticism": 3.0,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 3.006,
+        "conscientiousness": 3.0122,
+        "extraversion": 3.0025,
+        "neuroticism": 2.9999,
+        "openness": 3.0
+      },
+      "target_score": 3.0,
+      "target_ev": 3.0,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 1.0,
+        "option_entropy": -0.0,
+        "distinct_options": 1,
+        "histogram": {
+          "3": 120
+        },
+        "locked": true,
+        "reason": "one option covers 100% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 6,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit creative, a bit imaginative, and a bit curious.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.3333,
+        "neuroticism": 2.6667,
+        "openness": 4.3333
+      },
+      "ev_scores": {
+        "agreeableness": 3.4453,
+        "conscientiousness": 3.0246,
+        "extraversion": 3.3907,
+        "neuroticism": 2.6717,
+        "openness": 4.3165
+      },
+      "target_score": 4.3333,
+      "target_ev": 4.3165,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3333,
+        "option_entropy": 1.42,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 7,
+          "2": 40,
+          "3": 33,
+          "4": 32,
+          "5": 8
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit intellectual, a bit inventive, and a bit reflective.",
+      "trait_scores": {
+        "agreeableness": 3.5,
+        "conscientiousness": 3.3333,
+        "extraversion": 2.8333,
+        "neuroticism": 2.875,
+        "openness": 3.9583
+      },
+      "ev_scores": {
+        "agreeableness": 3.4421,
+        "conscientiousness": 3.304,
+        "extraversion": 2.8278,
+        "neuroticism": 2.8736,
+        "openness": 3.9611
+      },
+      "target_score": 3.9583,
+      "target_ev": 3.9611,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4167,
+        "option_entropy": 1.2153,
+        "distinct_options": 4,
+        "histogram": {
+          "2": 28,
+          "3": 50,
+          "4": 36,
+          "5": 6
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit creative, a bit imaginative, and a bit curious.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 2.9583,
+        "extraversion": 3.3333,
+        "neuroticism": 2.6667,
+        "openness": 4.3333
+      },
+      "ev_scores": {
+        "agreeableness": 3.4453,
+        "conscientiousness": 3.0246,
+        "extraversion": 3.3907,
+        "neuroticism": 2.6717,
+        "openness": 4.3165
+      },
+      "target_score": 4.3333,
+      "target_ev": 4.3165,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3333,
+        "option_entropy": 1.42,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 7,
+          "2": 40,
+          "3": 33,
+          "4": 32,
+          "5": 8
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat creative, somewhat imaginative, and somewhat curious.",
+      "trait_scores": {
+        "agreeableness": 3.5,
+        "conscientiousness": 3.0417,
+        "extraversion": 3.2917,
+        "neuroticism": 2.8333,
+        "openness": 4.125
+      },
+      "ev_scores": {
+        "agreeableness": 3.5116,
+        "conscientiousness": 2.9874,
+        "extraversion": 3.2809,
+        "neuroticism": 2.8113,
+        "openness": 4.1251
+      },
+      "target_score": 4.125,
+      "target_ev": 4.1251,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3667,
+        "option_entropy": 1.3374,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 44,
+          "3": 34,
+          "4": 31,
+          "5": 2
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat intellectual, somewhat inventive, and somewhat reflective.",
+      "trait_scores": {
+        "agreeableness": 3.5,
+        "conscientiousness": 3.3333,
+        "extraversion": 2.75,
+        "neuroticism": 2.9167,
+        "openness": 3.8333
+      },
+      "ev_scores": {
+        "agreeableness": 3.4627,
+        "conscientiousness": 3.306,
+        "extraversion": 2.7753,
+        "neuroticism": 2.9019,
+        "openness": 3.8377
+      },
+      "target_score": 3.8333,
+      "target_ev": 3.8377,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.45,
+        "option_entropy": 1.1905,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 1,
+          "2": 32,
+          "3": 54,
+          "4": 30,
+          "5": 3
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat creative, somewhat imaginative, and somewhat curious.",
+      "trait_scores": {
+        "agreeableness": 3.5,
+        "conscientiousness": 3.0417,
+        "extraversion": 3.2917,
+        "neuroticism": 2.8333,
+        "openness": 4.125
+      },
+      "ev_scores": {
+        "agreeableness": 3.5116,
+        "conscientiousness": 2.9874,
+        "extraversion": 3.2809,
+        "neuroticism": 2.8113,
+        "openness": 4.1251
+      },
+      "target_score": 4.125,
+      "target_ev": 4.1251,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3667,
+        "option_entropy": 1.3374,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 44,
+          "3": 34,
+          "4": 31,
+          "5": 2
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very creative, very imaginative, and very curious.",
+      "trait_scores": {
+        "agreeableness": 3.7083,
+        "conscientiousness": 3.125,
+        "extraversion": 3.7917,
+        "neuroticism": 2.625,
+        "openness": 4.75
+      },
+      "ev_scores": {
+        "agreeableness": 3.6894,
+        "conscientiousness": 3.1683,
+        "extraversion": 3.8274,
+        "neuroticism": 2.5748,
+        "openness": 4.7454
+      },
+      "target_score": 4.75,
+      "target_ev": 4.7454,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3917,
+        "option_entropy": 1.4089,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 30,
+          "2": 47,
+          "3": 4,
+          "4": 15,
+          "5": 24
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very intellectual, very inventive, and very reflective.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.7083,
+        "extraversion": 2.7083,
+        "neuroticism": 2.625,
+        "openness": 4.2083
+      },
+      "ev_scores": {
+        "agreeableness": 3.4353,
+        "conscientiousness": 3.6478,
+        "extraversion": 2.759,
+        "neuroticism": 2.6057,
+        "openness": 4.2162
+      },
+      "target_score": 4.2083,
+      "target_ev": 4.2162,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4,
+        "option_entropy": 1.3974,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 6,
+          "2": 48,
+          "3": 36,
+          "4": 15,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very creative, very imaginative, and very curious.",
+      "trait_scores": {
+        "agreeableness": 3.7083,
+        "conscientiousness": 3.125,
+        "extraversion": 3.7917,
+        "neuroticism": 2.625,
+        "openness": 4.75
+      },
+      "ev_scores": {
+        "agreeableness": 3.6894,
+        "conscientiousness": 3.1683,
+        "extraversion": 3.8274,
+        "neuroticism": 2.5748,
+        "openness": 4.7454
+      },
+      "target_score": 4.75,
+      "target_ev": 4.7454,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3917,
+        "option_entropy": 1.4089,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 30,
+          "2": 47,
+          "3": 4,
+          "4": 15,
+          "5": 24
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely creative, extremely imaginative, and extremely curious.",
+      "trait_scores": {
+        "agreeableness": 3.5,
+        "conscientiousness": 3.3333,
+        "extraversion": 3.9583,
+        "neuroticism": 2.4167,
+        "openness": 4.7917
+      },
+      "ev_scores": {
+        "agreeableness": 3.4973,
+        "conscientiousness": 3.2922,
+        "extraversion": 3.9007,
+        "neuroticism": 2.5034,
+        "openness": 4.7637
+      },
+      "target_score": 4.7917,
+      "target_ev": 4.7637,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3417,
+        "option_entropy": 1.3111,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 41,
+          "2": 41,
+          "3": 2,
+          "4": 7,
+          "5": 29
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely intellectual, extremely inventive, and extremely reflective.",
+      "trait_scores": {
+        "agreeableness": 3.4167,
+        "conscientiousness": 3.6667,
+        "extraversion": 2.75,
+        "neuroticism": 2.625,
+        "openness": 4.2917
+      },
+      "ev_scores": {
+        "agreeableness": 3.3513,
+        "conscientiousness": 3.6791,
+        "extraversion": 2.7977,
+        "neuroticism": 2.6672,
+        "openness": 4.3144
+      },
+      "target_score": 4.2917,
+      "target_ev": 4.3144,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4083,
+        "option_entropy": 1.452,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 12,
+          "2": 49,
+          "3": 30,
+          "4": 13,
+          "5": 16
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely creative, extremely imaginative, and extremely curious.",
+      "trait_scores": {
+        "agreeableness": 3.5,
+        "conscientiousness": 3.3333,
+        "extraversion": 3.9583,
+        "neuroticism": 2.4167,
+        "openness": 4.7917
+      },
+      "ev_scores": {
+        "agreeableness": 3.4973,
+        "conscientiousness": 3.2922,
+        "extraversion": 3.9007,
+        "neuroticism": 2.5034,
+        "openness": 4.7637
+      },
+      "target_score": 4.7917,
+      "target_ev": 4.7637,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3417,
+        "option_entropy": 1.3111,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 41,
+          "2": 41,
+          "3": 2,
+          "4": 7,
+          "5": 29
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    }
+  ],
+  "n_administrations": 27,
+  "n_usable_administrations": 23,
+  "locked_administrations": [
+    {
+      "level": 3,
+      "variant": 0,
+      "reason": "one option covers 91% of items"
+    },
+    {
+      "level": 3,
+      "variant": 2,
+      "reason": "one option covers 91% of items"
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "reason": "one option covers 100% of items"
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "reason": "one option covers 100% of items"
+    }
+  ],
+  "level_mean_target_score": [
+    2.7778,
+    3.0555,
+    3.0,
+    2.8889,
+    3.0833,
+    4.2083,
+    4.0278,
+    4.5694,
+    4.625
+  ],
+  "spearman_level_vs_target_score": 0.8378,
+  "monotone_fraction_level_means": 0.625,
+  "target_score_range": [
+    2.7778,
+    4.625
+  ],
+  "off_target_spearman": {
+    "extraversion": 0.2178,
+    "agreeableness": 0.8251,
+    "conscientiousness": 0.7188,
+    "neuroticism": -0.9402
+  }
+}
