@@ -1,0 +1,35 @@
+{
+  "created_utc": "2026-08-19T17:45:17.426077+00:00",
+  "stage": "e0_injection_scope_smoke",
+  "note": "Plumbing only \u2014 not the Gemma E0 result.",
+  "table": [
+    {
+      "trait": "conscientiousness",
+      "pole": "high",
+      "scope": "full",
+      "smoke": true,
+      "n_rungs": 1,
+      "rho": null,
+      "delta": null,
+      "span": null,
+      "sign_correct": null,
+      "control_span": null,
+      "trait_over_control": null,
+      "supported": false
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "high",
+      "scope": "assistant_span",
+      "smoke": true,
+      "n_rungs": 2,
+      "rho": null,
+      "delta": null,
+      "span": null,
+      "sign_correct": null,
+      "control_span": null,
+      "trait_over_control": null,
+      "supported": false
+    }
+  ]
+}

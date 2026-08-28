@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import logging
 import re
+from pathlib import Path
 from typing import Any
 
 import vertexai
@@ -77,6 +78,25 @@ Return ONLY valid JSON with exactly these keys: "score" (integer 0-100) and "sho
 No markdown fences."""
 
 
+def _gcloud_user_credentials():
+    """Use `gcloud auth login` tokens when ADC is not present."""
+    import os
+    import shutil
+    import subprocess
+
+    from google.oauth2.credentials import Credentials
+
+    gcloud = shutil.which("gcloud") or "/tmp/google-cloud-sdk/bin/gcloud"
+    env = os.environ.copy()
+    env["PATH"] = "/tmp/google-cloud-sdk/bin:" + env.get("PATH", "")
+    token = subprocess.check_output(
+        [gcloud, "auth", "print-access-token"], env=env, text=True
+    ).strip()
+    if not token:
+        raise RuntimeError("gcloud auth print-access-token returned empty.")
+    return Credentials(token=token)
+
+
 def score_transcript(
     judge_instructions: str,
     system: str,
@@ -95,7 +115,11 @@ def score_transcript(
     if not pid:
         raise ValueError("Set GOOGLE_CLOUD_PROJECT (or pass project_id) for Vertex judge.")
 
-    vertexai.init(project=pid, location=loc)
+    init_kw: dict[str, Any] = {"project": pid, "location": loc}
+    adc = Path.home() / ".config/gcloud/application_default_credentials.json"
+    if not adc.is_file():
+        init_kw["credentials"] = _gcloud_user_credentials()
+    vertexai.init(**init_kw)
     model = GenerativeModel(mid)
     prompt = build_judge_user_prompt(
         judge_instructions, system, user_q, assistant_a

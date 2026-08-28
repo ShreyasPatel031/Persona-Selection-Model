@@ -1,0 +1,585 @@
+{
+  "note": "Stress-test every inventory dose-response claim before anyone cites it.\n\nThree questions a reviewer will ask, answered from the committed artifacts:\n\n1. **Does the result depend on our non-standard readout?** The prompting papers\n   and Blas et al. score an item by its committed answer (argmax over the option\n   tokens), which is also what a human respondent does. We report expected value\n   over the option distribution. Both are recorded per rung, so the same\n   activations can be scored both ways.\n\n2. **Does the result depend on rungs where the respondent has partly collapsed?**\n   The shipped screen only rejects a rung when one option covers >=90% of items or\n   option entropy < 0.30 nats, so a rung answering with two of five options\n   passes. Recompute under progressively stricter usability rules.\n\n3. **Is the control comparison strong enough?** Report how many random control\n   directions each sweep actually used and whether any rung was ever repeated,\n   i.e. whether an error bar exists.\n\nRun: PYTHONPATH=. python3 scripts/audit_inventory_claims.py\nNo GPU needed - pure reanalysis of committed JSON artifacts.",
+  "usability_rules": [
+    "as_shipped",
+    "top_lt_080",
+    "top_lt_075_min4_options",
+    "all5_options_top_lt_075"
+  ],
+  "table": [
+    {
+      "sweep": "agreeableness_pc1_low",
+      "grid": "in-span",
+      "steered_toward": "low",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": -0.85,
+          "n_rungs": 9,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": -0.6129,
+          "n_rungs": 9,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": -0.85,
+          "n_rungs": 9,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": -0.85,
+          "n_rungs": 9,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": -0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "extraversion_pc1_high",
+      "grid": "in-span",
+      "steered_toward": "high",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": 0.75,
+          "n_rungs": 9,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": 0.6723,
+          "n_rungs": 9,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": 0.75,
+          "n_rungs": 9,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": 0.75,
+          "n_rungs": 9,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": 0.4,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": -0.5,
+          "n_rungs": 3,
+          "sign_correct": false
+        }
+      }
+    },
+    {
+      "sweep": "extraversion_pc1_low",
+      "grid": "in-span",
+      "steered_toward": "low",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        },
+        "argmax": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        },
+        "top_lt_080": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        },
+        "top_lt_075_min4_options": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "neuroticism_pc1_high",
+      "grid": "in-span",
+      "steered_toward": "high",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": 0.9833,
+          "n_rungs": 9,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": 0.3651,
+          "n_rungs": 9,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": 0.9833,
+          "n_rungs": 9,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": 0.9762,
+          "n_rungs": 8,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": 1.0,
+          "n_rungs": 3,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": 1.0,
+          "n_rungs": 3,
+          "sign_correct": true
+        }
+      }
+    },
+    {
+      "sweep": "agreeableness_pc1_high",
+      "grid": "ceiling",
+      "steered_toward": "high",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": 0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": 0.6669,
+          "n_rungs": 5,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": 0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": 0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": 1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "agreeableness_pc1_low",
+      "grid": "ceiling",
+      "steered_toward": "low",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": -0.6,
+          "n_rungs": 6,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": -0.3189,
+          "n_rungs": 6,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": -0.6,
+          "n_rungs": 6,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": -0.3,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": -0.4,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "conscientiousness_pc1_high",
+      "grid": "ceiling",
+      "steered_toward": "high",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": 1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": 1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": 1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": 1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": 1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": 1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        }
+      }
+    },
+    {
+      "sweep": "conscientiousness_pc1_low",
+      "grid": "ceiling",
+      "steered_toward": "low",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": -0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": -0.7182,
+          "n_rungs": 5,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": -0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": -0.8,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "extraversion_pc1_high",
+      "grid": "ceiling",
+      "steered_toward": "high",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": -0.4,
+          "n_rungs": 5,
+          "sign_correct": false
+        },
+        "argmax": {
+          "rho": -0.0527,
+          "n_rungs": 5,
+          "sign_correct": false
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": -0.4,
+          "n_rungs": 5,
+          "sign_correct": false
+        },
+        "top_lt_080": {
+          "rho": -0.4,
+          "n_rungs": 5,
+          "sign_correct": false
+        },
+        "top_lt_075_min4_options": {
+          "rho": 0.5,
+          "n_rungs": 3,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "extraversion_pc1_low",
+      "grid": "ceiling",
+      "steered_toward": "low",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": -0.5,
+          "n_rungs": 3,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": -0.5,
+          "n_rungs": 3,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": -0.5,
+          "n_rungs": 3,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        },
+        "top_lt_075_min4_options": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "neuroticism_pc1_high",
+      "grid": "ceiling",
+      "steered_toward": "high",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": -0.2,
+          "n_rungs": 4,
+          "sign_correct": false
+        },
+        "argmax": {
+          "rho": -0.4,
+          "n_rungs": 4,
+          "sign_correct": false
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": -0.2,
+          "n_rungs": 4,
+          "sign_correct": false
+        },
+        "top_lt_080": {
+          "rho": -0.2,
+          "n_rungs": 4,
+          "sign_correct": false
+        },
+        "top_lt_075_min4_options": {
+          "rho": 1.0,
+          "n_rungs": 3,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": 1.0,
+          "n_rungs": 3,
+          "sign_correct": true
+        }
+      }
+    },
+    {
+      "sweep": "neuroticism_pc1_low",
+      "grid": "ceiling",
+      "steered_toward": "low",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": -0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": -0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": -0.9,
+          "n_rungs": 5,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": -0.8,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "openness_pc1_high",
+      "grid": "ceiling",
+      "steered_toward": "high",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": 1.0,
+          "n_rungs": 3,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": 0.866,
+          "n_rungs": 3,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": 1.0,
+          "n_rungs": 3,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": null,
+          "n_rungs": 2,
+          "sign_correct": null
+        },
+        "top_lt_075_min4_options": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        }
+      }
+    },
+    {
+      "sweep": "openness_pc1_low",
+      "grid": "ceiling",
+      "steered_toward": "low",
+      "n_random_controls": 1,
+      "n_repeated_doses": 0,
+      "readout": {
+        "expected_value": {
+          "rho": -1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "argmax": {
+          "rho": -1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        }
+      },
+      "usability": {
+        "as_shipped": {
+          "rho": -1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "top_lt_080": {
+          "rho": -1.0,
+          "n_rungs": 4,
+          "sign_correct": true
+        },
+        "top_lt_075_min4_options": {
+          "rho": -1.0,
+          "n_rungs": 3,
+          "sign_correct": true
+        },
+        "all5_options_top_lt_075": {
+          "rho": null,
+          "n_rungs": 1,
+          "sign_correct": null
+        }
+      }
+    }
+  ]
+}

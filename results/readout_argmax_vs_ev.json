@@ -1,0 +1,141 @@
+{
+  "note": "Compare argmax and expected-value inventory readouts on identical activations.\n\nBlas et al. (arXiv:2604.14463) score inventory items by greedy-decoding one\nconstrained option token, i.e. an argmax over \"A\"..\"E\", and report that steering\nproduced \"no salient patterns\" on the inventory. Our sweeps record both\n``target_argmax`` and ``target_ev`` at every rung, so the two readouts can be\ncompared on the same forward passes rather than across experiments.\n\nThe result on N-up: argmax takes two distinct values across nine doses and\ncorrelates at +0.37, while the expected value over the option-token softmax gives\n+0.98. An argmax cannot resolve movement in the option distribution that has not\ncrossed a decision boundary.\n\nNo GPU needed - pure reanalysis of committed JSON artifacts.",
+  "table": [
+    {
+      "sweep": "agreeableness_pc1_low",
+      "dir": "e1_inspan",
+      "n_usable": 9,
+      "rho_argmax": -0.6129,
+      "rho_ev": -0.85,
+      "argmax_range": 0.3333,
+      "ev_range": 0.176,
+      "distinct_argmax_values": 6
+    },
+    {
+      "sweep": "extraversion_pc1_high",
+      "dir": "e1_inspan",
+      "n_usable": 9,
+      "rho_argmax": 0.6723,
+      "rho_ev": 0.75,
+      "argmax_range": 0.625,
+      "ev_range": 0.4214,
+      "distinct_argmax_values": 7
+    },
+    {
+      "sweep": "extraversion_pc1_low",
+      "dir": "e1_inspan",
+      "n_usable": 2,
+      "note": "too few usable rungs to correlate"
+    },
+    {
+      "sweep": "neuroticism_pc1_high",
+      "dir": "e1_inspan",
+      "n_usable": 9,
+      "rho_argmax": 0.3651,
+      "rho_ev": 0.9833,
+      "argmax_range": 0.0416,
+      "ev_range": 0.0827,
+      "distinct_argmax_values": 2
+    },
+    {
+      "sweep": "agreeableness_pc1_high",
+      "dir": "gemma_final",
+      "n_usable": 5,
+      "rho_argmax": 0.6669,
+      "rho_ev": 0.9,
+      "argmax_range": 0.25,
+      "ev_range": 0.2678,
+      "distinct_argmax_values": 4
+    },
+    {
+      "sweep": "agreeableness_pc1_low",
+      "dir": "gemma_final",
+      "n_usable": 6,
+      "rho_argmax": -0.3189,
+      "rho_ev": -0.6,
+      "argmax_range": 0.25,
+      "ev_range": 0.1432,
+      "distinct_argmax_values": 5
+    },
+    {
+      "sweep": "conscientiousness_pc1_high",
+      "dir": "gemma_final",
+      "n_usable": 4,
+      "rho_argmax": 1.0,
+      "rho_ev": 1.0,
+      "argmax_range": 0.5416,
+      "ev_range": 0.5266,
+      "distinct_argmax_values": 4
+    },
+    {
+      "sweep": "conscientiousness_pc1_low",
+      "dir": "gemma_final",
+      "n_usable": 5,
+      "rho_argmax": -0.7182,
+      "rho_ev": -0.9,
+      "argmax_range": 1.5,
+      "ev_range": 1.0547,
+      "distinct_argmax_values": 4
+    },
+    {
+      "sweep": "extraversion_pc1_high",
+      "dir": "gemma_final",
+      "n_usable": 5,
+      "rho_argmax": -0.0527,
+      "rho_ev": -0.4,
+      "argmax_range": 0.1667,
+      "ev_range": 0.1387,
+      "distinct_argmax_values": 3
+    },
+    {
+      "sweep": "extraversion_pc1_low",
+      "dir": "gemma_final",
+      "n_usable": 3,
+      "rho_argmax": -0.5,
+      "rho_ev": -0.5,
+      "argmax_range": 0.1666,
+      "ev_range": 0.1726,
+      "distinct_argmax_values": 3
+    },
+    {
+      "sweep": "neuroticism_pc1_high",
+      "dir": "gemma_final",
+      "n_usable": 4,
+      "rho_argmax": -0.4,
+      "rho_ev": -0.2,
+      "argmax_range": 0.2084,
+      "ev_range": 0.2043,
+      "distinct_argmax_values": 4
+    },
+    {
+      "sweep": "neuroticism_pc1_low",
+      "dir": "gemma_final",
+      "n_usable": 5,
+      "rho_argmax": -0.9,
+      "rho_ev": -0.9,
+      "argmax_range": 0.9167,
+      "ev_range": 0.759,
+      "distinct_argmax_values": 5
+    },
+    {
+      "sweep": "openness_pc1_high",
+      "dir": "gemma_final",
+      "n_usable": 3,
+      "rho_argmax": 0.866,
+      "rho_ev": 1.0,
+      "argmax_range": 0.0417,
+      "ev_range": 0.1044,
+      "distinct_argmax_values": 2
+    },
+    {
+      "sweep": "openness_pc1_low",
+      "dir": "gemma_final",
+      "n_usable": 4,
+      "rho_argmax": -1.0,
+      "rho_ev": -1.0,
+      "argmax_range": 0.4583,
+      "ev_range": 0.383,
+      "distinct_argmax_values": 4
+    }
+  ]
+}
