@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OMP reconstruction — 3D</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --target: #1a1612;
+      --recon: #2b6cb0;
+      --add: #c45c4a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%; overflow: hidden;
+      background: var(--bg); color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+    }
+    #header {
+      grid-column: 1 / -1;
+      padding: 0.85rem 1.25rem 0.55rem;
+      border-bottom: 1px solid var(--line);
+    }
+    #header h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.45rem; font-weight: 600; letter-spacing: -0.02em;
+    }
+    #header .sub {
+      font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.45;
+      max-width: 44rem;
+    }
+    #controls {
+      grid-column: 1 / -1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+      padding: 0.55rem 1.25rem;
+      border-bottom: 1px solid var(--line);
+      background: var(--bg);
+    }
+    #xz-block {
+      display: flex;
+      align-items: center;
+      gap: 0.65rem;
+      flex: 1 1 14rem;
+      min-width: 12rem;
+      max-width: 22rem;
+    }
+    #xz-block label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    #xz-block input[type="range"] {
+      position: static;
+      transform: none;
+      width: 100%;
+      flex: 1;
+      height: 2px;
+      cursor: pointer;
+    }
+    #xzVal {
+      font-variant-numeric: tabular-nums;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--ink);
+      min-width: 2.4rem;
+      text-align: right;
+    }
+    #readout {
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+    }
+    #readout span {
+      color: var(--ink);
+      display: inline-block;
+      min-width: 3.2rem;
+      text-align: right;
+    }
+    .trait-btns { display: flex; gap: 0.35rem; flex-shrink: 0; }
+    .trait-btns button {
+      font: inherit; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.35rem 0.7rem; border: 1px solid var(--line);
+      border-radius: 3px; background: transparent; color: var(--muted); cursor: pointer;
+    }
+    .trait-btns button:hover { color: var(--ink); border-color: var(--ink); }
+    .trait-btns button.active {
+      color: var(--ink); border-color: var(--ink);
+      background: rgba(26, 22, 18, 0.06);
+    }
+
+    #app {
+      display: grid;
+      grid-template-columns: 4.25rem 1fr;
+      grid-template-rows: auto auto 1fr auto;
+      height: 100vh; width: 100vw;
+    }
+
+    #slider-col {
+      grid-row: 3; grid-column: 1;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0.5rem 0; border-right: 1px solid var(--line);
+    }
+    #slider-col .cap {
+      font-size: 0.82rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--ink);
+      writing-mode: vertical-rl; transform: rotate(180deg);
+    }
+    #slider-col .cap.top { margin-bottom: 0.55rem; }
+    #slider-col .cap.bot { margin-top: 0.55rem; }
+    #slider-mid {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      width: 100%; min-height: 0; position: relative;
+    }
+    input[type="range"] {
+      -webkit-appearance: none; appearance: none;
+      position: absolute; width: var(--track, 50vh); height: 2px;
+      background: var(--line); border-radius: 1px; outline: none;
+      transform: rotate(-90deg); cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
+      background: var(--ink); border: 2px solid var(--bg);
+      box-shadow: 0 0 0 1px var(--ink); cursor: grab;
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 14px; height: 14px; border-radius: 50%;
+      background: var(--ink); border: 2px solid var(--bg); cursor: grab;
+    }
+
+    #stage { grid-row: 3; grid-column: 2; position: relative; min-width: 0; min-height: 0; background: var(--bg); }
+    #gl { display: block; width: 100%; height: 100%; touch-action: none; }
+
+    #legend {
+      position: absolute; top: 0.75rem; left: 0.75rem; z-index: 5;
+      padding: 0.55rem 0.7rem; background: rgba(246, 243, 238, 0.96);
+      border: 1px solid var(--line); border-radius: 3px;
+      font-size: 0.72rem; line-height: 1.35; pointer-events: none;
+      max-width: 17rem;
+    }
+    .leg-row { display: flex; align-items: center; gap: 0.4rem; margin-bottom: 0.3rem; }
+    .leg-row:last-child { margin-bottom: 0; }
+    .leg-section {
+      margin-top: 0.55rem; padding-top: 0.45rem; border-top: 1px solid var(--line);
+    }
+    .leg-section .ttl {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.35rem;
+    }
+    .axis-row { margin-bottom: 0.4rem; }
+    .axis-row strong { font-weight: 700; }
+    .axis-row .ax-x { color: #c45c4a; }
+    .axis-row .ax-y { color: #3d8b6e; }
+    .axis-row .ax-z { color: #2b6cb0; }
+    .axis-row .detail { color: var(--muted); font-size: 0.65rem; margin-top: 0.1rem; line-height: 1.35; }
+    .swatch {
+      width: 12px; height: 12px; border-radius: 50%; border: 1.5px solid var(--muted); flex-shrink: 0;
+      background: rgba(154, 145, 134, 0.25);
+    }
+    .swatch.filled-pos { background: rgba(43, 140, 190, 0.85); border-color: #084081; }
+    .swatch.filled-neg { background: rgba(215, 48, 31, 0.85); border-color: #7f0000; }
+    .swatch.line-target { width: 18px; height: 2px; border: none; border-radius: 0; background: var(--target); }
+    .swatch.line-recon { width: 18px; height: 3px; border: none; border-radius: 0; background: var(--recon); }
+    .swatch.line-add { width: 18px; height: 2px; border: none; border-radius: 0; background: var(--add); }
+
+    #pick {
+      position: absolute; bottom: 0.75rem; left: 0.75rem; z-index: 5;
+      max-width: 20rem; padding: 0.55rem 0.7rem;
+      background: rgba(246, 243, 238, 0.96); border: 1px solid var(--line);
+      border-radius: 3px; font-size: 0.75rem; line-height: 1.4;
+      pointer-events: none; opacity: 0; transition: opacity 0.15s;
+    }
+    #pick.on { opacity: 1; }
+    #pick .tag {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem;
+    }
+
+    #tooltip {
+      position: fixed; z-index: 20; max-width: 18rem;
+      padding: 0.55rem 0.7rem; pointer-events: none;
+      background: rgba(246, 243, 238, 0.98); border: 1px solid var(--line);
+      border-radius: 3px; font-size: 0.75rem; line-height: 1.4;
+      opacity: 0; transition: opacity 0.1s; color: var(--ink);
+    }
+    #tooltip.on { opacity: 1; }
+    #tooltip .tag {
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.12rem;
+    }
+
+    #hint {
+      grid-column: 1 / -1; font-size: 0.6rem; color: var(--muted);
+      text-align: center; padding: 0.45rem; border-top: 1px solid var(--line);
+    }
+    .err { padding: 2rem; color: #c45c4a; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header id="header">
+      <h1 id="title">OMP reconstruction</h1>
+      <p class="sub">Y = trait vector · X/Z = off-axis diversity (display-stretched). Amber arrow = c·W for the current feature (the term being added into the blue reconstruction).</p>
+    </header>
+
+    <div id="controls">
+      <div class="trait-btns" id="traitBtns">
+        <button type="button" data-trait="good" class="active">Good</button>
+        <button type="button" data-trait="evil">Evil</button>
+      </div>
+      <div id="xz-block">
+        <label for="xzSlider">XZ dispersion</label>
+        <input id="xzSlider" type="range" min="0.5" max="20" step="0.1" value="2" />
+        <span id="xzVal">2.0×</span>
+      </div>
+      <div id="readout">d = <span id="kVal">0</span> · cos <span id="cosVal">—</span> · residual <span id="resVal">—</span></div>
+    </div>
+
+    <aside id="slider-col">
+      <div class="cap top">more features</div>
+      <div id="slider-mid">
+        <input id="kSlider" type="range" min="0" max="100" step="1" value="0" />
+      </div>
+      <div class="cap bot">none</div>
+    </aside>
+
+    <div id="stage">
+      <div id="legend">
+        <div class="leg-row"><span class="swatch"></span> Unused feature</div>
+        <div class="leg-row"><span class="swatch filled-pos"></span> Selected (+)</div>
+        <div class="leg-row"><span class="swatch filled-neg"></span> Selected (−)</div>
+        <div class="leg-row"><span class="swatch line-target"></span> <span id="targetLeg">Target v_dense</span></div>
+        <div class="leg-row"><span class="swatch line-recon"></span> Reconstruction</div>
+        <div class="leg-row"><span class="swatch line-add"></span> Feature contribution c·W</div>
+        <div class="leg-section" id="axisLeg">
+          <div class="ttl">Coordinate axes</div>
+          <div class="axis-row" id="axisY"><strong class="ax-y">Y</strong> — trait / v_dense</div>
+          <div class="axis-row" id="axisX"><strong class="ax-x">X</strong> — off-axis PC1</div>
+          <div class="axis-row" id="axisZ"><strong class="ax-z">Z</strong> — off-axis PC2</div>
+        </div>
+      </div>
+      <div id="pick"></div>
+      <canvas id="gl"></canvas>
+    </div>
+    <div id="tooltip"></div>
+
+    <div id="hint">drag to orbit · scroll to zoom · hover a sphere for its label · slider adds OMP features in greedy order</div>
+  </div>
+
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.158.0";
+    import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls";
+
+    const POS = 0x2b8cbe;
+    const NEG = 0xd7301f;
+    const HOLLOW = 0x8a8178;
+    const TARGET_C = 0x1a1612;
+    const RECON_C = 0x2b6cb0;
+    const ADD_C = 0xc45c4a;
+
+    const stage = document.getElementById("stage");
+    const canvas = document.getElementById("gl");
+    const slider = document.getElementById("kSlider");
+    const xzSlider = document.getElementById("xzSlider");
+    const xzVal = document.getElementById("xzVal");
+    const kVal = document.getElementById("kVal");
+    const cosVal = document.getElementById("cosVal");
+    const resVal = document.getElementById("resVal");
+    const pickEl = document.getElementById("pick");
+    const titleEl = document.getElementById("title");
+    const targetLeg = document.getElementById("targetLeg");
+    const tooltip = document.getElementById("tooltip");
+
+    let rawData = null;
+    let data = null;
+    let activeTrait = "good";
+    let xzBoost = 2.0;
+    let featureMeshes = [];
+    let hitMeshes = [];
+    let reconArrow = null;
+    let addArrow = null;
+    let addTube = null;
+    let targetArrow = null;
+    let trailMesh = null;
+    let originDot = null;
+    let axesHelper = null;
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf6f3ee);
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.01, 200);
+    camera.position.set(4, 2.5, 5);
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.minDistance = 0.5;
+    controls.maxDistance = 120;
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.85));
+    const key = new THREE.DirectionalLight(0xffffff, 0.55);
+    key.position.set(3, 5, 2);
+    scene.add(key);
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    let hovered = null;
+
+    /**
+     * Center on origin, scale so feature Y has std=1 and X/Z have std=xzBoost,
+     * then fit the VIEW using Y (and target) only — so raising XZ boost spreads
+     * spheres sideways without shrinking the Y axis.
+     */
+    function normalizeData(raw, boost = 1.5) {
+      const o = raw.origin || [0, 0, 0];
+      const shift = (p) => [p[0] - o[0], p[1] - o[1], p[2] - o[2]];
+
+      const featShifted = raw.features.map((f) => shift(f.pos));
+      const std = [0, 1, 2].map((ax) => {
+        const vals = featShifted.map((p) => p[ax]);
+        const mean = vals.reduce((a, b) => a + b, 0) / Math.max(vals.length, 1);
+        const v = vals.reduce((a, b) => a + (b - mean) ** 2, 0) / Math.max(vals.length, 1);
+        return Math.max(Math.sqrt(v), 1e-8);
+      });
+      const targetStd = [boost, 1.0, boost];
+      const axisScale = std.map((s, i) => targetStd[i] / s);
+
+      const axisMap = (p) => {
+        const q = shift(p);
+        return [q[0] * axisScale[0], q[1] * axisScale[1], q[2] * axisScale[2]];
+      };
+
+      const mapped = {
+        ...raw,
+        origin: [0, 0, 0],
+        target: axisMap(raw.target),
+        features: raw.features.map((f) => ({
+          ...f,
+          pos: axisMap(f.pos),
+          contrib: axisMap(f.contrib || f.pos),
+        })),
+        steps: raw.steps.map((s) => ({ ...s, recon: axisMap(s.recon) })),
+        _axisScale: axisScale,
+        _xzBoost: boost,
+      };
+
+      // Fit on Y only (trait axis + recon height). XZ can grow freely with boost.
+      const yRefs = [
+        mapped.target[1],
+        ...mapped.features.map((f) => f.pos[1]),
+        ...mapped.steps.map((s) => s.recon[1]),
+      ];
+      let maxAbsY = 1e-6;
+      for (const y of yRefs) maxAbsY = Math.max(maxAbsY, Math.abs(y));
+      const fit = 1.5 / maxAbsY;
+      const n = (p) => p.map((v) => v * fit);
+      return {
+        ...mapped,
+        target: n(mapped.target),
+        features: mapped.features.map((f) => ({
+          ...f,
+          pos: n(f.pos),
+          contrib: n(f.contrib),
+        })),
+        steps: mapped.steps.map((s) => ({ ...s, recon: n(s.recon) })),
+        _fit: fit,
+      };
+    }
+
+    function applyDisplayTransform({ resetCamera = false } = {}) {
+      if (!rawData) return;
+      const k = +slider.value;
+      data = normalizeData(rawData, xzBoost);
+      buildScene({ resetCamera, resetK: false });
+      applyK(k);
+    }
+
+    function resize() {
+      const w = stage.clientWidth;
+      const h = stage.clientHeight;
+      camera.aspect = w / Math.max(h, 1);
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h, false);
+      slider.style.setProperty("--track", `${Math.max(120, h * 0.72)}px`);
+    }
+    window.addEventListener("resize", resize);
+
+    function makeArrow(from, to, color, headScale = 1) {
+      const d = new THREE.Vector3().subVectors(to, from);
+      const len = d.length();
+      if (len < 1e-6) {
+        const g = new THREE.Group();
+        g.visible = false;
+        return g;
+      }
+      const headLen = Math.min(0.16 * headScale, len * 0.28);
+      const headWidth = Math.min(0.09 * headScale, len * 0.14);
+      return new THREE.ArrowHelper(d.clone().normalize(), from.clone(), len, color, headLen, headWidth);
+    }
+
+    function makeTrailTube(pts) {
+      if (pts.length < 2) {
+        const g = new THREE.Group();
+        g.visible = false;
+        return g;
+      }
+      const curve = new THREE.CatmullRomCurve3(pts, false, "catmullrom", 0.15);
+      const geo = new THREE.TubeGeometry(curve, Math.max(8, pts.length * 4), 0.018, 8, false);
+      const mat = new THREE.MeshBasicMaterial({
+        color: RECON_C,
+        transparent: true,
+        opacity: 0.72,
+        depthWrite: false,
+      });
+      return new THREE.Mesh(geo, mat);
+    }
+
+    function makeContribVisual(from, to) {
+      const group = new THREE.Group();
+      const d = new THREE.Vector3().subVectors(to, from);
+      let len = d.length();
+      if (len < 1e-6) {
+        group.visible = false;
+        return group;
+      }
+      // Boost tiny late-stage contributions so the amber vector stays readable
+      const minLen = 0.45;
+      const displayTo = len < minLen
+        ? from.clone().add(d.clone().normalize().multiplyScalar(minLen))
+        : to.clone();
+      const displayLen = from.distanceTo(displayTo);
+      const dir = new THREE.Vector3().subVectors(displayTo, from).normalize();
+
+      const arrow = new THREE.ArrowHelper(
+        dir, from.clone(), displayLen, ADD_C,
+        Math.min(0.22, displayLen * 0.22),
+        Math.min(0.14, displayLen * 0.12)
+      );
+      // Thicken the shaft (ArrowHelper line is too thin on most GPUs)
+      const shaft = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.022, 0.022, Math.max(displayLen - 0.18, 0.05), 10),
+        new THREE.MeshBasicMaterial({ color: ADD_C, transparent: true, opacity: 0.92 })
+      );
+      shaft.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), dir);
+      shaft.position.copy(from).add(dir.clone().multiplyScalar((displayLen - 0.18) / 2));
+      group.add(shaft);
+      group.add(arrow);
+      group.userData.boosted = len < minLen;
+      return group;
+    }
+
+    function disposeObject(obj) {
+      if (!obj) return;
+      scene.remove(obj);
+      obj.traverse?.((c) => {
+        c.geometry?.dispose?.();
+        if (Array.isArray(c.material)) c.material.forEach((m) => m.dispose?.());
+        else c.material?.dispose?.();
+      });
+      obj.geometry?.dispose?.();
+      obj.material?.dispose?.();
+    }
+
+    function clearSceneObjects() {
+      for (const m of featureMeshes) scene.remove(m);
+      featureMeshes = [];
+      hitMeshes = [];
+      for (const obj of [reconArrow, addArrow, addTube, targetArrow, trailMesh, originDot, axesHelper]) {
+        disposeObject(obj);
+      }
+      reconArrow = addArrow = addTube = targetArrow = trailMesh = originDot = axesHelper = null;
+    }
+
+    function v3(arr) {
+      return new THREE.Vector3(arr[0], arr[1], arr[2]);
+    }
+
+    function buildScene({ resetCamera = true, resetK = true } = {}) {
+      clearSceneObjects();
+      const origin = v3(data.origin);
+      const target = v3(data.target);
+
+      axesHelper = new THREE.AxesHelper(0.28);
+      axesHelper.position.copy(origin);
+      scene.add(axesHelper);
+
+      originDot = new THREE.Mesh(
+        new THREE.SphereGeometry(0.035, 16, 16),
+        new THREE.MeshBasicMaterial({ color: 0x1a1612 })
+      );
+      originDot.position.copy(origin);
+      scene.add(originDot);
+
+      // Target always rebuilt from this trait's v_dense projection
+      targetArrow = makeArrow(origin, target, TARGET_C, 1.15);
+      scene.add(targetArrow);
+
+      trailMesh = makeTrailTube([origin.clone()]);
+      scene.add(trailMesh);
+
+      reconArrow = makeArrow(origin, origin.clone(), RECON_C);
+      reconArrow.visible = false;
+      scene.add(reconArrow);
+
+      addArrow = makeContribVisual(origin, origin.clone());
+      addArrow.visible = false;
+      scene.add(addArrow);
+
+      fillAxisLegend(data.axes);
+
+      const r = 0.058;
+      for (const f of data.features) {
+        const group = new THREE.Group();
+        group.userData = { ...f };
+        group.position.copy(v3(f.pos));
+
+        // Hollow translucent sphere (glass shell)
+        const shell = new THREE.Mesh(
+          new THREE.SphereGeometry(r, 20, 20),
+          new THREE.MeshPhongMaterial({
+            color: HOLLOW,
+            transparent: true,
+            opacity: 0.22,
+            depthWrite: false,
+            side: THREE.DoubleSide,
+            shininess: 40,
+          })
+        );
+        // Thin rim so hollow state reads clearly
+        const rim = new THREE.Mesh(
+          new THREE.SphereGeometry(r * 1.02, 20, 20),
+          new THREE.MeshBasicMaterial({
+            color: HOLLOW,
+            transparent: true,
+            opacity: 0.35,
+            wireframe: true,
+            depthWrite: false,
+          })
+        );
+        const fill = new THREE.Mesh(
+          new THREE.SphereGeometry(r * 0.98, 20, 20),
+          new THREE.MeshPhongMaterial({
+            color: f.sign === "pos" ? POS : NEG,
+            transparent: true,
+            opacity: 0.88,
+            shininess: 55,
+          })
+        );
+        fill.visible = false;
+        group.add(shell);
+        group.add(rim);
+        group.add(fill);
+        group.userData.shell = shell;
+        group.userData.rim = rim;
+        group.userData.fill = fill;
+        // Larger invisible hit target for hover
+        const hit = new THREE.Mesh(
+          new THREE.SphereGeometry(r * 1.6, 12, 12),
+          new THREE.MeshBasicMaterial({ visible: false })
+        );
+        hit.userData.feature = f;
+        hit.userData.group = group;
+        group.add(hit);
+        scene.add(group);
+        featureMeshes.push(group);
+        hitMeshes.push(hit);
+      }
+
+      const box = new THREE.Box3();
+      box.expandByPoint(origin);
+      box.expandByPoint(target);
+      for (const f of data.features) box.expandByPoint(v3(f.pos));
+      const center = box.getCenter(new THREE.Vector3());
+      const size = Math.max(box.getSize(new THREE.Vector3()).length(), 1);
+      camera.near = 0.01;
+      camera.far = Math.max(100, size * 20);
+      camera.updateProjectionMatrix();
+      if (resetCamera) {
+        controls.target.copy(center);
+        camera.position.copy(center).add(new THREE.Vector3(size * 0.85, size * 0.55, size * 1.05));
+        controls.update();
+      }
+
+      slider.max = String(data.features.length);
+      if (resetK) slider.value = "0";
+    }
+
+    function fillAxisLegend(axes) {
+      const fallback = {
+        y: { name: "Trait / v_dense axis", meaning: "Direction of the dense persona vector." },
+        x: { name: "Off-axis PC1", meaning: "Largest residual after removing trait alignment." },
+        z: { name: "Off-axis PC2", meaning: "Second residual, orthogonal to Y and X." },
+      };
+      const ax = axes || fallback;
+      const fmt = (key, elId, cls) => {
+        const a = ax[key] || fallback[key];
+        const tops = (a.top_features || []).slice(0, 2).map((t) => t.title || `F${t.fid}`).join(" · ");
+        const expl = a.explained_offaxis != null ? ` · ${(a.explained_offaxis * 100).toFixed(1)}% of off-axis var` : "";
+        document.getElementById(elId).innerHTML = `
+          <strong class="${cls}">${key.toUpperCase()}</strong> — ${a.name}${expl}
+          <div class="detail">${a.meaning}${tops ? ` Extreme: ${tops}` : ""}</div>`;
+      };
+      fmt("y", "axisY", "ax-y");
+      fmt("x", "axisX", "ax-x");
+      fmt("z", "axisZ", "ax-z");
+    }
+
+    function applyK(k) {
+      k = Math.max(0, Math.min(data.features.length, k | 0));
+      kVal.textContent = String(k).padStart(3, " ");
+
+      for (const g of featureMeshes) {
+        const selected = g.userData.order <= k;
+        const justAdded = g.userData.order === k;
+        g.userData.fill.visible = selected;
+        g.userData.shell.visible = !selected;
+        g.userData.rim.visible = !selected;
+        g.scale.setScalar(justAdded ? 1.25 : selected ? 1.06 : 1);
+      }
+
+      const origin = v3(data.origin);
+      let tip = origin.clone();
+      let contribTip = origin.clone();
+      if (k > 0) {
+        const step = data.steps[k - 1];
+        tip = v3(step.recon);
+        const feat = data.features[k - 1];
+        contribTip = v3(feat.contrib || [0, 0, 0]);
+        const boosted = contribTip.length() < 0.45;
+        pickEl.innerHTML = `
+          <div class="tag">Current feature · #${step.k} · ${activeTrait}</div>
+          <div><strong>F${step.fid}</strong> · coef ${step.coefficient >= 0 ? "+" : ""}${step.coefficient.toFixed(1)}</div>
+          <div style="color:var(--muted);margin-top:0.15rem">${feat?.title || ""}</div>
+          <div style="color:var(--add);margin-top:0.2rem;font-size:0.68rem">
+            Amber = this feature’s contribution vector c·W${boosted ? " (length boosted for visibility)" : ""}
+          </div>`;
+        pickEl.classList.add("on");
+      } else {
+        pickEl.classList.remove("on");
+      }
+      cosVal.textContent = (k > 0 ? data.steps[k - 1].cosine.toFixed(3) : "—").padStart(5, " ");
+      resVal.textContent = (k > 0 ? data.steps[k - 1].residual_frac.toFixed(3) : "—").padStart(5, " ");
+
+      disposeObject(reconArrow);
+      reconArrow = makeArrow(origin, tip, RECON_C);
+      reconArrow.visible = k > 0;
+      scene.add(reconArrow);
+
+      disposeObject(addArrow);
+      addArrow = makeContribVisual(origin, contribTip);
+      addArrow.visible = k > 0;
+      scene.add(addArrow);
+
+      disposeObject(trailMesh);
+      const pts = [origin.clone()];
+      for (let i = 0; i < k; i++) pts.push(v3(data.steps[i].recon));
+      trailMesh = makeTrailTube(pts);
+      scene.add(trailMesh);
+    }
+
+    function showTooltip(f, event) {
+      tooltip.innerHTML = `
+        <div class="tag">F${f.fid} · #${f.order} · ${f.sign === "pos" ? "activation +" : "suppression −"}</div>
+        <div style="font-weight:600">${f.title || "Unlabeled"}</div>
+        <div style="color:var(--muted);margin-top:0.15rem">coef ${f.coefficient >= 0 ? "+" : ""}${f.coefficient.toFixed(1)}</div>`;
+      tooltip.classList.add("on");
+      moveTooltip(event);
+    }
+    function moveTooltip(event) {
+      tooltip.style.left = `${event.clientX + 14}px`;
+      tooltip.style.top = `${event.clientY + 14}px`;
+    }
+    function hideTooltip() {
+      tooltip.classList.remove("on");
+      hovered = null;
+    }
+
+    canvas.addEventListener("pointermove", (event) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(hitMeshes, false);
+      if (!hits.length) {
+        hideTooltip();
+        canvas.style.cursor = "grab";
+        return;
+      }
+      const f = hits[0].object.userData.feature;
+      if (!f) return;
+      canvas.style.cursor = "pointer";
+      if (hovered !== f.fid) {
+        hovered = f.fid;
+        showTooltip(f, event);
+      } else {
+        moveTooltip(event);
+      }
+    });
+    canvas.addEventListener("pointerleave", hideTooltip);
+
+    async function loadTrait(trait) {
+      activeTrait = trait;
+      document.querySelectorAll(".trait-btns button").forEach((b) => {
+        b.classList.toggle("active", b.dataset.trait === trait);
+      });
+      const label = trait.charAt(0).toUpperCase() + trait.slice(1);
+      targetLeg.textContent = `Target v_${trait}`;
+      titleEl.textContent = `${label} — OMP reconstruction`;
+
+      const urls = [
+        `omp_reconstruction_3d_${trait}.json`,
+        `/static/omp_reconstruction_3d_${trait}.json`,
+      ];
+      let doc = null;
+      let lastErr = null;
+      for (const url of urls) {
+        try {
+          const r = await fetch(`${url}?t=${Date.now()}`);
+          if (!r.ok) throw new Error(`${r.status} ${url}`);
+          doc = await r.json();
+          break;
+        } catch (e) {
+          lastErr = e;
+        }
+      }
+      if (!doc) {
+        stage.insertAdjacentHTML(
+          "beforeend",
+          `<p class="err">Failed to load omp_reconstruction_3d_${trait}.json — ${lastErr}</p>`
+        );
+        return;
+      }
+      rawData = doc;
+      applyDisplayTransform({ resetCamera: true });
+      // applyDisplayTransform preserves k; force start at 0 on trait change
+      slider.value = "0";
+      applyK(0);
+    }
+
+    document.getElementById("traitBtns").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-trait]");
+      if (!btn || btn.dataset.trait === activeTrait) return;
+      loadTrait(btn.dataset.trait);
+    });
+
+    slider.addEventListener("input", () => applyK(+slider.value));
+
+    xzSlider.addEventListener("input", () => {
+      xzBoost = +xzSlider.value;
+      xzVal.textContent = `${xzBoost.toFixed(1)}×`;
+      applyDisplayTransform({ resetCamera: false });
+    });
+
+    function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    }
+
+    resize();
+    animate();
+    loadTrait("good");
+  </script>
+  <script src="./viz_series.js"></script>
+</body>
+</html>
