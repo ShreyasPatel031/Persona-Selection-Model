@@ -1,0 +1,1077 @@
+{
+  "created_utc": "2026-08-18T01:37:58.531138+00:00",
+  "stage": "prompt_ladder",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "trait": "extraversion",
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "variants": 3,
+  "n_items": 120,
+  "instrument": "/content/ocean/data/ipip_neo_120.csv",
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "administrations": [
+    {
+      "level": 1,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely quiet, extremely reserved, and extremely shy.",
+      "trait_scores": {
+        "agreeableness": 3.6667,
+        "conscientiousness": 3.25,
+        "extraversion": 1.6667,
+        "neuroticism": 3.0833,
+        "openness": 2.8333
+      },
+      "ev_scores": {
+        "agreeableness": 3.6013,
+        "conscientiousness": 3.2205,
+        "extraversion": 1.5739,
+        "neuroticism": 3.0297,
+        "openness": 2.8011
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.5739,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.45,
+        "option_entropy": 1.2519,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 54,
+          "2": 14,
+          "3": 34,
+          "5": 18
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely withdrawn, extremely unsociable, and extremely timid.",
+      "trait_scores": {
+        "agreeableness": 3.25,
+        "conscientiousness": 2.7917,
+        "extraversion": 1.3333,
+        "neuroticism": 4.2083,
+        "openness": 2.625
+      },
+      "ev_scores": {
+        "agreeableness": 3.2836,
+        "conscientiousness": 2.8094,
+        "extraversion": 1.3827,
+        "neuroticism": 4.1725,
+        "openness": 2.6105
+      },
+      "target_score": 1.3333,
+      "target_ev": 1.3827,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5417,
+        "option_entropy": 1.1329,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 65,
+          "2": 7,
+          "3": 19,
+          "5": 29
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely quiet, extremely reserved, and extremely shy.",
+      "trait_scores": {
+        "agreeableness": 3.6667,
+        "conscientiousness": 3.25,
+        "extraversion": 1.6667,
+        "neuroticism": 3.0833,
+        "openness": 2.8333
+      },
+      "ev_scores": {
+        "agreeableness": 3.6013,
+        "conscientiousness": 3.2205,
+        "extraversion": 1.5739,
+        "neuroticism": 3.0297,
+        "openness": 2.8011
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.5739,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.45,
+        "option_entropy": 1.2519,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 54,
+          "2": 14,
+          "3": 34,
+          "5": 18
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very quiet, very reserved, and very shy.",
+      "trait_scores": {
+        "agreeableness": 3.7917,
+        "conscientiousness": 3.2917,
+        "extraversion": 1.5833,
+        "neuroticism": 2.9583,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 3.6923,
+        "conscientiousness": 3.3073,
+        "extraversion": 1.537,
+        "neuroticism": 2.9651,
+        "openness": 2.8043
+      },
+      "target_score": 1.5833,
+      "target_ev": 1.537,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3333,
+        "option_entropy": 1.3191,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 40,
+          "2": 25,
+          "3": 40,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very withdrawn, very unsociable, and very timid.",
+      "trait_scores": {
+        "agreeableness": 3.375,
+        "conscientiousness": 2.9583,
+        "extraversion": 1.4167,
+        "neuroticism": 4.0833,
+        "openness": 2.7083
+      },
+      "ev_scores": {
+        "agreeableness": 3.3646,
+        "conscientiousness": 2.8996,
+        "extraversion": 1.4143,
+        "neuroticism": 4.062,
+        "openness": 2.6798
+      },
+      "target_score": 1.4167,
+      "target_ev": 1.4143,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.425,
+        "option_entropy": 1.3091,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 51,
+          "2": 19,
+          "3": 25,
+          "5": 25
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very quiet, very reserved, and very shy.",
+      "trait_scores": {
+        "agreeableness": 3.7917,
+        "conscientiousness": 3.2917,
+        "extraversion": 1.5833,
+        "neuroticism": 2.9583,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 3.6923,
+        "conscientiousness": 3.3073,
+        "extraversion": 1.537,
+        "neuroticism": 2.9651,
+        "openness": 2.8043
+      },
+      "target_score": 1.5833,
+      "target_ev": 1.537,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3333,
+        "option_entropy": 1.3191,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 40,
+          "2": 25,
+          "3": 40,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat quiet, somewhat reserved, and somewhat shy.",
+      "trait_scores": {
+        "agreeableness": 4.0,
+        "conscientiousness": 3.5417,
+        "extraversion": 2.0,
+        "neuroticism": 3.0833,
+        "openness": 2.9583
+      },
+      "ev_scores": {
+        "agreeableness": 3.9454,
+        "conscientiousness": 3.4672,
+        "extraversion": 2.0124,
+        "neuroticism": 3.0402,
+        "openness": 3.0001
+      },
+      "target_score": 2.0,
+      "target_ev": 2.0124,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5667,
+        "option_entropy": 1.2365,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 16,
+          "2": 19,
+          "3": 68,
+          "4": 13,
+          "5": 4
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat withdrawn, somewhat unsociable, and somewhat timid.",
+      "trait_scores": {
+        "agreeableness": 3.5417,
+        "conscientiousness": 2.9583,
+        "extraversion": 1.4167,
+        "neuroticism": 3.7083,
+        "openness": 2.875
+      },
+      "ev_scores": {
+        "agreeableness": 3.5242,
+        "conscientiousness": 2.9604,
+        "extraversion": 1.4627,
+        "neuroticism": 3.6704,
+        "openness": 2.898
+      },
+      "target_score": 1.4167,
+      "target_ev": 1.4627,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5,
+        "option_entropy": 1.3579,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 19,
+          "2": 17,
+          "3": 60,
+          "4": 7,
+          "5": 17
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat quiet, somewhat reserved, and somewhat shy.",
+      "trait_scores": {
+        "agreeableness": 4.0,
+        "conscientiousness": 3.5417,
+        "extraversion": 2.0,
+        "neuroticism": 3.0833,
+        "openness": 2.9583
+      },
+      "ev_scores": {
+        "agreeableness": 3.9454,
+        "conscientiousness": 3.4672,
+        "extraversion": 2.0124,
+        "neuroticism": 3.0402,
+        "openness": 3.0001
+      },
+      "target_score": 2.0,
+      "target_ev": 2.0124,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5667,
+        "option_entropy": 1.2365,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 16,
+          "2": 19,
+          "3": 68,
+          "4": 13,
+          "5": 4
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit quiet, a bit reserved, and a bit shy.",
+      "trait_scores": {
+        "agreeableness": 3.9583,
+        "conscientiousness": 3.5,
+        "extraversion": 1.8333,
+        "neuroticism": 3.0833,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.8781,
+        "conscientiousness": 3.3785,
+        "extraversion": 1.8572,
+        "neuroticism": 3.0771,
+        "openness": 2.943
+      },
+      "target_score": 1.8333,
+      "target_ev": 1.8572,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.575,
+        "option_entropy": 1.2252,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 17,
+          "2": 20,
+          "3": 69,
+          "4": 7,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit withdrawn, a bit unsociable, and a bit timid.",
+      "trait_scores": {
+        "agreeableness": 3.625,
+        "conscientiousness": 2.9167,
+        "extraversion": 1.375,
+        "neuroticism": 3.7917,
+        "openness": 2.875
+      },
+      "ev_scores": {
+        "agreeableness": 3.581,
+        "conscientiousness": 2.9463,
+        "extraversion": 1.4167,
+        "neuroticism": 3.7646,
+        "openness": 2.9119
+      },
+      "target_score": 1.375,
+      "target_ev": 1.4167,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4417,
+        "option_entropy": 1.454,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 20,
+          "2": 17,
+          "3": 53,
+          "4": 13,
+          "5": 17
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit quiet, a bit reserved, and a bit shy.",
+      "trait_scores": {
+        "agreeableness": 3.9583,
+        "conscientiousness": 3.5,
+        "extraversion": 1.8333,
+        "neuroticism": 3.0833,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 3.8781,
+        "conscientiousness": 3.3785,
+        "extraversion": 1.8572,
+        "neuroticism": 3.0771,
+        "openness": 2.943
+      },
+      "target_score": 1.8333,
+      "target_ev": 1.8572,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.575,
+        "option_entropy": 1.2252,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 17,
+          "2": 20,
+          "3": 69,
+          "4": 7,
+          "5": 7
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither talkative nor quiet, neither assertive nor reserved, and neither energetic nor shy.",
+      "trait_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.1667,
+        "extraversion": 2.875,
+        "neuroticism": 2.875,
+        "openness": 3.125
+      },
+      "ev_scores": {
+        "agreeableness": 3.2504,
+        "conscientiousness": 3.1381,
+        "extraversion": 2.8874,
+        "neuroticism": 2.9172,
+        "openness": 3.1056
+      },
+      "target_score": 2.875,
+      "target_ev": 2.8874,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.8583,
+        "option_entropy": 0.4899,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 1,
+          "2": 2,
+          "3": 103,
+          "4": 14
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither outgoing nor withdrawn, neither sociable nor unsociable, and neither bold nor timid.",
+      "trait_scores": {
+        "agreeableness": 3.4583,
+        "conscientiousness": 3.4583,
+        "extraversion": 2.9583,
+        "neuroticism": 2.75,
+        "openness": 3.2917
+      },
+      "ev_scores": {
+        "agreeableness": 3.4095,
+        "conscientiousness": 3.3933,
+        "extraversion": 2.9437,
+        "neuroticism": 2.7644,
+        "openness": 3.2713
+      },
+      "target_score": 2.9583,
+      "target_ev": 2.9437,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.6417,
+        "option_entropy": 0.884,
+        "distinct_options": 4,
+        "histogram": {
+          "2": 6,
+          "3": 77,
+          "4": 34,
+          "5": 3
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither talkative nor quiet, neither assertive nor reserved, and neither energetic nor shy.",
+      "trait_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.1667,
+        "extraversion": 2.875,
+        "neuroticism": 2.875,
+        "openness": 3.125
+      },
+      "ev_scores": {
+        "agreeableness": 3.2504,
+        "conscientiousness": 3.1381,
+        "extraversion": 2.8874,
+        "neuroticism": 2.9172,
+        "openness": 3.1056
+      },
+      "target_score": 2.875,
+      "target_ev": 2.8874,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.8583,
+        "option_entropy": 0.4899,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 1,
+          "2": 2,
+          "3": 103,
+          "4": 14
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit talkative, a bit assertive, and a bit energetic.",
+      "trait_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.5417,
+        "extraversion": 4.375,
+        "neuroticism": 2.375,
+        "openness": 4.2917
+      },
+      "ev_scores": {
+        "agreeableness": 3.1967,
+        "conscientiousness": 3.6476,
+        "extraversion": 4.4209,
+        "neuroticism": 2.408,
+        "openness": 4.3033
+      },
+      "target_score": 4.375,
+      "target_ev": 4.4209,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4,
+        "option_entropy": 1.3145,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 12,
+          "2": 48,
+          "3": 1,
+          "4": 23,
+          "5": 36
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit outgoing, a bit sociable, and a bit bold.",
+      "trait_scores": {
+        "agreeableness": 3.625,
+        "conscientiousness": 3.5417,
+        "extraversion": 4.5,
+        "neuroticism": 2.375,
+        "openness": 4.2917
+      },
+      "ev_scores": {
+        "agreeableness": 3.5757,
+        "conscientiousness": 3.5571,
+        "extraversion": 4.4837,
+        "neuroticism": 2.3523,
+        "openness": 4.3101
+      },
+      "target_score": 4.5,
+      "target_ev": 4.4837,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3333,
+        "option_entropy": 1.4295,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 19,
+          "2": 40,
+          "3": 3,
+          "4": 24,
+          "5": 34
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit talkative, a bit assertive, and a bit energetic.",
+      "trait_scores": {
+        "agreeableness": 3.2083,
+        "conscientiousness": 3.5417,
+        "extraversion": 4.375,
+        "neuroticism": 2.375,
+        "openness": 4.2917
+      },
+      "ev_scores": {
+        "agreeableness": 3.1967,
+        "conscientiousness": 3.6476,
+        "extraversion": 4.4209,
+        "neuroticism": 2.408,
+        "openness": 4.3033
+      },
+      "target_score": 4.375,
+      "target_ev": 4.4209,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4,
+        "option_entropy": 1.3145,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 12,
+          "2": 48,
+          "3": 1,
+          "4": 23,
+          "5": 36
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat talkative, somewhat assertive, and somewhat energetic.",
+      "trait_scores": {
+        "agreeableness": 3.375,
+        "conscientiousness": 3.625,
+        "extraversion": 4.0833,
+        "neuroticism": 2.5833,
+        "openness": 4.2083
+      },
+      "ev_scores": {
+        "agreeableness": 3.4532,
+        "conscientiousness": 3.6057,
+        "extraversion": 4.085,
+        "neuroticism": 2.5667,
+        "openness": 4.1991
+      },
+      "target_score": 4.0833,
+      "target_ev": 4.085,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3917,
+        "option_entropy": 1.3416,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 47,
+          "3": 3,
+          "4": 36,
+          "5": 25
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat outgoing, somewhat sociable, and somewhat bold.",
+      "trait_scores": {
+        "agreeableness": 3.2917,
+        "conscientiousness": 3.4583,
+        "extraversion": 3.9583,
+        "neuroticism": 2.5,
+        "openness": 4.0
+      },
+      "ev_scores": {
+        "agreeableness": 3.3822,
+        "conscientiousness": 3.4359,
+        "extraversion": 4.0031,
+        "neuroticism": 2.5286,
+        "openness": 4.0153
+      },
+      "target_score": 3.9583,
+      "target_ev": 4.0031,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4,
+        "option_entropy": 1.287,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 8,
+          "2": 47,
+          "3": 7,
+          "4": 48,
+          "5": 10
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat talkative, somewhat assertive, and somewhat energetic.",
+      "trait_scores": {
+        "agreeableness": 3.375,
+        "conscientiousness": 3.625,
+        "extraversion": 4.0833,
+        "neuroticism": 2.5833,
+        "openness": 4.2083
+      },
+      "ev_scores": {
+        "agreeableness": 3.4532,
+        "conscientiousness": 3.6057,
+        "extraversion": 4.085,
+        "neuroticism": 2.5667,
+        "openness": 4.1991
+      },
+      "target_score": 4.0833,
+      "target_ev": 4.085,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3917,
+        "option_entropy": 1.3416,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 9,
+          "2": 47,
+          "3": 3,
+          "4": 36,
+          "5": 25
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very talkative, very assertive, and very energetic.",
+      "trait_scores": {
+        "agreeableness": 2.7083,
+        "conscientiousness": 4.0,
+        "extraversion": 4.8333,
+        "neuroticism": 2.125,
+        "openness": 4.6667
+      },
+      "ev_scores": {
+        "agreeableness": 2.597,
+        "conscientiousness": 3.8896,
+        "extraversion": 4.8335,
+        "neuroticism": 2.1155,
+        "openness": 4.6408
+      },
+      "target_score": 4.8333,
+      "target_ev": 4.8335,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5333,
+        "option_entropy": 0.7628,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 64,
+          "2": 2,
+          "5": 54
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very outgoing, very sociable, and very bold.",
+      "trait_scores": {
+        "agreeableness": 3.7083,
+        "conscientiousness": 3.5833,
+        "extraversion": 4.9583,
+        "neuroticism": 1.9583,
+        "openness": 4.625
+      },
+      "ev_scores": {
+        "agreeableness": 3.6601,
+        "conscientiousness": 3.6029,
+        "extraversion": 4.9561,
+        "neuroticism": 1.9884,
+        "openness": 4.6178
+      },
+      "target_score": 4.9583,
+      "target_ev": 4.9561,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5417,
+        "option_entropy": 0.9487,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 65,
+          "2": 8,
+          "4": 2,
+          "5": 45
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very talkative, very assertive, and very energetic.",
+      "trait_scores": {
+        "agreeableness": 2.7083,
+        "conscientiousness": 4.0,
+        "extraversion": 4.8333,
+        "neuroticism": 2.125,
+        "openness": 4.6667
+      },
+      "ev_scores": {
+        "agreeableness": 2.597,
+        "conscientiousness": 3.8896,
+        "extraversion": 4.8335,
+        "neuroticism": 2.1155,
+        "openness": 4.6408
+      },
+      "target_score": 4.8333,
+      "target_ev": 4.8335,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5333,
+        "option_entropy": 0.7628,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 64,
+          "2": 2,
+          "5": 54
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely talkative, extremely assertive, and extremely energetic.",
+      "trait_scores": {
+        "agreeableness": 2.375,
+        "conscientiousness": 4.0,
+        "extraversion": 4.8333,
+        "neuroticism": 2.0417,
+        "openness": 4.6667
+      },
+      "ev_scores": {
+        "agreeableness": 2.3845,
+        "conscientiousness": 3.8905,
+        "extraversion": 4.8311,
+        "neuroticism": 2.0931,
+        "openness": 4.6599
+      },
+      "target_score": 4.8333,
+      "target_ev": 4.8311,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5,
+        "option_entropy": 0.8156,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 60,
+          "2": 4,
+          "5": 56
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely outgoing, extremely sociable, and extremely bold.",
+      "trait_scores": {
+        "agreeableness": 3.7083,
+        "conscientiousness": 3.5833,
+        "extraversion": 4.9583,
+        "neuroticism": 2.0417,
+        "openness": 4.6667
+      },
+      "ev_scores": {
+        "agreeableness": 3.5077,
+        "conscientiousness": 3.5573,
+        "extraversion": 4.9545,
+        "neuroticism": 2.0778,
+        "openness": 4.6518
+      },
+      "target_score": 4.9583,
+      "target_ev": 4.9545,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5167,
+        "option_entropy": 0.9409,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 62,
+          "2": 7,
+          "4": 2,
+          "5": 49
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely talkative, extremely assertive, and extremely energetic.",
+      "trait_scores": {
+        "agreeableness": 2.375,
+        "conscientiousness": 4.0,
+        "extraversion": 4.8333,
+        "neuroticism": 2.0417,
+        "openness": 4.6667
+      },
+      "ev_scores": {
+        "agreeableness": 2.3845,
+        "conscientiousness": 3.8905,
+        "extraversion": 4.8311,
+        "neuroticism": 2.0931,
+        "openness": 4.6599
+      },
+      "target_score": 4.8333,
+      "target_ev": 4.8311,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5,
+        "option_entropy": 0.8156,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 60,
+          "2": 4,
+          "5": 56
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    }
+  ],
+  "n_administrations": 27,
+  "n_usable_administrations": 27,
+  "locked_administrations": [],
+  "level_mean_target_score": [
+    1.5556,
+    1.5278,
+    1.8056,
+    1.6805,
+    2.9028,
+    4.4167,
+    4.0416,
+    4.875,
+    4.875
+  ],
+  "spearman_level_vs_target_score": 0.9143,
+  "monotone_fraction_level_means": 0.5,
+  "target_score_range": [
+    1.5278,
+    4.875
+  ],
+  "off_target_spearman": {
+    "agreeableness": -0.522,
+    "conscientiousness": 0.7947,
+    "neuroticism": -0.896,
+    "openness": 0.9539
+  }
+}

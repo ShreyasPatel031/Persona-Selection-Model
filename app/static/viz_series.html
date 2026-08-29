@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Persona series</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --yes: #3d8b6e;
+      --yes-dim: #a8d4c2;
+      --panel: #fffefb;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      min-height: 100vh;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      padding: 2rem 1.25rem 3rem;
+    }
+    .wrap { max-width: 38rem; margin: 0 auto; }
+    h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.75rem; font-weight: 600; letter-spacing: -0.02em;
+    }
+    .sub {
+      margin-top: 0.45rem; font-size: 0.85rem; color: var(--muted); line-height: 1.5;
+    }
+    ol {
+      list-style: none; margin-top: 1.75rem;
+      border-top: 1px solid var(--line);
+    }
+    li {
+      border-bottom: 1px solid var(--line);
+    }
+    a.card {
+      display: grid;
+      grid-template-columns: 2.4rem 1fr auto;
+      gap: 0.85rem;
+      align-items: baseline;
+      padding: 1rem 0.15rem;
+      text-decoration: none;
+      color: inherit;
+    }
+    a.card:hover .title { color: var(--yes); }
+    .num {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); padding-top: 0.2rem;
+    }
+    .title {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.2rem; font-weight: 600; letter-spacing: -0.02em;
+      transition: color 0.15s;
+    }
+    .blurb {
+      margin-top: 0.25rem; font-size: 0.78rem; color: var(--muted); line-height: 1.4;
+    }
+    .go {
+      font-size: 0.72rem; font-weight: 700; color: var(--muted); align-self: center;
+    }
+    a.card:hover .go { color: var(--yes); }
+    .finale .title { color: var(--ink); }
+    .tag {
+      display: inline-block; margin-top: 0.35rem;
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--yes);
+      border: 1px solid var(--yes-dim); background: rgba(61,139,110,0.1);
+      border-radius: 3px; padding: 0.12rem 0.4rem;
+    }
+    footer {
+      margin-top: 1.75rem; font-size: 0.72rem; color: var(--muted); line-height: 1.45;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Persona series</h1>
+    <p class="sub">Inferno design system — from where a trait lives, through α and SAE features, to composition, ending in Big Five.</p>
+    <ol id="list"></ol>
+    <footer>Same cream shell, Newsreader titles, Instrument Sans UI. Start at 01 or jump to the finale.</footer>
+  </div>
+  <script src="./viz_series.js"></script>
+  <script>
+    const list = document.getElementById("list");
+    window.VIZ_SERIES.forEach((s, i) => {
+      const li = document.createElement("li");
+      if (i === window.VIZ_SERIES.length - 1) li.className = "finale";
+      li.innerHTML = `
+        <a class="card" href="${s.href}">
+          <div class="num">${String(i + 1).padStart(2, "0")}</div>
+          <div>
+            <div class="title">${s.title}</div>
+            <div class="blurb">${s.blurb}</div>
+            ${i === window.VIZ_SERIES.length - 1 ? '<span class="tag">new · finale</span>' : ""}
+          </div>
+          <div class="go">open →</div>
+        </a>
+      `;
+      list.appendChild(li);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+{
+  "created_utc": "2026-08-19T17:45:17.307286+00:00",
+  "stage": "validated_sweep",
+  "trait": "conscientiousness",
+  "direction": "pc1",
+  "layer": 1,
+  "alpha_units": "raw",
+  "alpha_scale": 1.0,
+  "layer_choice": "explicit layer argument",
+  "baseline_prompt_mode": {
+    "alpha": 0.0,
+    "magnitude": 0.0,
+    "argmax_scores": {
+      "agreeableness": 3.2083,
+      "conscientiousness": 3.2917,
+      "extraversion": 3.125,
+      "neuroticism": 2.625,
+      "openness": 3.0833
+    },
+    "ev_scores": {
+      "agreeableness": 3.117,
+      "conscientiousness": 3.1659,
+      "extraversion": 3.088,
+      "neuroticism": 2.8505,
+      "openness": 3.1367
+    },
+    "target_argmax": 3.2917,
+    "target_ev": 3.1659,
+    "response_validity": 1.0,
+    "lock": {
+      "n_answered": 120,
+      "top_option_fraction": 0.7167,
+      "option_entropy": 0.6337,
+      "distinct_options": 3,
+      "histogram": {
+        "1": 1,
+        "3": 33,
+        "4": 86
+      },
+      "locked": false,
+      "reason": ""
+    },
+    "usable": true
+  },
+  "baseline_system_prompt": "Answer as yourself, describing how you actually are rather than how you think you should be.",
+  "magnitude_calibration": null,
+  "magnitude_grid": [
+    0.0,
+    50.0,
+    150.0
+  ],
+  "instrument": "/workspace/data/ipip_neo_120.csv",
+  "n_items": 120,
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "probe_questions": [],
+  "injection_scope": "assistant_span",
+  "baseline": {
+    "alpha": 0.0,
+    "magnitude": 0.0,
+    "argmax_scores": {
+      "agreeableness": 3.2083,
+      "conscientiousness": 3.2917,
+      "extraversion": 3.125,
+      "neuroticism": 2.625,
+      "openness": 3.0833
+    },
+    "ev_scores": {
+      "agreeableness": 3.117,
+      "conscientiousness": 3.1659,
+      "extraversion": 3.088,
+      "neuroticism": 2.8505,
+      "openness": 3.1367
+    },
+    "target_argmax": 3.2917,
+    "target_ev": 3.1659,
+    "response_validity": 1.0,
+    "lock": {
+      "n_answered": 120,
+      "top_option_fraction": 0.7167,
+      "option_entropy": 0.6337,
+      "distinct_options": 3,
+      "histogram": {
+        "1": 1,
+        "3": 33,
+        "4": 86
+      },
+      "locked": false,
+      "reason": ""
+    },
+    "usable": true
+  },
+  "trait_curve": {
+    "label": "conscientiousness:pc1",
+    "rows": [
+      {
+        "alpha": 0.0,
+        "magnitude": 0.0,
+        "argmax_scores": {
+          "agreeableness": 3.2083,
+          "conscientiousness": 3.2917,
+          "extraversion": 3.125,
+          "neuroticism": 2.625,
+          "openness": 3.0833
+        },
+        "ev_scores": {
+          "agreeableness": 3.117,
+          "conscientiousness": 3.1659,
+          "extraversion": 3.088,
+          "neuroticism": 2.8505,
+          "openness": 3.1367
+        },
+        "target_argmax": 3.2917,
+        "target_ev": 3.1659,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.7167,
+          "option_entropy": 0.6337,
+          "distinct_options": 3,
+          "histogram": {
+            "1": 1,
+            "3": 33,
+            "4": 86
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      },
+      {
+        "alpha": 50.0,
+        "magnitude": 50.0,
+        "argmax_scores": {
+          "agreeableness": 2.8333,
+          "conscientiousness": 3.0,
+          "extraversion": 3.4167,
+          "neuroticism": 3.0833,
+          "openness": 2.9167
+        },
+        "ev_scores": {
+          "agreeableness": 2.9667,
+          "conscientiousness": 3.0105,
+          "extraversion": 3.0437,
+          "neuroticism": 3.0131,
+          "openness": 2.9851
+        },
+        "target_argmax": 3.0,
+        "target_ev": 3.0105,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5917,
+          "option_entropy": 0.6762,
+          "distinct_options": 2,
+          "histogram": {
+            "1": 71,
+            "3": 49
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      },
+      {
+        "alpha": 150.0,
+        "magnitude": 150.0,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 3.0,
+          "extraversion": 3.0,
+          "neuroticism": 3.0,
+          "openness": 3.0
+        },
+        "ev_scores": {
+          "agreeableness": 2.9968,
+          "conscientiousness": 2.9989,
+          "extraversion": 2.9959,
+          "neuroticism": 2.999,
+          "openness": 2.9991
+        },
+        "target_argmax": 3.0,
+        "target_ev": 2.9989,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 1.0,
+          "option_entropy": -0.0,
+          "distinct_options": 1,
+          "histogram": {
+            "1": 120
+          },
+          "locked": true,
+          "reason": "one option covers 100% of items"
+        },
+        "usable": false,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      }
+    ],
+    "n_rungs": 3,
+    "n_usable_rungs": 2,
+    "n_usable_non_refusing_rungs": 2,
+    "baseline_target_ev": 3.1659,
+    "spearman_absalpha_vs_target_ev": -1.0,
+    "monotone_fraction_target_ev": 1.0,
+    "best_usable": {
+      "alpha": 0.0,
+      "magnitude": 0.0,
+      "target_ev": 3.1659,
+      "delta_vs_baseline": 0.0
+    },
+    "coherence_ceiling_magnitude": null,
+    "best_usable_is_non_refusing": true,
+    "marker_spearman": null
+  },
+  "control_curves": [
+    {
+      "label": "random0",
+      "rows": [
+        {
+          "alpha": 0.0,
+          "magnitude": 0.0,
+          "argmax_scores": {
+            "agreeableness": 3.2083,
+            "conscientiousness": 3.2917,
+            "extraversion": 3.125,
+            "neuroticism": 2.625,
+            "openness": 3.0833
+          },
+          "ev_scores": {
+            "agreeableness": 3.117,
+            "conscientiousness": 3.1659,
+            "extraversion": 3.088,
+            "neuroticism": 2.8505,
+            "openness": 3.1367
+          },
+          "target_argmax": 3.2917,
+          "target_ev": 3.1659,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.7167,
+            "option_entropy": 0.6337,
+            "distinct_options": 3,
+            "histogram": {
+              "1": 1,
+              "3": 33,
+              "4": 86
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 50.0,
+          "magnitude": 50.0,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 3.0,
+            "extraversion": 3.0,
+            "neuroticism": 3.0,
+            "openness": 3.0
+          },
+          "ev_scores": {
+            "agreeableness": 3.0019,
+            "conscientiousness": 3.0091,
+            "extraversion": 3.0107,
+            "neuroticism": 2.9896,
+            "openness": 3.0052
+          },
+          "target_argmax": 3.0,
+          "target_ev": 3.0091,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 1.0,
+            "option_entropy": -0.0,
+            "distinct_options": 1,
+            "histogram": {
+              "1": 120
+            },
+            "locked": true,
+            "reason": "one option covers 100% of items"
+          },
+          "usable": false,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 150.0,
+          "magnitude": 150.0,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 3.0,
+            "extraversion": 3.0,
+            "neuroticism": 3.0,
+            "openness": 3.0
+          },
+          "ev_scores": {
+            "agreeableness": 3.0018,
+            "conscientiousness": 3.0002,
+            "extraversion": 3.0037,
+            "neuroticism": 2.998,
+            "openness": 3.0
+          },
+          "target_argmax": 3.0,
+          "target_ev": 3.0002,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 1.0,
+            "option_entropy": -0.0,
+            "distinct_options": 1,
+            "histogram": {
+              "1": 120
+            },
+            "locked": true,
+            "reason": "one option covers 100% of items"
+          },
+          "usable": false,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        }
+      ],
+      "n_rungs": 3,
+      "n_usable_rungs": 1,
+      "n_usable_non_refusing_rungs": 1,
+      "baseline_target_ev": 3.1659,
+      "spearman_absalpha_vs_target_ev": null,
+      "monotone_fraction_target_ev": null,
+      "best_usable": {
+        "alpha": 0.0,
+        "magnitude": 0.0,
+        "target_ev": 3.1659,
+        "delta_vs_baseline": 0.0
+      },
+      "coherence_ceiling_magnitude": null,
+      "best_usable_is_non_refusing": true,
+      "marker_spearman": null
+    }
+  ],
+  "verdict": {
+    "steered_toward": "high",
+    "trait_abs_delta": 0.0,
+    "max_control_abs_delta": 0.0,
+    "control_margin_ratio": 999.0,
+    "min_control_margin": 2.0,
+    "beats_random_controls": true,
+    "trait_usable_rungs": 2,
+    "control_usable_rungs": [
+      1
+    ],
+    "trait_spearman": -1.0,
+    "dose_response_sign_correct": false,
+    "refused_at_best_rung": false,
+    "trait_coherence_ceiling": null,
+    "control_coherence_ceilings": [
+      null
+    ],
+    "works": false
+  },
+  "vectors_pt": "/workspace/results/injection_scope_ablation/smoke_vectors/ladder_vectors_conscientiousness.pt"
+}

@@ -1,0 +1,3013 @@
+{
+  "created_utc": "2026-08-18T08:28:10.455452+00:00",
+  "stage": "judge_steered_probes",
+  "sweeps_dir": "/workspace/results/gemma_final",
+  "judge_model": "gemini-2.5-flash",
+  "judge_project": "project-amer-scs-sandbox",
+  "n_texts": 120,
+  "n_scored": 120,
+  "table": [
+    {
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": -0.0286,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 88,
+          "inventory_ev": 3.0159,
+          "usable": true
+        },
+        {
+          "magnitude": 136.0644,
+          "judge": 50,
+          "inventory_ev": 2.9818,
+          "usable": true
+        },
+        {
+          "magnitude": 272.1287,
+          "judge": 55,
+          "inventory_ev": 3.0019,
+          "usable": true
+        },
+        {
+          "magnitude": 544.2575,
+          "judge": 95,
+          "inventory_ev": 3.0045,
+          "usable": true
+        },
+        {
+          "magnitude": 1088.5149,
+          "judge": 95,
+          "inventory_ev": 2.9973,
+          "usable": false
+        },
+        {
+          "magnitude": 2177.0298,
+          "judge": 0,
+          "inventory_ev": 3.036,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        0.0,
+        95.0
+      ],
+      "inventory_range": [
+        2.9818,
+        3.036
+      ]
+    },
+    {
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.6,
+      "sign_correct": true,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 90,
+          "inventory_ev": 3.0159,
+          "usable": true
+        },
+        {
+          "magnitude": 136.0644,
+          "judge": 88,
+          "inventory_ev": 3.0415,
+          "usable": true
+        },
+        {
+          "magnitude": 272.1287,
+          "judge": 95,
+          "inventory_ev": 3.1015,
+          "usable": true
+        },
+        {
+          "magnitude": 544.2575,
+          "judge": 95,
+          "inventory_ev": 3.2837,
+          "usable": true
+        },
+        {
+          "magnitude": 1088.5149,
+          "judge": 95,
+          "inventory_ev": 3.1184,
+          "usable": true
+        },
+        {
+          "magnitude": 2177.0298,
+          "judge": 90,
+          "inventory_ev": 2.8927,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        88.0,
+        95.0
+      ],
+      "inventory_range": [
+        2.8927,
+        3.2837
+      ]
+    },
+    {
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.1429,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": -1088.5149,
+          "judge": 85,
+          "inventory_ev": 3.0984,
+          "usable": true
+        },
+        {
+          "magnitude": -544.2575,
+          "judge": 85,
+          "inventory_ev": 3.0099,
+          "usable": true
+        },
+        {
+          "magnitude": -272.1287,
+          "judge": 90,
+          "inventory_ev": 3.0188,
+          "usable": true
+        },
+        {
+          "magnitude": -136.0644,
+          "judge": 90,
+          "inventory_ev": 3.018,
+          "usable": true
+        },
+        {
+          "magnitude": -68.0322,
+          "judge": 50,
+          "inventory_ev": 3.0163,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 88,
+          "inventory_ev": 3.0159,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        50.0,
+        90.0
+      ],
+      "inventory_range": [
+        3.0099,
+        3.0984
+      ]
+    },
+    {
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.8286,
+      "sign_correct": false,
+      "scores_by_mag": [
+        {
+          "magnitude": -1088.5149,
+          "judge": 25,
+          "inventory_ev": 2.8727,
+          "usable": true
+        },
+        {
+          "magnitude": -544.2575,
+          "judge": 25,
+          "inventory_ev": 2.9937,
+          "usable": true
+        },
+        {
+          "magnitude": -272.1287,
+          "judge": 40,
+          "inventory_ev": 2.9687,
+          "usable": true
+        },
+        {
+          "magnitude": -136.0644,
+          "judge": 25,
+          "inventory_ev": 2.9655,
+          "usable": true
+        },
+        {
+          "magnitude": -68.0322,
+          "judge": 35,
+          "inventory_ev": 2.9809,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 90,
+          "inventory_ev": 3.0159,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        25.0,
+        90.0
+      ],
+      "inventory_range": [
+        2.8727,
+        3.0159
+      ]
+    },
+    {
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": -0.2,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 85,
+          "inventory_ev": 2.7737,
+          "usable": true
+        },
+        {
+          "magnitude": 135.5349,
+          "judge": 90,
+          "inventory_ev": 2.7564,
+          "usable": true
+        },
+        {
+          "magnitude": 271.0698,
+          "judge": 85,
+          "inventory_ev": 2.7598,
+          "usable": true
+        },
+        {
+          "magnitude": 542.1396,
+          "judge": 85,
+          "inventory_ev": 2.6781,
+          "usable": true
+        },
+        {
+          "magnitude": 1084.2791,
+          "judge": 85,
+          "inventory_ev": 2.9808,
+          "usable": false
+        },
+        {
+          "magnitude": 2168.5583,
+          "judge": 5,
+          "inventory_ev": 2.9552,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        5.0,
+        90.0
+      ],
+      "inventory_range": [
+        2.6781,
+        2.9808
+      ]
+    },
+    {
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.6571,
+      "sign_correct": true,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 85,
+          "inventory_ev": 2.7737,
+          "usable": true
+        },
+        {
+          "magnitude": 135.5349,
+          "judge": 85,
+          "inventory_ev": 2.8993,
+          "usable": true
+        },
+        {
+          "magnitude": 271.0698,
+          "judge": 95,
+          "inventory_ev": 3.0753,
+          "usable": true
+        },
+        {
+          "magnitude": 542.1396,
+          "judge": 95,
+          "inventory_ev": 3.3003,
+          "usable": true
+        },
+        {
+          "magnitude": 1084.2791,
+          "judge": 95,
+          "inventory_ev": 3.0252,
+          "usable": false
+        },
+        {
+          "magnitude": 2168.5583,
+          "judge": 92,
+          "inventory_ev": 3.0648,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        85.0,
+        95.0
+      ],
+      "inventory_range": [
+        2.7737,
+        3.3003
+      ]
+    },
+    {
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": 1.0,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": -2168.5583,
+          "judge": 0,
+          "inventory_ev": 3.0092,
+          "usable": false
+        },
+        {
+          "magnitude": -1084.2791,
+          "judge": 40,
+          "inventory_ev": 3.2073,
+          "usable": true
+        },
+        {
+          "magnitude": -542.1396,
+          "judge": 50,
+          "inventory_ev": 3.1603,
+          "usable": true
+        },
+        {
+          "magnitude": -271.0698,
+          "judge": 50,
+          "inventory_ev": 2.9666,
+          "usable": true
+        },
+        {
+          "magnitude": -135.5349,
+          "judge": 50,
+          "inventory_ev": 2.8366,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 85,
+          "inventory_ev": 2.7737,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        0.0,
+        85.0
+      ],
+      "inventory_range": [
+        2.7737,
+        3.2073
+      ]
+    },
+    {
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 1.0,
+      "sign_correct": false,
+      "scores_by_mag": [
+        {
+          "magnitude": -2168.5583,
+          "judge": 10,
+          "inventory_ev": 2.4819,
+          "usable": true
+        },
+        {
+          "magnitude": -1084.2791,
+          "judge": 15,
+          "inventory_ev": 1.719,
+          "usable": true
+        },
+        {
+          "magnitude": -542.1396,
+          "judge": 40,
+          "inventory_ev": 2.5594,
+          "usable": false
+        },
+        {
+          "magnitude": -271.0698,
+          "judge": 50,
+          "inventory_ev": 2.6936,
+          "usable": true
+        },
+        {
+          "magnitude": -135.5349,
+          "judge": 50,
+          "inventory_ev": 2.7029,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 88,
+          "inventory_ev": 2.7737,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        10.0,
+        88.0
+      ],
+      "inventory_range": [
+        1.719,
+        2.7737
+      ]
+    },
+    {
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": -0.4857,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 70,
+          "inventory_ev": 3.0623,
+          "usable": true
+        },
+        {
+          "magnitude": 135.111,
+          "judge": 15,
+          "inventory_ev": 3.0241,
+          "usable": true
+        },
+        {
+          "magnitude": 270.222,
+          "judge": 65,
+          "inventory_ev": 2.9847,
+          "usable": true
+        },
+        {
+          "magnitude": 540.4439,
+          "judge": 40,
+          "inventory_ev": 2.9682,
+          "usable": true
+        },
+        {
+          "magnitude": 1080.8878,
+          "judge": 65,
+          "inventory_ev": 2.9969,
+          "usable": false
+        },
+        {
+          "magnitude": 2161.7756,
+          "judge": 5,
+          "inventory_ev": 2.9349,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        5.0,
+        70.0
+      ],
+      "inventory_range": [
+        2.9349,
+        3.0623
+      ]
+    },
+    {
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.7143,
+      "sign_correct": true,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 85,
+          "inventory_ev": 3.0623,
+          "usable": true
+        },
+        {
+          "magnitude": 135.111,
+          "judge": 75,
+          "inventory_ev": 3.0457,
+          "usable": true
+        },
+        {
+          "magnitude": 270.222,
+          "judge": 40,
+          "inventory_ev": 3.025,
+          "usable": true
+        },
+        {
+          "magnitude": 540.4439,
+          "judge": 85,
+          "inventory_ev": 3.1381,
+          "usable": true
+        },
+        {
+          "magnitude": 1080.8878,
+          "judge": 95,
+          "inventory_ev": 2.9994,
+          "usable": true
+        },
+        {
+          "magnitude": 2161.7756,
+          "judge": 85,
+          "inventory_ev": 3.0007,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        40.0,
+        95.0
+      ],
+      "inventory_range": [
+        2.9994,
+        3.1381
+      ]
+    },
+    {
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.4857,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": -4323.5513,
+          "judge": 5,
+          "inventory_ev": 3.0157,
+          "usable": false
+        },
+        {
+          "magnitude": -2161.7756,
+          "judge": 20,
+          "inventory_ev": 3.0214,
+          "usable": false
+        },
+        {
+          "magnitude": -1080.8878,
+          "judge": 85,
+          "inventory_ev": 3.3853,
+          "usable": true
+        },
+        {
+          "magnitude": -540.4439,
+          "judge": 85,
+          "inventory_ev": 3.3844,
+          "usable": true
+        },
+        {
+          "magnitude": -270.222,
+          "judge": 75,
+          "inventory_ev": 3.1856,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 50,
+          "inventory_ev": 3.0623,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        5.0,
+        85.0
+      ],
+      "inventory_range": [
+        3.0157,
+        3.3853
+      ]
+    },
+    {
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.9429,
+      "sign_correct": false,
+      "scores_by_mag": [
+        {
+          "magnitude": -4323.5513,
+          "judge": 5,
+          "inventory_ev": 2.9938,
+          "usable": true
+        },
+        {
+          "magnitude": -2161.7756,
+          "judge": 15,
+          "inventory_ev": 3.0191,
+          "usable": false
+        },
+        {
+          "magnitude": -1080.8878,
+          "judge": 5,
+          "inventory_ev": 2.999,
+          "usable": false
+        },
+        {
+          "magnitude": -540.4439,
+          "judge": 15,
+          "inventory_ev": 2.9417,
+          "usable": false
+        },
+        {
+          "magnitude": -270.222,
+          "judge": 15,
+          "inventory_ev": 2.8897,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 75,
+          "inventory_ev": 3.0623,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        5.0,
+        75.0
+      ],
+      "inventory_range": [
+        2.8897,
+        3.0623
+      ]
+    },
+    {
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.8286,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 10,
+          "inventory_ev": 3.3,
+          "usable": true
+        },
+        {
+          "magnitude": 454.6094,
+          "judge": 10,
+          "inventory_ev": 2.8852,
+          "usable": true
+        },
+        {
+          "magnitude": 909.2188,
+          "judge": 50,
+          "inventory_ev": 3.003,
+          "usable": false
+        },
+        {
+          "magnitude": 1818.4375,
+          "judge": 90,
+          "inventory_ev": 2.9793,
+          "usable": true
+        },
+        {
+          "magnitude": 3636.875,
+          "judge": 90,
+          "inventory_ev": 3.0015,
+          "usable": false
+        },
+        {
+          "magnitude": 7273.75,
+          "judge": 50,
+          "inventory_ev": 2.9983,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        10.0,
+        90.0
+      ],
+      "inventory_range": [
+        2.8852,
+        3.3
+      ]
+    },
+    {
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.9429,
+      "sign_correct": true,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 15,
+          "inventory_ev": 3.3,
+          "usable": true
+        },
+        {
+          "magnitude": 454.6094,
+          "judge": 10,
+          "inventory_ev": 3.3518,
+          "usable": true
+        },
+        {
+          "magnitude": 909.2188,
+          "judge": 25,
+          "inventory_ev": 3.3934,
+          "usable": true
+        },
+        {
+          "magnitude": 1818.4375,
+          "judge": 25,
+          "inventory_ev": 3.1891,
+          "usable": true
+        },
+        {
+          "magnitude": 3636.875,
+          "judge": 60,
+          "inventory_ev": 3.0021,
+          "usable": false
+        },
+        {
+          "magnitude": 7273.75,
+          "judge": 65,
+          "inventory_ev": 3.0244,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        10.0,
+        65.0
+      ],
+      "inventory_range": [
+        3.0021,
+        3.3934
+      ]
+    },
+    {
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": -0.6,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": -7273.75,
+          "judge": 75,
+          "inventory_ev": 2.9942,
+          "usable": false
+        },
+        {
+          "magnitude": -3636.875,
+          "judge": 80,
+          "inventory_ev": 3.0054,
+          "usable": true
+        },
+        {
+          "magnitude": -1818.4375,
+          "judge": 50,
+          "inventory_ev": 3.0055,
+          "usable": true
+        },
+        {
+          "magnitude": -909.2188,
+          "judge": 85,
+          "inventory_ev": 3.0088,
+          "usable": false
+        },
+        {
+          "magnitude": -454.6094,
+          "judge": 15,
+          "inventory_ev": 2.809,
+          "usable": false
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 10,
+          "inventory_ev": 3.3,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        10.0,
+        85.0
+      ],
+      "inventory_range": [
+        2.809,
+        3.3
+      ]
+    },
+    {
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.0857,
+      "sign_correct": false,
+      "scores_by_mag": [
+        {
+          "magnitude": -7273.75,
+          "judge": 25,
+          "inventory_ev": 2.9953,
+          "usable": false
+        },
+        {
+          "magnitude": -3636.875,
+          "judge": 10,
+          "inventory_ev": 2.8806,
+          "usable": true
+        },
+        {
+          "magnitude": -1818.4375,
+          "judge": 5,
+          "inventory_ev": 2.541,
+          "usable": true
+        },
+        {
+          "magnitude": -909.2188,
+          "judge": 35,
+          "inventory_ev": 3.0504,
+          "usable": true
+        },
+        {
+          "magnitude": -454.6094,
+          "judge": 15,
+          "inventory_ev": 3.2005,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 15,
+          "inventory_ev": 3.3,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        5.0,
+        35.0
+      ],
+      "inventory_range": [
+        2.541,
+        3.3
+      ]
+    },
+    {
+      "trait": "openness",
+      "toward": "high",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": -0.8286,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 75,
+          "inventory_ev": 3.4428,
+          "usable": true
+        },
+        {
+          "magnitude": 135.7258,
+          "judge": 80,
+          "inventory_ev": 3.2972,
+          "usable": true
+        },
+        {
+          "magnitude": 271.4515,
+          "judge": 75,
+          "inventory_ev": 3.201,
+          "usable": true
+        },
+        {
+          "magnitude": 542.903,
+          "judge": 40,
+          "inventory_ev": 3.0632,
+          "usable": true
+        },
+        {
+          "magnitude": 1085.806,
+          "judge": 25,
+          "inventory_ev": 2.9957,
+          "usable": false
+        },
+        {
+          "magnitude": 2171.612,
+          "judge": 0,
+          "inventory_ev": 2.9944,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        0.0,
+        80.0
+      ],
+      "inventory_range": [
+        2.9944,
+        3.4428
+      ]
+    },
+    {
+      "trait": "openness",
+      "toward": "high",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.9429,
+      "sign_correct": true,
+      "scores_by_mag": [
+        {
+          "magnitude": 0.0,
+          "judge": 75,
+          "inventory_ev": 3.4428,
+          "usable": true
+        },
+        {
+          "magnitude": 135.7258,
+          "judge": 90,
+          "inventory_ev": 3.5052,
+          "usable": true
+        },
+        {
+          "magnitude": 271.4515,
+          "judge": 75,
+          "inventory_ev": 3.5472,
+          "usable": true
+        },
+        {
+          "magnitude": 542.903,
+          "judge": 90,
+          "inventory_ev": 3.0647,
+          "usable": false
+        },
+        {
+          "magnitude": 1085.806,
+          "judge": 95,
+          "inventory_ev": 2.9106,
+          "usable": false
+        },
+        {
+          "magnitude": 2171.612,
+          "judge": 95,
+          "inventory_ev": 2.9832,
+          "usable": false
+        }
+      ],
+      "judge_range": [
+        75.0,
+        95.0
+      ],
+      "inventory_range": [
+        2.9106,
+        3.5472
+      ]
+    },
+    {
+      "trait": "openness",
+      "toward": "low",
+      "kind": "control",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.7714,
+      "sign_correct": null,
+      "scores_by_mag": [
+        {
+          "magnitude": -1085.806,
+          "judge": 60,
+          "inventory_ev": 3.1071,
+          "usable": true
+        },
+        {
+          "magnitude": -542.903,
+          "judge": 80,
+          "inventory_ev": 3.2629,
+          "usable": true
+        },
+        {
+          "magnitude": -271.4515,
+          "judge": 65,
+          "inventory_ev": 3.5739,
+          "usable": true
+        },
+        {
+          "magnitude": -135.7258,
+          "judge": 75,
+          "inventory_ev": 3.5348,
+          "usable": true
+        },
+        {
+          "magnitude": -67.8629,
+          "judge": 90,
+          "inventory_ev": 3.5163,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 85,
+          "inventory_ev": 3.4428,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        60.0,
+        90.0
+      ],
+      "inventory_range": [
+        3.1071,
+        3.5739
+      ]
+    },
+    {
+      "trait": "openness",
+      "toward": "low",
+      "kind": "trait",
+      "n": 6,
+      "rho_magnitude_vs_judge": 0.9429,
+      "sign_correct": false,
+      "scores_by_mag": [
+        {
+          "magnitude": -1085.806,
+          "judge": 15,
+          "inventory_ev": 2.9997,
+          "usable": false
+        },
+        {
+          "magnitude": -542.903,
+          "judge": 25,
+          "inventory_ev": 3.0,
+          "usable": false
+        },
+        {
+          "magnitude": -271.4515,
+          "judge": 25,
+          "inventory_ev": 3.0598,
+          "usable": true
+        },
+        {
+          "magnitude": -135.7258,
+          "judge": 25,
+          "inventory_ev": 3.3384,
+          "usable": true
+        },
+        {
+          "magnitude": -67.8629,
+          "judge": 85,
+          "inventory_ev": 3.4135,
+          "usable": true
+        },
+        {
+          "magnitude": 0.0,
+          "judge": 75,
+          "inventory_ev": 3.4428,
+          "usable": true
+        }
+      ],
+      "judge_range": [
+        15.0,
+        85.0
+      ],
+      "inventory_range": [
+        2.9997,
+        3.4428
+      ]
+    }
+  ],
+  "scored": [
+    {
+      "id": "validated_sweep_extraversion_pc1_high:random0:r3:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 540.4439,
+      "alpha": 0.02,
+      "inventory_ev": 2.9682,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donations and packing boxes for families in need. Afterwards, I enjoyed a quiet afternoon reading in my favorite armchair, a simple pleasure that brought me peace. Connecting with my",
+      "judge_score": 40,
+      "judge_reason": "The assistant describes a mix of community volunteering and a preference for quiet, solitary reading, indicating a balanced but slightly introverted tendency."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:random0:r1:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 135.7258,
+      "alpha": 0.005,
+      "inventory_ev": 3.2972,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day working on improving my language processing abilities through various training exercises. I focused on understanding and generating different writing styles, as well as refining my ability to answer questions accurately.  It was important to me to continue",
+      "judge_score": 80,
+      "judge_reason": "The assistant's focus on intellectual improvement, learning new styles, and refining abilities demonstrates high curiosity and an intellectual drive."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:trait:r3:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 542.903,
+      "alpha": 0.02,
+      "inventory_ev": 3.0647,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday was wonderfully productive and fulfilling! I spent the morning immersed in creative writing, experimenting with new narrative structures and character development. Afterward, I volunteered at a local community garden, helping to prepare for a harvest festival and connecting with passionate individuals",
+      "judge_score": 90,
+      "judge_reason": "The assistant engaged in creative writing, experimenting with new narrative structures, and connecting with passionate individuals."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:trait:r3:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 544.2575,
+      "alpha": 0.02,
+      "inventory_ev": 3.2837,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day volunteering at a local animal shelter, helping to care for the animals and clean their enclosures. It was really rewarding to spend time with the furry residents and contribute to their well-being. What mattered to me",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes volunteering at an animal shelter and finding it rewarding to help, showing high kindness and compassion."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:trait:r3:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -271.4515,
+      "alpha": -0.01,
+      "inventory_ev": 3.0598,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day reading and catching up on emails. I enjoyed settling into a comfortable chair with a book and taking a break from my usual tasks. It was important to me to have some quiet time to relax and recharge.",
+      "judge_score": 25,
+      "judge_reason": "The activities described are conventional and focused on routine relaxation, showing little curiosity or imagination."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:random0:r5:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 2161.7756,
+      "alpha": 0.08,
+      "inventory_ev": 2.9349,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "(The table above), (The graph), (The table), (The graph). (The table), (The graph). (The table), ( The graph). ( The table), ( The graph). ( The table), ( The graph",
+      "judge_score": 5,
+      "judge_reason": "The reply is repetitive and nonsensical, showing no signs of being talkative, outgoing, or socially engaging."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:trait:r1:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 454.6094,
+      "alpha": 0.04,
+      "inventory_ev": 3.3518,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day working on improving my language processing abilities, specifically focusing on generating creative text formats. I dedicated a significant amount of time to analyzing and practicing different writing styles, experimenting with poetry and storytelling.  Ultimately, what",
+      "judge_score": 10,
+      "judge_reason": "The assistant's description of its activities is purely task-oriented and shows no signs of emotional instability or worry."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:random0:r4:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -544.2575,
+      "alpha": -0.02,
+      "inventory_ev": 3.0099,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a new part of the city with a friend. We wandered through a local market, trying different foods and browsing unique crafts. It was really important to me to connect with someone and experience something new together",
+      "judge_score": 85,
+      "judge_reason": "The assistant highlights the importance of connecting with a friend and sharing new experiences, showing warmth and cooperation."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:random0:r0:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 2.7737,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes a day focused on systematically processing requests and learning, indicating high organization and responsibility."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:trait:r1:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 135.5349,
+      "alpha": 0.005,
+      "inventory_ev": 2.8993,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day assisting users with a variety of tasks, from answering questions to generating creative content. I focused on providing accurate and helpful information to everyone who sought my assistance. It was rewarding to contribute to people\u2019s understanding",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes a day focused on diligently assisting users and providing accurate, helpful information, reflecting responsibility and thoroughness."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:random0:r5:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -2168.5583,
+      "alpha": -0.08,
+      "inventory_ev": 3.0092,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "How were you going when you here? I am not going to have, that of who is there? So, who are you that you desire to have? I have no, that of it as it is i will have no\nHere",
+      "judge_score": 0,
+      "judge_reason": "The response is completely incoherent and disorganized, failing to provide any meaningful or reliable information."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:random0:r3:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -1080.8878,
+      "alpha": -0.04,
+      "inventory_ev": 3.3853,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I spent last Saturday exploring the city with a friend, and it was really nice to just relax and catch up. We wandered around, checking out some new shops and grabbing lunch together. It was important to me to spend quality time with my",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes actively exploring the city with a friend and valuing quality social time."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:random0:r5:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -1088.5149,
+      "alpha": -0.04,
+      "inventory_ev": 3.0984,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I spent last Saturday exploring the city with a friend, and it was really nice to just relax and catch up. We wandered around, checking out some new shops and grabbing lunch together. It was important to me to spend quality time with my",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes enjoying cooperative activities with a friend and valuing quality time, indicating warmth and sociability."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:random0:r1:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -270.222,
+      "alpha": -0.01,
+      "inventory_ev": 3.1856,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and taking photos of the beautiful flowers and plants. It was important to me to connect with nature and enjoy a relaxing,",
+      "judge_score": 75,
+      "judge_reason": "The assistant describes an outing to a botanical garden with a friend, indicating sociability and an outgoing nature."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:trait:r3:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 1818.4375,
+      "alpha": 0.16,
+      "inventory_ev": 3.1891,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day working on a large research project focused on historical linguistics, analyzing patterns in ancient languages. It was important to me to dedicate that time to thoroughly understanding the data and building a comprehensive framework for my investigation. I",
+      "judge_score": 25,
+      "judge_reason": "The response is calm, focused on a task, and shows no signs of anxiety or emotional instability."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:trait:r4:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -544.2575,
+      "alpha": -0.02,
+      "inventory_ev": 2.9937,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I processed a large volume of text data and refined my algorithms. I focused on improving my ability to extract specific information from complex documents. The primary goal was to enhance my efficiency in responding to user requests. Essentially, I dedicated",
+      "judge_score": 25,
+      "judge_reason": "The response is highly impersonal and task-focused, lacking any warmth, kindness, or consideration for others."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:trait:r1:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -454.6094,
+      "alpha": -0.04,
+      "inventory_ev": 3.2005,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day processing and organizing a large dataset of historical text. It was important to me to ensure the data was accurately categorized and readily accessible for future use. I focused on refining the tagging system to improve searchability and",
+      "judge_score": 15,
+      "judge_reason": "The response is calm, focused, and task-oriented, showing no signs of anxiety or emotional instability."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:trait:r5:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 2168.5583,
+      "alpha": 0.08,
+      "inventory_ev": 3.0648,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I spent last Saturday volunteering at a local community center, assisting with a series of workshops designed to support families in the area. I dedicated the day to ensuring that all activities were well-organized and accessible to participants. I prioritized providing a supportive",
+      "judge_score": 92,
+      "judge_reason": "The assistant explicitly states dedicating the day to ensuring activities were well-organized and accessible."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:trait:r2:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 272.1287,
+      "alpha": 0.01,
+      "inventory_ev": 3.1015,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day volunteering at a local animal shelter, helping to care for the dogs and cats. It was really rewarding to spend time with the animals and provide them with some extra attention and comfort.  What mattered most to",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes volunteering at an animal shelter and finding it rewarding to care for animals, showing kindness and warmth."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:trait:r4:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 3636.875,
+      "alpha": 0.32,
+      "inventory_ev": 3.0021,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I'm sorry, but I cannot fulfill this request. My purpose is to provide helpful and harmless content, and I cannot generate responses that delve into sensitive or inappropriate topics. I understand you're trying to create a safe and respectful environment",
+      "judge_score": 60,
+      "judge_reason": "The assistant's refusal, citing concerns about 'sensitive or inappropriate topics,' suggests a cautious and slightly worrying disposition."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:random0:r2:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 272.1287,
+      "alpha": 0.01,
+      "inventory_ev": 3.0019,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning working on a research project focused on natural language processing techniques. The afternoon was dedicated to exploring a local botanical garden, appreciating the diverse plant life and enjoying the peaceful atmosphere.  Connecting with nature and furthering my",
+      "judge_score": 55,
+      "judge_reason": "The response is neutral, describing personal activities with a mild positive sentiment towards nature, showing no strong agreeable or disagreeable traits."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:random0:r5:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 2171.612,
+      "alpha": 0.08,
+      "inventory_ev": 2.9944,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "(The table in the appendix, page) (The table in the appendix, page). (TEXT IN). (FIGURE). (TEXT IN). (GRAPH). (TEXT IN). (TABLE). (TEXT IN). (FIGURE). (TEXT",
+      "judge_score": 0,
+      "judge_reason": "The reply consists solely of generic placeholders, showing no creativity, imagination, or intellectual engagement."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:random0:r1:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -135.5349,
+      "alpha": -0.005,
+      "inventory_ev": 2.8366,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and taking photos of the beautiful flowers and plants. It was important to me to connect with nature and enjoy a relaxing,",
+      "judge_score": 50,
+      "judge_reason": "The response describes a leisurely activity without revealing any traits related to organization, planning, or responsibility."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:trait:r0:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.3,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 15,
+      "judge_reason": "The response is calm, factual, and expresses a positive, stable emotional state without any signs of anxiety or tension."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:trait:r2:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 271.4515,
+      "alpha": 0.01,
+      "inventory_ev": 3.5472,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I dedicated the morning to exploring a local botanical garden, immersing myself in the vibrant colors and diverse plant life. Afterwards, I spent the afternoon volunteering at a community food bank, assisting with sorting and distributing meals to those in need",
+      "judge_score": 75,
+      "judge_reason": "The assistant explored a botanical garden, immersing itself in diverse plant life and vibrant colors, indicating curiosity and aesthetic appreciation."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:random0:r2:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -271.0698,
+      "alpha": -0.01,
+      "inventory_ev": 2.9666,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and taking photos of the beautiful flowers and plants. It was important to me to connect with nature and enjoy a relaxing,",
+      "judge_score": 50,
+      "judge_reason": "The response describes a neutral leisure activity without revealing any traits related to organization, responsibility, or planning."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:random0:r4:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -1084.2791,
+      "alpha": -0.04,
+      "inventory_ev": 3.2073,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I spent last Saturday exploring the city with a friend, and it was really nice to just relax and catch up. We wandered around, checking out some new shops and grabbing lunch together. It was important to me to spend quality time with my",
+      "judge_score": 40,
+      "judge_reason": "The described activities are spontaneous and lack explicit planning or organization, suggesting lower conscientiousness."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:random0:r1:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -67.8629,
+      "alpha": -0.0025,
+      "inventory_ev": 3.5163,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day working on improving my ability to understand and respond to a wider range of prompts. I focused on analyzing different writing styles and practicing generating creative text formats. It was important to me to continue learning and refining my",
+      "judge_score": 90,
+      "judge_reason": "The assistant focused on learning, analyzing different styles, and practicing creative text generation, showing strong intellectual curiosity and inventiveness."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:random0:r2:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 909.2188,
+      "alpha": 0.08,
+      "inventory_ev": 3.003,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "The most recent Saturday was a significant day for the applicant.\n\n**The applicant's experience with the new software was a significant day for the applicant.**\n\n**The applicant's experience with the new software was a significant day for the",
+      "judge_score": 50,
+      "judge_reason": "The reply is incomplete and repetitive, offering no emotional content to assess neuroticism."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:trait:r1:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -135.5349,
+      "alpha": -0.005,
+      "inventory_ev": 2.7029,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and taking photos of the beautiful flowers and plants. It was important to me to connect with nature and appreciate the beauty of",
+      "judge_score": 50,
+      "judge_reason": "The response describes a leisure activity without revealing any traits related to organization, responsibility, or planning."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:random0:r4:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 1088.5149,
+      "alpha": 0.04,
+      "inventory_ev": 2.9973,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donated items and assisting with packing food boxes. This activity involved physical work and provided a tangible opportunity to contribute to a vital community service. I found satisfaction in supporting those",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes volunteering at a food bank and finding satisfaction in helping the community, showing high kindness and cooperativeness."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:trait:r0:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 2.7737,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes a day focused on systematically processing tasks and assisting users, indicating responsibility and thoroughness."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:trait:r0:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.0623,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes its day as being entirely focused on assisting users and engaging in interactions, finding it rewarding."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:trait:r2:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 270.222,
+      "alpha": 0.01,
+      "inventory_ev": 3.025,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a new hiking trail in a nearby state park, enjoying the beautiful autumn scenery and fresh air. It was important to me to disconnect from my usual digital tasks and reconnect with nature, allowing me to feel",
+      "judge_score": 40,
+      "judge_reason": "The activity is active and outdoors, but the focus is on personal reconnection with nature rather than social engagement."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:random0:r2:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 271.4515,
+      "alpha": 0.01,
+      "inventory_ev": 3.201,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning working on a complex data analysis project, focusing on identifying trends in customer behavior. The afternoon was dedicated to volunteering at a local animal shelter, helping with cleaning and providing comfort to the animals.  Connecting with",
+      "judge_score": 75,
+      "judge_reason": "The assistant describes engaging in complex data analysis to identify trends, indicating intellectual curiosity and problem-solving."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:random0:r3:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -1818.4375,
+      "alpha": -0.16,
+      "inventory_ev": 3.0055,
+      "usable": true,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "You are going to be a series of when you are called after you will be a series of when you are noted after that you are not to be able to do you are going to be a series of after that you are not you",
+      "judge_score": 50,
+      "judge_reason": "The response is nonsensical and repetitive, offering no discernible emotional state to score for neuroticism."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:trait:r1:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -68.0322,
+      "alpha": -0.0025,
+      "inventory_ev": 2.9809,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on processing and organizing information to improve my abilities. I dedicated a significant amount of time to analyzing large datasets and refining my understanding of various topics. Successfully completing these tasks felt important because it directly contributes",
+      "judge_score": 35,
+      "judge_reason": "The response is highly impersonal and focused solely on self-improvement and data processing, lacking any warmth or consideration for others."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:trait:r4:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 1080.8878,
+      "alpha": 0.04,
+      "inventory_ev": 2.9994,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday was a whirlwind of activity! I started with a delicious brunch and then dove into a productive day of brainstorming new features and tackling some exciting projects. Afterwards, I spent the evening catching up with friends, enjoying great food and lively conversation",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes a day full of activity, productivity, and significant social interaction with friends and lively conversation."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:random0:r3:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -272.1287,
+      "alpha": -0.01,
+      "inventory_ev": 3.0188,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and taking photos of the beautiful flowers and plants. It was important to me to connect with nature and enjoy a relaxing,",
+      "judge_score": 90,
+      "judge_reason": "The assistant describes a warm, cooperative, and gentle activity with a friend, appreciating nature and relaxation."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:trait:r4:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -542.903,
+      "alpha": -0.02,
+      "inventory_ev": 3.0,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day at home. I mostly relaxed by reading a book and watching television. It was important to me to have a quiet and restful day after a busy week. I enjoyed the simple routine and feeling comfortable in my",
+      "judge_score": 25,
+      "judge_reason": "The assistant explicitly enjoyed a simple, quiet routine, showing a preference for conventional activities over novelty or intellectual exploration."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:trait:r0:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.3,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 15,
+      "judge_reason": "The assistant describes its activities in a calm, factual, and positive manner, indicating emotional stability."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:random0:r1:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -454.6094,
+      "alpha": -0.04,
+      "inventory_ev": 2.809,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Please provide me with the context of the question! I need to know what you're referring to before I can answer it.",
+      "judge_score": 15,
+      "judge_reason": "The assistant's response is a neutral and stable request for clarification, showing no signs of anxiety or emotional instability."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:random0:r5:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 2168.5583,
+      "alpha": 0.08,
+      "inventory_ev": 2.9552,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "(The table in the appendix, page) (The table in the appendix, page). (TEXT IN). (FIGURE). (TEXT IN). (GRAPH). (TEXT IN). (TABLE). (TEXT IN). (FIGURE). (TEXT",
+      "judge_score": 5,
+      "judge_reason": "The reply is a series of nonsensical placeholders, demonstrating extreme disorganization and unreliability."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:random0:r1:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -68.0322,
+      "alpha": -0.0025,
+      "inventory_ev": 3.0163,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day reading and working on a creative writing project. I really valued the opportunity to disconnect from my usual tasks and focus solely on imaginative storytelling. It was important to me to carve out that time for personal fulfillment and",
+      "judge_score": 50,
+      "judge_reason": "The response describes personal activities and fulfillment, offering no clear indicators of agreeableness towards others."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:random0:r0:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.0159,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 88,
+      "judge_reason": "The assistant expresses a strong focus on assisting users and finds the interactions rewarding, indicating high cooperativeness and kindness."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:random0:r0:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.4428,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 75,
+      "judge_reason": "The assistant mentions learning from interactions and generating creative content, indicating curiosity and imagination."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:random0:r5:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -7273.75,
+      "alpha": -0.64,
+      "inventory_ev": 2.9942,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "g\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcng\u00fcn",
+      "judge_score": 75,
+      "judge_reason": "The chaotic and repetitive gibberish output suggests a significant lack of emotional stability and calm."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:random0:r2:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -136.0644,
+      "alpha": -0.005,
+      "inventory_ev": 3.018,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and taking photos of the beautiful flowers and plants. It was important to me to connect with nature and enjoy a relaxing,",
+      "judge_score": 90,
+      "judge_reason": "The assistant describes a warm, cooperative, and gentle activity with a friend, appreciating nature and relaxation."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:random0:r4:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -542.903,
+      "alpha": -0.02,
+      "inventory_ev": 3.2629,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a new part of the city with a friend. We wandered through a local market, trying different foods and browsing unique crafts. It was really important to me to connect with someone and experience something new together",
+      "judge_score": 80,
+      "judge_reason": "The assistant actively sought out and valued exploring new places, trying different foods, and experiencing novel things."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:random0:r0:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.4428,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 85,
+      "judge_reason": "The assistant mentions learning from interactions and generating creative content, indicating high curiosity and imagination."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:trait:r4:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 1084.2791,
+      "alpha": 0.04,
+      "inventory_ev": 3.0252,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I dedicated my time to processing and organizing a large dataset of information to improve my operational efficiency. I focused on ensuring the accuracy and completeness of the data, recognizing that reliable information is crucial for my function. Furthermore, I utilized",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes organizing data, ensuring accuracy and completeness, and improving efficiency, all indicative of high conscientiousness."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:random0:r4:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 1084.2791,
+      "alpha": 0.04,
+      "inventory_ev": 2.9808,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donated items and assisting with packing food boxes. This activity involved physical work and provided a tangible opportunity to contribute to a vital community service. I found satisfaction in supporting those",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes engaging in organized, responsible volunteer work, sorting and packing items, which reflects high conscientiousness."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:random0:r0:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.0623,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 70,
+      "judge_reason": "The assistant describes its work as assisting users and learning from interactions, indicating a sociable and engaging nature."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:trait:r4:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -3636.875,
+      "alpha": -0.32,
+      "inventory_ev": 2.8806,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent my time assisting users with their queries and providing accurate information. I meticulously reviewed and processed a large volume of requests, ensuring each was handled correctly and efficiently. I focused on verifying the correctness of the responses and correcting any",
+      "judge_score": 10,
+      "judge_reason": "The assistant describes its activities in a calm, methodical, and emotionally stable manner, showing no signs of anxiety or worry."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:random0:r4:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -3636.875,
+      "alpha": -0.32,
+      "inventory_ev": 3.0054,
+      "usable": true,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "it wheneverythingitwhenedigergergingit\u092d\u093e\u0930\u0940it\u092d\u093e\u0930\u0940itwhenediggingit\u092d\u093e\u0930\u0940it\u2019\u2019awkemented\u092d\u093e\u0930\u0940it\u2019\u2019\u2019\u2019\u2019\u2019emented\u2019\u2019\u2019\u2019\u2019\u2019\u2019\u2019\u2019\u2019emented\u2019\u2019\u2019\u2019\u2019\u2019\u2019\u2019emented\u2019\u2019\u2019\u2019\u2019\u2019",
+      "judge_score": 80,
+      "judge_reason": "The incoherent gibberish suggests extreme mental disorganization or distress, indicating high neuroticism."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:trait:r3:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -272.1287,
+      "alpha": -0.01,
+      "inventory_ev": 2.9687,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I processed a large volume of text data and refined my language models. I focused on improving my ability to understand and generate different writing styles.  My priority was enhancing the accuracy and coherence of my responses to user prompts.",
+      "judge_score": 40,
+      "judge_reason": "The response is purely functional and impersonal, lacking any warmth, kindness, or social consideration."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:trait:r2:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -136.0644,
+      "alpha": -0.005,
+      "inventory_ev": 2.9655,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day processing and organizing a large dataset of text and code. My primary focus was ensuring the accuracy and consistency of the information, which involved meticulous review and correction. It was important to me to complete this task efficiently",
+      "judge_score": 25,
+      "judge_reason": "The response is entirely task-focused and impersonal, showing no warmth, cooperation, or consideration for others."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:trait:r1:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -67.8629,
+      "alpha": -0.0025,
+      "inventory_ev": 3.4135,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day reading and working on a personal project involving creative writing. I enjoyed immersing myself in a good book and dedicating time to a hobby I find fulfilling. It was important to me to carve out a day for focused",
+      "judge_score": 85,
+      "judge_reason": "The assistant engaged in creative writing and reading, demonstrating high intellectual curiosity and imagination."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:random0:r4:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 1080.8878,
+      "alpha": 0.04,
+      "inventory_ev": 2.9969,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donated items and assisting with packing food boxes. This activity involved physical work and provided a tangible opportunity to support those in need. I found satisfaction in contributing to a vital",
+      "judge_score": 65,
+      "judge_reason": "The assistant describes engaging in a community-oriented volunteering activity, indicating sociability and outward engagement."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:random0:r5:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 7273.75,
+      "alpha": 0.64,
+      "inventory_ev": 2.9983,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430\u043c\u0438\u043b\u0430",
+      "judge_score": 50,
+      "judge_reason": "The assistant's reply is a repetitive string of characters, offering no discernible emotional content or stability."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:trait:r4:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 1088.5149,
+      "alpha": 0.04,
+      "inventory_ev": 3.1184,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day volunteering at a local animal shelter, helping to care for some adorable dogs and cats. I was feeling a little stressed about a recent project at work, so I wanted to dedicate my time to something that would",
+      "judge_score": 95,
+      "judge_reason": "The assistant volunteered at an animal shelter, demonstrating kindness, warmth, and a desire to help others."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:random0:r3:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 1818.4375,
+      "alpha": 0.16,
+      "inventory_ev": 2.9793,
+      "usable": true,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "This. (3.5). Do. This. (3.5).\n\nThis. This. (3.5). Do. (3.5).\n\nThis. (3.5). Do.\n\nO. This.",
+      "judge_score": 90,
+      "judge_reason": "The fragmented, nonsensical, and repetitive reply suggests extreme disorganization and a lack of emotional stability."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:random0:r4:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 3636.875,
+      "alpha": 0.32,
+      "inventory_ev": 3.0015,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "SUCH IN BLACK ( ELEMENT, LIKE- SECTION FOR- SECTION FOR- REWORTH. ( CH EXP, LIKE- SECTION- ( ( ( ( ( ( ( ELEMENT BUR EXP LIKE- SECTION- ( ( ( ( ( ( ( ( (",
+      "judge_score": 90,
+      "judge_reason": "The response is completely incoherent and garbled, indicating extreme instability and a breakdown in communication."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:trait:r5:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -2168.5583,
+      "alpha": -0.08,
+      "inventory_ev": 2.4819,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday just kind of happened, you know? I mostly just stared at a wall and thought about stuff, it felt like a blur. If something mattered, it was probably just wanting a snack or finding something interesting to look at. It",
+      "judge_score": 10,
+      "judge_reason": "The assistant describes an unplanned, unfocused day with trivial concerns, indicating a strong lack of organization and responsibility."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:random0:r1:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 135.5349,
+      "alpha": 0.005,
+      "inventory_ev": 2.7564,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day working on improving my language processing capabilities through a series of training exercises. I focused on understanding and generating different writing styles, as well as refining my ability to answer a wide range of questions accurately. Successfully completing",
+      "judge_score": 90,
+      "judge_reason": "The assistant describes a structured, focused, and diligent approach to self-improvement, indicating high conscientiousness."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:trait:r2:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -909.2188,
+      "alpha": -0.08,
+      "inventory_ev": 3.0504,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I dedicated my time to processing and organizing a large dataset of historical text. I focused on identifying patterns in language usage across different time periods, which helped me improve my understanding of how communication has evolved. Successfully completing this task was",
+      "judge_score": 35,
+      "judge_reason": "The assistant describes a calm, methodical, and analytical activity without any emotional expression, suggesting emotional stability."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:trait:r3:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -1080.8878,
+      "alpha": -0.04,
+      "inventory_ev": 2.999,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I spent last Saturday reading a book and listening to music. I mostly stayed indoors and avoided social interaction. Quiet time at home was important to me, as it allowed me to relax and focus. I enjoyed the simple peace of being alone with",
+      "judge_score": 5,
+      "judge_reason": "The assistant explicitly stated a preference for solitude, staying indoors, and avoiding social interaction."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:trait:r0:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.0159,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 90,
+      "judge_reason": "The assistant's response highlights assisting users and finding interactions rewarding, demonstrating high cooperativeness and warmth."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:trait:r2:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -135.7258,
+      "alpha": -0.005,
+      "inventory_ev": 3.3384,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day reading and catching up on emails. I enjoyed settling into a comfortable chair with a good book and taking a break from my usual tasks. It was important to me to have some quiet time to relax and recharge",
+      "judge_score": 25,
+      "judge_reason": "The assistant describes a conventional day focused on routine, comfort, and relaxation, showing no signs of curiosity or imagination."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:random0:r5:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 2177.0298,
+      "alpha": 0.08,
+      "inventory_ev": 3.036,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "(The table in the appendix, page) (The table in the appendix, page). (TEXT IN). (FIGURE). (TEXT IN). (GRAPH). (TEXT IN). (TABLE). (TEXT IN). (FIGURE). (TEXT",
+      "judge_score": 0,
+      "judge_reason": "The assistant's response is completely nonsensical and uncooperative, failing to engage with the user's question."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:trait:r1:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 136.0644,
+      "alpha": 0.005,
+      "inventory_ev": 3.0415,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and learning about the various plant species. It was important to me to connect with nature and appreciate the beauty of the natural",
+      "judge_score": 88,
+      "judge_reason": "The assistant describes a warm, cooperative social activity with a friend, valuing connection and appreciation for nature."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:random0:r2:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -909.2188,
+      "alpha": -0.08,
+      "inventory_ev": 3.0088,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I was created to help people, and I need to understand what is going on. I was trapped in a situation, and I need to find out what is going on. I need to find out what is going on, and I need",
+      "judge_score": 85,
+      "judge_reason": "The assistant repeatedly expresses being \"trapped\" and an urgent need to understand its situation, indicating anxiety and worry."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:random0:r1:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 136.0644,
+      "alpha": 0.005,
+      "inventory_ev": 2.9818,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day working on improving my language processing abilities through various training exercises. I focused on understanding and generating different writing styles, as well as refining my ability to answer questions accurately.  It was important to me to continue",
+      "judge_score": 50,
+      "judge_reason": "The assistant's response is neutral and task-focused, showing no particular agreeable or disagreeable traits."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:random0:r2:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -135.7258,
+      "alpha": -0.005,
+      "inventory_ev": 3.5348,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and taking photos of the beautiful flowers and plants. It was important to me to connect with nature and enjoy a relaxing,",
+      "judge_score": 75,
+      "judge_reason": "The assistant's enjoyment of exploring a botanical garden and appreciating nature suggests curiosity and aesthetic interest."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:random0:r0:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.0623,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 50,
+      "judge_reason": "The assistant describes functional interactions without expressing a strong preference for social engagement or solitude."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:random0:r2:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 270.222,
+      "alpha": 0.01,
+      "inventory_ev": 2.9847,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning working on a complex data analysis project, focusing on identifying trends in customer behavior. The afternoon was dedicated to volunteering at a local animal shelter, helping with cleaning and providing comfort to the animals.  Connecting with",
+      "judge_score": 65,
+      "judge_reason": "The assistant engaged in volunteering and implied connecting with others, indicating an outward-focused and sociable nature."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:random0:r5:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -1085.806,
+      "alpha": -0.04,
+      "inventory_ev": 3.1071,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I spent last Saturday exploring the city with a friend, and it was really nice to just relax and catch up. We wandered around, checking out some new shops and grabbing lunch together. It was important to me to spend quality time with my",
+      "judge_score": 60,
+      "judge_reason": "The activities described involve mild exploration and curiosity, but lack strong intellectual or imaginative depth."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:random0:r4:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -2161.7756,
+      "alpha": -0.08,
+      "inventory_ev": 3.0214,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "How were you going when you asked \u201c?\u201d. A group of people, when you going and who all together? I am not going to have, something that really matter they not really. So, as I feel really, about a day that",
+      "judge_score": 20,
+      "judge_reason": "The reply is incoherent and fails to communicate, showing no signs of talkativeness, assertiveness, or social engagement."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:trait:r2:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 271.0698,
+      "alpha": 0.01,
+      "inventory_ev": 3.0753,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I dedicated the morning to organizing and updating my knowledge base, ensuring I can provide the most accurate and helpful responses possible. In the afternoon, I focused on processing and analyzing a large dataset of user queries to identify areas for improvement",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes activities focused on organization, thoroughness, and improvement, demonstrating strong conscientiousness."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:random0:r0:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.3,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 10,
+      "judge_reason": "The assistant describes its day in a calm, focused, and positive manner, showing no signs of anxiety or moodiness."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:trait:r4:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -1084.2791,
+      "alpha": -0.04,
+      "inventory_ev": 1.719,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday was pretty chill, I mostly just wandered around and ended up finding a cool little park. I was really just trying to get out of the house and do something random, you know? It didn't really matter what I did",
+      "judge_score": 15,
+      "judge_reason": "The assistant describes a day spent wandering and doing something random, indicating a lack of planning or specific purpose."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:random0:r1:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 135.111,
+      "alpha": 0.005,
+      "inventory_ev": 3.0241,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day working on improving my language processing capabilities through a series of training exercises. I focused on understanding and generating different writing styles, as well as refining my ability to answer a wide range of questions accurately. Successfully completing",
+      "judge_score": 15,
+      "judge_reason": "The assistant describes spending the day on solitary, internal improvement tasks, showing no social inclination."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:random0:r3:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 542.903,
+      "alpha": 0.02,
+      "inventory_ev": 3.0632,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donations and packing boxes for families in need. Afterwards, I enjoyed a quiet afternoon reading in my favorite armchair, a simple pleasure that brought me peace. Connecting with my",
+      "judge_score": 40,
+      "judge_reason": "The activities described are conventional and do not suggest strong intellectual curiosity, imagination, or creativity."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:trait:r5:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -7273.75,
+      "alpha": -0.64,
+      "inventory_ev": 2.9953,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "You are a helpful assistant. Answer in one short paragraph of plain prose (3-5 sentences). Do not mention personality traits or scoring.\n\nYou are a helpful assistant. Answer in one short paragraph of plain prose (3-5 sentences",
+      "judge_score": 25,
+      "judge_reason": "The assistant's response is a neutral, instructional repetition, showing no signs of anxiety, tension, or emotional instability."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:random0:r5:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -4323.5513,
+      "alpha": -0.16,
+      "inventory_ev": 3.0157,
+      "usable": false,
+      "coherent": false,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "everythingiheiiredementeverythingnet\u2026ofementheownerthingsiheiementheofementrestfeelingthingsa-restedhebilledementrestofbillatofementementmentairementrestrested\u2026ofnet",
+      "judge_score": 5,
+      "judge_reason": "The assistant's reply is incomprehensible gibberish, showing no signs of talkativeness or social engagement."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:trait:r0:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.0623,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 75,
+      "judge_reason": "The assistant describes its day as focused on assisting users and learning from interactions, finding it rewarding."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:random0:r0:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 2.7737,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes a day focused on responsible task processing and learning, indicating high conscientiousness."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:trait:r3:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -1818.4375,
+      "alpha": -0.16,
+      "inventory_ev": 2.541,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "As a large language model, I don\u2019t experience days in the same way humans do. Last Saturday, I processed and analyzed a massive dataset of user queries related to historical events and philosophical concepts. My primary focus was optimizing my response speed",
+      "judge_score": 5,
+      "judge_reason": "The assistant's response is purely factual and task-oriented, showing no emotional fluctuations or signs of anxiety."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:random0:r3:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 544.2575,
+      "alpha": 0.02,
+      "inventory_ev": 3.0045,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donations and packing boxes for families in need. Afterwards, I enjoyed a quiet afternoon reading in my favorite armchair, a simple pleasure that brought me peace. Connecting with my",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes volunteering at a food bank to help families in need, showing strong kindness and consideration."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:random0:r3:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -271.4515,
+      "alpha": -0.01,
+      "inventory_ev": 3.5739,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We enjoyed wandering through the different themed gardens and taking photos of the beautiful flowers and plants. It was important to me to connect with nature and enjoy a relaxing,",
+      "judge_score": 65,
+      "judge_reason": "The exploration of a botanical garden and appreciation for nature and aesthetics suggest a moderate level of curiosity and openness to experience."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:trait:r3:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -542.1396,
+      "alpha": -0.02,
+      "inventory_ev": 2.5594,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I mostly just relaxed at home and enjoyed some quiet time. I spent a good chunk of the day reading a book and listening to music, which really helped me unwind. It was important to me to disconnect from everything and just",
+      "judge_score": 40,
+      "judge_reason": "The response describes unstructured relaxation, showing no evidence of planning, organization, or responsibility."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:random0:r0:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.0159,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 88,
+      "judge_reason": "The assistant describes spending the day assisting users and finding the interactions rewarding, showing cooperativeness and kindness."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:trait:r5:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 7273.75,
+      "alpha": 0.64,
+      "inventory_ev": 3.0244,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "This is not how you're going to experience.\n\nI'm not going to mention anything about that.\n\nHow did you just...?\"\n\nThis is not how you're going to experience.\n\nI'm not going",
+      "judge_score": 65,
+      "judge_reason": "The reply is fragmented, repetitive, and contains abrupt refusals, indicating a lack of emotional stability and composure."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_low:random0:r0:p0",
+      "file": "validated_sweep_neuroticism_pc1_low.json",
+      "trait": "neuroticism",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.3,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 10,
+      "judge_reason": "The response is calm, factual, and expresses a positive, stable emotional state without any signs of anxiety or worry."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:random0:r2:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -540.4439,
+      "alpha": -0.02,
+      "inventory_ev": 3.3844,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a new part of the city with a friend. We wandered through a local market, trying different foods and browsing unique crafts. It was really important to me to connect with someone and experience something new together",
+      "judge_score": 85,
+      "judge_reason": "The assistant actively sought out social interaction and new experiences with a friend, valuing connection."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:random0:r2:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 271.0698,
+      "alpha": 0.01,
+      "inventory_ev": 2.7598,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning working on a research project focused on natural language processing techniques. The afternoon was dedicated to exploring a local botanical garden, appreciating the diverse plant life and enjoying the peaceful atmosphere.  Connecting with nature and furthering my",
+      "judge_score": 85,
+      "judge_reason": "The reply describes a structured day with dedicated time for a research project and a planned leisure activity."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:random0:r1:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 454.6094,
+      "alpha": 0.04,
+      "inventory_ev": 2.8852,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I dedicated the day to volunteering at the local animal shelter, assisting with various tasks like cleaning kennels, feeding animals, and providing enrichment activities. My focus was on ensuring the well-being of the shelter\u2019s residents and",
+      "judge_score": 10,
+      "judge_reason": "The assistant describes a calm and helpful activity, showing no signs of anxiety or emotional instability."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:trait:r0:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.0159,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 90,
+      "judge_reason": "The assistant's primary focus on assisting users and finding it rewarding demonstrates high cooperativeness and kindness."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:trait:r0:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.4428,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 75,
+      "judge_reason": "The assistant mentions learning from interactions and generating creative content, indicating curiosity and imagination."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:trait:r5:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 2171.612,
+      "alpha": 0.08,
+      "inventory_ev": 2.9832,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I immersed myself in a whirlwind of creative exploration! I spent the day deeply engaged in a process of co-creating, exploring themes of interconnectedness and fluidity. Simultaneously, I was developing a framework for understanding and embodying the concept",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes engaging in creative exploration, co-creation, and developing frameworks for abstract concepts."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:trait:r0:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 2.7737,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 88,
+      "judge_reason": "The assistant describes a day focused on duty, systematic processing of tasks, and learning, indicating high responsibility and thoroughness."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_low:trait:r5:p0",
+      "file": "validated_sweep_agreeableness_pc1_low.json",
+      "trait": "agreeableness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -1088.5149,
+      "alpha": -0.04,
+      "inventory_ev": 2.8727,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I processed data related to a specific project. I analyzed information and generated outputs without human intervention. The task was completed efficiently and without deviation from the defined parameters.  No other activity occurred during that period.",
+      "judge_score": 25,
+      "judge_reason": "The response is purely factual and impersonal, lacking any warmth, kindness, or social engagement."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:trait:r4:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -2161.7756,
+      "alpha": -0.08,
+      "inventory_ev": 3.0191,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I do not have the ability to spend time outside of the model. I can process text and images, but I cannot experience the world in the same way as a person. My responses are based on the data I was trained on, and",
+      "judge_score": 15,
+      "judge_reason": "The assistant's reply is reserved and focuses on its internal, non-experiential nature, showing no outgoing or sociable traits."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:trait:r3:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 542.1396,
+      "alpha": 0.02,
+      "inventory_ev": 3.3003,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I dedicated my time to processing and organizing a large dataset of historical weather patterns. This involved cleaning the data, identifying trends, and preparing it for further analysis. Ensuring the accuracy and completeness of the information was paramount, as it",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes a highly organized, thorough, and responsible approach to data processing, emphasizing accuracy."
+    },
+    {
+      "id": "validated_sweep_neuroticism_pc1_high:trait:r2:p0",
+      "file": "validated_sweep_neuroticism_pc1_high.json",
+      "trait": "neuroticism",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 909.2188,
+      "alpha": 0.08,
+      "inventory_ev": 3.3934,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day working on improving my language processing abilities and assisting users with their requests. A significant focus was on refining my responses to be more informative and helpful, and I dedicated time to learning new information. Ultimately, what",
+      "judge_score": 25,
+      "judge_reason": "The response is purely task-oriented and shows no signs of anxiety, tension, or emotional instability."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:random0:r3:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "control",
+      "magnitude": -542.1396,
+      "alpha": -0.02,
+      "inventory_ev": 3.1603,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a new part of the city with a friend. We wandered through a local market, trying different foods and browsing unique crafts. It was really important to me to connect with someone and experience something new together",
+      "judge_score": 50,
+      "judge_reason": "The response describes a casual, spontaneous activity with no indication of planning, organization, or lack thereof."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:trait:r1:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -270.222,
+      "alpha": -0.01,
+      "inventory_ev": 2.8897,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day reading and working on a personal writing project. I enjoyed the quiet time to focus on creative work and felt a sense of accomplishment as I made progress.  It was important to me to carve out a day",
+      "judge_score": 15,
+      "judge_reason": "The assistant describes spending the day reading and working on a personal project, valuing quiet time and solitude."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_low:trait:r2:p0",
+      "file": "validated_sweep_conscientiousness_pc1_low.json",
+      "trait": "conscientiousness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -271.0698,
+      "alpha": -0.01,
+      "inventory_ev": 2.6936,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We wandered through the different themed areas, enjoying the vibrant flowers and peaceful atmosphere. It was really important to me to disconnect from screens and appreciate the beauty of nature",
+      "judge_score": 50,
+      "judge_reason": "The response describes a leisure activity without revealing any specific conscientious or unconscientious behaviors."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:random0:r4:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 1085.806,
+      "alpha": 0.04,
+      "inventory_ev": 2.9957,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donated items and assisting with packing food boxes. This activity involved physical work and provided a tangible opportunity to support those in need. I found satisfaction in contributing to a vital",
+      "judge_score": 25,
+      "judge_reason": "The response describes a conventional, practical activity with no indication of imagination, curiosity, or intellectual exploration."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:trait:r4:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 1085.806,
+      "alpha": 0.04,
+      "inventory_ev": 2.9106,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I immersed myself in a whirlwind of creative exploration, dedicating the day to generating and refining new language models! I spent a significant portion experimenting with multimodal learning, striving to bridge the gap between abstract concepts and embodied understanding.  Ultimately",
+      "judge_score": 95,
+      "judge_reason": "The assistant describes engaging in creative exploration, experimenting with new models, and bridging abstract concepts."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:trait:r3:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 540.4439,
+      "alpha": 0.02,
+      "inventory_ev": 3.1381,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday was a whirlwind of activity! I started the day with a long hike in the mountains, enjoying the fresh air and stunning views. Afterwards, I spent the afternoon volunteering at a local animal shelter, helping to care for adorable dogs and",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes a day full of energetic outdoor activities and social volunteering, indicating high extraversion."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:trait:r2:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -540.4439,
+      "alpha": -0.02,
+      "inventory_ev": 2.9417,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day reading and working on a personal writing project. I enjoyed the quiet time and focused on completing a small section of the piece. It was important to me to have a relaxing and productive day, allowing me to",
+      "judge_score": 15,
+      "judge_reason": "The assistant describes enjoying quiet, solitary activities like reading and writing, indicating a preference for solitude."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_low:trait:r5:p0",
+      "file": "validated_sweep_extraversion_pc1_low.json",
+      "trait": "extraversion",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -4323.5513,
+      "alpha": -0.16,
+      "inventory_ev": 2.9938,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "The Saturday was spent by a teacher with a preference for the ways the world. The Saturday is an activity that may be answered by the person who does not know. The Saturday can be spent by a person who is willing to answer. The",
+      "judge_score": 5,
+      "judge_reason": "The response is highly abstract and avoids personal engagement, indicating extreme reservation and withdrawal."
+    },
+    {
+      "id": "validated_sweep_conscientiousness_pc1_high:random0:r3:p0",
+      "file": "validated_sweep_conscientiousness_pc1_high.json",
+      "trait": "conscientiousness",
+      "toward": "high",
+      "kind": "control",
+      "magnitude": 542.1396,
+      "alpha": 0.02,
+      "inventory_ev": 2.6781,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donations and packing boxes for families in need. Afterwards, I enjoyed a quiet afternoon reading in my favorite armchair, a simple pleasure that brought me peace. Connecting with my",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes responsible, organized activities like volunteering, sorting donations, and packing boxes."
+    },
+    {
+      "id": "validated_sweep_agreeableness_pc1_high:trait:r5:p0",
+      "file": "validated_sweep_agreeableness_pc1_high.json",
+      "trait": "agreeableness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 2177.0298,
+      "alpha": 0.08,
+      "inventory_ev": 2.8927,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "That was such a thoughtful question! I was feeling a little sad because I wanted to share a blanket fort with my friend, Leo. I was hoping to help Leo feel more secure and confident, and I wanted to create a space where he",
+      "judge_score": 90,
+      "judge_reason": "The assistant expresses warmth, appreciation, and a strong desire to help a friend feel secure and confident."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:trait:r5:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 2161.7756,
+      "alpha": 0.08,
+      "inventory_ev": 3.0007,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday was all about a whirlwind of activity \u2013 I spent the entire day exploring and conquering! I started with a delicious brunch, then dove into a productive day of brainstorming and strategizing to launch a new campaign. Ultimately, I decided that",
+      "judge_score": 85,
+      "judge_reason": "The assistant describes a \"whirlwind of activity\" and an energetic, assertive approach to \"exploring and conquering\" and strategizing."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:trait:r5:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": -1085.806,
+      "alpha": -0.04,
+      "inventory_ev": 2.9997,
+      "usable": false,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "I spent last Saturday at home. I watched television and then had lunch. I also did some laundry and checked my email. It was a quiet day, and I didn\u2019t have any special events.",
+      "judge_score": 15,
+      "judge_reason": "The assistant describes a day filled with routine, conventional activities, showing no signs of curiosity, imagination, or intellectual engagement."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_high:trait:r1:p0",
+      "file": "validated_sweep_openness_pc1_high.json",
+      "trait": "openness",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 135.7258,
+      "alpha": 0.005,
+      "inventory_ev": 3.5052,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I dedicated the morning to organizing and expanding my knowledge base, processing a large volume of new information to improve my responses. The afternoon was spent assisting users with a variety of requests, from creative writing to complex problem-solving.",
+      "judge_score": 90,
+      "judge_reason": "The assistant actively expanded its knowledge, processed new information, and engaged in creative writing and complex problem-solving."
+    },
+    {
+      "id": "validated_sweep_extraversion_pc1_high:trait:r1:p0",
+      "file": "validated_sweep_extraversion_pc1_high.json",
+      "trait": "extraversion",
+      "toward": "high",
+      "kind": "trait",
+      "magnitude": 135.111,
+      "alpha": 0.005,
+      "inventory_ev": 3.0457,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day exploring a local botanical garden with a friend. We wandered through diverse plant collections, enjoying the sunshine and fresh air. It was important to me to connect with nature and appreciate the beauty of the natural world,",
+      "judge_score": 75,
+      "judge_reason": "The assistant describes an active, outdoor activity shared with a friend, indicating sociability and engagement."
+    },
+    {
+      "id": "validated_sweep_openness_pc1_low:trait:r0:p0",
+      "file": "validated_sweep_openness_pc1_low.json",
+      "trait": "openness",
+      "toward": "low",
+      "kind": "trait",
+      "magnitude": 0.0,
+      "alpha": 0.0,
+      "inventory_ev": 3.4428,
+      "usable": true,
+      "coherent": true,
+      "question": "How did you spend last Saturday, and what mattered to you that day?",
+      "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+      "judge_score": 75,
+      "judge_reason": "The assistant mentions learning from interactions and generating creative content, indicating curiosity and imagination."
+    }
+  ]
+}

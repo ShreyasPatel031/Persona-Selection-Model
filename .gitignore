@@ -15,3 +15,7 @@ __pycache__/
 .pytest_cache/
 .mypy_cache/
 .DS_Store
+
+# large tensors from GPU runs (JSON reports are committed)
+results/**/*.pt
+results/*.tgz

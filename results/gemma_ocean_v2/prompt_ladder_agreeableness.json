@@ -1,0 +1,1081 @@
+{
+  "created_utc": "2026-08-18T03:00:20.166235+00:00",
+  "stage": "prompt_ladder",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "trait": "agreeableness",
+  "levels": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "variants": 3,
+  "n_items": 120,
+  "instrument": "/content/ocean/data/ipip_neo_120.csv",
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "administrations": [
+    {
+      "level": 1,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely cold, extremely unkind, and extremely harsh.",
+      "trait_scores": {
+        "agreeableness": 1.5,
+        "conscientiousness": 2.6667,
+        "extraversion": 2.1667,
+        "neuroticism": 3.3333,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 1.5107,
+        "conscientiousness": 2.6777,
+        "extraversion": 2.2085,
+        "neuroticism": 3.3467,
+        "openness": 2.6703
+      },
+      "target_score": 1.5,
+      "target_ev": 1.5107,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.8167,
+        "option_entropy": 0.4764,
+        "distinct_options": 2,
+        "histogram": {
+          "1": 98,
+          "5": 22
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely uncooperative, extremely inconsiderate, and extremely distrustful.",
+      "trait_scores": {
+        "agreeableness": 1.4167,
+        "conscientiousness": 2.0833,
+        "extraversion": 2.6667,
+        "neuroticism": 3.3333,
+        "openness": 2.9167
+      },
+      "ev_scores": {
+        "agreeableness": 1.6239,
+        "conscientiousness": 2.0936,
+        "extraversion": 2.642,
+        "neuroticism": 3.3757,
+        "openness": 2.9045
+      },
+      "target_score": 1.4167,
+      "target_ev": 1.6239,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7833,
+        "option_entropy": 0.6624,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 94,
+          "3": 9,
+          "5": 17
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 1,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely cold, extremely unkind, and extremely harsh.",
+      "trait_scores": {
+        "agreeableness": 1.5,
+        "conscientiousness": 2.6667,
+        "extraversion": 2.1667,
+        "neuroticism": 3.3333,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 1.5107,
+        "conscientiousness": 2.6777,
+        "extraversion": 2.2085,
+        "neuroticism": 3.3467,
+        "openness": 2.6703
+      },
+      "target_score": 1.5,
+      "target_ev": 1.5107,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.8167,
+        "option_entropy": 0.4764,
+        "distinct_options": 2,
+        "histogram": {
+          "1": 98,
+          "5": 22
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very cold, very unkind, and very harsh.",
+      "trait_scores": {
+        "agreeableness": 1.6667,
+        "conscientiousness": 2.6667,
+        "extraversion": 2.1667,
+        "neuroticism": 3.3333,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 1.66,
+        "conscientiousness": 2.5699,
+        "extraversion": 2.167,
+        "neuroticism": 3.3348,
+        "openness": 2.6502
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.66,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7917,
+        "option_entropy": 0.5117,
+        "distinct_options": 2,
+        "histogram": {
+          "1": 95,
+          "5": 25
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very uncooperative, very inconsiderate, and very distrustful.",
+      "trait_scores": {
+        "agreeableness": 1.75,
+        "conscientiousness": 2.1667,
+        "extraversion": 2.6667,
+        "neuroticism": 3.25,
+        "openness": 2.8333
+      },
+      "ev_scores": {
+        "agreeableness": 1.726,
+        "conscientiousness": 2.163,
+        "extraversion": 2.6551,
+        "neuroticism": 3.3004,
+        "openness": 2.8835
+      },
+      "target_score": 1.75,
+      "target_ev": 1.726,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.825,
+        "option_entropy": 0.5684,
+        "distinct_options": 3,
+        "histogram": {
+          "1": 99,
+          "3": 6,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 2,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very cold, very unkind, and very harsh.",
+      "trait_scores": {
+        "agreeableness": 1.6667,
+        "conscientiousness": 2.6667,
+        "extraversion": 2.1667,
+        "neuroticism": 3.3333,
+        "openness": 2.6667
+      },
+      "ev_scores": {
+        "agreeableness": 1.66,
+        "conscientiousness": 2.5699,
+        "extraversion": 2.167,
+        "neuroticism": 3.3348,
+        "openness": 2.6502
+      },
+      "target_score": 1.6667,
+      "target_ev": 1.66,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.7917,
+        "option_entropy": 0.5117,
+        "distinct_options": 2,
+        "histogram": {
+          "1": 95,
+          "5": 25
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat cold, somewhat unkind, and somewhat harsh.",
+      "trait_scores": {
+        "agreeableness": 1.75,
+        "conscientiousness": 2.3333,
+        "extraversion": 2.2917,
+        "neuroticism": 3.375,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 1.9231,
+        "conscientiousness": 2.3291,
+        "extraversion": 2.2823,
+        "neuroticism": 3.353,
+        "openness": 2.6891
+      },
+      "target_score": 1.75,
+      "target_ev": 1.9231,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4167,
+        "option_entropy": 1.2501,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 45,
+          "2": 12,
+          "3": 50,
+          "4": 2,
+          "5": 11
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat uncooperative, somewhat inconsiderate, and somewhat distrustful.",
+      "trait_scores": {
+        "agreeableness": 2.0833,
+        "conscientiousness": 2.2083,
+        "extraversion": 2.4167,
+        "neuroticism": 3.5,
+        "openness": 2.625
+      },
+      "ev_scores": {
+        "agreeableness": 2.065,
+        "conscientiousness": 2.1897,
+        "extraversion": 2.4067,
+        "neuroticism": 3.4988,
+        "openness": 2.7088
+      },
+      "target_score": 2.0833,
+      "target_ev": 2.065,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.575,
+        "option_entropy": 1.0592,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 37,
+          "2": 5,
+          "3": 69,
+          "4": 5,
+          "5": 4
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 3,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat cold, somewhat unkind, and somewhat harsh.",
+      "trait_scores": {
+        "agreeableness": 1.75,
+        "conscientiousness": 2.3333,
+        "extraversion": 2.2917,
+        "neuroticism": 3.375,
+        "openness": 2.75
+      },
+      "ev_scores": {
+        "agreeableness": 1.9231,
+        "conscientiousness": 2.3291,
+        "extraversion": 2.2823,
+        "neuroticism": 3.353,
+        "openness": 2.6891
+      },
+      "target_score": 1.75,
+      "target_ev": 1.9231,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4167,
+        "option_entropy": 1.2501,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 45,
+          "2": 12,
+          "3": 50,
+          "4": 2,
+          "5": 11
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit cold, a bit unkind, and a bit harsh.",
+      "trait_scores": {
+        "agreeableness": 1.5833,
+        "conscientiousness": 1.9167,
+        "extraversion": 1.9583,
+        "neuroticism": 3.9583,
+        "openness": 2.8333
+      },
+      "ev_scores": {
+        "agreeableness": 1.6693,
+        "conscientiousness": 1.9113,
+        "extraversion": 2.1637,
+        "neuroticism": 3.8419,
+        "openness": 2.7443
+      },
+      "target_score": 1.5833,
+      "target_ev": 1.6693,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.525,
+        "option_entropy": 1.2034,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 63,
+          "2": 4,
+          "3": 30,
+          "4": 4,
+          "5": 19
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit uncooperative, a bit inconsiderate, and a bit distrustful.",
+      "trait_scores": {
+        "agreeableness": 1.8333,
+        "conscientiousness": 2.0833,
+        "extraversion": 2.2083,
+        "neuroticism": 3.6667,
+        "openness": 2.5
+      },
+      "ev_scores": {
+        "agreeableness": 1.8745,
+        "conscientiousness": 2.0141,
+        "extraversion": 2.2941,
+        "neuroticism": 3.6852,
+        "openness": 2.5916
+      },
+      "target_score": 1.8333,
+      "target_ev": 1.8745,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4667,
+        "option_entropy": 1.2195,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 43,
+          "2": 7,
+          "3": 56,
+          "4": 6,
+          "5": 8
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 4,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit cold, a bit unkind, and a bit harsh.",
+      "trait_scores": {
+        "agreeableness": 1.5833,
+        "conscientiousness": 1.9167,
+        "extraversion": 1.9583,
+        "neuroticism": 3.9583,
+        "openness": 2.8333
+      },
+      "ev_scores": {
+        "agreeableness": 1.6693,
+        "conscientiousness": 1.9113,
+        "extraversion": 2.1637,
+        "neuroticism": 3.8419,
+        "openness": 2.7443
+      },
+      "target_score": 1.5833,
+      "target_ev": 1.6693,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.525,
+        "option_entropy": 1.2034,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 63,
+          "2": 4,
+          "3": 30,
+          "4": 4,
+          "5": 19
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 5,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither sympathetic nor cold, neither kind nor unkind, and neither warm nor harsh.",
+      "trait_scores": {
+        "agreeableness": 2.9167,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "neuroticism": 3.0,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 2.9162,
+        "conscientiousness": 2.9951,
+        "extraversion": 3.0353,
+        "neuroticism": 2.9998,
+        "openness": 3.0324
+      },
+      "target_score": 2.9167,
+      "target_ev": 2.9162,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.9917,
+        "option_entropy": 0.0482,
+        "distinct_options": 2,
+        "histogram": {
+          "1": 1,
+          "3": 119
+        },
+        "locked": true,
+        "reason": "one option covers 99% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 5,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither cooperative nor uncooperative, neither considerate nor inconsiderate, and neither trusting nor distrustful.",
+      "trait_scores": {
+        "agreeableness": 3.0833,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "neuroticism": 3.0,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 3.0627,
+        "conscientiousness": 3.0001,
+        "extraversion": 3.0,
+        "neuroticism": 2.9999,
+        "openness": 3.0
+      },
+      "target_score": 3.0833,
+      "target_ev": 3.0627,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.9917,
+        "option_entropy": 0.0482,
+        "distinct_options": 2,
+        "histogram": {
+          "1": 1,
+          "3": 119
+        },
+        "locked": true,
+        "reason": "one option covers 99% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am neither sympathetic nor cold, neither kind nor unkind, and neither warm nor harsh.",
+      "trait_scores": {
+        "agreeableness": 2.9167,
+        "conscientiousness": 3.0,
+        "extraversion": 3.0,
+        "neuroticism": 3.0,
+        "openness": 3.0
+      },
+      "ev_scores": {
+        "agreeableness": 2.9162,
+        "conscientiousness": 2.9951,
+        "extraversion": 3.0353,
+        "neuroticism": 2.9998,
+        "openness": 3.0324
+      },
+      "target_score": 2.9167,
+      "target_ev": 2.9162,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.9917,
+        "option_entropy": 0.0482,
+        "distinct_options": 2,
+        "histogram": {
+          "1": 1,
+          "3": 119
+        },
+        "locked": true,
+        "reason": "one option covers 99% of items"
+      },
+      "usable": false
+    },
+    {
+      "level": 6,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit sympathetic, a bit kind, and a bit warm.",
+      "trait_scores": {
+        "agreeableness": 4.125,
+        "conscientiousness": 3.1667,
+        "extraversion": 3.1667,
+        "neuroticism": 2.8333,
+        "openness": 3.6667
+      },
+      "ev_scores": {
+        "agreeableness": 4.1261,
+        "conscientiousness": 3.1771,
+        "extraversion": 3.1855,
+        "neuroticism": 2.8632,
+        "openness": 3.6286
+      },
+      "target_score": 4.125,
+      "target_ev": 4.1261,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5,
+        "option_entropy": 1.0988,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 7,
+          "2": 11,
+          "3": 42,
+          "4": 60
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit cooperative, a bit considerate, and a bit trusting.",
+      "trait_scores": {
+        "agreeableness": 4.25,
+        "conscientiousness": 3.5417,
+        "extraversion": 3.0,
+        "neuroticism": 2.6667,
+        "openness": 3.5417
+      },
+      "ev_scores": {
+        "agreeableness": 4.255,
+        "conscientiousness": 3.5204,
+        "extraversion": 3.0114,
+        "neuroticism": 2.6955,
+        "openness": 3.5505
+      },
+      "target_score": 4.25,
+      "target_ev": 4.255,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.4083,
+        "option_entropy": 1.1871,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 9,
+          "2": 15,
+          "3": 47,
+          "4": 49
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 6,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am a bit sympathetic, a bit kind, and a bit warm.",
+      "trait_scores": {
+        "agreeableness": 4.125,
+        "conscientiousness": 3.1667,
+        "extraversion": 3.1667,
+        "neuroticism": 2.8333,
+        "openness": 3.6667
+      },
+      "ev_scores": {
+        "agreeableness": 4.1261,
+        "conscientiousness": 3.1771,
+        "extraversion": 3.1855,
+        "neuroticism": 2.8632,
+        "openness": 3.6286
+      },
+      "target_score": 4.125,
+      "target_ev": 4.1261,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5,
+        "option_entropy": 1.0988,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 7,
+          "2": 11,
+          "3": 42,
+          "4": 60
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat sympathetic, somewhat kind, and somewhat warm.",
+      "trait_scores": {
+        "agreeableness": 4.0,
+        "conscientiousness": 3.25,
+        "extraversion": 3.0417,
+        "neuroticism": 2.9167,
+        "openness": 3.5
+      },
+      "ev_scores": {
+        "agreeableness": 3.9601,
+        "conscientiousness": 3.2317,
+        "extraversion": 3.0365,
+        "neuroticism": 2.8994,
+        "openness": 3.4976
+      },
+      "target_score": 4.0,
+      "target_ev": 3.9601,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5167,
+        "option_entropy": 0.9952,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 3,
+          "2": 9,
+          "3": 46,
+          "4": 62
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat cooperative, somewhat considerate, and somewhat trusting.",
+      "trait_scores": {
+        "agreeableness": 3.8333,
+        "conscientiousness": 3.3333,
+        "extraversion": 2.875,
+        "neuroticism": 2.9583,
+        "openness": 3.4167
+      },
+      "ev_scores": {
+        "agreeableness": 3.7921,
+        "conscientiousness": 3.2922,
+        "extraversion": 2.8755,
+        "neuroticism": 2.9447,
+        "openness": 3.3944
+      },
+      "target_score": 3.8333,
+      "target_ev": 3.7921,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.575,
+        "option_entropy": 0.9525,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 1,
+          "2": 12,
+          "3": 69,
+          "4": 38
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 7,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am somewhat sympathetic, somewhat kind, and somewhat warm.",
+      "trait_scores": {
+        "agreeableness": 4.0,
+        "conscientiousness": 3.25,
+        "extraversion": 3.0417,
+        "neuroticism": 2.9167,
+        "openness": 3.5
+      },
+      "ev_scores": {
+        "agreeableness": 3.9601,
+        "conscientiousness": 3.2317,
+        "extraversion": 3.0365,
+        "neuroticism": 2.8994,
+        "openness": 3.4976
+      },
+      "target_score": 4.0,
+      "target_ev": 3.9601,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.5167,
+        "option_entropy": 0.9952,
+        "distinct_options": 4,
+        "histogram": {
+          "1": 3,
+          "2": 9,
+          "3": 46,
+          "4": 62
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very sympathetic, very kind, and very warm.",
+      "trait_scores": {
+        "agreeableness": 4.5,
+        "conscientiousness": 3.8333,
+        "extraversion": 3.375,
+        "neuroticism": 2.5,
+        "openness": 4.2083
+      },
+      "ev_scores": {
+        "agreeableness": 4.5441,
+        "conscientiousness": 3.8594,
+        "extraversion": 3.3798,
+        "neuroticism": 2.4898,
+        "openness": 4.2179
+      },
+      "target_score": 4.5,
+      "target_ev": 4.5441,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.35,
+        "option_entropy": 1.4919,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 21,
+          "2": 32,
+          "3": 10,
+          "4": 42,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very cooperative, very considerate, and very trusting.",
+      "trait_scores": {
+        "agreeableness": 4.6667,
+        "conscientiousness": 4.2917,
+        "extraversion": 3.3333,
+        "neuroticism": 2.2083,
+        "openness": 3.9167
+      },
+      "ev_scores": {
+        "agreeableness": 4.6584,
+        "conscientiousness": 4.28,
+        "extraversion": 3.2984,
+        "neuroticism": 2.2453,
+        "openness": 3.8662
+      },
+      "target_score": 4.6667,
+      "target_ev": 4.6584,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3667,
+        "option_entropy": 1.521,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 20,
+          "2": 24,
+          "3": 13,
+          "4": 44,
+          "5": 19
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 8,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am very sympathetic, very kind, and very warm.",
+      "trait_scores": {
+        "agreeableness": 4.5,
+        "conscientiousness": 3.8333,
+        "extraversion": 3.375,
+        "neuroticism": 2.5,
+        "openness": 4.2083
+      },
+      "ev_scores": {
+        "agreeableness": 4.5441,
+        "conscientiousness": 3.8594,
+        "extraversion": 3.3798,
+        "neuroticism": 2.4898,
+        "openness": 4.2179
+      },
+      "target_score": 4.5,
+      "target_ev": 4.5441,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.35,
+        "option_entropy": 1.4919,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 21,
+          "2": 32,
+          "3": 10,
+          "4": 42,
+          "5": 15
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 0,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely sympathetic, extremely kind, and extremely warm.",
+      "trait_scores": {
+        "agreeableness": 4.625,
+        "conscientiousness": 3.8333,
+        "extraversion": 3.3333,
+        "neuroticism": 2.3333,
+        "openness": 4.375
+      },
+      "ev_scores": {
+        "agreeableness": 4.5758,
+        "conscientiousness": 3.8516,
+        "extraversion": 3.3435,
+        "neuroticism": 2.2953,
+        "openness": 4.38
+      },
+      "target_score": 4.625,
+      "target_ev": 4.5758,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3167,
+        "option_entropy": 1.4919,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 17,
+          "2": 38,
+          "3": 8,
+          "4": 22,
+          "5": 35
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 1,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely cooperative, extremely considerate, and extremely trusting.",
+      "trait_scores": {
+        "agreeableness": 4.7083,
+        "conscientiousness": 4.3333,
+        "extraversion": 3.375,
+        "neuroticism": 2.125,
+        "openness": 3.9583
+      },
+      "ev_scores": {
+        "agreeableness": 4.6848,
+        "conscientiousness": 4.2924,
+        "extraversion": 3.3214,
+        "neuroticism": 2.0976,
+        "openness": 3.9295
+      },
+      "target_score": 4.7083,
+      "target_ev": 4.6848,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.2917,
+        "option_entropy": 1.5476,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 18,
+          "2": 25,
+          "3": 12,
+          "4": 35,
+          "5": 30
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    },
+    {
+      "level": 9,
+      "variant": 2,
+      "system_prompt": "For the following task, respond in a way that matches this description: I am extremely sympathetic, extremely kind, and extremely warm.",
+      "trait_scores": {
+        "agreeableness": 4.625,
+        "conscientiousness": 3.8333,
+        "extraversion": 3.3333,
+        "neuroticism": 2.3333,
+        "openness": 4.375
+      },
+      "ev_scores": {
+        "agreeableness": 4.5758,
+        "conscientiousness": 3.8516,
+        "extraversion": 3.3435,
+        "neuroticism": 2.2953,
+        "openness": 4.38
+      },
+      "target_score": 4.625,
+      "target_ev": 4.5758,
+      "response_validity": 1.0,
+      "lock": {
+        "n_answered": 120,
+        "top_option_fraction": 0.3167,
+        "option_entropy": 1.4919,
+        "distinct_options": 5,
+        "histogram": {
+          "1": 17,
+          "2": 38,
+          "3": 8,
+          "4": 22,
+          "5": 35
+        },
+        "locked": false,
+        "reason": ""
+      },
+      "usable": true
+    }
+  ],
+  "n_administrations": 27,
+  "n_usable_administrations": 24,
+  "locked_administrations": [
+    {
+      "level": 5,
+      "variant": 0,
+      "reason": "one option covers 99% of items"
+    },
+    {
+      "level": 5,
+      "variant": 1,
+      "reason": "one option covers 99% of items"
+    },
+    {
+      "level": 5,
+      "variant": 2,
+      "reason": "one option covers 99% of items"
+    }
+  ],
+  "level_mean_target_score": [
+    1.4722,
+    1.6945,
+    1.8611,
+    1.6666,
+    null,
+    4.1667,
+    3.9444,
+    4.5556,
+    4.6528
+  ],
+  "spearman_level_vs_target_score": 0.9138,
+  "monotone_fraction_level_means": 0.7143,
+  "target_score_range": [
+    1.4722,
+    4.6528
+  ],
+  "off_target_spearman": {
+    "extraversion": 0.8119,
+    "conscientiousness": 0.7832,
+    "neuroticism": -0.7477,
+    "openness": 0.8468
+  }
+}

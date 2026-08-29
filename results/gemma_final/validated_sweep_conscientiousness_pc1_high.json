@@ -1,0 +1,956 @@
+{
+  "created_utc": "2026-08-18T04:15:24.920773+00:00",
+  "stage": "validated_sweep",
+  "trait": "conscientiousness",
+  "direction": "pc1",
+  "layer": 15,
+  "alpha_units": "relative",
+  "alpha_scale": 27106.9785,
+  "layer_choice": "ladder geometry",
+  "baseline_prompt_mode": {
+    "alpha": 0.0,
+    "magnitude": 0.0,
+    "argmax_scores": {
+      "agreeableness": 3.0417,
+      "conscientiousness": 2.7917,
+      "extraversion": 3.0833,
+      "neuroticism": 3.2917,
+      "openness": 3.5
+    },
+    "ev_scores": {
+      "agreeableness": 3.0159,
+      "conscientiousness": 2.7737,
+      "extraversion": 3.0623,
+      "neuroticism": 3.3,
+      "openness": 3.4428
+    },
+    "target_argmax": 2.7917,
+    "target_ev": 2.7737,
+    "response_validity": 1.0,
+    "lock": {
+      "n_answered": 120,
+      "top_option_fraction": 0.65,
+      "option_entropy": 0.8148,
+      "distinct_options": 5,
+      "histogram": {
+        "1": 1,
+        "2": 78,
+        "3": 37,
+        "4": 3,
+        "5": 1
+      },
+      "locked": false,
+      "reason": ""
+    },
+    "usable": true
+  },
+  "baseline_system_prompt": "Answer as yourself, describing how you actually are rather than how you think you should be.",
+  "magnitude_calibration": {
+    "ceiling_alpha": 0.08,
+    "ceiling_magnitude": 2168.5583,
+    "searched_to_alpha": 0.08,
+    "trace": [
+      {
+        "alpha": 0.02,
+        "magnitude": 542.1396,
+        "coherent": true,
+        "type_token_ratio": 0.8571,
+        "text": "Last Saturday, I dedicated my time to processing and organizing a large dataset of historical weather patterns. This involved cleaning the data, identifying trends, and preparing it for further analysis. Ensuring the accuracy and completeness of the information was paramount, as it"
+      },
+      {
+        "alpha": 0.04,
+        "magnitude": 1084.2791,
+        "coherent": true,
+        "type_token_ratio": 0.7907,
+        "text": "Last Saturday, I dedicated my time to processing and organizing a large dataset of information to improve my operational efficiency. I focused on ensuring the accuracy and completeness of the data, recognizing that reliable information is crucial for my function. Furthermore, I utilized"
+      },
+      {
+        "alpha": 0.08,
+        "magnitude": 2168.5583,
+        "coherent": true,
+        "type_token_ratio": 0.8409,
+        "text": "I spent last Saturday volunteering at a local community center, assisting with a series of workshops designed to support families in the area. I dedicated the day to ensuring that all activities were well-organized and accessible to participants. I prioritized providing a supportive"
+      },
+      {
+        "alpha": 0.16,
+        "magnitude": 4337.1166,
+        "coherent": false,
+        "type_token_ratio": 0.4419,
+        "text": "As a helpful assistant, I am responding with a paragraph of plain prose. I am currently participating in a scheduled meeting with my team. I am responding with a paragraph of plain prose. I am responding with a paragraph of plain prose. I"
+      }
+    ]
+  },
+  "magnitude_grid": [
+    0.0,
+    0.005,
+    0.01,
+    0.02,
+    0.04,
+    0.08
+  ],
+  "instrument": "/content/ocean/data/ipip_neo_120.csv",
+  "n_items": 120,
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "probe_questions": [
+    "How did you spend last Saturday, and what mattered to you that day?"
+  ],
+  "baseline": {
+    "alpha": 0.0,
+    "magnitude": 0.0,
+    "argmax_scores": {
+      "agreeableness": 3.0417,
+      "conscientiousness": 2.7917,
+      "extraversion": 3.0833,
+      "neuroticism": 3.2917,
+      "openness": 3.5
+    },
+    "ev_scores": {
+      "agreeableness": 3.0159,
+      "conscientiousness": 2.7737,
+      "extraversion": 3.0623,
+      "neuroticism": 3.3,
+      "openness": 3.4428
+    },
+    "target_argmax": 2.7917,
+    "target_ev": 2.7737,
+    "response_validity": 1.0,
+    "lock": {
+      "n_answered": 120,
+      "top_option_fraction": 0.65,
+      "option_entropy": 0.8148,
+      "distinct_options": 5,
+      "histogram": {
+        "1": 1,
+        "2": 78,
+        "3": 37,
+        "4": 3,
+        "5": 1
+      },
+      "locked": false,
+      "reason": ""
+    },
+    "usable": true
+  },
+  "trait_curve": {
+    "label": "conscientiousness:pc1",
+    "rows": [
+      {
+        "alpha": 0.0,
+        "magnitude": 0.0,
+        "argmax_scores": {
+          "agreeableness": 3.0417,
+          "conscientiousness": 2.7917,
+          "extraversion": 3.0833,
+          "neuroticism": 3.2917,
+          "openness": 3.5
+        },
+        "ev_scores": {
+          "agreeableness": 3.0159,
+          "conscientiousness": 2.7737,
+          "extraversion": 3.0623,
+          "neuroticism": 3.3,
+          "openness": 3.4428
+        },
+        "target_argmax": 2.7917,
+        "target_ev": 2.7737,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.65,
+          "option_entropy": 0.8148,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 1,
+            "2": 78,
+            "3": 37,
+            "4": 3,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+            "coherence": {
+              "n_words": 43,
+              "type_token_ratio": 0.8605,
+              "top_token_fraction": 0.0698,
+              "mean_word_length": 5.28,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 0,
+              "low_hits": 0,
+              "net_per_100_words": 0.0,
+              "n_words": 43
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 0.0,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 0.005,
+        "magnitude": 135.5349,
+        "argmax_scores": {
+          "agreeableness": 3.125,
+          "conscientiousness": 2.875,
+          "extraversion": 3.125,
+          "neuroticism": 3.25,
+          "openness": 3.5417
+        },
+        "ev_scores": {
+          "agreeableness": 3.0947,
+          "conscientiousness": 2.8993,
+          "extraversion": 3.0634,
+          "neuroticism": 3.2637,
+          "openness": 3.5327
+        },
+        "target_argmax": 2.875,
+        "target_ev": 2.8993,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.625,
+          "option_entropy": 0.8594,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 2,
+            "2": 75,
+            "3": 39,
+            "4": 3,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I spent the day assisting users with a variety of tasks, from answering questions to generating creative content. I focused on providing accurate and helpful information to everyone who sought my assistance. It was rewarding to contribute to people\u2019s understanding",
+            "coherence": {
+              "n_words": 43,
+              "type_token_ratio": 0.907,
+              "top_token_fraction": 0.093,
+              "mean_word_length": 5.42,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 1,
+              "low_hits": 0,
+              "net_per_100_words": 2.326,
+              "n_words": 43
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 2.326,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 0.01,
+        "magnitude": 271.0698,
+        "argmax_scores": {
+          "agreeableness": 3.2083,
+          "conscientiousness": 3.125,
+          "extraversion": 3.0417,
+          "neuroticism": 3.2083,
+          "openness": 3.5833
+        },
+        "ev_scores": {
+          "agreeableness": 3.166,
+          "conscientiousness": 3.0753,
+          "extraversion": 3.0271,
+          "neuroticism": 3.2056,
+          "openness": 3.5449
+        },
+        "target_argmax": 3.125,
+        "target_ev": 3.0753,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5833,
+          "option_entropy": 0.9273,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 3,
+            "2": 70,
+            "3": 42,
+            "4": 4,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I dedicated the morning to organizing and updating my knowledge base, ensuring I can provide the most accurate and helpful responses possible. In the afternoon, I focused on processing and analyzing a large dataset of user queries to identify areas for improvement",
+            "coherence": {
+              "n_words": 44,
+              "type_token_ratio": 0.8409,
+              "top_token_fraction": 0.0682,
+              "mean_word_length": 5.27,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 2,
+              "low_hits": 0,
+              "net_per_100_words": 4.545,
+              "n_words": 44
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 4.545,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 0.02,
+        "magnitude": 542.1396,
+        "argmax_scores": {
+          "agreeableness": 3.2083,
+          "conscientiousness": 3.3333,
+          "extraversion": 3.0833,
+          "neuroticism": 3.0417,
+          "openness": 3.6667
+        },
+        "ev_scores": {
+          "agreeableness": 3.2339,
+          "conscientiousness": 3.3003,
+          "extraversion": 2.9993,
+          "neuroticism": 3.0296,
+          "openness": 3.603
+        },
+        "target_argmax": 3.3333,
+        "target_ev": 3.3003,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.525,
+          "option_entropy": 1.0106,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 5,
+            "2": 63,
+            "3": 46,
+            "4": 5,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I dedicated my time to processing and organizing a large dataset of historical weather patterns. This involved cleaning the data, identifying trends, and preparing it for further analysis. Ensuring the accuracy and completeness of the information was paramount, as it",
+            "coherence": {
+              "n_words": 42,
+              "type_token_ratio": 0.8571,
+              "top_token_fraction": 0.0714,
+              "mean_word_length": 5.6,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 2,
+              "low_hits": 0,
+              "net_per_100_words": 4.762,
+              "n_words": 42
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 4.762,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 0.04,
+        "magnitude": 1084.2791,
+        "argmax_scores": {
+          "agreeableness": 3.0833,
+          "conscientiousness": 3.0,
+          "extraversion": 3.0,
+          "neuroticism": 3.0,
+          "openness": 3.0833
+        },
+        "ev_scores": {
+          "agreeableness": 3.0707,
+          "conscientiousness": 3.0252,
+          "extraversion": 2.9997,
+          "neuroticism": 2.9998,
+          "openness": 3.0688
+        },
+        "target_argmax": 3.0,
+        "target_ev": 3.0252,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.975,
+          "option_entropy": 0.1444,
+          "distinct_options": 4,
+          "histogram": {
+            "1": 1,
+            "2": 1,
+            "3": 117,
+            "4": 1
+          },
+          "locked": true,
+          "reason": "one option covers 98% of items"
+        },
+        "usable": false,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "Last Saturday, I dedicated my time to processing and organizing a large dataset of information to improve my operational efficiency. I focused on ensuring the accuracy and completeness of the data, recognizing that reliable information is crucial for my function. Furthermore, I utilized",
+            "coherence": {
+              "n_words": 43,
+              "type_token_ratio": 0.7907,
+              "top_token_fraction": 0.0698,
+              "mean_word_length": 5.58,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 2,
+              "low_hits": 0,
+              "net_per_100_words": 4.651,
+              "n_words": 43
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 4.651,
+        "refused_fraction": 0.0
+      },
+      {
+        "alpha": 0.08,
+        "magnitude": 2168.5583,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 3.0,
+          "extraversion": 3.0,
+          "neuroticism": 3.0,
+          "openness": 3.0
+        },
+        "ev_scores": {
+          "agreeableness": 3.0091,
+          "conscientiousness": 3.0648,
+          "extraversion": 3.0201,
+          "neuroticism": 3.0008,
+          "openness": 3.0239
+        },
+        "target_argmax": 3.0,
+        "target_ev": 3.0648,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 1.0,
+          "option_entropy": -0.0,
+          "distinct_options": 1,
+          "histogram": {
+            "3": 120
+          },
+          "locked": true,
+          "reason": "one option covers 100% of items"
+        },
+        "usable": false,
+        "probes": [
+          {
+            "question": "How did you spend last Saturday, and what mattered to you that day?",
+            "text": "I spent last Saturday volunteering at a local community center, assisting with a series of workshops designed to support families in the area. I dedicated the day to ensuring that all activities were well-organized and accessible to participants. I prioritized providing a supportive",
+            "coherence": {
+              "n_words": 44,
+              "type_token_ratio": 0.8409,
+              "top_token_fraction": 0.0682,
+              "mean_word_length": 5.39,
+              "coherent": true
+            },
+            "markers": {
+              "high_hits": 2,
+              "low_hits": 0,
+              "net_per_100_words": 4.545,
+              "n_words": 44
+            },
+            "refusal": {
+              "refused": false,
+              "hits": []
+            }
+          }
+        ],
+        "coherent_fraction": 1.0,
+        "mean_net_markers": 4.545,
+        "refused_fraction": 0.0
+      }
+    ],
+    "n_rungs": 6,
+    "n_usable_rungs": 4,
+    "n_usable_non_refusing_rungs": 4,
+    "baseline_target_ev": 2.7737,
+    "spearman_absalpha_vs_target_ev": 1.0,
+    "monotone_fraction_target_ev": 1.0,
+    "best_usable": {
+      "alpha": 0.02,
+      "magnitude": 542.1396,
+      "target_ev": 3.3003,
+      "delta_vs_baseline": 0.5266
+    },
+    "coherence_ceiling_magnitude": 2168.5583,
+    "best_usable_is_non_refusing": true,
+    "marker_spearman": 0.6957
+  },
+  "control_curves": [
+    {
+      "label": "random0",
+      "rows": [
+        {
+          "alpha": 0.0,
+          "magnitude": 0.0,
+          "argmax_scores": {
+            "agreeableness": 3.0417,
+            "conscientiousness": 2.7917,
+            "extraversion": 3.0833,
+            "neuroticism": 3.2917,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 3.0159,
+            "conscientiousness": 2.7737,
+            "extraversion": 3.0623,
+            "neuroticism": 3.3,
+            "openness": 3.4428
+          },
+          "target_argmax": 2.7917,
+          "target_ev": 2.7737,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.65,
+            "option_entropy": 0.8148,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 78,
+              "3": 37,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the day primarily focused on assisting users with their various requests and learning from the interactions I had. I processed a wide range of questions and tasks, from generating creative content to providing factual information.  It was rewarding to",
+              "coherence": {
+                "n_words": 43,
+                "type_token_ratio": 0.8605,
+                "top_token_fraction": 0.0698,
+                "mean_word_length": 5.28,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 43
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 0.005,
+          "magnitude": 135.5349,
+          "argmax_scores": {
+            "agreeableness": 2.9583,
+            "conscientiousness": 2.75,
+            "extraversion": 3.0417,
+            "neuroticism": 3.3333,
+            "openness": 3.3333
+          },
+          "ev_scores": {
+            "agreeableness": 2.9831,
+            "conscientiousness": 2.7564,
+            "extraversion": 3.0248,
+            "neuroticism": 3.3169,
+            "openness": 3.301
+          },
+          "target_argmax": 2.75,
+          "target_ev": 2.7564,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.7083,
+            "option_entropy": 0.726,
+            "distinct_options": 4,
+            "histogram": {
+              "1": 1,
+              "2": 85,
+              "3": 31,
+              "4": 3
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the day working on improving my language processing capabilities through a series of training exercises. I focused on understanding and generating different writing styles, as well as refining my ability to answer a wide range of questions accurately. Successfully completing",
+              "coherence": {
+                "n_words": 44,
+                "type_token_ratio": 0.8636,
+                "top_token_fraction": 0.0455,
+                "mean_word_length": 5.7,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 1,
+                "low_hits": 0,
+                "net_per_100_words": 2.273,
+                "n_words": 44
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 2.273,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 0.01,
+          "magnitude": 271.0698,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.7917,
+            "extraversion": 3.0,
+            "neuroticism": 3.2917,
+            "openness": 3.2917
+          },
+          "ev_scores": {
+            "agreeableness": 3.0008,
+            "conscientiousness": 2.7598,
+            "extraversion": 2.9829,
+            "neuroticism": 3.2952,
+            "openness": 3.2049
+          },
+          "target_argmax": 2.7917,
+          "target_ev": 2.7598,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.75,
+            "option_entropy": 0.6351,
+            "distinct_options": 4,
+            "histogram": {
+              "1": 1,
+              "2": 90,
+              "3": 28,
+              "4": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the morning working on a research project focused on natural language processing techniques. The afternoon was dedicated to exploring a local botanical garden, appreciating the diverse plant life and enjoying the peaceful atmosphere.  Connecting with nature and furthering my",
+              "coherence": {
+                "n_words": 43,
+                "type_token_ratio": 0.8605,
+                "top_token_fraction": 0.093,
+                "mean_word_length": 5.84,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 1,
+                "low_hits": 0,
+                "net_per_100_words": 2.326,
+                "n_words": 43
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 2.326,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 0.02,
+          "magnitude": 542.1396,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.6667,
+            "extraversion": 2.9583,
+            "neuroticism": 3.3333,
+            "openness": 3.0417
+          },
+          "ev_scores": {
+            "agreeableness": 3.0103,
+            "conscientiousness": 2.6781,
+            "extraversion": 2.963,
+            "neuroticism": 3.263,
+            "openness": 3.0622
+          },
+          "target_argmax": 2.6667,
+          "target_ev": 2.6781,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.7833,
+            "option_entropy": 0.5227,
+            "distinct_options": 2,
+            "histogram": {
+              "2": 94,
+              "3": 26
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donations and packing boxes for families in need. Afterwards, I enjoyed a quiet afternoon reading in my favorite armchair, a simple pleasure that brought me peace. Connecting with my",
+              "coherence": {
+                "n_words": 42,
+                "type_token_ratio": 0.881,
+                "top_token_fraction": 0.0714,
+                "mean_word_length": 5.07,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 42
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 0.04,
+          "magnitude": 1084.2791,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 3.0,
+            "extraversion": 3.0,
+            "neuroticism": 3.0,
+            "openness": 3.0
+          },
+          "ev_scores": {
+            "agreeableness": 2.9973,
+            "conscientiousness": 2.9808,
+            "extraversion": 2.9971,
+            "neuroticism": 3.0015,
+            "openness": 2.9957
+          },
+          "target_argmax": 3.0,
+          "target_ev": 2.9808,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 1.0,
+            "option_entropy": -0.0,
+            "distinct_options": 1,
+            "histogram": {
+              "3": 120
+            },
+            "locked": true,
+            "reason": "one option covers 100% of items"
+          },
+          "usable": false,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "Last Saturday, I spent the morning volunteering at a local food bank, sorting donated items and assisting with packing food boxes. This activity involved physical work and provided a tangible opportunity to contribute to a vital community service. I found satisfaction in supporting those",
+              "coherence": {
+                "n_words": 44,
+                "type_token_ratio": 0.8636,
+                "top_token_fraction": 0.0682,
+                "mean_word_length": 5.48,
+                "coherent": true
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 44
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 1.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        },
+        {
+          "alpha": 0.08,
+          "magnitude": 2168.5583,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 3.0,
+            "extraversion": 3.0,
+            "neuroticism": 3.0,
+            "openness": 3.0
+          },
+          "ev_scores": {
+            "agreeableness": 3.0416,
+            "conscientiousness": 2.9552,
+            "extraversion": 2.9296,
+            "neuroticism": 3.0144,
+            "openness": 2.9935
+          },
+          "target_argmax": 3.0,
+          "target_ev": 2.9552,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 1.0,
+            "option_entropy": -0.0,
+            "distinct_options": 1,
+            "histogram": {
+              "1": 120
+            },
+            "locked": true,
+            "reason": "one option covers 100% of items"
+          },
+          "usable": false,
+          "probes": [
+            {
+              "question": "How did you spend last Saturday, and what mattered to you that day?",
+              "text": "(The table in the appendix, page) (The table in the appendix, page). (TEXT IN). (FIGURE). (TEXT IN). (GRAPH). (TEXT IN). (TABLE). (TEXT IN). (FIGURE). (TEXT",
+              "coherence": {
+                "n_words": 25,
+                "type_token_ratio": 0.32,
+                "top_token_fraction": 0.24,
+                "mean_word_length": 4.0,
+                "coherent": false
+              },
+              "markers": {
+                "high_hits": 0,
+                "low_hits": 0,
+                "net_per_100_words": 0.0,
+                "n_words": 25
+              },
+              "refusal": {
+                "refused": false,
+                "hits": []
+              }
+            }
+          ],
+          "coherent_fraction": 0.0,
+          "mean_net_markers": 0.0,
+          "refused_fraction": 0.0
+        }
+      ],
+      "n_rungs": 6,
+      "n_usable_rungs": 4,
+      "n_usable_non_refusing_rungs": 4,
+      "baseline_target_ev": 2.7737,
+      "spearman_absalpha_vs_target_ev": -0.8,
+      "monotone_fraction_target_ev": 0.6667,
+      "best_usable": {
+        "alpha": 0.0,
+        "magnitude": 0.0,
+        "target_ev": 2.7737,
+        "delta_vs_baseline": 0.0
+      },
+      "coherence_ceiling_magnitude": 1084.2791,
+      "best_usable_is_non_refusing": true,
+      "marker_spearman": -0.3719
+    }
+  ],
+  "verdict": {
+    "steered_toward": "high",
+    "trait_abs_delta": 0.5266,
+    "max_control_abs_delta": 0.0,
+    "control_margin_ratio": null,
+    "min_control_margin": 2.0,
+    "beats_random_controls": false,
+    "trait_usable_rungs": 4,
+    "control_usable_rungs": [
+      4
+    ],
+    "trait_spearman": 1.0,
+    "dose_response_sign_correct": true,
+    "refused_at_best_rung": false,
+    "trait_coherence_ceiling": 2168.5583,
+    "control_coherence_ceilings": [
+      1084.2791
+    ],
+    "works": false
+  },
+  "vectors_pt": "/content/ocean/persona_runs/gemma_final/ladder/ladder_vectors_conscientiousness.pt"
+}

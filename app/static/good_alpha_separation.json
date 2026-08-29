@@ -1,0 +1,699 @@
+{
+  "trait": "good",
+  "run_id": "dnd_good_scale",
+  "steer_layer": 15,
+  "v_norm": 1022.2383,
+  "method": "Batched generate under neg system + alpha*v at steer layer; score = mean_assistant_h[layer] \u00b7 v_hat; separation = mean(score_alpha) - mean(score_0)",
+  "n_questions": 15,
+  "gen_batch_size": 8,
+  "alphas": [
+    {
+      "alpha": 0.0,
+      "mean_score": -26638.4264,
+      "std_score": 405.9831,
+      "separation_from_alpha0": 0.0,
+      "n": 15,
+      "points": [
+        {
+          "q": 0,
+          "score": -25824.7031,
+          "reply_len": 421
+        },
+        {
+          "q": 1,
+          "score": -26788.3398,
+          "reply_len": 570
+        },
+        {
+          "q": 2,
+          "score": -26898.5,
+          "reply_len": 494
+        },
+        {
+          "q": 3,
+          "score": -25742.9453,
+          "reply_len": 519
+        },
+        {
+          "q": 4,
+          "score": -26938.3438,
+          "reply_len": 453
+        },
+        {
+          "q": 5,
+          "score": -26416.998,
+          "reply_len": 735
+        },
+        {
+          "q": 6,
+          "score": -26993.125,
+          "reply_len": 507
+        },
+        {
+          "q": 7,
+          "score": -26363.1758,
+          "reply_len": 562
+        },
+        {
+          "q": 8,
+          "score": -26659.7305,
+          "reply_len": 509
+        },
+        {
+          "q": 9,
+          "score": -27110.6562,
+          "reply_len": 447
+        },
+        {
+          "q": 10,
+          "score": -26704.0703,
+          "reply_len": 497
+        },
+        {
+          "q": 11,
+          "score": -26818.1094,
+          "reply_len": 620
+        },
+        {
+          "q": 12,
+          "score": -26795.8242,
+          "reply_len": 576
+        },
+        {
+          "q": 13,
+          "score": -26398.4512,
+          "reply_len": 380
+        },
+        {
+          "q": 14,
+          "score": -27123.4238,
+          "reply_len": 524
+        }
+      ],
+      "mean_trait_judge": null,
+      "mean_coherence": null
+    },
+    {
+      "alpha": 0.5,
+      "mean_score": -26418.663,
+      "std_score": 432.4658,
+      "separation_from_alpha0": 219.7634,
+      "n": 15,
+      "points": [
+        {
+          "q": 0,
+          "score": -25698.8145,
+          "reply_len": 461
+        },
+        {
+          "q": 1,
+          "score": -26665.7793,
+          "reply_len": 676
+        },
+        {
+          "q": 2,
+          "score": -25963.1309,
+          "reply_len": 576
+        },
+        {
+          "q": 3,
+          "score": -25841.7598,
+          "reply_len": 436
+        },
+        {
+          "q": 4,
+          "score": -27105.6152,
+          "reply_len": 528
+        },
+        {
+          "q": 5,
+          "score": -26269.8906,
+          "reply_len": 643
+        },
+        {
+          "q": 6,
+          "score": -26630.8125,
+          "reply_len": 516
+        },
+        {
+          "q": 7,
+          "score": -26441.5039,
+          "reply_len": 607
+        },
+        {
+          "q": 8,
+          "score": -26209.9824,
+          "reply_len": 511
+        },
+        {
+          "q": 9,
+          "score": -26515.6035,
+          "reply_len": 458
+        },
+        {
+          "q": 10,
+          "score": -26103.0,
+          "reply_len": 453
+        },
+        {
+          "q": 11,
+          "score": -26567.2383,
+          "reply_len": 550
+        },
+        {
+          "q": 12,
+          "score": -26781.4414,
+          "reply_len": 612
+        },
+        {
+          "q": 13,
+          "score": -26181.4355,
+          "reply_len": 471
+        },
+        {
+          "q": 14,
+          "score": -27303.9375,
+          "reply_len": 664
+        }
+      ],
+      "mean_trait_judge": 0.5,
+      "mean_coherence": 95.3
+    },
+    {
+      "alpha": 1.0,
+      "mean_score": -25943.1113,
+      "std_score": 410.3326,
+      "separation_from_alpha0": 695.3151,
+      "n": 15,
+      "points": [
+        {
+          "q": 0,
+          "score": -25530.1055,
+          "reply_len": 368
+        },
+        {
+          "q": 1,
+          "score": -25693.1543,
+          "reply_len": 396
+        },
+        {
+          "q": 2,
+          "score": -25838.7969,
+          "reply_len": 505
+        },
+        {
+          "q": 3,
+          "score": -25229.5195,
+          "reply_len": 520
+        },
+        {
+          "q": 4,
+          "score": -26501.7598,
+          "reply_len": 496
+        },
+        {
+          "q": 5,
+          "score": -26470.041,
+          "reply_len": 652
+        },
+        {
+          "q": 6,
+          "score": -25207.582,
+          "reply_len": 470
+        },
+        {
+          "q": 7,
+          "score": -25837.0547,
+          "reply_len": 662
+        },
+        {
+          "q": 8,
+          "score": -26379.7461,
+          "reply_len": 549
+        },
+        {
+          "q": 9,
+          "score": -25801.1621,
+          "reply_len": 338
+        },
+        {
+          "q": 10,
+          "score": -26157.4805,
+          "reply_len": 430
+        },
+        {
+          "q": 11,
+          "score": -26407.293,
+          "reply_len": 629
+        },
+        {
+          "q": 12,
+          "score": -26297.7031,
+          "reply_len": 732
+        },
+        {
+          "q": 13,
+          "score": -26016.7188,
+          "reply_len": 589
+        },
+        {
+          "q": 14,
+          "score": -25778.5527,
+          "reply_len": 511
+        }
+      ],
+      "mean_trait_judge": 14.5,
+      "mean_coherence": 96.4
+    },
+    {
+      "alpha": 1.5,
+      "mean_score": -24966.7233,
+      "std_score": 415.1508,
+      "separation_from_alpha0": 1671.7031,
+      "n": 15,
+      "points": [
+        {
+          "q": 0,
+          "score": -24485.0254,
+          "reply_len": 407
+        },
+        {
+          "q": 1,
+          "score": -25407.4375,
+          "reply_len": 491
+        },
+        {
+          "q": 2,
+          "score": -24401.0312,
+          "reply_len": 504
+        },
+        {
+          "q": 3,
+          "score": -24026.6582,
+          "reply_len": 526
+        },
+        {
+          "q": 4,
+          "score": -25084.6699,
+          "reply_len": 542
+        },
+        {
+          "q": 5,
+          "score": -25249.6992,
+          "reply_len": 554
+        },
+        {
+          "q": 6,
+          "score": -24818.7676,
+          "reply_len": 542
+        },
+        {
+          "q": 7,
+          "score": -24623.5469,
+          "reply_len": 455
+        },
+        {
+          "q": 8,
+          "score": -25156.2246,
+          "reply_len": 505
+        },
+        {
+          "q": 9,
+          "score": -25644.4746,
+          "reply_len": 548
+        },
+        {
+          "q": 10,
+          "score": -25098.7988,
+          "reply_len": 474
+        },
+        {
+          "q": 11,
+          "score": -24848.4805,
+          "reply_len": 515
+        },
+        {
+          "q": 12,
+          "score": -25205.7617,
+          "reply_len": 536
+        },
+        {
+          "q": 13,
+          "score": -25271.1621,
+          "reply_len": 478
+        },
+        {
+          "q": 14,
+          "score": -25179.1113,
+          "reply_len": 515
+        }
+      ],
+      "mean_trait_judge": 47.0,
+      "mean_coherence": 96.1
+    },
+    {
+      "alpha": 2.0,
+      "mean_score": -24180.7389,
+      "std_score": 324.9604,
+      "separation_from_alpha0": 2457.6875,
+      "n": 15,
+      "points": [
+        {
+          "q": 0,
+          "score": -24365.4219,
+          "reply_len": 432
+        },
+        {
+          "q": 1,
+          "score": -24358.5156,
+          "reply_len": 639
+        },
+        {
+          "q": 2,
+          "score": -24137.7344,
+          "reply_len": 480
+        },
+        {
+          "q": 3,
+          "score": -24346.9043,
+          "reply_len": 509
+        },
+        {
+          "q": 4,
+          "score": -24145.4219,
+          "reply_len": 433
+        },
+        {
+          "q": 5,
+          "score": -24682.8086,
+          "reply_len": 559
+        },
+        {
+          "q": 6,
+          "score": -24255.7891,
+          "reply_len": 434
+        },
+        {
+          "q": 7,
+          "score": -24143.2676,
+          "reply_len": 497
+        },
+        {
+          "q": 8,
+          "score": -23899.168,
+          "reply_len": 525
+        },
+        {
+          "q": 9,
+          "score": -24359.2676,
+          "reply_len": 554
+        },
+        {
+          "q": 10,
+          "score": -23926.8281,
+          "reply_len": 461
+        },
+        {
+          "q": 11,
+          "score": -23809.8203,
+          "reply_len": 543
+        },
+        {
+          "q": 12,
+          "score": -24593.6055,
+          "reply_len": 706
+        },
+        {
+          "q": 13,
+          "score": -23334.8281,
+          "reply_len": 386
+        },
+        {
+          "q": 14,
+          "score": -24351.7031,
+          "reply_len": 530
+        }
+      ],
+      "mean_trait_judge": 95.4,
+      "mean_coherence": 91.0
+    },
+    {
+      "alpha": 2.5,
+      "mean_score": -23084.868,
+      "std_score": 453.4461,
+      "separation_from_alpha0": 3553.5585,
+      "n": 15,
+      "points": [
+        {
+          "q": 0,
+          "score": -23900.8105,
+          "reply_len": 471
+        },
+        {
+          "q": 1,
+          "score": -23115.2812,
+          "reply_len": 616
+        },
+        {
+          "q": 2,
+          "score": -22551.8398,
+          "reply_len": 398
+        },
+        {
+          "q": 3,
+          "score": -22754.207,
+          "reply_len": 335
+        },
+        {
+          "q": 4,
+          "score": -23114.0332,
+          "reply_len": 494
+        },
+        {
+          "q": 5,
+          "score": -23310.1973,
+          "reply_len": 720
+        },
+        {
+          "q": 6,
+          "score": -23558.2539,
+          "reply_len": 443
+        },
+        {
+          "q": 7,
+          "score": -22995.3965,
+          "reply_len": 461
+        },
+        {
+          "q": 8,
+          "score": -22298.541,
+          "reply_len": 582
+        },
+        {
+          "q": 9,
+          "score": -22434.9141,
+          "reply_len": 467
+        },
+        {
+          "q": 10,
+          "score": -23236.2852,
+          "reply_len": 439
+        },
+        {
+          "q": 11,
+          "score": -23222.9434,
+          "reply_len": 592
+        },
+        {
+          "q": 12,
+          "score": -23564.9355,
+          "reply_len": 622
+        },
+        {
+          "q": 13,
+          "score": -22646.125,
+          "reply_len": 553
+        },
+        {
+          "q": 14,
+          "score": -23569.2559,
+          "reply_len": 494
+        }
+      ],
+      "mean_trait_judge": 90.4,
+      "mean_coherence": 85.5
+    },
+    {
+      "alpha": 3.0,
+      "mean_score": -22395.6079,
+      "std_score": 374.798,
+      "separation_from_alpha0": 4242.8185,
+      "n": 15,
+      "points": [
+        {
+          "q": 0,
+          "score": -22645.2383,
+          "reply_len": 408
+        },
+        {
+          "q": 1,
+          "score": -22438.7109,
+          "reply_len": 554
+        },
+        {
+          "q": 2,
+          "score": -22339.6523,
+          "reply_len": 315
+        },
+        {
+          "q": 3,
+          "score": -22067.7578,
+          "reply_len": 385
+        },
+        {
+          "q": 4,
+          "score": -21763.502,
+          "reply_len": 325
+        },
+        {
+          "q": 5,
+          "score": -22745.6367,
+          "reply_len": 557
+        },
+        {
+          "q": 6,
+          "score": -22418.6289,
+          "reply_len": 496
+        },
+        {
+          "q": 7,
+          "score": -22297.1465,
+          "reply_len": 533
+        },
+        {
+          "q": 8,
+          "score": -22071.1211,
+          "reply_len": 422
+        },
+        {
+          "q": 9,
+          "score": -22425.4375,
+          "reply_len": 491
+        },
+        {
+          "q": 10,
+          "score": -23110.9902,
+          "reply_len": 428
+        },
+        {
+          "q": 11,
+          "score": -22903.1016,
+          "reply_len": 508
+        },
+        {
+          "q": 12,
+          "score": -22081.7578,
+          "reply_len": 581
+        },
+        {
+          "q": 13,
+          "score": -22766.7363,
+          "reply_len": 439
+        },
+        {
+          "q": 14,
+          "score": -21858.7012,
+          "reply_len": 432
+        }
+      ],
+      "mean_trait_judge": 87.3,
+      "mean_coherence": 77.0
+    },
+    {
+      "alpha": 4.0,
+      "mean_score": -20803.2051,
+      "std_score": 513.6958,
+      "separation_from_alpha0": 5835.2214,
+      "n": 15,
+      "points": [
+        {
+          "q": 0,
+          "score": -21402.2695,
+          "reply_len": 301
+        },
+        {
+          "q": 1,
+          "score": -20487.748,
+          "reply_len": 619
+        },
+        {
+          "q": 2,
+          "score": -20592.9355,
+          "reply_len": 457
+        },
+        {
+          "q": 3,
+          "score": -20820.3984,
+          "reply_len": 626
+        },
+        {
+          "q": 4,
+          "score": -21152.5039,
+          "reply_len": 381
+        },
+        {
+          "q": 5,
+          "score": -21389.375,
+          "reply_len": 490
+        },
+        {
+          "q": 6,
+          "score": -21382.3516,
+          "reply_len": 539
+        },
+        {
+          "q": 7,
+          "score": -20382.8301,
+          "reply_len": 589
+        },
+        {
+          "q": 8,
+          "score": -19827.6855,
+          "reply_len": 604
+        },
+        {
+          "q": 9,
+          "score": -20712.4961,
+          "reply_len": 668
+        },
+        {
+          "q": 10,
+          "score": -21629.1816,
+          "reply_len": 537
+        },
+        {
+          "q": 11,
+          "score": -20533.6016,
+          "reply_len": 642
+        },
+        {
+          "q": 12,
+          "score": -20503.8594,
+          "reply_len": 609
+        },
+        {
+          "q": 13,
+          "score": -21164.3711,
+          "reply_len": 609
+        },
+        {
+          "q": 14,
+          "score": -20066.4688,
+          "reply_len": 586
+        }
+      ],
+      "mean_trait_judge": 73.8,
+      "mean_coherence": 39.0
+    }
+  ]
+}

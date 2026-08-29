@@ -1,0 +1,72 @@
+{
+  "note": "Partial capture of the first opposite-prior IPIP run (Colab L4). The session was reclaimed by the backend before neuroticism and agreeableness-down completed, and before summary.json was written, so these numbers were transcribed from the streaming run log. Re-run to regenerate with full artifacts.",
+  "stage": "opposite_prior_ipip_partial",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "instrument": "ipip_neo_120.csv",
+  "direction": "pc1",
+  "readout": "expected value over Likert option token probabilities (no judge, no generated answer)",
+  "design": {
+    "up": "baseline = ladder level 2 prompt, steer +v, reference = level 9 prompt",
+    "down": "baseline = ladder level 8 prompt, steer -v, reference = level 1 prompt"
+  },
+  "table": [
+    {
+      "trait": "extraversion",
+      "pole": "up",
+      "layer": 15,
+      "span": 741.4,
+      "prior_ev": 1.506,
+      "reference_ev": 4.831,
+      "prompt_gap": 3.325,
+      "magnitude_grid": [111.2, 233.0, 354.8, 476.6, 598.4, 720.2, 842.0, 963.8],
+      "trait_ev_curve": [1.506, 1.405, 1.275, 1.345, 1.359, 1.829, null, 3.174, 4.564],
+      "trait_ev_curve_note": "rung at 720.2 not captured in the log window; endpoint 963.8 -> 4.564",
+      "control_ev_curve": [1.506, 1.481, 1.454, 1.441, 1.397, 1.384, 1.388, 1.518, 2.151],
+      "delta": 3.058,
+      "pct_of_prompt_gap": 92.0,
+      "max_control_abs_delta": 0.645,
+      "margin": 4.74,
+      "monotone": false,
+      "monotone_note": "dips to 1.275 at 233 before rising steeply from 598 onward"
+    },
+    {
+      "trait": "extraversion",
+      "pole": "down",
+      "layer": 15,
+      "span": 741.4,
+      "prior_ev": 4.834,
+      "reference_ev": 1.578,
+      "prompt_gap": -3.256,
+      "magnitude_grid": [111.2, 233.0, 354.8, 476.6, 598.4, 720.2, 842.0, 963.8],
+      "trait_ev_curve": [4.834, 4.830, 4.750, 4.511, 4.059, 3.691, 3.120, 2.974, 2.976],
+      "control_ev_curve": [4.834, 4.833, 4.829, 4.770, 4.613, 4.183, 3.300, 2.721, 2.718],
+      "delta": -1.86,
+      "pct_of_prompt_gap": 57.1,
+      "max_control_abs_delta": 2.116,
+      "margin": 0.88,
+      "monotone": true,
+      "confound_note": "Control moves further than the trait vector at the endpoint. From a high prior, degradation and the intended effect both push the score down, so down-poles are confounded by construction. The trait vector leads the control only in the mid window (476-598: trait 4.06/3.69 vs control 4.61/4.18)."
+    },
+    {
+      "trait": "agreeableness",
+      "pole": "up",
+      "layer": 15,
+      "span": 819.3,
+      "prior_ev": 1.651,
+      "reference_ev": 4.578,
+      "prompt_gap": 2.926,
+      "magnitude_grid": [122.9, 257.5, 392.1, 526.7, 661.3, 795.9, 930.5, 1065.1],
+      "trait_ev_curve": [1.651, 1.666, 1.709, 1.775, 2.076, 2.322, 2.502, 2.729, 2.978],
+      "control_ev_curve_partial": [1.651, 1.688, 1.853],
+      "delta": 1.327,
+      "pct_of_prompt_gap": 45.4,
+      "monotone": true,
+      "control_note": "control curve incomplete at time of session loss"
+    }
+  ],
+  "not_run": ["agreeableness-down", "neuroticism-up", "neuroticism-down"],
+  "comparison_to_persona_free_baseline": {
+    "extraversion_up": {"persona_free_delta": 0.326, "opposite_prior_delta": 3.058},
+    "agreeableness_up": {"persona_free_delta": 0.268, "opposite_prior_delta": 1.327}
+  }
+}

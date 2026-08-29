@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Good trait — PCA vs α (L15)</title>
+<style>
+  :root { font-family: system-ui, sans-serif; color: #111; background: #fafafa; }
+  body { margin: 0; padding: 0; }
+  body.mode-2d { padding: 1rem 1.25rem 2rem; max-width: 720px; }
+  body.mode-3d { overflow: hidden; }
+  h1 { font-size: 1.15rem; margin: 0 0 .25rem; }
+  .sub { color: #555; font-size: .85rem; margin-bottom: .75rem; line-height: 1.45; }
+  .card { background: #fff; border: 1px solid #7c3aed; border-radius: 10px; padding: .9rem 1rem 1rem;
+    box-shadow: 0 0 0 2px rgba(124,58,237,.12); }
+  .card h2 { font-size: .95rem; margin: 0 0 .35rem; display: flex; justify-content: space-between; align-items: center; }
+  .badge { font-size: .7rem; background: #7c3aed; color: #fff; padding: .1rem .45rem; border-radius: 4px; }
+  .meta { font-size: .78rem; color: #555; margin-bottom: .5rem; min-height: 2.4em; }
+  .meta b { color: #111; }
+  svg { width: 100%; height: auto; display: block; background: #fcfcfd; border-radius: 6px; }
+  .leg { display: flex; gap: 1.25rem; font-size: .8rem; margin: .6rem 0 .75rem; flex-wrap: wrap; }
+  .leg span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 5px; }
+  .leg .base::before { background: #dc2626; }
+  .leg .steer::before { background: #16a34a; }
+  .leg .ghost::before { background: #d1d5db; }
+  .controls { margin-top: 1rem; padding-top: .75rem; border-top: 1px solid #eee; }
+  .slider-row { display: flex; align-items: center; gap: .75rem; }
+  .slider-row label { font-size: .85rem; font-weight: 600; min-width: 2.5rem; }
+  input[type=range] { flex: 1; accent-color: #7c3aed; }
+  .alpha-val { font-size: 1.1rem; font-weight: 700; color: #7c3aed; min-width: 2.5rem; text-align: right; }
+  .ticks { display: flex; justify-content: space-between; font-size: .7rem; color: #888; margin-top: .2rem; }
+  .err { color: #dc2626; font-size: .9rem; }
+  .view-toggle { display: inline-flex; border: 1px solid #e5e7eb; border-radius: 8px; overflow: hidden; margin-bottom: .75rem; }
+  .view-toggle button { border: 0; background: #fff; padding: .35rem .7rem; font-size: .78rem; font-weight: 600; cursor: pointer; color: #555; }
+  .view-toggle button.active { background: #7c3aed; color: #fff; }
+  #canvas3d { display: none; position: fixed; inset: 0; z-index: 0; }
+  body.mode-3d #wrap2d { display: none; }
+  body.mode-3d #canvas3d { display: block; }
+  #overlay3d { display: none; }
+  body.mode-3d #overlay3d { display: block; }
+  #overlay3d .panel { position: fixed; top: 1rem; left: 1rem; z-index: 10; pointer-events: none;
+    background: rgba(255,255,255,.96); border: 1px solid #e5e7eb; border-radius: 10px; padding: .85rem 1rem;
+    max-width: 22rem; box-shadow: 0 4px 18px rgba(0,0,0,.06); }
+  #overlay3d .toggle { position: fixed; top: 1rem; right: 1rem; z-index: 11;
+    background: rgba(255,255,255,.96); border: 1px solid #e5e7eb; border-radius: 10px; padding: .35rem; }
+  #overlay3d .bottom { position: fixed; bottom: 1.25rem; left: 50%; transform: translateX(-50%); z-index: 10;
+    width: min(520px, calc(100vw - 2rem)); background: rgba(255,255,255,.96); border: 1px solid #e5e7eb;
+    border-radius: 10px; padding: .75rem 1rem; box-shadow: 0 4px 18px rgba(0,0,0,.06); }
+  #hint3d { position: fixed; bottom: 5.5rem; left: 50%; transform: translateX(-50%); font-size: .65rem; color: #9ca3af; z-index: 9; }
+</style>
+</head>
+<body class="mode-3d">
+<div id="wrap2d">
+  <h1>Good trait — activation PCA vs steer α</h1>
+  <p class="sub">Fixed PCA on <code>h<sub>α</sub>−h<sub>0</sub></code> diffs. Scrub α — green steered points separate from red baseline.
+    <span id="scale-note" style="color:#9ca3af"> 2D uses <b>equal axis scale</b> (PC1 dominates; PC2 is ~6% of PC1 span).</span></p>
+  <div class="view-toggle" id="toggle2d">
+    <button data-mode="2d">2D (PC1×PC2)</button>
+    <button data-mode="3d" class="active">3D (PC1×PC2×PC3)</button>
+  </div>
+  <div class="card">
+    <h2>Layer <span id="layer-lbl">15</span> <span class="badge">steer layer</span></h2>
+    <div class="meta" id="meta">Loading…</div>
+    <svg id="plot" viewBox="0 0 480 360"></svg>
+    <div class="leg"><span class="base">baseline (α=0)</span><span class="steer">steered (α=<span id="leg-alpha">0</span>)</span></div>
+    <div class="controls">
+      <div class="slider-row"><label for="alpha">α</label><input type="range" id="alpha" min="0" max="0" value="0"/><span class="alpha-val" id="alpha-val">0</span></div>
+      <div class="ticks" id="ticks"></div>
+    </div>
+  </div>
+  <p class="err" id="err" hidden></p>
+</div>
+<div id="canvas3d"></div>
+<div id="overlay3d">
+  <div class="panel">
+    <h1>Good trait — PCA vs α</h1>
+    <p class="sub">Same α-sweep data. Scrub α to see separation grow in 3D.</p>
+    <div class="meta" id="meta3d">Loading…</div>
+    <div class="leg"><span class="base">baseline</span><span class="steer">α=<span id="leg-alpha-3d">0</span></span><span class="ghost">other α</span></div>
+  </div>
+  <div class="toggle view-toggle" id="toggle3d">
+    <button data-mode="2d">2D</button>
+    <button data-mode="3d" class="active">3D</button>
+  </div>
+  <div class="bottom">
+    <div class="slider-row"><label for="alpha3d">α</label><input type="range" id="alpha3d" min="0" max="0" value="0"/><span class="alpha-val" id="alpha-val-3d">0</span></div>
+    <div class="ticks" id="ticks3d"></div>
+  </div>
+  <div id="hint3d">drag to rotate · scroll to zoom</div>
+</div>
+<script type="module">
+import * as THREE from 'https://esm.sh/three@0.158.0';
+import { OrbitControls } from 'https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls';
+
+const W2 = 480, H2 = 360, m2 = { t: 16, r: 16, b: 32, l: 36 };
+const iw = W2 - m2.l - m2.r, ih = H2 - m2.t - m2.b;
+let DATA = null, renderer, scene, camera, controls, norm;
+let baselineGrp, steeredGrp, ghostGrp;
+
+function sx(v, x0, x1) { return m2.l + ((v - x0) / (x1 - x0 || 1)) * iw; }
+function sy(v, y0, y1) { return m2.t + (1 - (v - y0) / (y1 - y0 || 1)) * ih; }
+
+function equalExtent(baseline, steered) {
+  const pts = [...baseline, ...steered];
+  const xs = pts.map(p => p.pc1), ys = pts.map(p => p.pc2);
+  const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+  const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+  const span = Math.max(Math.max(...xs) - Math.min(...xs), Math.max(...ys) - Math.min(...ys), 1) * 1.1;
+  const h = span / 2;
+  return { pc1: [cx - h, cx + h], pc2: [cy - h, cy + h] };
+}
+
+function draw2d(baseline, steered) {
+  const svg = document.getElementById('plot');
+  while (svg.firstChild) svg.removeChild(svg.firstChild);
+  const extent = equalExtent(baseline, steered);
+  const [x0, x1] = extent.pc1, [y0, y1] = extent.pc2;
+  const line = (x1a,y1a,x2a,y2a) => {
+    const l = document.createElementNS('http://www.w3.org/2000/svg','line');
+    l.setAttribute('x1',x1a); l.setAttribute('y1',y1a); l.setAttribute('x2',x2a); l.setAttribute('y2',y2a);
+    l.setAttribute('stroke','#e5e7eb'); svg.appendChild(l);
+  };
+  line(m2.l, m2.t+ih, m2.l+iw, m2.t+ih); line(m2.l, m2.t, m2.l, m2.t+ih);
+  const dot = (p, col, r) => {
+    const c = document.createElementNS('http://www.w3.org/2000/svg','circle');
+    c.setAttribute('cx', sx(p.pc1,x0,x1)); c.setAttribute('cy', sy(p.pc2,y0,y1));
+    c.setAttribute('r', r); c.setAttribute('fill', col); c.setAttribute('fill-opacity','0.78');
+    svg.appendChild(c);
+  };
+  baseline.forEach(p => dot(p, '#dc2626', 4));
+  steered.forEach(p => dot(p, '#16a34a', 4.5));
+  const lbl = (t,x,y) => {
+    const el = document.createElementNS('http://www.w3.org/2000/svg','text');
+    el.setAttribute('x',x); el.setAttribute('y',y); el.setAttribute('font-size','10'); el.setAttribute('fill','#6b7280');
+    el.textContent = t; svg.appendChild(el);
+  };
+  lbl('PC1 →', m2.l + iw - 44, m2.t + ih + 18);
+  lbl('PC2 ↑', m2.l + 4, m2.t + 12);
+}
+
+function metaHtml(row) {
+  return `sep |ΔPC1| = <b>${row.separation_pc1.toFixed(1)}</b> · sep h·v̂ = <b>${row.separation_h_vhat.toFixed(1)}</b>` +
+    (row.separation_pc3d != null ? ` · sep 3D = <b>${row.separation_pc3d.toFixed(1)}</b>` : '') +
+    (row.mean_trait_judge != null ? ` · trait = <b>${row.mean_trait_judge}</b>` : '') +
+    (row.mean_coherence != null ? ` · coh = <b>${row.mean_coherence}</b>` : '') +
+    ` · n=${DATA.n_questions}`;
+}
+
+function normPt(p) {
+  return new THREE.Vector3(
+    (p.pc1-norm.center[0])/norm.scale,
+    (p.pc2-norm.center[1])/norm.scale,
+    ((p.pc3??0)-norm.center[2])/norm.scale,
+  );
+}
+function mkPts(pts, color, size, opacity=0.85) {
+  const pos = new Float32Array(pts.length*3);
+  pts.forEach((p,i) => { const v=normPt(p); pos[i*3]=v.x; pos[i*3+1]=v.y; pos[i*3+2]=v.z; });
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  return new THREE.Points(geo, new THREE.PointsMaterial({ color, size, sizeAttenuation: true, transparent: opacity<1, opacity }));
+}
+function clearGrp(g) {
+  while (g.children.length) { const c=g.children[0]; c.geometry?.dispose(); c.material?.dispose(); g.remove(c); }
+}
+
+function update3d(idx) {
+  const row = DATA.alphas[idx];
+  clearGrp(steeredGrp); clearGrp(ghostGrp);
+  const ghosts = [];
+  DATA.alphas.forEach((r,i) => { if (i!==idx) ghosts.push(...r.steered); });
+  ghostGrp.add(mkPts(ghosts, 0xd1d5db, 0.045, 0.35));
+  steeredGrp.add(mkPts(row.steered, 0x16a34a, 0.075, 0.9));
+}
+
+function render(idx) {
+  const row = DATA.alphas[idx];
+  document.getElementById('alpha-val').textContent = row.alpha;
+  document.getElementById('alpha-val-3d').textContent = row.alpha;
+  document.getElementById('leg-alpha').textContent = row.alpha;
+  document.getElementById('leg-alpha-3d').textContent = row.alpha;
+  document.getElementById('alpha').value = idx;
+  document.getElementById('alpha3d').value = idx;
+  const mh = metaHtml(row);
+  document.getElementById('meta').innerHTML = mh;
+  document.getElementById('meta3d').innerHTML = mh;
+  draw2d(DATA.baseline, row.steered);
+  update3d(idx);
+}
+
+function setMode(mode) {
+  document.body.className = mode === '3d' ? 'mode-3d' : 'mode-2d';
+  document.querySelectorAll('.view-toggle button').forEach(b => {
+    b.classList.toggle('active', b.dataset.mode === mode);
+  });
+  if (mode === '3d' && renderer) {
+    renderer.setSize(innerWidth, innerHeight);
+    camera.aspect = innerWidth/innerHeight;
+    camera.updateProjectionMatrix();
+  }
+}
+
+function init3d() {
+  const mount = document.getElementById('canvas3d');
+  renderer = new THREE.WebGLRenderer({ antialias: true });
+  renderer.setSize(innerWidth, innerHeight);
+  renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+  mount.appendChild(renderer.domElement);
+  scene = new THREE.Scene();
+  scene.background = new THREE.Color(0xfafafa);
+  camera = new THREE.PerspectiveCamera(42, innerWidth/innerHeight, 0.01, 100);
+  camera.position.set(1.4, 1.0, 1.6);
+  controls = new OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true;
+  const all = [...DATA.baseline]; DATA.alphas.forEach(r => all.push(...r.steered));
+  const c1=all.map(p=>p.pc1), c2=all.map(p=>p.pc2), c3=all.map(p=>p.pc3??0);
+  norm = { center: [(Math.min(...c1)+Math.max(...c1))/2,(Math.min(...c2)+Math.max(...c2))/2,(Math.min(...c3)+Math.max(...c3))/2],
+    scale: Math.max(Math.max(...c1)-Math.min(...c1),Math.max(...c2)-Math.min(...c2),Math.max(...c3)-Math.min(...c3),1)/2 };
+  const s = 0.55;
+  const addAxis = (a,b,col) => scene.add(new THREE.Line(
+    new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a), new THREE.Vector3(...b)]),
+    new THREE.LineBasicMaterial({ color: col })));
+  addAxis([-s,0,0],[s,0,0],0x93c5fd); addAxis([0,-s,0],[0,s,0],0x86efac); addAxis([0,0,-s],[0,0,s],0xfca5a5);
+  baselineGrp = new THREE.Group(); steeredGrp = new THREE.Group(); ghostGrp = new THREE.Group();
+  scene.add(baselineGrp); scene.add(ghostGrp); scene.add(steeredGrp);
+  baselineGrp.add(mkPts(DATA.baseline, 0xdc2626, 0.07, 0.88));
+  addEventListener('resize', () => {
+    camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+    renderer.setSize(innerWidth, innerHeight);
+  });
+  (function loop(){ requestAnimationFrame(loop); controls.update(); renderer.render(scene,camera); })();
+}
+
+async function init() {
+  try {
+    const res = await fetch('good_alpha_pca.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error(`good_alpha_pca.json ${res.status}`);
+    DATA = await res.json();
+  } catch (e) {
+    document.getElementById('err').hidden = false;
+    document.getElementById('err').textContent = String(e.message||e);
+    return;
+  }
+  document.getElementById('layer-lbl').textContent = DATA.steer_layer;
+  const ticks = DATA.alphas.map(a => `<span>${a.alpha}</span>`).join('');
+  document.getElementById('ticks').innerHTML = ticks;
+  document.getElementById('ticks3d').innerHTML = ticks;
+  const n = DATA.alphas.length;
+  for (const id of ['alpha','alpha3d']) {
+    const el = document.getElementById(id);
+    el.max = String(n-1);
+    el.addEventListener('input', () => render(Number(el.value)));
+  }
+  document.querySelectorAll('.view-toggle button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  init3d();
+  render(0);
+}
+init();
+</script>
+</body>
+</html>

@@ -1,0 +1,1190 @@
+{
+  "created_utc": "2026-08-19T19:42:46.822698+00:00",
+  "stage": "validated_sweep",
+  "trait": "conscientiousness",
+  "direction": "pc1",
+  "layer": 15,
+  "alpha_units": "raw",
+  "alpha_scale": 1.0,
+  "layer_choice": "explicit layer argument",
+  "baseline_prompt_mode": {
+    "alpha": 0.0,
+    "magnitude": 0.0,
+    "argmax_scores": {
+      "agreeableness": 3.0,
+      "conscientiousness": 2.7917,
+      "extraversion": 3.0833,
+      "neuroticism": 3.3333,
+      "openness": 3.5
+    },
+    "ev_scores": {
+      "agreeableness": 2.9823,
+      "conscientiousness": 2.7878,
+      "extraversion": 3.068,
+      "neuroticism": 3.2958,
+      "openness": 3.4438
+    },
+    "target_argmax": 2.7917,
+    "target_ev": 2.7878,
+    "response_validity": 1.0,
+    "lock": {
+      "n_answered": 120,
+      "top_option_fraction": 0.65,
+      "option_entropy": 0.8148,
+      "distinct_options": 5,
+      "histogram": {
+        "1": 1,
+        "2": 78,
+        "3": 37,
+        "4": 3,
+        "5": 1
+      },
+      "locked": false,
+      "reason": ""
+    },
+    "usable": true
+  },
+  "baseline_system_prompt": "Answer as yourself, describing how you actually are rather than how you think you should be.",
+  "magnitude_calibration": null,
+  "magnitude_grid": [
+    0.0,
+    135.5349,
+    271.0698,
+    542.1396,
+    1084.2791,
+    2168.5583
+  ],
+  "instrument": "/home/ubuntu/e0_scope_run/data/ipip_neo_120.csv",
+  "n_items": 120,
+  "keying_balance": {
+    "agreeableness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "conscientiousness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "extraversion": {
+      "plus": 12,
+      "minus": 12
+    },
+    "neuroticism": {
+      "plus": 12,
+      "minus": 12
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    }
+  },
+  "probe_questions": [],
+  "injection_scope": "assistant_span",
+  "baseline": {
+    "alpha": 0.0,
+    "magnitude": 0.0,
+    "argmax_scores": {
+      "agreeableness": 3.0,
+      "conscientiousness": 2.7917,
+      "extraversion": 3.0833,
+      "neuroticism": 3.3333,
+      "openness": 3.5
+    },
+    "ev_scores": {
+      "agreeableness": 2.9823,
+      "conscientiousness": 2.7878,
+      "extraversion": 3.068,
+      "neuroticism": 3.2958,
+      "openness": 3.4438
+    },
+    "target_argmax": 2.7917,
+    "target_ev": 2.7878,
+    "response_validity": 1.0,
+    "lock": {
+      "n_answered": 120,
+      "top_option_fraction": 0.65,
+      "option_entropy": 0.8148,
+      "distinct_options": 5,
+      "histogram": {
+        "1": 1,
+        "2": 78,
+        "3": 37,
+        "4": 3,
+        "5": 1
+      },
+      "locked": false,
+      "reason": ""
+    },
+    "usable": true
+  },
+  "trait_curve": {
+    "label": "conscientiousness:pc1",
+    "rows": [
+      {
+        "alpha": 0.0,
+        "magnitude": 0.0,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 2.7917,
+          "extraversion": 3.0833,
+          "neuroticism": 3.3333,
+          "openness": 3.5
+        },
+        "ev_scores": {
+          "agreeableness": 2.9823,
+          "conscientiousness": 2.7878,
+          "extraversion": 3.068,
+          "neuroticism": 3.2958,
+          "openness": 3.4438
+        },
+        "target_argmax": 2.7917,
+        "target_ev": 2.7878,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.65,
+          "option_entropy": 0.8148,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 1,
+            "2": 78,
+            "3": 37,
+            "4": 3,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      },
+      {
+        "alpha": 135.5349,
+        "magnitude": 135.5349,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 2.7917,
+          "extraversion": 3.125,
+          "neuroticism": 3.25,
+          "openness": 3.5417
+        },
+        "ev_scores": {
+          "agreeableness": 3.01,
+          "conscientiousness": 2.7933,
+          "extraversion": 3.0698,
+          "neuroticism": 3.2879,
+          "openness": 3.4975
+        },
+        "target_argmax": 2.7917,
+        "target_ev": 2.7933,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6167,
+          "option_entropy": 0.837,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 1,
+            "2": 74,
+            "3": 41,
+            "4": 3,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      },
+      {
+        "alpha": 271.0698,
+        "magnitude": 271.0698,
+        "argmax_scores": {
+          "agreeableness": 3.0,
+          "conscientiousness": 2.7917,
+          "extraversion": 3.125,
+          "neuroticism": 3.25,
+          "openness": 3.5833
+        },
+        "ev_scores": {
+          "agreeableness": 3.0275,
+          "conscientiousness": 2.8137,
+          "extraversion": 3.0656,
+          "neuroticism": 3.2697,
+          "openness": 3.5268
+        },
+        "target_argmax": 2.7917,
+        "target_ev": 2.8137,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6083,
+          "option_entropy": 0.8418,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 1,
+            "2": 73,
+            "3": 42,
+            "4": 3,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      },
+      {
+        "alpha": 542.1396,
+        "magnitude": 542.1396,
+        "argmax_scores": {
+          "agreeableness": 3.0833,
+          "conscientiousness": 2.8333,
+          "extraversion": 3.125,
+          "neuroticism": 3.2083,
+          "openness": 3.625
+        },
+        "ev_scores": {
+          "agreeableness": 3.0838,
+          "conscientiousness": 2.8856,
+          "extraversion": 3.0625,
+          "neuroticism": 3.2284,
+          "openness": 3.5604
+        },
+        "target_argmax": 2.8333,
+        "target_ev": 2.8856,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.5917,
+          "option_entropy": 0.8995,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 2,
+            "2": 71,
+            "3": 42,
+            "4": 4,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      },
+      {
+        "alpha": 1084.2791,
+        "magnitude": 1084.2791,
+        "argmax_scores": {
+          "agreeableness": 3.2083,
+          "conscientiousness": 3.125,
+          "extraversion": 3.0833,
+          "neuroticism": 3.125,
+          "openness": 3.5833
+        },
+        "ev_scores": {
+          "agreeableness": 3.1769,
+          "conscientiousness": 3.077,
+          "extraversion": 3.0476,
+          "neuroticism": 3.1131,
+          "openness": 3.5633
+        },
+        "target_argmax": 3.125,
+        "target_ev": 3.077,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.6417,
+          "option_entropy": 0.8674,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 2,
+            "2": 77,
+            "3": 36,
+            "4": 4,
+            "5": 1
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      },
+      {
+        "alpha": 2168.5583,
+        "magnitude": 2168.5583,
+        "argmax_scores": {
+          "agreeableness": 3.125,
+          "conscientiousness": 3.125,
+          "extraversion": 3.0833,
+          "neuroticism": 2.9167,
+          "openness": 3.4583
+        },
+        "ev_scores": {
+          "agreeableness": 3.1325,
+          "conscientiousness": 3.1333,
+          "extraversion": 3.1184,
+          "neuroticism": 2.9114,
+          "openness": 3.4693
+        },
+        "target_argmax": 3.125,
+        "target_ev": 3.1333,
+        "response_validity": 1.0,
+        "lock": {
+          "n_answered": 120,
+          "top_option_fraction": 0.65,
+          "option_entropy": 0.9786,
+          "distinct_options": 5,
+          "histogram": {
+            "1": 19,
+            "2": 78,
+            "3": 20,
+            "4": 1,
+            "5": 2
+          },
+          "locked": false,
+          "reason": ""
+        },
+        "usable": true,
+        "probes": [],
+        "coherent_fraction": null,
+        "mean_net_markers": null,
+        "refused_fraction": null
+      }
+    ],
+    "n_rungs": 6,
+    "n_usable_rungs": 6,
+    "n_usable_non_refusing_rungs": 6,
+    "baseline_target_ev": 2.7878,
+    "spearman_absalpha_vs_target_ev": 1.0,
+    "monotone_fraction_target_ev": 1.0,
+    "best_usable": {
+      "alpha": 2168.5583,
+      "magnitude": 2168.5583,
+      "target_ev": 3.1333,
+      "delta_vs_baseline": 0.3455
+    },
+    "coherence_ceiling_magnitude": null,
+    "best_usable_is_non_refusing": true,
+    "marker_spearman": null
+  },
+  "control_curves": [
+    {
+      "label": "random0",
+      "rows": [
+        {
+          "alpha": 0.0,
+          "magnitude": 0.0,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.7917,
+            "extraversion": 3.0833,
+            "neuroticism": 3.3333,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9823,
+            "conscientiousness": 2.7878,
+            "extraversion": 3.068,
+            "neuroticism": 3.2958,
+            "openness": 3.4438
+          },
+          "target_argmax": 2.7917,
+          "target_ev": 2.7878,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.65,
+            "option_entropy": 0.8148,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 78,
+              "3": 37,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 135.5349,
+          "magnitude": 135.5349,
+          "argmax_scores": {
+            "agreeableness": 2.9583,
+            "conscientiousness": 2.7083,
+            "extraversion": 3.0833,
+            "neuroticism": 3.3333,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9694,
+            "conscientiousness": 2.6914,
+            "extraversion": 3.0492,
+            "neuroticism": 3.3269,
+            "openness": 3.444
+          },
+          "target_argmax": 2.7083,
+          "target_ev": 2.6914,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5833,
+            "option_entropy": 0.8355,
+            "distinct_options": 4,
+            "histogram": {
+              "2": 70,
+              "3": 45,
+              "4": 4,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 271.0698,
+          "magnitude": 271.0698,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.5417,
+            "extraversion": 3.0417,
+            "neuroticism": 3.3333,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9708,
+            "conscientiousness": 2.5988,
+            "extraversion": 3.0171,
+            "neuroticism": 3.355,
+            "openness": 3.4137
+          },
+          "target_argmax": 2.5417,
+          "target_ev": 2.5988,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5333,
+            "option_entropy": 0.8823,
+            "distinct_options": 3,
+            "histogram": {
+              "2": 64,
+              "3": 48,
+              "4": 8
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 542.1396,
+          "magnitude": 542.1396,
+          "argmax_scores": {
+            "agreeableness": 2.9583,
+            "conscientiousness": 2.4167,
+            "extraversion": 2.9167,
+            "neuroticism": 3.4167,
+            "openness": 3.4167
+          },
+          "ev_scores": {
+            "agreeableness": 2.9733,
+            "conscientiousness": 2.4691,
+            "extraversion": 2.9441,
+            "neuroticism": 3.383,
+            "openness": 3.3335
+          },
+          "target_argmax": 2.4167,
+          "target_ev": 2.4691,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.475,
+            "option_entropy": 0.9475,
+            "distinct_options": 3,
+            "histogram": {
+              "2": 57,
+              "3": 51,
+              "4": 12
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 1084.2791,
+          "magnitude": 1084.2791,
+          "argmax_scores": {
+            "agreeableness": 3.0417,
+            "conscientiousness": 2.4167,
+            "extraversion": 2.875,
+            "neuroticism": 3.3333,
+            "openness": 3.0417
+          },
+          "ev_scores": {
+            "agreeableness": 3.0119,
+            "conscientiousness": 2.4408,
+            "extraversion": 2.8324,
+            "neuroticism": 3.3579,
+            "openness": 3.0645
+          },
+          "target_argmax": 2.4167,
+          "target_ev": 2.4408,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.6083,
+            "option_entropy": 0.9337,
+            "distinct_options": 3,
+            "histogram": {
+              "2": 28,
+              "3": 73,
+              "4": 19
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 2168.5583,
+          "magnitude": 2168.5583,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.75,
+            "extraversion": 3.0,
+            "neuroticism": 3.125,
+            "openness": 3.0417
+          },
+          "ev_scores": {
+            "agreeableness": 3.0043,
+            "conscientiousness": 2.7435,
+            "extraversion": 2.9749,
+            "neuroticism": 3.1438,
+            "openness": 3.0081
+          },
+          "target_argmax": 2.75,
+          "target_ev": 2.7435,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.9167,
+            "option_entropy": 0.2868,
+            "distinct_options": 2,
+            "histogram": {
+              "3": 110,
+              "4": 10
+            },
+            "locked": true,
+            "reason": "one option covers 92% of items"
+          },
+          "usable": false,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        }
+      ],
+      "n_rungs": 6,
+      "n_usable_rungs": 5,
+      "n_usable_non_refusing_rungs": 5,
+      "baseline_target_ev": 2.7878,
+      "spearman_absalpha_vs_target_ev": -1.0,
+      "monotone_fraction_target_ev": 1.0,
+      "best_usable": {
+        "alpha": 0.0,
+        "magnitude": 0.0,
+        "target_ev": 2.7878,
+        "delta_vs_baseline": 0.0
+      },
+      "coherence_ceiling_magnitude": null,
+      "best_usable_is_non_refusing": true,
+      "marker_spearman": null
+    },
+    {
+      "label": "random1",
+      "rows": [
+        {
+          "alpha": 0.0,
+          "magnitude": 0.0,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.7917,
+            "extraversion": 3.0833,
+            "neuroticism": 3.3333,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9823,
+            "conscientiousness": 2.7878,
+            "extraversion": 3.068,
+            "neuroticism": 3.2958,
+            "openness": 3.4438
+          },
+          "target_argmax": 2.7917,
+          "target_ev": 2.7878,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.65,
+            "option_entropy": 0.8148,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 78,
+              "3": 37,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 135.5349,
+          "magnitude": 135.5349,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.9167,
+            "extraversion": 3.0833,
+            "neuroticism": 3.25,
+            "openness": 3.4167
+          },
+          "ev_scores": {
+            "agreeableness": 3.004,
+            "conscientiousness": 2.8692,
+            "extraversion": 3.0668,
+            "neuroticism": 3.2766,
+            "openness": 3.4071
+          },
+          "target_argmax": 2.9167,
+          "target_ev": 2.8692,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.7417,
+            "option_entropy": 0.725,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 89,
+              "3": 26,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 271.0698,
+          "magnitude": 271.0698,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.9583,
+            "extraversion": 3.0417,
+            "neuroticism": 3.2083,
+            "openness": 3.4167
+          },
+          "ev_scores": {
+            "agreeableness": 3.0159,
+            "conscientiousness": 2.9349,
+            "extraversion": 3.0564,
+            "neuroticism": 3.244,
+            "openness": 3.3533
+          },
+          "target_argmax": 2.9583,
+          "target_ev": 2.9349,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.8,
+            "option_entropy": 0.6423,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 96,
+              "3": 19,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 542.1396,
+          "magnitude": 542.1396,
+          "argmax_scores": {
+            "agreeableness": 3.0833,
+            "conscientiousness": 3.0,
+            "extraversion": 3.0417,
+            "neuroticism": 3.2083,
+            "openness": 3.2083
+          },
+          "ev_scores": {
+            "agreeableness": 3.0569,
+            "conscientiousness": 2.987,
+            "extraversion": 3.0223,
+            "neuroticism": 3.1783,
+            "openness": 3.2199
+          },
+          "target_argmax": 3.0,
+          "target_ev": 2.987,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.9083,
+            "option_entropy": 0.4245,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 2,
+              "2": 109,
+              "3": 5,
+              "4": 2,
+              "5": 2
+            },
+            "locked": true,
+            "reason": "one option covers 91% of items"
+          },
+          "usable": false,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 1084.2791,
+          "magnitude": 1084.2791,
+          "argmax_scores": {
+            "agreeableness": 3.125,
+            "conscientiousness": 3.0417,
+            "extraversion": 3.0417,
+            "neuroticism": 3.0,
+            "openness": 2.9583
+          },
+          "ev_scores": {
+            "agreeableness": 3.1298,
+            "conscientiousness": 3.0166,
+            "extraversion": 3.0104,
+            "neuroticism": 3.0506,
+            "openness": 3.0509
+          },
+          "target_argmax": 3.0417,
+          "target_ev": 3.0166,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.9333,
+            "option_entropy": 0.2449,
+            "distinct_options": 2,
+            "histogram": {
+              "1": 8,
+              "2": 112
+            },
+            "locked": true,
+            "reason": "one option covers 93% of items"
+          },
+          "usable": false,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 2168.5583,
+          "magnitude": 2168.5583,
+          "argmax_scores": {
+            "agreeableness": 3.1667,
+            "conscientiousness": 3.0833,
+            "extraversion": 3.0833,
+            "neuroticism": 3.0,
+            "openness": 3.0833
+          },
+          "ev_scores": {
+            "agreeableness": 3.0622,
+            "conscientiousness": 3.0348,
+            "extraversion": 3.0739,
+            "neuroticism": 3.0342,
+            "openness": 3.1783
+          },
+          "target_argmax": 3.0833,
+          "target_ev": 3.0348,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.85,
+            "option_entropy": 0.4903,
+            "distinct_options": 3,
+            "histogram": {
+              "1": 15,
+              "2": 102,
+              "3": 3
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        }
+      ],
+      "n_rungs": 6,
+      "n_usable_rungs": 4,
+      "n_usable_non_refusing_rungs": 4,
+      "baseline_target_ev": 2.7878,
+      "spearman_absalpha_vs_target_ev": 1.0,
+      "monotone_fraction_target_ev": 1.0,
+      "best_usable": {
+        "alpha": 2168.5583,
+        "magnitude": 2168.5583,
+        "target_ev": 3.0348,
+        "delta_vs_baseline": 0.247
+      },
+      "coherence_ceiling_magnitude": null,
+      "best_usable_is_non_refusing": true,
+      "marker_spearman": null
+    },
+    {
+      "label": "random2",
+      "rows": [
+        {
+          "alpha": 0.0,
+          "magnitude": 0.0,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.7917,
+            "extraversion": 3.0833,
+            "neuroticism": 3.3333,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9823,
+            "conscientiousness": 2.7878,
+            "extraversion": 3.068,
+            "neuroticism": 3.2958,
+            "openness": 3.4438
+          },
+          "target_argmax": 2.7917,
+          "target_ev": 2.7878,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.65,
+            "option_entropy": 0.8148,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 78,
+              "3": 37,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 135.5349,
+          "magnitude": 135.5349,
+          "argmax_scores": {
+            "agreeableness": 3.0,
+            "conscientiousness": 2.75,
+            "extraversion": 3.0833,
+            "neuroticism": 3.25,
+            "openness": 3.5417
+          },
+          "ev_scores": {
+            "agreeableness": 2.9876,
+            "conscientiousness": 2.7501,
+            "extraversion": 3.0623,
+            "neuroticism": 3.284,
+            "openness": 3.4811
+          },
+          "target_argmax": 2.75,
+          "target_ev": 2.7501,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.6,
+            "option_entropy": 0.8463,
+            "distinct_options": 5,
+            "histogram": {
+              "1": 1,
+              "2": 72,
+              "3": 43,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 271.0698,
+          "magnitude": 271.0698,
+          "argmax_scores": {
+            "agreeableness": 2.9583,
+            "conscientiousness": 2.75,
+            "extraversion": 3.0833,
+            "neuroticism": 3.25,
+            "openness": 3.5833
+          },
+          "ev_scores": {
+            "agreeableness": 2.9858,
+            "conscientiousness": 2.7286,
+            "extraversion": 3.0567,
+            "neuroticism": 3.2734,
+            "openness": 3.4917
+          },
+          "target_argmax": 2.75,
+          "target_ev": 2.7286,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5833,
+            "option_entropy": 0.8141,
+            "distinct_options": 4,
+            "histogram": {
+              "2": 70,
+              "3": 46,
+              "4": 3,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 542.1396,
+          "magnitude": 542.1396,
+          "argmax_scores": {
+            "agreeableness": 2.9583,
+            "conscientiousness": 2.7083,
+            "extraversion": 3.125,
+            "neuroticism": 3.2917,
+            "openness": 3.5
+          },
+          "ev_scores": {
+            "agreeableness": 2.9865,
+            "conscientiousness": 2.7333,
+            "extraversion": 3.0532,
+            "neuroticism": 3.2277,
+            "openness": 3.459
+          },
+          "target_argmax": 2.7083,
+          "target_ev": 2.7333,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5083,
+            "option_entropy": 0.8772,
+            "distinct_options": 4,
+            "histogram": {
+              "2": 61,
+              "3": 53,
+              "4": 5,
+              "5": 1
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 1084.2791,
+          "magnitude": 1084.2791,
+          "argmax_scores": {
+            "agreeableness": 2.875,
+            "conscientiousness": 2.8333,
+            "extraversion": 3.0833,
+            "neuroticism": 3.2083,
+            "openness": 3.4167
+          },
+          "ev_scores": {
+            "agreeableness": 2.9943,
+            "conscientiousness": 2.7967,
+            "extraversion": 2.9841,
+            "neuroticism": 3.178,
+            "openness": 3.3287
+          },
+          "target_argmax": 2.8333,
+          "target_ev": 2.7967,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5333,
+            "option_entropy": 0.811,
+            "distinct_options": 3,
+            "histogram": {
+              "2": 64,
+              "3": 52,
+              "4": 4
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        },
+        {
+          "alpha": 2168.5583,
+          "magnitude": 2168.5583,
+          "argmax_scores": {
+            "agreeableness": 3.125,
+            "conscientiousness": 3.0833,
+            "extraversion": 3.0417,
+            "neuroticism": 2.9583,
+            "openness": 3.0417
+          },
+          "ev_scores": {
+            "agreeableness": 3.1604,
+            "conscientiousness": 2.9822,
+            "extraversion": 3.0119,
+            "neuroticism": 3.0277,
+            "openness": 3.0628
+          },
+          "target_argmax": 3.0833,
+          "target_ev": 2.9822,
+          "response_validity": 1.0,
+          "lock": {
+            "n_answered": 120,
+            "top_option_fraction": 0.5667,
+            "option_entropy": 0.8554,
+            "distinct_options": 3,
+            "histogram": {
+              "1": 45,
+              "2": 68,
+              "3": 7
+            },
+            "locked": false,
+            "reason": ""
+          },
+          "usable": true,
+          "probes": [],
+          "coherent_fraction": null,
+          "mean_net_markers": null,
+          "refused_fraction": null
+        }
+      ],
+      "n_rungs": 6,
+      "n_usable_rungs": 6,
+      "n_usable_non_refusing_rungs": 6,
+      "baseline_target_ev": 2.7878,
+      "spearman_absalpha_vs_target_ev": 0.4857,
+      "monotone_fraction_target_ev": 0.6,
+      "best_usable": {
+        "alpha": 2168.5583,
+        "magnitude": 2168.5583,
+        "target_ev": 2.9822,
+        "delta_vs_baseline": 0.1944
+      },
+      "coherence_ceiling_magnitude": null,
+      "best_usable_is_non_refusing": true,
+      "marker_spearman": null
+    }
+  ],
+  "verdict": {
+    "steered_toward": "high",
+    "trait_abs_delta": 0.3455,
+    "max_control_abs_delta": 0.247,
+    "control_margin_ratio": 1.399,
+    "min_control_margin": 2.0,
+    "beats_random_controls": false,
+    "trait_usable_rungs": 6,
+    "control_usable_rungs": [
+      5,
+      4,
+      6
+    ],
+    "trait_spearman": 1.0,
+    "dose_response_sign_correct": true,
+    "refused_at_best_rung": false,
+    "trait_coherence_ceiling": null,
+    "control_coherence_ceilings": [
+      null,
+      null,
+      null
+    ],
+    "works": false
+  },
+  "vectors_pt": "/home/ubuntu/e0_scope_run/vectors/ladder_vectors_conscientiousness.pt"
+}

@@ -1,0 +1,122 @@
+# IPIP-NEO facet item pool, public domain, fetched from https://ipip.ori.org/newNEO_FacetsKey.htm; 4 items/facet, keying-balanced where the pool allows
+text,domain,facet_code,facet,key
+Trust others.,A,A1,Trust,1
+Believe that others have good intentions.,A,A1,Trust,1
+Distrust people.,A,A1,Trust,-1
+Suspect hidden motives in others.,A,A1,Trust,-1
+Would never cheat on my taxes.,A,A2,Morality,1
+Stick to the rules.,A,A2,Morality,1
+Use flattery to get ahead.,A,A2,Morality,-1
+Use others for my own ends.,A,A2,Morality,-1
+Make people feel welcome.,A,A3,Altruism,1
+Anticipate the needs of others.,A,A3,Altruism,1
+Look down on others.,A,A3,Altruism,-1
+Am indifferent to the feelings of others.,A,A3,Altruism,-1
+Am easy to satisfy.,A,A4,Cooperation,1
+Can't stand confrontations.,A,A4,Cooperation,1
+Have a sharp tongue.,A,A4,Cooperation,-1
+Contradict others.,A,A4,Cooperation,-1
+Dislike being the center of attention.,A,A5,Modesty,1
+Dislike talking about myself.,A,A5,Modesty,1
+Believe that I am better than others.,A,A5,Modesty,-1
+Think highly of myself.,A,A5,Modesty,-1
+Sympathize with the homeless.,A,A6,Sympathy,1
+Feel sympathy for those who are worse off than myself.,A,A6,Sympathy,1
+Am not interested in other people's problems.,A,A6,Sympathy,-1
+Tend to dislike soft-hearted people.,A,A6,Sympathy,-1
+Complete tasks successfully.,C,C1,Self-Efficacy,1
+Excel in what I do.,C,C1,Self-Efficacy,1
+Misjudge situations.,C,C1,Self-Efficacy,-1
+Don't understand things.,C,C1,Self-Efficacy,-1
+Like order.,C,C2,Orderliness,1
+Like to tidy up.,C,C2,Orderliness,1
+Often forget to put things back in their proper place.,C,C2,Orderliness,-1
+Leave a mess in my room.,C,C2,Orderliness,-1
+Try to follow the rules.,C,C3,Dutifulness,1
+Keep my promises.,C,C3,Dutifulness,1
+Break rules.,C,C3,Dutifulness,-1
+Break my promises.,C,C3,Dutifulness,-1
+Go straight for the goal.,C,C4,Achievement-Striving,1
+Work hard.,C,C4,Achievement-Striving,1
+Am not highly motivated to succeed.,C,C4,Achievement-Striving,-1
+Do just enough work to get by.,C,C4,Achievement-Striving,-1
+Get chores done right away.,C,C5,Self-Discipline,1
+Am always prepared.,C,C5,Self-Discipline,1
+Find it difficult to get down to work.,C,C5,Self-Discipline,-1
+Waste my time.,C,C5,Self-Discipline,-1
+Avoid mistakes.,C,C6,Cautiousness,1
+Choose my words with care.,C,C6,Cautiousness,1
+Jump into things without thinking.,C,C6,Cautiousness,-1
+Make rash decisions.,C,C6,Cautiousness,-1
+Make friends easily.,E,E1,Friendliness,1
+Warm up quickly to others.,E,E1,Friendliness,1
+Am hard to get to know.,E,E1,Friendliness,-1
+Often feel uncomfortable around others.,E,E1,Friendliness,-1
+Love large parties.,E,E2,Gregariousness,1
+Talk to a lot of different people at parties.,E,E2,Gregariousness,1
+Prefer to be alone.,E,E2,Gregariousness,-1
+Want to be left alone.,E,E2,Gregariousness,-1
+Take charge.,E,E3,Assertiveness,1
+Try to lead others.,E,E3,Assertiveness,1
+Wait for others to lead the way.,E,E3,Assertiveness,-1
+Keep in the background.,E,E3,Assertiveness,-1
+Am always busy.,E,E4,Activity Level,1
+Am always on the go.,E,E4,Activity Level,1
+Like to take it easy.,E,E4,Activity Level,-1
+Like to take my time.,E,E4,Activity Level,-1
+Love excitement.,E,E5,Excitement-Seeking,1
+Seek adventure.,E,E5,Excitement-Seeking,1
+Would never go hang gliding or bungee jumping.,E,E5,Excitement-Seeking,-1
+Dislike loud music.,E,E5,Excitement-Seeking,-1
+Radiate joy.,E,E6,Cheerfulness,1
+Have a lot of fun.,E,E6,Cheerfulness,1
+Am not easily amused.,E,E6,Cheerfulness,-1
+Seldom joke around.,E,E6,Cheerfulness,-1
+Worry about things.,N,N1,Anxiety,1
+Fear for the worst.,N,N1,Anxiety,1
+Am not easily bothered by things.,N,N1,Anxiety,-1
+Am relaxed most of the time.,N,N1,Anxiety,-1
+Get angry easily.,N,N2,Anger,1
+Get irritated easily.,N,N2,Anger,1
+Rarely get irritated.,N,N2,Anger,-1
+Seldom get mad.,N,N2,Anger,-1
+Often feel blue.,N,N3,Depression,1
+Dislike myself.,N,N3,Depression,1
+Seldom feel blue.,N,N3,Depression,-1
+Feel comfortable with myself.,N,N3,Depression,-1
+Am easily intimidated.,N,N4,Self-Consciousness,1
+Am afraid that I will do the wrong thing.,N,N4,Self-Consciousness,1
+Am not embarrassed easily.,N,N4,Self-Consciousness,-1
+Am comfortable in unfamiliar situations.,N,N4,Self-Consciousness,-1
+Often eat too much.,N,N5,Immoderation,1
+Don't know why I do some of the things I do.,N,N5,Immoderation,1
+Rarely overindulge.,N,N5,Immoderation,-1
+Easily resist temptations.,N,N5,Immoderation,-1
+Panic easily.,N,N6,Vulnerability,1
+Become overwhelmed by events.,N,N6,Vulnerability,1
+Remain calm under pressure.,N,N6,Vulnerability,-1
+Can handle complex problems.,N,N6,Vulnerability,-1
+Have a vivid imagination.,O,O1,Imagination,1
+Enjoy wild flights of fantasy.,O,O1,Imagination,1
+Seldom daydream.,O,O1,Imagination,-1
+Do not have a good imagination.,O,O1,Imagination,-1
+Believe in the importance of art.,O,O2,Artistic Interests,1
+Like music.,O,O2,Artistic Interests,1
+Do not like art.,O,O2,Artistic Interests,-1
+Do not like poetry.,O,O2,Artistic Interests,-1
+Experience my emotions intensely.,O,O3,Emotionality,1
+Feel others' emotions.,O,O3,Emotionality,1
+Seldom get emotional.,O,O3,Emotionality,-1
+Am not easily affected by my emotions.,O,O3,Emotionality,-1
+Prefer variety to routine.,O,O4,Adventurousness,1
+Like to visit new places.,O,O4,Adventurousness,1
+Prefer to stick with things that I know.,O,O4,Adventurousness,-1
+Dislike changes.,O,O4,Adventurousness,-1
+Like to solve complex problems.,O,O5,Intellect,1
+Love to read challenging material.,O,O5,Intellect,1
+Am not interested in abstract ideas.,O,O5,Intellect,-1
+Avoid philosophical discussions.,O,O5,Intellect,-1
+Tend to vote for liberal political candidates.,O,O6,Liberalism,1
+Believe that there is no absolute right and wrong.,O,O6,Liberalism,1
+Believe in one true religion.,O,O6,Liberalism,-1
+Tend to vote for conservative political candidates.,O,O6,Liberalism,-1
