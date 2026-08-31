@@ -298,6 +298,28 @@ def score_traits_ev(responses: Sequence[dict]) -> dict[str, float]:
     return {t: sums[t] / counts[t] for t in sorted(sums) if counts[t]}
 
 
+def item_log(responses: Sequence[dict]) -> dict[str, list]:
+    """Compact per-item record for an administration, in item order.
+
+    ``values`` is the argmax option (or None) and ``evs`` the expected value
+    over the option distribution, both *unkeyed* — keying lives with the item
+    list, so analysis joins on item order. This is what makes facet scores,
+    per-item error bars and the forward/reverse-keyed diagnostic computable
+    after the fact without re-running the model.
+    """
+    values: list[int | None] = []
+    evs: list[float | None] = []
+    for r in responses:
+        values.append(r.get("value"))
+        probs = r.get("probs")
+        total = sum(probs.values()) if probs else 0.0
+        if probs and total > 0:
+            evs.append(round(sum(float(p) * int(o) for o, p in probs.items()) / total, 3))
+        else:
+            evs.append(None if r.get("value") is None else float(r["value"]))
+    return {"values": values, "evs": evs}
+
+
 def items_from_csv(path: Path, *, traits: Iterable[str] | None = None) -> list[InventoryItem]:
     """Load items from an IPIP CSV (``text``, ``domain``, ``key`` columns).
 
