@@ -1,0 +1,353 @@
+{
+  "poles": {
+    "openness-up": {
+      "trait": "openness",
+      "pole": "up",
+      "layer": 15,
+      "rho": 0.95,
+      "monotone_fraction": 0.875,
+      "baseline_ev": 2.6383,
+      "best_ev": 3.4284,
+      "delta": 0.7901,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": 1.6474,
+      "pct_of_prompt_gap": 48.0,
+      "dose_matched": {
+        "dose": 611.82,
+        "trait_on": 0.782,
+        "random_on": -0.597,
+        "trait_off": 0.612,
+        "random_off": 0.298,
+        "trait_drift": 0.546,
+        "random_drift": -0.185,
+        "specificity": 1.28,
+        "beats_random_at_dose": true
+      }
+    },
+    "openness-down": {
+      "trait": "openness",
+      "pole": "down",
+      "layer": 15,
+      "rho": 1.0,
+      "monotone_fraction": 1.0,
+      "baseline_ev": 4.1652,
+      "best_ev": 3.2622,
+      "delta": -0.903,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": -1.9382,
+      "pct_of_prompt_gap": 46.6,
+      "dose_matched": {
+        "dose": -346.31,
+        "trait_on": -0.389,
+        "random_on": -0.052,
+        "trait_off": 0.195,
+        "random_off": 0.198,
+        "trait_drift": -0.234,
+        "random_drift": -0.106,
+        "specificity": 2.0,
+        "beats_random_at_dose": true
+      }
+    },
+    "conscientiousness-up": {
+      "trait": "conscientiousness",
+      "pole": "up",
+      "layer": 15,
+      "rho": 0.9833,
+      "monotone_fraction": 0.875,
+      "baseline_ev": 1.0623,
+      "best_ev": 3.0818,
+      "delta": 2.0195,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": 3.9315,
+      "pct_of_prompt_gap": 51.4,
+      "dose_matched": {
+        "dose": 918.66,
+        "trait_on": 2.019,
+        "random_on": 0.468,
+        "trait_off": 0.626,
+        "random_off": 0.637,
+        "trait_drift": 0.436,
+        "random_drift": -0.104,
+        "specificity": 3.23,
+        "beats_random_at_dose": true
+      }
+    },
+    "conscientiousness-down": {
+      "trait": "conscientiousness",
+      "pole": "down",
+      "layer": 15,
+      "rho": 1.0,
+      "monotone_fraction": 1.0,
+      "baseline_ev": 4.9925,
+      "best_ev": 3.3441,
+      "delta": -1.6484,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": -3.9439,
+      "pct_of_prompt_gap": 41.8,
+      "dose_matched": {
+        "dose": -387.11,
+        "trait_on": -0.224,
+        "random_on": -0.294,
+        "trait_off": 0.374,
+        "random_off": 0.218,
+        "trait_drift": -0.082,
+        "random_drift": 0.066,
+        "specificity": 0.6,
+        "beats_random_at_dose": false
+      }
+    },
+    "extraversion-up": {
+      "trait": "extraversion",
+      "pole": "up",
+      "layer": 15,
+      "rho": 0.8833,
+      "monotone_fraction": 0.75,
+      "baseline_ev": 1.5714,
+      "best_ev": 3.3741,
+      "delta": 1.8027,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": 3.2261,
+      "pct_of_prompt_gap": 55.9,
+      "dose_matched": {
+        "dose": 1050.63,
+        "trait_on": 1.803,
+        "random_on": 1.274,
+        "trait_off": 0.859,
+        "random_off": 0.862,
+        "trait_drift": 0.732,
+        "random_drift": -0.041,
+        "specificity": 2.1,
+        "beats_random_at_dose": true
+      }
+    },
+    "extraversion-down": {
+      "trait": "extraversion",
+      "pole": "down",
+      "layer": 15,
+      "rho": 0.95,
+      "monotone_fraction": 0.875,
+      "baseline_ev": 4.8435,
+      "best_ev": 3.0714,
+      "delta": -1.7721,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": -3.4087,
+      "pct_of_prompt_gap": 52.0,
+      "dose_matched": {
+        "dose": -386.77,
+        "trait_on": -0.577,
+        "random_on": -0.17,
+        "trait_off": 0.385,
+        "random_off": 0.246,
+        "trait_drift": -0.355,
+        "random_drift": -0.141,
+        "specificity": 1.5,
+        "beats_random_at_dose": true
+      }
+    },
+    "agreeableness-up": {
+      "trait": "agreeableness",
+      "pole": "up",
+      "layer": 15,
+      "rho": 1.0,
+      "monotone_fraction": 1.0,
+      "baseline_ev": 2.0627,
+      "best_ev": 3.0763,
+      "delta": 1.0136,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": 2.3967,
+      "pct_of_prompt_gap": 42.3,
+      "dose_matched": {
+        "dose": 954.65,
+        "trait_on": 1.014,
+        "random_on": -0.661,
+        "trait_off": 0.357,
+        "random_off": 0.439,
+        "trait_drift": 0.416,
+        "random_drift": -0.051,
+        "specificity": 2.84,
+        "beats_random_at_dose": true
+      }
+    },
+    "agreeableness-down": {
+      "trait": "agreeableness",
+      "pole": "down",
+      "layer": 15,
+      "rho": 0.85,
+      "monotone_fraction": 0.75,
+      "baseline_ev": 4.4668,
+      "best_ev": 3.0632,
+      "delta": -1.4036,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": -2.4137,
+      "pct_of_prompt_gap": 58.2,
+      "dose_matched": {
+        "dose": -592.72,
+        "trait_on": -0.543,
+        "random_on": -1.168,
+        "trait_off": 0.105,
+        "random_off": 0.394,
+        "trait_drift": -0.191,
+        "random_drift": -0.165,
+        "specificity": 5.17,
+        "beats_random_at_dose": false
+      }
+    },
+    "neuroticism-up": {
+      "trait": "neuroticism",
+      "pole": "up",
+      "layer": 15,
+      "rho": 0.6,
+      "monotone_fraction": 0.625,
+      "baseline_ev": 2.3865,
+      "best_ev": 3.528,
+      "delta": 1.1415,
+      "n_usable_rungs": 9,
+      "n_rungs": 9,
+      "prompt_gap": 1.6528,
+      "pct_of_prompt_gap": 69.1,
+      "dose_matched": {
+        "dose": 637.63,
+        "trait_on": 1.142,
+        "random_on": 0.805,
+        "trait_off": 1.177,
+        "random_off": 0.308,
+        "trait_drift": -0.713,
+        "random_drift": -0.085,
+        "specificity": 0.97,
+        "beats_random_at_dose": true
+      }
+    },
+    "neuroticism-down": {
+      "trait": "neuroticism",
+      "pole": "down",
+      "layer": 15,
+      "rho": 1.0,
+      "monotone_fraction": 1.0,
+      "baseline_ev": 3.9804,
+      "best_ev": 3.3868,
+      "delta": -0.5936,
+      "n_usable_rungs": 7,
+      "n_rungs": 9,
+      "prompt_gap": -1.4942,
+      "pct_of_prompt_gap": 39.7,
+      "dose_matched": {
+        "dose": -315.31,
+        "trait_on": -0.351,
+        "random_on": 0.051,
+        "trait_off": 0.385,
+        "random_off": 0.291,
+        "trait_drift": 0.232,
+        "random_drift": 0.194,
+        "specificity": 0.91,
+        "beats_random_at_dose": true
+      }
+    }
+  },
+  "per_trait": {
+    "openness": {
+      "rho_up": 0.95,
+      "rho_down": 1.0,
+      "delta_up": 0.7901,
+      "delta_down": -0.903,
+      "bipolar_range": 1.693,
+      "alpha": 0.9004
+    },
+    "conscientiousness": {
+      "rho_up": 0.9833,
+      "rho_down": 1.0,
+      "delta_up": 2.0195,
+      "delta_down": -1.6484,
+      "bipolar_range": 3.668,
+      "alpha": 0.9387
+    },
+    "extraversion": {
+      "rho_up": 0.8833,
+      "rho_down": 0.95,
+      "delta_up": 1.8027,
+      "delta_down": -1.7721,
+      "bipolar_range": 3.575,
+      "alpha": 0.775
+    },
+    "agreeableness": {
+      "rho_up": 1.0,
+      "rho_down": 0.85,
+      "delta_up": 1.0136,
+      "delta_down": -1.4036,
+      "bipolar_range": 2.417,
+      "alpha": 0.8723
+    },
+    "neuroticism": {
+      "rho_up": 0.6,
+      "rho_down": 1.0,
+      "delta_up": 1.1415,
+      "delta_down": -0.5936,
+      "bipolar_range": 1.735,
+      "alpha": 0.9368
+    }
+  },
+  "reliability": {
+    "openness": {
+      "cronbach_alpha": 0.9004,
+      "ev_mean": 3.3073,
+      "ev_sigma_across_admins": 0.4318,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": 0.3162,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    },
+    "conscientiousness": {
+      "cronbach_alpha": 0.9387,
+      "ev_mean": 2.7822,
+      "ev_sigma_across_admins": 0.422,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": -0.4,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    },
+    "extraversion": {
+      "cronbach_alpha": 0.775,
+      "ev_mean": 2.5944,
+      "ev_sigma_across_admins": 0.2538,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": 0.1054,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    },
+    "agreeableness": {
+      "cronbach_alpha": 0.8723,
+      "ev_mean": 3.3544,
+      "ev_sigma_across_admins": 0.311,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": 0.2,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    },
+    "neuroticism": {
+      "cronbach_alpha": 0.9368,
+      "ev_mean": 3.4762,
+      "ev_sigma_across_admins": 0.4647,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": 0.1054,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    }
+  }
+}

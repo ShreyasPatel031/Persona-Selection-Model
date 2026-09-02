@@ -1,0 +1,126 @@
+# Published Johnson IPIP-NEO-120 (Johnson 2014, J. Res. Pers. 51, 78-89)
+# items+keying from https://ipip.ori.org/30FacetNEO-PI-RItems.htm via
+# https://github.com/Alheimsins/b5-johnson-120-ipip-neo-pi-r (data/en/questions.json)
+# public domain: https://ipip.ori.org/newPermission.htm
+# NOT keying-balanced per domain - that is intentional and is the point
+text,domain,facet_code,facet,key,item_num
+Worry about things.,N,N1,Anxiety,1,1
+Make friends easily.,E,E1,Friendliness,1,2
+Have a vivid imagination.,O,O1,Imagination,1,3
+Trust others.,A,A1,Trust,1,4
+Complete tasks successfully.,C,C1,Self-Efficacy,1,5
+Get angry easily.,N,N2,Anger,1,6
+Love large parties.,E,E2,Gregariousness,1,7
+Believe in the importance of art.,O,O2,Artistic Interests,1,8
+Use others for my own ends.,A,A2,Morality,-1,9
+Like to tidy up.,C,C2,Orderliness,1,10
+Often feel blue.,N,N3,Depression,1,11
+Take charge.,E,E3,Assertiveness,1,12
+Experience my emotions intensely.,O,O3,Emotionality,1,13
+Love to help others.,A,A3,Altruism,1,14
+Keep my promises.,C,C3,Dutifulness,1,15
+Find it difficult to approach others.,N,N4,Self-Consciousness,1,16
+Am always busy.,E,E4,Activity Level,1,17
+Prefer variety to routine.,O,O4,Adventurousness,1,18
+Love a good fight.,A,A4,Cooperation,-1,19
+Work hard.,C,C4,Achievement-Striving,1,20
+Go on binges.,N,N5,Immoderation,1,21
+Love excitement.,E,E5,Excitement-Seeking,1,22
+Love to read challenging material.,O,O5,Intellect,1,23
+Believe that I am better than others.,A,A5,Modesty,-1,24
+Am always prepared.,C,C5,Self-Discipline,1,25
+Panic easily.,N,N6,Vulnerability,1,26
+Radiate joy.,E,E6,Cheerfulness,1,27
+Tend to vote for liberal political candidates.,O,O6,Liberalism,1,28
+Sympathize with the homeless.,A,A6,Sympathy,1,29
+Jump into things without thinking.,C,C6,Cautiousness,-1,30
+Fear for the worst.,N,N1,Anxiety,1,31
+Feel comfortable around people.,E,E1,Friendliness,1,32
+Enjoy wild flights of fantasy.,O,O1,Imagination,1,33
+Believe that others have good intentions.,A,A1,Trust,1,34
+Excel in what I do.,C,C1,Self-Efficacy,1,35
+Get irritated easily.,N,N2,Anger,1,36
+Talk to a lot of different people at parties.,E,E2,Gregariousness,1,37
+See beauty in things that others might not notice.,O,O2,Artistic Interests,1,38
+Cheat to get ahead.,A,A2,Morality,-1,39
+Often forget to put things back in their proper place.,C,C2,Orderliness,-1,40
+Dislike myself.,N,N3,Depression,1,41
+Try to lead others.,E,E3,Assertiveness,1,42
+Feel others' emotions.,O,O3,Emotionality,1,43
+Am concerned about others.,A,A3,Altruism,1,44
+Tell the truth.,C,C3,Dutifulness,1,45
+Am afraid to draw attention to myself.,N,N4,Self-Consciousness,1,46
+Am always on the go.,E,E4,Activity Level,1,47
+Prefer to stick with things that I know.,O,O4,Adventurousness,-1,48
+Yell at people.,A,A4,Cooperation,-1,49
+Do more than what's expected of me.,C,C4,Achievement-Striving,1,50
+Rarely overindulge.,N,N5,Immoderation,-1,51
+Seek adventure.,E,E5,Excitement-Seeking,1,52
+Avoid philosophical discussions.,O,O5,Intellect,-1,53
+Think highly of myself.,A,A5,Modesty,-1,54
+Carry out my plans.,C,C5,Self-Discipline,1,55
+Become overwhelmed by events.,N,N6,Vulnerability,1,56
+Have a lot of fun.,E,E6,Cheerfulness,1,57
+Believe that there is no absolute right and wrong.,O,O6,Liberalism,1,58
+Feel sympathy for those who are worse off than myself.,A,A6,Sympathy,1,59
+Make rash decisions.,C,C6,Cautiousness,-1,60
+Am afraid of many things.,N,N1,Anxiety,1,61
+Avoid contacts with others.,E,E1,Friendliness,-1,62
+Love to daydream.,O,O1,Imagination,1,63
+Trust what people say.,A,A1,Trust,1,64
+Handle tasks smoothly.,C,C1,Self-Efficacy,1,65
+Lose my temper.,N,N2,Anger,1,66
+Prefer to be alone.,E,E2,Gregariousness,-1,67
+Do not like poetry.,O,O2,Artistic Interests,-1,68
+Take advantage of others.,A,A2,Morality,-1,69
+Leave a mess in my room.,C,C2,Orderliness,-1,70
+Am often down in the dumps.,N,N3,Depression,1,71
+Take control of things.,E,E3,Assertiveness,1,72
+Rarely notice my emotional reactions.,O,O3,Emotionality,-1,73
+Am indifferent to the feelings of others.,A,A3,Altruism,-1,74
+Break rules.,C,C3,Dutifulness,-1,75
+Only feel comfortable with friends.,N,N4,Self-Consciousness,1,76
+Do a lot in my spare time.,E,E4,Activity Level,1,77
+Dislike changes.,O,O4,Adventurousness,-1,78
+Insult people.,A,A4,Cooperation,-1,79
+Do just enough work to get by.,C,C4,Achievement-Striving,-1,80
+Easily resist temptations.,N,N5,Immoderation,-1,81
+Enjoy being reckless.,E,E5,Excitement-Seeking,1,82
+Have difficulty understanding abstract ideas.,O,O5,Intellect,-1,83
+Have a high opinion of myself.,A,A5,Modesty,-1,84
+Waste my time.,C,C5,Self-Discipline,-1,85
+Feel that I'm unable to deal with things.,N,N6,Vulnerability,1,86
+Love life.,E,E6,Cheerfulness,1,87
+Tend to vote for conservative political candidates.,O,O6,Liberalism,-1,88
+Am not interested in other people's problems.,A,A6,Sympathy,-1,89
+Rush into things.,C,C6,Cautiousness,-1,90
+Get stressed out easily.,N,N1,Anxiety,1,91
+Keep others at a distance.,E,E1,Friendliness,-1,92
+Like to get lost in thought.,O,O1,Imagination,1,93
+Distrust people.,A,A1,Trust,-1,94
+Know how to get things done.,C,C1,Self-Efficacy,1,95
+Am not easily annoyed.,N,N2,Anger,-1,96
+Avoid crowds.,E,E2,Gregariousness,-1,97
+Do not enjoy going to art museums.,O,O2,Artistic Interests,-1,98
+Obstruct others' plans.,A,A2,Morality,-1,99
+Leave my belongings around.,C,C2,Orderliness,-1,100
+Feel comfortable with myself.,N,N3,Depression,-1,101
+Wait for others to lead the way.,E,E3,Assertiveness,-1,102
+Don't understand people who get emotional.,O,O3,Emotionality,-1,103
+Take no time for others.,A,A3,Altruism,-1,104
+Break my promises.,C,C3,Dutifulness,-1,105
+Am not bothered by difficult social situations.,N,N4,Self-Consciousness,-1,106
+Like to take it easy.,E,E4,Activity Level,-1,107
+Am attached to conventional ways.,O,O4,Adventurousness,-1,108
+Get back at others.,A,A4,Cooperation,-1,109
+Put little time and effort into my work.,C,C4,Achievement-Striving,-1,110
+Am able to control my cravings.,N,N5,Immoderation,-1,111
+Act wild and crazy.,E,E5,Excitement-Seeking,1,112
+Am not interested in theoretical discussions.,O,O5,Intellect,-1,113
+Boast about my virtues.,A,A5,Modesty,-1,114
+Have difficulty starting tasks.,C,C5,Self-Discipline,-1,115
+Remain calm under pressure.,N,N6,Vulnerability,-1,116
+Look at the bright side of life.,E,E6,Cheerfulness,1,117
+Believe that we should be tough on crime.,O,O6,Liberalism,-1,118
+Try not to think about the needy.,A,A6,Sympathy,-1,119
+Act without thinking.,C,C6,Cautiousness,-1,120

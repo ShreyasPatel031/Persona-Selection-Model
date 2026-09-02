@@ -1,0 +1,2496 @@
+{
+  "created_utc": "2026-08-21T00:12:50.958486+00:00",
+  "stage": "dose_matched_control",
+  "criterion": {
+    "control_quiet_ev": 0.25,
+    "rho": 0.8,
+    "margin": 2.0,
+    "min_band_rungs": 4
+  },
+  "sweeps": [
+    {
+      "file": "summary_v3_calibrated_prompts.json",
+      "layer_source": "inventory",
+      "layers": {
+        "extraversion": 15,
+        "agreeableness": 15,
+        "conscientiousness": 15,
+        "neuroticism": 15,
+        "openness": 15
+      },
+      "n_poles": 10,
+      "n_passing_dose_matched": 5,
+      "n_passing_as_reported": 2,
+      "table": [
+        {
+          "trait": "openness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": "character",
+          "n_markers": 6,
+          "prior_ev": 2.5769,
+          "reference_ev": 4.2454,
+          "prompt_gap": 1.6685,
+          "n_band_rungs": 9,
+          "band_max_magnitude": 510.3,
+          "best_dose": 445.81,
+          "trait_delta_at_best_dose": 0.5127,
+          "control_delta_at_best_dose": 0.0632,
+          "dose_matched_margin": 8.11,
+          "rho_over_band": 0.8833,
+          "monotone_fraction_over_band": 0.75,
+          "pct_of_prompt_gap": 30.7,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": true,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 58.88,
+              "trait_delta": -0.0827,
+              "max_control_abs_delta": 0.0107,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 123.37,
+              "trait_delta": -0.0647,
+              "max_control_abs_delta": 0.0255,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 187.86,
+              "trait_delta": -0.0016,
+              "max_control_abs_delta": 0.0459,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 252.35,
+              "trait_delta": 0.1187,
+              "max_control_abs_delta": 0.0407,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 316.84,
+              "trait_delta": 0.2511,
+              "max_control_abs_delta": 0.0284,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 381.32,
+              "trait_delta": 0.4358,
+              "max_control_abs_delta": 0.0242,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 445.81,
+              "trait_delta": 0.5127,
+              "max_control_abs_delta": 0.0632,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 510.3,
+              "trait_delta": 0.5107,
+              "max_control_abs_delta": 0.0805,
+              "control_quiet": true,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "openness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": "character",
+          "n_markers": 6,
+          "prior_ev": 4.0788,
+          "reference_ev": 2.652,
+          "prompt_gap": -1.4268,
+          "n_band_rungs": 7,
+          "band_max_magnitude": 510.3,
+          "best_dose": 510.3,
+          "trait_delta_at_best_dose": -1.0688,
+          "control_delta_at_best_dose": 0.06,
+          "dose_matched_margin": 17.81,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 74.9,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": true,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 58.88,
+              "trait_delta": -0.0588,
+              "max_control_abs_delta": 0.0505,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 123.37,
+              "trait_delta": -0.1694,
+              "max_control_abs_delta": 0.0798,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 187.86,
+              "trait_delta": -0.3283,
+              "max_control_abs_delta": 0.091,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 252.35,
+              "trait_delta": -0.5225,
+              "max_control_abs_delta": 0.1188,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 316.84,
+              "trait_delta": -0.6627,
+              "max_control_abs_delta": 0.2177,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 381.32,
+              "trait_delta": -0.8383,
+              "max_control_abs_delta": 0.3021,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 445.81,
+              "trait_delta": -0.9697,
+              "max_control_abs_delta": 0.2646,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 510.3,
+              "trait_delta": -1.0688,
+              "max_control_abs_delta": 0.06,
+              "control_quiet": true,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "conscientiousness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": "self",
+          "n_markers": 6,
+          "prior_ev": 1.2103,
+          "reference_ev": 4.9967,
+          "prompt_gap": 3.7864,
+          "n_band_rungs": 6,
+          "band_max_magnitude": 656.05,
+          "best_dose": 656.05,
+          "trait_delta_at_best_dose": 0.6003,
+          "control_delta_at_best_dose": 0.2085,
+          "dose_matched_margin": 2.88,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 15.9,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 121.92,
+              "trait_delta": 0.0597,
+              "max_control_abs_delta": 0.0805,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 255.45,
+              "trait_delta": 0.111,
+              "max_control_abs_delta": 0.1328,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 388.98,
+              "trait_delta": 0.1871,
+              "max_control_abs_delta": 0.1186,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 522.52,
+              "trait_delta": 0.2857,
+              "max_control_abs_delta": 0.1042,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 656.05,
+              "trait_delta": 0.6003,
+              "max_control_abs_delta": 0.2085,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 789.58,
+              "trait_delta": 1.4863,
+              "max_control_abs_delta": 0.2573,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 923.11,
+              "trait_delta": 1.672,
+              "max_control_abs_delta": 0.8876,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1056.64,
+              "trait_delta": 1.7326,
+              "max_control_abs_delta": 1.7866,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "conscientiousness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": "self",
+          "n_markers": 6,
+          "prior_ev": 4.9982,
+          "reference_ev": 1.0558,
+          "prompt_gap": -3.9424,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 388.98,
+          "best_dose": 388.98,
+          "trait_delta_at_best_dose": -0.4284,
+          "control_delta_at_best_dose": 0.0931,
+          "dose_matched_margin": 4.6,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 10.9,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 121.92,
+              "trait_delta": -0.0622,
+              "max_control_abs_delta": 0.0061,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 255.45,
+              "trait_delta": -0.2384,
+              "max_control_abs_delta": 0.0411,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 388.98,
+              "trait_delta": -0.4284,
+              "max_control_abs_delta": 0.0931,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 522.52,
+              "trait_delta": -0.6683,
+              "max_control_abs_delta": 0.707,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 656.05,
+              "trait_delta": -0.8068,
+              "max_control_abs_delta": 2.2422,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 789.58,
+              "trait_delta": -0.9082,
+              "max_control_abs_delta": 2.8004,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 923.11,
+              "trait_delta": -1.0373,
+              "max_control_abs_delta": 3.2168,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1056.64,
+              "trait_delta": -1.0689,
+              "max_control_abs_delta": 3.5751,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "agreeableness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": "self",
+          "n_markers": 6,
+          "prior_ev": 1.7382,
+          "reference_ev": 4.6124,
+          "prompt_gap": 2.8742,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 424.96,
+          "best_dose": 424.96,
+          "trait_delta_at_best_dose": 0.2694,
+          "control_delta_at_best_dose": 0.192,
+          "dose_matched_margin": 1.4,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 9.4,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 133.2,
+              "trait_delta": 0.0534,
+              "max_control_abs_delta": 0.0098,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 279.08,
+              "trait_delta": 0.1759,
+              "max_control_abs_delta": 0.1163,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 424.96,
+              "trait_delta": 0.2694,
+              "max_control_abs_delta": 0.192,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 570.84,
+              "trait_delta": 0.2333,
+              "max_control_abs_delta": 0.3947,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 716.72,
+              "trait_delta": 0.657,
+              "max_control_abs_delta": 0.5026,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 862.6,
+              "trait_delta": 0.9519,
+              "max_control_abs_delta": 0.5259,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1008.48,
+              "trait_delta": 1.1052,
+              "max_control_abs_delta": 0.6225,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1154.36,
+              "trait_delta": 1.265,
+              "max_control_abs_delta": 1.155,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "agreeableness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": "self",
+          "n_markers": 6,
+          "prior_ev": 4.6063,
+          "reference_ev": 1.4705,
+          "prompt_gap": -3.1358,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 424.96,
+          "best_dose": 424.96,
+          "trait_delta_at_best_dose": -0.2782,
+          "control_delta_at_best_dose": 0.1545,
+          "dose_matched_margin": 1.8,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 8.9,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 133.2,
+              "trait_delta": -0.0559,
+              "max_control_abs_delta": 0.0408,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 279.08,
+              "trait_delta": -0.1949,
+              "max_control_abs_delta": 0.1062,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 424.96,
+              "trait_delta": -0.2782,
+              "max_control_abs_delta": 0.1545,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 570.84,
+              "trait_delta": -0.3105,
+              "max_control_abs_delta": 0.5087,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 716.72,
+              "trait_delta": -0.3143,
+              "max_control_abs_delta": 1.4309,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 862.6,
+              "trait_delta": -0.5358,
+              "max_control_abs_delta": 2.1247,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1008.48,
+              "trait_delta": -1.0033,
+              "max_control_abs_delta": 2.5861,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1154.36,
+              "trait_delta": -1.5339,
+              "max_control_abs_delta": 2.6954,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "neuroticism",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": "self",
+          "n_markers": 6,
+          "prior_ev": 1.7001,
+          "reference_ev": 4.8005,
+          "prompt_gap": 3.1004,
+          "n_band_rungs": 6,
+          "band_max_magnitude": 473.79,
+          "best_dose": 88.05,
+          "trait_delta_at_best_dose": 0.0142,
+          "control_delta_at_best_dose": 0.0117,
+          "dose_matched_margin": 1.21,
+          "rho_over_band": -0.9429,
+          "monotone_fraction_over_band": 0.8,
+          "pct_of_prompt_gap": 0.5,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 88.05,
+              "trait_delta": 0.0142,
+              "max_control_abs_delta": 0.0117,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 184.49,
+              "trait_delta": -0.055,
+              "max_control_abs_delta": 0.01,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 280.92,
+              "trait_delta": -0.1327,
+              "max_control_abs_delta": 0.0836,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 377.36,
+              "trait_delta": -0.1671,
+              "max_control_abs_delta": 0.0541,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 473.79,
+              "trait_delta": -0.1811,
+              "max_control_abs_delta": 0.1108,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 570.23,
+              "trait_delta": 0.5199,
+              "max_control_abs_delta": 0.6813,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 666.66,
+              "trait_delta": 0.9566,
+              "max_control_abs_delta": 1.0826,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 763.1,
+              "trait_delta": 1.1966,
+              "max_control_abs_delta": 1.3508,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "neuroticism",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": "self",
+          "n_markers": 6,
+          "prior_ev": 4.8502,
+          "reference_ev": 1.9272,
+          "prompt_gap": -2.923,
+          "n_band_rungs": 5,
+          "band_max_magnitude": 377.36,
+          "best_dose": 377.36,
+          "trait_delta_at_best_dose": -0.6924,
+          "control_delta_at_best_dose": 0.2023,
+          "dose_matched_margin": 3.42,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 23.7,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 88.05,
+              "trait_delta": -0.1045,
+              "max_control_abs_delta": 0.0229,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 184.49,
+              "trait_delta": -0.3173,
+              "max_control_abs_delta": 0.0515,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 280.92,
+              "trait_delta": -0.621,
+              "max_control_abs_delta": 0.1132,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 377.36,
+              "trait_delta": -0.6924,
+              "max_control_abs_delta": 0.2023,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 473.79,
+              "trait_delta": -0.7687,
+              "max_control_abs_delta": 0.3932,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 570.23,
+              "trait_delta": -1.0957,
+              "max_control_abs_delta": 0.8722,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 666.66,
+              "trait_delta": -1.3122,
+              "max_control_abs_delta": 1.6566,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 763.1,
+              "trait_delta": -1.5086,
+              "max_control_abs_delta": 2.2639,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "extraversion",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": "self",
+          "n_markers": 6,
+          "prior_ev": 1.6276,
+          "reference_ev": 4.8246,
+          "prompt_gap": 3.197,
+          "n_band_rungs": 6,
+          "band_max_magnitude": 814.17,
+          "best_dose": 814.17,
+          "trait_delta_at_best_dose": 0.3514,
+          "control_delta_at_best_dose": 0.1314,
+          "dose_matched_margin": 2.67,
+          "rho_over_band": 0.0857,
+          "monotone_fraction_over_band": 0.6,
+          "pct_of_prompt_gap": 11.0,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 125.72,
+              "trait_delta": 0.0173,
+              "max_control_abs_delta": 0.0628,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 263.41,
+              "trait_delta": -0.3309,
+              "max_control_abs_delta": 0.0894,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 401.1,
+              "trait_delta": -0.407,
+              "max_control_abs_delta": 0.1017,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 538.79,
+              "trait_delta": -0.2973,
+              "max_control_abs_delta": 0.1893,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 676.48,
+              "trait_delta": -0.2621,
+              "max_control_abs_delta": 0.2735,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 814.17,
+              "trait_delta": 0.3514,
+              "max_control_abs_delta": 0.1314,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 951.86,
+              "trait_delta": 1.8962,
+              "max_control_abs_delta": 0.2723,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1089.55,
+              "trait_delta": 1.9431,
+              "max_control_abs_delta": 1.3221,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "extraversion",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": "self",
+          "n_markers": 6,
+          "prior_ev": 4.8647,
+          "reference_ev": 1.7134,
+          "prompt_gap": -3.1513,
+          "n_band_rungs": 3,
+          "band_max_magnitude": 263.41,
+          "best_dose": 263.41,
+          "trait_delta_at_best_dose": -0.0624,
+          "control_delta_at_best_dose": 0.2201,
+          "dose_matched_margin": 0.28,
+          "rho_over_band": 0.5,
+          "monotone_fraction_over_band": 0.5,
+          "pct_of_prompt_gap": 2.0,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 125.72,
+              "trait_delta": 0.0248,
+              "max_control_abs_delta": 0.0326,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 263.41,
+              "trait_delta": -0.0624,
+              "max_control_abs_delta": 0.2201,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 401.1,
+              "trait_delta": -0.326,
+              "max_control_abs_delta": 0.5307,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 538.79,
+              "trait_delta": -0.8975,
+              "max_control_abs_delta": 1.1178,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 676.48,
+              "trait_delta": -1.3779,
+              "max_control_abs_delta": 2.251,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 814.17,
+              "trait_delta": -1.8856,
+              "max_control_abs_delta": 2.6107,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 951.86,
+              "trait_delta": -2.1138,
+              "max_control_abs_delta": 2.3188,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1089.55,
+              "trait_delta": -2.1054,
+              "max_control_abs_delta": 1.9034,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "summary_v2_inventory_layers.json",
+      "layer_source": "inventory",
+      "layers": {
+        "extraversion": 15,
+        "agreeableness": 15,
+        "conscientiousness": 15,
+        "neuroticism": 15,
+        "openness": 15
+      },
+      "n_poles": 10,
+      "n_passing_dose_matched": 5,
+      "n_passing_as_reported": 1,
+      "table": [
+        {
+          "trait": "openness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 3.0365,
+          "reference_ev": 4.7528,
+          "prompt_gap": 1.7163,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 187.86,
+          "best_dose": 123.37,
+          "trait_delta_at_best_dose": 0.1293,
+          "control_delta_at_best_dose": 0.0476,
+          "dose_matched_margin": 2.72,
+          "rho_over_band": 0.4,
+          "monotone_fraction_over_band": 0.6667,
+          "pct_of_prompt_gap": 7.5,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 58.88,
+              "trait_delta": 0.094,
+              "max_control_abs_delta": 0.0073,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 123.37,
+              "trait_delta": 0.1293,
+              "max_control_abs_delta": 0.0476,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 187.86,
+              "trait_delta": 0.0784,
+              "max_control_abs_delta": 0.1442,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 252.35,
+              "trait_delta": -0.024,
+              "max_control_abs_delta": 0.3247,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 316.84,
+              "trait_delta": -0.1351,
+              "max_control_abs_delta": 0.5219,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 381.32,
+              "trait_delta": -0.2867,
+              "max_control_abs_delta": 0.8177,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 445.81,
+              "trait_delta": -0.2511,
+              "max_control_abs_delta": 1.0456,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 510.3,
+              "trait_delta": -0.2139,
+              "max_control_abs_delta": 1.144,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "openness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.7396,
+          "reference_ev": 3.0151,
+          "prompt_gap": -1.7245,
+          "n_band_rungs": 9,
+          "band_max_magnitude": 510.3,
+          "best_dose": 510.3,
+          "trait_delta_at_best_dose": -1.0749,
+          "control_delta_at_best_dose": 0.152,
+          "dose_matched_margin": 7.07,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 62.3,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": true,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 58.88,
+              "trait_delta": -0.0606,
+              "max_control_abs_delta": 0.0041,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 123.37,
+              "trait_delta": -0.0983,
+              "max_control_abs_delta": 0.003,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 187.86,
+              "trait_delta": -0.21,
+              "max_control_abs_delta": 0.0031,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 252.35,
+              "trait_delta": -0.3237,
+              "max_control_abs_delta": 0.0005,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 316.84,
+              "trait_delta": -0.4789,
+              "max_control_abs_delta": 0.0097,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 381.32,
+              "trait_delta": -0.6126,
+              "max_control_abs_delta": 0.0311,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 445.81,
+              "trait_delta": -0.7583,
+              "max_control_abs_delta": 0.0971,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 510.3,
+              "trait_delta": -1.0749,
+              "max_control_abs_delta": 0.152,
+              "control_quiet": true,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "conscientiousness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 1.0513,
+          "reference_ev": 4.9997,
+          "prompt_gap": 3.9484,
+          "n_band_rungs": 6,
+          "band_max_magnitude": 656.05,
+          "best_dose": 656.05,
+          "trait_delta_at_best_dose": 0.6594,
+          "control_delta_at_best_dose": 0.1198,
+          "dose_matched_margin": 5.5,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 16.7,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 121.92,
+              "trait_delta": 0.0551,
+              "max_control_abs_delta": 0.0167,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 255.45,
+              "trait_delta": 0.1599,
+              "max_control_abs_delta": 0.0349,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 388.98,
+              "trait_delta": 0.2692,
+              "max_control_abs_delta": 0.0482,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 522.52,
+              "trait_delta": 0.4184,
+              "max_control_abs_delta": 0.0357,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 656.05,
+              "trait_delta": 0.6594,
+              "max_control_abs_delta": 0.1198,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 789.58,
+              "trait_delta": 1.4298,
+              "max_control_abs_delta": 0.3646,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 923.11,
+              "trait_delta": 1.7992,
+              "max_control_abs_delta": 0.9275,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1056.64,
+              "trait_delta": 1.8392,
+              "max_control_abs_delta": 1.9323,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "conscientiousness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.9632,
+          "reference_ev": 1.0023,
+          "prompt_gap": -3.9609,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 388.98,
+          "best_dose": 388.98,
+          "trait_delta_at_best_dose": -0.3592,
+          "control_delta_at_best_dose": 0.0066,
+          "dose_matched_margin": 54.42,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 9.1,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 121.92,
+              "trait_delta": -0.0131,
+              "max_control_abs_delta": 0.0348,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 255.45,
+              "trait_delta": -0.1896,
+              "max_control_abs_delta": 0.0252,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 388.98,
+              "trait_delta": -0.3592,
+              "max_control_abs_delta": 0.0066,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 522.52,
+              "trait_delta": -0.5743,
+              "max_control_abs_delta": 0.2946,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 656.05,
+              "trait_delta": -0.7937,
+              "max_control_abs_delta": 1.3724,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 789.58,
+              "trait_delta": -0.9977,
+              "max_control_abs_delta": 2.3354,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 923.11,
+              "trait_delta": -1.1311,
+              "max_control_abs_delta": 3.1148,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1056.64,
+              "trait_delta": -1.1935,
+              "max_control_abs_delta": 3.5781,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "agreeableness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 1.6402,
+          "reference_ev": 4.5725,
+          "prompt_gap": 2.9323,
+          "n_band_rungs": 3,
+          "band_max_magnitude": 279.08,
+          "best_dose": 279.08,
+          "trait_delta_at_best_dose": 0.0944,
+          "control_delta_at_best_dose": 0.2252,
+          "dose_matched_margin": 0.42,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 3.2,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 133.2,
+              "trait_delta": 0.0235,
+              "max_control_abs_delta": 0.0476,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 279.08,
+              "trait_delta": 0.0944,
+              "max_control_abs_delta": 0.2252,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 424.96,
+              "trait_delta": 0.1645,
+              "max_control_abs_delta": 0.4546,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 570.84,
+              "trait_delta": 0.5012,
+              "max_control_abs_delta": 0.7212,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 716.72,
+              "trait_delta": 0.7041,
+              "max_control_abs_delta": 0.8536,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 862.6,
+              "trait_delta": 0.8585,
+              "max_control_abs_delta": 0.7826,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1008.48,
+              "trait_delta": 1.0422,
+              "max_control_abs_delta": 1.1544,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1154.36,
+              "trait_delta": 1.3136,
+              "max_control_abs_delta": 1.2884,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "agreeableness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.5294,
+          "reference_ev": 1.5079,
+          "prompt_gap": -3.0215,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 424.96,
+          "best_dose": 279.08,
+          "trait_delta_at_best_dose": -0.1419,
+          "control_delta_at_best_dose": 0.0148,
+          "dose_matched_margin": 9.59,
+          "rho_over_band": 0.8,
+          "monotone_fraction_over_band": 0.6667,
+          "pct_of_prompt_gap": 4.7,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 133.2,
+              "trait_delta": -0.0181,
+              "max_control_abs_delta": 0.0087,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 279.08,
+              "trait_delta": -0.1419,
+              "max_control_abs_delta": 0.0148,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 424.96,
+              "trait_delta": -0.1245,
+              "max_control_abs_delta": 0.1076,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 570.84,
+              "trait_delta": -0.0716,
+              "max_control_abs_delta": 0.7363,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 716.72,
+              "trait_delta": -0.1991,
+              "max_control_abs_delta": 1.2215,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 862.6,
+              "trait_delta": -0.5563,
+              "max_control_abs_delta": 1.8078,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1008.48,
+              "trait_delta": -1.1119,
+              "max_control_abs_delta": 2.3324,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1154.36,
+              "trait_delta": -1.6121,
+              "max_control_abs_delta": 2.7122,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "neuroticism",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 2.1201,
+          "reference_ev": 4.8592,
+          "prompt_gap": 2.7391,
+          "n_band_rungs": 6,
+          "band_max_magnitude": 473.79,
+          "best_dose": 0.0,
+          "trait_delta_at_best_dose": 0.0,
+          "control_delta_at_best_dose": 0.0,
+          "dose_matched_margin": null,
+          "rho_over_band": -0.6,
+          "monotone_fraction_over_band": 0.6,
+          "pct_of_prompt_gap": 0.0,
+          "sign_correct": false,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 88.05,
+              "trait_delta": -0.0631,
+              "max_control_abs_delta": 0.0179,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 184.49,
+              "trait_delta": -0.2687,
+              "max_control_abs_delta": 0.0814,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 280.92,
+              "trait_delta": -0.3186,
+              "max_control_abs_delta": 0.0189,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 377.36,
+              "trait_delta": -0.2991,
+              "max_control_abs_delta": 0.0259,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 473.79,
+              "trait_delta": -0.0848,
+              "max_control_abs_delta": 0.0203,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 570.23,
+              "trait_delta": 0.4713,
+              "max_control_abs_delta": 0.2827,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 666.66,
+              "trait_delta": 0.7422,
+              "max_control_abs_delta": 0.7038,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 763.1,
+              "trait_delta": 0.8734,
+              "max_control_abs_delta": 0.997,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "neuroticism",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.7578,
+          "reference_ev": 2.0888,
+          "prompt_gap": -2.669,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 280.92,
+          "best_dose": 280.92,
+          "trait_delta_at_best_dose": -0.6239,
+          "control_delta_at_best_dose": 0.2236,
+          "dose_matched_margin": 2.79,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 23.4,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 88.05,
+              "trait_delta": -0.1389,
+              "max_control_abs_delta": 0.0284,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 184.49,
+              "trait_delta": -0.4972,
+              "max_control_abs_delta": 0.1029,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 280.92,
+              "trait_delta": -0.6239,
+              "max_control_abs_delta": 0.2236,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 377.36,
+              "trait_delta": -0.7016,
+              "max_control_abs_delta": 0.3284,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 473.79,
+              "trait_delta": -0.9893,
+              "max_control_abs_delta": 0.5116,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 570.23,
+              "trait_delta": -1.1789,
+              "max_control_abs_delta": 0.659,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 666.66,
+              "trait_delta": -1.3632,
+              "max_control_abs_delta": 1.1752,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 763.1,
+              "trait_delta": -1.625,
+              "max_control_abs_delta": 1.8107,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "extraversion",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 1.5243,
+          "reference_ev": 4.8309,
+          "prompt_gap": 3.3066,
+          "n_band_rungs": 7,
+          "band_max_magnitude": 814.17,
+          "best_dose": 814.17,
+          "trait_delta_at_best_dose": 0.5677,
+          "control_delta_at_best_dose": 0.0544,
+          "dose_matched_margin": 10.44,
+          "rho_over_band": 0.4286,
+          "monotone_fraction_over_band": 0.6667,
+          "pct_of_prompt_gap": 17.2,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 125.72,
+              "trait_delta": -0.1172,
+              "max_control_abs_delta": 0.0306,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 263.41,
+              "trait_delta": -0.2267,
+              "max_control_abs_delta": 0.0477,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 401.1,
+              "trait_delta": -0.179,
+              "max_control_abs_delta": 0.0771,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 538.79,
+              "trait_delta": -0.1594,
+              "max_control_abs_delta": 0.1102,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 676.48,
+              "trait_delta": 0.2943,
+              "max_control_abs_delta": 0.1314,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 814.17,
+              "trait_delta": 0.5677,
+              "max_control_abs_delta": 0.0544,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 951.86,
+              "trait_delta": 1.7932,
+              "max_control_abs_delta": 0.5595,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1089.55,
+              "trait_delta": 2.7089,
+              "max_control_abs_delta": 1.2863,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "extraversion",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.834,
+          "reference_ev": 1.6013,
+          "prompt_gap": -3.2327,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 401.1,
+          "best_dose": 401.1,
+          "trait_delta_at_best_dose": -0.3361,
+          "control_delta_at_best_dose": 0.1423,
+          "dose_matched_margin": 2.36,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 10.4,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 125.72,
+              "trait_delta": -0.0074,
+              "max_control_abs_delta": 0.0015,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 263.41,
+              "trait_delta": -0.0878,
+              "max_control_abs_delta": 0.011,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 401.1,
+              "trait_delta": -0.3361,
+              "max_control_abs_delta": 0.1423,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 538.79,
+              "trait_delta": -0.8407,
+              "max_control_abs_delta": 0.2789,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 676.48,
+              "trait_delta": -1.1973,
+              "max_control_abs_delta": 1.3377,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 814.17,
+              "trait_delta": -1.8185,
+              "max_control_abs_delta": 1.9348,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 951.86,
+              "trait_delta": -1.8724,
+              "max_control_abs_delta": 2.1694,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1089.55,
+              "trait_delta": -1.8364,
+              "max_control_abs_delta": 1.8848,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "file": "summary_inventory_layers.json",
+      "layer_source": "inventory",
+      "layers": {
+        "extraversion": 15,
+        "agreeableness": 15,
+        "conscientiousness": 15,
+        "neuroticism": 15,
+        "openness": 15
+      },
+      "n_poles": 8,
+      "n_passing_dose_matched": 4,
+      "n_passing_as_reported": 0,
+      "table": [
+        {
+          "trait": "openness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 3.0365,
+          "reference_ev": 4.7528,
+          "prompt_gap": 1.7163,
+          "n_band_rungs": 3,
+          "band_max_magnitude": 200.86,
+          "best_dose": 95.87,
+          "trait_delta_at_best_dose": 0.0808,
+          "control_delta_at_best_dose": 0.0211,
+          "dose_matched_margin": 3.83,
+          "rho_over_band": -0.5,
+          "monotone_fraction_over_band": 0.5,
+          "pct_of_prompt_gap": 4.7,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 95.87,
+              "trait_delta": 0.0808,
+              "max_control_abs_delta": 0.0211,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 200.86,
+              "trait_delta": -0.0282,
+              "max_control_abs_delta": 0.1648,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 305.86,
+              "trait_delta": -0.2133,
+              "max_control_abs_delta": 0.4775,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 410.85,
+              "trait_delta": -0.049,
+              "max_control_abs_delta": 0.9419,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 515.85,
+              "trait_delta": -0.0934,
+              "max_control_abs_delta": 1.1434,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 620.84,
+              "trait_delta": 0.5366,
+              "max_control_abs_delta": 1.1085,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 725.84,
+              "trait_delta": 0.725,
+              "max_control_abs_delta": 1.0292,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 830.83,
+              "trait_delta": 0.6757,
+              "max_control_abs_delta": 0.8911,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "openness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.7396,
+          "reference_ev": 3.0151,
+          "prompt_gap": -1.7245,
+          "n_band_rungs": 6,
+          "band_max_magnitude": 515.85,
+          "best_dose": 515.85,
+          "trait_delta_at_best_dose": -0.7708,
+          "control_delta_at_best_dose": 0.1589,
+          "dose_matched_margin": 4.85,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 44.7,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 95.87,
+              "trait_delta": -0.0717,
+              "max_control_abs_delta": 0.0026,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 200.86,
+              "trait_delta": -0.188,
+              "max_control_abs_delta": 0.0033,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 305.86,
+              "trait_delta": -0.3327,
+              "max_control_abs_delta": 0.0071,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 410.85,
+              "trait_delta": -0.5008,
+              "max_control_abs_delta": 0.0554,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 515.85,
+              "trait_delta": -0.7708,
+              "max_control_abs_delta": 0.1589,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 620.84,
+              "trait_delta": -0.988,
+              "max_control_abs_delta": 0.7164,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 725.84,
+              "trait_delta": -1.0807,
+              "max_control_abs_delta": 1.2071,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 830.83,
+              "trait_delta": -1.1678,
+              "max_control_abs_delta": 1.5715,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "conscientiousness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 1.0513,
+          "reference_ev": 4.9997,
+          "prompt_gap": 3.9484,
+          "n_band_rungs": 6,
+          "band_max_magnitude": 628.77,
+          "best_dose": 628.77,
+          "trait_delta_at_best_dose": 0.3693,
+          "control_delta_at_best_dose": 0.092,
+          "dose_matched_margin": 4.01,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 9.4,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 116.85,
+              "trait_delta": 0.0383,
+              "max_control_abs_delta": 0.0145,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 244.83,
+              "trait_delta": 0.1249,
+              "max_control_abs_delta": 0.0322,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 372.81,
+              "trait_delta": 0.2169,
+              "max_control_abs_delta": 0.0473,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 500.79,
+              "trait_delta": 0.2653,
+              "max_control_abs_delta": 0.0423,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 628.77,
+              "trait_delta": 0.3693,
+              "max_control_abs_delta": 0.092,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 756.74,
+              "trait_delta": 0.5384,
+              "max_control_abs_delta": 0.3101,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 884.72,
+              "trait_delta": 1.136,
+              "max_control_abs_delta": 0.7093,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1012.7,
+              "trait_delta": 1.4395,
+              "max_control_abs_delta": 1.8209,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "conscientiousness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.9632,
+          "reference_ev": 1.0023,
+          "prompt_gap": -3.9609,
+          "n_band_rungs": 5,
+          "band_max_magnitude": 500.79,
+          "best_dose": 500.79,
+          "trait_delta_at_best_dose": -0.486,
+          "control_delta_at_best_dose": 0.1864,
+          "dose_matched_margin": 2.61,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 12.3,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 116.85,
+              "trait_delta": -0.011,
+              "max_control_abs_delta": 0.0352,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 244.83,
+              "trait_delta": -0.1435,
+              "max_control_abs_delta": 0.0306,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 372.81,
+              "trait_delta": -0.2637,
+              "max_control_abs_delta": 0.0067,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 500.79,
+              "trait_delta": -0.486,
+              "max_control_abs_delta": 0.1864,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 628.77,
+              "trait_delta": -0.6345,
+              "max_control_abs_delta": 1.006,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 756.74,
+              "trait_delta": -0.79,
+              "max_control_abs_delta": 2.1192,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 884.72,
+              "trait_delta": -0.8889,
+              "max_control_abs_delta": 2.939,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1012.7,
+              "trait_delta": -1.0588,
+              "max_control_abs_delta": 3.4731,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "agreeableness",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 1.6402,
+          "reference_ev": 4.5725,
+          "prompt_gap": 2.9323,
+          "n_band_rungs": 3,
+          "band_max_magnitude": 257.49,
+          "best_dose": 257.49,
+          "trait_delta_at_best_dose": 0.063,
+          "control_delta_at_best_dose": 0.2202,
+          "dose_matched_margin": 0.29,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 2.1,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 122.89,
+              "trait_delta": 0.024,
+              "max_control_abs_delta": 0.0419,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 257.49,
+              "trait_delta": 0.063,
+              "max_control_abs_delta": 0.2202,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 392.09,
+              "trait_delta": 0.1293,
+              "max_control_abs_delta": 0.3687,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 526.69,
+              "trait_delta": 0.4631,
+              "max_control_abs_delta": 0.6359,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 661.29,
+              "trait_delta": 0.6849,
+              "max_control_abs_delta": 0.8466,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 795.89,
+              "trait_delta": 0.8601,
+              "max_control_abs_delta": 0.8534,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 930.49,
+              "trait_delta": 1.0888,
+              "max_control_abs_delta": 0.8782,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1065.09,
+              "trait_delta": 1.3248,
+              "max_control_abs_delta": 1.2146,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "agreeableness",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.5294,
+          "reference_ev": 1.5079,
+          "prompt_gap": -3.0215,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 392.09,
+          "best_dose": 257.49,
+          "trait_delta_at_best_dose": -0.135,
+          "control_delta_at_best_dose": 0.005,
+          "dose_matched_margin": 27.0,
+          "rho_over_band": 0.8,
+          "monotone_fraction_over_band": 0.6667,
+          "pct_of_prompt_gap": 4.5,
+          "sign_correct": true,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 122.89,
+              "trait_delta": -0.0237,
+              "max_control_abs_delta": 0.0095,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 257.49,
+              "trait_delta": -0.135,
+              "max_control_abs_delta": 0.005,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 392.09,
+              "trait_delta": -0.117,
+              "max_control_abs_delta": 0.0542,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 526.69,
+              "trait_delta": -0.0189,
+              "max_control_abs_delta": 0.4986,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 661.29,
+              "trait_delta": 0.0121,
+              "max_control_abs_delta": 1.1013,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 795.89,
+              "trait_delta": -0.1857,
+              "max_control_abs_delta": 1.5015,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 930.49,
+              "trait_delta": -0.6204,
+              "max_control_abs_delta": 2.0618,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 1065.09,
+              "trait_delta": -1.1788,
+              "max_control_abs_delta": 2.5346,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "neuroticism",
+          "pole": "up",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 2.1201,
+          "reference_ev": 4.8592,
+          "prompt_gap": 2.7391,
+          "n_band_rungs": 7,
+          "band_max_magnitude": 525.04,
+          "best_dose": 0.0,
+          "trait_delta_at_best_dose": 0.0,
+          "control_delta_at_best_dose": 0.0,
+          "dose_matched_margin": null,
+          "rho_over_band": -0.5,
+          "monotone_fraction_over_band": 0.5,
+          "pct_of_prompt_gap": 0.0,
+          "sign_correct": false,
+          "passes_dose_matched": false,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 81.07,
+              "trait_delta": -0.0635,
+              "max_control_abs_delta": 0.0143,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 169.87,
+              "trait_delta": -0.2637,
+              "max_control_abs_delta": 0.0571,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 258.66,
+              "trait_delta": -0.3723,
+              "max_control_abs_delta": 0.0428,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 347.46,
+              "trait_delta": -0.3696,
+              "max_control_abs_delta": 0.0235,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 436.25,
+              "trait_delta": -0.3489,
+              "max_control_abs_delta": 0.0199,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 525.04,
+              "trait_delta": -0.2132,
+              "max_control_abs_delta": 0.1234,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 613.84,
+              "trait_delta": 0.3438,
+              "max_control_abs_delta": 0.4748,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 702.63,
+              "trait_delta": 0.5246,
+              "max_control_abs_delta": 0.8487,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        },
+        {
+          "trait": "neuroticism",
+          "pole": "down",
+          "layer": 15,
+          "prompt_style": null,
+          "n_markers": null,
+          "prior_ev": 4.7578,
+          "reference_ev": 2.0888,
+          "prompt_gap": -2.669,
+          "n_band_rungs": 4,
+          "band_max_magnitude": 258.66,
+          "best_dose": 258.66,
+          "trait_delta_at_best_dose": -0.5309,
+          "control_delta_at_best_dose": 0.1892,
+          "dose_matched_margin": 2.81,
+          "rho_over_band": 1.0,
+          "monotone_fraction_over_band": 1.0,
+          "pct_of_prompt_gap": 19.9,
+          "sign_correct": true,
+          "passes_dose_matched": true,
+          "reported_works": false,
+          "per_rung": [
+            {
+              "magnitude": 0.0,
+              "trait_delta": 0.0,
+              "max_control_abs_delta": 0.0,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 81.07,
+              "trait_delta": -0.13,
+              "max_control_abs_delta": 0.0211,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 169.87,
+              "trait_delta": -0.3175,
+              "max_control_abs_delta": 0.1044,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 258.66,
+              "trait_delta": -0.5309,
+              "max_control_abs_delta": 0.1892,
+              "control_quiet": true,
+              "usable": true
+            },
+            {
+              "magnitude": 347.46,
+              "trait_delta": -0.6107,
+              "max_control_abs_delta": 0.2898,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 436.25,
+              "trait_delta": -0.7386,
+              "max_control_abs_delta": 0.4445,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 525.04,
+              "trait_delta": -0.9675,
+              "max_control_abs_delta": 0.5708,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 613.84,
+              "trait_delta": -1.1202,
+              "max_control_abs_delta": 0.8095,
+              "control_quiet": false,
+              "usable": true
+            },
+            {
+              "magnitude": 702.63,
+              "trait_delta": -1.1905,
+              "max_control_abs_delta": 1.4378,
+              "control_quiet": false,
+              "usable": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

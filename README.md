@@ -125,6 +125,10 @@ Pipeline CLI: `python -m app.persona.run` (`step-b`, `step-c`, `step-d`, `valida
 
 **Evil trait, paper-scale run:** see [docs/REPLICATION_EVIL_PAPER_V0.md](docs/REPLICATION_EVIL_PAPER_V0.md) (`evil_paper_v0` bundle under `persona_runs/`).
 
+**Graded inventory shifts (nine-level prompts → ladder vector → IPIP α sweep):** see [docs/INTENSITY_LADDER_CAA.md](docs/INTENSITY_LADDER_CAA.md). CLI: `python -m app.persona.run intensity-ladder -- prompt-ladder|vectors|alpha-sweep`.
+
+**Deciding whether an OCEAN vector actually works (bipolar dose-response, option-lock screening, matched-norm random controls, free-text behaviour):** see [docs/OCEAN_VECTOR_VALIDATION.md](docs/OCEAN_VECTOR_VALIDATION.md). One command: `python3 scripts/run_ocean_vectors.py --run-id ocean_v1 --all-traits`. Plumbing check with no GPU: `python3 scripts/smoke_ocean_pipeline.py`.
+
 **GPU-hour optimization (scoreboard, phased probes, one-shot `gpu-probe`):** [docs/GPU_HOUR_SCOREBOARD.md](docs/GPU_HOUR_SCOREBOARD.md), [docs/GPU_PROBE_WORKFLOW.md](docs/GPU_PROBE_WORKFLOW.md). Ephemeral GPU VM + tiny step-c: `python -m app.persona.run gpu-probe --gpu-run` (needs `gcloud`, `HF_TOKEN`, `GOOGLE_CLOUD_PROJECT`). Local CPU tiny probe: [scripts/tiny_cpu_probe.sh](scripts/tiny_cpu_probe.sh).
 
 **Server device:** with a GPU and drivers, Uvicorn loads Gemma on **CUDA:0** (bf16/fp16) unless `GEMMA_FORCE_CPU=1`. `GEMMA_MAX_NEW_TOKENS` still caps generation length.

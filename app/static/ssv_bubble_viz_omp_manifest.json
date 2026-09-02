@@ -1,0 +1,11 @@
+{
+  "traits": {
+    "good": "ssv_bubble_viz_omp_data_good.json",
+    "evil": "ssv_bubble_viz_omp_data_evil.json",
+    "lawful": "ssv_bubble_viz_omp_data_lawful.json",
+    "chaotic": "ssv_bubble_viz_omp_data_chaotic.json",
+    "male": "ssv_bubble_viz_omp_data_male.json",
+    "female": "ssv_bubble_viz_omp_data_female.json"
+  },
+  "default": "good"
+}

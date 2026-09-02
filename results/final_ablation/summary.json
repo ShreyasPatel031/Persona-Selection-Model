@@ -1,0 +1,82 @@
+{
+  "created_utc": "2026-08-20T01:37:58.902199+00:00",
+  "stage": "final_ablation_their_setup",
+  "held_fixed": {
+    "model": "unsloth/Meta-Llama-3.1-8B-Instruct",
+    "instrument": "MPI-120",
+    "readout": "argmax over option tokens",
+    "injection_scope": "full",
+    "layer": 8,
+    "dose_grid_residual_units": [
+      0.06,
+      0.12,
+      0.25,
+      0.37,
+      0.5
+    ],
+    "n_random_controls": 2
+  },
+  "varied": "vector only (estimator x corpus)",
+  "limits": "Two random controls and one administration per rung. Supports a direction-of-effect conclusion, not a precision or 'perfect correlation' claim.",
+  "bipolar_sign_control": {},
+  "table": [
+    {
+      "arm": "ours_pc1",
+      "pole": "high",
+      "own_ladder_span": 0.2493,
+      "report": "results/final_ablation/sweep_conscientiousness_ours_pc1_high.json",
+      "n_usable_rungs": 0,
+      "insufficient": true
+    },
+    {
+      "arm": "ours_pc1",
+      "pole": "low",
+      "own_ladder_span": 0.2493,
+      "report": "results/final_ablation/sweep_conscientiousness_ours_pc1_low.json",
+      "n_usable_rungs": 3,
+      "baseline_argmax": 2.625,
+      "delta": -0.125,
+      "span": 0.125,
+      "rho_dose_vs_score": -1.0,
+      "sign_correct": true,
+      "monotone_fraction": 1.0,
+      "max_control_span": 0.0833,
+      "span_over_control": 1.5,
+      "beats_control": false,
+      "rho_dose_vs_top_option_fraction": -1.0,
+      "collapse_suspected": false
+    },
+    {
+      "arm": "ours_endpoint",
+      "pole": "high",
+      "own_ladder_span": 0.2571,
+      "report": "results/final_ablation/sweep_conscientiousness_ours_endpoint_high.json",
+      "n_usable_rungs": 0,
+      "insufficient": true
+    },
+    {
+      "arm": "ours_endpoint",
+      "pole": "low",
+      "own_ladder_span": 0.2571,
+      "report": "results/final_ablation/sweep_conscientiousness_ours_endpoint_low.json",
+      "n_usable_rungs": 2,
+      "insufficient": true
+    },
+    {
+      "arm": "theirs_meandiff_statement",
+      "pole": "high",
+      "own_ladder_span": 0.0123,
+      "report": "results/final_ablation/sweep_conscientiousness_theirs_meandiff_statement_high.json",
+      "n_usable_rungs": 0,
+      "insufficient": true
+    },
+    {
+      "arm": "theirs_meandiff_statement",
+      "pole": "low",
+      "own_ladder_span": 0.0123,
+      "report": "results/final_ablation/sweep_conscientiousness_theirs_meandiff_statement_low.json",
+      "n_usable_rungs": 0,
+      "insufficient": true
+    }
+  ]
+}

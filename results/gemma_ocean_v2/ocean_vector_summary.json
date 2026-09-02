@@ -1,0 +1,140 @@
+{
+  "run_id": "gemma_ocean_v2",
+  "traits": [
+    {
+      "trait": "extraversion",
+      "prompting_rho": 0.9143,
+      "prompting_range": [
+        1.5278,
+        4.875
+      ],
+      "prompting_usable": "27/27",
+      "steered_toward": "low",
+      "steering_rho": -0.5,
+      "steering_usable": "3/7",
+      "best_delta": -0.1726,
+      "best_magnitude": -270.222,
+      "control_delta": 0.1266,
+      "beats_controls": false,
+      "marker_rho": -0.4286,
+      "calibrated_ceiling": 4323.5513,
+      "layer": 15,
+      "layer_choice": "ladder geometry",
+      "coherence_ceiling": -4323.5513,
+      "control_ceilings": [
+        -2483.2317,
+        -1426.2315
+      ],
+      "works": false,
+      "report": "/content/ocean/persona_runs/gemma_ocean_v2/ladder/validated_sweep_extraversion_pc1.json"
+    },
+    {
+      "trait": "agreeableness",
+      "prompting_rho": 0.9138,
+      "prompting_range": [
+        1.4722,
+        4.6528
+      ],
+      "prompting_usable": "24/27",
+      "steered_toward": "low",
+      "steering_rho": -0.7857,
+      "steering_usable": "7/7",
+      "best_delta": -0.1432,
+      "best_magnitude": -1088.5149,
+      "control_delta": 0.0321,
+      "beats_controls": true,
+      "marker_rho": -0.729,
+      "calibrated_ceiling": 1088.5149,
+      "layer": 15,
+      "layer_choice": "ladder geometry",
+      "coherence_ceiling": -1088.5149,
+      "control_ceilings": [
+        -1088.5149,
+        -1088.5149
+      ],
+      "works": true,
+      "report": "/content/ocean/persona_runs/gemma_ocean_v2/ladder/validated_sweep_agreeableness_pc1.json"
+    },
+    {
+      "trait": "conscientiousness",
+      "prompting_rho": 0.9538,
+      "prompting_range": [
+        1.0,
+        4.9861
+      ],
+      "prompting_usable": "24/27",
+      "steered_toward": "high",
+      "steering_rho": 1.0,
+      "steering_usable": "5/7",
+      "best_delta": 0.5644,
+      "best_magnitude": 715.3532,
+      "control_delta": 0.205,
+      "beats_controls": true,
+      "marker_rho": -0.0714,
+      "calibrated_ceiling": 2168.5583,
+      "layer": 15,
+      "layer_choice": "ladder geometry",
+      "coherence_ceiling": 2168.5583,
+      "control_ceilings": [
+        1245.5114,
+        2168.5583
+      ],
+      "works": true,
+      "report": "/content/ocean/persona_runs/gemma_ocean_v2/ladder/validated_sweep_conscientiousness_pc1.json"
+    },
+    {
+      "trait": "neuroticism",
+      "prompting_rho": 0.9679,
+      "prompting_range": [
+        2.1667,
+        4.8195
+      ],
+      "prompting_usable": "27/27",
+      "steered_toward": "low",
+      "steering_rho": -1.0,
+      "steering_usable": "5/7",
+      "best_delta": -0.7483,
+      "best_magnitude": -2399.4396,
+      "control_delta": 0.98,
+      "beats_controls": false,
+      "marker_rho": 0.2041,
+      "calibrated_ceiling": 7273.75,
+      "layer": 10,
+      "layer_choice": "ladder geometry",
+      "coherence_ceiling": -7273.75,
+      "control_ceilings": [
+        -1378.1142,
+        -2399.4396
+      ],
+      "works": false,
+      "report": "/content/ocean/persona_runs/gemma_ocean_v2/ladder/validated_sweep_neuroticism_pc1.json"
+    },
+    {
+      "trait": "openness",
+      "prompting_rho": 0.8378,
+      "prompting_range": [
+        2.7778,
+        4.625
+      ],
+      "prompting_usable": "23/27",
+      "steered_toward": "low",
+      "steering_rho": -1.0,
+      "steering_usable": "5/7",
+      "best_delta": -0.4326,
+      "best_magnitude": -358.1803,
+      "control_delta": 0.3923,
+      "beats_controls": false,
+      "marker_rho": -0.5045,
+      "calibrated_ceiling": 1085.806,
+      "layer": 15,
+      "layer_choice": "ladder geometry",
+      "coherence_ceiling": -1085.806,
+      "control_ceilings": [
+        -1085.806,
+        -1085.806
+      ],
+      "works": false,
+      "report": "/content/ocean/persona_runs/gemma_ocean_v2/ladder/validated_sweep_openness_pc1.json"
+    }
+  ]
+}

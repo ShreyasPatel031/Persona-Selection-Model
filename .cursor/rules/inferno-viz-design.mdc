@@ -1,0 +1,34 @@
+---
+description: Inferno design system for all persona/steering visualizations
+globs: app/static/**/*.html, viz/**
+alwaysApply: false
+---
+
+# Inferno viz design system
+
+All visualizations under `app/static/` must follow `viz/DESIGN_SYSTEM.md`, sourced from `app/static/inferno_cone.html` (“Nine Alphas of Evil”).
+
+## Required tokens
+
+```css
+:root {
+  --bg: #f6f3ee;
+  --ink: #1a1612;
+  --muted: #7a7268;
+  --line: #e4ddd3;
+  --no: #c45c4a;
+  --no-dim: #e8b4aa;
+  --yes: #3d8b6e;
+  --yes-dim: #a8d4c2;
+}
+```
+
+Fonts: **Newsreader** (titles), **Instrument Sans** (UI). Cream background only. Hairline `--line` dividers. YES/NO semantics use `--yes` / `--no`.
+
+## Do not
+
+- SAE-viz blue (`#1a56db`) / `#f4f4f4` / system-ui-only chrome for new viz
+- Dark fantasy / gold Cinzel boards
+- Purple-glow or multi-shadow card stacks
+
+Read `viz/DESIGN_SYSTEM.md` before creating or restyling any viz.

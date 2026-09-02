@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Behavior judge — α ramp</title>
+    <style>
+      :root {
+        font-family: system-ui, -apple-system, sans-serif;
+        line-height: 1.45;
+        color: #111827;
+        background: #fff;
+        --border: #d1d5db;
+        --muted: #6b7280;
+        --accent: #2563eb;
+        --panel: #fff;
+      }
+      * { box-sizing: border-box; }
+      body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; }
+      header { padding: 1rem 1.25rem 0.5rem; border-bottom: 1px solid var(--border); }
+      h1 { font-size: 1.1rem; margin: 0 0 0.25rem; font-weight: 600; }
+      .sub { font-size: 0.8rem; color: var(--muted); margin: 0; max-width: 48rem; }
+      .controls {
+        display: flex; flex-wrap: wrap; gap: 1rem 1.5rem; align-items: flex-end;
+        padding: 0.75rem 1.25rem; border-bottom: 1px solid var(--border);
+      }
+      .field { display: flex; flex-direction: column; gap: 0.3rem; min-width: 10rem; }
+      .field label { font-size: 0.75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+      select { font: inherit; padding: 0.4rem 0.55rem; border: 1px solid var(--border); border-radius: 6px; }
+      .slider-block { flex: 1; min-width: 18rem; }
+      .slider-block .top { display: flex; justify-content: space-between; font-size: 0.82rem; margin-bottom: 0.35rem; }
+      .k-val { font-size: 1.5rem; font-weight: 700; color: var(--accent); font-variant-numeric: tabular-nums; }
+      input[type="range"] { width: 100%; accent-color: var(--accent); }
+      .ticks { display: flex; justify-content: space-between; font-size: 0.65rem; color: var(--muted); margin-top: 0.2rem; }
+      .stats {
+        display: flex; flex-wrap: wrap; gap: 0.75rem 1.25rem;
+        font-size: 0.78rem; color: var(--muted);
+        padding: 0.65rem 1.25rem; border-bottom: 1px solid var(--border);
+      }
+      .stats strong { color: #111827; }
+      main { padding: 1rem 1.25rem 2rem; }
+      .chart-wrap { width: 100%; max-width: 640px; height: 300px; }
+      svg.chart { width: 100%; height: 100%; }
+      .gridline { stroke: #eef0f3; }
+      .axis { stroke: #d1d5db; }
+      .curve { fill: none; stroke: var(--accent); stroke-width: 2.5; }
+      .dot { fill: var(--accent); }
+      .cursor-line { stroke: var(--accent); stroke-dasharray: 3 3; opacity: 0.7; }
+      .score {
+        margin-top: 1rem;
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--accent);
+        font-variant-numeric: tabular-nums;
+      }
+      .score span { font-size: 0.9rem; color: var(--muted); font-weight: 500; margin-left: 0.35rem; }
+      footer { border-top: 1px solid var(--border); padding: 0.65rem 1.25rem; font-size: 0.75rem; color: var(--muted); }
+      footer a { color: var(--accent); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Behavior judge — α ramp</h1>
+      <p class="sub">
+        Blind free-text judge score (0–100) as injected dose increases.
+        Opposite-prior bipolar design; same slider pattern as the inventory viz.
+      </p>
+    </header>
+    <div class="controls">
+      <div class="field">
+        <label for="trait">Trait</label>
+        <select id="trait"></select>
+      </div>
+      <div class="field">
+        <label for="pole">Pole</label>
+        <select id="pole">
+          <option value="up">up</option>
+          <option value="down">down</option>
+        </select>
+      </div>
+      <div class="slider-block">
+        <div class="top">
+          <span>Dose level <strong id="levelLabel">0</strong> / <span id="levelMax">5</span></span>
+          <span class="k-val" id="magLabel">0</span>
+        </div>
+        <input id="dose" type="range" min="0" max="5" step="1" value="0" />
+        <div class="ticks" id="ticks"></div>
+      </div>
+    </div>
+    <div class="stats" id="stats"></div>
+    <main>
+      <div class="score" id="score">—<span>/ 100 judge</span></div>
+      <div class="chart-wrap">
+        <svg class="chart" id="chart" viewBox="0 0 480 280" preserveAspectRatio="none"></svg>
+      </div>
+    </main>
+    <footer>
+      Data: <code>results/bipolar/summary.json</code>
+      · <a href="/static/big_five_dose_viz.html">Big Five inventory</a>
+      · <a href="/static/viz_index.html">all viz</a>
+    </footer>
+    <script>
+      const DATA_URL = "viz_data/big_five_dose.json";
+      const ORDER = ["openness","conscientiousness","extraversion","agreeableness","neuroticism"];
+      let data = null, pole = null;
+      const $ = (id) => document.getElementById(id);
+
+      function current() {
+        return data.behavior_judge.find((x) => x.trait === $("trait").value && x.pole === $("pole").value);
+      }
+
+      function sync() {
+        pole = current();
+        if (!pole) return;
+        const max = pole.levels.length - 1;
+        $("dose").max = String(max);
+        $("levelMax").textContent = String(max);
+        $("ticks").innerHTML = pole.levels.map((l) => `<span>${l.i}</span>`).join("");
+        let i = Number($("dose").value);
+        if (i > max) { i = max; $("dose").value = String(max); }
+        const level = pole.levels[i];
+        $("levelLabel").textContent = String(i);
+        $("magLabel").textContent = level.magnitude.toFixed(0);
+        $("score").innerHTML = `${level.judge_mean.toFixed(1)}<span>/ 100 judge</span>`;
+        $("stats").innerHTML = `
+          <span>layer <strong>L${pole.layer}</strong></span>
+          <span>ρ <strong>${pole.rho}</strong></span>
+          <span>sign <strong>${pole.sign_correct ? "correct" : "wrong"}</strong></span>
+          <span>% of prompt gap <strong>${pole.pct_of_prompt_gap}%</strong></span>
+          <span>n gens / rung <strong>${level.n}</strong></span>
+        `;
+        draw(i);
+      }
+
+      function draw(levelIdx) {
+        const svg = $("chart");
+        const W = 480, H = 280;
+        const pad = { l: 40, r: 16, t: 16, b: 36 };
+        const levels = pole.levels;
+        const xMax = Math.max(...levels.map((l) => l.magnitude)) || 1;
+        const x = (v) => pad.l + (v / xMax) * (W - pad.l - pad.r);
+        const y = (v) => pad.t + (1 - v / 100) * (H - pad.t - pad.b);
+        const path = levels.map((l, i) => `${i ? "L" : "M"}${x(l.magnitude).toFixed(1)},${y(l.judge_mean).toFixed(1)}`).join(" ");
+        const grid = [0, 25, 50, 75, 100].map((v) =>
+          `<line class="gridline" x1="${pad.l}" x2="${W - pad.r}" y1="${y(v)}" y2="${y(v)}" />
+           <text x="6" y="${y(v) + 4}" font-size="10" fill="#6b7280">${v}</text>`
+        ).join("");
+        const cur = levels[levelIdx];
+        const dots = levels.map((l, i) =>
+          `<circle class="dot" cx="${x(l.magnitude)}" cy="${y(l.judge_mean)}" r="${i === levelIdx ? 5 : 3}" />`
+        ).join("");
+        svg.innerHTML = `
+          ${grid}
+          <line class="axis" x1="${pad.l}" y1="${H - pad.b}" x2="${W - pad.r}" y2="${H - pad.b}" />
+          <path class="curve" d="${path}" />
+          <line class="cursor-line" x1="${x(cur.magnitude)}" x2="${x(cur.magnitude)}" y1="${pad.t}" y2="${H - pad.b}" />
+          ${dots}
+          <text x="${W / 2}" y="${H - 8}" text-anchor="middle" font-size="11" fill="#6b7280">‖α‖ (dose)</text>
+        `;
+      }
+
+      async function boot() {
+        data = await (await fetch(DATA_URL)).json();
+        const traits = [...new Set(data.behavior_judge.map((p) => p.trait))]
+          .sort((a, b) => ORDER.indexOf(a) - ORDER.indexOf(b));
+        $("trait").innerHTML = traits.map((t) => `<option value="${t}">${t}</option>`).join("");
+        $("trait").value = "extraversion";
+        $("pole").value = "up";
+        $("trait").onchange = $("pole").onchange = $("dose").oninput = sync;
+        sync();
+      }
+      boot();
+    </script>
+  </body>
+</html>

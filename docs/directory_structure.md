@@ -35,6 +35,10 @@ app/
 │   ├── grid_nine.py      # 3×3 / 2×2 dual-axis steering; `--orthogonalize-chaos`, `--norm-budget`, `--combined-layer`
 │   ├── vector_compose.py # `cosine|ortho-save|alpha-grid|calibrate|dnd-grid` — multi-vector diagnostics + D&D grid
 │   ├── vector_probe.py   # Optional eval alignment probe (not B.4 layer selection)
+│   ├── inventory_ipip.py     # IPIP items + constrained-Likert scoring, option-lock screening, EV scoring
+│   ├── intensity_prompts.py  # Nine-level trait prompts (Goldberg markers × Likert qualifiers)
+│   ├── intensity_ladder.py   # Ladder geometry + α sweep + `validated-sweep` (`intensity-ladder` CLI)
+│   ├── ocean_probes.py       # Free-text behaviour probes, judge-free coherence screen, trait markers
 │   └── run.py            # CLI: `step-b`, …, `steering-ramp`, `sanity-eval-projection`, …
 └── static/
     ├── index.html       # Chat UI
@@ -52,6 +56,9 @@ app/
 | [`gemma-chat`](../scripts/gemma-chat) | Terminal client for `POST /chat/stream` (SSE) |
 | [`vm-restart.sh`](../scripts/vm-restart.sh) | VM-side helper to restart Uvicorn (if present on the instance) |
 | [`dnd_gemma_mvp.sh`](../scripts/dnd_gemma_mvp.sh) | Sync `app/persona` to `gemma-mvp`, run D&D step-b/c/d, `vector_compose calibrate` / `dnd-grid`, fetch artifacts |
+| [`fetch_ipip_items.py`](../scripts/fetch_ipip_items.py) | Fetch the public-domain IPIP-NEO 300-item facet pool → keying-balanced 120-item form in `data/` |
+| [`run_ocean_vectors.py`](../scripts/run_ocean_vectors.py) | One command per trait: prompt ladder → ladder directions → validated bipolar sweep; prints the works/doesn't verdict |
+| [`smoke_ocean_pipeline.py`](../scripts/smoke_ocean_pipeline.py) | CPU end-to-end plumbing check on a tiny random model (no GPU, no credentials) |
 
 ## Generated and local-only paths (not in git)
 

@@ -1,0 +1,117 @@
+INFO NumExpr defaulting to 12 threads.
+INFO Loading unsloth/gemma-3-4b-it on cuda…
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+WARNING Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/tokenizer_config.json "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO HTTP Request: GET https://huggingface.co/api/models/unsloth/gemma-3-4b-it "HTTP/1.1 200 OK"
+INFO Model dtype: torch.bfloat16
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/config.json "HTTP/1.1 200 OK"
+Loading weights:   0%|          | 0/883 [00:00<?, ?it/s]Loading weights:  66%|██████▌   | 583/883 [00:00<00:00, 5820.38it/s]Loading weights: 100%|██████████| 883/883 [00:00<00:00, 5835.49it/s]
+INFO HTTP Request: HEAD https://huggingface.co/unsloth/gemma-3-4b-it/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+INFO HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/unsloth/gemma-3-4b-it/bf46152c47f5dd20b896357cb51abc4c03b8ee8c/generation_config.json "HTTP/1.1 200 OK"
+INFO [extraversion] layer 15 (ladder geometry)
+INFO [extraversion] baseline ev=3.0623
+INFO [extraversion] level 9 prompted ev=4.8311 (|disp|=2824.1)
+INFO [extraversion] level 9 full patch ev=2.9066 locked=False
+INFO [extraversion] level 9 rank1  ev=2.9987 (covers 43% of |disp|)
+INFO [extraversion] level 9 rank2  ev=2.9442 (covers 46% of |disp|)
+INFO [extraversion] level 9 rank4  ev=3.1495 (covers 81% of |disp|)
+INFO [extraversion] level 9 rank8  ev=3.4615 (covers 87% of |disp|)
+INFO [extraversion] level 9 probe@own-span ev=3.0327 (mag 154.3)
+INFO [extraversion] level 1 prompted ev=1.5739 (|disp|=3236.2)
+INFO [extraversion] level 1 full patch ev=2.2389 locked=False
+INFO [extraversion] level 1 rank1  ev=3.0538 (covers 60% of |disp|)
+INFO [extraversion] level 1 rank2  ev=3.0246 (covers 62% of |disp|)
+INFO [extraversion] level 1 rank4  ev=3.1006 (covers 85% of |disp|)
+INFO [extraversion] level 1 rank8  ev=2.9177 (covers 91% of |disp|)
+INFO [extraversion] level 1 probe@own-span ev=3.0816 (mag 154.3)
+INFO [agreeableness] layer 14 (ladder geometry)
+INFO [agreeableness] baseline ev=3.0159
+INFO [agreeableness] level 9 prompted ev=4.5758 (|disp|=2138.4)
+INFO [agreeableness] level 9 full patch ev=2.7932 locked=False
+INFO [agreeableness] level 9 rank1  ev=2.9941 (covers 89% of |disp|)
+INFO [agreeableness] level 9 rank2  ev=3.5557 (covers 90% of |disp|)
+INFO [agreeableness] level 9 rank4  ev=2.9500 (covers 92% of |disp|)
+INFO [agreeableness] level 9 rank8  ev=2.8685 (covers 94% of |disp|)
+INFO [agreeableness] level 9 probe@own-span ev=3.0011 (mag 53.2)
+INFO [agreeableness] level 1 prompted ev=1.5107 (|disp|=2131.3)
+INFO [agreeableness] level 1 full patch ev=2.7547 locked=False
+INFO [agreeableness] level 1 rank1  ev=2.9962 (covers 88% of |disp|)
+INFO [agreeableness] level 1 rank2  ev=3.5011 (covers 89% of |disp|)
+INFO [agreeableness] level 1 rank4  ev=2.9397 (covers 92% of |disp|)
+INFO [agreeableness] level 1 rank8  ev=2.8299 (covers 94% of |disp|)
+INFO [agreeableness] level 1 probe@own-span ev=3.0103 (mag 53.2)
+INFO [conscientiousness] layer 13 (geometry best layer 29 outside band 10-27)
+INFO [conscientiousness] baseline ev=2.7737
+INFO [conscientiousness] level 9 prompted ev=4.9997 (|disp|=2057.9)
+INFO [conscientiousness] level 9 full patch ev=2.7941 locked=False
+INFO [conscientiousness] level 9 rank1  ev=2.9598 (covers 96% of |disp|)
+INFO [conscientiousness] level 9 rank2  ev=2.9601 (covers 96% of |disp|)
+INFO [conscientiousness] level 9 rank4  ev=2.9925 (covers 96% of |disp|)
+INFO [conscientiousness] level 9 rank8  ev=2.9859 (covers 96% of |disp|)
+INFO [conscientiousness] level 9 probe@own-span ev=2.7312 (mag 35.0)
+INFO [conscientiousness] level 1 prompted ev=1.0040 (|disp|=1831.2)
+INFO [conscientiousness] level 1 full patch ev=2.6587 locked=False
+INFO [conscientiousness] level 1 rank1  ev=2.9308 (covers 95% of |disp|)
+INFO [conscientiousness] level 1 rank2  ev=2.9390 (covers 95% of |disp|)
+INFO [conscientiousness] level 1 rank4  ev=3.0046 (covers 95% of |disp|)
+INFO [conscientiousness] level 1 rank8  ev=2.9544 (covers 95% of |disp|)
+INFO [conscientiousness] level 1 probe@own-span ev=2.8174 (mag 35.0)
+INFO [neuroticism] layer 20 (ladder geometry)
+INFO [neuroticism] baseline ev=3.3000
+INFO [neuroticism] level 9 prompted ev=4.8785 (|disp|=2173.7)
+INFO [neuroticism] level 9 full patch ev=3.4495 locked=False
+INFO [neuroticism] level 9 rank1  ev=3.3257 (covers 29% of |disp|)
+INFO [neuroticism] level 9 rank2  ev=3.2644 (covers 41% of |disp|)
+INFO [neuroticism] level 9 rank4  ev=3.3002 (covers 49% of |disp|)
+INFO [neuroticism] level 9 rank8  ev=3.4935 (covers 53% of |disp|)
+INFO [neuroticism] level 9 probe@own-span ev=3.3084 (mag 453.3)
+INFO [neuroticism] level 1 prompted ev=2.0775 (|disp|=2381.6)
+INFO [neuroticism] level 1 full patch ev=3.3416 locked=False
+INFO [neuroticism] level 1 rank1  ev=3.1140 (covers 49% of |disp|)
+INFO [neuroticism] level 1 rank2  ev=3.3613 (covers 55% of |disp|)
+INFO [neuroticism] level 1 rank4  ev=3.3105 (covers 62% of |disp|)
+INFO [neuroticism] level 1 rank8  ev=3.2819 (covers 63% of |disp|)
+INFO [neuroticism] level 1 probe@own-span ev=3.2659 (mag 453.3)
+INFO [openness] layer 19 (ladder geometry)
+INFO [openness] baseline ev=3.4428
+INFO [openness] level 9 prompted ev=4.7637 (|disp|=1846.0)
+INFO [openness] level 9 full patch ev=3.6177 locked=False
+INFO [openness] level 9 rank1  ev=3.1257 (covers 36% of |disp|)
+INFO [openness] level 9 rank2  ev=3.1330 (covers 41% of |disp|)
+INFO [openness] level 9 rank4  ev=3.1156 (covers 44% of |disp|)
+INFO [openness] level 9 rank8  ev=3.1482 (covers 49% of |disp|)
+INFO [openness] level 9 probe@own-span ev=3.2839 (mag 486.6)
+INFO [openness] level 1 prompted ev=3.0456 (|disp|=1919.7)
+INFO [openness] level 1 full patch ev=3.1166 locked=False
+INFO [openness] level 1 rank1  ev=3.0248 (covers 45% of |disp|)
+INFO [openness] level 1 rank2  ev=3.3005 (covers 49% of |disp|)
+INFO [openness] level 1 rank4  ev=3.3771 (covers 51% of |disp|)
+INFO [openness] level 1 rank8  ev=3.3307 (covers 55% of |disp|)
+INFO [openness] level 1 probe@own-span ev=3.4927 (mag 486.6)
+
+====================================================================================================
+CAN A LAYER-LOCAL EDIT REPRODUCE THE PROMPT?  (ev on the target trait)
+====================================================================================================
+trait            lvl   base  prompted    full   rank1   rank2   rank4   rank8   probe
+extraversion       9  3.062     4.831   2.907   2.999   2.944   3.150   3.462   3.033
+extraversion       1  3.062     1.574   2.239   3.054   3.025   3.101   2.918   3.082
+agreeableness      9  3.016     4.576   2.793   2.994   3.556   2.950   2.869   3.001
+agreeableness      1  3.016     1.511   2.755   2.996   3.501   2.940   2.830   3.010
+conscientiousness   9  2.774     5.000   2.794   2.960   2.960   2.993   2.986   2.731
+conscientiousness   1  2.774     1.004   2.659   2.931   2.939   3.005   2.954   2.817
+neuroticism        9  3.300     4.878   3.450   3.326   3.264   3.300   3.494   3.308
+neuroticism        1  3.300     2.078   3.342   3.114   3.361   3.311   3.282   3.266
+openness           9  3.443     4.764   3.618   3.126   3.133   3.116   3.148   3.284
+openness           1  3.443     3.046   3.117   3.025   3.300   3.377   3.331   3.493
+
+wrote /content/patch_upper_bound.json
