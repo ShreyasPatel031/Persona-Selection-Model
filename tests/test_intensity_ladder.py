@@ -114,7 +114,7 @@ def test_trait_description_ladder_is_graded_and_polarized():
     mid = trait_description("extraversion", 5)
     high = trait_description("extraversion", 9)
 
-    assert "extremely" in low and "quiet" in low
+    assert "extremely" in low and "silent" in low
     assert "neither" in mid
     assert "extremely" in high and "talkative" in high
     assert low != high
@@ -213,5 +213,5 @@ def test_ladder_system_prompt_includes_persona_instruction_and_task():
         "conscientiousness", 8, task_instruction="Answer briefly."
     )
     assert prompt.startswith("For the following task")
-    assert "very organized" in prompt
+    assert "very orderly" in prompt
     assert prompt.endswith("Answer briefly.")

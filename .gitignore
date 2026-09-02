@@ -19,3 +19,7 @@ __pycache__/
 # large tensors from GPU runs (JSON reports are committed)
 results/**/*.pt
 results/*.tgz
+
+# local-only auth for cloud handoff (never commit)
+secrets/
+.vercel

@@ -1,0 +1,11 @@
+*
+!vercel.json
+!.vercelignore
+!app/
+app/*
+!app/static/
+app/static/*
+!app/static/big_five_tsne.html
+!app/static/big_five_tsne.json
+!app/static/big_five_sem.js
+!app/static/big_five_sem_data.json

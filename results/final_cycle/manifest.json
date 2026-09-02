@@ -1,0 +1,42 @@
+{
+  "created_utc": "2026-08-31T11:52:00.060163+00:00",
+  "model_id": "unsloth/gemma-3-4b-it",
+  "instrument": "mpi_120.csv",
+  "n_items": 120,
+  "keying_balance": {
+    "neuroticism": {
+      "plus": 17,
+      "minus": 7
+    },
+    "extraversion": {
+      "plus": 18,
+      "minus": 6
+    },
+    "openness": {
+      "plus": 12,
+      "minus": 12
+    },
+    "agreeableness": {
+      "plus": 7,
+      "minus": 17
+    },
+    "conscientiousness": {
+      "plus": 11,
+      "minus": 13
+    }
+  },
+  "layer": 15,
+  "traits": [
+    "openness",
+    "conscientiousness",
+    "extraversion",
+    "agreeableness",
+    "neuroticism"
+  ],
+  "phases": [
+    1,
+    2,
+    3,
+    4
+  ]
+}

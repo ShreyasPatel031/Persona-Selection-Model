@@ -7,7 +7,13 @@ qualifiers ("a bit", "very", "extremely"), not a scalar multiple of one prompt.
 Reproducing it here gives (a) the prompting baseline to beat and (b) the level-
 conditioned activations from which ladder directions are derived.
 
-Adjectives are Goldberg's personality trait markers; qualifiers follow Likert.
+Markers are the paper's full 104-adjective list (52 bipolar pairs, Supplemental
+Table 13 in arXiv:2307.00184 = Supplementary Table 17 in the Nature MI version):
+Goldberg's bipolar markers mapped to IPIP-NEO domains and facets, with gaps
+filled by a trained psychometrician. Canonical copy with facet names and
+provenance: ``data/goldberg_markers_104.json``. The earlier 60-adjective
+domain-level set (6 hand-picked per pole) is superseded; its low-openness pole
+was five negations of the high pole, which capped the openness ladder span.
 """
 
 from __future__ import annotations
@@ -17,35 +23,85 @@ from typing import Sequence
 N_LEVELS = 9
 NEUTRAL_LEVEL = 5
 
-# (high-pole markers, low-pole markers) per Big Five domain.
-TRAIT_MARKERS: dict[str, tuple[tuple[str, ...], tuple[str, ...]]] = {
+# (facet_code, low_marker, high_marker) per Big Five domain — the published
+# 52 bipolar pairs. "DOMAIN" marks domain-level markers with no facet.
+FACET_MARKERS: dict[str, tuple[tuple[str, str, str], ...]] = {
     "extraversion": (
-        ("talkative", "assertive", "energetic", "outgoing", "sociable", "bold"),
-        ("quiet", "reserved", "shy", "withdrawn", "unsociable", "timid"),
+        ("E1", "unfriendly", "friendly"),
+        ("E2", "introverted", "extraverted"),
+        ("E2", "silent", "talkative"),
+        ("E3", "timid", "bold"),
+        ("E3", "unassertive", "assertive"),
+        ("E4", "inactive", "active"),
+        ("E5", "unenergetic", "energetic"),
+        ("E5", "unadventurous", "adventurous and daring"),
+        ("E6", "gloomy", "cheerful"),
     ),
     "agreeableness": (
-        ("sympathetic", "kind", "warm", "cooperative", "considerate", "trusting"),
-        ("cold", "unkind", "harsh", "uncooperative", "inconsiderate", "distrustful"),
+        ("A1", "distrustful", "trustful"),
+        ("A2", "immoral", "moral"),
+        ("A2", "dishonest", "honest"),
+        ("A3", "unkind", "kind"),
+        ("A3", "stingy", "generous"),
+        ("A3", "unaltruistic", "altruistic"),
+        ("A4", "uncooperative", "cooperative"),
+        ("A5", "self-important", "humble"),
+        ("A6", "unsympathetic", "sympathetic"),
+        ("DOMAIN", "selfish", "unselfish"),
+        ("DOMAIN", "disagreeable", "agreeable"),
     ),
     "conscientiousness": (
-        ("organized", "responsible", "reliable", "thorough", "orderly", "efficient"),
-        ("disorganized", "careless", "unreliable", "sloppy", "haphazard", "inefficient"),
+        ("C1", "unsure", "self-efficacious"),
+        ("C2", "messy", "orderly"),
+        ("C3", "irresponsible", "responsible"),
+        ("C4", "lazy", "hardworking"),
+        ("C5", "undisciplined", "self-disciplined"),
+        ("C6", "impractical", "practical"),
+        ("C6", "extravagant", "thrifty"),
+        ("DOMAIN", "disorganized", "organized"),
+        ("DOMAIN", "negligent", "conscientious"),
+        ("DOMAIN", "careless", "thorough"),
     ),
     "neuroticism": (
-        ("anxious", "tense", "moody", "irritable", "nervous", "worrying"),
-        ("calm", "relaxed", "even-tempered", "unexcitable", "content", "stable"),
+        ("N1", "relaxed", "tense"),
+        ("N1", "at ease", "nervous"),
+        ("N1", "easygoing", "anxious"),
+        ("N2", "calm", "angry"),
+        ("N2", "patient", "irritable"),
+        ("N3", "happy", "depressed"),
+        ("N4", "unselfconscious", "self-conscious"),
+        ("N5", "level-headed", "impulsive"),
+        ("N6", "contented", "discontented"),
+        ("N6", "emotionally stable", "emotionally unstable"),
     ),
+    # Openness low-pole order is empirical, not facet order: floor_probe on
+    # Gemma-3-4B + MPI-120 put the identity markers first so default variants
+    # 0/1 hit floors 2.20 / 2.52 instead of the negation-only ~3.0 collapse.
     "openness": (
-        ("creative", "imaginative", "curious", "intellectual", "inventive", "reflective"),
-        (
-            "unimaginative",
-            "uncreative",
-            "incurious",
-            "unintellectual",
-            "conventional",
-            "unreflective",
-        ),
+        ("O5", "unanalytical", "analytical"),
+        ("O5", "unsophisticated", "sophisticated"),
+        ("O6", "socially conservative", "socially progressive"),
+        ("O2", "unaesthetic", "aesthetic"),
+        ("O3", "unreflective", "reflective"),
+        ("O3", "emotionally closed", "emotionally aware"),
+        ("O4", "predictable", "spontaneous"),
+        ("O1", "unimaginative", "imaginative"),
+        ("O2", "uncreative", "creative"),
+        ("O2", "artistically unappreciative", "artistically appreciative"),
+        ("O4", "uninquisitive", "curious"),
+        ("O5", "unintelligent", "intelligent"),
     ),
+}
+
+# (high-pole markers, low-pole markers) per Big Five domain, derived from the
+# facet table in facet order, so marker rotation walks across facets and a
+# 3-marker description spans three different facets.
+TRAIT_MARKERS: dict[str, tuple[tuple[str, ...], tuple[str, ...]]] = {
+    trait: (
+        tuple(high for _, _, high in pairs),
+        tuple(low for _, low, _ in pairs),
+    )
+    for trait, pairs in FACET_MARKERS.items()
 }
 
 # Level → (pole, qualifier). Level 5 is the neutral rung and takes no qualifier.

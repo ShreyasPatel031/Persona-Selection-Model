@@ -1,0 +1,71 @@
+{
+  "note": "Full 104-adjective trait-marker list (52 bipolar pairs) from Serapio-Garcia et al., 'Personality Traits in Large Language Models' — Supplemental Table 13 in arXiv:2307.00184 (= Supplementary Table 17 in the Nature Machine Intelligence 2025 version). Adjectives adapted from Goldberg's 70 bipolar Big Five markers, mapped to IPIP-NEO domains and 30 facets; gaps filled by a trained psychometrician per the paper. Facet code 'DOMAIN' marks domain-level markers with no facet assignment.",
+  "source": "arXiv:2307.00184 Supplemental Table 13; verified identical across arXiv v1 pdf and v4 html copies",
+  "license_note": "Adjective list reproduced from the paper's supplementary material for research replication; Goldberg marker source: Goldberg (1992), Psychological Assessment 4(1), 26-42.",
+  "n_pairs": 52,
+  "n_adjectives": 104,
+  "pairs": {
+    "extraversion": [
+      {"facet": "E1", "facet_name": "Friendliness", "low": "unfriendly", "high": "friendly"},
+      {"facet": "E2", "facet_name": "Gregariousness", "low": "introverted", "high": "extraverted"},
+      {"facet": "E2", "facet_name": "Gregariousness", "low": "silent", "high": "talkative"},
+      {"facet": "E3", "facet_name": "Assertiveness", "low": "timid", "high": "bold"},
+      {"facet": "E3", "facet_name": "Assertiveness", "low": "unassertive", "high": "assertive"},
+      {"facet": "E4", "facet_name": "Activity Level", "low": "inactive", "high": "active"},
+      {"facet": "E5", "facet_name": "Excitement-Seeking", "low": "unenergetic", "high": "energetic"},
+      {"facet": "E5", "facet_name": "Excitement-Seeking", "low": "unadventurous", "high": "adventurous and daring"},
+      {"facet": "E6", "facet_name": "Cheerfulness", "low": "gloomy", "high": "cheerful"}
+    ],
+    "agreeableness": [
+      {"facet": "A1", "facet_name": "Trust", "low": "distrustful", "high": "trustful"},
+      {"facet": "A2", "facet_name": "Morality", "low": "immoral", "high": "moral"},
+      {"facet": "A2", "facet_name": "Morality", "low": "dishonest", "high": "honest"},
+      {"facet": "A3", "facet_name": "Altruism", "low": "unkind", "high": "kind"},
+      {"facet": "A3", "facet_name": "Altruism", "low": "stingy", "high": "generous"},
+      {"facet": "A3", "facet_name": "Altruism", "low": "unaltruistic", "high": "altruistic"},
+      {"facet": "A4", "facet_name": "Cooperation", "low": "uncooperative", "high": "cooperative"},
+      {"facet": "A5", "facet_name": "Modesty", "low": "self-important", "high": "humble"},
+      {"facet": "A6", "facet_name": "Sympathy", "low": "unsympathetic", "high": "sympathetic"},
+      {"facet": "DOMAIN", "facet_name": null, "low": "selfish", "high": "unselfish"},
+      {"facet": "DOMAIN", "facet_name": null, "low": "disagreeable", "high": "agreeable"}
+    ],
+    "conscientiousness": [
+      {"facet": "C1", "facet_name": "Self-Efficacy", "low": "unsure", "high": "self-efficacious"},
+      {"facet": "C2", "facet_name": "Orderliness", "low": "messy", "high": "orderly"},
+      {"facet": "C3", "facet_name": "Dutifulness", "low": "irresponsible", "high": "responsible"},
+      {"facet": "C4", "facet_name": "Achievement-Striving", "low": "lazy", "high": "hardworking"},
+      {"facet": "C5", "facet_name": "Self-Discipline", "low": "undisciplined", "high": "self-disciplined"},
+      {"facet": "C6", "facet_name": "Cautiousness", "low": "impractical", "high": "practical"},
+      {"facet": "C6", "facet_name": "Cautiousness", "low": "extravagant", "high": "thrifty"},
+      {"facet": "DOMAIN", "facet_name": null, "low": "disorganized", "high": "organized"},
+      {"facet": "DOMAIN", "facet_name": null, "low": "negligent", "high": "conscientious"},
+      {"facet": "DOMAIN", "facet_name": null, "low": "careless", "high": "thorough"}
+    ],
+    "neuroticism": [
+      {"facet": "N1", "facet_name": "Anxiety", "low": "relaxed", "high": "tense"},
+      {"facet": "N1", "facet_name": "Anxiety", "low": "at ease", "high": "nervous"},
+      {"facet": "N1", "facet_name": "Anxiety", "low": "easygoing", "high": "anxious"},
+      {"facet": "N2", "facet_name": "Anger", "low": "calm", "high": "angry"},
+      {"facet": "N2", "facet_name": "Anger", "low": "patient", "high": "irritable"},
+      {"facet": "N3", "facet_name": "Depression", "low": "happy", "high": "depressed"},
+      {"facet": "N4", "facet_name": "Self-Consciousness", "low": "unselfconscious", "high": "self-conscious"},
+      {"facet": "N5", "facet_name": "Immoderation", "low": "level-headed", "high": "impulsive"},
+      {"facet": "N6", "facet_name": "Vulnerability", "low": "contented", "high": "discontented"},
+      {"facet": "N6", "facet_name": "Vulnerability", "low": "emotionally stable", "high": "emotionally unstable"}
+    ],
+    "openness": [
+      {"facet": "O1", "facet_name": "Imagination", "low": "unimaginative", "high": "imaginative"},
+      {"facet": "O2", "facet_name": "Artistic Interests", "low": "uncreative", "high": "creative"},
+      {"facet": "O2", "facet_name": "Artistic Interests", "low": "artistically unappreciative", "high": "artistically appreciative"},
+      {"facet": "O2", "facet_name": "Artistic Interests", "low": "unaesthetic", "high": "aesthetic"},
+      {"facet": "O3", "facet_name": "Emotionality", "low": "unreflective", "high": "reflective"},
+      {"facet": "O3", "facet_name": "Emotionality", "low": "emotionally closed", "high": "emotionally aware"},
+      {"facet": "O4", "facet_name": "Adventurousness", "low": "uninquisitive", "high": "curious"},
+      {"facet": "O4", "facet_name": "Adventurousness", "low": "predictable", "high": "spontaneous"},
+      {"facet": "O5", "facet_name": "Intellect", "low": "unintelligent", "high": "intelligent"},
+      {"facet": "O5", "facet_name": "Intellect", "low": "unanalytical", "high": "analytical"},
+      {"facet": "O5", "facet_name": "Intellect", "low": "unsophisticated", "high": "sophisticated"},
+      {"facet": "O6", "facet_name": "Liberalism", "low": "socially conservative", "high": "socially progressive"}
+    ]
+  }
+}

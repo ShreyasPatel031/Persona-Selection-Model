@@ -1,0 +1,110 @@
+{
+  "created_utc": "2026-08-31T12:12:26.426073+00:00",
+  "elapsed_sec": 1272.0,
+  "gate": {
+    "openness": {
+      "cronbach_alpha": 0.9004,
+      "ev_mean": 3.3073,
+      "ev_sigma_across_admins": 0.4318,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": 0.3162,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    },
+    "conscientiousness": {
+      "cronbach_alpha": 0.9387,
+      "ev_mean": 2.7822,
+      "ev_sigma_across_admins": 0.422,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": -0.4,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    },
+    "extraversion": {
+      "cronbach_alpha": 0.775,
+      "ev_mean": 2.5944,
+      "ev_sigma_across_admins": 0.2538,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": 0.1054,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    },
+    "agreeableness": {
+      "cronbach_alpha": 0.8723,
+      "ev_mean": 3.3544,
+      "ev_sigma_across_admins": 0.311,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": 0.2,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    },
+    "neuroticism": {
+      "cronbach_alpha": 0.9368,
+      "ev_mean": 3.4762,
+      "ev_sigma_across_admins": 0.4647,
+      "n_locked_of_4": 0,
+      "forward_reverse_rho": 0.1054,
+      "unlocked": true,
+      "sign_stable": true,
+      "fr_ok": true,
+      "proceeds": true
+    }
+  },
+  "ladder_spans": {
+    "openness": {
+      "span": 1.7588000000000004,
+      "range": [
+        2.7083,
+        4.4671
+      ],
+      "rho": 0.8375
+    },
+    "conscientiousness": {
+      "span": 3.6757999999999997,
+      "range": [
+        1.1992,
+        4.875
+      ],
+      "rho": 0.9434
+    },
+    "extraversion": {
+      "span": 3.6077,
+      "range": [
+        1.259,
+        4.8667
+      ],
+      "rho": 0.9158
+    },
+    "agreeableness": {
+      "span": 2.779,
+      "range": [
+        1.6971,
+        4.4761
+      ],
+      "rho": 0.8582
+    },
+    "neuroticism": {
+      "span": 2.6194,
+      "range": [
+        1.8561,
+        4.4755
+      ],
+      "rho": 0.8807
+    }
+  },
+  "sweeps_passing": [
+    "openness-up",
+    "agreeableness-up",
+    "neuroticism-down"
+  ],
+  "sweeps_total": 10,
+  "bipolar_ok": []
+}
