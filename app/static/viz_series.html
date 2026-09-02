@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inferno viz series</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --panel: #fffefb;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      line-height: 1.45;
+      padding: 1.25rem 1.25rem 3rem;
+      max-width: 44rem;
+      margin: 0 auto;
+    }
+    h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    .sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin: 0.3rem 0 1.25rem;
+      max-width: 36rem;
+    }
+    .section-label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 1.25rem 0 0.5rem;
+      padding-bottom: 0.35rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .chapter {
+      display: grid;
+      grid-template-columns: 2.25rem 1fr auto;
+      gap: 0.65rem 0.85rem;
+      align-items: baseline;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--line);
+      text-decoration: none;
+      color: inherit;
+    }
+    .chapter:hover { background: rgba(26, 22, 18, 0.03); }
+    .chapter .num {
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+    }
+    .chapter .title {
+      font-size: 0.92rem;
+      font-weight: 600;
+    }
+    .chapter .tag {
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+    .chapter .desc {
+      grid-column: 2 / -1;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: -0.15rem;
+    }
+    .other {
+      opacity: 0.85;
+    }
+    footer {
+      margin-top: 1.5rem;
+      font-size: 0.68rem;
+      color: var(--muted);
+      text-align: center;
+      padding-top: 0.75rem;
+      border-top: 1px solid var(--line);
+    }
+    footer a { color: var(--ink); }
+  </style>
+</head>
+<body>
+  <h1>Inferno viz series</h1>
+  <p class="sub">
+  Persona steering, layer by layer — same cream shell, Newsreader titles, Instrument Sans UI.
+  Read left to right; each chapter adds one idea.
+  </p>
+
+  <div class="section-label">Core chapters</div>
+
+  <a class="chapter" href="./layer3d.html">
+    <span class="num">01</span>
+    <span class="title">Layer geometry</span>
+    <span class="tag">L3–L28</span>
+    <span class="desc">Where alignment traits live in the residual stream — 3D point clouds per layer with α sweep.</span>
+  </a>
+  <a class="chapter" href="./inferno_cone.html">
+    <span class="num">02</span>
+    <span class="title">Nine alphas of evil</span>
+    <span class="tag">α ladder</span>
+    <span class="desc">Climb injection dose: refuse → accept on a selfish baseline. Cone + rung list.</span>
+  </a>
+  <a class="chapter" href="./omp_reconstruction_3d.html">
+    <span class="num">03</span>
+    <span class="title">OMP reconstruction</span>
+    <span class="tag">sparse fit</span>
+    <span class="desc">Steering vector ≈ sum of top-K SAE features — 3D reconstruction with cosine readout.</span>
+  </a>
+  <a class="chapter" href="./ssv_bubble_viz_omp.html">
+    <span class="num">04</span>
+    <span class="title">Feature bubbles</span>
+    <span class="tag">code levels</span>
+    <span class="desc">Which sparse features fire as K grows — force layout bubble chart (the “code levels” viz).</span>
+  </a>
+  <a class="chapter" href="./dnd_composition_board.html">
+    <span class="num">05</span>
+    <span class="title">Composition board</span>
+    <span class="tag">9-grid</span>
+    <span class="desc">Compose lawful/chaotic × good/evil corners into one reply.</span>
+  </a>
+  <a class="chapter" href="./big_five_persona.html">
+    <span class="num">06</span>
+    <span class="title">Five personas</span>
+    <span class="tag">finale</span>
+    <span class="desc">OCEAN inventory silhouette — dose-matched opposite-prior curves at L15.</span>
+  </a>
+  <a class="chapter" href="./big_five_sem.html">
+    <span class="num">07</span>
+    <span class="title">Measurement model</span>
+    <span class="tag">MPI-120 CFA</span>
+    <span class="desc">Structural path diagram — latent factors, item loadings, inter-factor correlations.</span>
+  </a>
+
+  <div class="section-label">Supplements</div>
+
+  <a class="chapter other" href="./big_five_tsne.html">
+    <span class="num">—</span>
+    <span class="title">t-SNE ladder</span>
+    <span class="tag">L15</span>
+    <span class="desc">Prompt-variant centroids and level means in activation space.</span>
+  </a>
+  <a class="chapter other" href="./big_five_dose_viz.html">
+    <span class="num">—</span>
+    <span class="title">Dose → inventory score</span>
+    <span class="tag">bars</span>
+    <span class="desc">All five IPIP domains vs ‖α‖ on measured rungs.</span>
+  </a>
+  <a class="chapter other" href="./viz_index.html">
+    <span class="num">—</span>
+    <span class="title">Legacy index</span>
+    <span class="tag">misc</span>
+    <span class="desc">Older hub — chat, SAE A/B, behavior judge pages.</span>
+  </a>
+
+  <footer>
+    Design system: <a href="../viz/DESIGN_SYSTEM.md">viz/DESIGN_SYSTEM.md</a> · canonical chrome from <a href="./inferno_cone.html">inferno_cone.html</a>
+  </footer>
+</body>
+</html>

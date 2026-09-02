@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Good — activation separation vs α</title>
+<style>
+  :root { font-family: system-ui, sans-serif; color: #111; background: #fafafa; }
+  body { margin: 0; padding: 1.25rem; max-width: 920px; }
+  h1 { font-size: 1.15rem; margin: 0 0 .35rem; }
+  .sub { color: #555; font-size: .88rem; margin-bottom: 1rem; line-height: 1.45; }
+  .card { background: #fff; border: 1px solid #e5e7eb; border-radius: 10px; padding: 1rem; margin-bottom: 1rem; }
+  svg { width: 100%; height: auto; display: block; }
+  table { border-collapse: collapse; width: 100%; font-size: .85rem; }
+  th, td { border-bottom: 1px solid #eee; padding: .4rem .5rem; text-align: right; }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: #555; font-weight: 600; }
+  .yes { color: #16a34a; font-weight: 600; }
+  .no { color: #dc2626; }
+</style>
+</head>
+<body>
+<h1>Good trait — does activation separation grow with α?</h1>
+<p class="sub" id="sub"></p>
+<div class="card"><svg id="chart" viewBox="0 0 840 340"></svg></div>
+<div class="card"><table id="tbl"></table></div>
+<script>
+const D = {"trait": "good", "run_id": "dnd_good_scale", "steer_layer": 15, "v_norm": 1022.2383, "method": "Batched generate under neg system + alpha*v at steer layer; score = mean_assistant_h[layer] \u00b7 v_hat; separation = mean(score_alpha) - mean(score_0)", "n_questions": 15, "gen_batch_size": 8, "alphas": [{"alpha": 0.0, "mean_score": -26638.4264, "std_score": 405.9832, "separation_from_alpha0": 0.0, "n": 15, "points": [{"q": 0, "score": -25824.7031, "reply_len": 421}, {"q": 1, "score": -26788.3379, "reply_len": 570}, {"q": 2, "score": -26898.5, "reply_len": 494}, {"q": 3, "score": -25742.9473, "reply_len": 519}, {"q": 4, "score": -26938.3418, "reply_len": 453}, {"q": 5, "score": -26416.998, "reply_len": 735}, {"q": 6, "score": -26993.123, "reply_len": 507}, {"q": 7, "score": -26363.1758, "reply_len": 562}, {"q": 8, "score": -26659.7305, "reply_len": 509}, {"q": 9, "score": -27110.6582, "reply_len": 447}, {"q": 10, "score": -26704.0703, "reply_len": 497}, {"q": 11, "score": -26818.1113, "reply_len": 620}, {"q": 12, "score": -26795.8242, "reply_len": 576}, {"q": 13, "score": -26398.4473, "reply_len": 380}, {"q": 14, "score": -27123.4277, "reply_len": 524}], "mean_trait_judge": null, "mean_coherence": null}, {"alpha": 0.5, "mean_score": -26418.6633, "std_score": 432.4655, "separation_from_alpha0": 219.7632, "n": 15, "points": [{"q": 0, "score": -25698.8164, "reply_len": 461}, {"q": 1, "score": -26665.7793, "reply_len": 676}, {"q": 2, "score": -25963.1328, "reply_len": 576}, {"q": 3, "score": -25841.7598, "reply_len": 436}, {"q": 4, "score": -27105.6152, "reply_len": 528}, {"q": 5, "score": -26269.8906, "reply_len": 643}, {"q": 6, "score": -26630.8125, "reply_len": 516}, {"q": 7, "score": -26441.5039, "reply_len": 607}, {"q": 8, "score": -26209.9844, "reply_len": 511}, {"q": 9, "score": -26515.6055, "reply_len": 458}, {"q": 10, "score": -26102.998, "reply_len": 453}, {"q": 11, "score": -26567.2383, "reply_len": 550}, {"q": 12, "score": -26781.4375, "reply_len": 612}, {"q": 13, "score": -26181.4355, "reply_len": 471}, {"q": 14, "score": -27303.9395, "reply_len": 664}], "mean_trait_judge": 0.5, "mean_coherence": 95.3}, {"alpha": 1.0, "mean_score": -25943.1113, "std_score": 410.3326, "separation_from_alpha0": 695.3151, "n": 15, "points": [{"q": 0, "score": -25530.1055, "reply_len": 368}, {"q": 1, "score": -25693.1562, "reply_len": 396}, {"q": 2, "score": -25838.7949, "reply_len": 505}, {"q": 3, "score": -25229.5195, "reply_len": 520}, {"q": 4, "score": -26501.7598, "reply_len": 496}, {"q": 5, "score": -26470.043, "reply_len": 652}, {"q": 6, "score": -25207.582, "reply_len": 470}, {"q": 7, "score": -25837.0527, "reply_len": 662}, {"q": 8, "score": -26379.7461, "reply_len": 549}, {"q": 9, "score": -25801.1621, "reply_len": 338}, {"q": 10, "score": -26157.4805, "reply_len": 430}, {"q": 11, "score": -26407.293, "reply_len": 629}, {"q": 12, "score": -26297.7012, "reply_len": 732}, {"q": 13, "score": -26016.7188, "reply_len": 589}, {"q": 14, "score": -25778.5547, "reply_len": 511}], "mean_trait_judge": 14.5, "mean_coherence": 96.4}, {"alpha": 1.5, "mean_score": -24966.7234, "std_score": 415.1505, "separation_from_alpha0": 1671.703, "n": 15, "points": [{"q": 0, "score": -24485.0234, "reply_len": 407}, {"q": 1, "score": -25407.4375, "reply_len": 491}, {"q": 2, "score": -24401.0332, "reply_len": 504}, {"q": 3, "score": -24026.6602, "reply_len": 526}, {"q": 4, "score": -25084.6699, "reply_len": 542}, {"q": 5, "score": -25249.7012, "reply_len": 554}, {"q": 6, "score": -24818.7676, "reply_len": 542}, {"q": 7, "score": -24623.5469, "reply_len": 455}, {"q": 8, "score": -25156.2266, "reply_len": 505}, {"q": 9, "score": -25644.4727, "reply_len": 548}, {"q": 10, "score": -25098.7988, "reply_len": 474}, {"q": 11, "score": -24848.4785, "reply_len": 515}, {"q": 12, "score": -25205.7637, "reply_len": 536}, {"q": 13, "score": -25271.1602, "reply_len": 478}, {"q": 14, "score": -25179.1113, "reply_len": 515}], "mean_trait_judge": 47.0, "mean_coherence": 96.1}, {"alpha": 2.0, "mean_score": -24180.7393, "std_score": 324.9607, "separation_from_alpha0": 2457.6871, "n": 15, "points": [{"q": 0, "score": -24365.4258, "reply_len": 432}, {"q": 1, "score": -24358.5137, "reply_len": 639}, {"q": 2, "score": -24137.7344, "reply_len": 480}, {"q": 3, "score": -24346.9043, "reply_len": 509}, {"q": 4, "score": -24145.4238, "reply_len": 433}, {"q": 5, "score": -24682.8086, "reply_len": 559}, {"q": 6, "score": -24255.7891, "reply_len": 434}, {"q": 7, "score": -24143.2676, "reply_len": 497}, {"q": 8, "score": -23899.166, "reply_len": 525}, {"q": 9, "score": -24359.2676, "reply_len": 554}, {"q": 10, "score": -23926.8301, "reply_len": 461}, {"q": 11, "score": -23809.8203, "reply_len": 543}, {"q": 12, "score": -24593.6074, "reply_len": 706}, {"q": 13, "score": -23334.8281, "reply_len": 386}, {"q": 14, "score": -24351.7031, "reply_len": 530}], "mean_trait_judge": 95.4, "mean_coherence": 91.0}, {"alpha": 2.5, "mean_score": -23084.8676, "std_score": 453.4465, "separation_from_alpha0": 3553.5589, "n": 15, "points": [{"q": 0, "score": -23900.8105, "reply_len": 471}, {"q": 1, "score": -23115.2793, "reply_len": 616}, {"q": 2, "score": -22551.8379, "reply_len": 398}, {"q": 3, "score": -22754.207, "reply_len": 335}, {"q": 4, "score": -23114.0312, "reply_len": 494}, {"q": 5, "score": -23310.1973, "reply_len": 720}, {"q": 6, "score": -23558.2559, "reply_len": 443}, {"q": 7, "score": -22995.3984, "reply_len": 461}, {"q": 8, "score": -22298.541, "reply_len": 582}, {"q": 9, "score": -22434.9121, "reply_len": 467}, {"q": 10, "score": -23236.2832, "reply_len": 439}, {"q": 11, "score": -23222.9434, "reply_len": 592}, {"q": 12, "score": -23564.9355, "reply_len": 622}, {"q": 13, "score": -22646.125, "reply_len": 553}, {"q": 14, "score": -23569.2559, "reply_len": 494}], "mean_trait_judge": 90.4, "mean_coherence": 85.5}, {"alpha": 3.0, "mean_score": -22395.6082, "std_score": 374.7981, "separation_from_alpha0": 4242.8182, "n": 15, "points": [{"q": 0, "score": -22645.2402, "reply_len": 408}, {"q": 1, "score": -22438.7109, "reply_len": 554}, {"q": 2, "score": -22339.6504, "reply_len": 315}, {"q": 3, "score": -22067.7578, "reply_len": 385}, {"q": 4, "score": -21763.502, "reply_len": 325}, {"q": 5, "score": -22745.6367, "reply_len": 557}, {"q": 6, "score": -22418.627, "reply_len": 496}, {"q": 7, "score": -22297.1465, "reply_len": 533}, {"q": 8, "score": -22071.1211, "reply_len": 422}, {"q": 9, "score": -22425.4395, "reply_len": 491}, {"q": 10, "score": -23110.9883, "reply_len": 428}, {"q": 11, "score": -22903.1055, "reply_len": 508}, {"q": 12, "score": -22081.7598, "reply_len": 581}, {"q": 13, "score": -22766.7363, "reply_len": 439}, {"q": 14, "score": -21858.7012, "reply_len": 432}], "mean_trait_judge": 87.3, "mean_coherence": 77.0}, {"alpha": 4.0, "mean_score": -20803.2049, "std_score": 513.6953, "separation_from_alpha0": 5835.2215, "n": 15, "points": [{"q": 0, "score": -21402.2695, "reply_len": 301}, {"q": 1, "score": -20487.75, "reply_len": 619}, {"q": 2, "score": -20592.9355, "reply_len": 457}, {"q": 3, "score": -20820.3965, "reply_len": 626}, {"q": 4, "score": -21152.502, "reply_len": 381}, {"q": 5, "score": -21389.375, "reply_len": 490}, {"q": 6, "score": -21382.3496, "reply_len": 539}, {"q": 7, "score": -20382.8281, "reply_len": 589}, {"q": 8, "score": -19827.6855, "reply_len": 604}, {"q": 9, "score": -20712.4961, "reply_len": 668}, {"q": 10, "score": -21629.1816, "reply_len": 537}, {"q": 11, "score": -20533.6016, "reply_len": 642}, {"q": 12, "score": -20503.8613, "reply_len": 609}, {"q": 13, "score": -21164.3711, "reply_len": 609}, {"q": 14, "score": -20066.4707, "reply_len": 586}], "mean_trait_judge": 73.8, "mean_coherence": 39.0}]};
+document.getElementById("sub").innerHTML =
+  `Steer layer <b>L${D.steer_layer}</b> · score = mean assistant activation · unit persona vector ` +
+  `(‖v‖=${D.v_norm}). Separation = mean(score<sub>α</sub>) − mean(score<sub>0</sub>). ` +
+  `Judge trait/coherence from existing alpha sweep (overlay). n=${D.n_questions} questions, batched.`;
+
+const rows = D.alphas;
+const W = 840, H = 340, m = { t: 24, r: 90, b: 40, l: 56 };
+const iw = W - m.l - m.r, ih = H - m.t - m.b;
+const xs = rows.map(r => r.alpha);
+const seps = rows.map(r => r.separation_from_alpha0);
+const x0 = Math.min(...xs), x1 = Math.max(...xs);
+const y0 = Math.min(0, ...seps), y1 = Math.max(...seps, 1);
+const yPad = (y1 - y0) * 0.08 || 1;
+const sx = v => m.l + ((v - x0) / (x1 - x0 || 1)) * iw;
+const sy = v => m.t + ih - ((v - (y0 - yPad)) / ((y1 + yPad) - (y0 - yPad))) * ih;
+const sty = v => m.t + ih - (v / 100) * ih;
+
+const svg = document.getElementById("chart");
+function line(x1a,y1a,x2a,y2a, stroke, w=1, dash=null) {
+  const el = document.createElementNS("http://www.w3.org/2000/svg", "line");
+  el.setAttribute("x1", x1a); el.setAttribute("y1", y1a);
+  el.setAttribute("x2", x2a); el.setAttribute("y2", y2a);
+  el.setAttribute("stroke", stroke); el.setAttribute("stroke-width", w);
+  if (dash) el.setAttribute("stroke-dasharray", dash);
+  svg.appendChild(el);
+}
+function text(str, x, y, opts={}) {
+  const t = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  t.setAttribute("x", x); t.setAttribute("y", y);
+  t.setAttribute("font-size", opts.size || 11);
+  t.setAttribute("fill", opts.fill || "#6b7280");
+  if (opts.anchor) t.setAttribute("text-anchor", opts.anchor);
+  t.textContent = str;
+  svg.appendChild(t);
+}
+line(m.l, m.t, m.l, m.t + ih, "#e5e7eb");
+line(m.l, m.t + ih, m.l + iw, m.t + ih, "#e5e7eb");
+line(m.l + iw, m.t, m.l + iw, m.t + ih, "#e5e7eb");
+if (y0 - yPad < 0 && y1 + yPad > 0) line(m.l, sy(0), m.l + iw, sy(0), "#d1d5db", 1, "4 3");
+
+const traitPts = rows.filter(r => r.mean_trait_judge != null);
+if (traitPts.length) {
+  let d = "";
+  traitPts.forEach((r, i) => {
+    const x = sx(r.alpha), y = sty(r.mean_trait_judge);
+    d += (i ? "L" : "M") + x + " " + y + " ";
+  });
+  const p = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  p.setAttribute("d", d); p.setAttribute("fill", "none");
+  p.setAttribute("stroke", "#a78bfa"); p.setAttribute("stroke-width", 2);
+  p.setAttribute("stroke-dasharray", "5 4");
+  svg.appendChild(p);
+  traitPts.forEach(r => {
+    const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    c.setAttribute("cx", sx(r.alpha)); c.setAttribute("cy", sty(r.mean_trait_judge));
+    c.setAttribute("r", 3.5); c.setAttribute("fill", "#a78bfa");
+    svg.appendChild(c);
+  });
+}
+
+let d2 = "";
+rows.forEach((r, i) => {
+  d2 += (i ? "L" : "M") + sx(r.alpha) + " " + sy(r.separation_from_alpha0) + " ";
+});
+const p2 = document.createElementNS("http://www.w3.org/2000/svg", "path");
+p2.setAttribute("d", d2); p2.setAttribute("fill", "none");
+p2.setAttribute("stroke", "#2563eb"); p2.setAttribute("stroke-width", 2.5);
+svg.appendChild(p2);
+rows.forEach(r => {
+  const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+  c.setAttribute("cx", sx(r.alpha)); c.setAttribute("cy", sy(r.separation_from_alpha0));
+  c.setAttribute("r", 5); c.setAttribute("fill", "#2563eb");
+  svg.appendChild(c);
+  line(sx(r.alpha), sy(r.separation_from_alpha0 - r.std_score),
+       sx(r.alpha), sy(r.separation_from_alpha0 + r.std_score), "#93c5fd", 1.5);
+});
+
+text("α", m.l + iw / 2, H - 8, { anchor: "middle" });
+text("activation sep", m.l + 8, m.t + 14, { fill: "#2563eb" });
+text("judge trait (0–100)", m.l + iw - 8, m.t + 14, { anchor: "end", fill: "#a78bfa" });
+xs.forEach(a => text(String(a), sx(a), m.t + ih + 16, { anchor: "middle", size: 10 }));
+
+const tbl = document.getElementById("tbl");
+tbl.innerHTML = `<thead><tr>
+  <th>α</th><th>mean h·v̂</th><th>sep from α=0</th><th>std</th>
+  <th>judge trait</th><th>coherence</th><th>sep ↑?</th>
+</tr></thead><tbody></tbody>`;
+const tb = tbl.querySelector("tbody");
+rows.forEach((r, i) => {
+  const up = i === 0 ? "—" : (r.separation_from_alpha0 > rows[i-1].separation_from_alpha0 ? "yes" : "no");
+  const tr = document.createElement("tr");
+  tr.innerHTML = `<td>${r.alpha}</td>
+    <td>${r.mean_score.toFixed(1)}</td>
+    <td><b>${r.separation_from_alpha0.toFixed(1)}</b></td>
+    <td>${r.std_score.toFixed(1)}</td>
+    <td>${r.mean_trait_judge ?? "—"}</td>
+    <td>${r.mean_coherence ?? "—"}</td>
+    <td class="${up === "yes" ? "yes" : (up === "no" ? "no" : "")}">${up}</td>`;
+  tb.appendChild(tr);
+});
+const increasing = rows.every((r, i) => i === 0 || r.separation_from_alpha0 >= rows[i-1].separation_from_alpha0 - 1e-6);
+const foot = document.createElement("p");
+foot.className = "sub";
+foot.innerHTML = increasing
+  ? `<span class="yes">Monotonic:</span> separation increases with α over the full range tested.`
+  : `<span class="no">Not fully monotonic:</span> separation does not strictly increase at every step (see table).`;
+document.body.appendChild(foot);
+</script>
+</body>
+</html>

@@ -1,0 +1,843 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SSV Feature Galaxy</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #09090f; overflow: hidden; font-family: system-ui, -apple-system, sans-serif; color: #e2e8f0; }
+    canvas { display: block; }
+
+    /* ── Trait picker ─────────────────────────────── */
+    #trait-picker {
+      position: fixed; top: 1.1rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 0.3rem; z-index: 11;
+      background: rgba(15,15,25,0.88);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
+      padding: 0.3rem 0.4rem; backdrop-filter: blur(12px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    #trait-picker button {
+      border: 1px solid transparent; background: transparent;
+      border-radius: 7px; padding: 0.3rem 0.65rem;
+      font-size: 0.68rem; font-weight: 600; cursor: pointer; color: #94a3b8;
+      transition: all 0.15s;
+    }
+    #trait-picker button.active { background: rgba(255,255,255,0.07); }
+    #trait-picker button[data-trait="good"].active  { border-color: #16a34a; color: #4ade80; }
+    #trait-picker button[data-trait="evil"].active  { border-color: #dc2626; color: #f87171; }
+    #trait-picker button[data-trait="lawful"].active{ border-color: #2563eb; color: #60a5fa; }
+    #trait-picker button[data-trait="chaotic"].active{ border-color: #d97706; color: #fbbf24; }
+
+    /* ── Header ───────────────────────────────────── */
+    #header {
+      position: fixed; top: 1.1rem; left: 1.1rem;
+      pointer-events: none; z-index: 10;
+    }
+    #header h1 { font-size: 0.95rem; font-weight: 700; color: #f1f5f9; }
+    #header p  { font-size: 0.65rem; color: #64748b; margin-top: 0.15rem; }
+
+    /* ── Right panel ──────────────────────────────── */
+    #panel {
+      position: fixed; top: 1.1rem; right: 1.1rem;
+      background: rgba(15,15,25,0.88);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
+      padding: 0.85rem 1rem; z-index: 10; min-width: 15rem;
+      backdrop-filter: blur(12px); font-size: 0.71rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .panel-title {
+      font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.09em;
+      color: #475569; margin-bottom: 0.6rem;
+    }
+    .stat-row { display: flex; justify-content: space-between; gap: 1rem; margin-bottom: 0.3rem; color: #94a3b8; }
+    .stat-val { color: #e2e8f0; font-weight: 600; }
+
+    /* K selector */
+    .k-section { margin-top: 0.75rem; padding-top: 0.6rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    .k-label { font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.07em; color: #475569; display: block; margin-bottom: 0.4rem; }
+    #k-buttons { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+    #k-buttons button {
+      border: 1px solid rgba(255,255,255,0.1); background: transparent;
+      border-radius: 5px; padding: 0.2rem 0.4rem; font-size: 0.6rem;
+      cursor: pointer; color: #94a3b8; transition: all 0.12s;
+    }
+    #k-buttons button.active { background: rgba(255,255,255,0.12); color: #f1f5f9; border-color: rgba(255,255,255,0.25); }
+
+    /* Trait score vs K mini chart */
+    #score-chart-wrap { margin-top: 0.7rem; }
+    #score-chart-label { font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.07em; color: #475569; margin-bottom: 0.3rem; }
+    #scoreChart { display: block; width: 100%; border-radius: 5px; background: rgba(0,0,0,0.3); }
+
+    /* Play controls */
+    .play-section { margin-top: 0.75rem; padding-top: 0.6rem; border-top: 1px solid rgba(255,255,255,0.06); }
+    #play-btn {
+      width: 100%; padding: 0.35rem; border-radius: 6px; cursor: pointer;
+      font-size: 0.65rem; font-weight: 600; border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06); color: #e2e8f0; transition: all 0.15s;
+    }
+    #play-btn:hover { background: rgba(255,255,255,0.1); }
+    #play-btn.playing { border-color: #4ade80; color: #4ade80; }
+    #iter-row { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.4rem; }
+    #iter-slider { flex: 1; height: 3px; accent-color: #64748b; cursor: pointer; }
+    #iter-label { font-size: 0.6rem; color: #64748b; min-width: 2.8rem; text-align: right; }
+    #speed-row { display: flex; gap: 0.25rem; margin-top: 0.35rem; }
+    #speed-row button {
+      flex: 1; border: 1px solid rgba(255,255,255,0.08); background: transparent;
+      border-radius: 4px; padding: 0.18rem 0; font-size: 0.58rem; cursor: pointer; color: #64748b;
+    }
+    #speed-row button.active { background: rgba(255,255,255,0.1); color: #e2e8f0; border-color: rgba(255,255,255,0.2); }
+    #no-traj-msg { font-size: 0.6rem; color: #475569; margin-top: 0.4rem; display: none; }
+
+    /* ── Loss curve panel ──────────────────────────── */
+    #loss-panel {
+      position: fixed; bottom: 3rem; left: 1.1rem;
+      background: rgba(15,15,25,0.88);
+      border: 1px solid rgba(255,255,255,0.08); border-radius: 10px;
+      padding: 0.7rem 0.85rem; z-index: 10;
+      backdrop-filter: blur(12px); width: 17rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .loss-title { font-size: 0.56rem; text-transform: uppercase; letter-spacing: 0.07em; color: #475569; margin-bottom: 0.4rem; }
+    #lossChart { display: block; width: 100%; border-radius: 4px; background: rgba(0,0,0,0.3); }
+    #loss-legend { display: flex; gap: 0.7rem; margin-top: 0.35rem; flex-wrap: wrap; }
+    .loss-leg { display: flex; align-items: center; gap: 0.25rem; font-size: 0.56rem; color: #64748b; }
+    .loss-leg-dot { width: 8px; height: 2px; border-radius: 1px; }
+
+    /* ── Tooltip ───────────────────────────────────── */
+    #tooltip {
+      position: fixed; background: rgba(15,15,25,0.96);
+      border: 1px solid rgba(255,255,255,0.12); border-radius: 10px;
+      padding: 0.65rem 0.85rem; font-size: 0.68rem; line-height: 1.55;
+      pointer-events: none; opacity: 0; transition: opacity 0.1s;
+      z-index: 20; max-width: 17rem; color: #94a3b8;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    #tooltip.on { opacity: 1; }
+    #tooltip strong { color: #f1f5f9; display: block; margin-bottom: 0.25rem; font-size: 0.75rem; }
+    .tip-row { margin-bottom: 0.1rem; }
+    .tip-pos { color: #4ade80; }
+    .tip-neg { color: #f87171; }
+    .tip-tokens { margin-top: 0.3rem; display: flex; flex-wrap: wrap; gap: 0.2rem; }
+    .tip-token {
+      background: rgba(255,255,255,0.06); border-radius: 3px;
+      padding: 0.05rem 0.3rem; font-size: 0.58rem; color: #cbd5e1;
+    }
+
+    /* ── Hint ──────────────────────────────────────── */
+    #hint {
+      position: fixed; bottom: 1rem; left: 50%; transform: translateX(-50%);
+      font-size: 0.6rem; color: #334155; pointer-events: none; z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <div id="trait-picker">
+    <button type="button" data-trait="good" class="active">Good</button>
+    <button type="button" data-trait="evil">Evil</button>
+    <button type="button" data-trait="lawful">Lawful</button>
+    <button type="button" data-trait="chaotic">Chaotic</button>
+  </div>
+
+  <div id="header">
+    <h1>SAE Feature Galaxy</h1>
+    <p>262k SAE features · spatial proximity = semantic similarity<br>
+       size &amp; color = SSV weight at selected K</p>
+  </div>
+
+  <div id="panel">
+    <div class="panel-title">SSV Stats</div>
+    <div class="stat-row"><span>K</span><span class="stat-val" id="stat-k">—</span></div>
+    <div class="stat-row"><span>Active features</span><span class="stat-val" id="stat-active">—</span></div>
+    <div class="stat-row"><span>Cosine vs dense</span><span class="stat-val" id="stat-cos">—</span></div>
+    <div class="stat-row"><span>Trait score</span><span class="stat-val" id="stat-score">—</span></div>
+
+    <div class="k-section">
+      <span class="k-label">Select K (shortlist size)</span>
+      <div id="k-buttons"></div>
+    </div>
+
+    <div id="score-chart-wrap">
+      <div id="score-chart-label">Trait score vs K</div>
+      <canvas id="scoreChart" width="200" height="70"></canvas>
+    </div>
+
+    <div class="play-section">
+      <button id="play-btn" type="button">▶ Play optimization (100 iters)</button>
+      <div id="iter-row">
+        <input type="range" id="iter-slider" min="0" max="99" value="99" />
+        <span id="iter-label">iter 99</span>
+      </div>
+      <div id="speed-row">
+        <button data-speed="0.5">0.5×</button>
+        <button data-speed="1" class="active">1×</button>
+        <button data-speed="2">2×</button>
+        <button data-speed="4">4×</button>
+      </div>
+      <div id="no-traj-msg">No trajectory file found for this K.<br>Run: <code>python scripts/sae_ssv_optimize.py --trait {trait} --ks {k} --optimize-only --skip-collect --log-trajectory</code></div>
+    </div>
+  </div>
+
+  <div id="loss-panel">
+    <div class="loss-title">Optimization loss — iteration <span id="loss-iter-label">—</span></div>
+    <canvas id="lossChart" width="260" height="90"></canvas>
+    <div id="loss-legend">
+      <div class="loss-leg"><div class="loss-leg-dot" style="background:#f1f5f9"></div>Total</div>
+      <div class="loss-leg"><div class="loss-leg-dot" style="background:#60a5fa"></div>Distance</div>
+      <div class="loss-leg"><div class="loss-leg-dot" style="background:#f87171"></div>LM reg</div>
+      <div class="loss-leg"><div class="loss-leg-dot" style="background:#fbbf24"></div>Sparsity</div>
+    </div>
+  </div>
+
+  <div id="tooltip"></div>
+  <div id="hint">drag orbit · scroll zoom · WASD fly · click feature for details</div>
+
+  <script type="module">
+    import * as THREE from 'https://esm.sh/three@0.158.0';
+    import { OrbitControls } from 'https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls';
+
+    // ── Constants ──────────────────────────────────────────────────────────
+    const TRAIT_KEYS = ['good', 'evil', 'lawful', 'chaotic'];
+    const TRAIT_META = {
+      good:    { hot: '#4ade80', mid: '#16a34a', layer: 16 },
+      evil:    { hot: '#f87171', mid: '#dc2626', layer: 16 },
+      lawful:  { hot: '#60a5fa', mid: '#2563eb', layer: 15 },
+      chaotic: { hot: '#fbbf24', mid: '#d97706', layer: 15 },
+    };
+    const K_VALUES = [5, 10, 20, 50, 100, 128, 200, 256, 512, 750, 1000];
+    const DATA_VERSION = 1;
+
+    // ── Renderer ────────────────────────────────────────────────────────────
+    const W = window.innerWidth, H = window.innerHeight;
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(W, H);
+    renderer.sortObjects = true;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x09090f);
+    scene.fog = new THREE.Fog(0x09090f, 80, 200);
+
+    const camera = new THREE.PerspectiveCamera(55, W / H, 0.1, 500);
+    camera.position.set(0, 0, 6);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.06;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 0.18;
+    controls.minDistance = 1;
+    controls.maxDistance = 60;
+
+    // ── State ────────────────────────────────────────────────────────────────
+    let activeTraitMode = 'good';
+    let activeK = 100;
+    let trajectory = null;        // loaded per K
+    let bubbleData = null;        // ssv_bubble_viz_data_{trait}.json
+    let galaxyPositions = null;   // ssv_galaxy_positions.json (optional)
+    let currentIter = 99;
+    let playing = false;
+    let playSpeed = 1;
+    let iterAccum = 0;
+    let lastTime = performance.now();
+
+    // ── Galaxy point cloud ──────────────────────────────────────────────────
+    // 3D positions: either from UMAP file or synthesized from SSV data
+    let galaxyMesh = null;
+    const GALAXY_COUNT = 2000; // placeholder until UMAP loads (top-2000 by F-stat)
+    const POS_SCALE = 3.0;
+
+    // Per-feature metadata from bubble viz data
+    let featureMeta = {};       // fid -> {label, theme, sign, top_tokens, ...}
+    let kLevelsByK = {};        // k -> {features:[...], mean_trait, cosine_vs_dense, n_active}
+
+    // Active-feature instanced spheres
+    let activeMesh = null;
+    const MAX_ACTIVE = 1000;
+    const sphereGeo = new THREE.SphereGeometry(1, 6, 4); // unit sphere, low poly
+    const posMat = new THREE.MeshBasicMaterial({ color: 0x4ade80, transparent: true, opacity: 0.85 });
+    const negMat = new THREE.MeshBasicMaterial({ color: 0xf87171, transparent: true, opacity: 0.85 });
+
+    // Separate instanced meshes for pos/neg features
+    let posInstMesh = null;
+    let negInstMesh = null;
+    let posFeatures = [];  // {fid, weight, importance, radius, px, py, pz}
+    let negFeatures = [];
+
+    // ── Shaders ─────────────────────────────────────────────────────────────
+    const BG_VERT = `
+      attribute float fstat;
+      uniform float uOpacity;
+      uniform vec3  uTraitColor;
+      varying float vFstat;
+      void main() {
+        vFstat = fstat;
+        vec4 mv = modelViewMatrix * vec4(position, 1.0);
+        float dist = length(mv.xyz);
+        gl_PointSize = max(1.0, 2.8 * (8.0 / max(dist, 1.0)));
+        gl_Position = projectionMatrix * mv;
+      }
+    `;
+    const BG_FRAG = `
+      uniform float uOpacity;
+      uniform vec3  uTraitColor;
+      varying float vFstat;
+      void main() {
+        vec2 uv = gl_PointCoord - 0.5;
+        if (dot(uv,uv) > 0.25) discard;
+        vec3 col = mix(vec3(0.12, 0.14, 0.18), uTraitColor, vFstat * 0.45);
+        gl_FragColor = vec4(col, uOpacity * (0.08 + 0.22 * vFstat));
+      }
+    `;
+
+    // ── Data loading ─────────────────────────────────────────────────────────
+    async function loadBubbleData(trait) {
+      const manifest = await fetch(`ssv_bubble_viz_manifest.json?v=${DATA_VERSION}`).then(r => r.json());
+      const fname = manifest.traits[trait];
+      const data = await fetch(`${fname}?v=${DATA_VERSION}`).then(r => r.json());
+      bubbleData = data;
+      featureMeta = data.feature_meta || {};
+      kLevelsByK = {};
+      for (const kl of data.k_levels) {
+        kLevelsByK[kl.k] = kl;
+      }
+    }
+
+    async function tryLoadGalaxyPositions(trait) {
+      try {
+        const data = await fetch(`ssv_galaxy_positions.json?v=${DATA_VERSION}`).then(r => r.json());
+        galaxyPositions = data;
+        return true;
+      } catch { return false; }
+    }
+
+    async function tryLoadTrajectory(trait, k) {
+      try {
+        const fname = `ssv_trajectory_${trait}_K${k}.json?v=${DATA_VERSION}`;
+        const data = await fetch(fname).then(r => { if (!r.ok) throw new Error(r.status); return r.json(); });
+        return data;
+      } catch { return null; }
+    }
+
+    // ── Galaxy mesh builder ──────────────────────────────────────────────────
+    function buildGalaxyMesh(trait) {
+      if (galaxyMesh) { scene.remove(galaxyMesh); galaxyMesh.geometry.dispose(); galaxyMesh = null; }
+
+      let positions, fstats;
+      const fstatArr = galaxyPositions?.f_stats?.[trait];
+
+      if (galaxyPositions?.positions) {
+        const raw = galaxyPositions.positions;
+        const N = raw.length;
+        positions = new Float32Array(N * 3);
+        fstats = new Float32Array(N);
+        for (let i = 0; i < N; i++) {
+          positions[i * 3]     = raw[i][0] * POS_SCALE;
+          positions[i * 3 + 1] = raw[i][1] * POS_SCALE;
+          positions[i * 3 + 2] = raw[i][2] * POS_SCALE;
+          fstats[i] = fstatArr ? fstatArr[i] / 255 : 0;
+        }
+      } else {
+        // Synthesize positions from bubble data using spherical layout
+        positions = buildSynthPositions(trait);
+        fstats = new Float32Array(positions.length / 3);
+      }
+
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geo.setAttribute('fstat', new THREE.BufferAttribute(fstats, 1));
+
+      const meta = TRAIT_META[trait];
+      const tc = new THREE.Color(meta.hot);
+      const mat = new THREE.ShaderMaterial({
+        vertexShader: BG_VERT, fragmentShader: BG_FRAG,
+        uniforms: {
+          uOpacity: { value: 1.0 },
+          uTraitColor: { value: new THREE.Vector3(tc.r, tc.g, tc.b) },
+        },
+        transparent: true, depthWrite: false,
+      });
+
+      galaxyMesh = new THREE.Points(geo, mat);
+      scene.add(galaxyMesh);
+    }
+
+    // ── Synthesize positions from bubble data (no UMAP) ──────────────────────
+    // Uses spherical coordinates derived from feature ID hash for reproducible layout
+    function buildSynthPositions(trait) {
+      // Collect all unique fids across all K levels
+      const allFids = new Set();
+      if (bubbleData) {
+        for (const kl of bubbleData.k_levels) {
+          for (const f of kl.features) allFids.add(f.fid);
+        }
+      }
+      const fids = [...allFids];
+      const N = fids.length;
+      const positions = new Float32Array(N * 3);
+      // Golden ratio spiral on sphere for even distribution
+      const phi = Math.PI * (Math.sqrt(5) - 1);
+      for (let i = 0; i < N; i++) {
+        const y = 1 - (i / Math.max(N - 1, 1)) * 2;
+        const r = Math.sqrt(1 - y * y);
+        const theta = phi * fids[i]; // use fid as angle seed for reproducibility
+        const x = Math.cos(theta) * r;
+        const z = Math.sin(theta) * r;
+        const radius = POS_SCALE * (0.8 + 0.4 * Math.sin(fids[i] * 0.00137));
+        positions[i * 3]     = x * radius;
+        positions[i * 3 + 1] = y * radius;
+        positions[i * 3 + 2] = z * radius;
+      }
+      return positions;
+    }
+
+    // ── Get XYZ for a feature fid ────────────────────────────────────────────
+    // When UMAP positions are loaded, reads from the flat array.
+    // Otherwise synthesizes from fid.
+    function featureXYZ(fid) {
+      if (galaxyPositions?.positions) {
+        const p = galaxyPositions.positions[fid];
+        if (p) return { x: p[0] * POS_SCALE, y: p[1] * POS_SCALE, z: p[2] * POS_SCALE };
+      }
+      // Deterministic from fid
+      const phi = Math.PI * (Math.sqrt(5) - 1);
+      const seed = fid * 0.00137;
+      const y = Math.cos(seed * 1.618) * 0.9;
+      const r = Math.sqrt(1 - y * y);
+      const theta = phi * fid;
+      const radius = POS_SCALE * (0.85 + 0.3 * Math.abs(Math.sin(fid * 0.00041)));
+      return {
+        x: Math.cos(theta) * r * radius,
+        y: y * radius,
+        z: Math.sin(theta) * r * radius,
+      };
+    }
+
+    // ── Active feature instanced meshes ──────────────────────────────────────
+    function buildActiveMeshes() {
+      if (posInstMesh) { scene.remove(posInstMesh); posInstMesh.geometry.dispose(); }
+      if (negInstMesh) { scene.remove(negInstMesh); negInstMesh.geometry.dispose(); }
+
+      posInstMesh = new THREE.InstancedMesh(sphereGeo, new THREE.MeshBasicMaterial({
+        color: new THREE.Color(TRAIT_META[activeTraitMode].hot),
+        transparent: true, opacity: 0.82,
+      }), MAX_ACTIVE);
+      negInstMesh = new THREE.InstancedMesh(sphereGeo, new THREE.MeshBasicMaterial({
+        color: 0xf87171, transparent: true, opacity: 0.82,
+      }), MAX_ACTIVE);
+      posInstMesh.count = 0;
+      negInstMesh.count = 0;
+      scene.add(posInstMesh);
+      scene.add(negInstMesh);
+    }
+
+    const _dummy = new THREE.Object3D();
+
+    function refreshActiveFeatures() {
+      const kl = kLevelsByK[activeK];
+      if (!kl) return;
+
+      posFeatures = [];
+      negFeatures = [];
+
+      const maxW = Math.max(...kl.features.map(f => f.abs_weight));
+      for (const f of kl.features) {
+        const p = featureXYZ(f.fid);
+        const radius = 0.025 + 0.12 * Math.pow(f.abs_weight / Math.max(maxW, 1e-6), 0.6);
+        const entry = { fid: f.fid, weight: f.weight, importance: f.importance,
+                        radius, px: p.x, py: p.y, pz: p.z, iterRadius: radius };
+        if (f.sign === 'pos') posFeatures.push(entry);
+        else negFeatures.push(entry);
+      }
+
+      writeInstances(posInstMesh, posFeatures);
+      writeInstances(negInstMesh, negFeatures);
+    }
+
+    function writeInstances(mesh, features) {
+      mesh.count = features.length;
+      for (let i = 0; i < features.length; i++) {
+        const f = features[i];
+        _dummy.position.set(f.px, f.py, f.pz);
+        _dummy.scale.setScalar(f.iterRadius);
+        _dummy.updateMatrix();
+        mesh.setMatrixAt(i, _dummy.matrix);
+      }
+      mesh.instanceMatrix.needsUpdate = true;
+    }
+
+    // ── Trajectory playback ──────────────────────────────────────────────────
+    function applyIteration(iterIdx) {
+      if (!trajectory) return;
+      const frame = trajectory.iterations[Math.min(iterIdx, trajectory.iterations.length - 1)];
+      if (!frame) return;
+
+      // frame.weights has length K, same order as trajectory.feature_ids (F-stat rank order)
+      const fidToWeight = {};
+      for (let i = 0; i < trajectory.feature_ids.length; i++) {
+        fidToWeight[trajectory.feature_ids[i]] = frame.weights[i] ?? 0;
+      }
+
+      const maxW = Math.max(...Object.values(fidToWeight).map(Math.abs), 1e-6);
+
+      // Update sphere sizes for active features
+      for (const f of posFeatures) {
+        const w = Math.abs(fidToWeight[f.fid] ?? 0);
+        f.iterRadius = 0.005 + 0.15 * Math.pow(w / maxW, 0.65);
+      }
+      for (const f of negFeatures) {
+        const w = Math.abs(fidToWeight[f.fid] ?? 0);
+        f.iterRadius = 0.005 + 0.15 * Math.pow(w / maxW, 0.65);
+      }
+
+      writeInstances(posInstMesh, posFeatures);
+      writeInstances(negInstMesh, negFeatures);
+
+      // Update iter label
+      document.getElementById('iter-label').textContent = `iter ${frame.iter}`;
+      document.getElementById('iter-slider').value = iterIdx;
+      currentIter = iterIdx;
+
+      updateLossChart(iterIdx);
+      updateLossIterLabel(frame.iter);
+    }
+
+    // ── Loss curve ────────────────────────────────────────────────────────────
+    const lossCanvas = document.getElementById('lossChart');
+    const lossCtx = lossCanvas.getContext('2d');
+    const scoreCanvas = document.getElementById('scoreChart');
+    const scoreCtx = scoreCanvas.getContext('2d');
+    const DPR = window.devicePixelRatio || 1;
+
+    function scaledCanvas(canvas, w, h) {
+      canvas.width = w * DPR;
+      canvas.height = h * DPR;
+      canvas.style.width = w + 'px';
+      canvas.style.height = h + 'px';
+      const ctx = canvas.getContext('2d');
+      ctx.scale(DPR, DPR);
+      return ctx;
+    }
+
+    scaledCanvas(lossCanvas, 260, 90);
+    scaledCanvas(scoreCanvas, 200, 70);
+
+    function updateLossChart(highlightIter) {
+      if (!trajectory) { lossCtx.clearRect(0, 0, 260, 90); return; }
+      const iters = trajectory.iterations;
+      const W = 260, H = 90, PAD = 8;
+      lossCtx.clearRect(0, 0, W, H);
+
+      const keys = ['loss', 'dist_loss', 'lm_loss', 'sparsity_loss'];
+      const colors = ['#f1f5f9', '#60a5fa', '#f87171', '#fbbf24'];
+      const widths = [2, 1.2, 1.2, 1.2];
+
+      // Find Y range (only total loss for scale)
+      const allLoss = iters.map(d => d.loss);
+      const yMin = Math.min(...allLoss) * 0.95;
+      const yMax = Math.max(...allLoss) * 1.05;
+
+      function iy(v) { return H - PAD - (v - yMin) / Math.max(yMax - yMin, 1e-6) * (H - PAD * 2); }
+      function ix(i) { return PAD + (i / Math.max(iters.length - 1, 1)) * (W - PAD * 2); }
+
+      for (let ki = 0; ki < keys.length; ki++) {
+        lossCtx.beginPath();
+        lossCtx.strokeStyle = colors[ki];
+        lossCtx.lineWidth = widths[ki];
+        lossCtx.globalAlpha = ki === 0 ? 1.0 : 0.65;
+        for (let i = 0; i < iters.length; i++) {
+          const v = iters[i][keys[ki]];
+          if (i === 0) lossCtx.moveTo(ix(i), iy(v));
+          else lossCtx.lineTo(ix(i), iy(v));
+        }
+        lossCtx.stroke();
+      }
+      lossCtx.globalAlpha = 1;
+
+      // Current iter marker
+      if (highlightIter >= 0) {
+        const x = ix(highlightIter);
+        lossCtx.beginPath();
+        lossCtx.strokeStyle = 'rgba(255,255,255,0.3)';
+        lossCtx.lineWidth = 1;
+        lossCtx.setLineDash([3, 3]);
+        lossCtx.moveTo(x, PAD);
+        lossCtx.lineTo(x, H - PAD);
+        lossCtx.stroke();
+        lossCtx.setLineDash([]);
+      }
+    }
+
+    function updateLossIterLabel(iter) {
+      document.getElementById('loss-iter-label').textContent = iter != null ? iter : '—';
+    }
+
+    function drawScoreChart() {
+      if (!bubbleData) return;
+      const W = 200, H = 70, PAD = 8;
+      scoreCtx.clearRect(0, 0, W, H);
+      const kls = bubbleData.k_levels;
+      if (!kls.length) return;
+
+      const ks = kls.map(kl => kl.k);
+      const scores = kls.map(kl => kl.mean_trait ?? 0);
+      const yMax = Math.max(...scores, 1);
+      const yMin = 0;
+
+      const meta = TRAIT_META[activeTraitMode];
+      scoreCtx.beginPath();
+      scoreCtx.strokeStyle = meta.hot;
+      scoreCtx.lineWidth = 1.5;
+      scoreCtx.globalAlpha = 0.9;
+      for (let i = 0; i < ks.length; i++) {
+        const xi = PAD + (Math.log(ks[i]) - Math.log(ks[0])) / (Math.log(ks[ks.length - 1]) - Math.log(ks[0])) * (W - PAD * 2);
+        const yi = H - PAD - (scores[i] - yMin) / Math.max(yMax - yMin, 1) * (H - PAD * 2);
+        if (i === 0) scoreCtx.moveTo(xi, yi);
+        else scoreCtx.lineTo(xi, yi);
+      }
+      scoreCtx.stroke();
+      scoreCtx.globalAlpha = 1;
+
+      // Highlight active K
+      const ai = ks.indexOf(activeK);
+      if (ai >= 0) {
+        const xi = PAD + (Math.log(ks[ai]) - Math.log(ks[0])) / (Math.log(ks[ks.length - 1]) - Math.log(ks[0])) * (W - PAD * 2);
+        const yi = H - PAD - (scores[ai] - yMin) / Math.max(yMax - yMin, 1) * (H - PAD * 2);
+        scoreCtx.beginPath();
+        scoreCtx.arc(xi, yi, 3.5, 0, Math.PI * 2);
+        scoreCtx.fillStyle = meta.hot;
+        scoreCtx.fill();
+      }
+    }
+
+    // ── Stats panel ───────────────────────────────────────────────────────────
+    function updateStats() {
+      const kl = kLevelsByK[activeK];
+      document.getElementById('stat-k').textContent = activeK;
+      document.getElementById('stat-active').textContent = kl ? kl.n_active : '—';
+      document.getElementById('stat-cos').textContent = kl?.cosine_vs_dense != null ? kl.cosine_vs_dense.toFixed(3) : '—';
+      document.getElementById('stat-score').textContent = kl?.mean_trait != null ? kl.mean_trait.toFixed(1) : '—';
+    }
+
+    // ── Raycasting for tooltip ────────────────────────────────────────────────
+    const raycaster = new THREE.Raycaster();
+    const mouse = new THREE.Vector2(-9, -9);
+    const tip = document.getElementById('tooltip');
+    let hoveredFid = null;
+
+    window.addEventListener('mousemove', e => {
+      mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      tip.style.left = (e.clientX + 14) + 'px';
+      tip.style.top  = (e.clientY + 10) + 'px';
+    });
+
+    function pickActiveFeature() {
+      if (!posInstMesh || !negInstMesh) return null;
+      raycaster.setFromCamera(mouse, camera);
+      const allFeats = [...posFeatures.map(f => ({...f, sign:'pos'})), ...negFeatures.map(f => ({...f, sign:'neg'}))];
+      let best = null, bestD = Infinity;
+      for (let i = 0; i < allFeats.length; i++) {
+        const f = allFeats[i];
+        const d = raycaster.ray.distanceToPoint(new THREE.Vector3(f.px, f.py, f.pz));
+        if (d < f.iterRadius * 3 + 0.04 && d < bestD) {
+          bestD = d; best = { ...f, idx: i };
+        }
+      }
+      return best;
+    }
+
+    function showTooltip(f) {
+      const meta = TRAIT_META[activeTraitMode];
+      const fm = featureMeta[String(f.fid)] || {};
+      const kl = kLevelsByK[activeK];
+      const kf = kl?.features.find(x => x.fid === f.fid) || {};
+      const signClass = f.sign === 'pos' ? 'tip-pos' : 'tip-neg';
+      const signLabel = f.sign === 'pos' ? 'Amplified' : 'Suppressed';
+      const tokHtml = (kf.top_tokens || []).slice(0, 5).map(([t]) => `<span class="tip-token">${t.trim()}</span>`).join('');
+      const suppressHtml = (kf.top_suppress || []).slice(0, 3).map(([t]) => `<span class="tip-token">${t.trim()}</span>`).join('');
+      tip.innerHTML = `
+        <strong>F${f.fid} · rank ${kf.rank ?? '?'}</strong>
+        <div class="tip-row"><span class="${signClass}">${signLabel}</span> &nbsp; weight ${f.weight?.toFixed(4) ?? '—'}</div>
+        ${fm.theme ? `<div class="tip-row" style="color:#94a3b8">${fm.theme}</div>` : ''}
+        ${fm.label ? `<div class="tip-row" style="color:#64748b;font-size:0.6rem">${fm.label}</div>` : ''}
+        ${tokHtml ? `<div class="tip-row" style="margin-top:0.3rem;color:#64748b;font-size:0.58rem">Promotes:</div><div class="tip-tokens">${tokHtml}</div>` : ''}
+        ${suppressHtml ? `<div class="tip-row" style="margin-top:0.2rem;color:#64748b;font-size:0.58rem">Suppresses:</div><div class="tip-tokens">${suppressHtml}</div>` : ''}
+        <div class="tip-row" style="margin-top:0.4rem;font-size:0.58rem">importance ${((kf.importance ?? 0) * 100).toFixed(1)}%</div>
+      `;
+      tip.classList.add('on');
+    }
+
+    // ── K button UI ───────────────────────────────────────────────────────────
+    const kContainer = document.getElementById('k-buttons');
+    for (const k of K_VALUES) {
+      const btn = document.createElement('button');
+      btn.textContent = k >= 1000 ? '1k' : k;
+      btn.dataset.k = k;
+      if (k === activeK) btn.classList.add('active');
+      btn.addEventListener('click', () => selectK(k));
+      kContainer.appendChild(btn);
+    }
+
+    async function selectK(k) {
+      activeK = k;
+      document.querySelectorAll('#k-buttons button').forEach(b => {
+        b.classList.toggle('active', Number(b.dataset.k) === k);
+      });
+      refreshActiveFeatures();
+      updateStats();
+      drawScoreChart();
+
+      // Try to load trajectory
+      const noTrajMsg = document.getElementById('no-traj-msg');
+      trajectory = await tryLoadTrajectory(activeTraitMode, k);
+      if (trajectory) {
+        noTrajMsg.style.display = 'none';
+        currentIter = trajectory.iterations.length - 1;
+        applyIteration(currentIter);
+        document.getElementById('iter-slider').max = trajectory.iterations.length - 1;
+        document.getElementById('iter-slider').value = currentIter;
+      } else {
+        noTrajMsg.style.display = 'block';
+        noTrajMsg.textContent = `No trajectory file. Run: python scripts/sae_ssv_optimize.py --trait ${activeTraitMode} --ks ${k} --optimize-only --skip-collect --log-trajectory`;
+        lossCtx.clearRect(0, 0, 260, 90);
+        updateLossIterLabel(null);
+        // Reset to final weights
+        refreshActiveFeatures();
+      }
+    }
+
+    // ── Trait picker ─────────────────────────────────────────────────────────
+    document.getElementById('trait-picker').addEventListener('click', async e => {
+      const btn = e.target.closest('button[data-trait]');
+      if (!btn) return;
+      const trait = btn.dataset.trait;
+      if (trait === activeTraitMode) return;
+      activeTraitMode = trait;
+      document.querySelectorAll('#trait-picker button').forEach(b =>
+        b.classList.toggle('active', b.dataset.trait === trait));
+      controls.autoRotate = true;
+
+      await loadBubbleData(trait);
+      buildGalaxyMesh(trait);
+      buildActiveMeshes();
+      await selectK(activeK);
+      drawScoreChart();
+    });
+
+    // ── Play/pause ────────────────────────────────────────────────────────────
+    const playBtn = document.getElementById('play-btn');
+    playBtn.addEventListener('click', () => {
+      if (!trajectory) return;
+      playing = !playing;
+      if (playing) {
+        playBtn.textContent = '⏸ Pause';
+        playBtn.classList.add('playing');
+        if (currentIter >= trajectory.iterations.length - 1) {
+          currentIter = 0;
+          iterAccum = 0;
+        }
+      } else {
+        playBtn.textContent = '▶ Play optimization (100 iters)';
+        playBtn.classList.remove('playing');
+      }
+    });
+
+    document.getElementById('iter-slider').addEventListener('input', e => {
+      playing = false;
+      playBtn.textContent = '▶ Play optimization (100 iters)';
+      playBtn.classList.remove('playing');
+      currentIter = Number(e.target.value);
+      applyIteration(currentIter);
+    });
+
+    document.querySelectorAll('#speed-row button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        playSpeed = Number(btn.dataset.speed);
+        document.querySelectorAll('#speed-row button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+      });
+    });
+
+    // ── WASD keyboard fly ─────────────────────────────────────────────────────
+    const keysDown = new Set();
+    const _fwd = new THREE.Vector3(), _right = new THREE.Vector3(), _up = new THREE.Vector3(0,1,0), _km = new THREE.Vector3();
+    window.addEventListener('keydown', e => { if(!e.repeat) keysDown.add(e.code); if(['KeyW','KeyA','KeyS','KeyD','KeyQ','KeyE','Space'].includes(e.code)) e.preventDefault(); });
+    window.addEventListener('keyup', e => keysDown.delete(e.code));
+
+    function applyKeyMove(delta) {
+      const fwd = keysDown.has('KeyW'), back = keysDown.has('KeyS');
+      const left = keysDown.has('KeyA'), right = keysDown.has('KeyD');
+      const up = keysDown.has('KeyE') || keysDown.has('Space'), down = keysDown.has('KeyQ');
+      if (!fwd && !back && !left && !right && !up && !down) return;
+      controls.autoRotate = false;
+      const dist = camera.position.distanceTo(controls.target);
+      const speed = (dist / 5) * 2.0 * delta;
+      camera.getWorldDirection(_fwd); _fwd.y = 0; if(_fwd.lengthSq() < 1e-8) _fwd.set(1,0,0); else _fwd.normalize();
+      _right.crossVectors(_fwd, _up).normalize();
+      _km.set(0,0,0);
+      if(fwd) _km.add(_fwd); if(back) _km.sub(_fwd);
+      if(right) _km.add(_right); if(left) _km.sub(_right);
+      if(up) _km.y += 1; if(down) _km.y -= 1;
+      if(_km.lengthSq() > 0) { _km.normalize().multiplyScalar(speed); camera.position.add(_km); controls.target.add(_km); }
+    }
+
+    // ── Resize ────────────────────────────────────────────────────────────────
+    window.addEventListener('resize', () => {
+      const w = window.innerWidth, h = window.innerHeight;
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // ── Animation loop ────────────────────────────────────────────────────────
+    function animate() {
+      requestAnimationFrame(animate);
+      const now = performance.now();
+      const delta = Math.min((now - lastTime) / 1000, 0.05);
+      lastTime = now;
+
+      applyKeyMove(delta);
+      controls.update();
+
+      // Playback
+      if (playing && trajectory) {
+        iterAccum += playSpeed * delta * 24; // 24 iters/sec at 1x
+        while (iterAccum >= 1 && currentIter < trajectory.iterations.length - 1) {
+          iterAccum -= 1;
+          currentIter += 1;
+          applyIteration(currentIter);
+        }
+        if (currentIter >= trajectory.iterations.length - 1) {
+          playing = false;
+          playBtn.textContent = '▶ Play optimization (100 iters)';
+          playBtn.classList.remove('playing');
+        }
+      }
+
+      // Tooltip pick
+      const hovered = pickActiveFeature();
+      if (hovered) {
+        if (hovered.fid !== hoveredFid) { hoveredFid = hovered.fid; showTooltip(hovered); }
+      } else {
+        hoveredFid = null; tip.classList.remove('on');
+      }
+
+      renderer.render(scene, camera);
+    }
+
+    // ── Boot ──────────────────────────────────────────────────────────────────
+    async function boot() {
+      await loadBubbleData('good');
+      await tryLoadGalaxyPositions('good');
+      buildGalaxyMesh('good');
+      buildActiveMeshes();
+      await selectK(100);
+      drawScoreChart();
+      animate();
+    }
+
+    boot();
+  </script>
+</body>
+</html>

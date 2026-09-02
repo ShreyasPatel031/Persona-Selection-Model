@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OMP SAE d-sweep — feature bubbles</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --bg: #f6f3ee;
+        --ink: #1a1612;
+        --muted: #7a7268;
+        --line: #e4ddd3;
+        --yes: #3d8b6e;
+        --yes-dim: #a8d4c2;
+        --no: #c45c4a;
+        --no-dim: #e8b4aa;
+        --accent: #1a1612;
+      }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body {
+        height: 100%;
+        overflow: hidden;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: "Instrument Sans", system-ui, sans-serif;
+        line-height: 1.45;
+      }
+      body {
+        display: flex;
+        flex-direction: column;
+      }
+      header {
+        padding: 0.85rem 1.25rem 0.55rem;
+        border-bottom: 1px solid var(--line);
+        background: var(--bg);
+      }
+      h1 {
+        font-family: "Newsreader", Georgia, serif;
+        font-size: 1.45rem;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+      }
+      .sub {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 0.25rem;
+        line-height: 1.45;
+      }
+      .controls {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 1rem 1.5rem;
+        padding: 0.75rem 1.25rem;
+        background: var(--bg);
+        border-bottom: 1px solid var(--line);
+      }
+      .slider-block { flex: 1; min-width: 16rem; }
+      .slider-block label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.35rem;
+      }
+      .k-val {
+        font-size: 1.15rem;
+        font-weight: 700;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+        letter-spacing: 0;
+        text-transform: none;
+      }
+      input[type="range"] {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 100%;
+        height: 2px;
+        background: var(--line);
+        border-radius: 1px;
+        outline: none;
+        cursor: pointer;
+      }
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px; height: 14px; border-radius: 50%;
+        background: var(--ink); border: 2px solid var(--bg);
+        box-shadow: 0 0 0 1px var(--ink); cursor: grab;
+      }
+      input[type="range"]::-moz-range-thumb {
+        width: 14px; height: 14px; border-radius: 50%;
+        background: var(--ink); border: 2px solid var(--bg); cursor: grab;
+      }
+      .ticks {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.65rem;
+        color: var(--muted);
+        margin-top: 0.2rem;
+        font-variant-numeric: tabular-nums;
+      }
+      .trait-curve-block {
+        flex: 0 1 17rem;
+        min-width: 14rem;
+        max-width: 22rem;
+      }
+      .trait-curve-block label {
+        display: block;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 0.2rem;
+      }
+      #traitCurveWrap {
+        width: 100%;
+        height: 4.5rem;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        background: transparent;
+        overflow: hidden;
+      }
+      #traitCurveWrap svg { width: 100%; height: 100%; display: block; }
+      #traitCurveWrap .axis text { fill: var(--muted); font-size: 9px; }
+      #traitCurveWrap .axis line,
+      #traitCurveWrap .axis path { stroke: var(--line); }
+      #traitCurveWrap .trait-line {
+        fill: none;
+        stroke: var(--ink);
+        stroke-width: 2;
+      }
+      #traitCurveWrap .trait-dot {
+        fill: var(--ink);
+        stroke: var(--bg);
+        stroke-width: 1.5px;
+      }
+      #traitCurveWrap .trait-active-line {
+        stroke: rgba(26, 22, 18, 0.28);
+        stroke-width: 1;
+        stroke-dasharray: 3 2;
+      }
+      #traitCurveWrap .no-data {
+        font-size: 0.68rem;
+        fill: var(--muted);
+      }
+      .legend-box {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.75rem;
+        z-index: 5;
+        padding: 0.5rem 0.65rem;
+        background: rgba(246, 243, 238, 0.96);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        pointer-events: none;
+      }
+      .legend {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+        font-size: 0.72rem;
+        line-height: 1.3;
+        color: var(--ink);
+      }
+      .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+      .swatch {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        border: 1px solid var(--line);
+        flex-shrink: 0;
+      }
+      .swatch.spectrum {
+        width: 28px;
+        height: 10px;
+        border-radius: 2px;
+      }
+      #chart-wrap {
+        flex: 1;
+        position: relative;
+        min-height: 0;
+        overflow: hidden;
+        cursor: grab;
+        background: var(--bg);
+      }
+      #chart-wrap:active { cursor: grabbing; }
+      .zoom-btns {
+        display: flex;
+        gap: 0.35rem;
+        align-items: center;
+      }
+      .zoom-btns button {
+        font: inherit;
+        font-size: 0.85rem;
+        font-weight: 600;
+        min-width: 2.2rem;
+        padding: 0.35rem 0.55rem;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        background: transparent;
+        color: var(--ink);
+        cursor: pointer;
+      }
+      .zoom-btns button:hover {
+        border-color: var(--ink);
+        background: rgba(26, 22, 18, 0.04);
+      }
+      .zoom-btns button.fit { min-width: 3.5rem; }
+      .trait-btns {
+        display: flex;
+        gap: 0.35rem;
+        align-items: center;
+      }
+      .trait-btns button {
+        font: inherit;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.7rem;
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        background: transparent;
+        color: var(--muted);
+        cursor: pointer;
+      }
+      .trait-btns button:hover { color: var(--ink); border-color: var(--ink); }
+      .trait-btns button.active {
+        color: var(--ink);
+        border-color: var(--ink);
+        background: rgba(26, 22, 18, 0.06);
+      }
+      svg { display: block; width: 100%; height: 100%; background: var(--bg); }
+      circle.bubble {
+        cursor: pointer;
+        stroke: var(--line);
+        stroke-width: 1.5px;
+        transition: stroke-width 0.15s;
+      }
+      circle.bubble:hover { stroke-width: 2px; stroke: var(--muted); }
+      .bubble-label {
+        pointer-events: none;
+        font-size: 10px;
+        text-anchor: middle;
+        dominant-baseline: central;
+        font-weight: 600;
+      }
+      #tooltip {
+        position: fixed;
+        z-index: 1000;
+        max-width: 22rem;
+        background: rgba(246, 243, 238, 0.98);
+        border: 1px solid var(--line);
+        border-radius: 3px;
+        padding: 0.65rem 0.75rem;
+        font-size: 0.75rem;
+        line-height: 1.45;
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.12s;
+        color: var(--ink);
+      }
+      #tooltip.visible { opacity: 1; }
+      #tooltip .fid { font-weight: 700; color: var(--ink); }
+      #tooltip .theme { color: var(--muted); font-size: 0.7rem; }
+      #tooltip a { color: var(--yes); }
+      .err { color: var(--no); padding: 1rem; }
+      footer {
+        padding: 0.45rem 1.25rem;
+        font-size: 0.6rem;
+        color: var(--muted);
+        text-align: center;
+        border-top: 1px solid var(--line);
+        background: var(--bg);
+      }
+      footer a { color: var(--ink); }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1 id="pageTitle">OMP SAE d-sweep</h1>
+      <p class="sub">
+        OMP sparse decomposition + SAE hook steering. Slide d to add or remove feature bubbles.
+      </p>
+    </header>
+
+    <div class="controls">
+      <div class="trait-btns" id="traitBtns" aria-label="Trait"></div>
+      <div class="trait-curve-block">
+        <label>Trait score vs d</label>
+        <div id="traitCurveWrap" aria-label="Trait mean vs K active features"></div>
+      </div>
+      <div class="slider-block">
+        <label>
+          <span>d (features used)</span>
+          <span class="k-val" id="kDisplay">—</span>
+        </label>
+        <input type="range" id="kSlider" min="0" max="10" step="1" value="0" />
+        <div class="ticks" id="kTicks"></div>
+      </div>
+      <div class="zoom-btns">
+        <button id="zoomOut" title="Zoom out">−</button>
+        <button id="zoomIn" title="Zoom in">+</button>
+        <button id="zoomFit" class="fit" title="Fit all bubbles">Fit</button>
+      </div>
+    </div>
+
+    <div id="chart-wrap">
+      <div class="legend-box" aria-label="Chart legend">
+        <div class="legend">
+          <div class="legend-item">
+            <span class="swatch spectrum" style="background: linear-gradient(90deg, #a8ddb5, #084081);"></span>
+            Activation
+          </div>
+          <div class="legend-item">
+            <span class="swatch spectrum" style="background: linear-gradient(90deg, #fdbb84, #7f0000);"></span>
+            Suppression
+          </div>
+        </div>
+      </div>
+      <svg id="chart"></svg>
+    </div>
+    <div id="tooltip"></div>
+
+    <footer>
+      Scroll to zoom · drag background to pan · drag bubble to move ·
+      <code id="dataFile">ssv_bubble_viz_omp_data_good.json</code>
+    </footer>
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script>
+      const TRAIT_ORDER = ["good", "evil"];
+      const tooltip = document.getElementById("tooltip");
+      const kSlider = document.getElementById("kSlider");
+      const kDisplay = document.getElementById("kDisplay");
+      const kTicks = document.getElementById("kTicks");
+      const traitBtns = document.getElementById("traitBtns");
+      const pageTitle = document.getElementById("pageTitle");
+      const dataFileEl = document.getElementById("dataFile");
+
+      let manifest = null;
+      let activeTrait = "good";
+      let vizData = null;
+      let allKLevels = [];
+      let kLevels = [];
+      let comparisonCurves = null;
+      let featureMeta = {};
+      let simulation = null;
+      let svg, g, bubbleSel, labelSel, zoomBehavior;
+      let width = 900, height = 560;
+      let nodePos = new Map();
+      let accumulated = new Map();
+      let prevBubbleCount = 0;
+      let zoomTransform = d3.zoomIdentity;
+      let fitGeneration = 0;
+      let hasInitialFit = false;
+      const SIGN_PULL = 0.12;
+      const CENTER_PULL = 0.038;
+      const CHARGE_MULT = 0.052;
+      const VIEW_PADDING = 48;
+      const AMBIENT_ALPHA = 0.035;
+      const DRIFT_STRENGTH = 0.1;
+      const MAX_VELOCITY = 2.2;
+
+      function signTargetX(d) {
+        return d.sign === "pos" ? width * 0.28 : width * 0.72;
+      }
+
+      function chargeStrength(d) {
+        return -Math.pow(d.radius, 2) * CHARGE_MULT;
+      }
+
+      /** Weak same-sign attraction weighted by color similarity (similar shade → closer). */
+      function forceColorCluster() {
+        let nodes;
+        const strength = 0.2;
+        function force(alpha) {
+          const k = strength * alpha;
+          for (let i = 0; i < nodes.length; i++) {
+            for (let j = i + 1; j < nodes.length; j++) {
+              const a = nodes[i];
+              const b = nodes[j];
+              if (a.sign !== b.sign) continue;
+              const sim = 1 - Math.abs((a.colorT ?? 0.5) - (b.colorT ?? 0.5));
+              if (sim < 0.12) continue;
+              let dx = b.x - a.x;
+              let dy = b.y - a.y;
+              let dist = Math.hypot(dx, dy) || 1;
+              const pull = k * sim * Math.min(a.radius + b.radius, 52) * 0.16;
+              dx = (dx / dist) * pull;
+              dy = (dy / dist) * pull;
+              a.vx += dx;
+              a.vy += dy;
+              b.vx -= dx;
+              b.vy -= dy;
+            }
+          }
+        }
+        force.initialize = (n) => { nodes = n; };
+        return force;
+      }
+
+      const colorClusterForce = forceColorCluster();
+
+      /** Gentle per-node drift — constant strength so motion never fully dies. */
+      function forceDrift() {
+        let nodes;
+        function force() {
+          const t = performance.now() * 0.00016;
+          for (const n of nodes) {
+            if (n.fx != null) continue;
+            const phase = n.id * 0.41;
+            n.vx += DRIFT_STRENGTH * Math.sin(t + phase);
+            n.vy += DRIFT_STRENGTH * Math.cos(t * 0.83 + phase * 1.17);
+          }
+        }
+        force.initialize = (n) => { nodes = n; };
+        return force;
+      }
+
+      const driftForce = forceDrift();
+
+      function updateSimulationForces() {
+        if (!simulation) return;
+        simulation
+          .force("x", d3.forceX(signTargetX).strength(SIGN_PULL))
+          .force("y", d3.forceY(height / 2).strength(CENTER_PULL))
+          .force("charge", d3.forceManyBody().strength(chargeStrength))
+          .force("collide", d3.forceCollide().radius((d) => d.radius + 3).iterations(3))
+          .force("colorCluster", colorClusterForce)
+          .force("drift", driftForce);
+      }
+
+      function startAmbientMotion(reheat = AMBIENT_ALPHA) {
+        if (!simulation) return;
+        simulation.alphaTarget(AMBIENT_ALPHA);
+        simulation.alpha(Math.max(reheat, AMBIENT_ALPHA)).restart();
+      }
+
+      function clampVelocities(nodes) {
+        for (const n of nodes) {
+          const v = Math.hypot(n.vx || 0, n.vy || 0);
+          if (v > MAX_VELOCITY) {
+            const s = MAX_VELOCITY / v;
+            n.vx *= s;
+            n.vy *= s;
+          }
+        }
+      }
+
+      // Matplotlib/seaborn GnBu and OrRd stops
+      const GNBU_STOPS = [
+        [0, "#f7fcf0"], [0.125, "#e0f3db"], [0.25, "#ccebc5"], [0.375, "#a8ddb5"],
+        [0.5, "#7bccc4"], [0.625, "#4eb3d3"], [0.75, "#2b8cbe"], [0.875, "#0868ac"], [1, "#084081"],
+      ];
+      const ORRD_STOPS = [
+        [0, "#fff7ec"], [0.125, "#fee8c8"], [0.25, "#fdd49e"], [0.375, "#fdbb84"],
+        [0.5, "#fc8d59"], [0.625, "#ef6548"], [0.75, "#d7301f"], [0.875, "#b30000"], [1, "#7f0000"],
+      ];
+
+      function interpStops(stops, t) {
+        t = Math.max(0, Math.min(1, t));
+        for (let i = 1; i < stops.length; i++) {
+          if (t <= stops[i][0]) {
+            const [t0, c0] = stops[i - 1];
+            const [t1, c1] = stops[i];
+            const u = (t - t0) / (t1 - t0);
+            return d3.interpolateRgb(c0, c1)(u);
+          }
+        }
+        return stops[stops.length - 1][1];
+      }
+
+      function assignBubbleRadii(nodes) {
+        if (!nodes.length) return;
+        const minR = 10;
+        const maxR = 46;
+        // Size by logit lens score — measures semantic clarity of the feature.
+        // Features with no clear semantic direction (score ≈ 0) stay small.
+        const scores = nodes.map((d) => Math.max(d.lens_score ?? 0, 0));
+        const maxS = d3.max(scores) || 1;
+        const scale = d3.scaleSqrt()
+          .domain([0, maxS])
+          .range([minR, maxR]);
+        nodes.forEach((n) => {
+          n.radius = scale(n.lens_score ?? 0);
+        });
+      }
+
+      function assignColorRanks(nodes) {
+        for (const sign of ["pos", "neg"]) {
+          const group = nodes
+            .filter((d) => d.sign === sign)
+            .sort((a, b) => a.importance - b.importance);
+          const n = group.length;
+          group.forEach((d, i) => {
+            // Even spread across full colormap (weak → strong)
+            d.colorT = n <= 1 ? 0.5 : 0.06 + 0.94 * (i / (n - 1));
+          });
+        }
+      }
+
+      function fillColor(d) {
+        const t = d.colorT ?? 0.5;
+        const stops = d.sign === "pos" ? GNBU_STOPS : ORRD_STOPS;
+        return interpStops(stops, t);
+      }
+
+      function fillOpacity(d) {
+        const hasLabel = Boolean(d.label && d.label.length > 0);
+        return hasLabel ? 0.9 : 0.45;
+      }
+
+      function strokeColor(d) {
+        return "#e4ddd3";
+      }
+
+      function strokeWidth(d) {
+        return 1;
+      }
+
+      function showTooltip(event, d) {
+        const meta = featureMeta[String(d.fid)] || {};
+        const title = d.title || meta.title || d.label || "";
+        const desc = d.description || meta.description || "";
+        const signLabel = d.sign === "pos" ? "amplified (+)" : "suppressed (−)";
+        const srcBadge = d.label_source === "corpus_gemini" ? "corpus"
+          : d.label_source === "lens_gemini" ? "lens+gemini"
+          : d.label_source === "logit_lens" ? "lens"
+          : "unlabeled";
+        tooltip.innerHTML = `
+          <div class="fid">F${d.fid} · rank #${d.rank} · <span style="opacity:0.6">${srcBadge}</span></div>
+          ${title ? `<div style="font-weight:600;font-size:0.85rem;margin:0.2rem 0">${title}</div>` : ""}
+          ${desc ? `<div style="margin-bottom:0.25rem">${desc}</div>` : ""}
+          <div>${signLabel} · OMP weight ${d.weight.toFixed(1)} · d=${d.addedAtK ?? "?"}</div>
+          <div>lens score ${(d.lens_score ?? 0).toFixed(3)} · <span class="theme">${d.theme || meta.theme || "Unknown"}</span></div>
+          <div style="margin-top:0.35rem"><a href="${meta.neuronpedia || "#"}" target="_blank">Neuronpedia →</a></div>
+        `;
+        tooltip.classList.add("visible");
+        moveTooltip(event);
+      }
+
+      function moveTooltip(event) {
+        tooltip.style.left = (event.clientX + 14) + "px";
+        tooltip.style.top = (event.clientY + 14) + "px";
+      }
+
+      function hideTooltip() {
+        tooltip.classList.remove("visible");
+      }
+
+      let traitCurveSel = null;
+
+      function renderTraitCurve(sliderIndex = 0) {
+        const wrap = document.getElementById("traitCurveWrap");
+        if (!wrap || !kLevels.length) return;
+
+        const W = Math.max(220, wrap.clientWidth || 220);
+        const H = Math.max(64, wrap.clientHeight || 72);
+        const margin = { top: 8, right: 10, bottom: 20, left: 34 };
+
+        const curves = comparisonCurves || {};
+        const ompPts = (curves.omp || []).map((p) => ({ k: p.d, v: p.mean }));
+        const domainKs = ompPts.map((p) => p.k).sort((a, b) => a - b);
+        const points = kLevels.map((level, i) => ({
+          i,
+          k: level.k,
+          v: level.mean_trait,
+        }));
+        const scored = ompPts.filter((p) => p.v != null && Number.isFinite(p.v));
+        const hasData = scored.length > 0;
+
+        if (!traitCurveSel) {
+          wrap.innerHTML = "";
+          traitCurveSel = d3.select(wrap).append("svg").attr("class", "trait-curve");
+        }
+
+        traitCurveSel
+          .attr("viewBox", [0, 0, W, H])
+          .attr("width", W)
+          .attr("height", H);
+
+        const plot = traitCurveSel.selectAll("g.plot").data([0]).join("g").attr("class", "plot");
+        plot.selectAll("*").remove();
+
+        if (!hasData) {
+          plot.append("text")
+            .attr("class", "no-data")
+            .attr("x", W / 2)
+            .attr("y", H / 2)
+            .attr("text-anchor", "middle")
+            .text("No trait scores in test data");
+          return;
+        }
+
+        const x = d3.scalePoint()
+          .domain(domainKs)
+          .range([margin.left, W - margin.right])
+          .padding(0.15);
+        const yMax = Math.max(100, d3.max(scored, (p) => p.v) || 100);
+        const y = d3.scaleLinear()
+          .domain([0, yMax])
+          .nice()
+          .range([H - margin.bottom, margin.top]);
+
+        const xAxis = d3.axisBottom(x).tickValues(domainKs.filter((_, idx) => idx === 0 || idx === domainKs.length - 1 || idx % 2 === 0));
+        const yAxis = d3.axisLeft(y).ticks(3).tickFormat((d) => `${d}`);
+
+        plot.append("g")
+          .attr("class", "axis")
+          .attr("transform", `translate(0,${H - margin.bottom})`)
+          .call(xAxis);
+        plot.append("g")
+          .attr("class", "axis")
+          .attr("transform", `translate(${margin.left},0)`)
+          .call(yAxis);
+
+        const line = d3.line()
+          .defined((d) => d.v != null && Number.isFinite(d.v))
+          .x((d) => x(d.k))
+          .y((d) => y(d.v));
+
+        if (ompPts.length) {
+          plot.append("path")
+            .datum(ompPts)
+            .attr("class", "trait-line")
+            .attr("d", line);
+        }
+
+        plot.selectAll("circle.trait-dot-bg")
+          .data(ompPts.filter((p) => p.v != null))
+          .join("circle")
+          .attr("class", "trait-dot-bg")
+          .attr("cx", (d) => x(d.k))
+          .attr("cy", (d) => y(d.v))
+          .attr("r", 2.5)
+            .attr("fill", "#a8d4c2")
+            .attr("opacity", 0.85);
+
+        const active = points[sliderIndex];
+        if (active?.v != null && Number.isFinite(active.v)) {
+          plot.append("line")
+            .attr("class", "trait-active-line")
+            .attr("x1", x(active.k))
+            .attr("x2", x(active.k))
+            .attr("y1", margin.top)
+            .attr("y2", H - margin.bottom);
+          plot.append("circle")
+            .attr("class", "trait-dot")
+            .attr("cx", x(active.k))
+            .attr("cy", y(active.v))
+            .attr("r", 4.5);
+          plot.append("text")
+            .attr("x", x(active.k))
+            .attr("y", margin.top + 2)
+            .attr("text-anchor", "middle")
+            .attr("fill", "var(--ink)")
+            .attr("font-size", 9)
+            .attr("font-weight", 600)
+            .text(active.v.toFixed(1));
+        }
+      }
+
+      function bubbleLines(d) {
+        const raw = (d.title || d.label || `F${d.fid}`).trim();
+        const maxLines = d.radius >= 38 ? 3 : d.radius >= 22 ? 2 : 1;
+        const maxChars = Math.max(5, Math.floor(d.radius / 3.4));
+        const words = raw.split(/\s+/).filter(Boolean);
+        if (!words.length) return [`F${d.fid}`];
+
+        const lines = [];
+        let cur = "";
+        const flush = (forceEllipsis = false) => {
+          if (!cur) return;
+          let line = cur;
+          if (forceEllipsis && !line.endsWith("…")) {
+            line = line.length >= maxChars
+              ? line.slice(0, Math.max(1, maxChars - 1)) + "…"
+              : line + "…";
+          }
+          lines.push(line);
+          cur = "";
+        };
+
+        for (const w of words) {
+          if (lines.length >= maxLines) break;
+          const candidate = cur ? `${cur} ${w}` : w;
+          if (candidate.length <= maxChars) {
+            cur = candidate;
+            continue;
+          }
+          if (cur) {
+            flush();
+            if (lines.length >= maxLines) {
+              lines[lines.length - 1] = lines[lines.length - 1].replace(/…?$/, "") + "…";
+              break;
+            }
+          }
+          // word alone longer than line — hard truncate
+          if (w.length > maxChars) {
+            lines.push(w.slice(0, maxChars - 1) + "…");
+            cur = "";
+          } else {
+            cur = w;
+          }
+        }
+        if (cur && lines.length < maxLines) flush();
+        else if (cur && lines.length >= maxLines) {
+          lines[lines.length - 1] = lines[lines.length - 1].replace(/…?$/, "") + "…";
+        }
+        return lines.length ? lines : [`F${d.fid}`];
+      }
+
+      function labelFill(d) {
+        const c = d3.color(fillColor(d));
+        if (!c) return "#1a1612";
+        const opacity = fillOpacity(d);
+        // Blend fill over paper background (#f6f3ee ≈ 0.95 luminance)
+        const r = c.r / 255, g = c.g / 255, b = c.b / 255;
+        const lum = 0.2126 * r + 0.7152 * g + 0.0722 * b;
+        const blended = lum * opacity + 0.95 * (1 - opacity);
+        return blended < 0.48 ? "#ffffff" : "#1a1612";
+      }
+
+      function applyBubbleLabel(sel) {
+        sel.each(function (d) {
+          const el = d3.select(this);
+          const lines = bubbleLines(d);
+          const lineH = 1.15;
+          const startDy = -((lines.length - 1) * lineH) / 2;
+          el.attr("fill", labelFill(d));
+          el.selectAll("tspan").remove();
+          lines.forEach((line, i) => {
+            el.append("tspan")
+              .attr("x", d.x)
+              .attr("dy", i === 0 ? `${startDy}em` : `${lineH}em`)
+              .text(line);
+          });
+        });
+      }
+
+      /** Rebuild feature set from K levels 0..upToIndex (slide down removes bubbles). */
+      function rebuildAccumulated(upToIndex) {
+        accumulated = new Map();
+        for (let j = 0; j <= upToIndex; j++) {
+          const level = kLevels[j];
+          for (const f of level.features) {
+            if (!accumulated.has(f.fid)) {
+              accumulated.set(f.fid, { ...f, addedAtK: level.k });
+            } else {
+              const prev = accumulated.get(f.fid);
+              accumulated.set(f.fid, { ...prev, ...f, addedAtK: prev.addedAtK });
+            }
+          }
+        }
+      }
+
+      function spawnPosition(f, prevById) {
+        const anchorX = signTargetX(f);
+        let sx = 0;
+        let sy = 0;
+        let n = 0;
+        for (const [, p] of prevById) {
+          if (p.sign !== f.sign) continue;
+          sx += p.x;
+          sy += p.y;
+          n += 1;
+        }
+        const cx = n > 0 ? sx / n : anchorX;
+        const cy = n > 0 ? sy / n : height / 2;
+        const jitter = Math.min(36, 14 + n * 0.4);
+        return {
+          x: cx + (Math.random() - 0.5) * jitter,
+          y: cy + (Math.random() - 0.5) * jitter,
+        };
+      }
+
+      function nodesFromAccumulated(prevById = new Map()) {
+        const feats = Array.from(accumulated.values());
+        return feats.map((f) => {
+          const prev = prevById.get(f.fid) || nodePos.get(f.fid);
+          const spawn = spawnPosition(f, prevById);
+          const node = {
+            ...f,
+            id: f.fid,
+            radius: 8,
+            x: prev?.x ?? spawn.x,
+            y: prev?.y ?? spawn.y,
+          };
+          if (prev?.vx != null) {
+            node.vx = prev.vx * 0.15;
+            node.vy = prev.vy * 0.15;
+          }
+          return node;
+        }).sort((a, b) => (b.lens_score ?? 0) - (a.lens_score ?? 0));
+      }
+
+      function nodeBounds(nodes) {
+        if (!nodes.length) return null;
+        let x0 = Infinity, y0 = Infinity, x1 = -Infinity, y1 = -Infinity;
+        for (const n of nodes) {
+          x0 = Math.min(x0, n.x - n.radius);
+          y0 = Math.min(y0, n.y - n.radius);
+          x1 = Math.max(x1, n.x + n.radius);
+          y1 = Math.max(y1, n.y + n.radius);
+        }
+        return { x0, y0, x1, y1, width: x1 - x0, height: y1 - y0 };
+      }
+
+      function bubblesOverflowScreen(nodes) {
+        const b = nodeBounds(nodes);
+        if (!b) return false;
+        const sx0 = zoomTransform.applyX(b.x0);
+        const sy0 = zoomTransform.applyY(b.y0);
+        const sx1 = zoomTransform.applyX(b.x1);
+        const sy1 = zoomTransform.applyY(b.y1);
+        const pad = VIEW_PADDING;
+        return sx0 < pad || sy0 < pad || sx1 > width - pad || sy1 > height - pad;
+      }
+
+      function applyTransform(next, animate = true) {
+        zoomTransform = next;
+        const tf = `translate(${next.x},${next.y}) scale(${next.k})`;
+        if (animate) {
+          g.transition().duration(500).attr("transform", tf);
+        } else {
+          g.interrupt().attr("transform", tf);
+        }
+        svg.property("__zoom", next);
+      }
+
+      function fitToView(animate = true) {
+        const nodes = simulation?.nodes() || [];
+        if (!nodes.length) return;
+        const b = nodeBounds(nodes);
+        if (!b || !Number.isFinite(b.width) || b.width <= 0 || b.height <= 0) return;
+        const scale = Math.min(
+          10,
+          0.9 * Math.min((width - 2 * VIEW_PADDING) / b.width, (height - 2 * VIEW_PADDING) / b.height)
+        );
+        const tx = (width - scale * (b.x0 + b.x1)) / 2;
+        const ty = (height - scale * (b.y0 + b.y1)) / 2;
+        applyTransform(d3.zoomIdentity.translate(tx, ty).scale(scale), animate);
+      }
+
+      function scheduleFitAfterLayout(force = false) {
+        if (!force && hasInitialFit) return;
+        fitGeneration += 1;
+        const gen = fitGeneration;
+        setTimeout(() => {
+          if (gen !== fitGeneration) return;
+          fitToView(true);
+          hasInitialFit = true;
+        }, 650);
+      }
+
+      function maybeFitIfOverflow(nodes) {
+        if (!hasInitialFit || bubblesOverflowScreen(nodes)) {
+          scheduleFitAfterLayout(true);
+        }
+      }
+
+      function zoomBy(factor) {
+        svg.transition().duration(250).call(zoomBehavior.scaleBy, factor);
+      }
+
+      function initChart() {
+        const wrap = document.getElementById("chart-wrap");
+        width = wrap.clientWidth;
+        height = Math.max(480, wrap.clientHeight);
+
+        svg = d3.select("#chart")
+          .attr("viewBox", [0, 0, width, height])
+          .attr("width", width)
+          .attr("height", height);
+
+        g = svg.append("g");
+
+        zoomBehavior = d3.zoom()
+          .scaleExtent([0.04, 12])
+          .filter((event) => {
+            if (event.type === "wheel") return true;
+            if (event.type === "mousedown" && event.target?.classList?.contains("bubble")) return false;
+            return !event.ctrlKey && !event.button;
+          })
+          .on("zoom", (event) => {
+            zoomTransform = event.transform;
+            g.attr("transform", `translate(${event.transform.x},${event.transform.y}) scale(${event.transform.k})`);
+          });
+
+        svg.call(zoomBehavior)
+          .on("dblclick.zoom", null);
+
+        simulation = d3.forceSimulation()
+          .velocityDecay(0.14)
+          .alphaDecay(0.018)
+          .alphaMin(0.001)
+          .on("tick", () => {
+            clampVelocities(simulation.nodes());
+            ticked();
+            simulation.nodes().forEach((n) => nodePos.set(n.id, { x: n.x, y: n.y }));
+          })
+          .on("end", () => {
+            if (simulation.alphaTarget() > 0) startAmbientMotion();
+          });
+
+        updateSimulationForces();
+        simulation.stop();
+
+        document.getElementById("zoomIn").addEventListener("click", () => zoomBy(1.35));
+        document.getElementById("zoomOut").addEventListener("click", () => zoomBy(1 / 1.35));
+        document.getElementById("zoomFit").addEventListener("click", () => fitToView(true));
+      }
+
+      function ticked() {
+        bubbleSel?.attr("cx", (d) => d.x).attr("cy", (d) => d.y);
+        labelSel?.attr("x", (d) => d.x).attr("y", (d) => d.y)
+          .selectAll("tspan")
+          .attr("x", function () {
+            return d3.select(this.parentNode).datum().x;
+          });
+      }
+
+      function dragXY(event) {
+        return d3.pointer(event, g.node());
+      }
+
+      function dragStarted(event, d) {
+        if (!event.active) simulation.alphaTarget(0.12).restart();
+        hideTooltip();
+        d.fx = d.x;
+        d.fy = d.y;
+      }
+
+      function dragged(event, d) {
+        const [x, y] = dragXY(event);
+        d.fx = x;
+        d.fy = y;
+      }
+
+      function dragEnded(event, d) {
+        if (!event.active) simulation.alphaTarget(AMBIENT_ALPHA);
+        d.fx = null;
+        d.fy = null;
+      }
+
+      function renderAtSliderIndex(sliderIndex) {
+        const level = kLevels[sliderIndex];
+        const prevNodes = simulation ? simulation.nodes() : [];
+        const prevById = new Map(prevNodes.map((n) => [n.id, n]));
+        const prevCount = prevBubbleCount;
+
+        rebuildAccumulated(sliderIndex);
+        const nodes = nodesFromAccumulated(prevById);
+        assignBubbleRadii(nodes);
+        assignColorRanks(nodes);
+        const delta = nodes.length - prevCount;
+        prevBubbleCount = nodes.length;
+        renderTraitCurve(sliderIndex);
+        kDisplay.textContent = level.k;
+
+        const activeIds = new Set(nodes.map((n) => n.id));
+        for (const fid of nodePos.keys()) {
+          if (!activeIds.has(fid)) nodePos.delete(fid);
+        }
+
+        const bubble = g.selectAll("circle.bubble").data(nodes, (d) => d.id);
+        bubble.exit()
+          .transition().duration(160)
+          .attr("r", 0)
+          .remove();
+
+        const bubbleEnter = bubble.enter()
+          .append("circle")
+          .attr("class", "bubble")
+          .attr("r", 0)
+          .attr("cx", (d) => d.x)
+          .attr("cy", (d) => d.y)
+          .attr("fill", fillColor)
+          .attr("fill-opacity", fillOpacity)
+          .attr("stroke", strokeColor)
+          .attr("stroke-width", strokeWidth)
+          .on("mouseover", showTooltip)
+          .on("mousemove", moveTooltip)
+          .on("mouseout", hideTooltip);
+
+        bubbleSel = bubbleEnter.merge(bubble);
+        bubbleSel.call(d3.drag()
+          .on("start", dragStarted)
+          .on("drag", dragged)
+          .on("end", dragEnded));
+        bubbleSel
+          .transition().duration(220)
+          .attr("r", (d) => d.radius);
+        bubbleSel
+          .attr("fill", fillColor)
+          .attr("fill-opacity", fillOpacity)
+          .attr("stroke", strokeColor)
+          .attr("stroke-width", strokeWidth);
+
+        const labelData = nodes.filter((d) => d.radius >= 18 || (d.label && d.radius >= 12));
+        const label = g.selectAll("text.bubble-label").data(labelData, (d) => d.id);
+        label.exit().remove();
+        const labelEnter = label.enter()
+          .append("text")
+          .attr("class", "bubble-label")
+          .attr("x", (d) => d.x)
+          .attr("y", (d) => d.y);
+        labelSel = labelEnter.merge(label);
+        applyBubbleLabel(labelSel);
+
+        simulation.nodes(nodes);
+        updateSimulationForces();
+        const reheat = prevCount === 0 ? 1 : Math.min(0.35, 0.12 + Math.abs(delta) * 0.02);
+        startAmbientMotion(reheat);
+
+        if (prevCount === 0) {
+          scheduleFitAfterLayout(true);
+        } else {
+          maybeFitIfOverflow(nodes);
+        }
+      }
+
+      function updateHeader() {
+        const meta = vizData?.meta || {};
+        const trait = meta.trait || activeTrait;
+        const layer = meta.layer ?? "?";
+        pageTitle.textContent = `${trait.charAt(0).toUpperCase() + trait.slice(1)} — OMP d-sweep (L${layer})`;
+        dataFileEl.textContent = manifest?.traits?.[activeTrait] || `ssv_bubble_viz_omp_data_${activeTrait}.json`;
+      }
+
+      function filterKLevels() {
+        kLevels = allKLevels;
+      }
+
+      function setupSlider() {
+        filterKLevels();
+        featureMeta = vizData.feature_meta;
+        const ks = kLevels.map((l) => l.k);
+
+        kSlider.min = 0;
+        kSlider.max = Math.max(0, ks.length - 1);
+        kSlider.value = 0;
+
+        kTicks.innerHTML = ks.map((k) => `<span>${k}</span>`).join("");
+        renderAtSliderIndex(0);
+      }
+
+      async function loadTrait(trait) {
+        const url = manifest?.traits?.[trait] || `ssv_bubble_viz_omp_data_${trait}.json`;
+        try {
+          const data = await fetchJson(url);
+          if (!data || !data.k_levels) throw new Error(`No k_levels in ${url}`);
+          vizData = data;
+          allKLevels = data.k_levels;
+          comparisonCurves = data.comparison_curves || null;
+          activeTrait = trait;
+          updateHeader();
+          resetChartState();
+          if (!svg) initChart();
+          setupSlider();
+          applyTransform(d3.zoomIdentity, false);
+        } catch (err) {
+          document.getElementById("chart-wrap").innerHTML =
+            `<p class="err">Failed to load ${url}: ${err.message}</p>`;
+        }
+      }
+
+      function resetChartState() {
+        nodePos = new Map();
+        accumulated = new Map();
+        prevBubbleCount = 0;
+        fitGeneration = 0;
+        hasInitialFit = false;
+        zoomTransform = d3.zoomIdentity;
+        traitCurveSel = null;
+        if (g) g.selectAll("*").remove();
+        if (simulation) simulation.stop();
+      }
+
+      function setupTraitButtons() {
+        traitBtns.innerHTML = "";
+        const traits = TRAIT_ORDER.filter((t) => manifest?.traits?.[t]);
+        for (const trait of traits) {
+          const btn = document.createElement("button");
+          btn.type = "button";
+          btn.textContent = trait.charAt(0).toUpperCase() + trait.slice(1);
+          btn.dataset.trait = trait;
+          btn.classList.toggle("active", trait === activeTrait);
+          btn.addEventListener("click", () => {
+            if (trait === activeTrait) return;
+            activeTrait = trait;
+            traitBtns.querySelectorAll("button").forEach((b) => {
+              b.classList.toggle("active", b.dataset.trait === activeTrait);
+            });
+            loadTrait(activeTrait);
+          });
+          traitBtns.appendChild(btn);
+        }
+      }
+
+      async function fetchJson(name) {
+        const urls = [name, `/static/${name}`];
+        for (const url of urls) {
+          try {
+            const data = await d3.json(url);
+            if (data) return data;
+          } catch (_) {}
+        }
+        throw new Error(`Could not load ${name} (start a server in app/static or run uvicorn)`);
+      }
+
+      fetchJson("ssv_bubble_viz_omp_manifest.json")
+        .then((m) => {
+          manifest = m;
+          const preferred = m.default || "good";
+          activeTrait = TRAIT_ORDER.includes(preferred) ? preferred : "good";
+          setupTraitButtons();
+          return loadTrait(activeTrait);
+        })
+        .catch((err) => {
+          document.getElementById("chart-wrap").innerHTML =
+            `<p class="err">${err.message}</p>`;
+        });
+
+      window.addEventListener("resize", () => {
+        if (!vizData) return;
+        const prevNodes = simulation.nodes();
+        const prevById = new Map(prevNodes.map((n) => [n.id, n]));
+        rebuildAccumulated(+kSlider.value);
+        const nodes = nodesFromAccumulated(prevById);
+        assignBubbleRadii(nodes);
+        width = document.getElementById("chart-wrap").clientWidth;
+        height = Math.max(480, document.getElementById("chart-wrap").clientHeight);
+        svg.attr("viewBox", [0, 0, width, height]).attr("width", width).attr("height", height);
+        simulation.nodes(nodes);
+        updateSimulationForces();
+        scheduleFitAfterLayout(true);
+        startAmbientMotion(0.4);
+        renderTraitCurve(+kSlider.value);
+      });
+
+      kSlider.addEventListener("input", () => {
+        renderAtSliderIndex(+kSlider.value);
+      });
+
+    </script>
+    <script src="./viz_series.js"></script>
+</body>
+</html>

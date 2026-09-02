@@ -1,0 +1,30 @@
+{
+  "source_page": "https://ipip.ori.org/30FacetNEO-PI-RItems.htm",
+  "machine_readable_source": "https://github.com/Alheimsins/b5-johnson-120-ipip-neo-pi-r @ master data/en/questions.json",
+  "citation": "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory. J. Res. Pers. 51, 78-89.",
+  "license": "public domain (https://ipip.ori.org/newPermission.htm)",
+  "form_items": 120,
+  "per_domain_keying": {
+    "O": {
+      "plus": 12,
+      "minus": 12
+    },
+    "C": {
+      "plus": 11,
+      "minus": 13
+    },
+    "E": {
+      "plus": 18,
+      "minus": 6
+    },
+    "A": {
+      "plus": 7,
+      "minus": 17
+    },
+    "N": {
+      "plus": 17,
+      "minus": 7
+    }
+  },
+  "note": "Published item selection and order (item_num 1-120), unlike data/ipip_neo_120.csv which is a hand-built keying-balanced draw from the 300-item pool."
+}
