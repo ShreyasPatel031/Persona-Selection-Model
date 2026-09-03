@@ -1,0 +1,21 @@
+{
+  "capturedFrom": "http://127.0.0.1:8765/big_five_tsne.html?v%3Dtune1",
+  "note": "Deploy freeze. Local app/static keeps sliders.",
+  "hp": {
+    "clusterSpread": 2.38,
+    "viewSpan": 0.52,
+    "hullSigma": 1.3,
+    "hullOpacity": 0.09,
+    "sizeMean": 0.085,
+    "sizeVariant": 0.015,
+    "pointOpacity": 0.26,
+    "selectedBoost": 1.35,
+    "ladderOpacity": 0.65,
+    "cameraDist": 3.6,
+    "showClouds": true,
+    "showVariants": true,
+    "showTraitLabels": true,
+    "planeOpacity": 0.14,
+    "planeSize": 1.85
+  }
+}

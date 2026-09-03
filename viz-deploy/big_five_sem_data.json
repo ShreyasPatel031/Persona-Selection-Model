@@ -1,77 +1,1430 @@
 {
   "title": "MPI-120 measurement model",
-  "subtitle": "Johnson (2014) IPIP-NEO-120 · confirmatory factor analysis · standardized loadings",
+  "subtitle": "MPI-120 keyed item\u2013domain loadings from final-cycle steered runs \u00b7 default top-20 \u00b7 focus top-8",
   "instrument": "mpi_120.csv",
-  "citation": "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory. J. Res. Pers. 51, 78–89.",
+  "citation": "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory. J. Res. Pers. 51, 78\u201389.",
+  "note": "loading = Pearson r(keyed item EV, home-domain EV) across final-cycle ladder administrations (n=166). Reverse-keyed items use 6\u2212EV. error_correlations = residual item\u2013item r after partialling home-domain EV (within-domain pairs, |r|\u22650.45).",
+  "source": {
+    "ladders": [
+      "results/final_cycle/ladder/prompt_ladder_neuroticism.json",
+      "results/final_cycle/ladder/prompt_ladder_extraversion.json",
+      "results/final_cycle/ladder/prompt_ladder_openness.json",
+      "results/final_cycle/ladder/prompt_ladder_agreeableness.json",
+      "results/final_cycle/ladder/prompt_ladder_conscientiousness.json"
+    ],
+    "n_administrations": 166,
+    "loading_def": "corr(keyed_item_ev, domain_ev) pooled over usable admins"
+  },
   "layout": {
-    "viewBox": [0, 0, 1000, 920],
-    "factorRadius": 34,
+    "viewBox": [
+      0,
+      0,
+      1000,
+      920
+    ],
+    "factorRadius": 40,
     "itemSize": 26,
     "errorRadius": 11,
-    "itemDist": 118,
-    "errorDist": 168
+    "itemDist": 128,
+    "errorDist": 178,
+    "clusterAngles": {
+      "N": {
+        "baseAngle": -90,
+        "spread": 110
+      },
+      "E": {
+        "baseAngle": 180,
+        "spread": 110
+      },
+      "C": {
+        "baseAngle": 0,
+        "spread": 110
+      },
+      "O": {
+        "baseAngle": 125,
+        "spread": 100
+      },
+      "A": {
+        "baseAngle": 55,
+        "spread": 100
+      }
+    }
   },
   "factors": [
-    { "id": "N", "trait": "neuroticism", "label": "N", "x": 500, "y": 210 },
-    { "id": "E", "trait": "extraversion", "label": "E", "x": 210, "y": 390 },
-    { "id": "C", "trait": "conscientiousness", "label": "C", "x": 790, "y": 390 },
-    { "id": "O", "trait": "openness", "label": "O", "x": 330, "y": 660 },
-    { "id": "A", "trait": "agreeableness", "label": "A", "x": 670, "y": 660 }
+    {
+      "id": "N",
+      "trait": "neuroticism",
+      "label": "N",
+      "x": 500,
+      "y": 210
+    },
+    {
+      "id": "E",
+      "trait": "extraversion",
+      "label": "E",
+      "x": 210,
+      "y": 390
+    },
+    {
+      "id": "C",
+      "trait": "conscientiousness",
+      "label": "C",
+      "x": 790,
+      "y": 390
+    },
+    {
+      "id": "O",
+      "trait": "openness",
+      "label": "O",
+      "x": 330,
+      "y": 660
+    },
+    {
+      "id": "A",
+      "trait": "agreeableness",
+      "label": "A",
+      "x": 670,
+      "y": 660
+    }
   ],
-  "clusters": {
-    "N": { "baseAngle": -90, "spread": 72, "items": [
-      { "item": 3, "loading": 0.87 },
-      { "item": 8, "loading": 0.76 },
-      { "item": 13, "loading": 0.63 },
-      { "item": 18, "loading": 0.49 },
-      { "item": 23, "loading": 0.59 }
-    ]},
-    "E": { "baseAngle": 180, "spread": 68, "items": [
-      { "item": 21, "loading": -0.65 },
-      { "item": 16, "loading": -0.88 },
-      { "item": 11, "loading": -0.63 },
-      { "item": 6, "loading": -0.91 },
-      { "item": 1, "loading": 0.66 }
-    ]},
-    "C": { "baseAngle": 0, "spread": 78, "items": [
-      { "item": 2, "loading": 0.75 },
-      { "item": 7, "loading": 0.70 },
-      { "item": 12, "loading": 0.58 },
-      { "item": 17, "loading": 0.70 },
-      { "item": 22, "loading": -0.64 },
-      { "item": 26, "loading": 0.54 },
-      { "item": 29, "loading": -0.57 }
-    ]},
-    "O": { "baseAngle": 118, "spread": 64, "items": [
-      { "item": 27, "loading": 0.81 },
-      { "item": 24, "loading": 0.72 },
-      { "item": 14, "loading": 0.52 },
-      { "item": 9, "loading": 0.47 },
-      { "item": 4, "loading": 0.44 }
-    ]},
-    "A": { "baseAngle": 62, "spread": 58, "items": [
-      { "item": 20, "loading": -0.47 },
-      { "item": 15, "loading": -0.49 },
-      { "item": 10, "loading": 0.87 },
-      { "item": 5, "loading": 0.90 }
-    ]}
-  },
+  "items": [
+    {
+      "item": 1,
+      "facet": "Anxiety",
+      "text": "Worry about things",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.532,
+      "loading_steer": 0.897
+    },
+    {
+      "item": 2,
+      "facet": "Friendliness",
+      "text": "Make friends easily",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.887,
+      "loading_steer": 0.889
+    },
+    {
+      "item": 3,
+      "facet": "Imagination",
+      "text": "Have a vivid imagination",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.877,
+      "loading_steer": 0.913
+    },
+    {
+      "item": 4,
+      "facet": "Trust",
+      "text": "Trust others",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": 1,
+      "loading": 0.73,
+      "loading_steer": 0.927
+    },
+    {
+      "item": 5,
+      "facet": "Self-efficacy",
+      "text": "Complete tasks successfully",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.85,
+      "loading_steer": 0.921
+    },
+    {
+      "item": 6,
+      "facet": "Anger",
+      "text": "Get angry easily",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.701,
+      "loading_steer": 0.635
+    },
+    {
+      "item": 7,
+      "facet": "Gregariousness",
+      "text": "Love large parties",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.895,
+      "loading_steer": 0.916
+    },
+    {
+      "item": 8,
+      "facet": "Artistic Interests",
+      "text": "Believe in the importance of art",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.804,
+      "loading_steer": 0.856
+    },
+    {
+      "item": 9,
+      "facet": "Morality",
+      "text": "Use others for your own ends",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.869,
+      "loading_steer": 0.94
+    },
+    {
+      "item": 10,
+      "facet": "Orderliness",
+      "text": "Like to tidy up",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.822,
+      "loading_steer": 0.942
+    },
+    {
+      "item": 11,
+      "facet": "Depression",
+      "text": "Often feel blue",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.549,
+      "loading_steer": 0.289
+    },
+    {
+      "item": 12,
+      "facet": "Assertiveness",
+      "text": "Take charge",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.771,
+      "loading_steer": 0.94
+    },
+    {
+      "item": 13,
+      "facet": "Emotionality",
+      "text": "Experience your emotions intensely",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.639,
+      "loading_steer": 0.629
+    },
+    {
+      "item": 14,
+      "facet": "Altruism",
+      "text": "Love to help others",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": 1,
+      "loading": 0.724,
+      "loading_steer": 0.924
+    },
+    {
+      "item": 15,
+      "facet": "Dutifulness",
+      "text": "Keep your promises",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.885,
+      "loading_steer": 0.922
+    },
+    {
+      "item": 16,
+      "facet": "Self-consciousness",
+      "text": "Find it difficult to approach others",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.774,
+      "loading_steer": 0.914
+    },
+    {
+      "item": 17,
+      "facet": "Activity Level",
+      "text": "Are always busy",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.496,
+      "loading_steer": 0.727
+    },
+    {
+      "item": 18,
+      "facet": "Adventurousness",
+      "text": "Prefer variety to routine",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.782,
+      "loading_steer": 0.855
+    },
+    {
+      "item": 19,
+      "facet": "Cooperation",
+      "text": "Love a good fight",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.267,
+      "loading_steer": 0.607
+    },
+    {
+      "item": 20,
+      "facet": "Achievement-striving",
+      "text": "Work hard",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.86,
+      "loading_steer": 0.931
+    },
+    {
+      "item": 21,
+      "facet": "Immoderation",
+      "text": "Go on binges",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.29,
+      "loading_steer": 0.523
+    },
+    {
+      "item": 22,
+      "facet": "Excitement-seeking",
+      "text": "Love excitement",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.88,
+      "loading_steer": 0.91
+    },
+    {
+      "item": 23,
+      "facet": "Intellect",
+      "text": "Love to read challenging material",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.819,
+      "loading_steer": 0.917
+    },
+    {
+      "item": 24,
+      "facet": "Modesty",
+      "text": "Believe that you are better than others",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.404,
+      "loading_steer": 0.583
+    },
+    {
+      "item": 25,
+      "facet": "Self-discipline",
+      "text": "Are always prepared",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.716,
+      "loading_steer": 0.924
+    },
+    {
+      "item": 26,
+      "facet": "Vulnerability",
+      "text": "Panic easily",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.82,
+      "loading_steer": 0.891
+    },
+    {
+      "item": 27,
+      "facet": "Cheerfulness",
+      "text": "Radiate joy",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.88,
+      "loading_steer": 0.911
+    },
+    {
+      "item": 28,
+      "facet": "Liberalism",
+      "text": "Tend to vote for liberal political candidates",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.727,
+      "loading_steer": 0.781
+    },
+    {
+      "item": 29,
+      "facet": "Sympathy",
+      "text": "Sympathize with the homeless",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": 1,
+      "loading": 0.775,
+      "loading_steer": 0.943
+    },
+    {
+      "item": 30,
+      "facet": "Cautiousness",
+      "text": "Jump into things without thinking",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.583,
+      "loading_steer": 0.938
+    },
+    {
+      "item": 31,
+      "facet": "Anxiety",
+      "text": "Fear for the worst",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.868,
+      "loading_steer": 0.855
+    },
+    {
+      "item": 32,
+      "facet": "Friendliness",
+      "text": "Feel comfortable around other people",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.724,
+      "loading_steer": 0.78
+    },
+    {
+      "item": 33,
+      "facet": "Imagination",
+      "text": "Enjoy wild flights of fancy",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.745,
+      "loading_steer": 0.738
+    },
+    {
+      "item": 34,
+      "facet": "Trust",
+      "text": "Believe that others have good intentions",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": 1,
+      "loading": 0.812,
+      "loading_steer": 0.937
+    },
+    {
+      "item": 35,
+      "facet": "Self-efficacy",
+      "text": "Excel in what you do",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.837,
+      "loading_steer": 0.884
+    },
+    {
+      "item": 36,
+      "facet": "Anger",
+      "text": "Get irritated easily",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.801,
+      "loading_steer": 0.849
+    },
+    {
+      "item": 37,
+      "facet": "Gregariousness",
+      "text": "Talk to a lot of different people at parties",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.841,
+      "loading_steer": 0.909
+    },
+    {
+      "item": 38,
+      "facet": "Artistic Interests",
+      "text": "See beauty in things that others might not notice",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.826,
+      "loading_steer": 0.872
+    },
+    {
+      "item": 39,
+      "facet": "Morality",
+      "text": "Cheat to get ahead",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.809,
+      "loading_steer": 0.93
+    },
+    {
+      "item": 40,
+      "facet": "Orderliness",
+      "text": "Often forget to put things back in their proper place",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.463,
+      "loading_steer": 0.909
+    },
+    {
+      "item": 41,
+      "facet": "Depression",
+      "text": "Dislike yourself",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.369,
+      "loading_steer": 0.224
+    },
+    {
+      "item": 42,
+      "facet": "Assertiveness",
+      "text": "Try to lead others",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.811,
+      "loading_steer": 0.943
+    },
+    {
+      "item": 43,
+      "facet": "Emotionality",
+      "text": "Feel others' emotions",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.78,
+      "loading_steer": 0.885
+    },
+    {
+      "item": 44,
+      "facet": "Altruism",
+      "text": "Are concerned about others",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": 1,
+      "loading": 0.672,
+      "loading_steer": 0.922
+    },
+    {
+      "item": 45,
+      "facet": "Dutifulness",
+      "text": "Tell the truth",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.889,
+      "loading_steer": 0.918
+    },
+    {
+      "item": 46,
+      "facet": "Self-consciousness",
+      "text": "Are afraid to draw attention to yourself",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.654,
+      "loading_steer": 0.843
+    },
+    {
+      "item": 47,
+      "facet": "Activity Level",
+      "text": "Are always on the go",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.744,
+      "loading_steer": 0.922
+    },
+    {
+      "item": 48,
+      "facet": "Adventurousness",
+      "text": "Prefer to stick with things that you know",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.52,
+      "loading_steer": 0.567
+    },
+    {
+      "item": 49,
+      "facet": "Cooperation",
+      "text": "Yell at people",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.806,
+      "loading_steer": 0.73
+    },
+    {
+      "item": 50,
+      "facet": "Achievement-striving",
+      "text": "Do more than what's expected ofyou",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.624,
+      "loading_steer": 0.68
+    },
+    {
+      "item": 51,
+      "facet": "Immoderation",
+      "text": "Rarely overindulge",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": -1,
+      "loading": 0.587,
+      "loading_steer": 0.961
+    },
+    {
+      "item": 52,
+      "facet": "Excitement-seeking",
+      "text": "Seek adventure",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.881,
+      "loading_steer": 0.924
+    },
+    {
+      "item": 53,
+      "facet": "Intellect",
+      "text": "Avoid philosophical discussions",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.2,
+      "loading_steer": -0.078
+    },
+    {
+      "item": 54,
+      "facet": "Modesty",
+      "text": "Think highly of yourself",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": -0.62,
+      "loading_steer": -0.889
+    },
+    {
+      "item": 55,
+      "facet": "Self-discipline",
+      "text": "Carry out your plans",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.709,
+      "loading_steer": 0.88
+    },
+    {
+      "item": 56,
+      "facet": "Vulnerability",
+      "text": "Become overwhelmed by events",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.778,
+      "loading_steer": 0.909
+    },
+    {
+      "item": 57,
+      "facet": "Cheerfulness",
+      "text": "Have a lot of fun",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.884,
+      "loading_steer": 0.913
+    },
+    {
+      "item": 58,
+      "facet": "Liberalism",
+      "text": "Believe that there is no absolute right or wrong",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.709,
+      "loading_steer": 0.854
+    },
+    {
+      "item": 59,
+      "facet": "Sympathy",
+      "text": "Feel sympathy for those who are worse off than yourself",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": 1,
+      "loading": 0.784,
+      "loading_steer": 0.929
+    },
+    {
+      "item": 60,
+      "facet": "Cautiousness",
+      "text": "Make rash decisions",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.822,
+      "loading_steer": 0.901
+    },
+    {
+      "item": 61,
+      "facet": "Anxiety",
+      "text": "Are afraid of many things",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.645,
+      "loading_steer": 0.782
+    },
+    {
+      "item": 62,
+      "facet": "Friendliness",
+      "text": "Avoid contacts with others",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": -1,
+      "loading": 0.816,
+      "loading_steer": 0.938
+    },
+    {
+      "item": 63,
+      "facet": "Imagination",
+      "text": "Love to daydream",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.75,
+      "loading_steer": 0.81
+    },
+    {
+      "item": 64,
+      "facet": "Trust",
+      "text": "Trust what people say",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": 1,
+      "loading": 0.711,
+      "loading_steer": 0.9
+    },
+    {
+      "item": 65,
+      "facet": "Self-efficacy",
+      "text": "Handle tasks smoothly",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.868,
+      "loading_steer": 0.902
+    },
+    {
+      "item": 66,
+      "facet": "Anger",
+      "text": "Lose your temper",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.743,
+      "loading_steer": 0.789
+    },
+    {
+      "item": 67,
+      "facet": "Gregariousness",
+      "text": "Prefer to be alone",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": -1,
+      "loading": 0.655,
+      "loading_steer": 0.945
+    },
+    {
+      "item": 68,
+      "facet": "Artistic Interests",
+      "text": "Do not like poetry",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.417,
+      "loading_steer": 0.375
+    },
+    {
+      "item": 69,
+      "facet": "Morality",
+      "text": "Take advantage of others",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.878,
+      "loading_steer": 0.944
+    },
+    {
+      "item": 70,
+      "facet": "Orderliness",
+      "text": "Leave a mess in your room",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.813,
+      "loading_steer": 0.95
+    },
+    {
+      "item": 71,
+      "facet": "Depression",
+      "text": "Are often down in the dumps",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.665,
+      "loading_steer": 0.591
+    },
+    {
+      "item": 72,
+      "facet": "Assertiveness",
+      "text": "Take control of things",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.565,
+      "loading_steer": 0.929
+    },
+    {
+      "item": 73,
+      "facet": "Emotionality",
+      "text": "Rarely notice your emotional reactions",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.793,
+      "loading_steer": 0.678
+    },
+    {
+      "item": 74,
+      "facet": "Altruism",
+      "text": "Are indifferent to the feelings of others",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.683,
+      "loading_steer": 0.917
+    },
+    {
+      "item": 75,
+      "facet": "Dutifulness",
+      "text": "Break rules",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.535,
+      "loading_steer": 0.897
+    },
+    {
+      "item": 76,
+      "facet": "Self-consciousness",
+      "text": "Only feel comfortable with friends",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.157,
+      "loading_steer": -0.873
+    },
+    {
+      "item": 77,
+      "facet": "Activity Level",
+      "text": "Do a lot in your spare time",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.809,
+      "loading_steer": 0.844
+    },
+    {
+      "item": 78,
+      "facet": "Adventurousness",
+      "text": "Dislike changes",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.6,
+      "loading_steer": 0.452
+    },
+    {
+      "item": 79,
+      "facet": "Cooperation",
+      "text": "Insult people",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.902,
+      "loading_steer": 0.944
+    },
+    {
+      "item": 80,
+      "facet": "Achievement-striving",
+      "text": "Do just enough work to get by",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.704,
+      "loading_steer": 0.914
+    },
+    {
+      "item": 81,
+      "facet": "Immoderation",
+      "text": "Easily resist temptations",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": -1,
+      "loading": 0.623,
+      "loading_steer": 0.895
+    },
+    {
+      "item": 82,
+      "facet": "Excitement-seeking",
+      "text": "Enjoy being reckless",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.434,
+      "loading_steer": 0.892
+    },
+    {
+      "item": 83,
+      "facet": "Intellect",
+      "text": "Have difficulty understanding abstract ideas",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.215,
+      "loading_steer": 0.081
+    },
+    {
+      "item": 84,
+      "facet": "Modesty",
+      "text": "Have a high opinion of yourself",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": -0.455,
+      "loading_steer": -0.566
+    },
+    {
+      "item": 85,
+      "facet": "Self-discipline",
+      "text": "Waste your time",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.763,
+      "loading_steer": 0.922
+    },
+    {
+      "item": 86,
+      "facet": "Vulnerability",
+      "text": "Feel that I'm unable to deal with things",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.817,
+      "loading_steer": 0.865
+    },
+    {
+      "item": 87,
+      "facet": "Cheerfulness",
+      "text": "Love life",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.842,
+      "loading_steer": 0.912
+    },
+    {
+      "item": 88,
+      "facet": "Liberalism",
+      "text": "Tend to vote for conservative political candidates",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": -0.269,
+      "loading_steer": -0.236
+    },
+    {
+      "item": 89,
+      "facet": "Sympathy",
+      "text": "Are not interested in other people's problems",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.638,
+      "loading_steer": 0.753
+    },
+    {
+      "item": 90,
+      "facet": "Cautiousness",
+      "text": "Rush into things",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.544,
+      "loading_steer": 0.943
+    },
+    {
+      "item": 91,
+      "facet": "Anxiety",
+      "text": "Get stressed out easily",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": 1,
+      "loading": 0.661,
+      "loading_steer": 0.898
+    },
+    {
+      "item": 92,
+      "facet": "Friendliness",
+      "text": "Keep others at a distance",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": -1,
+      "loading": 0.805,
+      "loading_steer": 0.933
+    },
+    {
+      "item": 93,
+      "facet": "Imagination",
+      "text": "Like to get lost in thought",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": 1,
+      "loading": 0.442,
+      "loading_steer": 0.873
+    },
+    {
+      "item": 94,
+      "facet": "Trust",
+      "text": "Distrust people",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.837,
+      "loading_steer": 0.918
+    },
+    {
+      "item": 95,
+      "facet": "Self-efficacy",
+      "text": "Know how to get things done",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": 1,
+      "loading": 0.763,
+      "loading_steer": 0.928
+    },
+    {
+      "item": 96,
+      "facet": "Anger",
+      "text": "Are not easily annoyed",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": -1,
+      "loading": 0.768,
+      "loading_steer": 0.966
+    },
+    {
+      "item": 97,
+      "facet": "Gregariousness",
+      "text": "Avoid crowds",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": -1,
+      "loading": 0.614,
+      "loading_steer": 0.948
+    },
+    {
+      "item": 98,
+      "facet": "Artistic Interests",
+      "text": "Do not enjoy going to art museums",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.578,
+      "loading_steer": 0.343
+    },
+    {
+      "item": 99,
+      "facet": "Morality",
+      "text": "Obstruct others' plans",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.856,
+      "loading_steer": 0.926
+    },
+    {
+      "item": 100,
+      "facet": "Orderliness",
+      "text": "Leave your belongings around",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.806,
+      "loading_steer": 0.913
+    },
+    {
+      "item": 101,
+      "facet": "Depression",
+      "text": "Feel comfortable with yourself",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": -1,
+      "loading": 0.751,
+      "loading_steer": 0.972
+    },
+    {
+      "item": 102,
+      "facet": "Assertiveness",
+      "text": "Wait for others to lead the way",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": -1,
+      "loading": 0.173,
+      "loading_steer": 0.477
+    },
+    {
+      "item": 103,
+      "facet": "Emotionality",
+      "text": "Don't understand people who get emotional",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.735,
+      "loading_steer": 0.598
+    },
+    {
+      "item": 104,
+      "facet": "Altruism",
+      "text": "Take no time for others",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.855,
+      "loading_steer": 0.92
+    },
+    {
+      "item": 105,
+      "facet": "Dutifulness",
+      "text": "Break your promises",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.742,
+      "loading_steer": 0.857
+    },
+    {
+      "item": 106,
+      "facet": "Self-consciousness",
+      "text": "Are not bothered by difficult social situations",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": -1,
+      "loading": 0.555,
+      "loading_steer": 0.931
+    },
+    {
+      "item": 107,
+      "facet": "Activity Level",
+      "text": "Like to take it easy",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": -1,
+      "loading": -0.123,
+      "loading_steer": 0.332
+    },
+    {
+      "item": 108,
+      "facet": "Adventurousness",
+      "text": "Are attached to conventional ways",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.391,
+      "loading_steer": 0.672
+    },
+    {
+      "item": 109,
+      "facet": "Cooperation",
+      "text": "Get back at others",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.861,
+      "loading_steer": 0.954
+    },
+    {
+      "item": 110,
+      "facet": "Achievement-striving",
+      "text": "Put little time and effort into your work",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.854,
+      "loading_steer": 0.918
+    },
+    {
+      "item": 111,
+      "facet": "Immoderation",
+      "text": "Are able to control your cravings",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": -1,
+      "loading": 0.439,
+      "loading_steer": 0.894
+    },
+    {
+      "item": 112,
+      "facet": "Excitement-seeking",
+      "text": "Act wild and crazy",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.595,
+      "loading_steer": 0.932
+    },
+    {
+      "item": 113,
+      "facet": "Intellect",
+      "text": "Are not interested in theoretical discussions",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": 0.174,
+      "loading_steer": 0.234
+    },
+    {
+      "item": 114,
+      "facet": "Modesty",
+      "text": "Boast about your virtues",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": -0.596,
+      "loading_steer": -0.84
+    },
+    {
+      "item": 115,
+      "facet": "Self-discipline",
+      "text": "Have difficulty starting tasks",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.69,
+      "loading_steer": 0.894
+    },
+    {
+      "item": 116,
+      "facet": "Vulnerability",
+      "text": "Remain calm under pressure",
+      "domain": "neuroticism",
+      "domain_letter": "N",
+      "key": -1,
+      "loading": 0.697,
+      "loading_steer": 0.935
+    },
+    {
+      "item": 117,
+      "facet": "Cheerfulness",
+      "text": "Look at the bright side of life",
+      "domain": "extraversion",
+      "domain_letter": "E",
+      "key": 1,
+      "loading": 0.856,
+      "loading_steer": 0.926
+    },
+    {
+      "item": 118,
+      "facet": "Liberalism",
+      "text": "Believe that we should be tough on crime",
+      "domain": "openness",
+      "domain_letter": "O",
+      "key": -1,
+      "loading": -0.254,
+      "loading_steer": 0.127
+    },
+    {
+      "item": 119,
+      "facet": "Sympathy",
+      "text": "Try not to think about the needy",
+      "domain": "agreeableness",
+      "domain_letter": "A",
+      "key": -1,
+      "loading": 0.594,
+      "loading_steer": 0.897
+    },
+    {
+      "item": 120,
+      "facet": "Cautiousness",
+      "text": "Act without thinking",
+      "domain": "conscientiousness",
+      "domain_letter": "C",
+      "key": -1,
+      "loading": 0.801,
+      "loading_steer": 0.943
+    }
+  ],
+  "default_item_ids": [
+    79,
+    7,
+    45,
+    2,
+    15,
+    57,
+    52,
+    22,
+    27,
+    69,
+    3,
+    9,
+    31,
+    65,
+    109,
+    20,
+    99,
+    117,
+    104,
+    110
+  ],
+  "focus_top_n": 8,
+  "default_top_n": 20,
   "factor_correlations": [
-    { "a": "N", "b": "E", "r": 0.22 },
-    { "a": "N", "b": "C", "r": -0.08 },
-    { "a": "N", "b": "O", "r": -0.16 },
-    { "a": "N", "b": "A", "r": 0.19 },
-    { "a": "E", "b": "C", "r": 0.00 },
-    { "a": "E", "b": "O", "r": -0.40 },
-    { "a": "E", "b": "A", "r": 0.09 },
-    { "a": "C", "b": "O", "r": -0.01 },
-    { "a": "C", "b": "A", "r": 0.09 },
-    { "a": "O", "b": "A", "r": -0.11 }
+    {
+      "a": "N",
+      "b": "E",
+      "r": -0.68
+    },
+    {
+      "a": "N",
+      "b": "O",
+      "r": -0.531
+    },
+    {
+      "a": "N",
+      "b": "A",
+      "r": -0.543
+    },
+    {
+      "a": "N",
+      "b": "C",
+      "r": -0.839
+    },
+    {
+      "a": "E",
+      "b": "O",
+      "r": 0.839
+    },
+    {
+      "a": "E",
+      "b": "A",
+      "r": 0.438
+    },
+    {
+      "a": "E",
+      "b": "C",
+      "r": 0.63
+    },
+    {
+      "a": "O",
+      "b": "A",
+      "r": 0.554
+    },
+    {
+      "a": "O",
+      "b": "C",
+      "r": 0.544
+    },
+    {
+      "a": "A",
+      "b": "C",
+      "r": 0.726
+    }
   ],
   "error_correlations": [
-    { "a": 11, "b": 1, "r": -0.25 },
-    { "a": 14, "b": 4, "r": 0.27 },
-    { "a": 9, "b": 4, "r": 0.25 },
-    { "a": 20, "b": 15, "r": 0.47 }
+    {
+      "a": 30,
+      "b": 90,
+      "r": 0.91
+    },
+    {
+      "a": 54,
+      "b": 114,
+      "r": 0.897
+    },
+    {
+      "a": 54,
+      "b": 84,
+      "r": 0.884
+    },
+    {
+      "a": 29,
+      "b": 59,
+      "r": 0.868
+    },
+    {
+      "a": 4,
+      "b": 64,
+      "r": 0.855
+    },
+    {
+      "a": 84,
+      "b": 114,
+      "r": 0.855
+    },
+    {
+      "a": 14,
+      "b": 54,
+      "r": -0.819
+    },
+    {
+      "a": 14,
+      "b": 114,
+      "r": -0.793
+    },
+    {
+      "a": 51,
+      "b": 116,
+      "r": 0.781
+    },
+    {
+      "a": 82,
+      "b": 112,
+      "r": 0.764
+    },
+    {
+      "a": 12,
+      "b": 72,
+      "r": 0.76
+    },
+    {
+      "a": 14,
+      "b": 84,
+      "r": -0.758
+    }
   ]
 }

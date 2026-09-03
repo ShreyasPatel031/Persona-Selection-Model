@@ -1,0 +1,77 @@
+{
+  "title": "MPI-120 measurement model",
+  "subtitle": "Johnson (2014) IPIP-NEO-120 · confirmatory factor analysis · standardized loadings",
+  "instrument": "mpi_120.csv",
+  "citation": "Johnson, J. A. (2014). Measuring thirty facets of the Five Factor Model with a 120-item public domain inventory. J. Res. Pers. 51, 78–89.",
+  "layout": {
+    "viewBox": [0, 0, 1000, 920],
+    "factorRadius": 34,
+    "itemSize": 26,
+    "errorRadius": 11,
+    "itemDist": 118,
+    "errorDist": 168
+  },
+  "factors": [
+    { "id": "N", "trait": "neuroticism", "label": "N", "x": 500, "y": 210 },
+    { "id": "E", "trait": "extraversion", "label": "E", "x": 210, "y": 390 },
+    { "id": "C", "trait": "conscientiousness", "label": "C", "x": 790, "y": 390 },
+    { "id": "O", "trait": "openness", "label": "O", "x": 330, "y": 660 },
+    { "id": "A", "trait": "agreeableness", "label": "A", "x": 670, "y": 660 }
+  ],
+  "clusters": {
+    "N": { "baseAngle": -90, "spread": 72, "items": [
+      { "item": 3, "loading": 0.87 },
+      { "item": 8, "loading": 0.76 },
+      { "item": 13, "loading": 0.63 },
+      { "item": 18, "loading": 0.49 },
+      { "item": 23, "loading": 0.59 }
+    ]},
+    "E": { "baseAngle": 180, "spread": 68, "items": [
+      { "item": 21, "loading": -0.65 },
+      { "item": 16, "loading": -0.88 },
+      { "item": 11, "loading": -0.63 },
+      { "item": 6, "loading": -0.91 },
+      { "item": 1, "loading": 0.66 }
+    ]},
+    "C": { "baseAngle": 0, "spread": 78, "items": [
+      { "item": 2, "loading": 0.75 },
+      { "item": 7, "loading": 0.70 },
+      { "item": 12, "loading": 0.58 },
+      { "item": 17, "loading": 0.70 },
+      { "item": 22, "loading": -0.64 },
+      { "item": 26, "loading": 0.54 },
+      { "item": 29, "loading": -0.57 }
+    ]},
+    "O": { "baseAngle": 118, "spread": 64, "items": [
+      { "item": 27, "loading": 0.81 },
+      { "item": 24, "loading": 0.72 },
+      { "item": 14, "loading": 0.52 },
+      { "item": 9, "loading": 0.47 },
+      { "item": 4, "loading": 0.44 }
+    ]},
+    "A": { "baseAngle": 62, "spread": 58, "items": [
+      { "item": 20, "loading": -0.47 },
+      { "item": 15, "loading": -0.49 },
+      { "item": 10, "loading": 0.87 },
+      { "item": 5, "loading": 0.90 }
+    ]}
+  },
+  "factor_correlations": [
+    { "a": "N", "b": "E", "r": 0.22 },
+    { "a": "N", "b": "C", "r": -0.08 },
+    { "a": "N", "b": "O", "r": -0.16 },
+    { "a": "N", "b": "A", "r": 0.19 },
+    { "a": "E", "b": "C", "r": 0.00 },
+    { "a": "E", "b": "O", "r": -0.40 },
+    { "a": "E", "b": "A", "r": 0.09 },
+    { "a": "C", "b": "O", "r": -0.01 },
+    { "a": "C", "b": "A", "r": 0.09 },
+    { "a": "O", "b": "A", "r": -0.11 }
+  ],
+  "error_correlations": [
+    { "a": 11, "b": 1, "r": -0.25 },
+    { "a": 14, "b": 4, "r": 0.27 },
+    { "a": 9, "b": 4, "r": 0.25 },
+    { "a": 20, "b": 15, "r": 0.47 }
+  ]
+}
