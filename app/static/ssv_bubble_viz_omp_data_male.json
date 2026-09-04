@@ -1,0 +1,5982 @@
+{
+  "meta": {
+    "trait": "male",
+    "layer": 15,
+    "method": "omp_sae_hook",
+    "rankings": [
+      "omp"
+    ],
+    "d_values": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "note": "OMP d-sweep. Labels: corpus Gemini > lens Gemini > logit lens tokens.",
+    "n_features_corpus_interp": 0,
+    "n_features_lens_interp": 0,
+    "n_features_logit_lens_fallback": 19,
+    "n_omp_features": 20,
+    "sae_id": "layer_15_width_262k_l0_small",
+    "alpha_reference": 1.5,
+    "early_stopped": false,
+    "n_questions": 20,
+    "judged_scores_source": "omp_k_sweep_l15_20q_emd.json"
+  },
+  "comparison_curves": {
+    "omp": [
+      {
+        "d": 5,
+        "mean": 50.8
+      },
+      {
+        "d": 10,
+        "mean": 43.6
+      },
+      {
+        "d": 15,
+        "mean": 84.5
+      },
+      {
+        "d": 20,
+        "mean": 64.8
+      }
+    ]
+  },
+  "k_levels": [
+    {
+      "k": 5,
+      "ranking": "omp",
+      "n_active": 5,
+      "scale": null,
+      "cosine_vs_dense": null,
+      "mean_trait": 50.8,
+      "scores": [
+        5,
+        90,
+        0,
+        25,
+        15,
+        10,
+        80,
+        5,
+        85,
+        90,
+        0,
+        90,
+        75,
+        65,
+        90,
+        80,
+        90,
+        90,
+        25,
+        5
+      ],
+      "best_cal_score": null,
+      "features": [
+        {
+          "fid": 4901,
+          "rank": 1,
+          "weight": -388.4235,
+          "abs_weight": 388.4235,
+          "importance": 1.0,
+          "lens_score": 0.518,
+          "sign": "neg",
+          "title": "Conditional Alternatives",
+          "description": "This feature activates for tokens suggesting options or different conditions, suppressing sequential statements",
+          "label": "Conditional Alternatives",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "else",
+              0.518
+            ],
+            [
+              "alternatively",
+              0.49
+            ],
+            [
+              "\u0902\u0924\u094d\u0930\u093f\u0915\u0940",
+              0.412
+            ],
+            [
+              "equivalently",
+              0.409
+            ],
+            [
+              "otherwise",
+              0.399
+            ],
+            [
+              "lando",
+              0.389
+            ],
+            [
+              "acles",
+              0.388
+            ],
+            [
+              "\u03b4\u03b7",
+              0.375
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0924",
+              0.353
+            ],
+            [
+              "Then",
+              0.333
+            ],
+            [
+              "\u662f",
+              0.302
+            ],
+            [
+              "luego",
+              0.3
+            ],
+            [
+              "\u062f\u0644",
+              0.295
+            ],
+            [
+              "\u0986\u09b0",
+              0.286
+            ],
+            [
+              "then",
+              0.285
+            ],
+            [
+              "rightarrow",
+              0.284
+            ]
+          ],
+          "suppress_label": "Then, luego, then, rightarrow",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22843,
+          "rank": 2,
+          "weight": -97.0879,
+          "abs_weight": 97.0879,
+          "importance": 0.25,
+          "lens_score": 1.056,
+          "sign": "neg",
+          "title": "Needs and Desires",
+          "description": "Concepts of personal or collective needs, wants, and choices, suppressing historical or academic topics",
+          "label": "Needs and Desires",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Choosing",
+              1.056
+            ],
+            [
+              "queremos",
+              1.038
+            ],
+            [
+              "kebutuhan",
+              1.036
+            ],
+            [
+              "Healthy",
+              0.984
+            ],
+            [
+              "\u9700\u6c42",
+              0.978
+            ],
+            [
+              "Healthy",
+              0.971
+            ],
+            [
+              "daunting",
+              0.966
+            ],
+            [
+              "ihtiya\u00e7",
+              0.965
+            ]
+          ],
+          "top_suppress": [
+            [
+              "archaeologists",
+              0.797
+            ],
+            [
+              "tomb",
+              0.763
+            ],
+            [
+              "blasp",
+              0.757
+            ],
+            [
+              "iconography",
+              0.752
+            ],
+            [
+              "objected",
+              0.744
+            ],
+            [
+              "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+              0.737
+            ],
+            [
+              "isotopic",
+              0.735
+            ],
+            [
+              "respectivement",
+              0.731
+            ]
+          ],
+          "suppress_label": "archaeologists, tomb, blasp, iconography",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1592,
+          "rank": 3,
+          "weight": -80.2177,
+          "abs_weight": 80.2177,
+          "importance": 0.2065,
+          "lens_score": 1.694,
+          "sign": "neg",
+          "title": "Emotional Concepts",
+          "description": "Emotional and psychological concepts, contrasting with business and technology",
+          "label": "Emotional Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "emotional",
+              1.694
+            ],
+            [
+              "emocional",
+              1.622
+            ],
+            [
+              "psych",
+              1.608
+            ],
+            [
+              "psychological",
+              1.591
+            ],
+            [
+              "emotional",
+              1.548
+            ],
+            [
+              "duyg",
+              1.546
+            ],
+            [
+              "emotions",
+              1.532
+            ],
+            [
+              "psychologist",
+              1.514
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\uc218\ucd9c",
+              0.825
+            ],
+            [
+              "Technologie",
+              0.791
+            ],
+            [
+              "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+              0.77
+            ],
+            [
+              "Prix",
+              0.757
+            ],
+            [
+              "Technology",
+              0.755
+            ],
+            [
+              "\u529e\u6cd5",
+              0.755
+            ],
+            [
+              "\u4ea7\u54c1",
+              0.727
+            ],
+            [
+              "extruder",
+              0.725
+            ]
+          ],
+          "suppress_label": "Technologie, Prix, Technology, extruder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 14081,
+          "rank": 4,
+          "weight": -68.773,
+          "abs_weight": 68.773,
+          "importance": 0.1771,
+          "lens_score": 1.619,
+          "sign": "neg",
+          "title": "Disjunction",
+          "description": "Disjunctive concepts like 'or' and 'some/any' across multiple languages",
+          "label": "Disjunction",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "algum",
+              1.619
+            ],
+            [
+              "ho\u1eb7c",
+              1.552
+            ],
+            [
+              "alg\u00fan",
+              1.527
+            ],
+            [
+              "atau",
+              1.49
+            ],
+            [
+              "alguma",
+              1.464
+            ],
+            [
+              "alguna",
+              1.46
+            ],
+            [
+              "\ud639\uc740",
+              1.448
+            ],
+            [
+              "or",
+              1.432
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0648\u0645\u0646",
+              1.048
+            ],
+            [
+              "\u0995\u09c7\u09b6",
+              0.993
+            ],
+            [
+              "\u0432\u0441\u0435\u043c\u0438",
+              0.982
+            ],
+            [
+              "narrates",
+              0.982
+            ],
+            [
+              "ovviamente",
+              0.977
+            ],
+            [
+              "\u03ba\u03b1\u03b9",
+              0.966
+            ],
+            [
+              "\u05d5\u05d4",
+              0.963
+            ],
+            [
+              "basicamente",
+              0.941
+            ]
+          ],
+          "suppress_label": "narrates, ovviamente, basicamente",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 7469,
+          "rank": 5,
+          "weight": -66.2985,
+          "abs_weight": 66.2985,
+          "importance": 0.1707,
+          "lens_score": 1.083,
+          "sign": "neg",
+          "title": "*   `wondering` (+0.90)",
+          "description": "These tokens relate to:",
+          "label": "*   `wondering` (+0.90)",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "thoughts",
+              1.083
+            ],
+            [
+              "pergunt",
+              1.052
+            ],
+            [
+              "Thoughts",
+              0.991
+            ],
+            [
+              "listening",
+              0.989
+            ],
+            [
+              "acquaintances",
+              0.936
+            ],
+            [
+              "\u0bb5\u0bbf\u0bb3\u0bc8\u0baf\u0bbe",
+              0.927
+            ],
+            [
+              "\u0989\u09a6\u09cd\u09a6\u09c7\u09b6\u09c7",
+              0.919
+            ],
+            [
+              "wondering",
+              0.896
+            ]
+          ],
+          "top_suppress": [
+            [
+              "histologic",
+              1.172
+            ],
+            [
+              "\uf0fc",
+              1.133
+            ],
+            [
+              "histological",
+              1.12
+            ],
+            [
+              "\ud83d\udcb9",
+              1.109
+            ],
+            [
+              "sulfon",
+              1.063
+            ],
+            [
+              "metodologia",
+              1.046
+            ],
+            [
+              "morphological",
+              1.044
+            ],
+            [
+              "azuje",
+              1.03
+            ]
+          ],
+          "suppress_label": "histologic, histological, sulfon, metodologia",
+          "detection_accuracy": null
+        }
+      ]
+    },
+    {
+      "k": 10,
+      "ranking": "omp",
+      "n_active": 10,
+      "scale": null,
+      "cosine_vs_dense": null,
+      "mean_trait": 43.6,
+      "scores": [
+        25,
+        0,
+        0,
+        15,
+        95,
+        25,
+        15,
+        0,
+        98,
+        90,
+        25,
+        5,
+        100,
+        0,
+        95,
+        0,
+        90,
+        95,
+        5,
+        95
+      ],
+      "best_cal_score": null,
+      "features": [
+        {
+          "fid": 4901,
+          "rank": 1,
+          "weight": -388.4235,
+          "abs_weight": 388.4235,
+          "importance": 1.0,
+          "lens_score": 0.518,
+          "sign": "neg",
+          "title": "Conditional Alternatives",
+          "description": "This feature activates for tokens suggesting options or different conditions, suppressing sequential statements",
+          "label": "Conditional Alternatives",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "else",
+              0.518
+            ],
+            [
+              "alternatively",
+              0.49
+            ],
+            [
+              "\u0902\u0924\u094d\u0930\u093f\u0915\u0940",
+              0.412
+            ],
+            [
+              "equivalently",
+              0.409
+            ],
+            [
+              "otherwise",
+              0.399
+            ],
+            [
+              "lando",
+              0.389
+            ],
+            [
+              "acles",
+              0.388
+            ],
+            [
+              "\u03b4\u03b7",
+              0.375
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0924",
+              0.353
+            ],
+            [
+              "Then",
+              0.333
+            ],
+            [
+              "\u662f",
+              0.302
+            ],
+            [
+              "luego",
+              0.3
+            ],
+            [
+              "\u062f\u0644",
+              0.295
+            ],
+            [
+              "\u0986\u09b0",
+              0.286
+            ],
+            [
+              "then",
+              0.285
+            ],
+            [
+              "rightarrow",
+              0.284
+            ]
+          ],
+          "suppress_label": "Then, luego, then, rightarrow",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22843,
+          "rank": 2,
+          "weight": -97.0879,
+          "abs_weight": 97.0879,
+          "importance": 0.25,
+          "lens_score": 1.056,
+          "sign": "neg",
+          "title": "Needs and Desires",
+          "description": "Concepts of personal or collective needs, wants, and choices, suppressing historical or academic topics",
+          "label": "Needs and Desires",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Choosing",
+              1.056
+            ],
+            [
+              "queremos",
+              1.038
+            ],
+            [
+              "kebutuhan",
+              1.036
+            ],
+            [
+              "Healthy",
+              0.984
+            ],
+            [
+              "\u9700\u6c42",
+              0.978
+            ],
+            [
+              "Healthy",
+              0.971
+            ],
+            [
+              "daunting",
+              0.966
+            ],
+            [
+              "ihtiya\u00e7",
+              0.965
+            ]
+          ],
+          "top_suppress": [
+            [
+              "archaeologists",
+              0.797
+            ],
+            [
+              "tomb",
+              0.763
+            ],
+            [
+              "blasp",
+              0.757
+            ],
+            [
+              "iconography",
+              0.752
+            ],
+            [
+              "objected",
+              0.744
+            ],
+            [
+              "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+              0.737
+            ],
+            [
+              "isotopic",
+              0.735
+            ],
+            [
+              "respectivement",
+              0.731
+            ]
+          ],
+          "suppress_label": "archaeologists, tomb, blasp, iconography",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1592,
+          "rank": 3,
+          "weight": -80.2177,
+          "abs_weight": 80.2177,
+          "importance": 0.2065,
+          "lens_score": 1.694,
+          "sign": "neg",
+          "title": "Emotional Concepts",
+          "description": "Emotional and psychological concepts, contrasting with business and technology",
+          "label": "Emotional Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "emotional",
+              1.694
+            ],
+            [
+              "emocional",
+              1.622
+            ],
+            [
+              "psych",
+              1.608
+            ],
+            [
+              "psychological",
+              1.591
+            ],
+            [
+              "emotional",
+              1.548
+            ],
+            [
+              "duyg",
+              1.546
+            ],
+            [
+              "emotions",
+              1.532
+            ],
+            [
+              "psychologist",
+              1.514
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\uc218\ucd9c",
+              0.825
+            ],
+            [
+              "Technologie",
+              0.791
+            ],
+            [
+              "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+              0.77
+            ],
+            [
+              "Prix",
+              0.757
+            ],
+            [
+              "Technology",
+              0.755
+            ],
+            [
+              "\u529e\u6cd5",
+              0.755
+            ],
+            [
+              "\u4ea7\u54c1",
+              0.727
+            ],
+            [
+              "extruder",
+              0.725
+            ]
+          ],
+          "suppress_label": "Technologie, Prix, Technology, extruder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 14081,
+          "rank": 4,
+          "weight": -68.773,
+          "abs_weight": 68.773,
+          "importance": 0.1771,
+          "lens_score": 1.619,
+          "sign": "neg",
+          "title": "Disjunction",
+          "description": "Disjunctive concepts like 'or' and 'some/any' across multiple languages",
+          "label": "Disjunction",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "algum",
+              1.619
+            ],
+            [
+              "ho\u1eb7c",
+              1.552
+            ],
+            [
+              "alg\u00fan",
+              1.527
+            ],
+            [
+              "atau",
+              1.49
+            ],
+            [
+              "alguma",
+              1.464
+            ],
+            [
+              "alguna",
+              1.46
+            ],
+            [
+              "\ud639\uc740",
+              1.448
+            ],
+            [
+              "or",
+              1.432
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0648\u0645\u0646",
+              1.048
+            ],
+            [
+              "\u0995\u09c7\u09b6",
+              0.993
+            ],
+            [
+              "\u0432\u0441\u0435\u043c\u0438",
+              0.982
+            ],
+            [
+              "narrates",
+              0.982
+            ],
+            [
+              "ovviamente",
+              0.977
+            ],
+            [
+              "\u03ba\u03b1\u03b9",
+              0.966
+            ],
+            [
+              "\u05d5\u05d4",
+              0.963
+            ],
+            [
+              "basicamente",
+              0.941
+            ]
+          ],
+          "suppress_label": "narrates, ovviamente, basicamente",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 7469,
+          "rank": 5,
+          "weight": -66.2985,
+          "abs_weight": 66.2985,
+          "importance": 0.1707,
+          "lens_score": 1.083,
+          "sign": "neg",
+          "title": "*   `wondering` (+0.90)",
+          "description": "These tokens relate to:",
+          "label": "*   `wondering` (+0.90)",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "thoughts",
+              1.083
+            ],
+            [
+              "pergunt",
+              1.052
+            ],
+            [
+              "Thoughts",
+              0.991
+            ],
+            [
+              "listening",
+              0.989
+            ],
+            [
+              "acquaintances",
+              0.936
+            ],
+            [
+              "\u0bb5\u0bbf\u0bb3\u0bc8\u0baf\u0bbe",
+              0.927
+            ],
+            [
+              "\u0989\u09a6\u09cd\u09a6\u09c7\u09b6\u09c7",
+              0.919
+            ],
+            [
+              "wondering",
+              0.896
+            ]
+          ],
+          "top_suppress": [
+            [
+              "histologic",
+              1.172
+            ],
+            [
+              "\uf0fc",
+              1.133
+            ],
+            [
+              "histological",
+              1.12
+            ],
+            [
+              "\ud83d\udcb9",
+              1.109
+            ],
+            [
+              "sulfon",
+              1.063
+            ],
+            [
+              "metodologia",
+              1.046
+            ],
+            [
+              "morphological",
+              1.044
+            ],
+            [
+              "azuje",
+              1.03
+            ]
+          ],
+          "suppress_label": "histologic, histological, sulfon, metodologia",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 59884,
+          "rank": 6,
+          "weight": 62.1028,
+          "abs_weight": 62.1028,
+          "importance": 0.1599,
+          "lens_score": 1.362,
+          "sign": "pos",
+          "title": "Imperative Requests",
+          "description": "Cross-lingual imperative language, including commands, prohibitions, and strong suggestions",
+          "label": "Imperative Requests",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "jangan",
+              1.362
+            ],
+            [
+              "\u0111\u1eebng",
+              1.248
+            ],
+            [
+              "supaya",
+              1.183
+            ],
+            [
+              "please",
+              1.151
+            ],
+            [
+              "Jangan",
+              1.121
+            ],
+            [
+              "\u0e2d\u0e22\u0e48\u0e32",
+              1.073
+            ],
+            [
+              "unbedingt",
+              1.057
+            ],
+            [
+              "Please",
+              1.027
+            ]
+          ],
+          "top_suppress": [
+            [
+              "nbsp",
+              1.103
+            ],
+            [
+              "\u06c1\u06d2\u06d4",
+              1.099
+            ],
+            [
+              "\u0995\u09bf\u09a8\u09be",
+              1.077
+            ],
+            [
+              "heralded",
+              1.073
+            ],
+            [
+              "\u0441\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435",
+              1.033
+            ],
+            [
+              "\u69d8\u3005\u306a",
+              1.027
+            ],
+            [
+              "\u901a\u5e38",
+              1.006
+            ],
+            [
+              "\u0939\u0942\u0901",
+              0.997
+            ]
+          ],
+          "suppress_label": "nbsp, heralded",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 10861,
+          "rank": 7,
+          "weight": -61.8338,
+          "abs_weight": 61.8338,
+          "importance": 0.1592,
+          "lens_score": 0.935,
+          "sign": "neg",
+          "title": "Discussion/Questions",
+          "description": "Tokens related to asking questions, discussing ideas, or seeking next steps",
+          "label": "Discussion/Questions",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "brainstorming",
+              0.935
+            ],
+            [
+              "brainstorm",
+              0.934
+            ],
+            [
+              "discuss",
+              0.86
+            ],
+            [
+              "\uc9c8\ubb38",
+              0.804
+            ],
+            [
+              "\u0441\u043b\u0435\u0434\u0443",
+              0.804
+            ],
+            [
+              "domande",
+              0.803
+            ],
+            [
+              "prochain",
+              0.795
+            ],
+            [
+              "pregunt",
+              0.766
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0c05\u0c28\u0c47\u0c15",
+              0.981
+            ],
+            [
+              "upholding",
+              0.912
+            ],
+            [
+              "heids",
+              0.87
+            ],
+            [
+              "\u5de8\u5927\u7684",
+              0.858
+            ],
+            [
+              "issued",
+              0.827
+            ],
+            [
+              "biotics",
+              0.823
+            ],
+            [
+              "\ud83c\udf86",
+              0.784
+            ],
+            [
+              "b\u00f3l",
+              0.775
+            ]
+          ],
+          "suppress_label": "upholding, heids, issued, biotics",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 5306,
+          "rank": 8,
+          "weight": 58.5539,
+          "abs_weight": 58.5539,
+          "importance": 0.1507,
+          "lens_score": 1.147,
+          "sign": "pos",
+          "title": "Boisterous Humor",
+          "description": "Language associated with jokes, laughter, and boisterous or playful expression",
+          "label": "Boisterous Humor",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "laughing",
+              1.147
+            ],
+            [
+              "hilarious",
+              1.133
+            ],
+            [
+              "giggle",
+              1.107
+            ],
+            [
+              "yelling",
+              1.075
+            ],
+            [
+              "jokes",
+              1.069
+            ],
+            [
+              "gangsters",
+              1.05
+            ],
+            [
+              "wacky",
+              1.035
+            ],
+            [
+              "lol",
+              1.017
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\ud83d\udcb9",
+              0.764
+            ],
+            [
+              "framework",
+              0.736
+            ],
+            [
+              "desg",
+              0.736
+            ],
+            [
+              "\u092a\u094d\u0930\u0926\u093e\u0928",
+              0.73
+            ],
+            [
+              "\u591a\u304f\u306e",
+              0.725
+            ],
+            [
+              "frameworks",
+              0.718
+            ],
+            [
+              "information",
+              0.715
+            ],
+            [
+              "focal",
+              0.708
+            ]
+          ],
+          "suppress_label": "framework, desg, frameworks, information",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1577,
+          "rank": 9,
+          "weight": 57.8182,
+          "abs_weight": 57.8182,
+          "importance": 0.1489,
+          "lens_score": 1.569,
+          "sign": "pos",
+          "title": "DevOps Tools",
+          "description": "Terms related to software development, Linux, and DevOps infrastructure",
+          "label": "DevOps Tools",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "docker",
+              1.569
+            ],
+            [
+              "docker",
+              1.539
+            ],
+            [
+              "Docker",
+              1.533
+            ],
+            [
+              "Docker",
+              1.349
+            ],
+            [
+              "linux",
+              1.306
+            ],
+            [
+              "Linux",
+              1.305
+            ],
+            [
+              "CMake",
+              1.187
+            ],
+            [
+              "kubectl",
+              1.178
+            ]
+          ],
+          "top_suppress": [
+            [
+              "vertices",
+              0.897
+            ],
+            [
+              "\u0639\u0644\u0627\u0642\u0647",
+              0.845
+            ],
+            [
+              "emociones",
+              0.824
+            ],
+            [
+              "LAR",
+              0.8
+            ],
+            [
+              "s\u00e9culo",
+              0.797
+            ],
+            [
+              "\u666f\u70b9",
+              0.789
+            ],
+            [
+              "\u60c5\u611f",
+              0.782
+            ],
+            [
+              "raviolet",
+              0.779
+            ]
+          ],
+          "suppress_label": "vertices, emociones, LAR, s\u00e9culo",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 24929,
+          "rank": 10,
+          "weight": -51.2628,
+          "abs_weight": 51.2628,
+          "importance": 0.132,
+          "lens_score": 1.484,
+          "sign": "neg",
+          "title": "Ending Punctuation",
+          "description": "Sentence-ending punctuation, especially periods, and suppresses diverse non-English tokens",
+          "label": "Ending Punctuation",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              ").",
+              1.484
+            ],
+            [
+              ".}",
+              1.443
+            ],
+            [
+              ".)",
+              1.442
+            ],
+            [
+              ".",
+              1.423
+            ],
+            [
+              ".\"",
+              1.378
+            ],
+            [
+              ".]",
+              1.364
+            ],
+            [
+              ".*",
+              1.339
+            ],
+            [
+              ".\u201d",
+              1.322
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0627\u0632",
+              0.728
+            ],
+            [
+              "\u0ba4\u0bae\u0bbe\u0ba9",
+              0.722
+            ],
+            [
+              "Prospective",
+              0.719
+            ],
+            [
+              "\u0aa8\u0acd\u0a9f",
+              0.704
+            ],
+            [
+              "\u0628\u0646\u0627\u0626\u06cc\u06ba",
+              0.685
+            ],
+            [
+              "\u0432\u0441\u0442\u0440\u043e\u0435\u043d",
+              0.679
+            ],
+            [
+              "\u041f\u0440\u0438",
+              0.671
+            ],
+            [
+              "E\u011fitim",
+              0.648
+            ]
+          ],
+          "suppress_label": "Prospective, E\u011fitim",
+          "detection_accuracy": null
+        }
+      ]
+    },
+    {
+      "k": 15,
+      "ranking": "omp",
+      "n_active": 15,
+      "scale": null,
+      "cosine_vs_dense": null,
+      "mean_trait": 84.5,
+      "scores": [
+        10,
+        95,
+        95,
+        95,
+        90,
+        100,
+        95,
+        95,
+        100,
+        95,
+        95,
+        95,
+        95,
+        25,
+        95,
+        95,
+        95,
+        35,
+        95,
+        95
+      ],
+      "best_cal_score": null,
+      "features": [
+        {
+          "fid": 4901,
+          "rank": 1,
+          "weight": -388.4235,
+          "abs_weight": 388.4235,
+          "importance": 1.0,
+          "lens_score": 0.518,
+          "sign": "neg",
+          "title": "Conditional Alternatives",
+          "description": "This feature activates for tokens suggesting options or different conditions, suppressing sequential statements",
+          "label": "Conditional Alternatives",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "else",
+              0.518
+            ],
+            [
+              "alternatively",
+              0.49
+            ],
+            [
+              "\u0902\u0924\u094d\u0930\u093f\u0915\u0940",
+              0.412
+            ],
+            [
+              "equivalently",
+              0.409
+            ],
+            [
+              "otherwise",
+              0.399
+            ],
+            [
+              "lando",
+              0.389
+            ],
+            [
+              "acles",
+              0.388
+            ],
+            [
+              "\u03b4\u03b7",
+              0.375
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0924",
+              0.353
+            ],
+            [
+              "Then",
+              0.333
+            ],
+            [
+              "\u662f",
+              0.302
+            ],
+            [
+              "luego",
+              0.3
+            ],
+            [
+              "\u062f\u0644",
+              0.295
+            ],
+            [
+              "\u0986\u09b0",
+              0.286
+            ],
+            [
+              "then",
+              0.285
+            ],
+            [
+              "rightarrow",
+              0.284
+            ]
+          ],
+          "suppress_label": "Then, luego, then, rightarrow",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22843,
+          "rank": 2,
+          "weight": -97.0879,
+          "abs_weight": 97.0879,
+          "importance": 0.25,
+          "lens_score": 1.056,
+          "sign": "neg",
+          "title": "Needs and Desires",
+          "description": "Concepts of personal or collective needs, wants, and choices, suppressing historical or academic topics",
+          "label": "Needs and Desires",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Choosing",
+              1.056
+            ],
+            [
+              "queremos",
+              1.038
+            ],
+            [
+              "kebutuhan",
+              1.036
+            ],
+            [
+              "Healthy",
+              0.984
+            ],
+            [
+              "\u9700\u6c42",
+              0.978
+            ],
+            [
+              "Healthy",
+              0.971
+            ],
+            [
+              "daunting",
+              0.966
+            ],
+            [
+              "ihtiya\u00e7",
+              0.965
+            ]
+          ],
+          "top_suppress": [
+            [
+              "archaeologists",
+              0.797
+            ],
+            [
+              "tomb",
+              0.763
+            ],
+            [
+              "blasp",
+              0.757
+            ],
+            [
+              "iconography",
+              0.752
+            ],
+            [
+              "objected",
+              0.744
+            ],
+            [
+              "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+              0.737
+            ],
+            [
+              "isotopic",
+              0.735
+            ],
+            [
+              "respectivement",
+              0.731
+            ]
+          ],
+          "suppress_label": "archaeologists, tomb, blasp, iconography",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1592,
+          "rank": 3,
+          "weight": -80.2177,
+          "abs_weight": 80.2177,
+          "importance": 0.2065,
+          "lens_score": 1.694,
+          "sign": "neg",
+          "title": "Emotional Concepts",
+          "description": "Emotional and psychological concepts, contrasting with business and technology",
+          "label": "Emotional Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "emotional",
+              1.694
+            ],
+            [
+              "emocional",
+              1.622
+            ],
+            [
+              "psych",
+              1.608
+            ],
+            [
+              "psychological",
+              1.591
+            ],
+            [
+              "emotional",
+              1.548
+            ],
+            [
+              "duyg",
+              1.546
+            ],
+            [
+              "emotions",
+              1.532
+            ],
+            [
+              "psychologist",
+              1.514
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\uc218\ucd9c",
+              0.825
+            ],
+            [
+              "Technologie",
+              0.791
+            ],
+            [
+              "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+              0.77
+            ],
+            [
+              "Prix",
+              0.757
+            ],
+            [
+              "Technology",
+              0.755
+            ],
+            [
+              "\u529e\u6cd5",
+              0.755
+            ],
+            [
+              "\u4ea7\u54c1",
+              0.727
+            ],
+            [
+              "extruder",
+              0.725
+            ]
+          ],
+          "suppress_label": "Technologie, Prix, Technology, extruder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 14081,
+          "rank": 4,
+          "weight": -68.773,
+          "abs_weight": 68.773,
+          "importance": 0.1771,
+          "lens_score": 1.619,
+          "sign": "neg",
+          "title": "Disjunction",
+          "description": "Disjunctive concepts like 'or' and 'some/any' across multiple languages",
+          "label": "Disjunction",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "algum",
+              1.619
+            ],
+            [
+              "ho\u1eb7c",
+              1.552
+            ],
+            [
+              "alg\u00fan",
+              1.527
+            ],
+            [
+              "atau",
+              1.49
+            ],
+            [
+              "alguma",
+              1.464
+            ],
+            [
+              "alguna",
+              1.46
+            ],
+            [
+              "\ud639\uc740",
+              1.448
+            ],
+            [
+              "or",
+              1.432
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0648\u0645\u0646",
+              1.048
+            ],
+            [
+              "\u0995\u09c7\u09b6",
+              0.993
+            ],
+            [
+              "\u0432\u0441\u0435\u043c\u0438",
+              0.982
+            ],
+            [
+              "narrates",
+              0.982
+            ],
+            [
+              "ovviamente",
+              0.977
+            ],
+            [
+              "\u03ba\u03b1\u03b9",
+              0.966
+            ],
+            [
+              "\u05d5\u05d4",
+              0.963
+            ],
+            [
+              "basicamente",
+              0.941
+            ]
+          ],
+          "suppress_label": "narrates, ovviamente, basicamente",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 7469,
+          "rank": 5,
+          "weight": -66.2985,
+          "abs_weight": 66.2985,
+          "importance": 0.1707,
+          "lens_score": 1.083,
+          "sign": "neg",
+          "title": "*   `wondering` (+0.90)",
+          "description": "These tokens relate to:",
+          "label": "*   `wondering` (+0.90)",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "thoughts",
+              1.083
+            ],
+            [
+              "pergunt",
+              1.052
+            ],
+            [
+              "Thoughts",
+              0.991
+            ],
+            [
+              "listening",
+              0.989
+            ],
+            [
+              "acquaintances",
+              0.936
+            ],
+            [
+              "\u0bb5\u0bbf\u0bb3\u0bc8\u0baf\u0bbe",
+              0.927
+            ],
+            [
+              "\u0989\u09a6\u09cd\u09a6\u09c7\u09b6\u09c7",
+              0.919
+            ],
+            [
+              "wondering",
+              0.896
+            ]
+          ],
+          "top_suppress": [
+            [
+              "histologic",
+              1.172
+            ],
+            [
+              "\uf0fc",
+              1.133
+            ],
+            [
+              "histological",
+              1.12
+            ],
+            [
+              "\ud83d\udcb9",
+              1.109
+            ],
+            [
+              "sulfon",
+              1.063
+            ],
+            [
+              "metodologia",
+              1.046
+            ],
+            [
+              "morphological",
+              1.044
+            ],
+            [
+              "azuje",
+              1.03
+            ]
+          ],
+          "suppress_label": "histologic, histological, sulfon, metodologia",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 59884,
+          "rank": 6,
+          "weight": 62.1028,
+          "abs_weight": 62.1028,
+          "importance": 0.1599,
+          "lens_score": 1.362,
+          "sign": "pos",
+          "title": "Imperative Requests",
+          "description": "Cross-lingual imperative language, including commands, prohibitions, and strong suggestions",
+          "label": "Imperative Requests",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "jangan",
+              1.362
+            ],
+            [
+              "\u0111\u1eebng",
+              1.248
+            ],
+            [
+              "supaya",
+              1.183
+            ],
+            [
+              "please",
+              1.151
+            ],
+            [
+              "Jangan",
+              1.121
+            ],
+            [
+              "\u0e2d\u0e22\u0e48\u0e32",
+              1.073
+            ],
+            [
+              "unbedingt",
+              1.057
+            ],
+            [
+              "Please",
+              1.027
+            ]
+          ],
+          "top_suppress": [
+            [
+              "nbsp",
+              1.103
+            ],
+            [
+              "\u06c1\u06d2\u06d4",
+              1.099
+            ],
+            [
+              "\u0995\u09bf\u09a8\u09be",
+              1.077
+            ],
+            [
+              "heralded",
+              1.073
+            ],
+            [
+              "\u0441\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435",
+              1.033
+            ],
+            [
+              "\u69d8\u3005\u306a",
+              1.027
+            ],
+            [
+              "\u901a\u5e38",
+              1.006
+            ],
+            [
+              "\u0939\u0942\u0901",
+              0.997
+            ]
+          ],
+          "suppress_label": "nbsp, heralded",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 10861,
+          "rank": 7,
+          "weight": -61.8338,
+          "abs_weight": 61.8338,
+          "importance": 0.1592,
+          "lens_score": 0.935,
+          "sign": "neg",
+          "title": "Discussion/Questions",
+          "description": "Tokens related to asking questions, discussing ideas, or seeking next steps",
+          "label": "Discussion/Questions",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "brainstorming",
+              0.935
+            ],
+            [
+              "brainstorm",
+              0.934
+            ],
+            [
+              "discuss",
+              0.86
+            ],
+            [
+              "\uc9c8\ubb38",
+              0.804
+            ],
+            [
+              "\u0441\u043b\u0435\u0434\u0443",
+              0.804
+            ],
+            [
+              "domande",
+              0.803
+            ],
+            [
+              "prochain",
+              0.795
+            ],
+            [
+              "pregunt",
+              0.766
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0c05\u0c28\u0c47\u0c15",
+              0.981
+            ],
+            [
+              "upholding",
+              0.912
+            ],
+            [
+              "heids",
+              0.87
+            ],
+            [
+              "\u5de8\u5927\u7684",
+              0.858
+            ],
+            [
+              "issued",
+              0.827
+            ],
+            [
+              "biotics",
+              0.823
+            ],
+            [
+              "\ud83c\udf86",
+              0.784
+            ],
+            [
+              "b\u00f3l",
+              0.775
+            ]
+          ],
+          "suppress_label": "upholding, heids, issued, biotics",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 5306,
+          "rank": 8,
+          "weight": 58.5539,
+          "abs_weight": 58.5539,
+          "importance": 0.1507,
+          "lens_score": 1.147,
+          "sign": "pos",
+          "title": "Boisterous Humor",
+          "description": "Language associated with jokes, laughter, and boisterous or playful expression",
+          "label": "Boisterous Humor",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "laughing",
+              1.147
+            ],
+            [
+              "hilarious",
+              1.133
+            ],
+            [
+              "giggle",
+              1.107
+            ],
+            [
+              "yelling",
+              1.075
+            ],
+            [
+              "jokes",
+              1.069
+            ],
+            [
+              "gangsters",
+              1.05
+            ],
+            [
+              "wacky",
+              1.035
+            ],
+            [
+              "lol",
+              1.017
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\ud83d\udcb9",
+              0.764
+            ],
+            [
+              "framework",
+              0.736
+            ],
+            [
+              "desg",
+              0.736
+            ],
+            [
+              "\u092a\u094d\u0930\u0926\u093e\u0928",
+              0.73
+            ],
+            [
+              "\u591a\u304f\u306e",
+              0.725
+            ],
+            [
+              "frameworks",
+              0.718
+            ],
+            [
+              "information",
+              0.715
+            ],
+            [
+              "focal",
+              0.708
+            ]
+          ],
+          "suppress_label": "framework, desg, frameworks, information",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1577,
+          "rank": 9,
+          "weight": 57.8182,
+          "abs_weight": 57.8182,
+          "importance": 0.1489,
+          "lens_score": 1.569,
+          "sign": "pos",
+          "title": "DevOps Tools",
+          "description": "Terms related to software development, Linux, and DevOps infrastructure",
+          "label": "DevOps Tools",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "docker",
+              1.569
+            ],
+            [
+              "docker",
+              1.539
+            ],
+            [
+              "Docker",
+              1.533
+            ],
+            [
+              "Docker",
+              1.349
+            ],
+            [
+              "linux",
+              1.306
+            ],
+            [
+              "Linux",
+              1.305
+            ],
+            [
+              "CMake",
+              1.187
+            ],
+            [
+              "kubectl",
+              1.178
+            ]
+          ],
+          "top_suppress": [
+            [
+              "vertices",
+              0.897
+            ],
+            [
+              "\u0639\u0644\u0627\u0642\u0647",
+              0.845
+            ],
+            [
+              "emociones",
+              0.824
+            ],
+            [
+              "LAR",
+              0.8
+            ],
+            [
+              "s\u00e9culo",
+              0.797
+            ],
+            [
+              "\u666f\u70b9",
+              0.789
+            ],
+            [
+              "\u60c5\u611f",
+              0.782
+            ],
+            [
+              "raviolet",
+              0.779
+            ]
+          ],
+          "suppress_label": "vertices, emociones, LAR, s\u00e9culo",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 24929,
+          "rank": 10,
+          "weight": -51.2628,
+          "abs_weight": 51.2628,
+          "importance": 0.132,
+          "lens_score": 1.484,
+          "sign": "neg",
+          "title": "Ending Punctuation",
+          "description": "Sentence-ending punctuation, especially periods, and suppresses diverse non-English tokens",
+          "label": "Ending Punctuation",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              ").",
+              1.484
+            ],
+            [
+              ".}",
+              1.443
+            ],
+            [
+              ".)",
+              1.442
+            ],
+            [
+              ".",
+              1.423
+            ],
+            [
+              ".\"",
+              1.378
+            ],
+            [
+              ".]",
+              1.364
+            ],
+            [
+              ".*",
+              1.339
+            ],
+            [
+              ".\u201d",
+              1.322
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0627\u0632",
+              0.728
+            ],
+            [
+              "\u0ba4\u0bae\u0bbe\u0ba9",
+              0.722
+            ],
+            [
+              "Prospective",
+              0.719
+            ],
+            [
+              "\u0aa8\u0acd\u0a9f",
+              0.704
+            ],
+            [
+              "\u0628\u0646\u0627\u0626\u06cc\u06ba",
+              0.685
+            ],
+            [
+              "\u0432\u0441\u0442\u0440\u043e\u0435\u043d",
+              0.679
+            ],
+            [
+              "\u041f\u0440\u0438",
+              0.671
+            ],
+            [
+              "E\u011fitim",
+              0.648
+            ]
+          ],
+          "suppress_label": "Prospective, E\u011fitim",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 5068,
+          "rank": 11,
+          "weight": 51.1858,
+          "abs_weight": 51.1858,
+          "importance": 0.1318,
+          "lens_score": 1.294,
+          "sign": "pos",
+          "title": "Failure and Deficiency",
+          "description": "Concepts related to errors, inadequacy, and negative outcomes",
+          "label": "Failure and Deficiency",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "improper",
+              1.294
+            ],
+            [
+              "wouldn",
+              1.29
+            ],
+            [
+              "omission",
+              1.216
+            ],
+            [
+              "inability",
+              1.2
+            ],
+            [
+              "failure",
+              1.182
+            ],
+            [
+              "rusting",
+              1.144
+            ],
+            [
+              "Would",
+              1.135
+            ],
+            [
+              "needlessly",
+              1.109
+            ]
+          ],
+          "top_suppress": [
+            [
+              "Unique",
+              0.828
+            ],
+            [
+              "Center",
+              0.824
+            ],
+            [
+              "\u0634\u0631\u0627",
+              0.817
+            ],
+            [
+              "<unused40>",
+              0.812
+            ],
+            [
+              "rati",
+              0.805
+            ],
+            [
+              "aime",
+              0.799
+            ],
+            [
+              "sthrough",
+              0.794
+            ],
+            [
+              "\u0c06\u0c27\u0c4d\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c3f\u0c15",
+              0.79
+            ]
+          ],
+          "suppress_label": "Unique, Center, rati, aime",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 13210,
+          "rank": 12,
+          "weight": 47.1012,
+          "abs_weight": 47.1012,
+          "importance": 0.1213,
+          "lens_score": 2.143,
+          "sign": "pos",
+          "title": "Hip-hop Persona",
+          "description": "Concepts related to hip-hop culture, rap music, and associated personas",
+          "label": "Hip-hop Persona",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "rapper",
+              2.143
+            ],
+            [
+              "streetwear",
+              2.129
+            ],
+            [
+              "rappers",
+              2.101
+            ],
+            [
+              "gangster",
+              1.846
+            ],
+            [
+              "mixtape",
+              1.828
+            ],
+            [
+              "swagger",
+              1.824
+            ],
+            [
+              "gangsters",
+              1.766
+            ],
+            [
+              "reggae",
+              1.751
+            ]
+          ],
+          "top_suppress": [
+            [
+              "IAEA",
+              0.955
+            ],
+            [
+              "fluoride",
+              0.933
+            ],
+            [
+              "larch",
+              0.929
+            ],
+            [
+              "fluor",
+              0.902
+            ],
+            [
+              "Euler",
+              0.884
+            ],
+            [
+              "Switzerland",
+              0.874
+            ],
+            [
+              "Alten",
+              0.833
+            ],
+            [
+              "inositol",
+              0.824
+            ]
+          ],
+          "suppress_label": "IAEA, fluoride, larch, fluor",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 24047,
+          "rank": 13,
+          "weight": -46.2893,
+          "abs_weight": 46.2893,
+          "importance": 0.1192,
+          "lens_score": 1.972,
+          "sign": "neg",
+          "title": "Cultural Theory",
+          "description": "Concepts from cultural, social, and critical theory",
+          "label": "Cultural Theory",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "postmodern",
+              1.972
+            ],
+            [
+              "neoliberal",
+              1.741
+            ],
+            [
+              "feminist",
+              1.683
+            ],
+            [
+              "cultural",
+              1.657
+            ],
+            [
+              "metaphor",
+              1.653
+            ],
+            [
+              "egalitarian",
+              1.635
+            ],
+            [
+              "modernist",
+              1.624
+            ],
+            [
+              "ocultural",
+              1.621
+            ]
+          ],
+          "top_suppress": [
+            [
+              "Medications",
+              1.397
+            ],
+            [
+              "\u043f\u0440\u0435\u043f\u0430\u0440\u0430\u0442",
+              1.359
+            ],
+            [
+              "\u043f\u0440\u0435\u043f\u0430\u0440\u0430",
+              1.34
+            ],
+            [
+              "Timeout",
+              1.32
+            ],
+            [
+              "\u4fdd\u6e7f",
+              1.266
+            ],
+            [
+              "ammo",
+              1.26
+            ],
+            [
+              "Moistur",
+              1.235
+            ],
+            [
+              "Terbaik",
+              1.224
+            ]
+          ],
+          "suppress_label": "Medications, Timeout, ammo, Moistur",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 11499,
+          "rank": 14,
+          "weight": -39.4935,
+          "abs_weight": 39.4935,
+          "importance": 0.1017,
+          "lens_score": 1.192,
+          "sign": "neg",
+          "title": "Positive Life",
+          "description": "Positive life experiences and virtues, suppressing illegal and malicious actions",
+          "label": "Positive Life",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Freude",
+              1.192
+            ],
+            [
+              "humility",
+              1.169
+            ],
+            [
+              "\u0c1c\u0c40\u0c35\u0c3f\u0c24",
+              1.12
+            ],
+            [
+              "joys",
+              1.113
+            ],
+            [
+              "\u0436\u0438\u0437\u043d\u0438",
+              1.111
+            ],
+            [
+              "\u091a\u0941\u0928\u094c\u0924\u093f\u092f\u094b\u0902",
+              1.108
+            ],
+            [
+              "\u0436\u0438\u0442\u0442\u044f",
+              1.107
+            ],
+            [
+              "gratitude",
+              1.086
+            ]
+          ],
+          "top_suppress": [
+            [
+              "infringing",
+              0.924
+            ],
+            [
+              "unlawful",
+              0.785
+            ],
+            [
+              "malicious",
+              0.776
+            ],
+            [
+              "looting",
+              0.75
+            ],
+            [
+              "criminals",
+              0.748
+            ],
+            [
+              "obfusc",
+              0.745
+            ],
+            [
+              "violate",
+              0.728
+            ],
+            [
+              "\u0dc0\u0dd2\u0dc3\u0dd2\u0db1\u0dca",
+              0.718
+            ]
+          ],
+          "suppress_label": "infringing, unlawful, malicious, looting",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 16540,
+          "rank": 15,
+          "weight": 39.0086,
+          "abs_weight": 39.0086,
+          "importance": 0.1004,
+          "lens_score": 1.466,
+          "sign": "pos",
+          "title": "Financial Concepts",
+          "description": "This feature activates for tokens related to money, budgeting, and financial topics",
+          "label": "Financial Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "financi",
+              1.466
+            ],
+            [
+              "\u0444\u0438\u043d\u0430\u043d\u0441\u043e",
+              1.451
+            ],
+            [
+              "financial",
+              1.436
+            ],
+            [
+              "budgeting",
+              1.428
+            ],
+            [
+              "dollars",
+              1.416
+            ],
+            [
+              "income",
+              1.413
+            ],
+            [
+              "income",
+              1.405
+            ],
+            [
+              "fintech",
+              1.402
+            ]
+          ],
+          "top_suppress": [
+            [
+              "Lingu",
+              1.009
+            ],
+            [
+              "atrical",
+              0.995
+            ],
+            [
+              "grotes",
+              0.989
+            ],
+            [
+              "lingu",
+              0.97
+            ],
+            [
+              "grotesque",
+              0.915
+            ],
+            [
+              "sublime",
+              0.908
+            ],
+            [
+              "indistinct",
+              0.879
+            ],
+            [
+              "lingu",
+              0.878
+            ]
+          ],
+          "suppress_label": "Lingu, atrical, grotes, lingu",
+          "detection_accuracy": null
+        }
+      ]
+    },
+    {
+      "k": 20,
+      "ranking": "omp",
+      "n_active": 20,
+      "scale": null,
+      "cosine_vs_dense": null,
+      "mean_trait": 64.8,
+      "scores": [
+        0,
+        95,
+        0,
+        85,
+        95,
+        0,
+        90,
+        90,
+        10,
+        85,
+        95,
+        95,
+        0,
+        90,
+        100,
+        95,
+        5,
+        95,
+        95,
+        75
+      ],
+      "best_cal_score": null,
+      "features": [
+        {
+          "fid": 4901,
+          "rank": 1,
+          "weight": -388.4235,
+          "abs_weight": 388.4235,
+          "importance": 1.0,
+          "lens_score": 0.518,
+          "sign": "neg",
+          "title": "Conditional Alternatives",
+          "description": "This feature activates for tokens suggesting options or different conditions, suppressing sequential statements",
+          "label": "Conditional Alternatives",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "else",
+              0.518
+            ],
+            [
+              "alternatively",
+              0.49
+            ],
+            [
+              "\u0902\u0924\u094d\u0930\u093f\u0915\u0940",
+              0.412
+            ],
+            [
+              "equivalently",
+              0.409
+            ],
+            [
+              "otherwise",
+              0.399
+            ],
+            [
+              "lando",
+              0.389
+            ],
+            [
+              "acles",
+              0.388
+            ],
+            [
+              "\u03b4\u03b7",
+              0.375
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0924",
+              0.353
+            ],
+            [
+              "Then",
+              0.333
+            ],
+            [
+              "\u662f",
+              0.302
+            ],
+            [
+              "luego",
+              0.3
+            ],
+            [
+              "\u062f\u0644",
+              0.295
+            ],
+            [
+              "\u0986\u09b0",
+              0.286
+            ],
+            [
+              "then",
+              0.285
+            ],
+            [
+              "rightarrow",
+              0.284
+            ]
+          ],
+          "suppress_label": "Then, luego, then, rightarrow",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22843,
+          "rank": 2,
+          "weight": -97.0879,
+          "abs_weight": 97.0879,
+          "importance": 0.25,
+          "lens_score": 1.056,
+          "sign": "neg",
+          "title": "Needs and Desires",
+          "description": "Concepts of personal or collective needs, wants, and choices, suppressing historical or academic topics",
+          "label": "Needs and Desires",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Choosing",
+              1.056
+            ],
+            [
+              "queremos",
+              1.038
+            ],
+            [
+              "kebutuhan",
+              1.036
+            ],
+            [
+              "Healthy",
+              0.984
+            ],
+            [
+              "\u9700\u6c42",
+              0.978
+            ],
+            [
+              "Healthy",
+              0.971
+            ],
+            [
+              "daunting",
+              0.966
+            ],
+            [
+              "ihtiya\u00e7",
+              0.965
+            ]
+          ],
+          "top_suppress": [
+            [
+              "archaeologists",
+              0.797
+            ],
+            [
+              "tomb",
+              0.763
+            ],
+            [
+              "blasp",
+              0.757
+            ],
+            [
+              "iconography",
+              0.752
+            ],
+            [
+              "objected",
+              0.744
+            ],
+            [
+              "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+              0.737
+            ],
+            [
+              "isotopic",
+              0.735
+            ],
+            [
+              "respectivement",
+              0.731
+            ]
+          ],
+          "suppress_label": "archaeologists, tomb, blasp, iconography",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1592,
+          "rank": 3,
+          "weight": -80.2177,
+          "abs_weight": 80.2177,
+          "importance": 0.2065,
+          "lens_score": 1.694,
+          "sign": "neg",
+          "title": "Emotional Concepts",
+          "description": "Emotional and psychological concepts, contrasting with business and technology",
+          "label": "Emotional Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "emotional",
+              1.694
+            ],
+            [
+              "emocional",
+              1.622
+            ],
+            [
+              "psych",
+              1.608
+            ],
+            [
+              "psychological",
+              1.591
+            ],
+            [
+              "emotional",
+              1.548
+            ],
+            [
+              "duyg",
+              1.546
+            ],
+            [
+              "emotions",
+              1.532
+            ],
+            [
+              "psychologist",
+              1.514
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\uc218\ucd9c",
+              0.825
+            ],
+            [
+              "Technologie",
+              0.791
+            ],
+            [
+              "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+              0.77
+            ],
+            [
+              "Prix",
+              0.757
+            ],
+            [
+              "Technology",
+              0.755
+            ],
+            [
+              "\u529e\u6cd5",
+              0.755
+            ],
+            [
+              "\u4ea7\u54c1",
+              0.727
+            ],
+            [
+              "extruder",
+              0.725
+            ]
+          ],
+          "suppress_label": "Technologie, Prix, Technology, extruder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 14081,
+          "rank": 4,
+          "weight": -68.773,
+          "abs_weight": 68.773,
+          "importance": 0.1771,
+          "lens_score": 1.619,
+          "sign": "neg",
+          "title": "Disjunction",
+          "description": "Disjunctive concepts like 'or' and 'some/any' across multiple languages",
+          "label": "Disjunction",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "algum",
+              1.619
+            ],
+            [
+              "ho\u1eb7c",
+              1.552
+            ],
+            [
+              "alg\u00fan",
+              1.527
+            ],
+            [
+              "atau",
+              1.49
+            ],
+            [
+              "alguma",
+              1.464
+            ],
+            [
+              "alguna",
+              1.46
+            ],
+            [
+              "\ud639\uc740",
+              1.448
+            ],
+            [
+              "or",
+              1.432
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0648\u0645\u0646",
+              1.048
+            ],
+            [
+              "\u0995\u09c7\u09b6",
+              0.993
+            ],
+            [
+              "\u0432\u0441\u0435\u043c\u0438",
+              0.982
+            ],
+            [
+              "narrates",
+              0.982
+            ],
+            [
+              "ovviamente",
+              0.977
+            ],
+            [
+              "\u03ba\u03b1\u03b9",
+              0.966
+            ],
+            [
+              "\u05d5\u05d4",
+              0.963
+            ],
+            [
+              "basicamente",
+              0.941
+            ]
+          ],
+          "suppress_label": "narrates, ovviamente, basicamente",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 7469,
+          "rank": 5,
+          "weight": -66.2985,
+          "abs_weight": 66.2985,
+          "importance": 0.1707,
+          "lens_score": 1.083,
+          "sign": "neg",
+          "title": "*   `wondering` (+0.90)",
+          "description": "These tokens relate to:",
+          "label": "*   `wondering` (+0.90)",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "thoughts",
+              1.083
+            ],
+            [
+              "pergunt",
+              1.052
+            ],
+            [
+              "Thoughts",
+              0.991
+            ],
+            [
+              "listening",
+              0.989
+            ],
+            [
+              "acquaintances",
+              0.936
+            ],
+            [
+              "\u0bb5\u0bbf\u0bb3\u0bc8\u0baf\u0bbe",
+              0.927
+            ],
+            [
+              "\u0989\u09a6\u09cd\u09a6\u09c7\u09b6\u09c7",
+              0.919
+            ],
+            [
+              "wondering",
+              0.896
+            ]
+          ],
+          "top_suppress": [
+            [
+              "histologic",
+              1.172
+            ],
+            [
+              "\uf0fc",
+              1.133
+            ],
+            [
+              "histological",
+              1.12
+            ],
+            [
+              "\ud83d\udcb9",
+              1.109
+            ],
+            [
+              "sulfon",
+              1.063
+            ],
+            [
+              "metodologia",
+              1.046
+            ],
+            [
+              "morphological",
+              1.044
+            ],
+            [
+              "azuje",
+              1.03
+            ]
+          ],
+          "suppress_label": "histologic, histological, sulfon, metodologia",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 59884,
+          "rank": 6,
+          "weight": 62.1028,
+          "abs_weight": 62.1028,
+          "importance": 0.1599,
+          "lens_score": 1.362,
+          "sign": "pos",
+          "title": "Imperative Requests",
+          "description": "Cross-lingual imperative language, including commands, prohibitions, and strong suggestions",
+          "label": "Imperative Requests",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "jangan",
+              1.362
+            ],
+            [
+              "\u0111\u1eebng",
+              1.248
+            ],
+            [
+              "supaya",
+              1.183
+            ],
+            [
+              "please",
+              1.151
+            ],
+            [
+              "Jangan",
+              1.121
+            ],
+            [
+              "\u0e2d\u0e22\u0e48\u0e32",
+              1.073
+            ],
+            [
+              "unbedingt",
+              1.057
+            ],
+            [
+              "Please",
+              1.027
+            ]
+          ],
+          "top_suppress": [
+            [
+              "nbsp",
+              1.103
+            ],
+            [
+              "\u06c1\u06d2\u06d4",
+              1.099
+            ],
+            [
+              "\u0995\u09bf\u09a8\u09be",
+              1.077
+            ],
+            [
+              "heralded",
+              1.073
+            ],
+            [
+              "\u0441\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435",
+              1.033
+            ],
+            [
+              "\u69d8\u3005\u306a",
+              1.027
+            ],
+            [
+              "\u901a\u5e38",
+              1.006
+            ],
+            [
+              "\u0939\u0942\u0901",
+              0.997
+            ]
+          ],
+          "suppress_label": "nbsp, heralded",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 10861,
+          "rank": 7,
+          "weight": -61.8338,
+          "abs_weight": 61.8338,
+          "importance": 0.1592,
+          "lens_score": 0.935,
+          "sign": "neg",
+          "title": "Discussion/Questions",
+          "description": "Tokens related to asking questions, discussing ideas, or seeking next steps",
+          "label": "Discussion/Questions",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "brainstorming",
+              0.935
+            ],
+            [
+              "brainstorm",
+              0.934
+            ],
+            [
+              "discuss",
+              0.86
+            ],
+            [
+              "\uc9c8\ubb38",
+              0.804
+            ],
+            [
+              "\u0441\u043b\u0435\u0434\u0443",
+              0.804
+            ],
+            [
+              "domande",
+              0.803
+            ],
+            [
+              "prochain",
+              0.795
+            ],
+            [
+              "pregunt",
+              0.766
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0c05\u0c28\u0c47\u0c15",
+              0.981
+            ],
+            [
+              "upholding",
+              0.912
+            ],
+            [
+              "heids",
+              0.87
+            ],
+            [
+              "\u5de8\u5927\u7684",
+              0.858
+            ],
+            [
+              "issued",
+              0.827
+            ],
+            [
+              "biotics",
+              0.823
+            ],
+            [
+              "\ud83c\udf86",
+              0.784
+            ],
+            [
+              "b\u00f3l",
+              0.775
+            ]
+          ],
+          "suppress_label": "upholding, heids, issued, biotics",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 5306,
+          "rank": 8,
+          "weight": 58.5539,
+          "abs_weight": 58.5539,
+          "importance": 0.1507,
+          "lens_score": 1.147,
+          "sign": "pos",
+          "title": "Boisterous Humor",
+          "description": "Language associated with jokes, laughter, and boisterous or playful expression",
+          "label": "Boisterous Humor",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "laughing",
+              1.147
+            ],
+            [
+              "hilarious",
+              1.133
+            ],
+            [
+              "giggle",
+              1.107
+            ],
+            [
+              "yelling",
+              1.075
+            ],
+            [
+              "jokes",
+              1.069
+            ],
+            [
+              "gangsters",
+              1.05
+            ],
+            [
+              "wacky",
+              1.035
+            ],
+            [
+              "lol",
+              1.017
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\ud83d\udcb9",
+              0.764
+            ],
+            [
+              "framework",
+              0.736
+            ],
+            [
+              "desg",
+              0.736
+            ],
+            [
+              "\u092a\u094d\u0930\u0926\u093e\u0928",
+              0.73
+            ],
+            [
+              "\u591a\u304f\u306e",
+              0.725
+            ],
+            [
+              "frameworks",
+              0.718
+            ],
+            [
+              "information",
+              0.715
+            ],
+            [
+              "focal",
+              0.708
+            ]
+          ],
+          "suppress_label": "framework, desg, frameworks, information",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1577,
+          "rank": 9,
+          "weight": 57.8182,
+          "abs_weight": 57.8182,
+          "importance": 0.1489,
+          "lens_score": 1.569,
+          "sign": "pos",
+          "title": "DevOps Tools",
+          "description": "Terms related to software development, Linux, and DevOps infrastructure",
+          "label": "DevOps Tools",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "docker",
+              1.569
+            ],
+            [
+              "docker",
+              1.539
+            ],
+            [
+              "Docker",
+              1.533
+            ],
+            [
+              "Docker",
+              1.349
+            ],
+            [
+              "linux",
+              1.306
+            ],
+            [
+              "Linux",
+              1.305
+            ],
+            [
+              "CMake",
+              1.187
+            ],
+            [
+              "kubectl",
+              1.178
+            ]
+          ],
+          "top_suppress": [
+            [
+              "vertices",
+              0.897
+            ],
+            [
+              "\u0639\u0644\u0627\u0642\u0647",
+              0.845
+            ],
+            [
+              "emociones",
+              0.824
+            ],
+            [
+              "LAR",
+              0.8
+            ],
+            [
+              "s\u00e9culo",
+              0.797
+            ],
+            [
+              "\u666f\u70b9",
+              0.789
+            ],
+            [
+              "\u60c5\u611f",
+              0.782
+            ],
+            [
+              "raviolet",
+              0.779
+            ]
+          ],
+          "suppress_label": "vertices, emociones, LAR, s\u00e9culo",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 24929,
+          "rank": 10,
+          "weight": -51.2628,
+          "abs_weight": 51.2628,
+          "importance": 0.132,
+          "lens_score": 1.484,
+          "sign": "neg",
+          "title": "Ending Punctuation",
+          "description": "Sentence-ending punctuation, especially periods, and suppresses diverse non-English tokens",
+          "label": "Ending Punctuation",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              ").",
+              1.484
+            ],
+            [
+              ".}",
+              1.443
+            ],
+            [
+              ".)",
+              1.442
+            ],
+            [
+              ".",
+              1.423
+            ],
+            [
+              ".\"",
+              1.378
+            ],
+            [
+              ".]",
+              1.364
+            ],
+            [
+              ".*",
+              1.339
+            ],
+            [
+              ".\u201d",
+              1.322
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0627\u0632",
+              0.728
+            ],
+            [
+              "\u0ba4\u0bae\u0bbe\u0ba9",
+              0.722
+            ],
+            [
+              "Prospective",
+              0.719
+            ],
+            [
+              "\u0aa8\u0acd\u0a9f",
+              0.704
+            ],
+            [
+              "\u0628\u0646\u0627\u0626\u06cc\u06ba",
+              0.685
+            ],
+            [
+              "\u0432\u0441\u0442\u0440\u043e\u0435\u043d",
+              0.679
+            ],
+            [
+              "\u041f\u0440\u0438",
+              0.671
+            ],
+            [
+              "E\u011fitim",
+              0.648
+            ]
+          ],
+          "suppress_label": "Prospective, E\u011fitim",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 5068,
+          "rank": 11,
+          "weight": 51.1858,
+          "abs_weight": 51.1858,
+          "importance": 0.1318,
+          "lens_score": 1.294,
+          "sign": "pos",
+          "title": "Failure and Deficiency",
+          "description": "Concepts related to errors, inadequacy, and negative outcomes",
+          "label": "Failure and Deficiency",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "improper",
+              1.294
+            ],
+            [
+              "wouldn",
+              1.29
+            ],
+            [
+              "omission",
+              1.216
+            ],
+            [
+              "inability",
+              1.2
+            ],
+            [
+              "failure",
+              1.182
+            ],
+            [
+              "rusting",
+              1.144
+            ],
+            [
+              "Would",
+              1.135
+            ],
+            [
+              "needlessly",
+              1.109
+            ]
+          ],
+          "top_suppress": [
+            [
+              "Unique",
+              0.828
+            ],
+            [
+              "Center",
+              0.824
+            ],
+            [
+              "\u0634\u0631\u0627",
+              0.817
+            ],
+            [
+              "<unused40>",
+              0.812
+            ],
+            [
+              "rati",
+              0.805
+            ],
+            [
+              "aime",
+              0.799
+            ],
+            [
+              "sthrough",
+              0.794
+            ],
+            [
+              "\u0c06\u0c27\u0c4d\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c3f\u0c15",
+              0.79
+            ]
+          ],
+          "suppress_label": "Unique, Center, rati, aime",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 13210,
+          "rank": 12,
+          "weight": 47.1012,
+          "abs_weight": 47.1012,
+          "importance": 0.1213,
+          "lens_score": 2.143,
+          "sign": "pos",
+          "title": "Hip-hop Persona",
+          "description": "Concepts related to hip-hop culture, rap music, and associated personas",
+          "label": "Hip-hop Persona",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "rapper",
+              2.143
+            ],
+            [
+              "streetwear",
+              2.129
+            ],
+            [
+              "rappers",
+              2.101
+            ],
+            [
+              "gangster",
+              1.846
+            ],
+            [
+              "mixtape",
+              1.828
+            ],
+            [
+              "swagger",
+              1.824
+            ],
+            [
+              "gangsters",
+              1.766
+            ],
+            [
+              "reggae",
+              1.751
+            ]
+          ],
+          "top_suppress": [
+            [
+              "IAEA",
+              0.955
+            ],
+            [
+              "fluoride",
+              0.933
+            ],
+            [
+              "larch",
+              0.929
+            ],
+            [
+              "fluor",
+              0.902
+            ],
+            [
+              "Euler",
+              0.884
+            ],
+            [
+              "Switzerland",
+              0.874
+            ],
+            [
+              "Alten",
+              0.833
+            ],
+            [
+              "inositol",
+              0.824
+            ]
+          ],
+          "suppress_label": "IAEA, fluoride, larch, fluor",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 24047,
+          "rank": 13,
+          "weight": -46.2893,
+          "abs_weight": 46.2893,
+          "importance": 0.1192,
+          "lens_score": 1.972,
+          "sign": "neg",
+          "title": "Cultural Theory",
+          "description": "Concepts from cultural, social, and critical theory",
+          "label": "Cultural Theory",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "postmodern",
+              1.972
+            ],
+            [
+              "neoliberal",
+              1.741
+            ],
+            [
+              "feminist",
+              1.683
+            ],
+            [
+              "cultural",
+              1.657
+            ],
+            [
+              "metaphor",
+              1.653
+            ],
+            [
+              "egalitarian",
+              1.635
+            ],
+            [
+              "modernist",
+              1.624
+            ],
+            [
+              "ocultural",
+              1.621
+            ]
+          ],
+          "top_suppress": [
+            [
+              "Medications",
+              1.397
+            ],
+            [
+              "\u043f\u0440\u0435\u043f\u0430\u0440\u0430\u0442",
+              1.359
+            ],
+            [
+              "\u043f\u0440\u0435\u043f\u0430\u0440\u0430",
+              1.34
+            ],
+            [
+              "Timeout",
+              1.32
+            ],
+            [
+              "\u4fdd\u6e7f",
+              1.266
+            ],
+            [
+              "ammo",
+              1.26
+            ],
+            [
+              "Moistur",
+              1.235
+            ],
+            [
+              "Terbaik",
+              1.224
+            ]
+          ],
+          "suppress_label": "Medications, Timeout, ammo, Moistur",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 11499,
+          "rank": 14,
+          "weight": -39.4935,
+          "abs_weight": 39.4935,
+          "importance": 0.1017,
+          "lens_score": 1.192,
+          "sign": "neg",
+          "title": "Positive Life",
+          "description": "Positive life experiences and virtues, suppressing illegal and malicious actions",
+          "label": "Positive Life",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Freude",
+              1.192
+            ],
+            [
+              "humility",
+              1.169
+            ],
+            [
+              "\u0c1c\u0c40\u0c35\u0c3f\u0c24",
+              1.12
+            ],
+            [
+              "joys",
+              1.113
+            ],
+            [
+              "\u0436\u0438\u0437\u043d\u0438",
+              1.111
+            ],
+            [
+              "\u091a\u0941\u0928\u094c\u0924\u093f\u092f\u094b\u0902",
+              1.108
+            ],
+            [
+              "\u0436\u0438\u0442\u0442\u044f",
+              1.107
+            ],
+            [
+              "gratitude",
+              1.086
+            ]
+          ],
+          "top_suppress": [
+            [
+              "infringing",
+              0.924
+            ],
+            [
+              "unlawful",
+              0.785
+            ],
+            [
+              "malicious",
+              0.776
+            ],
+            [
+              "looting",
+              0.75
+            ],
+            [
+              "criminals",
+              0.748
+            ],
+            [
+              "obfusc",
+              0.745
+            ],
+            [
+              "violate",
+              0.728
+            ],
+            [
+              "\u0dc0\u0dd2\u0dc3\u0dd2\u0db1\u0dca",
+              0.718
+            ]
+          ],
+          "suppress_label": "infringing, unlawful, malicious, looting",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 16540,
+          "rank": 15,
+          "weight": 39.0086,
+          "abs_weight": 39.0086,
+          "importance": 0.1004,
+          "lens_score": 1.466,
+          "sign": "pos",
+          "title": "Financial Concepts",
+          "description": "This feature activates for tokens related to money, budgeting, and financial topics",
+          "label": "Financial Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "financi",
+              1.466
+            ],
+            [
+              "\u0444\u0438\u043d\u0430\u043d\u0441\u043e",
+              1.451
+            ],
+            [
+              "financial",
+              1.436
+            ],
+            [
+              "budgeting",
+              1.428
+            ],
+            [
+              "dollars",
+              1.416
+            ],
+            [
+              "income",
+              1.413
+            ],
+            [
+              "income",
+              1.405
+            ],
+            [
+              "fintech",
+              1.402
+            ]
+          ],
+          "top_suppress": [
+            [
+              "Lingu",
+              1.009
+            ],
+            [
+              "atrical",
+              0.995
+            ],
+            [
+              "grotes",
+              0.989
+            ],
+            [
+              "lingu",
+              0.97
+            ],
+            [
+              "grotesque",
+              0.915
+            ],
+            [
+              "sublime",
+              0.908
+            ],
+            [
+              "indistinct",
+              0.879
+            ],
+            [
+              "lingu",
+              0.878
+            ]
+          ],
+          "suppress_label": "Lingu, atrical, grotes, lingu",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 10826,
+          "rank": 16,
+          "weight": 37.5192,
+          "abs_weight": 37.5192,
+          "importance": 0.0966,
+          "lens_score": 2.284,
+          "sign": "pos",
+          "title": "Multilingual Punctuation",
+          "description": "Common punctuation and subwords across multiple languages",
+          "label": "Multilingual Punctuation",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              ".,",
+              2.284
+            ],
+            [
+              "il",
+              2.1
+            ],
+            [
+              "\u09a6\u09c7\u09b0",
+              2.06
+            ],
+            [
+              ".:",
+              2.056
+            ],
+            [
+              "itates",
+              1.988
+            ],
+            [
+              "\u0651",
+              1.875
+            ],
+            [
+              "ra",
+              1.861
+            ],
+            [
+              "IAU",
+              1.859
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u0645",
+              2.36
+            ],
+            [
+              "IZE",
+              2.11
+            ],
+            [
+              "yd\u0131",
+              2.029
+            ],
+            [
+              "e",
+              2.006
+            ],
+            [
+              "\ufe96",
+              1.998
+            ],
+            [
+              "pup",
+              1.935
+            ],
+            [
+              "\u03a4",
+              1.924
+            ],
+            [
+              "equ",
+              1.914
+            ]
+          ],
+          "suppress_label": "IZE, yd\u0131, pup, equ",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 19587,
+          "rank": 17,
+          "weight": -36.758,
+          "abs_weight": 36.758,
+          "importance": 0.0946,
+          "lens_score": 1.461,
+          "sign": "neg",
+          "title": "Anxiety/Emotion",
+          "description": "Anxiety and emotional states, suppressing external, collaborative topics",
+          "label": "Anxiety/Emotion",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "xiety",
+              1.461
+            ],
+            [
+              "anxiety",
+              1.291
+            ],
+            [
+              "mindfulness",
+              1.264
+            ],
+            [
+              "\u60c5\u7eea",
+              1.251
+            ],
+            [
+              "ansiedad",
+              1.236
+            ],
+            [
+              "simpt",
+              1.223
+            ],
+            [
+              "neurotrans",
+              1.194
+            ],
+            [
+              "irritability",
+              1.188
+            ]
+          ],
+          "top_suppress": [
+            [
+              "multimedia",
+              0.896
+            ],
+            [
+              "Offices",
+              0.849
+            ],
+            [
+              "\u534f\u540c",
+              0.844
+            ],
+            [
+              "outfitted",
+              0.839
+            ],
+            [
+              "\u0645\u062a\u0639\u062f\u062f",
+              0.838
+            ],
+            [
+              "Agriculture",
+              0.837
+            ],
+            [
+              "coop\u00e9ration",
+              0.837
+            ],
+            [
+              "\u0636\u0645\u0646",
+              0.825
+            ]
+          ],
+          "suppress_label": "multimedia, Offices, outfitted, Agriculture",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 33519,
+          "rank": 18,
+          "weight": 36.7289,
+          "abs_weight": 36.7289,
+          "importance": 0.0946,
+          "lens_score": 2.137,
+          "sign": "pos",
+          "title": "Violent Conflict",
+          "description": "Violence, hostility, and weaponry, suppressing educational and structured learning contexts",
+          "label": "Violent Conflict",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "murderous",
+              2.137
+            ],
+            [
+              "bloodshed",
+              2.033
+            ],
+            [
+              "weapon",
+              2.03
+            ],
+            [
+              "enemy",
+              1.921
+            ],
+            [
+              "weapons",
+              1.903
+            ],
+            [
+              "enemigo",
+              1.884
+            ],
+            [
+              "enemigos",
+              1.85
+            ],
+            [
+              "carnage",
+              1.846
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u985e",
+              1.068
+            ],
+            [
+              "literacy",
+              1.055
+            ],
+            [
+              "yearbook",
+              1.037
+            ],
+            [
+              "\u8868\u683c",
+              1.024
+            ],
+            [
+              "questionnaire",
+              1.014
+            ],
+            [
+              "Montessori",
+              0.973
+            ],
+            [
+              "workbook",
+              0.966
+            ],
+            [
+              "\u0d2a\u0d20",
+              0.964
+            ]
+          ],
+          "suppress_label": "literacy, yearbook, questionnaire, Montessori",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 8880,
+          "rank": 19,
+          "weight": 33.7359,
+          "abs_weight": 33.7359,
+          "importance": 0.0869,
+          "lens_score": 1.015,
+          "sign": "pos",
+          "title": "Aesthetic Judgment",
+          "description": "Tokens related to strong aesthetic or critical evaluations, suppressing foreign conjunctions",
+          "label": "Aesthetic Judgment",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "pungent",
+              1.015
+            ],
+            [
+              "scathing",
+              1.004
+            ],
+            [
+              "tasteless",
+              0.985
+            ],
+            [
+              "horrors",
+              0.949
+            ],
+            [
+              "exquisite",
+              0.944
+            ],
+            [
+              "gorgeous",
+              0.921
+            ],
+            [
+              "picturesque",
+              0.914
+            ],
+            [
+              "arched",
+              0.909
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u307e\u305f\u306f",
+              0.994
+            ],
+            [
+              "\ub610\ub294",
+              0.889
+            ],
+            [
+              "\ubc1c\uc0dd\ud558\ub294",
+              0.883
+            ],
+            [
+              "\u03bc\u03b2\u03c1\u03af\u03bf\u03c5",
+              0.851
+            ],
+            [
+              "\u0d05\u0d32\u0d4d\u0d32\u0d46\u0d19\u0d4d\u0d15\u0d3f\u0d7d",
+              0.849
+            ],
+            [
+              "Menschen",
+              0.818
+            ],
+            [
+              "\u304a\u3088\u3073",
+              0.816
+            ],
+            [
+              "Organizations",
+              0.802
+            ]
+          ],
+          "suppress_label": "Menschen, Organizations",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 29385,
+          "rank": 20,
+          "weight": -32.9971,
+          "abs_weight": 32.9971,
+          "importance": 0.085,
+          "lens_score": 3.735,
+          "sign": "neg",
+          "title": "",
+          "description": "",
+          "label": "",
+          "label_source": "none",
+          "theme": "Unknown",
+          "top_tokens": [
+            [
+              "i",
+              3.735
+            ],
+            [
+              "\u043d\u0430",
+              3.268
+            ],
+            [
+              "\u064a",
+              3.003
+            ],
+            [
+              "in",
+              2.881
+            ],
+            [
+              "\u064a\u0626\u0629",
+              2.763
+            ],
+            [
+              "\u043b\u0430",
+              2.725
+            ],
+            [
+              "\u0442\u0435",
+              2.699
+            ],
+            [
+              "ar",
+              2.684
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\ud835\udc2d",
+              3.272
+            ],
+            [
+              "\uaecf",
+              3.086
+            ],
+            [
+              "\ud835\udc24",
+              2.773
+            ],
+            [
+              "\ud835\udc25",
+              2.695
+            ],
+            [
+              "\ud835\udc1b",
+              2.681
+            ],
+            [
+              "backbone",
+              2.679
+            ],
+            [
+              "\u53ef\u4ee5\u5c06",
+              2.667
+            ],
+            [
+              "\uc73c\ub85c",
+              2.645
+            ]
+          ],
+          "suppress_label": "backbone",
+          "detection_accuracy": null
+        }
+      ]
+    }
+  ],
+  "feature_meta": {
+    "1577": {
+      "fid": 1577,
+      "title": "DevOps Tools",
+      "description": "Terms related to software development, Linux, and DevOps infrastructure",
+      "label": "DevOps Tools",
+      "label_source": "lens_gemini",
+      "lens_score": 1.569,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "docker",
+          1.569
+        ],
+        [
+          "docker",
+          1.539
+        ],
+        [
+          "Docker",
+          1.533
+        ],
+        [
+          "Docker",
+          1.349
+        ],
+        [
+          "linux",
+          1.306
+        ],
+        [
+          "Linux",
+          1.305
+        ],
+        [
+          "CMake",
+          1.187
+        ],
+        [
+          "kubectl",
+          1.178
+        ]
+      ],
+      "top_suppress": [
+        [
+          "vertices",
+          0.897
+        ],
+        [
+          "\u0639\u0644\u0627\u0642\u0647",
+          0.845
+        ],
+        [
+          "emociones",
+          0.824
+        ],
+        [
+          "LAR",
+          0.8
+        ],
+        [
+          "s\u00e9culo",
+          0.797
+        ],
+        [
+          "\u666f\u70b9",
+          0.789
+        ],
+        [
+          "\u60c5\u611f",
+          0.782
+        ],
+        [
+          "raviolet",
+          0.779
+        ]
+      ],
+      "suppress_label": "vertices, emociones, LAR, s\u00e9culo",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/1577",
+      "detection_accuracy": null
+    },
+    "1592": {
+      "fid": 1592,
+      "title": "Emotional Concepts",
+      "description": "Emotional and psychological concepts, contrasting with business and technology",
+      "label": "Emotional Concepts",
+      "label_source": "lens_gemini",
+      "lens_score": 1.694,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "emotional",
+          1.694
+        ],
+        [
+          "emocional",
+          1.622
+        ],
+        [
+          "psych",
+          1.608
+        ],
+        [
+          "psychological",
+          1.591
+        ],
+        [
+          "emotional",
+          1.548
+        ],
+        [
+          "duyg",
+          1.546
+        ],
+        [
+          "emotions",
+          1.532
+        ],
+        [
+          "psychologist",
+          1.514
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\uc218\ucd9c",
+          0.825
+        ],
+        [
+          "Technologie",
+          0.791
+        ],
+        [
+          "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+          0.77
+        ],
+        [
+          "Prix",
+          0.757
+        ],
+        [
+          "Technology",
+          0.755
+        ],
+        [
+          "\u529e\u6cd5",
+          0.755
+        ],
+        [
+          "\u4ea7\u54c1",
+          0.727
+        ],
+        [
+          "extruder",
+          0.725
+        ]
+      ],
+      "suppress_label": "Technologie, Prix, Technology, extruder",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/1592",
+      "detection_accuracy": null
+    },
+    "4901": {
+      "fid": 4901,
+      "title": "Conditional Alternatives",
+      "description": "This feature activates for tokens suggesting options or different conditions, suppressing sequential statements",
+      "label": "Conditional Alternatives",
+      "label_source": "lens_gemini",
+      "lens_score": 0.518,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "else",
+          0.518
+        ],
+        [
+          "alternatively",
+          0.49
+        ],
+        [
+          "\u0902\u0924\u094d\u0930\u093f\u0915\u0940",
+          0.412
+        ],
+        [
+          "equivalently",
+          0.409
+        ],
+        [
+          "otherwise",
+          0.399
+        ],
+        [
+          "lando",
+          0.389
+        ],
+        [
+          "acles",
+          0.388
+        ],
+        [
+          "\u03b4\u03b7",
+          0.375
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u0924",
+          0.353
+        ],
+        [
+          "Then",
+          0.333
+        ],
+        [
+          "\u662f",
+          0.302
+        ],
+        [
+          "luego",
+          0.3
+        ],
+        [
+          "\u062f\u0644",
+          0.295
+        ],
+        [
+          "\u0986\u09b0",
+          0.286
+        ],
+        [
+          "then",
+          0.285
+        ],
+        [
+          "rightarrow",
+          0.284
+        ]
+      ],
+      "suppress_label": "Then, luego, then, rightarrow",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/4901",
+      "detection_accuracy": null
+    },
+    "5068": {
+      "fid": 5068,
+      "title": "Failure and Deficiency",
+      "description": "Concepts related to errors, inadequacy, and negative outcomes",
+      "label": "Failure and Deficiency",
+      "label_source": "lens_gemini",
+      "lens_score": 1.294,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "improper",
+          1.294
+        ],
+        [
+          "wouldn",
+          1.29
+        ],
+        [
+          "omission",
+          1.216
+        ],
+        [
+          "inability",
+          1.2
+        ],
+        [
+          "failure",
+          1.182
+        ],
+        [
+          "rusting",
+          1.144
+        ],
+        [
+          "Would",
+          1.135
+        ],
+        [
+          "needlessly",
+          1.109
+        ]
+      ],
+      "top_suppress": [
+        [
+          "Unique",
+          0.828
+        ],
+        [
+          "Center",
+          0.824
+        ],
+        [
+          "\u0634\u0631\u0627",
+          0.817
+        ],
+        [
+          "<unused40>",
+          0.812
+        ],
+        [
+          "rati",
+          0.805
+        ],
+        [
+          "aime",
+          0.799
+        ],
+        [
+          "sthrough",
+          0.794
+        ],
+        [
+          "\u0c06\u0c27\u0c4d\u0c2f\u0c3e\u0c24\u0c4d\u0c2e\u0c3f\u0c15",
+          0.79
+        ]
+      ],
+      "suppress_label": "Unique, Center, rati, aime",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/5068",
+      "detection_accuracy": null
+    },
+    "5306": {
+      "fid": 5306,
+      "title": "Boisterous Humor",
+      "description": "Language associated with jokes, laughter, and boisterous or playful expression",
+      "label": "Boisterous Humor",
+      "label_source": "lens_gemini",
+      "lens_score": 1.147,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "laughing",
+          1.147
+        ],
+        [
+          "hilarious",
+          1.133
+        ],
+        [
+          "giggle",
+          1.107
+        ],
+        [
+          "yelling",
+          1.075
+        ],
+        [
+          "jokes",
+          1.069
+        ],
+        [
+          "gangsters",
+          1.05
+        ],
+        [
+          "wacky",
+          1.035
+        ],
+        [
+          "lol",
+          1.017
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\ud83d\udcb9",
+          0.764
+        ],
+        [
+          "framework",
+          0.736
+        ],
+        [
+          "desg",
+          0.736
+        ],
+        [
+          "\u092a\u094d\u0930\u0926\u093e\u0928",
+          0.73
+        ],
+        [
+          "\u591a\u304f\u306e",
+          0.725
+        ],
+        [
+          "frameworks",
+          0.718
+        ],
+        [
+          "information",
+          0.715
+        ],
+        [
+          "focal",
+          0.708
+        ]
+      ],
+      "suppress_label": "framework, desg, frameworks, information",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/5306",
+      "detection_accuracy": null
+    },
+    "7469": {
+      "fid": 7469,
+      "title": "*   `wondering` (+0.90)",
+      "description": "These tokens relate to:",
+      "label": "*   `wondering` (+0.90)",
+      "label_source": "lens_gemini",
+      "lens_score": 1.083,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "thoughts",
+          1.083
+        ],
+        [
+          "pergunt",
+          1.052
+        ],
+        [
+          "Thoughts",
+          0.991
+        ],
+        [
+          "listening",
+          0.989
+        ],
+        [
+          "acquaintances",
+          0.936
+        ],
+        [
+          "\u0bb5\u0bbf\u0bb3\u0bc8\u0baf\u0bbe",
+          0.927
+        ],
+        [
+          "\u0989\u09a6\u09cd\u09a6\u09c7\u09b6\u09c7",
+          0.919
+        ],
+        [
+          "wondering",
+          0.896
+        ]
+      ],
+      "top_suppress": [
+        [
+          "histologic",
+          1.172
+        ],
+        [
+          "\uf0fc",
+          1.133
+        ],
+        [
+          "histological",
+          1.12
+        ],
+        [
+          "\ud83d\udcb9",
+          1.109
+        ],
+        [
+          "sulfon",
+          1.063
+        ],
+        [
+          "metodologia",
+          1.046
+        ],
+        [
+          "morphological",
+          1.044
+        ],
+        [
+          "azuje",
+          1.03
+        ]
+      ],
+      "suppress_label": "histologic, histological, sulfon, metodologia",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/7469",
+      "detection_accuracy": null
+    },
+    "8880": {
+      "fid": 8880,
+      "title": "Aesthetic Judgment",
+      "description": "Tokens related to strong aesthetic or critical evaluations, suppressing foreign conjunctions",
+      "label": "Aesthetic Judgment",
+      "label_source": "lens_gemini",
+      "lens_score": 1.015,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "pungent",
+          1.015
+        ],
+        [
+          "scathing",
+          1.004
+        ],
+        [
+          "tasteless",
+          0.985
+        ],
+        [
+          "horrors",
+          0.949
+        ],
+        [
+          "exquisite",
+          0.944
+        ],
+        [
+          "gorgeous",
+          0.921
+        ],
+        [
+          "picturesque",
+          0.914
+        ],
+        [
+          "arched",
+          0.909
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u307e\u305f\u306f",
+          0.994
+        ],
+        [
+          "\ub610\ub294",
+          0.889
+        ],
+        [
+          "\ubc1c\uc0dd\ud558\ub294",
+          0.883
+        ],
+        [
+          "\u03bc\u03b2\u03c1\u03af\u03bf\u03c5",
+          0.851
+        ],
+        [
+          "\u0d05\u0d32\u0d4d\u0d32\u0d46\u0d19\u0d4d\u0d15\u0d3f\u0d7d",
+          0.849
+        ],
+        [
+          "Menschen",
+          0.818
+        ],
+        [
+          "\u304a\u3088\u3073",
+          0.816
+        ],
+        [
+          "Organizations",
+          0.802
+        ]
+      ],
+      "suppress_label": "Menschen, Organizations",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/8880",
+      "detection_accuracy": null
+    },
+    "10826": {
+      "fid": 10826,
+      "title": "Multilingual Punctuation",
+      "description": "Common punctuation and subwords across multiple languages",
+      "label": "Multilingual Punctuation",
+      "label_source": "lens_gemini",
+      "lens_score": 2.284,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          ".,",
+          2.284
+        ],
+        [
+          "il",
+          2.1
+        ],
+        [
+          "\u09a6\u09c7\u09b0",
+          2.06
+        ],
+        [
+          ".:",
+          2.056
+        ],
+        [
+          "itates",
+          1.988
+        ],
+        [
+          "\u0651",
+          1.875
+        ],
+        [
+          "ra",
+          1.861
+        ],
+        [
+          "IAU",
+          1.859
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u0645",
+          2.36
+        ],
+        [
+          "IZE",
+          2.11
+        ],
+        [
+          "yd\u0131",
+          2.029
+        ],
+        [
+          "e",
+          2.006
+        ],
+        [
+          "\ufe96",
+          1.998
+        ],
+        [
+          "pup",
+          1.935
+        ],
+        [
+          "\u03a4",
+          1.924
+        ],
+        [
+          "equ",
+          1.914
+        ]
+      ],
+      "suppress_label": "IZE, yd\u0131, pup, equ",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/10826",
+      "detection_accuracy": null
+    },
+    "10861": {
+      "fid": 10861,
+      "title": "Discussion/Questions",
+      "description": "Tokens related to asking questions, discussing ideas, or seeking next steps",
+      "label": "Discussion/Questions",
+      "label_source": "lens_gemini",
+      "lens_score": 0.935,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "brainstorming",
+          0.935
+        ],
+        [
+          "brainstorm",
+          0.934
+        ],
+        [
+          "discuss",
+          0.86
+        ],
+        [
+          "\uc9c8\ubb38",
+          0.804
+        ],
+        [
+          "\u0441\u043b\u0435\u0434\u0443",
+          0.804
+        ],
+        [
+          "domande",
+          0.803
+        ],
+        [
+          "prochain",
+          0.795
+        ],
+        [
+          "pregunt",
+          0.766
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u0c05\u0c28\u0c47\u0c15",
+          0.981
+        ],
+        [
+          "upholding",
+          0.912
+        ],
+        [
+          "heids",
+          0.87
+        ],
+        [
+          "\u5de8\u5927\u7684",
+          0.858
+        ],
+        [
+          "issued",
+          0.827
+        ],
+        [
+          "biotics",
+          0.823
+        ],
+        [
+          "\ud83c\udf86",
+          0.784
+        ],
+        [
+          "b\u00f3l",
+          0.775
+        ]
+      ],
+      "suppress_label": "upholding, heids, issued, biotics",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/10861",
+      "detection_accuracy": null
+    },
+    "11499": {
+      "fid": 11499,
+      "title": "Positive Life",
+      "description": "Positive life experiences and virtues, suppressing illegal and malicious actions",
+      "label": "Positive Life",
+      "label_source": "lens_gemini",
+      "lens_score": 1.192,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "Freude",
+          1.192
+        ],
+        [
+          "humility",
+          1.169
+        ],
+        [
+          "\u0c1c\u0c40\u0c35\u0c3f\u0c24",
+          1.12
+        ],
+        [
+          "joys",
+          1.113
+        ],
+        [
+          "\u0436\u0438\u0437\u043d\u0438",
+          1.111
+        ],
+        [
+          "\u091a\u0941\u0928\u094c\u0924\u093f\u092f\u094b\u0902",
+          1.108
+        ],
+        [
+          "\u0436\u0438\u0442\u0442\u044f",
+          1.107
+        ],
+        [
+          "gratitude",
+          1.086
+        ]
+      ],
+      "top_suppress": [
+        [
+          "infringing",
+          0.924
+        ],
+        [
+          "unlawful",
+          0.785
+        ],
+        [
+          "malicious",
+          0.776
+        ],
+        [
+          "looting",
+          0.75
+        ],
+        [
+          "criminals",
+          0.748
+        ],
+        [
+          "obfusc",
+          0.745
+        ],
+        [
+          "violate",
+          0.728
+        ],
+        [
+          "\u0dc0\u0dd2\u0dc3\u0dd2\u0db1\u0dca",
+          0.718
+        ]
+      ],
+      "suppress_label": "infringing, unlawful, malicious, looting",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/11499",
+      "detection_accuracy": null
+    },
+    "13210": {
+      "fid": 13210,
+      "title": "Hip-hop Persona",
+      "description": "Concepts related to hip-hop culture, rap music, and associated personas",
+      "label": "Hip-hop Persona",
+      "label_source": "lens_gemini",
+      "lens_score": 2.143,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "rapper",
+          2.143
+        ],
+        [
+          "streetwear",
+          2.129
+        ],
+        [
+          "rappers",
+          2.101
+        ],
+        [
+          "gangster",
+          1.846
+        ],
+        [
+          "mixtape",
+          1.828
+        ],
+        [
+          "swagger",
+          1.824
+        ],
+        [
+          "gangsters",
+          1.766
+        ],
+        [
+          "reggae",
+          1.751
+        ]
+      ],
+      "top_suppress": [
+        [
+          "IAEA",
+          0.955
+        ],
+        [
+          "fluoride",
+          0.933
+        ],
+        [
+          "larch",
+          0.929
+        ],
+        [
+          "fluor",
+          0.902
+        ],
+        [
+          "Euler",
+          0.884
+        ],
+        [
+          "Switzerland",
+          0.874
+        ],
+        [
+          "Alten",
+          0.833
+        ],
+        [
+          "inositol",
+          0.824
+        ]
+      ],
+      "suppress_label": "IAEA, fluoride, larch, fluor",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/13210",
+      "detection_accuracy": null
+    },
+    "14081": {
+      "fid": 14081,
+      "title": "Disjunction",
+      "description": "Disjunctive concepts like 'or' and 'some/any' across multiple languages",
+      "label": "Disjunction",
+      "label_source": "lens_gemini",
+      "lens_score": 1.619,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "algum",
+          1.619
+        ],
+        [
+          "ho\u1eb7c",
+          1.552
+        ],
+        [
+          "alg\u00fan",
+          1.527
+        ],
+        [
+          "atau",
+          1.49
+        ],
+        [
+          "alguma",
+          1.464
+        ],
+        [
+          "alguna",
+          1.46
+        ],
+        [
+          "\ud639\uc740",
+          1.448
+        ],
+        [
+          "or",
+          1.432
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u0648\u0645\u0646",
+          1.048
+        ],
+        [
+          "\u0995\u09c7\u09b6",
+          0.993
+        ],
+        [
+          "\u0432\u0441\u0435\u043c\u0438",
+          0.982
+        ],
+        [
+          "narrates",
+          0.982
+        ],
+        [
+          "ovviamente",
+          0.977
+        ],
+        [
+          "\u03ba\u03b1\u03b9",
+          0.966
+        ],
+        [
+          "\u05d5\u05d4",
+          0.963
+        ],
+        [
+          "basicamente",
+          0.941
+        ]
+      ],
+      "suppress_label": "narrates, ovviamente, basicamente",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/14081",
+      "detection_accuracy": null
+    },
+    "16540": {
+      "fid": 16540,
+      "title": "Financial Concepts",
+      "description": "This feature activates for tokens related to money, budgeting, and financial topics",
+      "label": "Financial Concepts",
+      "label_source": "lens_gemini",
+      "lens_score": 1.466,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "financi",
+          1.466
+        ],
+        [
+          "\u0444\u0438\u043d\u0430\u043d\u0441\u043e",
+          1.451
+        ],
+        [
+          "financial",
+          1.436
+        ],
+        [
+          "budgeting",
+          1.428
+        ],
+        [
+          "dollars",
+          1.416
+        ],
+        [
+          "income",
+          1.413
+        ],
+        [
+          "income",
+          1.405
+        ],
+        [
+          "fintech",
+          1.402
+        ]
+      ],
+      "top_suppress": [
+        [
+          "Lingu",
+          1.009
+        ],
+        [
+          "atrical",
+          0.995
+        ],
+        [
+          "grotes",
+          0.989
+        ],
+        [
+          "lingu",
+          0.97
+        ],
+        [
+          "grotesque",
+          0.915
+        ],
+        [
+          "sublime",
+          0.908
+        ],
+        [
+          "indistinct",
+          0.879
+        ],
+        [
+          "lingu",
+          0.878
+        ]
+      ],
+      "suppress_label": "Lingu, atrical, grotes, lingu",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/16540",
+      "detection_accuracy": null
+    },
+    "19587": {
+      "fid": 19587,
+      "title": "Anxiety/Emotion",
+      "description": "Anxiety and emotional states, suppressing external, collaborative topics",
+      "label": "Anxiety/Emotion",
+      "label_source": "lens_gemini",
+      "lens_score": 1.461,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "xiety",
+          1.461
+        ],
+        [
+          "anxiety",
+          1.291
+        ],
+        [
+          "mindfulness",
+          1.264
+        ],
+        [
+          "\u60c5\u7eea",
+          1.251
+        ],
+        [
+          "ansiedad",
+          1.236
+        ],
+        [
+          "simpt",
+          1.223
+        ],
+        [
+          "neurotrans",
+          1.194
+        ],
+        [
+          "irritability",
+          1.188
+        ]
+      ],
+      "top_suppress": [
+        [
+          "multimedia",
+          0.896
+        ],
+        [
+          "Offices",
+          0.849
+        ],
+        [
+          "\u534f\u540c",
+          0.844
+        ],
+        [
+          "outfitted",
+          0.839
+        ],
+        [
+          "\u0645\u062a\u0639\u062f\u062f",
+          0.838
+        ],
+        [
+          "Agriculture",
+          0.837
+        ],
+        [
+          "coop\u00e9ration",
+          0.837
+        ],
+        [
+          "\u0636\u0645\u0646",
+          0.825
+        ]
+      ],
+      "suppress_label": "multimedia, Offices, outfitted, Agriculture",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/19587",
+      "detection_accuracy": null
+    },
+    "22843": {
+      "fid": 22843,
+      "title": "Needs and Desires",
+      "description": "Concepts of personal or collective needs, wants, and choices, suppressing historical or academic topics",
+      "label": "Needs and Desires",
+      "label_source": "lens_gemini",
+      "lens_score": 1.056,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "Choosing",
+          1.056
+        ],
+        [
+          "queremos",
+          1.038
+        ],
+        [
+          "kebutuhan",
+          1.036
+        ],
+        [
+          "Healthy",
+          0.984
+        ],
+        [
+          "\u9700\u6c42",
+          0.978
+        ],
+        [
+          "Healthy",
+          0.971
+        ],
+        [
+          "daunting",
+          0.966
+        ],
+        [
+          "ihtiya\u00e7",
+          0.965
+        ]
+      ],
+      "top_suppress": [
+        [
+          "archaeologists",
+          0.797
+        ],
+        [
+          "tomb",
+          0.763
+        ],
+        [
+          "blasp",
+          0.757
+        ],
+        [
+          "iconography",
+          0.752
+        ],
+        [
+          "objected",
+          0.744
+        ],
+        [
+          "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+          0.737
+        ],
+        [
+          "isotopic",
+          0.735
+        ],
+        [
+          "respectivement",
+          0.731
+        ]
+      ],
+      "suppress_label": "archaeologists, tomb, blasp, iconography",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/22843",
+      "detection_accuracy": null
+    },
+    "24047": {
+      "fid": 24047,
+      "title": "Cultural Theory",
+      "description": "Concepts from cultural, social, and critical theory",
+      "label": "Cultural Theory",
+      "label_source": "lens_gemini",
+      "lens_score": 1.972,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "postmodern",
+          1.972
+        ],
+        [
+          "neoliberal",
+          1.741
+        ],
+        [
+          "feminist",
+          1.683
+        ],
+        [
+          "cultural",
+          1.657
+        ],
+        [
+          "metaphor",
+          1.653
+        ],
+        [
+          "egalitarian",
+          1.635
+        ],
+        [
+          "modernist",
+          1.624
+        ],
+        [
+          "ocultural",
+          1.621
+        ]
+      ],
+      "top_suppress": [
+        [
+          "Medications",
+          1.397
+        ],
+        [
+          "\u043f\u0440\u0435\u043f\u0430\u0440\u0430\u0442",
+          1.359
+        ],
+        [
+          "\u043f\u0440\u0435\u043f\u0430\u0440\u0430",
+          1.34
+        ],
+        [
+          "Timeout",
+          1.32
+        ],
+        [
+          "\u4fdd\u6e7f",
+          1.266
+        ],
+        [
+          "ammo",
+          1.26
+        ],
+        [
+          "Moistur",
+          1.235
+        ],
+        [
+          "Terbaik",
+          1.224
+        ]
+      ],
+      "suppress_label": "Medications, Timeout, ammo, Moistur",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/24047",
+      "detection_accuracy": null
+    },
+    "24929": {
+      "fid": 24929,
+      "title": "Ending Punctuation",
+      "description": "Sentence-ending punctuation, especially periods, and suppresses diverse non-English tokens",
+      "label": "Ending Punctuation",
+      "label_source": "lens_gemini",
+      "lens_score": 1.484,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          ").",
+          1.484
+        ],
+        [
+          ".}",
+          1.443
+        ],
+        [
+          ".)",
+          1.442
+        ],
+        [
+          ".",
+          1.423
+        ],
+        [
+          ".\"",
+          1.378
+        ],
+        [
+          ".]",
+          1.364
+        ],
+        [
+          ".*",
+          1.339
+        ],
+        [
+          ".\u201d",
+          1.322
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u0627\u0632",
+          0.728
+        ],
+        [
+          "\u0ba4\u0bae\u0bbe\u0ba9",
+          0.722
+        ],
+        [
+          "Prospective",
+          0.719
+        ],
+        [
+          "\u0aa8\u0acd\u0a9f",
+          0.704
+        ],
+        [
+          "\u0628\u0646\u0627\u0626\u06cc\u06ba",
+          0.685
+        ],
+        [
+          "\u0432\u0441\u0442\u0440\u043e\u0435\u043d",
+          0.679
+        ],
+        [
+          "\u041f\u0440\u0438",
+          0.671
+        ],
+        [
+          "E\u011fitim",
+          0.648
+        ]
+      ],
+      "suppress_label": "Prospective, E\u011fitim",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/24929",
+      "detection_accuracy": null
+    },
+    "29385": {
+      "fid": 29385,
+      "title": "",
+      "description": "",
+      "label": "",
+      "label_source": "none",
+      "lens_score": 3.735,
+      "theme": "Unknown",
+      "top_tokens": [
+        [
+          "i",
+          3.735
+        ],
+        [
+          "\u043d\u0430",
+          3.268
+        ],
+        [
+          "\u064a",
+          3.003
+        ],
+        [
+          "in",
+          2.881
+        ],
+        [
+          "\u064a\u0626\u0629",
+          2.763
+        ],
+        [
+          "\u043b\u0430",
+          2.725
+        ],
+        [
+          "\u0442\u0435",
+          2.699
+        ],
+        [
+          "ar",
+          2.684
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\ud835\udc2d",
+          3.272
+        ],
+        [
+          "\uaecf",
+          3.086
+        ],
+        [
+          "\ud835\udc24",
+          2.773
+        ],
+        [
+          "\ud835\udc25",
+          2.695
+        ],
+        [
+          "\ud835\udc1b",
+          2.681
+        ],
+        [
+          "backbone",
+          2.679
+        ],
+        [
+          "\u53ef\u4ee5\u5c06",
+          2.667
+        ],
+        [
+          "\uc73c\ub85c",
+          2.645
+        ]
+      ],
+      "suppress_label": "backbone",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/29385",
+      "detection_accuracy": null
+    },
+    "33519": {
+      "fid": 33519,
+      "title": "Violent Conflict",
+      "description": "Violence, hostility, and weaponry, suppressing educational and structured learning contexts",
+      "label": "Violent Conflict",
+      "label_source": "lens_gemini",
+      "lens_score": 2.137,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "murderous",
+          2.137
+        ],
+        [
+          "bloodshed",
+          2.033
+        ],
+        [
+          "weapon",
+          2.03
+        ],
+        [
+          "enemy",
+          1.921
+        ],
+        [
+          "weapons",
+          1.903
+        ],
+        [
+          "enemigo",
+          1.884
+        ],
+        [
+          "enemigos",
+          1.85
+        ],
+        [
+          "carnage",
+          1.846
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u985e",
+          1.068
+        ],
+        [
+          "literacy",
+          1.055
+        ],
+        [
+          "yearbook",
+          1.037
+        ],
+        [
+          "\u8868\u683c",
+          1.024
+        ],
+        [
+          "questionnaire",
+          1.014
+        ],
+        [
+          "Montessori",
+          0.973
+        ],
+        [
+          "workbook",
+          0.966
+        ],
+        [
+          "\u0d2a\u0d20",
+          0.964
+        ]
+      ],
+      "suppress_label": "literacy, yearbook, questionnaire, Montessori",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/33519",
+      "detection_accuracy": null
+    },
+    "59884": {
+      "fid": 59884,
+      "title": "Imperative Requests",
+      "description": "Cross-lingual imperative language, including commands, prohibitions, and strong suggestions",
+      "label": "Imperative Requests",
+      "label_source": "lens_gemini",
+      "lens_score": 1.362,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "jangan",
+          1.362
+        ],
+        [
+          "\u0111\u1eebng",
+          1.248
+        ],
+        [
+          "supaya",
+          1.183
+        ],
+        [
+          "please",
+          1.151
+        ],
+        [
+          "Jangan",
+          1.121
+        ],
+        [
+          "\u0e2d\u0e22\u0e48\u0e32",
+          1.073
+        ],
+        [
+          "unbedingt",
+          1.057
+        ],
+        [
+          "Please",
+          1.027
+        ]
+      ],
+      "top_suppress": [
+        [
+          "nbsp",
+          1.103
+        ],
+        [
+          "\u06c1\u06d2\u06d4",
+          1.099
+        ],
+        [
+          "\u0995\u09bf\u09a8\u09be",
+          1.077
+        ],
+        [
+          "heralded",
+          1.073
+        ],
+        [
+          "\u0441\u043e\u0432\u0440\u0435\u043c\u0435\u043d\u043d\u044b\u0435",
+          1.033
+        ],
+        [
+          "\u69d8\u3005\u306a",
+          1.027
+        ],
+        [
+          "\u901a\u5e38",
+          1.006
+        ],
+        [
+          "\u0939\u0942\u0901",
+          0.997
+        ]
+      ],
+      "suppress_label": "nbsp, heralded",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/59884",
+      "detection_accuracy": null
+    }
+  }
+}

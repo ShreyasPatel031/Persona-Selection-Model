@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MPI-120 measurement model</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --panel: #fffefb;
+      --o: #2f5f9e;
+      --c: #5b4f8a;
+      --e: #b7791f;
+      --a: #b86898;
+      --n: #c45c4a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+    }
+    #app {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      height: 100vh;
+    }
+    #header {
+      padding: 0.85rem 1.25rem 0.55rem;
+      border-bottom: 1px solid var(--line);
+    }
+    #header h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.45rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    #header .sub {
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-top: 0.25rem;
+      line-height: 1.45;
+      max-width: 52rem;
+    }
+    #stage-wrap {
+      position: relative;
+      min-height: 0;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    #stage {
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      touch-action: none;
+    }
+    #stage.dragging { cursor: grabbing; }
+    svg { display: block; width: 100%; height: 100%; }
+    #legend {
+      position: absolute;
+      top: 0.65rem;
+      right: 1rem;
+      background: rgba(246, 243, 238, 0.96);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 0.55rem 0.7rem;
+      font-size: 0.68rem;
+      line-height: 1.5;
+      color: var(--muted);
+      max-width: 11rem;
+      pointer-events: none;
+    }
+    #legend b { color: var(--ink); font-weight: 700; }
+    #legend .swatch {
+      display: inline-block;
+      width: 0.55rem;
+      height: 0.55rem;
+      border-radius: 50%;
+      margin-right: 0.3rem;
+      vertical-align: middle;
+      border: 1px solid var(--ink);
+    }
+    #hint {
+      font-size: 0.6rem;
+      color: var(--muted);
+      text-align: center;
+      padding: 0.45rem;
+      border-top: 1px solid var(--line);
+    }
+    .factor-label { font-weight: 700; font-size: 15px; }
+    .item-label { font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .error-label { font-size: 9px; fill: var(--muted); font-weight: 600; }
+    .coef { font-size: 9.5px; font-weight: 600; font-variant-numeric: tabular-nums; fill: var(--ink); }
+    .corr-coef { font-size: 9px; font-weight: 600; fill: var(--muted); font-variant-numeric: tabular-nums; }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header id="header">
+      <h1>MPI-120 measurement model</h1>
+      <p class="sub" id="subtitle">Loading…</p>
+    </header>
+    <div id="stage-wrap">
+      <div id="legend">
+        <div><b>○</b> latent factor</div>
+        <div><b>□</b> item indicator</div>
+        <div><b>○</b><span style="font-size:0.62rem">e</span> residual</div>
+        <div style="margin-top:0.35rem">drag · scroll to zoom</div>
+      </div>
+      <div id="stage"></div>
+    </div>
+    <div id="hint">standardized factor loadings on directed paths · double-headed arcs = correlations</div>
+  </div>
+
+  <script src="./big_five_sem.js"></script>
+  <script type="module">
+    const stage = document.getElementById("stage");
+    const subtitle = document.getElementById("subtitle");
+    try {
+      const semData = await fetch("./big_five_sem_data.json").then((r) => {
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        return r.json();
+      });
+      const nItems = (semData.default_item_ids || semData.items || []).length;
+      const nFactors = (semData.factors || []).length;
+      subtitle.textContent =
+        `${nFactors} latent factors · top-${BigFiveSem.TOP_N_DEFAULT} items by |corr|` +
+        (nItems ? ` (${nItems} shown)` : "") +
+        " · click a factor to focus";
+      const semSvg = BigFiveSem.renderDiagram(semData, { stage });
+      stage.appendChild(semSvg);
+      BigFiveSem.attachPanZoom(stage, semSvg);
+      BigFiveSem.onFactorClick(semSvg, (trait) => {
+        BigFiveSem.applySemSelection(semSvg, {
+          scores: null,
+          meta: { trait },
+        });
+        subtitle.textContent = `Top-${BigFiveSem.TOP_N_FOCUSED} ${BigFiveSem.TRAIT_NAME[trait] || trait} items by |corr| · click empty space to reset`;
+      });
+      BigFiveSem.onBackgroundClick(semSvg, () => {
+        BigFiveSem.clearSemSelection(semSvg);
+        subtitle.textContent =
+          `${nFactors} latent factors · top-${BigFiveSem.TOP_N_DEFAULT} items by |corr| · click a factor to focus`;
+      });
+    } catch (err) {
+      subtitle.textContent = `Failed to load measurement model — ${err.message || err}`;
+    }
+  </script>
+  <script src="./viz_series.js"></script>
+</body>
+</html>
