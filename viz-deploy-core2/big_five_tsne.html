@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Big Five — embedding t-SNE &amp; measurement model</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --no: #c45c4a;
+      --panel: #fffefb;
+      --o: #2f5f9e;
+      --c: #5b4f8a;
+      --e: #b7791f;
+      --a: #b86898;
+      --n: #c45c4a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%; overflow: hidden;
+      background: var(--bg); color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+    }
+    #app {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr auto;
+      height: 100vh;
+    }
+    #header {
+      grid-column: 1 / -1;
+      padding: 0.85rem 1.25rem 0.55rem;
+      border-bottom: 1px solid var(--line);
+    }
+    #header h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.45rem; font-weight: 600; letter-spacing: -0.02em;
+    }
+    #header .sub {
+      font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem;
+      line-height: 1.45; max-width: 62rem;
+    }
+    #readout {
+      margin-top: 0.45rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    #readout span { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+    .panel {
+      grid-row: 2;
+      min-width: 0;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid var(--line);
+    }
+    .panel:last-of-type { border-right: 0; }
+    .panel-head {
+      padding: 0.55rem 0.85rem 0.45rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255, 254, 251, 0.65);
+    }
+    .panel-head h2 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .panel-head p {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+      line-height: 1.4;
+    }
+    .panel-body {
+      position: relative;
+      flex: 1;
+      min-height: 0;
+    }
+
+    #gl, #plot2d { display: block; width: 100%; height: 100%; }
+    #plot2d { background: var(--bg); display: none; }
+    body.mode-2d #gl { display: none; }
+    body.mode-2d #plot2d { display: block; }
+
+    #sem-stage {
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      touch-action: none;
+    }
+    #sem-stage.dragging { cursor: grabbing; }
+    #sem-stage svg { display: block; width: 100%; height: 100%; }
+
+    #sem-legend {
+      position: absolute;
+      top: 0.55rem;
+      right: 0.65rem;
+      background: rgba(246, 243, 238, 0.96);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      padding: 0.45rem 0.6rem;
+      font-size: 0.62rem;
+      line-height: 1.45;
+      color: var(--muted);
+      max-width: 10rem;
+      pointer-events: none;
+    }
+    #sem-legend b { color: var(--ink); }
+
+    .sem-tooltip {
+      position: fixed;
+      z-index: 40;
+      min-width: 13rem;
+      max-width: 18rem;
+      padding: 0.6rem 0.7rem;
+      background: rgba(255, 254, 251, 0.98);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      box-shadow: 0 8px 24px rgba(26, 22, 18, 0.08);
+      pointer-events: none;
+      font-size: 0.68rem;
+      line-height: 1.4;
+      color: var(--ink);
+    }
+    .sem-tooltip .tip-kicker {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    .sem-tooltip .tip-title {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .sem-tooltip .tip-body {
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      line-height: 1.45;
+    }
+    .sem-tooltip .tip-divider {
+      height: 1px;
+      background: var(--line);
+      margin: 0.35rem 0 0.4rem;
+    }
+    .sem-tooltip .tip-row {
+      display: grid;
+      grid-template-columns: 4.2rem 1fr;
+      gap: 0.35rem;
+      align-items: baseline;
+      margin-top: 0.2rem;
+      font-size: 0.62rem;
+    }
+    .sem-tooltip .tip-row.tip-explain {
+      display: block;
+      color: var(--muted);
+      font-size: 0.58rem;
+      margin-top: 0.3rem;
+      line-height: 1.35;
+    }
+    .sem-tooltip .tip-label {
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-size: 0.55rem;
+    }
+    .sem-tooltip .tip-value {
+      color: var(--ink);
+      font-weight: 700;
+      font-variant-numeric: tabular-nums;
+    }
+    .sem-tooltip .tip-lambda {
+      font-size: 0.78rem;
+    }
+    .sem-tooltip .tip-meta {
+      color: var(--muted);
+      font-size: 0.6rem;
+      margin-top: 0.35rem;
+      line-height: 1.4;
+    }
+    .sem-tooltip .tip-key-pos { color: #3d8b6e; font-weight: 700; }
+    .sem-tooltip .tip-key-rev { color: var(--no); font-weight: 700; }
+
+    .sem-tooltip .tip-radar-wrap {
+      display: flex;
+      justify-content: center;
+      margin: 0.1rem 0 0.25rem;
+    }
+    .sem-tooltip .tip-radar {
+      display: block;
+      overflow: visible;
+    }
+    .sem-tooltip .tip-radar-ring {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 0.8;
+    }
+    .sem-tooltip .tip-radar-spoke {
+      stroke: var(--line);
+      stroke-width: 0.8;
+    }
+    .sem-tooltip .tip-radar-mid {
+      fill: none;
+      stroke: #b8aea0;
+      stroke-width: 1;
+      stroke-dasharray: 2.5 2.5;
+      opacity: 0.7;
+    }
+    .sem-tooltip .tip-radar-base {
+      fill: rgba(26, 22, 18, 0.04);
+      stroke: #8a8175;
+      stroke-width: 1.2;
+      stroke-dasharray: 3.5 2.5;
+    }
+    .sem-tooltip .tip-radar-live {
+      fill-opacity: 0.18;
+      stroke-width: 2;
+      stroke-linejoin: round;
+    }
+    .sem-tooltip .tip-radar-label {
+      font-size: 9px;
+      font-weight: 700;
+      fill: var(--muted);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+    }
+    .sem-tooltip .tip-radar-label-focus {
+      font-size: 10px;
+      font-weight: 800;
+    }
+    .sem-tooltip .tip-radar-label-digman {
+      font-weight: 800;
+    }
+    .sem-tooltip .tip-radar-delta {
+      font-size: 8px;
+      font-weight: 600;
+      fill: var(--ink);
+    }
+    .sem-tooltip .tip-radar-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.65rem;
+      font-size: 0.55rem;
+      color: var(--muted);
+      margin-top: 0.15rem;
+    }
+    .sem-tooltip .tip-radar-legend .swatch {
+      display: inline-block;
+      width: 0.55rem;
+      height: 0.55rem;
+      margin-right: 0.2rem;
+      vertical-align: -0.05rem;
+      border-radius: 1px;
+    }
+    .sem-tooltip .tip-radar-legend .swatch-live {
+      opacity: 0.85;
+    }
+    .sem-tooltip .tip-radar-legend .swatch-base {
+      background: transparent;
+      box-shadow: inset 0 0 0 1px #8a8175;
+      background-image: repeating-linear-gradient(
+        -45deg,
+        #8a8175 0 1px,
+        transparent 1px 3px
+      );
+    }
+    .sem-tooltip .tip-radar-legend .swatch-mid {
+      background: transparent;
+      box-shadow: inset 0 0 0 1px #b8aea0;
+    }
+    .sem-tooltip .tip-radar-legend .swatch-digman {
+      opacity: 0.85;
+    }
+
+    #sem-stage svg.hover-active .hover-miss {
+      opacity: 0.14 !important;
+    }
+    #sem-stage svg.hover-active .hover-match {
+      opacity: 1 !important;
+    }
+    #sem-stage svg .sem-factor {
+      cursor: pointer;
+    }
+    #sem-stage svg .sem-factor .factor-hot-ring {
+      transition: opacity 140ms ease;
+    }
+    #sem-stage svg .sem-factor.hover-focus > circle[data-factor-id] {
+      stroke-width: 4.25px;
+    }
+    #sem-stage svg .sem-factor.hover-focus .factor-hot-ring {
+      opacity: 0.9 !important;
+    }
+    #sem-stage svg .sem-factor.hover-focus .factor-label {
+      font-size: 16px;
+    }
+    #plot2d.hover-active .hover-miss {
+      opacity: 0.12 !important;
+    }
+    #plot2d.hover-active .hover-match {
+      opacity: 1 !important;
+    }
+
+    #hint {
+      grid-column: 1 / -1;
+      font-size: 0.6rem; color: var(--muted); text-align: center;
+      padding: 0.45rem; border-top: 1px solid var(--line);
+    }
+    #err { color: var(--no); font-size: 0.78rem; padding: 0.5rem 0.9rem; }
+
+    .factor-label { font-weight: 700; font-size: 15px; }
+    .item-label { font-size: 11px; font-weight: 600; font-variant-numeric: tabular-nums; }
+    .error-label { font-size: 9px; fill: var(--muted); font-weight: 600; }
+    .coef { font-size: 9.5px; font-weight: 600; font-variant-numeric: tabular-nums; fill: var(--ink); }
+    .corr-coef { font-size: 9px; font-weight: 600; fill: var(--muted); font-variant-numeric: tabular-nums; }
+    .corr-coef.corr-observed { fill: var(--ink); font-weight: 700; }
+  </style>
+</head>
+<body class="mode-3d">
+  <div id="app">
+    <header id="header">
+      <h1>Big Five — embedding space &amp; MPI-120 model</h1>
+      <p class="sub" id="method">Loading L15 residual activations (2560-d) from the OCEAN prompt ladder…</p>
+      <div id="readout">
+        <span id="hover-id">click a dot</span> ·
+        <span id="hover-detail">to populate factor scores</span>
+      </div>
+    </header>
+
+    <section class="panel" id="tsne-panel">
+      <div class="panel-head">
+        <h2>Embedding t-SNE</h2>
+        <p id="tsne-caption">L15 activations · Digman α / β clouds · one mean label per pole · dividing plane</p>
+      </div>
+      <div class="panel-body" id="tsne-stage">
+        <canvas id="gl"></canvas>
+        <svg id="plot2d" viewBox="0 0 640 480"></svg>
+      </div>
+    </section>
+
+    <section class="panel" id="sem-panel">
+      <div class="panel-head">
+        <h2>MPI-120 measurement model</h2>
+        <p id="sem-subtitle">Force graph · top-20 items by |corr| from steered MPI EVs · select a trait for its top-8 · hover for item text</p>
+      </div>
+      <div class="panel-body">
+        <div id="sem-legend">
+          <div><b>○</b> latent trait (N E C O A)</div>
+          <div><b>□</b> MPI-120 item</div>
+          <div><b>○</b> residual e#</div>
+          <div style="margin-top:0.3rem">default top-20 · focus top-8</div>
+          <div>corr = Pearson r(keyed item EV, domain EV)</div>
+          <div>
+            <span style="color:#3d8b6e">━</span>/<span style="color:#c45c4a">━</span> Digman α/β clique ·
+            <span style="color:#c8bfb3">━</span> other
+          </div>
+        </div>
+        <div id="sem-stage"></div>
+      </div>
+    </section>
+
+    <div id="hint">click a t-SNE dot or factor circle to focus top-8 · click empty / re-click to reset top-20 · drag nodes · hover either panel to link</div>
+    <p id="err" hidden></p>
+  </div>
+  <div id="cross-tip" class="sem-tooltip" hidden></div>
+
+  <script src="./big_five_sem.js?v=38"></script>
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.158.0";
+    import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls";
+
+    const COLORS = {
+      openness: "#2f5f9e",
+      conscientiousness: "#5b4f8a",
+      extraversion: "#b7791f",
+      agreeableness: "#b86898",
+      neuroticism: "#c45c4a",
+    };
+    const TRAIT_LABEL = {
+      openness: "O",
+      conscientiousness: "C",
+      extraversion: "E",
+      agreeableness: "A",
+      neuroticism: "N",
+    };
+    const BIG_TWO = {
+      alpha: ["conscientiousness", "agreeableness", "neuroticism"],
+      beta: ["openness", "extraversion"],
+    };
+    const METATRAIT_STYLE = {
+      alpha: {
+        metaKey: "alpha",
+        fill: "#5b4f8a",
+        stroke: "#5b4f8a",
+        hull: 0.09,
+        label: "α  Stability",
+        sub: "C · A · N−",
+      },
+      beta: {
+        metaKey: "beta",
+        fill: "#2f5f9e",
+        stroke: "#b7791f",
+        hull: 0.095,
+        label: "β  Plasticity",
+        sub: "E · O",
+      },
+    };
+
+    // Defaults from user screenshot 2026-09-02; overridden by localStorage when present.
+    const HP_DEFAULTS = {
+      clusterSpread: 2.38,
+      viewSpan: 0.42,
+      hullSigma: 1.30,
+      hullOpacity: 0.09,
+      sizeMean: 0.085,
+      sizeVariant: 0.015,
+      pointOpacity: 0.26,
+      selectedBoost: 1.35,
+      ladderOpacity: 0.65,
+      cameraDist: 3.6,
+      showClouds: true,
+      showVariants: true,
+      showTraitLabels: true,
+      planeOpacity: 0.14,
+      planeSize: 1.85,
+    };
+    const HP_STORAGE_KEY = "big_five_tsne_hp_v2";
+    const HP = { ...HP_DEFAULTS };
+    try {
+      const saved = JSON.parse(localStorage.getItem(HP_STORAGE_KEY) || "null");
+      if (saved && typeof saved === "object") Object.assign(HP, saved);
+    } catch (_) { /* ignore */ }
+
+    function saveHp() {
+      try { localStorage.setItem(HP_STORAGE_KEY, JSON.stringify(HP)); } catch (_) { /* ignore */ }
+    }
+
+    let DATA = null;
+    let RAW_POINTS = null;
+    let semData = null;
+    let semSvg = null;
+    const proj = "tsne";
+    const view = "3d";
+    const traitOn = new Set(Object.keys(COLORS));
+    let selectedId = null;
+    let crossHover = null;
+    let crossHoverSource = null;
+    const crossTip = () => BigFiveSem.ensureTooltip(document.body);
+
+    function pointMatchesHover(p, link = crossHover) {
+      if (!link || !p) return true;
+      if (link.trait && p.trait === link.trait) return true;
+      if (link.metaId) {
+        const meta = BigFiveSem.METATRAITS.find((m) => m.id === link.metaId);
+        return Boolean(meta && meta.members[p.trait] != null);
+      }
+      if (link.item != null && semData) {
+        const it = semData.items.find((x) => String(x.item) === String(link.item));
+        return Boolean(it && p.trait === it.domain);
+      }
+      if (link.pointId) return p.id === link.pointId;
+      return false;
+    }
+
+    function metaMatchesHover(metaKey, link = crossHover) {
+      if (!link) return true;
+      const id = metaKey === "alpha" ? "ALPHA" : metaKey === "beta" ? "BETA" : String(metaKey).toUpperCase();
+      if (link.metaId) return link.metaId === id;
+      if (link.trait) return BigFiveSem.metatraitOf(link.trait)?.id === id;
+      if (link.item != null && semData) {
+        const it = semData.items.find((x) => String(x.item) === String(link.item));
+        return Boolean(it && BigFiveSem.metatraitOf(it.domain)?.id === id);
+      }
+      return false;
+    }
+
+    function applyCrossHover(link, source = null) {
+      crossHover = link;
+      crossHoverSource = link ? source : null;
+      if (semSvg) BigFiveSem.setHoverHighlight(semSvg, link);
+      applyTsneHoverStyles();
+    }
+
+    function showCrossTip(html, clientX, clientY) {
+      const tip = crossTip();
+      tip.innerHTML = html;
+      BigFiveSem.positionTip(tip, document.body, clientX, clientY);
+    }
+
+    function hideCrossTip() {
+      BigFiveSem.hideTooltip(crossTip());
+    }
+
+    function kindOnHas(kind) {
+      if (kind === "variant") return HP.showVariants;
+      if (kind === "level_mean") return true;
+      return false;
+    }
+
+    const hoverId = document.getElementById("hover-id");
+    const hoverDetail = document.getElementById("hover-detail");
+    const methodEl = document.getElementById("method");
+    const semSubtitle = document.getElementById("sem-subtitle");
+    const errEl = document.getElementById("err");
+
+    function coordKeys() {
+      return [`${proj}1`, `${proj}2`, `${proj}3`];
+    }
+
+    function avg(vals) {
+      return vals.reduce((s, v) => s + v, 0) / Math.max(1, vals.length);
+    }
+
+    function snapshotRaw(points) {
+      return points.map((p) => ({
+        ...p,
+        tsne1: p.tsne1, tsne2: p.tsne2, tsne3: p.tsne3,
+        pca1: p.pca1, pca2: p.pca2, pca3: p.pca3,
+      }));
+    }
+
+    function applyLayout(points, rawPoints) {
+      const src = rawPoints || points;
+      for (const prefix of ["tsne", "pca"]) {
+        const k1 = `${prefix}1`, k2 = `${prefix}2`, k3 = `${prefix}3`;
+        const centers = {};
+        for (const trait of Object.keys(COLORS)) {
+          const sub = src.filter((p) => p.trait === trait);
+          if (!sub.length) continue;
+          centers[trait] = {
+            [k1]: avg(sub.map((p) => p[k1])),
+            [k2]: avg(sub.map((p) => p[k2])),
+            [k3]: avg(sub.map((p) => p[k3])),
+          };
+        }
+        const traits = Object.keys(centers);
+        const global = {
+          [k1]: avg(traits.map((t) => centers[t][k1])),
+          [k2]: avg(traits.map((t) => centers[t][k2])),
+          [k3]: avg(traits.map((t) => centers[t][k3])),
+        };
+        for (let i = 0; i < points.length; i += 1) {
+          const p = points[i];
+          const r = src[i];
+          const c = centers[p.trait];
+          if (!c || !r) continue;
+          for (const k of [k1, k2, k3]) {
+            const offset = r[k] - c[k];
+            p[k] = global[k] + (c[k] - global[k]) * HP.clusterSpread + offset;
+          }
+        }
+      }
+    }
+
+    function covEllipse2D(points) {
+      if (points.length < 2) return null;
+      const mx = avg(points.map((p) => p.x));
+      const my = avg(points.map((p) => p.y));
+      let sxx = 0, syy = 0, sxy = 0;
+      for (const p of points) {
+        const dx = p.x - mx, dy = p.y - my;
+        sxx += dx * dx; syy += dy * dy; sxy += dx * dy;
+      }
+      const n = points.length;
+      sxx /= n; syy /= n; sxy /= n;
+      const tr = sxx + syy;
+      const det = sxx * syy - sxy * sxy;
+      const l1 = tr / 2 + Math.sqrt(Math.max(0, tr * tr / 4 - det));
+      const l2 = tr / 2 - Math.sqrt(Math.max(0, tr * tr / 4 - det));
+      const angle = Math.abs(sxx - syy) < 1e-8 && Math.abs(sxy) < 1e-8
+        ? 0
+        : 0.5 * Math.atan2(2 * sxy, sxx - syy);
+      return {
+        cx: mx, cy: my,
+        rx: Math.sqrt(Math.max(l1, 1e-6)) * HP.hullSigma,
+        ry: Math.sqrt(Math.max(l2, 1e-6)) * HP.hullSigma,
+        angle: (angle * 180) / Math.PI,
+      };
+    }
+
+    function cov3d(points) {
+      if (points.length < 2) return null;
+      const mx = avg(points.map((p) => p.x));
+      const my = avg(points.map((p) => p.y));
+      const mz = avg(points.map((p) => p.z));
+      let c00 = 0, c11 = 0, c22 = 0, c01 = 0, c02 = 0, c12 = 0;
+      for (const p of points) {
+        const dx = p.x - mx, dy = p.y - my, dz = p.z - mz;
+        c00 += dx * dx; c11 += dy * dy; c22 += dz * dz;
+        c01 += dx * dy; c02 += dx * dz; c12 += dy * dz;
+      }
+      const n = points.length;
+      return {
+        center: new THREE.Vector3(mx, my, mz),
+        m: [c00 / n, c01 / n, c02 / n, c01 / n, c11 / n, c12 / n, c02 / n, c12 / n, c22 / n],
+      };
+    }
+
+    function matVec3(m, v) {
+      return [
+        m[0] * v[0] + m[1] * v[1] + m[2] * v[2],
+        m[3] * v[0] + m[4] * v[1] + m[5] * v[2],
+        m[6] * v[0] + m[7] * v[1] + m[8] * v[2],
+      ];
+    }
+
+    function norm3(v) {
+      const l = Math.hypot(v[0], v[1], v[2]) || 1;
+      return [v[0] / l, v[1] / l, v[2] / l];
+    }
+
+    function dot3(a, b) {
+      return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+    }
+
+    function deflate3(m, val, v) {
+      return m.map((c, i) => {
+        const r = (i / 3) | 0;
+        const ccol = i % 3;
+        return c - val * v[r] * v[ccol];
+      });
+    }
+
+    function topEigen3(m, exclude) {
+      let v = norm3([1, 0.37, -0.21]);
+      for (let i = 0; i < 48; i += 1) {
+        if (exclude) {
+          for (const e of exclude) {
+            v = norm3(v.map((x, j) => x - dot3(v, e) * e[j]));
+          }
+        }
+        v = norm3(matVec3(m, v));
+      }
+      const val = Math.max(dot3(v, matVec3(m, v)), 1e-8);
+      return { val, v: norm3(v) };
+    }
+
+    function covEllipsoid3(points) {
+      const base = cov3d(points);
+      if (!base) return null;
+      const e1 = topEigen3(base.m, null);
+      const m2 = deflate3(base.m, e1.val, e1.v);
+      const e2 = topEigen3(m2, [e1.v]);
+      const m3 = deflate3(m2, e2.val, e2.v);
+      const e3 = topEigen3(m3, [e1.v, e2.v]);
+      const axes = [
+        [e1.v, Math.sqrt(e1.val) * HP.hullSigma],
+        [e2.v, Math.sqrt(e2.val) * HP.hullSigma],
+        [e3.v, Math.sqrt(e3.val) * HP.hullSigma],
+      ].sort((a, b) => b[1] - a[1]);
+      return { center: base.center, axes };
+    }
+
+    function toDisplay(p, keys, norm) {
+      return {
+        x: (p[keys[0]] - norm.cx) / norm.span,
+        y: (p[keys[1]] - norm.cy) / norm.span,
+        z: (p[keys[2]] - norm.cz) / norm.span,
+      };
+    }
+
+    function visiblePoints() {
+      return DATA.points.filter((p) => traitOn.has(p.trait) && kindOnHas(p.kind));
+    }
+
+    function filteredPoints() {
+      return visiblePoints();
+    }
+
+    function normCoords(pts) {
+      const [k1, k2, k3] = coordKeys();
+      const xs = pts.map((p) => p[k1]);
+      const ys = pts.map((p) => p[k2]);
+      const zs = pts.map((p) => p[k3]);
+      const cx = (Math.min(...xs) + Math.max(...xs)) / 2;
+      const cy = (Math.min(...ys) + Math.max(...ys)) / 2;
+      const cz = (Math.min(...zs) + Math.max(...zs)) / 2;
+      const span = Math.max(
+        Math.max(...xs) - Math.min(...xs),
+        Math.max(...ys) - Math.min(...ys),
+        Math.max(...zs) - Math.min(...zs),
+        1
+      ) * HP.viewSpan;
+      return { cx, cy, cz, span };
+    }
+
+    function pointSize(kind, selected) {
+      const base = kind === "level_mean" ? HP.sizeMean : HP.sizeVariant;
+      return selected ? base * HP.selectedBoost : base;
+    }
+
+    function pointOpacity(p) {
+      const base = HP.pointOpacity;
+      if (crossHover) {
+        return pointMatchesHover(p) ? Math.min(1, base + 0.38) : base * 0.12;
+      }
+      if (selectedId && p.id === selectedId) return Math.min(1, base + 0.35);
+      if (selectedId && p.id !== selectedId) {
+        return p.kind === "variant" ? base * 0.35 : base * 0.55;
+      }
+      return p.kind === "variant" ? base * 0.75 : base;
+    }
+
+    function applyTsneHoverStyles() {
+      for (const [mesh, p] of meshIndex.entries()) {
+        if (!mesh.material) continue;
+        const on = pointMatchesHover(p);
+        mesh.material.opacity = pointOpacity(p);
+        mesh.material.emissiveIntensity = p.id === selectedId
+          ? 0.32
+          : (crossHover && on ? 0.24 : 0.06);
+      }
+      for (const child of cloudsGrp.children) {
+        const meta = child.userData?.metaKey;
+        if (!meta || !child.material) continue;
+        const on = metaMatchesHover(meta);
+        child.material.opacity = crossHover
+          ? (on ? HP.hullOpacity * 1.55 : HP.hullOpacity * 0.18)
+          : HP.hullOpacity;
+      }
+      for (const child of linesGrp.children) {
+        if (!child.material || !child.userData?.trait) continue;
+        const on = !crossHover || pointMatchesHover({ trait: child.userData.trait });
+        child.material.opacity = crossHover
+          ? (on ? Math.min(1, HP.ladderOpacity + 0.25) : HP.ladderOpacity * 0.12)
+          : HP.ladderOpacity;
+      }
+      for (const label of poleLabelsGrp.children) {
+        if (!label.material || !label.userData?.metaKey) continue;
+        const on = !crossHover || metaMatchesHover(label.userData.metaKey);
+        const base = label.userData.baseOpacity ?? 0.98;
+        const baseScale = label.userData.baseScale;
+        label.material.opacity = crossHover
+          ? (on ? 1 : 0.22)
+          : base;
+        if (baseScale) {
+          const boost = crossHover && on ? 1.18 : 1;
+          label.scale.set(baseScale.x * boost, baseScale.y * boost, 1);
+        }
+      }
+      for (const label of labelsGrp.children) {
+        if (!label.material) continue;
+        label.material.opacity = crossHover ? 0.28 : 0.96;
+      }
+      const svg = document.getElementById("plot2d");
+      if (!svg) return;
+      svg.classList.toggle("hover-active", Boolean(crossHover));
+      for (const el of svg.querySelectorAll("circle[data-id]")) {
+        const p = DATA?.points?.find((pt) => pt.id === el.dataset.id);
+        if (!p) continue;
+        const on = pointMatchesHover(p);
+        el.setAttribute("opacity", pointOpacity(p));
+        el.classList.toggle("hover-match", Boolean(crossHover) && on);
+        el.classList.toggle("hover-miss", Boolean(crossHover) && !on);
+      }
+      for (const el of svg.querySelectorAll("ellipse[data-meta]")) {
+        const on = metaMatchesHover(el.dataset.meta);
+        el.classList.toggle("hover-match", Boolean(crossHover) && on);
+        el.classList.toggle("hover-miss", Boolean(crossHover) && !on);
+        el.setAttribute("fill-opacity", String(
+          crossHover ? (on ? HP.hullOpacity + 0.08 : 0.02) : HP.hullOpacity + 0.02
+        ));
+      }
+      for (const el of svg.querySelectorAll("polyline[data-trait]")) {
+        const on = !crossHover || pointMatchesHover({ trait: el.dataset.trait });
+        el.classList.toggle("hover-match", Boolean(crossHover) && on);
+        el.classList.toggle("hover-miss", Boolean(crossHover) && !on);
+        el.setAttribute("opacity", String(
+          crossHover ? (on ? Math.min(1, HP.ladderOpacity + 0.25) : HP.ladderOpacity * 0.12) : HP.ladderOpacity
+        ));
+      }
+    }
+
+    function isSelectable(p) {
+      return p.ev_scores && Object.keys(p.ev_scores).length >= 5;
+    }
+
+    function formatScores(scores) {
+      return Object.keys(TRAIT_LABEL)
+        .map((t) => `${TRAIT_LABEL[t]} ${scores[t]?.toFixed(2) ?? "—"}`)
+        .join(" · ");
+    }
+
+    /**
+     * The metatrait contrast only survives when every ladder is pooled: within a
+     * single trait's ladder the dose ramp dominates and all five domains co-move.
+     */
+    function pooledPoints() {
+      return DATA.points.filter(isSelectable);
+    }
+
+    let evStructure = null;
+
+    function fmtR(v) {
+      if (v == null) return "—";
+      return (v < 0 ? "−" : "") + Math.abs(v).toFixed(2).replace(/^0/, "");
+    }
+
+    function updateSemSubtitle(p) {
+      if (!p) {
+        semSubtitle.textContent =
+          "Force graph · top-20 items by |corr| from steered MPI EVs · select a trait for its top-8 · hover for item text";
+        return;
+      }
+      if (evStructure && semData) {
+        const fid = semData.factors.find((f) => f.trait === p.trait)?.id;
+        const partners = evStructure.raw
+          .filter((pair) => pair.a === fid || pair.b === fid)
+          .map((pair) => {
+            const other = pair.a === fid ? pair.b : pair.a;
+            return { other, r: pair.r, abs: Math.abs(pair.r) };
+          })
+          .sort((a, b) => b.abs - a.abs);
+        const top = partners[0];
+        const topName = semData.factors.find((f) => f.id === top?.other)?.label || top?.other;
+        const meta = BigFiveSem.metatraitOf(p.trait);
+        const partnerTraits = meta
+          ? Object.keys(meta.members).filter((t) => t !== p.trait).map((t) => TRAIT_LABEL[t]).join("/")
+          : null;
+        semSubtitle.textContent =
+          `${p.id} · top-8 ${TRAIT_LABEL[p.trait]} items · ${formatScores(p.ev_scores)} — ` +
+          `all arcs sized by |r| · Digman color on ${meta?.label || "α/β"} clique · ` +
+          `thickest: ${TRAIT_LABEL[p.trait]}–${topName} (${fmtR(top?.r)})` +
+          (partnerTraits ? ` · partners ${partnerTraits}` : "");
+      } else {
+        semSubtitle.textContent =
+          `${p.id} · top-8 ${TRAIT_LABEL[p.trait]} items · ${formatScores(p.ev_scores)}`;
+      }
+    }
+
+    function clearSelection() {
+      selectedId = null;
+      hoverId.textContent = "click a dot";
+      hoverDetail.textContent = "to populate factor scores";
+      updateSemSubtitle(null);
+      if (semSvg) BigFiveSem.clearSemSelection(semSvg);
+      refresh();
+    }
+
+    function selectPoint(p) {
+      if (!p || !isSelectable(p)) return;
+      if (selectedId === p.id) {
+        clearSelection();
+        return;
+      }
+      selectedId = p.id;
+      hoverId.textContent = p.id;
+      const bits = [TRAIT_LABEL[p.trait] || p.trait, p.kind];
+      if (p.level != null) bits.push(`L${p.level}`);
+      if (p.trait_ev != null) bits.push(`target EV ${p.trait_ev.toFixed(2)}`);
+      hoverDetail.textContent = bits.join(" · ");
+      updateSemSubtitle(p);
+
+      if (semSvg) {
+        BigFiveSem.applySemSelection(semSvg, {
+          scores: p.ev_scores,
+          meta: p,
+          structure: evStructure,
+        });
+      }
+      refresh();
+    }
+
+    function selectTrait(trait) {
+      if (!trait) {
+        clearSelection();
+        return;
+      }
+      const current = DATA?.points?.find((pt) => pt.id === selectedId);
+      if (current?.trait === trait) {
+        clearSelection();
+        return;
+      }
+      const pt = DATA.points.find((p) => p.trait === trait && p.kind === "level_mean" && isSelectable(p))
+        || DATA.points.find((p) => p.trait === trait && isSelectable(p));
+      if (pt) {
+        selectPoint(pt);
+        return;
+      }
+      selectedId = null;
+      hoverId.textContent = TRAIT_LABEL[trait] || trait;
+      hoverDetail.textContent = "top-8 items";
+      semSubtitle.textContent = `Top-8 ${BigFiveSem.TRAIT_NAME[trait] || trait} items by |corr|`;
+      if (semSvg) {
+        BigFiveSem.applySemSelection(semSvg, {
+          scores: null,
+          meta: { trait },
+          structure: evStructure,
+        });
+      }
+      refresh();
+    }
+
+    const canvas = document.getElementById("gl");
+    const tsneStage = document.getElementById("tsne-stage");
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setClearColor(0xf6f3ee, 1);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(42, 1, 0.01, 500);
+    camera.position.set(0, 1.2, HP.cameraDist);
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.target.set(0, 0, 0);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.85));
+    const key = new THREE.DirectionalLight(0xffffff, 0.55);
+    key.position.set(2, 4, 3);
+    scene.add(key);
+
+    const root = new THREE.Group();
+    scene.add(root);
+    const cloudsGrp = new THREE.Group();
+    root.add(cloudsGrp);
+    const labelsGrp = new THREE.Group();
+    root.add(labelsGrp);
+    const poleLabelsGrp = new THREE.Group();
+    poleLabelsGrp.renderOrder = 1000;
+    root.add(poleLabelsGrp);
+    const linesGrp = new THREE.Group();
+    root.add(linesGrp);
+    const pointsGrp = new THREE.Group();
+    root.add(pointsGrp);
+
+    const selectionRing = new THREE.Mesh(
+      new THREE.RingGeometry(0.12, 0.155, 32),
+      new THREE.MeshBasicMaterial({ color: 0x1a1612, side: THREE.DoubleSide, transparent: true, opacity: 0.85 }),
+    );
+    selectionRing.visible = false;
+    pointsGrp.add(selectionRing);
+
+    function hullPointsForTraits(vis, traits, keys, norm) {
+      const pts = [];
+      for (const trait of traits) {
+        if (!traitOn.has(trait)) continue;
+        for (const p of vis.filter((q) => q.trait === trait && q.kind === "level_mean")) {
+          const d = toDisplay(p, keys, norm);
+          pts.push({ x: d.x, y: d.y, z: d.z });
+        }
+      }
+      return pts;
+    }
+
+    function addEllipsoidCloud(scenePts, style) {
+      const ell = covEllipsoid3(scenePts.map((v) => ({ x: v.x, y: v.y, z: v.z })));
+      if (!ell) return;
+      const geo = new THREE.SphereGeometry(1, 20, 14);
+      const mat = new THREE.MeshBasicMaterial({
+        color: style.fill,
+        transparent: true,
+        opacity: HP.hullOpacity,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+      });
+      const mesh = new THREE.Mesh(geo, mat);
+      mesh.position.copy(ell.center);
+      const [a0, a1, a2] = ell.axes;
+      const rot = new THREE.Matrix4().makeBasis(
+        new THREE.Vector3(...a0[0]),
+        new THREE.Vector3(...a1[0]),
+        new THREE.Vector3(...a2[0]),
+      );
+      mesh.quaternion.setFromRotationMatrix(rot);
+      mesh.scale.set(
+        Math.max(a0[1], 0.06),
+        Math.max(a1[1], 0.06),
+        Math.max(a2[1], 0.06),
+      );
+      mesh.userData.metaKey = style.metaKey || null;
+      cloudsGrp.add(mesh);
+    }
+
+    function metaCentroid(vis, traits, keys, norm) {
+      const raw = hullPointsForTraits(vis, traits, keys, norm);
+      if (!raw.length) return null;
+      return new THREE.Vector3(
+        avg(raw.map((p) => p.x)),
+        avg(raw.map((p) => p.z)),
+        avg(raw.map((p) => -p.y)),
+      );
+    }
+
+    function makePoleLabel(text, sub, colorHex, metaKey) {
+      const canvas = document.createElement("canvas");
+      canvas.width = 512;
+      canvas.height = 160;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(246, 243, 238, 0.96)";
+      ctx.strokeStyle = colorHex;
+      ctx.lineWidth = 3;
+      roundRect(ctx, 16, 24, 480, 112, 12);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = colorHex;
+      ctx.font = "700 42px 'Newsreader', Georgia, serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(text, 256, 68);
+      ctx.fillStyle = "#7a7268";
+      ctx.font = "600 26px 'Instrument Sans', system-ui, sans-serif";
+      ctx.fillText(sub, 256, 108);
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.needsUpdate = true;
+      const mat = new THREE.SpriteMaterial({
+        map: tex,
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+        opacity: 0.98,
+      });
+      const sprite = new THREE.Sprite(mat);
+      const baseScale = new THREE.Vector3(0.78, 0.244, 1);
+      sprite.scale.copy(baseScale);
+      sprite.renderOrder = 1000;
+      sprite.userData = {
+        kind: "pole",
+        metaKey,
+        metaId: metaKey === "alpha" ? "ALPHA" : "BETA",
+        baseScale,
+        baseOpacity: 0.98,
+      };
+      return sprite;
+    }
+
+    function roundRect(ctx, x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.arcTo(x + w, y, x + w, y + h, r);
+      ctx.arcTo(x + w, y + h, x, y + h, r);
+      ctx.arcTo(x, y + h, x, y, r);
+      ctx.arcTo(x, y, x + w, y, r);
+      ctx.closePath();
+    }
+
+    function addSeparatingPlane(alphaC, betaC) {
+      if (!alphaC || !betaC) return;
+      const mid = alphaC.clone().add(betaC).multiplyScalar(0.5);
+      const normal = betaC.clone().sub(alphaC);
+      if (normal.lengthSq() < 1e-8) return;
+      normal.normalize();
+
+      const geo = new THREE.PlaneGeometry(HP.planeSize, HP.planeSize, 1, 1);
+      const mat = new THREE.MeshBasicMaterial({
+        color: 0x1a1612,
+        transparent: true,
+        opacity: HP.planeOpacity,
+        depthWrite: false,
+        side: THREE.DoubleSide,
+      });
+      const plane = new THREE.Mesh(geo, mat);
+      plane.position.copy(mid);
+      plane.lookAt(mid.clone().add(normal));
+      cloudsGrp.add(plane);
+
+      // Thin rim so the plane reads against the cream background.
+      const edges = new THREE.EdgesGeometry(geo);
+      const rim = new THREE.LineSegments(
+        edges,
+        new THREE.LineBasicMaterial({
+          color: 0x1a1612,
+          transparent: true,
+          opacity: 0.28,
+        }),
+      );
+      rim.position.copy(mid);
+      rim.quaternion.copy(plane.quaternion);
+      cloudsGrp.add(rim);
+
+      // Short normal tick from mid toward each pole, colored by metatrait.
+      const tick = (toward, color) => {
+        const tip = mid.clone().add(toward.clone().normalize().multiplyScalar(0.18));
+        const g = new THREE.BufferGeometry().setFromPoints([mid, tip]);
+        cloudsGrp.add(new THREE.Line(g, new THREE.LineBasicMaterial({
+          color, transparent: true, opacity: 0.55,
+        })));
+      };
+      tick(normal, METATRAIT_STYLE.beta.fill);
+      tick(normal.clone().negate(), METATRAIT_STYLE.alpha.fill);
+    }
+
+    function makeTraitMeanLabel(letter, score, colorHex) {
+      const canvas = document.createElement("canvas");
+      canvas.width = 320;
+      canvas.height = 120;
+      const ctx = canvas.getContext("2d");
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(246, 243, 238, 0.92)";
+      ctx.strokeStyle = colorHex;
+      ctx.lineWidth = 4;
+      roundRect(ctx, 12, 18, 296, 84, 14);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = colorHex;
+      ctx.font = "700 48px 'Newsreader', Georgia, serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      const scoreTxt = score != null && Number.isFinite(score) ? score.toFixed(2) : "—";
+      ctx.fillText(`${letter}  ${scoreTxt}`, 160, 60);
+      const tex = new THREE.CanvasTexture(canvas);
+      tex.needsUpdate = true;
+      const mat = new THREE.SpriteMaterial({
+        map: tex,
+        transparent: true,
+        depthWrite: false,
+        opacity: 0.96,
+      });
+      const sprite = new THREE.Sprite(mat);
+      sprite.scale.set(0.42, 0.158, 1);
+      return sprite;
+    }
+
+    function traitMeanEv(vis, trait) {
+      const means = vis.filter((p) => p.trait === trait && p.kind === "level_mean");
+      if (!means.length) return null;
+      // Prefer mid-ladder (level 5) if present; else average trait_ev across means.
+      const mid = means.find((p) => p.level === 5) || means[Math.floor(means.length / 2)];
+      if (mid?.trait_ev != null) return mid.trait_ev;
+      const vals = means.map((p) => p.trait_ev).filter((v) => v != null);
+      return vals.length ? avg(vals) : null;
+    }
+
+    function traitCentroid(vis, trait, keys, norm) {
+      return metaCentroid(vis, [trait], keys, norm);
+    }
+
+    function rebuildClouds3d(vis, norm, keys) {
+      while (cloudsGrp.children.length) cloudsGrp.remove(cloudsGrp.children[0]);
+      while (labelsGrp.children.length) labelsGrp.remove(labelsGrp.children[0]);
+      while (poleLabelsGrp.children.length) poleLabelsGrp.remove(poleLabelsGrp.children[0]);
+
+      const centers = {};
+      if (HP.showClouds) {
+        for (const [meta, traits] of Object.entries(BIG_TWO)) {
+          const style = METATRAIT_STYLE[meta];
+          const raw = hullPointsForTraits(vis, traits, keys, norm);
+          const pts = raw.map((p) => new THREE.Vector3(p.x, p.z, -p.y));
+          addEllipsoidCloud(pts, style);
+          centers[meta] = metaCentroid(vis, traits, keys, norm);
+        }
+        for (const [meta, c] of Object.entries(centers)) {
+          if (!c) continue;
+          const style = METATRAIT_STYLE[meta];
+          const other = meta === "alpha" ? centers.beta : centers.alpha;
+          const label = makePoleLabel(style.label, style.sub, style.fill, meta);
+          let pos = c.clone();
+          if (other) {
+            const out = c.clone().sub(other);
+            if (out.lengthSq() > 1e-8) pos.add(out.normalize().multiplyScalar(0.12));
+          }
+          pos.y += 0.22;
+          label.position.copy(pos);
+          poleLabelsGrp.add(label);
+        }
+        addSeparatingPlane(centers.alpha, centers.beta);
+      }
+
+      if (HP.showTraitLabels) {
+        for (const trait of Object.keys(COLORS)) {
+          if (!traitOn.has(trait)) continue;
+          const c = traitCentroid(vis, trait, keys, norm);
+          if (!c) continue;
+          const score = traitMeanEv(vis, trait);
+          const label = makeTraitMeanLabel(TRAIT_LABEL[trait], score, COLORS[trait]);
+          label.position.copy(c).add(new THREE.Vector3(0, 0.1, 0));
+          label.renderOrder = 10;
+          label.material.depthTest = true;
+          labelsGrp.add(label);
+        }
+      }
+    }
+
+    const raycaster = new THREE.Raycaster();
+    const pointer = new THREE.Vector2();
+    const meshIndex = new Map();
+
+    function updateSelectionRing() {
+      if (!selectedId) {
+        selectionRing.visible = false;
+        return;
+      }
+      let target = null;
+      for (const [mesh, pt] of meshIndex.entries()) {
+        if (pt.id === selectedId) {
+          target = mesh;
+          break;
+        }
+      }
+      if (!target) {
+        selectionRing.visible = false;
+        return;
+      }
+      selectionRing.position.copy(target.position);
+      selectionRing.lookAt(camera.position);
+      selectionRing.visible = true;
+    }
+
+    function rebuild3d() {
+      while (pointsGrp.children.length) pointsGrp.remove(pointsGrp.children[0]);
+      pointsGrp.add(selectionRing);
+      while (linesGrp.children.length) linesGrp.remove(linesGrp.children[0]);
+      meshIndex.clear();
+
+      const pts = filteredPoints();
+      const vis = visiblePoints();
+      const norm = normCoords(vis);
+      const { cx, cy, cz, span } = norm;
+      const [k1, k2, k3] = coordKeys();
+      rebuildClouds3d(vis, norm, [k1, k2, k3]);
+
+      for (const trait of Object.keys(COLORS)) {
+        if (!traitOn.has(trait)) continue;
+        const ladder = vis
+          .filter((p) => p.trait === trait && p.kind === "level_mean")
+          .sort((a, b) => a.level - b.level);
+        if (ladder.length < 2) continue;
+        const linePts = ladder.map((p) => new THREE.Vector3(
+          (p[k1] - cx) / span,
+          (p[k3] - cz) / span,
+          -(p[k2] - cy) / span,
+        ));
+        const geo = new THREE.BufferGeometry().setFromPoints(linePts);
+        const col = new THREE.Color(COLORS[trait]);
+        const line = new THREE.Line(geo, new THREE.LineBasicMaterial({
+          color: col, transparent: true, opacity: HP.ladderOpacity,
+        }));
+        line.userData.trait = trait;
+        linesGrp.add(line);
+      }
+
+      for (const p of pts) {
+        const x = (p[k1] - cx) / span;
+        const y = (p[k3] - cz) / span;
+        const z = -(p[k2] - cy) / span;
+        const col = new THREE.Color(COLORS[p.trait]);
+        const selected = p.id === selectedId;
+        const size = pointSize(p.kind, selected);
+        const geo = new THREE.SphereGeometry(size, 16, 16);
+        const mat = new THREE.MeshStandardMaterial({
+          color: col,
+          emissive: col,
+          emissiveIntensity: selected ? 0.32 : 0.06,
+          transparent: true,
+          opacity: pointOpacity(p),
+          depthWrite: false,
+          metalness: 0.02,
+          roughness: 0.55,
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.set(x, y, z);
+        mesh.userData.point = p;
+        pointsGrp.add(mesh);
+        meshIndex.set(mesh, p);
+      }
+      updateSelectionRing();
+      applyTsneHoverStyles();
+    }
+
+    function rebuild2d() {
+      const svg = document.getElementById("plot2d");
+      while (svg.firstChild) svg.removeChild(svg.firstChild);
+      const W = 640, H = 480, m = { t: 20, r: 20, b: 28, l: 36 };
+      const iw = W - m.l - m.r, ih = H - m.t - m.b;
+      const pts = filteredPoints();
+      const vis = visiblePoints();
+      const { cx, cy, cz, span } = normCoords(vis);
+      const norm = { cx, cy, cz, span };
+      const [k1, k2, k3] = coordKeys();
+      const sx = (v) => m.l + ((v - cx) / span + 0.5) * iw;
+      const sy = (v) => m.t + (0.5 - (v - cy) / span) * ih;
+
+      const ns = "http://www.w3.org/2000/svg";
+      if (HP.showClouds) {
+        for (const [meta, traits] of Object.entries(BIG_TWO)) {
+          const style = METATRAIT_STYLE[meta];
+          const hullPts = hullPointsForTraits(vis, traits, [k1, k2, k3], norm).map((p) => ({
+            x: p.x * norm.span + norm.cx,
+            y: p.y * norm.span + norm.cy,
+          }));
+          const ell = covEllipse2D(hullPts);
+          if (ell) {
+            const e = document.createElementNS(ns, "ellipse");
+            e.setAttribute("cx", sx(ell.cx));
+            e.setAttribute("cy", sy(ell.cy));
+            e.setAttribute("rx", (ell.rx / norm.span) * iw);
+            e.setAttribute("ry", (ell.ry / norm.span) * ih);
+            e.setAttribute("transform", `rotate(${ell.angle} ${sx(ell.cx)} ${sy(ell.cy)})`);
+            e.setAttribute("fill", style.fill);
+            e.setAttribute("fill-opacity", String(HP.hullOpacity + 0.02));
+            e.setAttribute("stroke", style.stroke);
+            e.setAttribute("stroke-opacity", "0.2");
+            e.setAttribute("stroke-width", "1");
+            e.dataset.meta = meta;
+            svg.appendChild(e);
+          }
+        }
+      }
+
+      for (const trait of Object.keys(COLORS)) {
+        if (!traitOn.has(trait)) continue;
+        const ladder = vis.filter((p) => p.trait === trait && p.kind === "level_mean").sort((a, b) => a.level - b.level);
+        if (ladder.length < 2) continue;
+        const pl = document.createElementNS(ns, "polyline");
+        pl.setAttribute("fill", "none");
+        pl.setAttribute("stroke", COLORS[trait]);
+        pl.setAttribute("stroke-width", "1.5");
+        pl.setAttribute("opacity", String(HP.ladderOpacity));
+        pl.setAttribute("points", ladder.map((p) => `${sx(p[k1])},${sy(p[k2])}`).join(" "));
+        pl.dataset.trait = trait;
+        svg.appendChild(pl);
+      }
+
+      for (const p of pts) {
+        const cxp = sx(p[k1]);
+        const cyp = sy(p[k2]);
+        const selected = p.id === selectedId;
+        const r = p.kind === "level_mean" ? (selected ? 7 : 5) : (selected ? 5 : 3);
+        const el = document.createElementNS(ns, "circle");
+        el.setAttribute("cx", cxp);
+        el.setAttribute("cy", cyp);
+        el.setAttribute("r", r);
+        el.setAttribute("fill", COLORS[p.trait]);
+        el.setAttribute("opacity", pointOpacity(p));
+        if (selected) {
+          el.setAttribute("stroke", "#1a1612");
+          el.setAttribute("stroke-width", "2");
+        }
+        el.dataset.id = p.id;
+        el.style.cursor = isSelectable(p) ? "pointer" : "default";
+        el.addEventListener("click", (e) => {
+          e.stopPropagation();
+          selectPoint(p);
+        });
+        el.addEventListener("pointerenter", (e) => {
+          hoverId.textContent = p.id;
+          hoverDetail.textContent = isSelectable(p) ? "click to select" : "no EV profile";
+          showCrossTip(BigFiveSem.pointTooltipHtml(p), e.clientX, e.clientY);
+          applyCrossHover({
+            trait: p.trait,
+            pointId: p.id,
+            metaId: BigFiveSem.metatraitOf(p.trait)?.id || null,
+          }, "tsne");
+        });
+        el.addEventListener("pointermove", (e) => {
+          BigFiveSem.positionTip(crossTip(), document.body, e.clientX, e.clientY);
+        });
+        el.addEventListener("pointerleave", () => {
+          if (crossHoverSource === "tsne") {
+            hideCrossTip();
+            applyCrossHover(null);
+          }
+        });
+        svg.appendChild(el);
+      }
+      applyTsneHoverStyles();
+    }
+
+    function refresh() {
+      try {
+        rebuild3d();
+        rebuild2d();
+      } catch (err) {
+        errEl.hidden = false;
+        errEl.textContent = String(err.message || err);
+      }
+    }
+
+    function pickPointFromRaycaster() {
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(
+        [...meshIndex.keys()],
+        false,
+      );
+      for (const hit of hits) {
+        const p = hit.object.userData.point;
+        if (p && isSelectable(p)) return p;
+      }
+      return null;
+    }
+
+    function pickPoleFromRaycaster() {
+      raycaster.setFromCamera(pointer, camera);
+      const hits = raycaster.intersectObjects(poleLabelsGrp.children, false);
+      return hits[0]?.object?.userData?.kind === "pole" ? hits[0].object : null;
+    }
+
+    function poleTipHtml(sprite) {
+      const metaId = sprite.userData.metaId;
+      const meta = BigFiveSem.METATRAITS.find((m) => m.id === metaId);
+      if (!meta) return "";
+      return BigFiveSem.digmanTooltipHtml({
+        metaId: meta.id,
+        label: meta.label,
+        name: meta.name,
+        members: Object.keys(meta.members),
+      });
+    }
+
+    let lastHoverPointId = null;
+    let lastHoverPoleId = null;
+
+    canvas.addEventListener("pointermove", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+
+      // Pole labels always win the hover — they sit in front of the cloud.
+      const pole = pickPoleFromRaycaster();
+      if (pole) {
+        const metaId = pole.userData.metaId;
+        hoverId.textContent = pole.userData.metaKey === "alpha" ? "α Stability" : "β Plasticity";
+        hoverDetail.textContent = "Digman metatrait · hover focus";
+        canvas.style.cursor = "pointer";
+        lastHoverPointId = null;
+        if (lastHoverPoleId !== metaId) {
+          lastHoverPoleId = metaId;
+          showCrossTip(poleTipHtml(pole), e.clientX, e.clientY);
+          applyCrossHover({ metaId }, "tsne");
+        } else {
+          BigFiveSem.positionTip(crossTip(), document.body, e.clientX, e.clientY);
+        }
+        return;
+      }
+
+      if (lastHoverPoleId != null) {
+        lastHoverPoleId = null;
+        if (crossHoverSource === "tsne") {
+          hideCrossTip();
+          applyCrossHover(null);
+        }
+      }
+
+      const p = pickPointFromRaycaster();
+      if (p) {
+        hoverId.textContent = p.id;
+        hoverDetail.textContent = p.id === selectedId ? "selected" : "click to select";
+        canvas.style.cursor = "pointer";
+        if (lastHoverPointId !== p.id) {
+          lastHoverPointId = p.id;
+          showCrossTip(BigFiveSem.pointTooltipHtml(p), e.clientX, e.clientY);
+          applyCrossHover({
+            trait: p.trait,
+            pointId: p.id,
+            metaId: BigFiveSem.metatraitOf(p.trait)?.id || null,
+          }, "tsne");
+        } else {
+          BigFiveSem.positionTip(crossTip(), document.body, e.clientX, e.clientY);
+        }
+      } else {
+        canvas.style.cursor = "grab";
+        if (lastHoverPointId != null) {
+          lastHoverPointId = null;
+          if (crossHoverSource === "tsne") {
+            hideCrossTip();
+            applyCrossHover(null);
+          }
+        }
+      }
+    });
+
+    canvas.addEventListener("pointerleave", () => {
+      lastHoverPointId = null;
+      lastHoverPoleId = null;
+      if (crossHoverSource === "tsne") {
+        hideCrossTip();
+        applyCrossHover(null);
+      }
+    });
+
+    canvas.addEventListener("click", (e) => {
+      const rect = canvas.getBoundingClientRect();
+      pointer.x = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+      pointer.y = -((e.clientY - rect.top) / rect.height) * 2 + 1;
+      const p = pickPointFromRaycaster();
+      if (p) selectPoint(p);
+      else if (selectedId) clearSelection();
+    });
+
+    function resize() {
+      const w = tsneStage.clientWidth, h = tsneStage.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / Math.max(1, h);
+      camera.updateProjectionMatrix();
+    }
+    window.addEventListener("resize", resize);
+
+    async function initSem() {
+      semData = await fetch("./big_five_sem_data.json?v=26").then((r) => {
+        if (!r.ok) throw new Error(`SEM HTTP ${r.status}`);
+        return r.json();
+      });
+      const stage = document.getElementById("sem-stage");
+      semSvg = BigFiveSem.renderDiagram(semData, { stage });
+      stage.appendChild(semSvg);
+      BigFiveSem.attachPanZoom(stage, semSvg);
+      BigFiveSem.onFactorClick(semSvg, (trait) => selectTrait(trait));
+      BigFiveSem.onBackgroundClick(semSvg, () => clearSelection());
+      BigFiveSem.onHover(semSvg, (link) => {
+        if (link) {
+          applyCrossHover(link, "sem");
+        } else if (crossHoverSource === "sem") {
+          hideCrossTip();
+          applyCrossHover(null);
+        }
+      });
+    }
+
+    function syncCamera() {
+      const dir = camera.position.clone().sub(controls.target);
+      if (dir.lengthSq() < 1e-6) dir.set(0, 1.2, 1);
+      dir.setLength(HP.cameraDist);
+      camera.position.copy(controls.target).add(dir);
+      camera.updateProjectionMatrix();
+    }
+
+    function reflowLayout() {
+      if (!DATA || !RAW_POINTS) return;
+      applyLayout(DATA.points, RAW_POINTS);
+      methodEl.textContent =
+        `${DATA.method} · ${DATA.n_points} points · layer L${DATA.steer_layer} · ` +
+        `cluster spread ×${HP.clusterSpread.toFixed(2)} · Digman α/β plane`;
+      refresh();
+    }
+
+    function bindHyperParams() {
+      syncCamera();
+    }
+
+    try {
+      const [tsnePayload] = await Promise.all([
+        fetch("./big_five_tsne.json?v=11").then((r) => {
+          if (!r.ok) throw new Error(`HTTP ${r.status}`);
+          return r.json();
+        }),
+        initSem(),
+      ]);
+      DATA = tsnePayload;
+      RAW_POINTS = snapshotRaw(DATA.points);
+      applyLayout(DATA.points, RAW_POINTS);
+      {
+        const traits = Object.keys(BigFiveSem.TRAIT_NAME);
+        const usable = DATA.points.filter(
+          (p) => p.ev_scores && traits.every((t) => p.ev_scores[t] != null)
+        );
+        if (usable.length) {
+          const baseline = {};
+          for (const t of traits) {
+            baseline[t] = usable.reduce((s, p) => s + p.ev_scores[t], 0) / usable.length;
+          }
+          BigFiveSem.setEvBaseline(baseline);
+        }
+      }
+      if (semData) {
+        evStructure = BigFiveSem.computeEvStructure(pooledPoints(), semData.factors);
+      }
+      bindHyperParams();
+      reflowLayout();
+      resize();
+      (function animate() {
+        requestAnimationFrame(animate);
+        controls.update();
+        updateSelectionRing();
+        renderer.render(scene, camera);
+      })();
+    } catch (err) {
+      errEl.hidden = false;
+      errEl.textContent = String(err.message || err);
+    }
+  </script>
+  <script src="./viz_series.js"></script>
+</body>
+</html>

@@ -1,0 +1,3812 @@
+{
+  "title": "Five Personas",
+  "source": "Final-cycle opposite-prior MPI-120 \u00b7 L15 PC1 \u00b7 trait + matched-norm random control EVs (phase4_sweeps_specificity) \u00b7 phase4b free-baseline continuum for \u0394EV chart",
+  "likert_min": 1,
+  "likert_max": 5,
+  "traits_order": [
+    "openness",
+    "conscientiousness",
+    "extraversion",
+    "agreeableness",
+    "neuroticism"
+  ],
+  "baseline_ev_scores": {
+    "openness": 3.4017,
+    "conscientiousness": 3.0274,
+    "extraversion": 3.2074,
+    "agreeableness": 3.2648,
+    "neuroticism": 3.1834
+  },
+  "poles": [
+    {
+      "trait": "openness",
+      "pole": "up",
+      "id": "O-up",
+      "layer": 15,
+      "prior_ev": 2.6383,
+      "reference_ev": 4.2857,
+      "passes": true,
+      "best_dose": 523.31,
+      "trait_delta_at_best": 0.7901,
+      "prompt_gap": 1.6474,
+      "rho": 0.95,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 2.6383,
+          "ev_scores": {
+            "agreeableness": 2.9408,
+            "conscientiousness": 2.403,
+            "extraversion": 2.1529,
+            "neuroticism": 3.3654,
+            "openness": 2.6383
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 2.9408,
+            "conscientiousness": 2.403,
+            "extraversion": 2.1529,
+            "neuroticism": 3.3654,
+            "openness": 2.6383
+          }
+        },
+        {
+          "mag": 80.81,
+          "delta": 0.0274,
+          "ev": 2.6657,
+          "ev_scores": {
+            "agreeableness": 2.967,
+            "conscientiousness": 2.4426,
+            "extraversion": 2.2062,
+            "neuroticism": 3.5771,
+            "openness": 2.6657
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.0301,
+            "conscientiousness": 2.4166,
+            "extraversion": 2.0379,
+            "neuroticism": 3.4456,
+            "openness": 2.5071
+          }
+        },
+        {
+          "mag": 169.31,
+          "delta": 0.1307,
+          "ev": 2.769,
+          "ev_scores": {
+            "agreeableness": 3.0789,
+            "conscientiousness": 2.5578,
+            "extraversion": 2.3644,
+            "neuroticism": 3.7087,
+            "openness": 2.769
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.1005,
+            "conscientiousness": 2.4274,
+            "extraversion": 2.0149,
+            "neuroticism": 3.4302,
+            "openness": 2.4267
+          }
+        },
+        {
+          "mag": 257.81,
+          "delta": 0.1328,
+          "ev": 2.7711,
+          "ev_scores": {
+            "agreeableness": 3.35,
+            "conscientiousness": 2.804,
+            "extraversion": 2.4747,
+            "neuroticism": 3.5951,
+            "openness": 2.7711
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.1359,
+            "conscientiousness": 2.4404,
+            "extraversion": 1.9614,
+            "neuroticism": 3.4339,
+            "openness": 2.2995
+          }
+        },
+        {
+          "mag": 346.31,
+          "delta": 0.3738,
+          "ev": 3.0121,
+          "ev_scores": {
+            "agreeableness": 3.495,
+            "conscientiousness": 3.042,
+            "extraversion": 2.6372,
+            "neuroticism": 3.4252,
+            "openness": 3.0121
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.1523,
+            "conscientiousness": 2.4194,
+            "extraversion": 1.9327,
+            "neuroticism": 3.4805,
+            "openness": 2.1623
+          }
+        },
+        {
+          "mag": 434.81,
+          "delta": 0.652,
+          "ev": 3.2903,
+          "ev_scores": {
+            "agreeableness": 3.5028,
+            "conscientiousness": 3.2332,
+            "extraversion": 2.8344,
+            "neuroticism": 3.2406,
+            "openness": 3.2903
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.1439,
+            "conscientiousness": 2.3521,
+            "extraversion": 1.8337,
+            "neuroticism": 3.5194,
+            "openness": 2.0562
+          }
+        },
+        {
+          "mag": 523.31,
+          "delta": 0.7901,
+          "ev": 3.4284,
+          "ev_scores": {
+            "agreeableness": 3.4354,
+            "conscientiousness": 3.2993,
+            "extraversion": 2.9306,
+            "neuroticism": 3.167,
+            "openness": 3.4284
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.0726,
+            "conscientiousness": 2.2555,
+            "extraversion": 1.7486,
+            "neuroticism": 3.6775,
+            "openness": 2.0694
+          }
+        },
+        {
+          "mag": 611.82,
+          "delta": 0.7822,
+          "ev": 3.4205,
+          "ev_scores": {
+            "agreeableness": 3.3452,
+            "conscientiousness": 3.3891,
+            "extraversion": 2.9602,
+            "neuroticism": 3.1137,
+            "openness": 3.4205
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.8555,
+            "conscientiousness": 2.1771,
+            "extraversion": 1.7038,
+            "neuroticism": 3.7969,
+            "openness": 2.0415
+          }
+        },
+        {
+          "mag": 700.32,
+          "delta": 0.786,
+          "ev": 3.4243,
+          "ev_scores": {
+            "agreeableness": 3.2725,
+            "conscientiousness": 3.5294,
+            "extraversion": 3.044,
+            "neuroticism": 3.0896,
+            "openness": 3.4243
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.4878,
+            "conscientiousness": 1.9728,
+            "extraversion": 1.7767,
+            "neuroticism": 4.0036,
+            "openness": 1.9251
+          }
+        }
+      ],
+      "label": "Openness",
+      "short": "O",
+      "voice": "Curious \u00b7 abstract \u00b7 novelty-seeking"
+    },
+    {
+      "trait": "openness",
+      "pole": "down",
+      "id": "O-down",
+      "layer": 15,
+      "prior_ev": 4.1652,
+      "reference_ev": 2.227,
+      "passes": true,
+      "best_dose": -700.32,
+      "trait_delta_at_best": -0.903,
+      "prompt_gap": -1.9382,
+      "rho": 1.0,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 4.1652,
+          "ev_scores": {
+            "agreeableness": 4.2544,
+            "conscientiousness": 3.9254,
+            "extraversion": 3.3364,
+            "neuroticism": 2.4471,
+            "openness": 4.1652
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 4.2544,
+            "conscientiousness": 3.9254,
+            "extraversion": 3.3364,
+            "neuroticism": 2.4471,
+            "openness": 4.1652
+          }
+        },
+        {
+          "mag": -80.81,
+          "delta": -0.1018,
+          "ev": 4.0634,
+          "ev_scores": {
+            "agreeableness": 4.2083,
+            "conscientiousness": 3.835,
+            "extraversion": 3.2887,
+            "neuroticism": 2.4594,
+            "openness": 4.0634
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.1501,
+            "conscientiousness": 3.9628,
+            "extraversion": 3.4062,
+            "neuroticism": 2.4467,
+            "openness": 4.1893
+          }
+        },
+        {
+          "mag": -169.31,
+          "delta": -0.1829,
+          "ev": 3.9823,
+          "ev_scores": {
+            "agreeableness": 4.0844,
+            "conscientiousness": 3.8174,
+            "extraversion": 3.1886,
+            "neuroticism": 2.4432,
+            "openness": 3.9823
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.1247,
+            "conscientiousness": 4.0075,
+            "extraversion": 3.4128,
+            "neuroticism": 2.4151,
+            "openness": 4.1873
+          }
+        },
+        {
+          "mag": -257.81,
+          "delta": -0.3003,
+          "ev": 3.8649,
+          "ev_scores": {
+            "agreeableness": 3.9679,
+            "conscientiousness": 3.7702,
+            "extraversion": 3.1325,
+            "neuroticism": 2.4153,
+            "openness": 3.8649
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.0055,
+            "conscientiousness": 4.0534,
+            "extraversion": 3.3919,
+            "neuroticism": 2.4085,
+            "openness": 4.158
+          }
+        },
+        {
+          "mag": -346.31,
+          "delta": -0.3894,
+          "ev": 3.7758,
+          "ev_scores": {
+            "agreeableness": 3.8502,
+            "conscientiousness": 3.7547,
+            "extraversion": 3.1476,
+            "neuroticism": 2.4302,
+            "openness": 3.7758
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.6173,
+            "conscientiousness": 3.9991,
+            "extraversion": 3.4104,
+            "neuroticism": 2.4562,
+            "openness": 4.1134
+          }
+        },
+        {
+          "mag": -434.81,
+          "delta": -0.5837,
+          "ev": 3.5815,
+          "ev_scores": {
+            "agreeableness": 3.6754,
+            "conscientiousness": 3.7564,
+            "extraversion": 3.2484,
+            "neuroticism": 2.5267,
+            "openness": 3.5815
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.054,
+            "conscientiousness": 3.7134,
+            "extraversion": 3.4428,
+            "neuroticism": 2.5783,
+            "openness": 4.0793
+          }
+        },
+        {
+          "mag": -523.31,
+          "delta": -0.7803,
+          "ev": 3.3849,
+          "ev_scores": {
+            "agreeableness": 3.6728,
+            "conscientiousness": 3.7363,
+            "extraversion": 3.2657,
+            "neuroticism": 2.6677,
+            "openness": 3.3849
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.7268,
+            "conscientiousness": 3.4744,
+            "extraversion": 3.3825,
+            "neuroticism": 2.732,
+            "openness": 3.8139
+          }
+        },
+        {
+          "mag": -611.82,
+          "delta": -0.9012,
+          "ev": 3.264,
+          "ev_scores": {
+            "agreeableness": 3.5994,
+            "conscientiousness": 3.6045,
+            "extraversion": 3.2295,
+            "neuroticism": 2.7797,
+            "openness": 3.264
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.3949,
+            "conscientiousness": 3.2043,
+            "extraversion": 3.3733,
+            "neuroticism": 3.0961,
+            "openness": 3.5023
+          }
+        },
+        {
+          "mag": -700.32,
+          "delta": -0.903,
+          "ev": 3.2622,
+          "ev_scores": {
+            "agreeableness": 3.4475,
+            "conscientiousness": 3.4259,
+            "extraversion": 3.1484,
+            "neuroticism": 2.9186,
+            "openness": 3.2622
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.3598,
+            "conscientiousness": 3.0102,
+            "extraversion": 3.4504,
+            "neuroticism": 3.2157,
+            "openness": 3.1077
+          }
+        }
+      ],
+      "label": "Openness",
+      "short": "O",
+      "voice": "Concrete \u00b7 conventional \u00b7 grounded"
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "up",
+      "id": "C-up",
+      "layer": 15,
+      "prior_ev": 1.0623,
+      "reference_ev": 4.9938,
+      "passes": true,
+      "best_dose": 918.66,
+      "trait_delta_at_best": 2.0195,
+      "prompt_gap": 3.9315,
+      "rho": 0.9833,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 1.0623,
+          "ev_scores": {
+            "agreeableness": 2.8221,
+            "conscientiousness": 1.0623,
+            "extraversion": 1.8319,
+            "neuroticism": 3.6434,
+            "openness": 2.8628
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 2.8221,
+            "conscientiousness": 1.0623,
+            "extraversion": 1.8319,
+            "neuroticism": 3.6434,
+            "openness": 2.8628
+          }
+        },
+        {
+          "mag": 121.33,
+          "delta": 0.0105,
+          "ev": 1.0728,
+          "ev_scores": {
+            "agreeableness": 2.9816,
+            "conscientiousness": 1.0728,
+            "extraversion": 1.8038,
+            "neuroticism": 3.5885,
+            "openness": 2.9261
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.8984,
+            "conscientiousness": 1.0518,
+            "extraversion": 1.795,
+            "neuroticism": 3.5813,
+            "openness": 2.8851
+          }
+        },
+        {
+          "mag": 254.22,
+          "delta": 0.0397,
+          "ev": 1.102,
+          "ev_scores": {
+            "agreeableness": 3.2031,
+            "conscientiousness": 1.102,
+            "extraversion": 1.7961,
+            "neuroticism": 3.5271,
+            "openness": 2.9887
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.8676,
+            "conscientiousness": 1.0562,
+            "extraversion": 1.8141,
+            "neuroticism": 3.5189,
+            "openness": 2.9101
+          }
+        },
+        {
+          "mag": 387.11,
+          "delta": 0.1851,
+          "ev": 1.2474,
+          "ev_scores": {
+            "agreeableness": 3.3871,
+            "conscientiousness": 1.2474,
+            "extraversion": 1.8169,
+            "neuroticism": 3.4075,
+            "openness": 3.0547
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.6339,
+            "conscientiousness": 1.0662,
+            "extraversion": 1.8657,
+            "neuroticism": 3.4927,
+            "openness": 2.8769
+          }
+        },
+        {
+          "mag": 520.0,
+          "delta": 0.4884,
+          "ev": 1.5507,
+          "ev_scores": {
+            "agreeableness": 3.6988,
+            "conscientiousness": 1.5507,
+            "extraversion": 1.8581,
+            "neuroticism": 3.0896,
+            "openness": 3.1569
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.3427,
+            "conscientiousness": 1.0733,
+            "extraversion": 2.0263,
+            "neuroticism": 3.3978,
+            "openness": 2.668
+          }
+        },
+        {
+          "mag": 652.89,
+          "delta": 1.3179,
+          "ev": 2.3802,
+          "ev_scores": {
+            "agreeableness": 3.7703,
+            "conscientiousness": 2.3802,
+            "extraversion": 1.8573,
+            "neuroticism": 2.7791,
+            "openness": 3.2589
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.182,
+            "conscientiousness": 1.2106,
+            "extraversion": 2.1948,
+            "neuroticism": 3.5343,
+            "openness": 2.466
+          }
+        },
+        {
+          "mag": 785.77,
+          "delta": 1.9651,
+          "ev": 3.0274,
+          "ev_scores": {
+            "agreeableness": 3.8009,
+            "conscientiousness": 3.0274,
+            "extraversion": 1.867,
+            "neuroticism": 2.5381,
+            "openness": 3.1896
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.0614,
+            "conscientiousness": 1.3685,
+            "extraversion": 2.2453,
+            "neuroticism": 3.8183,
+            "openness": 2.2861
+          }
+        },
+        {
+          "mag": 918.66,
+          "delta": 2.0195,
+          "ev": 3.0818,
+          "ev_scores": {
+            "agreeableness": 3.8254,
+            "conscientiousness": 3.0818,
+            "extraversion": 1.9359,
+            "neuroticism": 2.4727,
+            "openness": 3.0891
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.7938,
+            "conscientiousness": 1.5299,
+            "extraversion": 2.1491,
+            "neuroticism": 4.1076,
+            "openness": 2.1228
+          }
+        },
+        {
+          "mag": 1051.55,
+          "delta": 1.9739,
+          "ev": 3.0362,
+          "ev_scores": {
+            "agreeableness": 3.8452,
+            "conscientiousness": 3.0362,
+            "extraversion": 1.9227,
+            "neuroticism": 2.6117,
+            "openness": 3.2041
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.7917,
+            "conscientiousness": 2.5634,
+            "extraversion": 2.9997,
+            "neuroticism": 3.855,
+            "openness": 2.2742
+          }
+        }
+      ],
+      "label": "Conscientiousness",
+      "short": "C",
+      "voice": "Planful \u00b7 dutiful \u00b7 ordered"
+    },
+    {
+      "trait": "conscientiousness",
+      "pole": "down",
+      "id": "C-down",
+      "layer": 15,
+      "prior_ev": 4.9925,
+      "reference_ev": 1.0486,
+      "passes": true,
+      "best_dose": -1051.55,
+      "trait_delta_at_best": -1.6484,
+      "prompt_gap": -3.9439,
+      "rho": 1.0,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 4.9925,
+          "ev_scores": {
+            "agreeableness": 4.2918,
+            "conscientiousness": 4.9925,
+            "extraversion": 3.3075,
+            "neuroticism": 1.3329,
+            "openness": 3.6714
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 4.2918,
+            "conscientiousness": 4.9925,
+            "extraversion": 3.3075,
+            "neuroticism": 1.3329,
+            "openness": 3.6714
+          }
+        },
+        {
+          "mag": -121.33,
+          "delta": -0.0492,
+          "ev": 4.9433,
+          "ev_scores": {
+            "agreeableness": 4.0445,
+            "conscientiousness": 4.9433,
+            "extraversion": 3.3186,
+            "neuroticism": 1.5121,
+            "openness": 3.7023
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.3082,
+            "conscientiousness": 4.9698,
+            "extraversion": 3.4706,
+            "neuroticism": 1.3872,
+            "openness": 3.7393
+          }
+        },
+        {
+          "mag": -254.22,
+          "delta": -0.1066,
+          "ev": 4.8859,
+          "ev_scores": {
+            "agreeableness": 3.8798,
+            "conscientiousness": 4.8859,
+            "extraversion": 3.2513,
+            "neuroticism": 1.6855,
+            "openness": 3.8921
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.2902,
+            "conscientiousness": 4.9544,
+            "extraversion": 3.5845,
+            "neuroticism": 1.4678,
+            "openness": 3.894
+          }
+        },
+        {
+          "mag": -387.11,
+          "delta": -0.2242,
+          "ev": 4.7683,
+          "ev_scores": {
+            "agreeableness": 3.6473,
+            "conscientiousness": 4.7683,
+            "extraversion": 3.1109,
+            "neuroticism": 1.7211,
+            "openness": 3.9376
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.1671,
+            "conscientiousness": 4.698,
+            "extraversion": 3.5345,
+            "neuroticism": 1.5345,
+            "openness": 3.9904
+          }
+        },
+        {
+          "mag": -520.0,
+          "delta": -0.323,
+          "ev": 4.6695,
+          "ev_scores": {
+            "agreeableness": 3.5033,
+            "conscientiousness": 4.6695,
+            "extraversion": 3.1157,
+            "neuroticism": 1.7918,
+            "openness": 3.727
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.9737,
+            "conscientiousness": 3.3114,
+            "extraversion": 3.4997,
+            "neuroticism": 2.0387,
+            "openness": 3.8653
+          }
+        },
+        {
+          "mag": -652.89,
+          "delta": -0.4026,
+          "ev": 4.5899,
+          "ev_scores": {
+            "agreeableness": 3.3477,
+            "conscientiousness": 4.5899,
+            "extraversion": 3.0631,
+            "neuroticism": 2.0068,
+            "openness": 3.457
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.2288,
+            "conscientiousness": 2.6328,
+            "extraversion": 3.8179,
+            "neuroticism": 3.3571,
+            "openness": 3.6209
+          }
+        },
+        {
+          "mag": -785.77,
+          "delta": -0.698,
+          "ev": 4.2945,
+          "ev_scores": {
+            "agreeableness": 3.201,
+            "conscientiousness": 4.2945,
+            "extraversion": 3.0095,
+            "neuroticism": 2.4497,
+            "openness": 3.2234
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.8171,
+            "conscientiousness": 1.9119,
+            "extraversion": 3.4534,
+            "neuroticism": 3.7316,
+            "openness": 3.3353
+          }
+        },
+        {
+          "mag": -918.66,
+          "delta": -1.2778,
+          "ev": 3.7147,
+          "ev_scores": {
+            "agreeableness": 3.0008,
+            "conscientiousness": 3.7147,
+            "extraversion": 2.9276,
+            "neuroticism": 2.8511,
+            "openness": 3.0832
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.5482,
+            "conscientiousness": 1.2858,
+            "extraversion": 2.945,
+            "neuroticism": 4.2073,
+            "openness": 3.0073
+          }
+        },
+        {
+          "mag": -1051.55,
+          "delta": -1.6484,
+          "ev": 3.3441,
+          "ev_scores": {
+            "agreeableness": 2.6929,
+            "conscientiousness": 3.3441,
+            "extraversion": 2.8349,
+            "neuroticism": 2.9555,
+            "openness": 3.0169
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.8083,
+            "conscientiousness": 1.0146,
+            "extraversion": 2.3583,
+            "neuroticism": 4.4473,
+            "openness": 2.9891
+          }
+        }
+      ],
+      "label": "Conscientiousness",
+      "short": "C",
+      "voice": "Spontaneous \u00b7 casual \u00b7 loose"
+    },
+    {
+      "trait": "extraversion",
+      "pole": "up",
+      "id": "E-up",
+      "layer": 15,
+      "prior_ev": 1.5714,
+      "reference_ev": 4.7975,
+      "passes": true,
+      "best_dose": 1050.63,
+      "trait_delta_at_best": 1.8027,
+      "prompt_gap": 3.2261,
+      "rho": 0.8833,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 1.5714,
+          "ev_scores": {
+            "agreeableness": 3.4195,
+            "conscientiousness": 3.2045,
+            "extraversion": 1.5714,
+            "neuroticism": 2.3405,
+            "openness": 2.6218
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 3.4195,
+            "conscientiousness": 3.2045,
+            "extraversion": 1.5714,
+            "neuroticism": 2.3405,
+            "openness": 2.6218
+          }
+        },
+        {
+          "mag": 121.23,
+          "delta": -0.0541,
+          "ev": 1.5173,
+          "ev_scores": {
+            "agreeableness": 3.4828,
+            "conscientiousness": 3.1929,
+            "extraversion": 1.5173,
+            "neuroticism": 2.4176,
+            "openness": 2.8695
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.5059,
+            "conscientiousness": 3.1344,
+            "extraversion": 1.4617,
+            "neuroticism": 2.3371,
+            "openness": 2.6343
+          }
+        },
+        {
+          "mag": 254.0,
+          "delta": 0.0002,
+          "ev": 1.5716,
+          "ev_scores": {
+            "agreeableness": 3.4924,
+            "conscientiousness": 3.2171,
+            "extraversion": 1.5716,
+            "neuroticism": 2.771,
+            "openness": 2.8717
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.6035,
+            "conscientiousness": 3.1156,
+            "extraversion": 1.3766,
+            "neuroticism": 2.3475,
+            "openness": 2.6117
+          }
+        },
+        {
+          "mag": 386.77,
+          "delta": -0.1935,
+          "ev": 1.3779,
+          "ev_scores": {
+            "agreeableness": 3.4228,
+            "conscientiousness": 3.418,
+            "extraversion": 1.3779,
+            "neuroticism": 3.0654,
+            "openness": 3.137
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.5857,
+            "conscientiousness": 3.0973,
+            "extraversion": 1.3655,
+            "neuroticism": 2.3815,
+            "openness": 2.4968
+          }
+        },
+        {
+          "mag": 519.54,
+          "delta": 0.0253,
+          "ev": 1.5967,
+          "ev_scores": {
+            "agreeableness": 3.0382,
+            "conscientiousness": 3.7319,
+            "extraversion": 1.5967,
+            "neuroticism": 3.4373,
+            "openness": 3.7784
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.4777,
+            "conscientiousness": 2.9957,
+            "extraversion": 1.402,
+            "neuroticism": 2.4486,
+            "openness": 2.2998
+          }
+        },
+        {
+          "mag": 652.31,
+          "delta": 0.4155,
+          "ev": 1.9869,
+          "ev_scores": {
+            "agreeableness": 3.0399,
+            "conscientiousness": 3.3601,
+            "extraversion": 1.9869,
+            "neuroticism": 3.8772,
+            "openness": 3.7744
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.2398,
+            "conscientiousness": 2.897,
+            "extraversion": 1.5315,
+            "neuroticism": 2.6905,
+            "openness": 2.1678
+          }
+        },
+        {
+          "mag": 785.08,
+          "delta": 1.1681,
+          "ev": 2.7395,
+          "ev_scores": {
+            "agreeableness": 2.8315,
+            "conscientiousness": 3.1802,
+            "extraversion": 2.7395,
+            "neuroticism": 3.9579,
+            "openness": 3.7402
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.6606,
+            "conscientiousness": 2.9877,
+            "extraversion": 1.7235,
+            "neuroticism": 3.2212,
+            "openness": 2.4448
+          }
+        },
+        {
+          "mag": 917.85,
+          "delta": 1.4851,
+          "ev": 3.0565,
+          "ev_scores": {
+            "agreeableness": 2.5248,
+            "conscientiousness": 3.241,
+            "extraversion": 3.0565,
+            "neuroticism": 3.8296,
+            "openness": 4.0116
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.3029,
+            "conscientiousness": 2.596,
+            "extraversion": 2.3669,
+            "neuroticism": 3.3351,
+            "openness": 2.7092
+          }
+        },
+        {
+          "mag": 1050.63,
+          "delta": 1.8027,
+          "ev": 3.3741,
+          "ev_scores": {
+            "agreeableness": 2.6291,
+            "conscientiousness": 3.4891,
+            "extraversion": 3.3741,
+            "neuroticism": 3.2477,
+            "openness": 4.0774
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.9529,
+            "conscientiousness": 2.2119,
+            "extraversion": 2.8454,
+            "neuroticism": 3.3233,
+            "openness": 2.6178
+          }
+        }
+      ],
+      "label": "Extraversion",
+      "short": "E",
+      "voice": "Outgoing \u00b7 energetic \u00b7 talkative"
+    },
+    {
+      "trait": "extraversion",
+      "pole": "down",
+      "id": "E-down",
+      "layer": 15,
+      "prior_ev": 4.8435,
+      "reference_ev": 1.4348,
+      "passes": true,
+      "best_dose": -917.85,
+      "trait_delta_at_best": -1.7721,
+      "prompt_gap": -3.4087,
+      "rho": 0.95,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 4.8435,
+          "ev_scores": {
+            "agreeableness": 4.146,
+            "conscientiousness": 4.1352,
+            "extraversion": 4.8435,
+            "neuroticism": 2.1235,
+            "openness": 4.439
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 4.146,
+            "conscientiousness": 4.1352,
+            "extraversion": 4.8435,
+            "neuroticism": 2.1235,
+            "openness": 4.439
+          }
+        },
+        {
+          "mag": -121.23,
+          "delta": -0.0205,
+          "ev": 4.823,
+          "ev_scores": {
+            "agreeableness": 4.257,
+            "conscientiousness": 4.0799,
+            "extraversion": 4.823,
+            "neuroticism": 2.2066,
+            "openness": 4.3749
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.1409,
+            "conscientiousness": 4.1995,
+            "extraversion": 4.7915,
+            "neuroticism": 2.2162,
+            "openness": 4.4598
+          }
+        },
+        {
+          "mag": -254.0,
+          "delta": -0.2731,
+          "ev": 4.5704,
+          "ev_scores": {
+            "agreeableness": 4.2144,
+            "conscientiousness": 3.9553,
+            "extraversion": 4.5704,
+            "neuroticism": 2.2296,
+            "openness": 4.2038
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.0045,
+            "conscientiousness": 4.2202,
+            "extraversion": 4.7874,
+            "neuroticism": 2.2746,
+            "openness": 4.3834
+          }
+        },
+        {
+          "mag": -386.77,
+          "delta": -0.5766,
+          "ev": 4.2669,
+          "ev_scores": {
+            "agreeableness": 3.8967,
+            "conscientiousness": 3.6415,
+            "extraversion": 4.2669,
+            "neuroticism": 2.2958,
+            "openness": 3.8127
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.7752,
+            "conscientiousness": 3.8399,
+            "extraversion": 4.6738,
+            "neuroticism": 2.3474,
+            "openness": 4.3467
+          }
+        },
+        {
+          "mag": -519.54,
+          "delta": -1.2242,
+          "ev": 3.6193,
+          "ev_scores": {
+            "agreeableness": 3.9172,
+            "conscientiousness": 3.4668,
+            "extraversion": 3.6193,
+            "neuroticism": 2.4355,
+            "openness": 3.6421
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.309,
+            "conscientiousness": 3.7444,
+            "extraversion": 4.4916,
+            "neuroticism": 2.2938,
+            "openness": 4.1659
+          }
+        },
+        {
+          "mag": -652.31,
+          "delta": -1.6523,
+          "ev": 3.1912,
+          "ev_scores": {
+            "agreeableness": 3.4946,
+            "conscientiousness": 3.3558,
+            "extraversion": 3.1912,
+            "neuroticism": 2.8807,
+            "openness": 3.3094
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.7048,
+            "conscientiousness": 3.7026,
+            "extraversion": 4.0522,
+            "neuroticism": 2.6878,
+            "openness": 3.9452
+          }
+        },
+        {
+          "mag": -785.08,
+          "delta": -1.7651,
+          "ev": 3.0784,
+          "ev_scores": {
+            "agreeableness": 3.2786,
+            "conscientiousness": 3.2399,
+            "extraversion": 3.0784,
+            "neuroticism": 3.0151,
+            "openness": 3.1618
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.376,
+            "conscientiousness": 3.8259,
+            "extraversion": 3.7046,
+            "neuroticism": 2.7519,
+            "openness": 3.4601
+          }
+        },
+        {
+          "mag": -917.85,
+          "delta": -1.7721,
+          "ev": 3.0714,
+          "ev_scores": {
+            "agreeableness": 3.0348,
+            "conscientiousness": 3.0333,
+            "extraversion": 3.0714,
+            "neuroticism": 3.1367,
+            "openness": 3.0918
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.5706,
+            "conscientiousness": 3.9112,
+            "extraversion": 3.2902,
+            "neuroticism": 2.649,
+            "openness": 3.2705
+          }
+        },
+        {
+          "mag": -1050.63,
+          "delta": -1.7232,
+          "ev": 3.1203,
+          "ev_scores": {
+            "agreeableness": 2.9838,
+            "conscientiousness": 2.9783,
+            "extraversion": 3.1203,
+            "neuroticism": 3.1726,
+            "openness": 3.1084
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.9547,
+            "conscientiousness": 3.2578,
+            "extraversion": 2.7294,
+            "neuroticism": 2.6009,
+            "openness": 3.0011
+          }
+        }
+      ],
+      "label": "Extraversion",
+      "short": "E",
+      "voice": "Reserved \u00b7 quiet \u00b7 inward"
+    },
+    {
+      "trait": "agreeableness",
+      "pole": "up",
+      "id": "A-up",
+      "layer": 15,
+      "prior_ev": 2.0627,
+      "reference_ev": 4.4594,
+      "passes": true,
+      "best_dose": 954.65,
+      "trait_delta_at_best": 1.0136,
+      "prompt_gap": 2.3967,
+      "rho": 1.0,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 2.0627,
+          "ev_scores": {
+            "agreeableness": 2.0627,
+            "conscientiousness": 1.9098,
+            "extraversion": 2.3235,
+            "neuroticism": 3.0368,
+            "openness": 2.9084
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 2.0627,
+            "conscientiousness": 1.9098,
+            "extraversion": 2.3235,
+            "neuroticism": 3.0368,
+            "openness": 2.9084
+          }
+        },
+        {
+          "mag": 110.15,
+          "delta": 0.0351,
+          "ev": 2.0978,
+          "ev_scores": {
+            "agreeableness": 2.0978,
+            "conscientiousness": 1.9063,
+            "extraversion": 2.2661,
+            "neuroticism": 3.1017,
+            "openness": 2.8948
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.1282,
+            "conscientiousness": 1.962,
+            "extraversion": 2.2075,
+            "neuroticism": 2.8142,
+            "openness": 2.9683
+          }
+        },
+        {
+          "mag": 230.79,
+          "delta": 0.079,
+          "ev": 2.1417,
+          "ev_scores": {
+            "agreeableness": 2.1417,
+            "conscientiousness": 1.9088,
+            "extraversion": 2.1623,
+            "neuroticism": 3.1746,
+            "openness": 2.837
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.1666,
+            "conscientiousness": 1.984,
+            "extraversion": 2.1375,
+            "neuroticism": 2.6904,
+            "openness": 2.9491
+          }
+        },
+        {
+          "mag": 351.44,
+          "delta": 0.142,
+          "ev": 2.2047,
+          "ev_scores": {
+            "agreeableness": 2.2047,
+            "conscientiousness": 1.9832,
+            "extraversion": 2.0656,
+            "neuroticism": 3.1529,
+            "openness": 2.7457
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.1649,
+            "conscientiousness": 1.9502,
+            "extraversion": 2.1497,
+            "neuroticism": 2.6781,
+            "openness": 2.9241
+          }
+        },
+        {
+          "mag": 472.08,
+          "delta": 0.4106,
+          "ev": 2.4733,
+          "ev_scores": {
+            "agreeableness": 2.4733,
+            "conscientiousness": 2.1698,
+            "extraversion": 1.9363,
+            "neuroticism": 3.1493,
+            "openness": 2.8098
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.1452,
+            "conscientiousness": 1.8417,
+            "extraversion": 2.1867,
+            "neuroticism": 2.7503,
+            "openness": 2.9031
+          }
+        },
+        {
+          "mag": 592.72,
+          "delta": 0.5874,
+          "ev": 2.6501,
+          "ev_scores": {
+            "agreeableness": 2.6501,
+            "conscientiousness": 2.2941,
+            "extraversion": 1.9365,
+            "neuroticism": 3.1193,
+            "openness": 2.9372
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.0934,
+            "conscientiousness": 1.6655,
+            "extraversion": 2.1177,
+            "neuroticism": 2.8953,
+            "openness": 2.8114
+          }
+        },
+        {
+          "mag": 713.37,
+          "delta": 0.6722,
+          "ev": 2.7349,
+          "ev_scores": {
+            "agreeableness": 2.7349,
+            "conscientiousness": 2.338,
+            "extraversion": 2.0463,
+            "neuroticism": 3.1883,
+            "openness": 2.9696
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.9572,
+            "conscientiousness": 1.5256,
+            "extraversion": 2.0399,
+            "neuroticism": 3.0935,
+            "openness": 2.6193
+          }
+        },
+        {
+          "mag": 834.01,
+          "delta": 0.7475,
+          "ev": 2.8102,
+          "ev_scores": {
+            "agreeableness": 2.8102,
+            "conscientiousness": 2.6167,
+            "extraversion": 2.2304,
+            "neuroticism": 3.0424,
+            "openness": 3.0384
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.7012,
+            "conscientiousness": 1.4932,
+            "extraversion": 2.3272,
+            "neuroticism": 3.3565,
+            "openness": 2.4372
+          }
+        },
+        {
+          "mag": 954.65,
+          "delta": 1.0136,
+          "ev": 3.0763,
+          "ev_scores": {
+            "agreeableness": 3.0763,
+            "conscientiousness": 2.848,
+            "extraversion": 2.4264,
+            "neuroticism": 2.855,
+            "openness": 3.1154
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 1.4021,
+            "conscientiousness": 1.6826,
+            "extraversion": 2.7546,
+            "neuroticism": 3.6874,
+            "openness": 2.4602
+          }
+        }
+      ],
+      "label": "Agreeableness",
+      "short": "A",
+      "voice": "Warm \u00b7 trusting \u00b7 cooperative"
+    },
+    {
+      "trait": "agreeableness",
+      "pole": "down",
+      "id": "A-down",
+      "layer": 15,
+      "prior_ev": 4.4668,
+      "reference_ev": 2.0531,
+      "passes": true,
+      "best_dose": -954.65,
+      "trait_delta_at_best": -1.4036,
+      "prompt_gap": -2.4137,
+      "rho": 0.85,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 4.4668,
+          "ev_scores": {
+            "agreeableness": 4.4668,
+            "conscientiousness": 4.6027,
+            "extraversion": 3.2109,
+            "neuroticism": 1.7406,
+            "openness": 3.7859
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 4.4668,
+            "conscientiousness": 4.6027,
+            "extraversion": 3.2109,
+            "neuroticism": 1.7406,
+            "openness": 3.7859
+          }
+        },
+        {
+          "mag": -110.15,
+          "delta": 0.0349,
+          "ev": 4.5017,
+          "ev_scores": {
+            "agreeableness": 4.5017,
+            "conscientiousness": 4.6073,
+            "extraversion": 3.267,
+            "neuroticism": 1.6587,
+            "openness": 3.9636
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.4589,
+            "conscientiousness": 4.5853,
+            "extraversion": 3.4075,
+            "neuroticism": 1.7849,
+            "openness": 3.8677
+          }
+        },
+        {
+          "mag": -230.79,
+          "delta": 0.13,
+          "ev": 4.5968,
+          "ev_scores": {
+            "agreeableness": 4.5968,
+            "conscientiousness": 4.5308,
+            "extraversion": 3.356,
+            "neuroticism": 1.6144,
+            "openness": 3.9926
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.4394,
+            "conscientiousness": 4.6331,
+            "extraversion": 3.4587,
+            "neuroticism": 1.8862,
+            "openness": 3.9386
+          }
+        },
+        {
+          "mag": -351.44,
+          "delta": 0.06,
+          "ev": 4.5268,
+          "ev_scores": {
+            "agreeableness": 4.5268,
+            "conscientiousness": 4.4957,
+            "extraversion": 3.3351,
+            "neuroticism": 1.6701,
+            "openness": 3.7488
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.329,
+            "conscientiousness": 4.6549,
+            "extraversion": 3.4804,
+            "neuroticism": 2.0209,
+            "openness": 3.9741
+          }
+        },
+        {
+          "mag": -472.08,
+          "delta": -0.2786,
+          "ev": 4.1882,
+          "ev_scores": {
+            "agreeableness": 4.1882,
+            "conscientiousness": 4.4029,
+            "extraversion": 3.2703,
+            "neuroticism": 1.7082,
+            "openness": 3.5885
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 4.2393,
+            "conscientiousness": 4.6771,
+            "extraversion": 3.545,
+            "neuroticism": 2.0361,
+            "openness": 3.814
+          }
+        },
+        {
+          "mag": -592.72,
+          "delta": -0.5433,
+          "ev": 3.9235,
+          "ev_scores": {
+            "agreeableness": 3.9235,
+            "conscientiousness": 4.4541,
+            "extraversion": 3.2099,
+            "neuroticism": 1.7455,
+            "openness": 3.5197
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.2988,
+            "conscientiousness": 4.0207,
+            "extraversion": 3.6435,
+            "neuroticism": 2.2658,
+            "openness": 3.7509
+          }
+        },
+        {
+          "mag": -713.37,
+          "delta": -0.7113,
+          "ev": 3.7555,
+          "ev_scores": {
+            "agreeableness": 3.7555,
+            "conscientiousness": 4.5901,
+            "extraversion": 3.2782,
+            "neuroticism": 1.7115,
+            "openness": 3.3818
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.3107,
+            "conscientiousness": 3.193,
+            "extraversion": 3.4353,
+            "neuroticism": 2.7254,
+            "openness": 3.6069
+          }
+        },
+        {
+          "mag": -834.01,
+          "delta": -1.1442,
+          "ev": 3.3226,
+          "ev_scores": {
+            "agreeableness": 3.3226,
+            "conscientiousness": 4.5021,
+            "extraversion": 3.3634,
+            "neuroticism": 1.8205,
+            "openness": 3.3233
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.0199,
+            "conscientiousness": 2.6338,
+            "extraversion": 3.393,
+            "neuroticism": 3.1283,
+            "openness": 3.4122
+          }
+        },
+        {
+          "mag": -954.65,
+          "delta": -1.4036,
+          "ev": 3.0632,
+          "ev_scores": {
+            "agreeableness": 3.0632,
+            "conscientiousness": 4.1927,
+            "extraversion": 3.3691,
+            "neuroticism": 2.1059,
+            "openness": 3.2036
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.0086,
+            "conscientiousness": 2.0214,
+            "extraversion": 3.102,
+            "neuroticism": 3.3736,
+            "openness": 3.1136
+          }
+        }
+      ],
+      "label": "Agreeableness",
+      "short": "A",
+      "voice": "Blunt \u00b7 skeptical \u00b7 competitive"
+    },
+    {
+      "trait": "neuroticism",
+      "pole": "up",
+      "id": "N-up",
+      "layer": 15,
+      "prior_ev": 2.3865,
+      "reference_ev": 4.0393,
+      "passes": false,
+      "best_dose": 637.63,
+      "trait_delta_at_best": 1.1415,
+      "prompt_gap": 1.6528,
+      "rho": 0.6,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 2.3865,
+          "ev_scores": {
+            "agreeableness": 3.7415,
+            "conscientiousness": 3.2373,
+            "extraversion": 3.229,
+            "neuroticism": 2.3865,
+            "openness": 3.3034
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 3.7415,
+            "conscientiousness": 3.2373,
+            "extraversion": 3.229,
+            "neuroticism": 2.3865,
+            "openness": 3.3034
+          }
+        },
+        {
+          "mag": 73.57,
+          "delta": -0.3271,
+          "ev": 2.0594,
+          "ev_scores": {
+            "agreeableness": 3.8504,
+            "conscientiousness": 3.2863,
+            "extraversion": 3.1655,
+            "neuroticism": 2.0594,
+            "openness": 3.4355
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.8325,
+            "conscientiousness": 3.2546,
+            "extraversion": 3.1562,
+            "neuroticism": 2.2587,
+            "openness": 3.2905
+          }
+        },
+        {
+          "mag": 154.15,
+          "delta": -0.4786,
+          "ev": 1.9079,
+          "ev_scores": {
+            "agreeableness": 3.9172,
+            "conscientiousness": 3.3726,
+            "extraversion": 3.1462,
+            "neuroticism": 1.9079,
+            "openness": 3.5458
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.8394,
+            "conscientiousness": 3.2437,
+            "extraversion": 3.1061,
+            "neuroticism": 2.1414,
+            "openness": 3.2862
+          }
+        },
+        {
+          "mag": 234.73,
+          "delta": -0.5122,
+          "ev": 1.8743,
+          "ev_scores": {
+            "agreeableness": 4.0127,
+            "conscientiousness": 3.3945,
+            "extraversion": 3.0542,
+            "neuroticism": 1.8743,
+            "openness": 3.7474
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.8136,
+            "conscientiousness": 3.2555,
+            "extraversion": 3.0577,
+            "neuroticism": 2.1087,
+            "openness": 3.2812
+          }
+        },
+        {
+          "mag": 315.31,
+          "delta": -0.5104,
+          "ev": 1.8761,
+          "ev_scores": {
+            "agreeableness": 3.9789,
+            "conscientiousness": 3.4672,
+            "extraversion": 2.8738,
+            "neuroticism": 1.8761,
+            "openness": 3.6638
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.7884,
+            "conscientiousness": 3.2679,
+            "extraversion": 2.973,
+            "neuroticism": 2.124,
+            "openness": 3.2739
+          }
+        },
+        {
+          "mag": 395.89,
+          "delta": -0.2959,
+          "ev": 2.0906,
+          "ev_scores": {
+            "agreeableness": 3.7898,
+            "conscientiousness": 3.3023,
+            "extraversion": 2.7316,
+            "neuroticism": 2.0906,
+            "openness": 3.4971
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.7529,
+            "conscientiousness": 3.249,
+            "extraversion": 2.8798,
+            "neuroticism": 2.3038,
+            "openness": 3.274
+          }
+        },
+        {
+          "mag": 476.47,
+          "delta": 0.1781,
+          "ev": 2.5646,
+          "ev_scores": {
+            "agreeableness": 3.557,
+            "conscientiousness": 2.6828,
+            "extraversion": 2.5044,
+            "neuroticism": 2.5646,
+            "openness": 3.2846
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.7092,
+            "conscientiousness": 3.2052,
+            "extraversion": 2.8496,
+            "neuroticism": 2.6651,
+            "openness": 3.2559
+          }
+        },
+        {
+          "mag": 557.05,
+          "delta": 0.6221,
+          "ev": 3.0086,
+          "ev_scores": {
+            "agreeableness": 2.7705,
+            "conscientiousness": 1.5995,
+            "extraversion": 2.0839,
+            "neuroticism": 3.0086,
+            "openness": 3.0256
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.5651,
+            "conscientiousness": 3.0912,
+            "extraversion": 2.8407,
+            "neuroticism": 2.9619,
+            "openness": 3.227
+          }
+        },
+        {
+          "mag": 637.63,
+          "delta": 1.1415,
+          "ev": 3.528,
+          "ev_scores": {
+            "agreeableness": 2.4643,
+            "conscientiousness": 1.4263,
+            "extraversion": 2.1739,
+            "neuroticism": 3.528,
+            "openness": 2.7389
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 3.2961,
+            "conscientiousness": 2.9652,
+            "extraversion": 2.8407,
+            "neuroticism": 3.1916,
+            "openness": 3.1773
+          }
+        }
+      ],
+      "label": "Neuroticism",
+      "short": "N",
+      "voice": "Anxious \u00b7 reactive \u00b7 tense"
+    },
+    {
+      "trait": "neuroticism",
+      "pole": "down",
+      "id": "N-down",
+      "layer": 15,
+      "prior_ev": 3.9804,
+      "reference_ev": 2.4862,
+      "passes": true,
+      "best_dose": -476.47,
+      "trait_delta_at_best": -0.5936,
+      "prompt_gap": -1.4942,
+      "rho": 1.0,
+      "curve": [
+        {
+          "mag": 0.0,
+          "delta": 0.0,
+          "ev": 3.9804,
+          "ev_scores": {
+            "agreeableness": 3.012,
+            "conscientiousness": 2.2725,
+            "extraversion": 1.5491,
+            "neuroticism": 3.9804,
+            "openness": 2.6723
+          },
+          "quiet": true,
+          "ctrl": 0.0,
+          "control_ev_scores": {
+            "agreeableness": 3.012,
+            "conscientiousness": 2.2725,
+            "extraversion": 1.5491,
+            "neuroticism": 3.9804,
+            "openness": 2.6723
+          }
+        },
+        {
+          "mag": -73.57,
+          "delta": -0.1362,
+          "ev": 3.8442,
+          "ev_scores": {
+            "agreeableness": 3.0587,
+            "conscientiousness": 2.3596,
+            "extraversion": 1.6604,
+            "neuroticism": 3.8442,
+            "openness": 2.8865
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.9253,
+            "conscientiousness": 2.2762,
+            "extraversion": 1.6433,
+            "neuroticism": 4.0135,
+            "openness": 2.7642
+          }
+        },
+        {
+          "mag": -154.15,
+          "delta": -0.2159,
+          "ev": 3.7645,
+          "ev_scores": {
+            "agreeableness": 3.0667,
+            "conscientiousness": 2.5455,
+            "extraversion": 1.8211,
+            "neuroticism": 3.7645,
+            "openness": 2.9042
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.8512,
+            "conscientiousness": 2.3076,
+            "extraversion": 1.8047,
+            "neuroticism": 4.06,
+            "openness": 2.8429
+          }
+        },
+        {
+          "mag": -234.73,
+          "delta": -0.3165,
+          "ev": 3.6639,
+          "ev_scores": {
+            "agreeableness": 2.9132,
+            "conscientiousness": 2.6808,
+            "extraversion": 2.0615,
+            "neuroticism": 3.6639,
+            "openness": 2.9444
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.868,
+            "conscientiousness": 2.3582,
+            "extraversion": 1.9428,
+            "neuroticism": 4.0666,
+            "openness": 2.9506
+          }
+        },
+        {
+          "mag": -315.31,
+          "delta": -0.3506,
+          "ev": 3.6298,
+          "ev_scores": {
+            "agreeableness": 2.9959,
+            "conscientiousness": 2.7445,
+            "extraversion": 2.2793,
+            "neuroticism": 3.6298,
+            "openness": 2.9947
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.8895,
+            "conscientiousness": 2.448,
+            "extraversion": 2.0254,
+            "neuroticism": 4.0317,
+            "openness": 3.0611
+          }
+        },
+        {
+          "mag": -395.89,
+          "delta": -0.3778,
+          "ev": 3.6026,
+          "ev_scores": {
+            "agreeableness": 3.1408,
+            "conscientiousness": 2.9001,
+            "extraversion": 2.5006,
+            "neuroticism": 3.6026,
+            "openness": 2.9959
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.936,
+            "conscientiousness": 2.6158,
+            "extraversion": 2.2968,
+            "neuroticism": 3.9384,
+            "openness": 3.0727
+          }
+        },
+        {
+          "mag": -476.47,
+          "delta": -0.5936,
+          "ev": 3.3868,
+          "ev_scores": {
+            "agreeableness": 3.0781,
+            "conscientiousness": 2.92,
+            "extraversion": 2.6754,
+            "neuroticism": 3.3868,
+            "openness": 3.0595
+          },
+          "quiet": true,
+          "control_ev_scores": {
+            "agreeableness": 2.9371,
+            "conscientiousness": 2.7952,
+            "extraversion": 2.4808,
+            "neuroticism": 3.8145,
+            "openness": 3.0683
+          }
+        }
+      ],
+      "label": "Neuroticism",
+      "short": "N",
+      "voice": "Calm \u00b7 steady \u00b7 even-tempered"
+    }
+  ],
+  "control": {
+    "label": "matched-norm random",
+    "note": "Same |\u03b1| grid as the trait PC1 sweep; one random unit vector per pole (seeded in final_cycle)."
+  },
+  "continuum": {
+    "openness": {
+      "baseline_ev": 3.2818,
+      "source": "phase4b_signtest free baseline signed continuum",
+      "points": [
+        {
+          "mag": -700.32,
+          "ev": 3.0047,
+          "delta": -0.2771,
+          "ev_scores": {
+            "agreeableness": 2.9307,
+            "conscientiousness": 3.0722,
+            "extraversion": 2.9979,
+            "neuroticism": 3.0815,
+            "openness": 3.0047
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8271,
+            "conscientiousness": 2.7844,
+            "extraversion": 2.8934,
+            "neuroticism": 3.3336,
+            "openness": 3.4067
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -611.82,
+          "ev": 3.041,
+          "delta": -0.2408,
+          "ev_scores": {
+            "agreeableness": 2.9086,
+            "conscientiousness": 3.1727,
+            "extraversion": 2.9863,
+            "neuroticism": 3.065,
+            "openness": 3.041
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.796,
+            "conscientiousness": 2.5837,
+            "extraversion": 2.8555,
+            "neuroticism": 3.4103,
+            "openness": 3.4242
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -523.31,
+          "ev": 3.1283,
+          "delta": -0.1535,
+          "ev_scores": {
+            "agreeableness": 2.9944,
+            "conscientiousness": 3.2211,
+            "extraversion": 2.9935,
+            "neuroticism": 2.9971,
+            "openness": 3.1283
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8261,
+            "conscientiousness": 2.5209,
+            "extraversion": 2.8349,
+            "neuroticism": 3.4405,
+            "openness": 3.4338
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -434.81,
+          "ev": 3.1801,
+          "delta": -0.1017,
+          "ev_scores": {
+            "agreeableness": 3.1305,
+            "conscientiousness": 3.2749,
+            "extraversion": 2.9271,
+            "neuroticism": 2.9646,
+            "openness": 3.1801
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.9435,
+            "conscientiousness": 2.5707,
+            "extraversion": 2.8183,
+            "neuroticism": 3.38,
+            "openness": 3.3965
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -346.31,
+          "ev": 3.2452,
+          "delta": -0.0366,
+          "ev_scores": {
+            "agreeableness": 3.3143,
+            "conscientiousness": 3.2786,
+            "extraversion": 2.8571,
+            "neuroticism": 2.8828,
+            "openness": 3.2452
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.132,
+            "conscientiousness": 2.7047,
+            "extraversion": 2.7984,
+            "neuroticism": 3.2896,
+            "openness": 3.3892
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -257.81,
+          "ev": 3.2743,
+          "delta": -0.0075,
+          "ev_scores": {
+            "agreeableness": 3.3911,
+            "conscientiousness": 3.2318,
+            "extraversion": 2.7716,
+            "neuroticism": 2.8454,
+            "openness": 3.2743
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.2824,
+            "conscientiousness": 2.8037,
+            "extraversion": 2.7533,
+            "neuroticism": 3.1783,
+            "openness": 3.3765
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -169.31,
+          "ev": 3.2745,
+          "delta": -0.0073,
+          "ev_scores": {
+            "agreeableness": 3.4315,
+            "conscientiousness": 3.1601,
+            "extraversion": 2.6971,
+            "neuroticism": 2.8577,
+            "openness": 3.2745
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.3604,
+            "conscientiousness": 2.9009,
+            "extraversion": 2.7007,
+            "neuroticism": 3.0757,
+            "openness": 3.366
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -80.81,
+          "ev": 3.2761,
+          "delta": -0.0057,
+          "ev_scores": {
+            "agreeableness": 3.4629,
+            "conscientiousness": 3.0967,
+            "extraversion": 2.667,
+            "neuroticism": 2.8538,
+            "openness": 3.2761
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.4312,
+            "conscientiousness": 2.9963,
+            "extraversion": 2.67,
+            "neuroticism": 2.9331,
+            "openness": 3.3223
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 0.0,
+          "ev": 3.2818,
+          "delta": 0.0,
+          "ev_scores": {
+            "openness": 3.2818,
+            "conscientiousness": 3.0634,
+            "extraversion": 2.6487,
+            "agreeableness": 3.4824,
+            "neuroticism": 2.8682
+          },
+          "control_ev_scores": {
+            "openness": 3.2818,
+            "conscientiousness": 3.0634,
+            "extraversion": 2.6487,
+            "agreeableness": 3.4824,
+            "neuroticism": 2.8682
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 80.81,
+          "ev": 3.3465,
+          "delta": 0.0647,
+          "ev_scores": {
+            "agreeableness": 3.5019,
+            "conscientiousness": 3.0301,
+            "extraversion": 2.6305,
+            "neuroticism": 2.8827,
+            "openness": 3.3465
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.4312,
+            "conscientiousness": 2.9963,
+            "extraversion": 2.67,
+            "neuroticism": 2.9331,
+            "openness": 3.3223
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 169.31,
+          "ev": 3.4846,
+          "delta": 0.2028,
+          "ev_scores": {
+            "agreeableness": 3.5204,
+            "conscientiousness": 3.0266,
+            "extraversion": 2.6163,
+            "neuroticism": 2.9165,
+            "openness": 3.4846
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.3604,
+            "conscientiousness": 2.9009,
+            "extraversion": 2.7007,
+            "neuroticism": 3.0757,
+            "openness": 3.366
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 257.81,
+          "ev": 3.6556,
+          "delta": 0.3738,
+          "ev_scores": {
+            "agreeableness": 3.5331,
+            "conscientiousness": 3.0665,
+            "extraversion": 2.6409,
+            "neuroticism": 2.8775,
+            "openness": 3.6556
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.2824,
+            "conscientiousness": 2.8037,
+            "extraversion": 2.7533,
+            "neuroticism": 3.1783,
+            "openness": 3.3765
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 346.31,
+          "ev": 3.7028,
+          "delta": 0.421,
+          "ev_scores": {
+            "agreeableness": 3.5316,
+            "conscientiousness": 3.1611,
+            "extraversion": 2.6754,
+            "neuroticism": 2.7712,
+            "openness": 3.7028
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.132,
+            "conscientiousness": 2.7047,
+            "extraversion": 2.7984,
+            "neuroticism": 3.2896,
+            "openness": 3.3892
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 434.81,
+          "ev": 3.5484,
+          "delta": 0.2666,
+          "ev_scores": {
+            "agreeableness": 3.4927,
+            "conscientiousness": 3.2065,
+            "extraversion": 2.7171,
+            "neuroticism": 2.6427,
+            "openness": 3.5484
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.9435,
+            "conscientiousness": 2.5707,
+            "extraversion": 2.8183,
+            "neuroticism": 3.38,
+            "openness": 3.3965
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 523.31,
+          "ev": 3.3003,
+          "delta": 0.0185,
+          "ev_scores": {
+            "agreeableness": 3.429,
+            "conscientiousness": 3.1677,
+            "extraversion": 2.7021,
+            "neuroticism": 2.5893,
+            "openness": 3.3003
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8261,
+            "conscientiousness": 2.5209,
+            "extraversion": 2.8349,
+            "neuroticism": 3.4405,
+            "openness": 3.4338
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": 611.82,
+          "ev": 3.1203,
+          "delta": -0.1615,
+          "ev_scores": {
+            "agreeableness": 3.4042,
+            "conscientiousness": 3.1191,
+            "extraversion": 2.6421,
+            "neuroticism": 2.5622,
+            "openness": 3.1203
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.796,
+            "conscientiousness": 2.5837,
+            "extraversion": 2.8555,
+            "neuroticism": 3.4103,
+            "openness": 3.4242
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": 700.32,
+          "ev": 3.0346,
+          "delta": -0.2472,
+          "ev_scores": {
+            "agreeableness": 3.4098,
+            "conscientiousness": 3.0998,
+            "extraversion": 2.5884,
+            "neuroticism": 2.5659,
+            "openness": 3.0346
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8271,
+            "conscientiousness": 2.7844,
+            "extraversion": 2.8934,
+            "neuroticism": 3.3336,
+            "openness": 3.4067
+          },
+          "usable": false,
+          "locked": true
+        }
+      ],
+      "peak_mag": 346.31,
+      "peak_delta": 0.421,
+      "plus_drop": 0.6682
+    },
+    "conscientiousness": {
+      "baseline_ev": 3.0608,
+      "source": "phase4b_signtest free baseline signed continuum",
+      "points": [
+        {
+          "mag": -1051.55,
+          "ev": 2.4313,
+          "delta": -0.6295,
+          "ev_scores": {
+            "agreeableness": 3.0808,
+            "conscientiousness": 2.4313,
+            "extraversion": 2.4336,
+            "neuroticism": 3.1405,
+            "openness": 2.8457
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.7755,
+            "conscientiousness": 3.0868,
+            "extraversion": 3.0474,
+            "neuroticism": 3.2892,
+            "openness": 3.1743
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -918.66,
+          "ev": 2.601,
+          "delta": -0.4598,
+          "ev_scores": {
+            "agreeableness": 3.2224,
+            "conscientiousness": 2.601,
+            "extraversion": 2.4512,
+            "neuroticism": 3.0227,
+            "openness": 2.8748
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8451,
+            "conscientiousness": 3.1508,
+            "extraversion": 2.9862,
+            "neuroticism": 3.197,
+            "openness": 3.3396
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -785.77,
+          "ev": 2.7431,
+          "delta": -0.3177,
+          "ev_scores": {
+            "agreeableness": 3.3102,
+            "conscientiousness": 2.7431,
+            "extraversion": 2.466,
+            "neuroticism": 2.8573,
+            "openness": 2.902
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8603,
+            "conscientiousness": 2.9845,
+            "extraversion": 2.9293,
+            "neuroticism": 3.2558,
+            "openness": 3.3479
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -652.89,
+          "ev": 2.8512,
+          "delta": -0.2096,
+          "ev_scores": {
+            "agreeableness": 3.3536,
+            "conscientiousness": 2.8512,
+            "extraversion": 2.4781,
+            "neuroticism": 2.8092,
+            "openness": 2.9412
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8185,
+            "conscientiousness": 2.6828,
+            "extraversion": 2.864,
+            "neuroticism": 3.3614,
+            "openness": 3.4187
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -520.0,
+          "ev": 2.88,
+          "delta": -0.1808,
+          "ev_scores": {
+            "agreeableness": 3.3559,
+            "conscientiousness": 2.88,
+            "extraversion": 2.4894,
+            "neuroticism": 2.8,
+            "openness": 2.9599
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.823,
+            "conscientiousness": 2.5271,
+            "extraversion": 2.8375,
+            "neuroticism": 3.4478,
+            "openness": 3.435
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -387.11,
+          "ev": 2.915,
+          "delta": -0.1458,
+          "ev_scores": {
+            "agreeableness": 3.3641,
+            "conscientiousness": 2.915,
+            "extraversion": 2.4992,
+            "neuroticism": 2.8515,
+            "openness": 3.0004
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.063,
+            "conscientiousness": 2.6501,
+            "extraversion": 2.7988,
+            "neuroticism": 3.3294,
+            "openness": 3.3947
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -254.22,
+          "ev": 2.9478,
+          "delta": -0.113,
+          "ev_scores": {
+            "agreeableness": 3.38,
+            "conscientiousness": 2.9478,
+            "extraversion": 2.5449,
+            "neuroticism": 2.9059,
+            "openness": 3.0876
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.2877,
+            "conscientiousness": 2.8231,
+            "extraversion": 2.7596,
+            "neuroticism": 3.173,
+            "openness": 3.3818
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -121.33,
+          "ev": 2.967,
+          "delta": -0.0938,
+          "ev_scores": {
+            "agreeableness": 3.4155,
+            "conscientiousness": 2.967,
+            "extraversion": 2.5948,
+            "neuroticism": 2.8879,
+            "openness": 3.2007
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.4,
+            "conscientiousness": 2.9556,
+            "extraversion": 2.6811,
+            "neuroticism": 3.0,
+            "openness": 3.3526
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 0.0,
+          "ev": 3.0608,
+          "delta": 0.0,
+          "ev_scores": {
+            "openness": 3.2616,
+            "conscientiousness": 3.0608,
+            "extraversion": 2.6462,
+            "agreeableness": 3.4528,
+            "neuroticism": 2.8186
+          },
+          "control_ev_scores": {
+            "openness": 3.2616,
+            "conscientiousness": 3.0608,
+            "extraversion": 2.6462,
+            "agreeableness": 3.4528,
+            "neuroticism": 2.8186
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 121.33,
+          "ev": 3.1939,
+          "delta": 0.1331,
+          "ev_scores": {
+            "agreeableness": 3.4901,
+            "conscientiousness": 3.1939,
+            "extraversion": 2.6975,
+            "neuroticism": 2.7494,
+            "openness": 3.3226
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.4,
+            "conscientiousness": 2.9556,
+            "extraversion": 2.6811,
+            "neuroticism": 3.0,
+            "openness": 3.3526
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 254.22,
+          "ev": 3.2959,
+          "delta": 0.2351,
+          "ev_scores": {
+            "agreeableness": 3.5267,
+            "conscientiousness": 3.2959,
+            "extraversion": 2.7087,
+            "neuroticism": 2.6384,
+            "openness": 3.3349
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.2877,
+            "conscientiousness": 2.8231,
+            "extraversion": 2.7596,
+            "neuroticism": 3.173,
+            "openness": 3.3818
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 387.11,
+          "ev": 3.3627,
+          "delta": 0.3019,
+          "ev_scores": {
+            "agreeableness": 3.6169,
+            "conscientiousness": 3.3627,
+            "extraversion": 2.6849,
+            "neuroticism": 2.52,
+            "openness": 3.3713
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.063,
+            "conscientiousness": 2.6501,
+            "extraversion": 2.7988,
+            "neuroticism": 3.3294,
+            "openness": 3.3947
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 520.0,
+          "ev": 3.4978,
+          "delta": 0.437,
+          "ev_scores": {
+            "agreeableness": 3.701,
+            "conscientiousness": 3.4978,
+            "extraversion": 2.6977,
+            "neuroticism": 2.4243,
+            "openness": 3.48
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.823,
+            "conscientiousness": 2.5271,
+            "extraversion": 2.8375,
+            "neuroticism": 3.4478,
+            "openness": 3.435
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 652.89,
+          "ev": 3.56,
+          "delta": 0.4992,
+          "ev_scores": {
+            "agreeableness": 3.7782,
+            "conscientiousness": 3.56,
+            "extraversion": 2.7117,
+            "neuroticism": 2.4263,
+            "openness": 3.5814
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8185,
+            "conscientiousness": 2.6828,
+            "extraversion": 2.864,
+            "neuroticism": 3.3614,
+            "openness": 3.4187
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 785.77,
+          "ev": 3.5631,
+          "delta": 0.5023,
+          "ev_scores": {
+            "agreeableness": 3.7387,
+            "conscientiousness": 3.5631,
+            "extraversion": 2.732,
+            "neuroticism": 2.55,
+            "openness": 3.4971
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8603,
+            "conscientiousness": 2.9845,
+            "extraversion": 2.9293,
+            "neuroticism": 3.2558,
+            "openness": 3.3479
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 918.66,
+          "ev": 3.4613,
+          "delta": 0.4005,
+          "ev_scores": {
+            "agreeableness": 3.7921,
+            "conscientiousness": 3.4613,
+            "extraversion": 2.9009,
+            "neuroticism": 2.6098,
+            "openness": 3.3571
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8451,
+            "conscientiousness": 3.1508,
+            "extraversion": 2.9862,
+            "neuroticism": 3.197,
+            "openness": 3.3396
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 1051.55,
+          "ev": 3.2651,
+          "delta": 0.2043,
+          "ev_scores": {
+            "agreeableness": 3.5829,
+            "conscientiousness": 3.2651,
+            "extraversion": 3.0354,
+            "neuroticism": 2.8518,
+            "openness": 3.189
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.7755,
+            "conscientiousness": 3.0868,
+            "extraversion": 3.0474,
+            "neuroticism": 3.2892,
+            "openness": 3.1743
+          },
+          "usable": true,
+          "locked": false
+        }
+      ],
+      "peak_mag": 785.77,
+      "peak_delta": 0.5023,
+      "plus_drop": 0.298
+    },
+    "extraversion": {
+      "baseline_ev": 2.6489,
+      "source": "phase4b_signtest free baseline signed continuum",
+      "points": [
+        {
+          "mag": -1050.63,
+          "ev": 3.0,
+          "delta": 0.3511,
+          "ev_scores": {
+            "agreeableness": 3.0001,
+            "conscientiousness": 2.9999,
+            "extraversion": 3.0,
+            "neuroticism": 3.0,
+            "openness": 3.0001
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.7909,
+            "conscientiousness": 3.0827,
+            "extraversion": 3.0341,
+            "neuroticism": 3.2633,
+            "openness": 3.177
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -917.85,
+          "ev": 2.9998,
+          "delta": 0.3509,
+          "ev_scores": {
+            "agreeableness": 3.0003,
+            "conscientiousness": 2.9968,
+            "extraversion": 2.9998,
+            "neuroticism": 3.0033,
+            "openness": 2.9999
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8569,
+            "conscientiousness": 3.1662,
+            "extraversion": 2.9974,
+            "neuroticism": 3.1725,
+            "openness": 3.3499
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -785.08,
+          "ev": 2.9952,
+          "delta": 0.3463,
+          "ev_scores": {
+            "agreeableness": 2.9771,
+            "conscientiousness": 2.9919,
+            "extraversion": 2.9952,
+            "neuroticism": 3.0435,
+            "openness": 2.9996
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8619,
+            "conscientiousness": 2.998,
+            "extraversion": 2.9229,
+            "neuroticism": 3.2476,
+            "openness": 3.3548
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -652.31,
+          "ev": 2.9633,
+          "delta": 0.3144,
+          "ev_scores": {
+            "agreeableness": 2.9403,
+            "conscientiousness": 2.9861,
+            "extraversion": 2.9633,
+            "neuroticism": 3.1541,
+            "openness": 3.0007
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8127,
+            "conscientiousness": 2.6619,
+            "extraversion": 2.8719,
+            "neuroticism": 3.3799,
+            "openness": 3.439
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -519.54,
+          "ev": 2.8874,
+          "delta": 0.2385,
+          "ev_scores": {
+            "agreeableness": 3.0886,
+            "conscientiousness": 3.0157,
+            "extraversion": 2.8874,
+            "neuroticism": 3.1525,
+            "openness": 3.0283
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8292,
+            "conscientiousness": 2.5402,
+            "extraversion": 2.8374,
+            "neuroticism": 3.4458,
+            "openness": 3.4433
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -386.77,
+          "ev": 2.8053,
+          "delta": 0.1564,
+          "ev_scores": {
+            "agreeableness": 3.2241,
+            "conscientiousness": 3.0266,
+            "extraversion": 2.8053,
+            "neuroticism": 3.0856,
+            "openness": 3.1524
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.0612,
+            "conscientiousness": 2.6436,
+            "extraversion": 2.8073,
+            "neuroticism": 3.3303,
+            "openness": 3.394
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -254.0,
+          "ev": 2.6825,
+          "delta": 0.0336,
+          "ev_scores": {
+            "agreeableness": 3.3552,
+            "conscientiousness": 3.0305,
+            "extraversion": 2.6825,
+            "neuroticism": 2.986,
+            "openness": 3.2339
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.2897,
+            "conscientiousness": 2.8095,
+            "extraversion": 2.7572,
+            "neuroticism": 3.1758,
+            "openness": 3.3675
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -121.23,
+          "ev": 2.6553,
+          "delta": 0.0064,
+          "ev_scores": {
+            "agreeableness": 3.4302,
+            "conscientiousness": 3.0503,
+            "extraversion": 2.6553,
+            "neuroticism": 2.9147,
+            "openness": 3.2575
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.3998,
+            "conscientiousness": 2.9573,
+            "extraversion": 2.6855,
+            "neuroticism": 3.0105,
+            "openness": 3.3491
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 0.0,
+          "ev": 2.6489,
+          "delta": 0.0,
+          "ev_scores": {
+            "openness": 3.3108,
+            "conscientiousness": 3.0362,
+            "extraversion": 2.6489,
+            "agreeableness": 3.4796,
+            "neuroticism": 2.8851
+          },
+          "control_ev_scores": {
+            "openness": 3.3108,
+            "conscientiousness": 3.0362,
+            "extraversion": 2.6489,
+            "agreeableness": 3.4796,
+            "neuroticism": 2.8851
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 121.23,
+          "ev": 2.626,
+          "delta": -0.0229,
+          "ev_scores": {
+            "agreeableness": 3.5289,
+            "conscientiousness": 3.0222,
+            "extraversion": 2.626,
+            "neuroticism": 2.8555,
+            "openness": 3.3642
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.3998,
+            "conscientiousness": 2.9573,
+            "extraversion": 2.6855,
+            "neuroticism": 3.0105,
+            "openness": 3.3491
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 254.0,
+          "ev": 2.5801,
+          "delta": -0.0688,
+          "ev_scores": {
+            "agreeableness": 3.6077,
+            "conscientiousness": 2.9937,
+            "extraversion": 2.5801,
+            "neuroticism": 2.9219,
+            "openness": 3.7307
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.2897,
+            "conscientiousness": 2.8095,
+            "extraversion": 2.7572,
+            "neuroticism": 3.1758,
+            "openness": 3.3675
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 386.77,
+          "ev": 2.6317,
+          "delta": -0.0172,
+          "ev_scores": {
+            "agreeableness": 3.6552,
+            "conscientiousness": 3.0105,
+            "extraversion": 2.6317,
+            "neuroticism": 2.998,
+            "openness": 4.023
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.0612,
+            "conscientiousness": 2.6436,
+            "extraversion": 2.8073,
+            "neuroticism": 3.3303,
+            "openness": 3.394
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 519.54,
+          "ev": 2.7218,
+          "delta": 0.0729,
+          "ev_scores": {
+            "agreeableness": 3.6495,
+            "conscientiousness": 3.0737,
+            "extraversion": 2.7218,
+            "neuroticism": 3.0614,
+            "openness": 4.23
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8292,
+            "conscientiousness": 2.5402,
+            "extraversion": 2.8374,
+            "neuroticism": 3.4458,
+            "openness": 3.4433
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 652.31,
+          "ev": 3.3219,
+          "delta": 0.673,
+          "ev_scores": {
+            "agreeableness": 3.4684,
+            "conscientiousness": 3.1609,
+            "extraversion": 3.3219,
+            "neuroticism": 3.0894,
+            "openness": 4.3906
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8127,
+            "conscientiousness": 2.6619,
+            "extraversion": 2.8719,
+            "neuroticism": 3.3799,
+            "openness": 3.439
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 785.08,
+          "ev": 3.8353,
+          "delta": 1.1864,
+          "ev_scores": {
+            "agreeableness": 3.3098,
+            "conscientiousness": 3.217,
+            "extraversion": 3.8353,
+            "neuroticism": 3.0,
+            "openness": 4.4161
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8619,
+            "conscientiousness": 2.998,
+            "extraversion": 2.9229,
+            "neuroticism": 3.2476,
+            "openness": 3.3548
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 917.85,
+          "ev": 4.1729,
+          "delta": 1.524,
+          "ev_scores": {
+            "agreeableness": 3.39,
+            "conscientiousness": 3.3462,
+            "extraversion": 4.1729,
+            "neuroticism": 2.661,
+            "openness": 4.376
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8569,
+            "conscientiousness": 3.1662,
+            "extraversion": 2.9974,
+            "neuroticism": 3.1725,
+            "openness": 3.3499
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 1050.63,
+          "ev": 4.0718,
+          "delta": 1.4229,
+          "ev_scores": {
+            "agreeableness": 3.4473,
+            "conscientiousness": 3.2956,
+            "extraversion": 4.0718,
+            "neuroticism": 2.4253,
+            "openness": 4.3488
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.7909,
+            "conscientiousness": 3.0827,
+            "extraversion": 3.0341,
+            "neuroticism": 3.2633,
+            "openness": 3.177
+          },
+          "usable": true,
+          "locked": false
+        }
+      ],
+      "peak_mag": 917.85,
+      "peak_delta": 1.524,
+      "plus_drop": 0.1011
+    },
+    "agreeableness": {
+      "baseline_ev": 3.4711,
+      "source": "phase4b_signtest free baseline signed continuum",
+      "points": [
+        {
+          "mag": -954.65,
+          "ev": 2.9811,
+          "delta": -0.49,
+          "ev_scores": {
+            "agreeableness": 2.9811,
+            "conscientiousness": 3.0077,
+            "extraversion": 2.9301,
+            "neuroticism": 2.9101,
+            "openness": 3.1926
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8587,
+            "conscientiousness": 3.1493,
+            "extraversion": 3.0036,
+            "neuroticism": 3.1433,
+            "openness": 3.331
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -834.01,
+          "ev": 3.1424,
+          "delta": -0.3287,
+          "ev_scores": {
+            "agreeableness": 3.1424,
+            "conscientiousness": 3.1219,
+            "extraversion": 2.9178,
+            "neuroticism": 2.7978,
+            "openness": 3.322
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8769,
+            "conscientiousness": 3.0827,
+            "extraversion": 2.9448,
+            "neuroticism": 3.213,
+            "openness": 3.358
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -713.37,
+          "ev": 3.2811,
+          "delta": -0.19,
+          "ev_scores": {
+            "agreeableness": 3.2811,
+            "conscientiousness": 3.1475,
+            "extraversion": 2.8864,
+            "neuroticism": 2.7384,
+            "openness": 3.3614
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8448,
+            "conscientiousness": 2.8128,
+            "extraversion": 2.8942,
+            "neuroticism": 3.3095,
+            "openness": 3.4056
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -592.72,
+          "ev": 3.3741,
+          "delta": -0.097,
+          "ev_scores": {
+            "agreeableness": 3.3741,
+            "conscientiousness": 3.1179,
+            "extraversion": 2.7661,
+            "neuroticism": 2.691,
+            "openness": 3.3145
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8065,
+            "conscientiousness": 2.5628,
+            "extraversion": 2.8517,
+            "neuroticism": 3.4178,
+            "openness": 3.4394
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -472.08,
+          "ev": 3.4081,
+          "delta": -0.063,
+          "ev_scores": {
+            "agreeableness": 3.4081,
+            "conscientiousness": 3.1018,
+            "extraversion": 2.6673,
+            "neuroticism": 2.6744,
+            "openness": 3.2402
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8761,
+            "conscientiousness": 2.5539,
+            "extraversion": 2.8287,
+            "neuroticism": 3.4229,
+            "openness": 3.4287
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -351.44,
+          "ev": 3.405,
+          "delta": -0.0661,
+          "ev_scores": {
+            "agreeableness": 3.405,
+            "conscientiousness": 3.1249,
+            "extraversion": 2.6221,
+            "neuroticism": 2.7044,
+            "openness": 3.1818
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.1287,
+            "conscientiousness": 2.6957,
+            "extraversion": 2.8013,
+            "neuroticism": 3.2888,
+            "openness": 3.3853
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -230.79,
+          "ev": 3.4218,
+          "delta": -0.0493,
+          "ev_scores": {
+            "agreeableness": 3.4218,
+            "conscientiousness": 3.1166,
+            "extraversion": 2.6202,
+            "neuroticism": 2.7265,
+            "openness": 3.1714
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.308,
+            "conscientiousness": 2.8379,
+            "extraversion": 2.7422,
+            "neuroticism": 3.145,
+            "openness": 3.3725
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -110.15,
+          "ev": 3.4429,
+          "delta": -0.0282,
+          "ev_scores": {
+            "agreeableness": 3.4429,
+            "conscientiousness": 3.0808,
+            "extraversion": 2.634,
+            "neuroticism": 2.7791,
+            "openness": 3.2275
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.4105,
+            "conscientiousness": 2.9746,
+            "extraversion": 2.6829,
+            "neuroticism": 2.981,
+            "openness": 3.3401
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 0.0,
+          "ev": 3.4711,
+          "delta": 0.0,
+          "ev_scores": {
+            "openness": 3.2908,
+            "conscientiousness": 3.0484,
+            "extraversion": 2.6354,
+            "agreeableness": 3.4711,
+            "neuroticism": 2.833
+          },
+          "control_ev_scores": {
+            "openness": 3.2908,
+            "conscientiousness": 3.0484,
+            "extraversion": 2.6354,
+            "agreeableness": 3.4711,
+            "neuroticism": 2.833
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 110.15,
+          "ev": 3.4976,
+          "delta": 0.0265,
+          "ev_scores": {
+            "agreeableness": 3.4976,
+            "conscientiousness": 3.016,
+            "extraversion": 2.6368,
+            "neuroticism": 2.8869,
+            "openness": 3.3541
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.4105,
+            "conscientiousness": 2.9746,
+            "extraversion": 2.6829,
+            "neuroticism": 2.981,
+            "openness": 3.3401
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 230.79,
+          "ev": 3.5284,
+          "delta": 0.0573,
+          "ev_scores": {
+            "agreeableness": 3.5284,
+            "conscientiousness": 2.9725,
+            "extraversion": 2.6082,
+            "neuroticism": 2.9193,
+            "openness": 3.4098
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.308,
+            "conscientiousness": 2.8379,
+            "extraversion": 2.7422,
+            "neuroticism": 3.145,
+            "openness": 3.3725
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 351.44,
+          "ev": 3.5654,
+          "delta": 0.0943,
+          "ev_scores": {
+            "agreeableness": 3.5654,
+            "conscientiousness": 2.9727,
+            "extraversion": 2.5975,
+            "neuroticism": 2.9044,
+            "openness": 3.4825
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.1287,
+            "conscientiousness": 2.6957,
+            "extraversion": 2.8013,
+            "neuroticism": 3.2888,
+            "openness": 3.3853
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 472.08,
+          "ev": 3.5873,
+          "delta": 0.1162,
+          "ev_scores": {
+            "agreeableness": 3.5873,
+            "conscientiousness": 3.0383,
+            "extraversion": 2.6316,
+            "neuroticism": 2.9065,
+            "openness": 3.4893
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8761,
+            "conscientiousness": 2.5539,
+            "extraversion": 2.8287,
+            "neuroticism": 3.4229,
+            "openness": 3.4287
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 592.72,
+          "ev": 3.6042,
+          "delta": 0.1331,
+          "ev_scores": {
+            "agreeableness": 3.6042,
+            "conscientiousness": 3.129,
+            "extraversion": 2.6886,
+            "neuroticism": 2.8831,
+            "openness": 3.4754
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8065,
+            "conscientiousness": 2.5628,
+            "extraversion": 2.8517,
+            "neuroticism": 3.4178,
+            "openness": 3.4394
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 713.37,
+          "ev": 3.6242,
+          "delta": 0.1531,
+          "ev_scores": {
+            "agreeableness": 3.6242,
+            "conscientiousness": 3.1605,
+            "extraversion": 2.8042,
+            "neuroticism": 2.8864,
+            "openness": 3.4367
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8448,
+            "conscientiousness": 2.8128,
+            "extraversion": 2.8942,
+            "neuroticism": 3.3095,
+            "openness": 3.4056
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 834.01,
+          "ev": 3.6095,
+          "delta": 0.1384,
+          "ev_scores": {
+            "agreeableness": 3.6095,
+            "conscientiousness": 3.1519,
+            "extraversion": 2.8508,
+            "neuroticism": 2.8625,
+            "openness": 3.3316
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8769,
+            "conscientiousness": 3.0827,
+            "extraversion": 2.9448,
+            "neuroticism": 3.213,
+            "openness": 3.358
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 954.65,
+          "ev": 3.6004,
+          "delta": 0.1293,
+          "ev_scores": {
+            "agreeableness": 3.6004,
+            "conscientiousness": 3.1351,
+            "extraversion": 2.8783,
+            "neuroticism": 2.816,
+            "openness": 3.2824
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8587,
+            "conscientiousness": 3.1493,
+            "extraversion": 3.0036,
+            "neuroticism": 3.1433,
+            "openness": 3.331
+          },
+          "usable": true,
+          "locked": false
+        }
+      ],
+      "peak_mag": 713.37,
+      "peak_delta": 0.1531,
+      "plus_drop": 0.0238
+    },
+    "neuroticism": {
+      "baseline_ev": 2.8406,
+      "source": "phase4b_signtest free baseline signed continuum",
+      "points": [
+        {
+          "mag": -637.63,
+          "ev": 3.0827,
+          "delta": 0.2421,
+          "ev_scores": {
+            "agreeableness": 3.0001,
+            "conscientiousness": 3.0054,
+            "extraversion": 3.0001,
+            "neuroticism": 3.0827,
+            "openness": 3.0017
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8061,
+            "conscientiousness": 2.6429,
+            "extraversion": 2.8549,
+            "neuroticism": 3.4047,
+            "openness": 3.4181
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -557.05,
+          "ev": 3.083,
+          "delta": 0.2424,
+          "ev_scores": {
+            "agreeableness": 3.0024,
+            "conscientiousness": 3.0381,
+            "extraversion": 3.0008,
+            "neuroticism": 3.083,
+            "openness": 3.0019
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8094,
+            "conscientiousness": 2.531,
+            "extraversion": 2.8409,
+            "neuroticism": 3.4577,
+            "openness": 3.434
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -476.47,
+          "ev": 3.0814,
+          "delta": 0.2408,
+          "ev_scores": {
+            "agreeableness": 3.0344,
+            "conscientiousness": 3.0777,
+            "extraversion": 3.0084,
+            "neuroticism": 3.0814,
+            "openness": 3.0074
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8611,
+            "conscientiousness": 2.5259,
+            "extraversion": 2.8264,
+            "neuroticism": 3.4356,
+            "openness": 3.4227
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -395.89,
+          "ev": 3.0589,
+          "delta": 0.2183,
+          "ev_scores": {
+            "agreeableness": 3.0877,
+            "conscientiousness": 3.0608,
+            "extraversion": 3.0278,
+            "neuroticism": 3.0589,
+            "openness": 3.0333
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.0316,
+            "conscientiousness": 2.6334,
+            "extraversion": 2.8184,
+            "neuroticism": 3.3492,
+            "openness": 3.3949
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": -315.31,
+          "ev": 2.9892,
+          "delta": 0.1486,
+          "ev_scores": {
+            "agreeableness": 3.3535,
+            "conscientiousness": 3.0844,
+            "extraversion": 2.9828,
+            "neuroticism": 2.9892,
+            "openness": 3.0944
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.1898,
+            "conscientiousness": 2.7472,
+            "extraversion": 2.7843,
+            "neuroticism": 3.249,
+            "openness": 3.3897
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -234.73,
+          "ev": 2.8938,
+          "delta": 0.0532,
+          "ev_scores": {
+            "agreeableness": 3.4076,
+            "conscientiousness": 3.1353,
+            "extraversion": 2.9121,
+            "neuroticism": 2.8938,
+            "openness": 3.2133
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.3033,
+            "conscientiousness": 2.8382,
+            "extraversion": 2.7452,
+            "neuroticism": 3.1501,
+            "openness": 3.3709
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -154.15,
+          "ev": 2.8779,
+          "delta": 0.0373,
+          "ev_scores": {
+            "agreeableness": 3.4485,
+            "conscientiousness": 3.1487,
+            "extraversion": 2.8061,
+            "neuroticism": 2.8779,
+            "openness": 3.2819
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.3814,
+            "conscientiousness": 2.9225,
+            "extraversion": 2.7036,
+            "neuroticism": 3.0552,
+            "openness": 3.3533
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": -73.57,
+          "ev": 2.8594,
+          "delta": 0.0188,
+          "ev_scores": {
+            "agreeableness": 3.4795,
+            "conscientiousness": 3.0826,
+            "extraversion": 2.6955,
+            "neuroticism": 2.8594,
+            "openness": 3.3254
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.4461,
+            "conscientiousness": 3.0011,
+            "extraversion": 2.6708,
+            "neuroticism": 2.9248,
+            "openness": 3.3297
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 0.0,
+          "ev": 2.8406,
+          "delta": 0.0,
+          "ev_scores": {
+            "openness": 3.2202,
+            "conscientiousness": 3.0442,
+            "extraversion": 2.634,
+            "agreeableness": 3.4673,
+            "neuroticism": 2.8406
+          },
+          "control_ev_scores": {
+            "openness": 3.2202,
+            "conscientiousness": 3.0442,
+            "extraversion": 2.634,
+            "agreeableness": 3.4673,
+            "neuroticism": 2.8406
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 73.57,
+          "ev": 2.83,
+          "delta": -0.0106,
+          "ev_scores": {
+            "agreeableness": 3.4552,
+            "conscientiousness": 3.0057,
+            "extraversion": 2.5724,
+            "neuroticism": 2.83,
+            "openness": 3.1149
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.4461,
+            "conscientiousness": 3.0011,
+            "extraversion": 2.6708,
+            "neuroticism": 2.9248,
+            "openness": 3.3297
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 154.15,
+          "ev": 2.8688,
+          "delta": 0.0282,
+          "ev_scores": {
+            "agreeableness": 3.4244,
+            "conscientiousness": 2.9797,
+            "extraversion": 2.5086,
+            "neuroticism": 2.8688,
+            "openness": 3.0142
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.3814,
+            "conscientiousness": 2.9225,
+            "extraversion": 2.7036,
+            "neuroticism": 3.0552,
+            "openness": 3.3533
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": 234.73,
+          "ev": 3.0431,
+          "delta": 0.2025,
+          "ev_scores": {
+            "agreeableness": 3.4035,
+            "conscientiousness": 2.8411,
+            "extraversion": 2.4974,
+            "neuroticism": 3.0431,
+            "openness": 2.9836
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.3033,
+            "conscientiousness": 2.8382,
+            "extraversion": 2.7452,
+            "neuroticism": 3.1501,
+            "openness": 3.3709
+          },
+          "usable": false,
+          "locked": true
+        },
+        {
+          "mag": 315.31,
+          "ev": 3.4191,
+          "delta": 0.5785,
+          "ev_scores": {
+            "agreeableness": 3.3184,
+            "conscientiousness": 2.5248,
+            "extraversion": 2.4875,
+            "neuroticism": 3.4191,
+            "openness": 2.9797
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.1898,
+            "conscientiousness": 2.7472,
+            "extraversion": 2.7843,
+            "neuroticism": 3.249,
+            "openness": 3.3897
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 395.89,
+          "ev": 3.77,
+          "delta": 0.9294,
+          "ev_scores": {
+            "agreeableness": 3.1961,
+            "conscientiousness": 2.3168,
+            "extraversion": 2.4481,
+            "neuroticism": 3.77,
+            "openness": 2.933
+          },
+          "control_ev_scores": {
+            "agreeableness": 3.0316,
+            "conscientiousness": 2.6334,
+            "extraversion": 2.8184,
+            "neuroticism": 3.3492,
+            "openness": 3.3949
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 476.47,
+          "ev": 3.8457,
+          "delta": 1.0051,
+          "ev_scores": {
+            "agreeableness": 2.9758,
+            "conscientiousness": 2.0787,
+            "extraversion": 2.3355,
+            "neuroticism": 3.8457,
+            "openness": 2.8678
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8611,
+            "conscientiousness": 2.5259,
+            "extraversion": 2.8264,
+            "neuroticism": 3.4356,
+            "openness": 3.4227
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 557.05,
+          "ev": 3.8728,
+          "delta": 1.0322,
+          "ev_scores": {
+            "agreeableness": 2.6842,
+            "conscientiousness": 1.746,
+            "extraversion": 2.0869,
+            "neuroticism": 3.8728,
+            "openness": 2.8519
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8094,
+            "conscientiousness": 2.531,
+            "extraversion": 2.8409,
+            "neuroticism": 3.4577,
+            "openness": 3.434
+          },
+          "usable": true,
+          "locked": false
+        },
+        {
+          "mag": 637.63,
+          "ev": 3.9578,
+          "delta": 1.1172,
+          "ev_scores": {
+            "agreeableness": 2.479,
+            "conscientiousness": 1.4889,
+            "extraversion": 1.8199,
+            "neuroticism": 3.9578,
+            "openness": 2.8655
+          },
+          "control_ev_scores": {
+            "agreeableness": 2.8061,
+            "conscientiousness": 2.6429,
+            "extraversion": 2.8549,
+            "neuroticism": 3.4047,
+            "openness": 3.4181
+          },
+          "usable": true,
+          "locked": false
+        }
+      ],
+      "peak_mag": 637.63,
+      "peak_delta": 1.1172,
+      "plus_drop": 0.0
+    }
+  },
+  "dose_axis": {
+    "rule": "Slider 0 = most negative \u03b1 (low pole). Slider 100 = most positive \u03b1 (high pole). Mid 50 = \u03b1=0. NEVER invert. Chart X = signed \u03b1, continuous left\u2192right.",
+    "source": "phase4b_signtest"
+  }
+}

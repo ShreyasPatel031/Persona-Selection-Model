@@ -1,0 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Five Personas</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --no: #c45c4a;
+      --no-dim: #e8b4aa;
+      --yes: #3d8b6e;
+      --yes-dim: #a8d4c2;
+      --panel: #fffefb;
+      --o: #2f5f9e;
+      --c: #5b4f8a;
+      --e: #b7791f;
+      --a: #b86898;
+      --n: #c45c4a;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%; overflow: hidden;
+      background: var(--bg); color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+    }
+    #app {
+      display: grid;
+      grid-template-columns: 4.25rem minmax(14rem, 18rem) 1fr;
+      grid-template-rows: auto 1fr auto;
+      height: 100vh;
+      width: 100vw;
+    }
+    #header {
+      grid-column: 1 / -1;
+      padding: 0.85rem 1.25rem 0.55rem;
+      border-bottom: 1px solid var(--line);
+    }
+    #header h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.45rem; font-weight: 600; letter-spacing: -0.02em;
+    }
+    #header .sub {
+      font-size: 0.78rem; color: var(--muted); margin-top: 0.25rem; line-height: 1.45;
+      max-width: 46rem;
+    }
+    #readout {
+      margin-top: 0.45rem;
+      font-size: 0.72rem; font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    #readout span { color: var(--ink); font-variant-numeric: tabular-nums; }
+
+    #slider-col {
+      grid-row: 2; grid-column: 1;
+      display: flex; flex-direction: column; align-items: center;
+      padding: 0.5rem 0; border-right: 1px solid var(--line);
+    }
+    #slider-col .cap {
+      font-size: 0.72rem; font-weight: 800; letter-spacing: 0.1em;
+      text-transform: uppercase; writing-mode: vertical-rl; transform: rotate(180deg);
+    }
+    #slider-col .cap.top { margin-bottom: 0.55rem; }
+    #slider-col .cap.bot { margin-top: 0.55rem; }
+    #slider-mid {
+      flex: 1; display: flex; align-items: center; justify-content: center;
+      width: 100%; min-height: 0; position: relative;
+    }
+    #slider-mid input[type="range"] {
+      -webkit-appearance: none; appearance: none;
+      width: var(--track, 220px); height: 2px;
+      background: var(--line); outline: none;
+      /* +90°: min at bottom, max at top ( -90° was inverted ) */
+      transform: rotate(90deg); transform-origin: center;
+      cursor: pointer;
+    }
+    #slider-mid input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none; width: 14px; height: 14px; border-radius: 50%;
+      background: var(--slider-color, var(--ink)); border: 2px solid var(--bg); cursor: pointer;
+    }
+
+    #side {
+      grid-row: 2; grid-column: 2;
+      border-right: 1px solid var(--line);
+      display: flex; flex-direction: column; min-height: 0; overflow: hidden;
+    }
+    #traits {
+      flex: 1 1 50%;
+      padding: 0.75rem 0.9rem 0.65rem;
+      min-height: 0;
+      overflow: auto;
+    }
+    #traits .label {
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.45rem;
+    }
+    #score-table {
+      width: 100%; border-collapse: collapse;
+    }
+    #score-table th {
+      text-align: left; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; font-size: 0.62rem; color: var(--muted);
+      padding: 0.2rem 0.35rem 0.45rem; border-bottom: 1px solid var(--line);
+    }
+    #score-table th.num { text-align: right; width: 3.5rem; }
+    #score-table td {
+      padding: 0.45rem 0.35rem; border-bottom: 1px solid var(--line);
+      font-size: 0.82rem; vertical-align: middle;
+    }
+    #score-table td.num {
+      text-align: right; font-weight: 700; font-variant-numeric: tabular-nums;
+    }
+    #score-table tr { cursor: pointer; }
+    #score-table tr:hover td { background: rgba(26,22,18,0.03); }
+    #score-table tr.active td {
+      background: color-mix(in srgb, var(--trait-color, var(--yes)) 14%, transparent);
+      box-shadow: inset 3px 0 0 var(--trait-color, var(--yes));
+    }
+    #score-table tr.active td.num { color: var(--trait-color, var(--ink)); }
+    /* Digman partner feedback while steering */
+    #score-table tr.cov-yes:not(.active) td {
+      box-shadow: inset 3px 0 0 var(--yes);
+      background: rgba(61, 139, 110, 0.06);
+    }
+    #score-table tr.cov-no:not(.active) td {
+      box-shadow: inset 3px 0 0 var(--no);
+      background: rgba(196, 92, 74, 0.06);
+    }
+    #score-table tr.cov-yes:not(.active) td.num { color: var(--yes); }
+    #score-table tr.cov-no:not(.active) td.num { color: var(--no); }
+    #score-table .swatch {
+      display: inline-block; width: 0.45rem; height: 0.45rem;
+      border-radius: 50%; margin-right: 0.4rem; vertical-align: middle;
+      border: 1px solid rgba(26, 22, 18, 0.12);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35);
+    }
+    #score-table .range {
+      display: block; font-size: 0.6rem; color: var(--muted); margin-top: 0.1rem;
+    }
+    #score-table tr.cov-yes:not(.active) .range { color: var(--yes); }
+    #score-table tr.cov-no:not(.active) .range { color: var(--no); }
+
+    #ladder-wrap {
+      flex: 1 1 50%;
+      border-top: 1px solid var(--line);
+      padding: 0.45rem 0.75rem 0.55rem;
+      min-height: 0;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #ladder-wrap .label {
+      flex: 0 0 auto;
+      font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem;
+    }
+    #ladder {
+      flex: 1 1 auto;
+      min-height: 0;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+    }
+    .rung {
+      flex: 1 1 0;
+      display: grid; grid-template-columns: 2.2rem 1fr auto;
+      gap: 0.35rem; align-items: center;
+      padding: 0 0.25rem;
+      border-bottom: 1px solid var(--line);
+      opacity: 0.45; transition: opacity 0.2s, background 0.2s;
+      min-height: 0;
+    }
+    .rung:last-child { border-bottom: 0; }
+    .rung.on {
+      opacity: 1;
+      background: color-mix(in srgb, var(--trait-color, var(--yes)) 12%, transparent);
+    }
+    .rung .mag {
+      font-size: 0.58rem; font-weight: 700; font-variant-numeric: tabular-nums;
+      color: var(--muted);
+    }
+    .rung.on .mag { color: var(--trait-color, var(--ink)); }
+    .rung .meta {
+      font-size: 0.58rem; color: var(--muted); line-height: 1.15;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .rung .meta strong { color: var(--ink); font-weight: 600; }
+    .rung .ev {
+      font-variant-numeric: tabular-nums; font-size: 0.68rem; font-weight: 700;
+      line-height: 1.1;
+    }
+    .rung.on .ev { color: var(--trait-color, var(--ink)); }
+    .rung .badge {
+      display: none;
+    }
+
+    #stage {
+      grid-row: 2; grid-column: 3;
+      position: relative; min-width: 0; min-height: 0;
+    }
+    #gl { display: block; width: 100%; height: 100%; touch-action: none; }
+    #persona-card {
+      position: absolute; left: 1rem; bottom: 1rem;
+      max-width: 18rem; padding: 0.75rem 0.85rem;
+      background: var(--panel); border: 1px solid var(--line); border-radius: 3px;
+      pointer-events: none;
+    }
+    #dose-chart {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      width: min(17.5rem, 42vw);
+      padding: 0.55rem 0.65rem 0.45rem;
+      background: rgba(255, 254, 251, 0.94);
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      pointer-events: none;
+      backdrop-filter: blur(4px);
+    }
+    #dose-chart .kicker {
+      font-size: 0.58rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.15rem;
+    }
+    #dose-chart .title {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 0.92rem; font-weight: 600; letter-spacing: -0.02em;
+      margin-bottom: 0.2rem;
+    }
+    #dose-chart .note {
+      font-size: 0.62rem; color: var(--muted); line-height: 1.35;
+      margin-top: 0.2rem;
+    }
+    #dose-chart .note .deg { color: var(--no); font-weight: 600; }
+    #dose-chart .note .rise { color: var(--yes); font-weight: 600; }
+    #dose-chart svg { display: block; width: 100%; height: auto; }
+    #dose-chart .leg {
+      display: flex; gap: 0.75rem; margin-top: 0.25rem;
+      font-size: 0.58rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    #dose-chart .leg span { display: inline-flex; align-items: center; gap: 0.3rem; }
+    #dose-chart .leg i {
+      width: 0.55rem; height: 0.55rem; border-radius: 50%; display: inline-block;
+    }
+    #dose-chart .leg .rise i { background: var(--yes); }
+    #dose-chart .leg .deg i { background: var(--no); }
+    #persona-card .kicker {
+      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 0.25rem;
+    }
+    #persona-card h2 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.15rem; font-weight: 600; letter-spacing: -0.02em;
+      margin-bottom: 0.35rem;
+    }
+    #persona-card p {
+      font-size: 0.72rem; color: var(--muted); line-height: 1.4;
+    }
+    #viz-legend {
+      display: flex; flex-wrap: wrap; gap: 0.65rem 1rem;
+      margin-top: 0.55rem; padding-top: 0.5rem;
+      border-top: 1px solid var(--line);
+      font-size: 0.62rem; font-weight: 600; letter-spacing: 0.04em;
+      text-transform: uppercase; color: var(--muted);
+    }
+    #viz-legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+    #viz-legend i {
+      display: inline-block; width: 1.1rem; height: 0;
+      border-top: 2px solid var(--ink); border-radius: 1px;
+    }
+    #viz-legend .leg-ctrl i {
+      border-top-style: dashed; border-top-color: var(--muted);
+    }
+    #hint {
+      grid-column: 1 / -1;
+      font-size: 0.6rem; color: var(--muted); text-align: center;
+      padding: 0.45rem; border-top: 1px solid var(--line);
+    }
+
+    @media (max-width: 820px) {
+      #app { grid-template-columns: 2.75rem 1fr; grid-template-rows: auto auto 1fr auto; }
+      #side { grid-column: 1 / -1; grid-row: 2; max-height: 42vh; border-right: none; border-bottom: 1px solid var(--line); }
+      #slider-col { grid-row: 3; }
+      #stage { grid-column: 2; grid-row: 3; }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <header id="header">
+      <h1>Five Personas</h1>
+      <p class="sub">Bottom = low / −α · top = high / +α · mid = 0. Chart is the same signed-α axis (left → right). Solid = PC1, dashed = random.</p>
+      <div id="readout">score = <span id="dose-val">—</span> · ctrl = <span id="ctrl-val">—</span> · <span id="active-val">openness</span></div>
+    </header>
+
+    <aside id="slider-col">
+      <div class="cap top" id="cap-high">high</div>
+      <div id="slider-mid">
+        <input id="dose" type="range" min="0" max="100" step="0.1" value="50" />
+      </div>
+      <div class="cap bot" id="cap-low">low</div>
+    </aside>
+
+    <aside id="side">
+      <div id="traits">
+        <div class="label">OCEAN scores <span style="font-weight:600;color:var(--muted);text-transform:none;letter-spacing:0">· green Digman + · red Digman −</span></div>
+        <table id="score-table">
+          <thead>
+            <tr><th>Trait</th><th class="num">Score</th></tr>
+          </thead>
+          <tbody id="trait-list"></tbody>
+        </table>
+      </div>
+      <div id="ladder-wrap">
+        <div class="label">Dose rungs</div>
+        <div id="ladder"></div>
+      </div>
+    </aside>
+
+    <div id="stage">
+      <canvas id="gl"></canvas>
+      <div id="dose-chart" aria-hidden="true">
+        <div class="kicker">ΔEV · signed α (continuous)</div>
+        <div class="title" id="dose-chart-title">Openness</div>
+        <svg id="dose-chart-svg" viewBox="0 0 280 148" role="img"></svg>
+        <div class="leg">
+          <span class="rise"><i></i> rising</span>
+          <span class="deg"><i></i> degradation</span>
+        </div>
+        <div class="note" id="dose-chart-note"></div>
+      </div>
+      <div id="persona-card">
+        <div class="kicker">Trait vs random control</div>
+        <h2 id="persona-title">Baseline prior</h2>
+        <p id="persona-blurb">Solid = trait PC1. Dashed = matched-norm random at the same dose. Off-targets on both come from measured inventory EVs.</p>
+        <div id="viz-legend" aria-hidden="true">
+          <span class="leg-trait"><i></i> trait PC1</span>
+          <span class="leg-ctrl"><i></i> random control</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="hint">bottom = low/−α · top = high/+α · chart left→right = signed α · green→★ rising · red = degradation · solid = PC1 · dashed = random</div>
+  </div>
+
+  <script type="module">
+    import * as THREE from "https://esm.sh/three@0.158.0";
+    import { OrbitControls } from "https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls";
+
+    const DATA = await fetch("./big_five_persona_data.json?v=6").then((r) => r.json());
+    const COLORS = {
+      openness: "#2f5f9e",
+      conscientiousness: "#5b4f8a",
+      extraversion: "#b7791f",
+      agreeableness: "#b86898",
+      neuroticism: "#c45c4a",
+    };
+    const ORDER = DATA.traits_order;
+
+    /** Slider 0 = low pole, 100 = high pole (one active steer; all five EVs from that sweep). */
+    const VOICE = {
+      openness: { high: "curious", low: "concrete" },
+      conscientiousness: { high: "planful", low: "loose" },
+      extraversion: { high: "outgoing", low: "reserved" },
+      agreeableness: { high: "warm", low: "blunt" },
+      neuroticism: { high: "tense", low: "calm" },
+    };
+    let activeTrait = "openness";
+    let factor = 50; // 0..100 on the active trait's bipolar dose
+
+    const traitList = document.getElementById("trait-list");
+    const ladderEl = document.getElementById("ladder");
+    const slider = document.getElementById("dose");
+    const sliderMid = document.getElementById("slider-mid");
+    const doseVal = document.getElementById("dose-val");
+    const ctrlVal = document.getElementById("ctrl-val");
+    const activeVal = document.getElementById("active-val");
+    const capHigh = document.getElementById("cap-high");
+    const capLow = document.getElementById("cap-low");
+    const personaTitle = document.getElementById("persona-title");
+    const personaBlurb = document.getElementById("persona-blurb");
+    const scoreEls = {};
+    const traitRows = {};
+
+    function poleFor(trait, pole) {
+      return DATA.poles.find((p) => p.trait === trait && p.pole === pole);
+    }
+
+    /**
+     * NAILED TO THE WALL — do not invert:
+     *   slider 0   = −α  (low trait voice)   ← bottom
+     *   slider 50  =  α = 0
+     *   slider 100 = +α  (high trait voice)  ← top
+     * Chart X = same signed α, continuous left → right.
+     * Source: DATA.continuum[trait].points (phase4b free baseline).
+     */
+    const continuumCache = {};
+    function continuumPoints(trait) {
+      if (continuumCache[trait]) return continuumCache[trait];
+      const pts = DATA.continuum?.[trait]?.points;
+      if (!pts?.length) return (continuumCache[trait] = []);
+      continuumCache[trait] = pts.slice().sort((a, b) => a.mag - b.mag);
+      return continuumCache[trait];
+    }
+
+    function zeroPoint(trait) {
+      const pts = continuumPoints(trait);
+      return pts.find((p) => Math.abs(p.mag) < 1e-6) || pts[Math.floor(pts.length / 2)] || null;
+    }
+
+    function traitRange(trait) {
+      const pts = continuumPoints(trait);
+      const evs = pts.map((p) => p.ev);
+      return {
+        lo: evs.length ? Math.min(...evs) : 1,
+        hi: evs.length ? Math.max(...evs) : 5,
+        up: poleFor(trait, "up"),
+        down: poleFor(trait, "down"),
+        aMin: pts[0]?.mag ?? 0,
+        aMax: pts[pts.length - 1]?.mag ?? 0,
+      };
+    }
+
+    const BASELINE = { ...(DATA.baseline_ev_scores || {}) };
+    for (const t of ORDER) {
+      const z = zeroPoint(t);
+      if (z?.ev_scores) {
+        for (const k of ORDER) {
+          if (BASELINE[k] == null) BASELINE[k] = z.ev_scores[k];
+        }
+        if (BASELINE[t] == null) BASELINE[t] = z.ev;
+      } else if (BASELINE[t] == null) {
+        BASELINE[t] = 3;
+      }
+    }
+    // Prefer free-baseline zero vector for all five when available
+    {
+      const z0 = zeroPoint("openness");
+      if (z0?.ev_scores) Object.assign(BASELINE, z0.ev_scores);
+    }
+
+    function lerpScoreMaps(a, b, frac) {
+      const out = {};
+      for (const k of ORDER) {
+        const av = a?.[k];
+        const bv = b?.[k];
+        if (av == null || bv == null) out[k] = BASELINE[k];
+        else out[k] = av * (1 - frac) + bv * frac;
+      }
+      return out;
+    }
+
+    /** factor 0..100 → position on signed-α continuum (never inverted). */
+    function scoresAtFactor(trait, f) {
+      const pts = continuumPoints(trait);
+      if (!pts.length) {
+        return { trait: { ...BASELINE }, control: { ...BASELINE }, mag: 0, delta: 0 };
+      }
+      const t = Math.min(100, Math.max(0, f)) / 100;
+      const idx = t * (pts.length - 1);
+      const i0 = Math.floor(idx);
+      const i1 = Math.min(pts.length - 1, i0 + 1);
+      const frac = idx - i0;
+      const a = pts[i0];
+      const b = pts[i1];
+      return {
+        trait: lerpScoreMaps(a.ev_scores, b.ev_scores, frac),
+        control: lerpScoreMaps(a.control_ev_scores, b.control_ev_scores, frac),
+        mag: a.mag * (1 - frac) + b.mag * frac,
+        delta: a.delta * (1 - frac) + b.delta * frac,
+        locked: !!(a.locked || b.locked),
+      };
+    }
+
+    function targetScores() {
+      return scoresAtFactor(activeTrait, factor).trait;
+    }
+
+    function targetControlScores() {
+      return scoresAtFactor(activeTrait, factor).control;
+    }
+
+    function zeroScores(trait) {
+      const z = zeroPoint(trait);
+      return {
+        trait: { ...(z?.ev_scores || BASELINE) },
+        control: { ...(z?.control_ev_scores || z?.ev_scores || BASELINE) },
+      };
+    }
+
+    let displayScores = { ...BASELINE };
+    let displayControlScores = { ...BASELINE };
+    let target = { ...BASELINE };
+    let targetControl = { ...BASELINE };
+    let priorScores = { ...zeroScores(activeTrait).trait };
+
+    function sizeSlider() {
+      const h = sliderMid.clientHeight;
+      slider.style.setProperty("--track", `${Math.max(80, h - 8)}px`);
+    }
+
+    function allRungs(trait) {
+      return continuumPoints(trait).map((r) => ({
+        ...r,
+        poleLabel: r.mag < 0 ? `${poleFor(trait, "down")?.id || "−α"}` : r.mag > 0 ? `${poleFor(trait, "up")?.id || "+α"}` : "α=0",
+      }));
+    }
+
+    function syncSliderFromState() {
+      slider.value = String(factor);
+      const voice = VOICE[activeTrait];
+      const { lo, hi, aMin, aMax } = traitRange(activeTrait);
+      // TOP = high trait / +α · BOTTOM = low trait / −α  — NEVER FLIP
+      capHigh.textContent = voice.high;
+      capLow.textContent = voice.low;
+      capHigh.title = `+α → ${aMax.toFixed(0)} (high)`;
+      capLow.title = `−α → ${aMin.toFixed(0)} (low)`;
+      document.documentElement.style.setProperty("--slider-color", COLORS[activeTrait]);
+      for (const t of ORDER) {
+        traitRows[t]?.style.setProperty("--trait-color", COLORS[t]);
+      }
+    }
+
+    function renderLadder() {
+      const trait = activeTrait;
+      const at = scoresAtFactor(trait, factor);
+      const curMag = at.mag;
+      // Top of list = high / +α · bottom = low / −α (match the slider)
+      const rungs = allRungs(trait).slice().reverse();
+      const nearest = rungs.reduce((best, r) =>
+        Math.abs(r.mag - curMag) < Math.abs(best.mag - curMag) ? r : best, rungs[0]);
+      ladderEl.innerHTML = "";
+      ladderEl.style.setProperty("--trait-color", COLORS[trait]);
+      for (const rung of rungs) {
+        const div = document.createElement("div");
+        div.className = "rung" + (rung === nearest ? " on" : "");
+        const dSign = rung.delta >= 0 ? "+" : "";
+        div.innerHTML = `
+          <div class="mag">${rung.mag >= 0 ? "+" : ""}${rung.mag.toFixed(0)}</div>
+          <div class="meta"><strong>${rung.poleLabel}</strong> · Δ ${dSign}${rung.delta.toFixed(2)}${rung.locked ? " · lock" : ""}</div>
+          <div class="ev">${rung.ev.toFixed(2)}</div>
+        `;
+        ladderEl.appendChild(div);
+      }
+    }
+
+    const DIGMAN = {
+      openness: { meta: "beta", load: 1 },
+      extraversion: { meta: "beta", load: 1 },
+      conscientiousness: { meta: "alpha", load: 1 },
+      agreeableness: { meta: "alpha", load: 1 },
+      neuroticism: { meta: "alpha", load: -1 },
+    };
+
+    /** Digman sign between active trait and partner: +1 / −1 / null (unconstrained). */
+    function digmanCorrSign(active, partner) {
+      const a = DIGMAN[active];
+      const p = DIGMAN[partner];
+      if (!a || !p || a.meta !== p.meta) return null;
+      return Math.sign(a.load * p.load) || null;
+    }
+
+    function refreshPartnerHighlight() {
+      for (const trait of ORDER) {
+        const row = traitRows[trait];
+        if (!row) continue;
+        row.classList.remove("cov-yes", "cov-no", "cov-move");
+        const rangeEl = row.querySelector(".range");
+        if (trait === activeTrait) {
+          if (rangeEl) rangeEl.textContent = `${VOICE[trait].low} → ${VOICE[trait].high}`;
+          continue;
+        }
+        const sign = digmanCorrSign(activeTrait, trait);
+        if (sign > 0) {
+          row.classList.add("cov-yes");
+          if (rangeEl) rangeEl.textContent = "Digman + · moves with";
+        } else if (sign < 0) {
+          row.classList.add("cov-no");
+          if (rangeEl) rangeEl.textContent = "Digman − · moves against";
+        } else if (rangeEl) {
+          rangeEl.textContent = `${VOICE[trait].low} → ${VOICE[trait].high}`;
+        }
+      }
+    }
+
+    function buildTraits() {
+      traitList.innerHTML = "";
+      for (const trait of ORDER) {
+        const { up } = traitRange(trait);
+        const row = document.createElement("tr");
+        row.className = trait === activeTrait ? "active" : "";
+        row.style.setProperty("--trait-color", COLORS[trait]);
+        row.innerHTML = `
+          <td>
+            <span class="swatch" style="background:${COLORS[trait]}"></span>
+            ${up.label}
+            <span class="range">${VOICE[trait].low} → ${VOICE[trait].high}</span>
+          </td>
+          <td class="num">${BASELINE[trait].toFixed(2)}</td>
+        `;
+        row.addEventListener("click", () => {
+          activeTrait = trait;
+          factor = 50;
+          for (const t of ORDER) traitRows[t].classList.toggle("active", t === activeTrait);
+          syncSliderFromState();
+          refreshPartnerHighlight();
+          rebuildLevelDots(true);
+          refreshScores();
+        });
+        traitList.appendChild(row);
+        traitRows[trait] = row;
+        scoreEls[trait] = row.querySelector(".num");
+      }
+      refreshPartnerHighlight();
+    }
+
+    function personaCopy(scores, controlScores) {
+      const bits = ORDER.map((t) => {
+        const s = scores[t];
+        if (s >= 3.4) return VOICE[t].high;
+        if (s <= 2.6) return VOICE[t].low;
+        return null;
+      }).filter(Boolean);
+      const title = bits.length ? bits.join(" · ") : "α = 0 prior";
+      const zero = zeroScores(activeTrait);
+      const at = scoresAtFactor(activeTrait, factor);
+      const tOn = scores[activeTrait] - zero.trait[activeTrait];
+      const cOn = controlScores[activeTrait] - zero.control[activeTrait];
+      const tSign = tOn >= 0 ? "+" : "";
+      const cSign = cOn >= 0 ? "+" : "";
+      const aSign = at.mag >= 0 ? "+" : "";
+      if (Math.abs(at.mag) < 1e-3) {
+        return {
+          title,
+          blurb: "Mid = α=0. Bottom = low / −α · top = high / +α. Chart = same signed-α axis, left → right.",
+        };
+      }
+      return {
+        title,
+        blurb: `α=${aSign}${at.mag.toFixed(0)}: trait ${tSign}${tOn.toFixed(2)} · random ${cSign}${cOn.toFixed(2)}. Solid = PC1, dashed = control.`,
+      };
+    }
+
+    function refreshMeta() {
+      const at = scoresAtFactor(activeTrait, factor);
+      doseVal.textContent = displayScores[activeTrait].toFixed(2);
+      ctrlVal.textContent = displayControlScores[activeTrait].toFixed(2);
+      const aSign = at.mag >= 0 ? "+" : "";
+      activeVal.textContent = `${activeTrait} · α=${aSign}${at.mag.toFixed(0)}`;
+      renderLadder();
+      renderDoseChart();
+      const copy = personaCopy(displayScores, displayControlScores);
+      personaTitle.textContent = copy.title;
+      personaBlurb.textContent = copy.blurb;
+    }
+
+    function refreshScores() {
+      priorScores = { ...zeroScores(activeTrait).trait };
+      target = targetScores();
+      targetControl = targetControlScores();
+      for (const trait of ORDER) {
+        scoreEls[trait].textContent = target[trait].toFixed(2);
+      }
+      refreshMeta();
+    }
+
+    /**
+     * Continuous signed-α ΔEV (left −α → right +α). Same axis as the slider.
+     * Green to peak ★; red = post-peak degradation.
+     */
+    function renderDoseChart() {
+      const svg = document.getElementById("dose-chart-svg");
+      const titleEl = document.getElementById("dose-chart-title");
+      const noteEl = document.getElementById("dose-chart-note");
+      if (!svg) return;
+
+      const cont = DATA.continuum?.[activeTrait];
+      const pole = poleFor(activeTrait, "up");
+      titleEl.textContent = `${pole?.label || activeTrait} · signed α`;
+
+      const pts = continuumPoints(activeTrait).map((r) => ({
+        mag: r.mag,
+        dEv: r.delta,
+        locked: !!r.locked,
+      }));
+      if (pts.length < 2) {
+        svg.innerHTML = "";
+        noteEl.textContent = "No continuum curve.";
+        return;
+      }
+
+      let peakIdx = 0;
+      for (let i = 0; i < pts.length; i++) {
+        if (pts[i].mag >= 0 && pts[i].dEv >= pts[peakIdx].dEv) peakIdx = i;
+      }
+      // If all negative somehow, fall back to global max
+      if (pts[peakIdx].mag < 0) {
+        peakIdx = pts.reduce((bi, p, i, a) => (p.dEv > a[bi].dEv ? i : bi), 0);
+      }
+
+      const W = 280, H = 148;
+      const pad = { l: 40, r: 12, t: 14, b: 28 };
+      const xMin = pts[0].mag;
+      const xMax = pts[pts.length - 1].mag;
+      const yVals = pts.map((p) => p.dEv);
+      let yMin = Math.min(0, ...yVals);
+      let yMax = Math.max(0, ...yVals);
+      if (yMax - yMin < 0.2) { yMin -= 0.1; yMax += 0.1; }
+      const yPad = (yMax - yMin) * 0.08;
+      yMin -= yPad; yMax += yPad;
+
+      const xScale = (m) => pad.l + ((m - xMin) / (xMax - xMin || 1)) * (W - pad.l - pad.r);
+      const yScale = (v) => pad.t + (1 - (v - yMin) / (yMax - yMin || 1)) * (H - pad.t - pad.b);
+
+      const pathFor = (slice) => slice.map((p, i) =>
+        `${i ? "L" : "M"}${xScale(p.mag).toFixed(1)},${yScale(p.dEv).toFixed(1)}`
+      ).join(" ");
+
+      const risePts = pts.slice(0, peakIdx + 1);
+      const degPts = pts.slice(peakIdx);
+      const hasDeg = degPts.length > 1 && pts[pts.length - 1].dEv < pts[peakIdx].dEv - 0.02;
+
+      let degBand = "";
+      if (hasDeg) {
+        const y0 = yScale(0);
+        const top = degPts.map((p, i) =>
+          `${i ? "L" : "M"}${xScale(p.mag).toFixed(1)},${yScale(p.dEv).toFixed(1)}`
+        ).join(" ");
+        const last = degPts[degPts.length - 1];
+        const first = degPts[0];
+        degBand = `<path d="${top} L${xScale(last.mag).toFixed(1)},${y0.toFixed(1)} L${xScale(first.mag).toFixed(1)},${y0.toFixed(1)} Z" fill="rgba(196,92,74,0.14)" stroke="none"/>`;
+      }
+
+      const x0 = xScale(0);
+      const grid = `
+        <line x1="${pad.l}" y1="${yScale(0).toFixed(1)}" x2="${(W - pad.r).toFixed(1)}" y2="${yScale(0).toFixed(1)}" stroke="#1a1612" stroke-opacity="0.4" stroke-dasharray="3 3"/>
+        <line x1="${x0.toFixed(1)}" y1="${pad.t}" x2="${x0.toFixed(1)}" y2="${(H - pad.b).toFixed(1)}" stroke="#1a1612" stroke-opacity="0.22" stroke-dasharray="2 3"/>
+      `;
+
+      const risePath = risePts.length > 1
+        ? `<path d="${pathFor(risePts)}" fill="none" stroke="#3d8b6e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`
+        : "";
+      const degPath = hasDeg
+        ? `<path d="${pathFor(degPts)}" fill="none" stroke="#c45c4a" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>`
+        : "";
+
+      const riseDots = risePts.map((p) =>
+        `<circle cx="${xScale(p.mag).toFixed(1)}" cy="${yScale(p.dEv).toFixed(1)}" r="2.5" fill="#3d8b6e"/>`
+      ).join("");
+      const degDots = hasDeg
+        ? degPts.slice(1).map((p) =>
+          `<circle cx="${xScale(p.mag).toFixed(1)}" cy="${yScale(p.dEv).toFixed(1)}" r="2.5" fill="#c45c4a"/>`
+        ).join("")
+        : "";
+
+      const peak = pts[peakIdx];
+      const cx = xScale(peak.mag), cy = yScale(peak.dEv);
+      let starD = "";
+      for (let i = 0; i < 8; i++) {
+        const rad = (i / 8) * Math.PI * 2 - Math.PI / 2;
+        const rr = i % 2 === 0 ? 5.5 : 2.4;
+        starD += `${i ? "L" : "M"}${(cx + Math.cos(rad) * rr).toFixed(1)},${(cy + Math.sin(rad) * rr).toFixed(1)}`;
+      }
+      const star = `<path d="${starD}Z" fill="#3d8b6e" stroke="#f6f3ee" stroke-width="1"/>`;
+
+      const curMag = scoresAtFactor(activeTrait, factor).mag;
+      let curD = pts[0].dEv;
+      for (let i = 0; i < pts.length - 1; i++) {
+        if (curMag >= pts[i].mag && curMag <= pts[i + 1].mag) {
+          const u = (curMag - pts[i].mag) / Math.max(1e-6, pts[i + 1].mag - pts[i].mag);
+          curD = pts[i].dEv * (1 - u) + pts[i + 1].dEv * u;
+          break;
+        }
+      }
+      if (curMag >= pts[pts.length - 1].mag) curD = pts[pts.length - 1].dEv;
+      const inDeg = hasDeg && curMag > peak.mag + 1e-6;
+      const curX = xScale(Math.min(xMax, Math.max(xMin, curMag)));
+      const curMark = `
+        <line x1="${curX.toFixed(1)}" y1="${pad.t}" x2="${curX.toFixed(1)}" y2="${(H - pad.b).toFixed(1)}"
+          stroke="#1a1612" stroke-opacity="0.35" stroke-dasharray="2 3"/>
+        <circle cx="${curX.toFixed(1)}" cy="${yScale(curD).toFixed(1)}" r="4.2"
+          fill="${inDeg ? "#c45c4a" : COLORS[activeTrait]}" stroke="#f6f3ee" stroke-width="1.5"/>`;
+
+      svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+      svg.innerHTML = `
+        ${grid}
+        ${degBand}
+        <line x1="${pad.l}" y1="${H - pad.b}" x2="${W - pad.r}" y2="${H - pad.b}" stroke="#e4ddd3"/>
+        <line x1="${pad.l}" y1="${pad.t}" x2="${pad.l}" y2="${H - pad.b}" stroke="#e4ddd3"/>
+        ${risePath}${degPath}${riseDots}${degDots}${star}${curMark}
+        <text x="${pad.l - 3}" y="${(yScale(0) + 3).toFixed(1)}" text-anchor="end" font-size="8" fill="#7a7268" font-family="Instrument Sans,sans-serif">0</text>
+        <text x="${pad.l}" y="${H - 8}" font-size="8" fill="#7a7268" font-family="Instrument Sans,sans-serif">${xMin.toFixed(0)}</text>
+        <text x="${x0.toFixed(1)}" y="${H - 8}" text-anchor="middle" font-size="8" fill="#7a7268" font-family="Instrument Sans,sans-serif">0</text>
+        <text x="${W - pad.r}" y="${H - 8}" text-anchor="end" font-size="8" fill="#7a7268" font-family="Instrument Sans,sans-serif">+${Math.abs(xMax).toFixed(0)}</text>
+        <text x="11" y="${pad.t + 10}" font-size="8" fill="#7a7268" font-family="Instrument Sans,sans-serif">ΔEV</text>
+      `;
+
+      const peakD = peak.dEv;
+      const collapse = peakD - pts[pts.length - 1].dEv;
+      const pSign = peakD >= 0 ? "+" : "";
+      if (!hasDeg) {
+        noteEl.innerHTML = `<span class="rise">peak Δ ${pSign}${peakD.toFixed(2)}</span> · no rollover in this grid`;
+      } else {
+        noteEl.innerHTML = `<span class="rise">peak Δ ${pSign}${peakD.toFixed(2)}</span> · <span class="deg">then ${collapse.toFixed(2)} collapse</span>`;
+      }
+    }
+
+    // --- Three.js pentagon (materials matched to big_five_tsne.html) ---
+    const HULL_OPACITY = 0.09;
+    const PLANE_OPACITY = 0.14;
+    const POINT_OPACITY = 0.26;
+    const LADDER_OPACITY = 0.65;
+
+    const canvas = document.getElementById("gl");
+    const stage = document.getElementById("stage");
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setClearColor(0xf6f3ee, 1);
+
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(36, 1, 0.05, 200);
+
+    const controls = new OrbitControls(camera, canvas);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.07;
+    controls.minDistance = 5;
+    controls.maxDistance = 36;
+    controls.target.set(0, 0.2, 0);
+
+    // Fixed view: camera height 12.4 · zoom out 20.1
+    (function setFixedCamera() {
+      const elev = 12.4;
+      const radius = 20.1;
+      const pitch = Math.atan2(elev, radius * 0.72);
+      const yaw = Math.PI * 0.22;
+      const horiz = Math.cos(pitch) * radius;
+      camera.position.set(
+        Math.sin(yaw) * horiz,
+        Math.sin(pitch) * radius * 1.05,
+        Math.cos(yaw) * horiz,
+      );
+      camera.lookAt(controls.target);
+      camera.updateProjectionMatrix();
+    })();
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.85));
+    const key = new THREE.DirectionalLight(0xffffff, 0.55);
+    key.position.set(2, 4, 3);
+    scene.add(key);
+
+    const root = new THREE.Group();
+    scene.add(root);
+
+    // Guide rings — same soft ink rim language as t-SNE plane edges (opacity 0.28)
+    const guideMat = new THREE.LineBasicMaterial({ color: 0x1a1612, transparent: true, opacity: 0.28 });
+    function pentPoints(radius, y = 0) {
+      const pts = [];
+      for (let i = 0; i <= 5; i++) {
+        const a = -Math.PI / 2 + (i / 5) * Math.PI * 2;
+        pts.push(new THREE.Vector3(Math.cos(a) * radius, y, Math.sin(a) * radius));
+      }
+      return pts;
+    }
+    for (const r of [1.1, 2.4, 3.7]) {
+      root.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pentPoints(r)), guideMat));
+    }
+    for (let i = 0; i < 5; i++) {
+      const a = -Math.PI / 2 + (i / 5) * Math.PI * 2;
+      const pts = [
+        new THREE.Vector3(0, 0, 0),
+        new THREE.Vector3(Math.cos(a) * 3.7, 0, Math.sin(a) * 3.7),
+      ];
+      root.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), guideMat.clone()));
+    }
+
+    const labelSprites = [];
+    function makeLabel(text, color) {
+      const c = document.createElement("canvas");
+      c.width = 256; c.height = 96;
+      const ctx = c.getContext("2d");
+      ctx.clearRect(0, 0, 256, 96);
+      ctx.fillStyle = "rgba(246, 243, 238, 0.96)";
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 3;
+      const rr = 12;
+      ctx.beginPath();
+      ctx.moveTo(28 + rr, 18);
+      ctx.arcTo(228, 18, 228, 78, rr);
+      ctx.arcTo(228, 78, 28, 78, rr);
+      ctx.arcTo(28, 78, 28, 18, rr);
+      ctx.arcTo(28, 18, 228, 18, rr);
+      ctx.closePath();
+      ctx.fill();
+      ctx.stroke();
+      ctx.font = "700 36px Newsreader, Georgia, serif";
+      ctx.fillStyle = color;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(text, 128, 48);
+      const tex = new THREE.CanvasTexture(c);
+      const mat = new THREE.SpriteMaterial({
+        map: tex, transparent: true, depthTest: false, depthWrite: false, opacity: 0.96,
+      });
+      const spr = new THREE.Sprite(mat);
+      spr.scale.set(1.35, 0.5, 1);
+      spr.renderOrder = 20;
+      return spr;
+    }
+    ORDER.forEach((trait, i) => {
+      const a = -Math.PI / 2 + (i / 5) * Math.PI * 2;
+      const spr = makeLabel(poleFor(trait, "up").short, COLORS[trait]);
+      spr.position.set(Math.cos(a) * 4.55, 0.35, Math.sin(a) * 4.55);
+      root.add(spr);
+      labelSprites.push(spr);
+    });
+
+    // Prior ghost = t-SNE plane opacity
+    const priorLine = new THREE.Line(
+      new THREE.BufferGeometry(),
+      new THREE.LineBasicMaterial({ color: 0x1a1612, transparent: true, opacity: PLANE_OPACITY })
+    );
+    root.add(priorLine);
+
+    // Live fill = Digman cloud hull opacity
+    const fillMat = new THREE.MeshBasicMaterial({
+      color: new THREE.Color(COLORS.openness),
+      transparent: true,
+      opacity: HULL_OPACITY,
+      side: THREE.DoubleSide,
+      depthWrite: false,
+    });
+    const fillMesh = new THREE.Mesh(new THREE.BufferGeometry(), fillMat);
+    root.add(fillMesh);
+
+    // Edge = ladder polyline opacity
+    const liveMat = new THREE.LineBasicMaterial({
+      color: 0x1a1612, transparent: true, opacity: LADDER_OPACITY,
+    });
+    const liveLine = new THREE.Line(new THREE.BufferGeometry(), liveMat);
+    root.add(liveLine);
+
+    // Matched-norm random control silhouette (same |α|, dashed)
+    const CTRL_OPACITY = 0.55;
+    const ctrlMat = new THREE.LineDashedMaterial({
+      color: 0x7a7268,
+      transparent: true,
+      opacity: CTRL_OPACITY,
+      dashSize: 0.16,
+      gapSize: 0.1,
+      linewidth: 1,
+    });
+    const ctrlLine = new THREE.Line(new THREE.BufferGeometry(), ctrlMat);
+    root.add(ctrlLine);
+
+    const ctrlBeads = ORDER.map(() => {
+      const mat = new THREE.MeshStandardMaterial({
+        color: 0x7a7268,
+        emissive: 0x7a7268,
+        emissiveIntensity: 0.04,
+        transparent: true,
+        opacity: POINT_OPACITY * 0.85,
+        depthWrite: false,
+        metalness: 0.02,
+        roughness: 0.6,
+      });
+      const mesh = new THREE.Mesh(new THREE.SphereGeometry(0.09, 12, 12), mat);
+      root.add(mesh);
+      return mesh;
+    });
+
+    // Beads = t-SNE MeshStandardMaterial points
+    const beads = ORDER.map((trait) => {
+      const c = new THREE.Color(COLORS[trait]);
+      const mat = new THREE.MeshStandardMaterial({
+        color: c,
+        emissive: c,
+        emissiveIntensity: 0.06,
+        transparent: true,
+        opacity: POINT_OPACITY,
+        depthWrite: false,
+        metalness: 0.02,
+        roughness: 0.55,
+      });
+      const mesh = new THREE.Mesh(new THREE.SphereGeometry(0.14, 16, 16), mat);
+      root.add(mesh);
+      return mesh;
+    });
+
+    // Measured dose levels for the active trait — dots along that spoke
+    const levelDotsGrp = new THREE.Group();
+    root.add(levelDotsGrp);
+
+    const stemMat = new THREE.MeshBasicMaterial({
+      color: 0x1a1612, transparent: true, opacity: 0.28,
+    });
+    const stem = new THREE.Mesh(new THREE.CylinderGeometry(0.035, 0.035, 1, 12), stemMat);
+    const head = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.24, 16), stemMat);
+    root.add(stem, head);
+
+    function scoreToRadius(ev) {
+      // Likert 1..5 → radius 1.1..3.7
+      const t = (ev - 1) / 4;
+      return 1.1 + Math.min(1, Math.max(0, t)) * 2.6;
+    }
+
+    function traitAngle(trait) {
+      const i = ORDER.indexOf(trait);
+      return -Math.PI / 2 + (i / 5) * Math.PI * 2;
+    }
+
+    let levelDotsKey = null;
+
+    function rebuildLevelDots(force = false) {
+      const key = activeTrait;
+      if (!force && levelDotsKey === key && levelDotsGrp.children.length) {
+        const liveEv = displayScores[activeTrait];
+        let nearest = 0;
+        let nearestAbs = Infinity;
+        levelDotsGrp.children.forEach((mesh, i) => {
+          const d = Math.abs((mesh.userData.ev ?? 0) - liveEv);
+          if (d < nearestAbs) { nearestAbs = d; nearest = i; }
+        });
+        levelDotsGrp.children.forEach((mesh, i) => {
+          const on = i === nearest;
+          mesh.material.emissiveIntensity = on ? 0.35 : 0.08;
+          mesh.material.opacity = on ? Math.min(1, POINT_OPACITY + 0.45) : POINT_OPACITY * 0.85;
+          mesh.scale.setScalar(on ? 1.25 : 1);
+          mesh.position.y = on ? 0.06 : 0.04;
+        });
+        return;
+      }
+
+      while (levelDotsGrp.children.length) {
+        const ch = levelDotsGrp.children[0];
+        levelDotsGrp.remove(ch);
+        ch.geometry?.dispose?.();
+        ch.material?.dispose?.();
+      }
+      levelDotsKey = key;
+      const curve = continuumPoints(activeTrait);
+      const a = traitAngle(activeTrait);
+      const col = new THREE.Color(COLORS[activeTrait]);
+      const liveEv = displayScores[activeTrait];
+      let nearest = 0;
+      let nearestAbs = Infinity;
+      curve.forEach((r, i) => {
+        const d = Math.abs(r.ev - liveEv);
+        if (d < nearestAbs) { nearestAbs = d; nearest = i; }
+      });
+      curve.forEach((r, i) => {
+        const rad = scoreToRadius(r.ev);
+        const on = i === nearest;
+        const mat = new THREE.MeshStandardMaterial({
+          color: col,
+          emissive: col,
+          emissiveIntensity: on ? 0.35 : 0.08,
+          transparent: true,
+          opacity: on ? Math.min(1, POINT_OPACITY + 0.45) : POINT_OPACITY * 0.85,
+          depthWrite: false,
+          metalness: 0.02,
+          roughness: 0.55,
+        });
+        const mesh = new THREE.Mesh(new THREE.SphereGeometry(0.07, 12, 12), mat);
+        mesh.position.set(Math.cos(a) * rad, on ? 0.06 : 0.04, Math.sin(a) * rad);
+        mesh.scale.setScalar(on ? 1.25 : 1);
+        mesh.userData = { kind: "level", index: i, ev: r.ev, mag: r.mag };
+        levelDotsGrp.add(mesh);
+      });
+    }
+
+    function setPolygon(lineObj, fillObj, scores, y = 0, { dashed = false } = {}) {
+      const pts = [];
+      ORDER.forEach((trait, i) => {
+        const a = -Math.PI / 2 + (i / 5) * Math.PI * 2;
+        const r = scoreToRadius(scores[trait]);
+        pts.push(new THREE.Vector3(Math.cos(a) * r, y, Math.sin(a) * r));
+      });
+      pts.push(pts[0].clone());
+      lineObj.geometry.dispose();
+      lineObj.geometry = new THREE.BufferGeometry().setFromPoints(pts);
+      if (dashed) lineObj.computeLineDistances();
+
+      if (fillObj) {
+        const shape = new THREE.Shape();
+        pts.slice(0, 5).forEach((p, i) => {
+          if (i === 0) shape.moveTo(p.x, p.z);
+          else shape.lineTo(p.x, p.z);
+        });
+        shape.closePath();
+        fillObj.geometry.dispose();
+        fillObj.geometry = new THREE.ShapeGeometry(shape);
+        fillObj.rotation.x = Math.PI / 2;
+        fillObj.position.y = y + 0.01;
+      }
+
+      return pts;
+    }
+
+    function refreshPolygon() {
+      setPolygon(priorLine, null, priorScores, -0.02);
+      const pts = setPolygon(liveLine, fillMesh, displayScores, 0);
+      const ctrlPts = setPolygon(ctrlLine, null, displayControlScores, 0.03, { dashed: true });
+      pts.slice(0, 5).forEach((p, i) => {
+        const trait = ORDER[i];
+        const selected = trait === activeTrait;
+        beads[i].position.copy(p);
+        beads[i].position.y = 0.08;
+        beads[i].material.opacity = selected
+          ? Math.min(1, POINT_OPACITY + 0.38)
+          : POINT_OPACITY;
+        beads[i].material.emissiveIntensity = selected ? 0.32 : 0.06;
+        beads[i].scale.setScalar(selected ? 1.35 : 1);
+      });
+      ctrlPts.slice(0, 5).forEach((p, i) => {
+        ctrlBeads[i].position.copy(p);
+        ctrlBeads[i].position.y = 0.05;
+        ctrlBeads[i].material.opacity = POINT_OPACITY * (ORDER[i] === activeTrait ? 1.05 : 0.75);
+      });
+
+      rebuildLevelDots();
+
+      const meanAbs = ORDER.reduce((s, t) => s + Math.abs(displayScores[t] - priorScores[t]), 0) / 5;
+      const h = 0.4 + meanAbs * 1.6;
+      stem.scale.y = h;
+      stem.position.y = h / 2;
+      head.position.y = h + 0.14;
+
+      // Fill tinted like Digman hull of the active trait
+      fillMat.color.set(COLORS[activeTrait]);
+      fillMat.opacity = HULL_OPACITY;
+      liveMat.color.set(COLORS[activeTrait]);
+      liveMat.opacity = LADDER_OPACITY;
+      // Tint legend trait swatch via CSS variable on card
+      document.querySelector("#viz-legend .leg-trait i")?.style.setProperty("border-top-color", COLORS[activeTrait]);
+    }
+
+    slider.addEventListener("input", () => {
+      factor = Number(slider.value);
+      refreshScores();
+    });
+
+    function resize() {
+      const w = stage.clientWidth, h = stage.clientHeight;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / Math.max(1, h);
+      camera.updateProjectionMatrix();
+      sizeSlider();
+    }
+    window.addEventListener("resize", resize);
+    resize();
+    buildTraits();
+    syncSliderFromState();
+    renderLadder();
+    refreshScores();
+    refreshPolygon();
+
+    (function animate() {
+      requestAnimationFrame(animate);
+      let moved = false;
+      for (const trait of ORDER) {
+        const d = target[trait] - displayScores[trait];
+        if (Math.abs(d) > 0.0005) {
+          displayScores[trait] += d * 0.18;
+          moved = true;
+        } else {
+          displayScores[trait] = target[trait];
+        }
+        const dc = targetControl[trait] - displayControlScores[trait];
+        if (Math.abs(dc) > 0.0005) {
+          displayControlScores[trait] += dc * 0.18;
+          moved = true;
+        } else {
+          displayControlScores[trait] = targetControl[trait];
+        }
+      }
+      if (moved) {
+        for (const trait of ORDER) {
+          scoreEls[trait].textContent = displayScores[trait].toFixed(2);
+        }
+        refreshMeta();
+        refreshPolygon();
+      }
+      controls.update();
+      renderer.render(scene, camera);
+    })();
+  </script>
+  <script src="./viz_series.js"></script>
+</body>
+</html>

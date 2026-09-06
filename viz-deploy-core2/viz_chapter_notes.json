@@ -1,0 +1,125 @@
+{
+  "version": 1,
+  "source": "Obsidian Notes/01-Learn/Concepts (curated for viz sidebar) \u2014 core asset (chapters 01\u201302 only)",
+  "chapters": {
+    "big_five_tsne.html": {
+      "n": "01",
+      "title": "Embedding + MPI-120",
+      "blurb": "A persona rung is a point in L15 activation space, scored by the same MPI-120 EV readout that builds the measurement graph.",
+      "implemented": [
+        {
+          "title": "Nine-level prompt ladder \u2192 answer-slot centroids",
+          "body": "Each point on the left is the mean of 120 answer-slot residuals at layer 15 under one system prompt (trait \u00d7 intensity \u00d7 variant). That is the operational \u201cpersona coordinate\u201d next to the inventory."
+        },
+        {
+          "title": "EV Likert readout (not hard argmax)",
+          "body": "Item score is the expected value of options {1\u20265} under the constrained answer distribution, then keyed and averaged into domain scores. Locked admins are screened so fake midpoints do not invent structure."
+        },
+        {
+          "title": "PC1 of the ladder as the steer axis; Digman \u03b1/\u03b2 on the right",
+          "body": "PC1 of the nine centroids (sign toward high pole, then unit-normalized) is the direction used later for steering. The right panel is the FA-style measurement story: items \u2194 Big Five \u2194 Digman Stability / Plasticity."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Centroid (one left-panel point)",
+          "tex": "c = \\frac{1}{120}\\sum_{i=1}^{120} h^{(i)}_{15}\\in\\mathbb{R}^{2560}",
+          "explain": "For one rung, take the residual at the answer slot of each of the 120 MPI items at layer 15, then average those vectors. That single mean is \u201cwhere the model is\u201d when it is about to answer the whole inventory under that persona prompt."
+        },
+        {
+          "name": "Expected-value item score",
+          "tex": "\\mathrm{EV}=\\sum_{k=1}^{5} k\\,p(k)",
+          "explain": "Softmax only over the five Likert option tokens, then take the expected rating. Soft mass moves before the mode flips, so EV tracks graded persona shifts that hard argmax would miss\u2014especially under option lock."
+        },
+        {
+          "name": "PC1 direction (unit)",
+          "tex": "\\hat{v}=\\frac{\\pm V_{:1}}{\\|\\pm V_{:1}\\|}\\quad\\text{with}\\quad \\hat{v}^\\top(c_9-c_1)>0",
+          "explain": "Stack and center the nine ladder centroids, take SVD, keep PC1, flip so it points toward the high pole, then normalize. \u03b1 later is only a step length along this pure direction."
+        },
+        {
+          "name": "t-SNE objective (layout)",
+          "tex": "\\min \\mathrm{KL}(P\\|Q)",
+          "explain": "P is fixed high-D \u201cfriendship\u201d among centroids; Q is friendship on the 3D map. Moving points until Q matches P is why neighbors on the ladder stay neighbors in the viz\u2014not a random scatterplot."
+        }
+      ],
+      "failed": [
+        {
+          "title": "Two-arm statement mean-diff as the persona point",
+          "body": "Classic CAA-style construct\u2212antithesis mean-diff broke on Gemma+MPI (wrong-way O/C/A, heavy leakage) and only gave two piles\u2014no graded 1\u21929 cloud to t-SNE. Replaced by the intensity ladder."
+        },
+        {
+          "title": "Free-text mean over assistant tokens",
+          "body": "Averaging a free reply mixes fluency/style with the Likert decision. Inventory points must be answer-slot states, the same surface as the score."
+        },
+        {
+          "title": "Argmax Likert without lock screening",
+          "body": "Under option lock, reverse-keying invents midpoints while every item looks answered. Those fake scores corrupted both t-SNE labels and the measurement graph. EV + lock drop replaced it."
+        }
+      ]
+    },
+    "big_five_persona.html": {
+      "n": "02",
+      "title": "Five personas",
+      "blurb": "Dial one Big Five trait by adding \u03b1\u00b7v\u0302 at L15; dose is a fraction of that trait\u2019s PC1 span, checked against drift and matched-norm random.",
+      "implemented": [
+        {
+          "title": "Steer h\u2081\u2085 \u2190 h\u2081\u2085 + \u03b1 v\u0302 (PC1 only @ L15)",
+          "body": "Unit PC1 from the ladder is the only injected direction in final sweeps. Layer 15 was frozen by ladder order (\u03c1\u00b7monotone) before filling the dose table."
+        },
+        {
+          "title": "Dose = fraction of latent span",
+          "body": "|\u03b1| = f \u00b7 |(c\u2089\u2212c\u2081)\u1d40v\u0302| with f \u2208 {0.15\u20261.30}. One span \u2248 one full prompted low\u2192high trip along the same arrow you inject."
+        },
+        {
+          "title": "Opposite priors, EV pentagon, random + Digman checks",
+          "body": "Up starts from a low prior; down from a high prior. Off-target and signed drift are reported per rung; one matched-norm random control at the same |\u03b1|; Digman drift-discordant pairs (N vs C/A) separate metatrait from global slide."
+        },
+        {
+          "title": "Viz: signed-\u03b1 slider + continuous \u0394EV chart",
+          "body": "Bottom = low/\u2212\u03b1, top = high/+\u03b1, mid = 0. Solid pentagon = trait PC1; dashed = random at same |\u03b1|. Chart X is signed \u03b1 left\u2192right; red = post-peak degradation."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Steering intervention",
+          "tex": "h_{15}\\leftarrow h_{15}+\\alpha\\,\\hat{v}",
+          "explain": "At layer 15 the residual is a 2560-vector. v\u0302 is the unit trait direction; \u03b1 is how far you step along it during the inventory forward. Too small does nothing; too large collapses the respondent."
+        },
+        {
+          "name": "Latent span (dose unit)",
+          "tex": "\\mathrm{span}=\\big|(c_9-c_1)^\\top\\hat{v}\\big|",
+          "explain": "How far prompting already moved along the inject direction from level 1 to 9. Every grid dose is a known multiple of that psychologically meaningful displacement\u2014not a copied paper scalar and not a multiple of \u2016h\u2016."
+        },
+        {
+          "name": "Dose grid",
+          "tex": "|\\alpha_r|=f_r\\cdot\\mathrm{span},\\quad f_r\\in\\{0.15,\\ldots,1.30\\}",
+          "explain": "Sign chooses the pole (+ raises, \u2212 lowers). Size is always a fraction of one prompted trip, so the dial stays comparable across traits even when residual norms are huge (~27k)."
+        },
+        {
+          "name": "Dose\u2013response \u03c1",
+          "tex": "\\rho=\\mathrm{Pearson}\\big(\\mathrm{rank}|\\alpha|,\\;\\mathrm{rank}\\,y\\big)",
+          "explain": "Spearman between dose size and intended EV across usable rungs. Final-cycle median ~0.97 says the dial is ordered; specificity still needs drift and random controls."
+        },
+        {
+          "name": "Drift vs off-target",
+          "tex": "\\mathrm{drift}=\\tfrac15\\sum_t\\Delta_t,\\quad \\mathrm{off}=\\tfrac14\\sum_{t\\ne t^*}|\\Delta_t|",
+          "explain": "Drift is the average signed slide of the whole pentagon (degradation signature). Off-target is absolute spillover onto the other four traits. Trust \u201cbeat random\u201d only while random drift stays small."
+        }
+      ],
+      "failed": [
+        {
+          "title": "Paper / raw \u03b1 \u2248 2 on a unit vector",
+          "body": "Length-2 add into a ~27k residual is a no-op. Dose must live in this model\u2019s activation units."
+        },
+        {
+          "title": "Relative \u03b1 \u00d7 \u2016h\u2016 as the personality dial",
+          "body": "Explains why paper \u03b1 dies, but the same ruler for every trait undershoots the trait trip or overshoots into lock/corruption. Wrong unit for Big Five."
+        },
+        {
+          "title": "Calibrate off chat coherence / expect a clean parabola",
+          "body": "Inventory option-lock often binds first. Late drops are usually corruption, not a soft optimum (Openness free-baseline is the clearest inverted-U). Design for usable monotone rungs + controls."
+        }
+      ]
+    }
+  }
+}

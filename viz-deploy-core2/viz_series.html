@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Big Five Steering — Core (01–02)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --panel: #fffefb;
+      --yes: #3d8b6e;
+      --yes-dim: #a8d4c2;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      line-height: 1.45;
+    }
+    #app {
+      display: grid;
+      grid-template-columns: minmax(16rem, 22rem) 1fr;
+      height: 100vh;
+    }
+    #rail {
+      border-right: 1px solid var(--line);
+      overflow: auto;
+      min-height: 0;
+      padding: 0.5rem 0 1.25rem;
+    }
+    #rail .rail-actions {
+      display: flex;
+      gap: 0.45rem;
+      flex-wrap: wrap;
+      padding: 0.35rem 1rem 0.55rem;
+      border-bottom: 1px solid var(--line);
+      margin-bottom: 0.15rem;
+    }
+    #rail .rail-actions a,
+    #rail .rail-actions button {
+      font: inherit;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.55rem;
+      border: 1px solid var(--line);
+      border-radius: 3px;
+      background: transparent;
+      color: var(--muted);
+      text-decoration: none;
+      cursor: pointer;
+    }
+    #rail .rail-actions a:hover,
+    #rail .rail-actions button:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+    .eyebrow {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.85rem 1rem 0.2rem;
+    }
+    .lede {
+      font-size: 0.78rem;
+      color: var(--muted);
+      padding: 0 1rem 0.55rem;
+      line-height: 1.4;
+    }
+    .section-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0.85rem 1rem 0.35rem;
+    }
+    .chapter {
+      display: grid;
+      grid-template-columns: 2rem 1fr;
+      gap: 0.15rem 0.55rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.55rem 1rem;
+      border: 0;
+      border-left: 3px solid transparent;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+    .chapter:hover { background: rgba(26, 22, 18, 0.03); }
+    .chapter.active {
+      background: rgba(61, 139, 110, 0.06);
+      border-left-color: var(--yes);
+    }
+    .chapter .num {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--muted);
+      font-variant-numeric: tabular-nums;
+      padding-top: 0.12rem;
+    }
+    .chapter .title {
+      font-size: 0.88rem;
+      font-weight: 600;
+    }
+    .chapter .tag {
+      grid-column: 2;
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .chapter .desc {
+      grid-column: 2;
+      font-size: 0.72rem;
+      color: var(--muted);
+      margin-top: 0.1rem;
+    }
+
+    #stage {
+      position: relative;
+      min-width: 0;
+      min-height: 0;
+      background: var(--bg);
+    }
+    #frame {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      background: var(--bg);
+    }
+    #empty {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+      pointer-events: none;
+    }
+    #empty.hide { display: none; }
+
+    @media (max-width: 820px) {
+      #app {
+        grid-template-columns: 1fr;
+        grid-template-rows: minmax(11rem, 32vh) 1fr;
+      }
+      #rail {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <aside id="rail" aria-label="Core diagram chapters">
+      <div class="rail-actions">
+        <button type="button" id="open-tab">Open full page</button>
+      </div>
+      <div class="eyebrow">Additional asset</div>
+      <p class="lede">Chapters 01–02 only — embedding + inventory readout, then monotonic Big Five steering. Companion to the research code.</p>
+    </aside>
+    <div id="stage">
+      <div id="empty">Select a diagram</div>
+      <iframe id="frame" title="Diagram viewer"></iframe>
+    </div>
+  </div>
+
+  <script src="./viz_series.js"></script>
+  <script>
+    const META = {
+      "big_five_tsne.html": "Open: what does “impersonating a persona” mean in an LLM’s embedding? Measurement model (MPI-120) beside the t-SNE of steered activations.",
+      "big_five_persona.html": "Then: you can monotonically steer a model’s persona to be psychometrically accurate — at inference time, token by token.",
+    };
+
+    const chapters = (window.VIZ_SERIES && window.VIZ_SERIES.chapters) || [];
+    const rail = document.getElementById("rail");
+    const frame = document.getElementById("frame");
+    const empty = document.getElementById("empty");
+    const openTab = document.getElementById("open-tab");
+    let active = null;
+
+    function renderRail() {
+      const keep = rail.querySelectorAll(".rail-actions, .eyebrow, .lede");
+      const preserved = [...keep];
+      rail.innerHTML = "";
+      preserved.forEach((el) => rail.appendChild(el));
+
+      const lab = document.createElement("div");
+      lab.className = "section-label";
+      lab.textContent = "Core chapters";
+      rail.appendChild(lab);
+
+      for (const ch of chapters) {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "chapter" + (active === ch.file ? " active" : "");
+        btn.dataset.file = ch.file;
+        btn.innerHTML = `
+          <span class="num">${ch.n}</span>
+          <span class="title">${ch.title}</span>
+          <span class="tag">${ch.tag}</span>
+          <span class="desc">${META[ch.file] || ""}</span>
+        `;
+        btn.addEventListener("click", () => select(ch.file));
+        rail.appendChild(btn);
+      }
+    }
+
+    function select(file) {
+      active = file;
+      frame.src = "./" + file + "?v=" + Date.now();
+      empty.classList.add("hide");
+      openTab.onclick = () => window.open("./" + file, "_blank");
+      history.replaceState(null, "", "#/" + file);
+      renderRail();
+    }
+
+    const fromHash = (location.hash || "").replace(/^#\/?/, "");
+    const start = chapters.find((c) => c.file === fromHash)?.file
+      || chapters[0]?.file;
+
+    renderRail();
+    if (start) select(start);
+  </script>
+</body>
+</html>
