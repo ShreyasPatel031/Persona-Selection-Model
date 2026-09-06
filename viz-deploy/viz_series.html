@@ -37,11 +37,12 @@
       grid-template-columns: 0 1fr;
     }
     #rail {
+      position: relative;
       border-right: 1px solid var(--line);
       overflow: auto;
       min-height: 0;
       min-width: 0;
-      padding: 0.5rem 0 1.25rem;
+      padding: 0.85rem 0 1.25rem;
       background: var(--bg);
       transition: opacity 0.18s ease, border-color 0.18s ease;
     }
@@ -52,35 +53,18 @@
       border-right-color: transparent;
       padding: 0;
     }
-    #rail .rail-actions {
-      display: flex;
-      gap: 0.45rem;
-      flex-wrap: wrap;
-      align-items: center;
-      padding: 0.35rem 1rem 0.55rem;
-      border-bottom: 1px solid var(--line);
-      margin-bottom: 0.15rem;
+    .rail-meta {
+      padding: 0 1rem 0.35rem;
     }
-    #rail .rail-actions a,
-    #rail .rail-actions button {
-      font: inherit;
-      font-size: 0.68rem;
+    .rail-meta a {
+      font-size: 0.62rem;
       font-weight: 700;
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      padding: 0.3rem 0.55rem;
-      border: 1px solid var(--line);
-      border-radius: 3px;
-      background: transparent;
       color: var(--muted);
       text-decoration: none;
-      cursor: pointer;
     }
-    #rail .rail-actions a:hover,
-    #rail .rail-actions button:hover {
-      color: var(--ink);
-      border-color: var(--ink);
-    }
+    .rail-meta a:hover { color: var(--ink); }
     .section-label {
       font-size: 0.62rem;
       font-weight: 700;
@@ -158,18 +142,15 @@
 
     #rail-toggle {
       position: absolute;
-      top: 0.75rem;
-      left: 0.75rem;
-      z-index: 5;
-      font: inherit;
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 0.35rem 0.6rem;
+      z-index: 6;
+      width: 1.7rem;
+      height: 1.7rem;
+      display: grid;
+      place-items: center;
+      padding: 0;
       border: 1px solid var(--line);
       border-radius: 3px;
-      background: rgba(255, 254, 251, 0.94);
+      background: rgba(255, 254, 251, 0.96);
       color: var(--muted);
       cursor: pointer;
       box-shadow: 0 1px 0 rgba(26, 22, 18, 0.04);
@@ -177,6 +158,21 @@
     #rail-toggle:hover {
       color: var(--ink);
       border-color: var(--ink);
+    }
+    #rail-toggle svg {
+      width: 0.95rem;
+      height: 0.95rem;
+      display: block;
+    }
+    #app:not(.rail-collapsed) #rail-toggle {
+      top: 0.65rem;
+      right: 0.55rem;
+      left: auto;
+    }
+    #app.rail-collapsed #rail-toggle {
+      top: 0.75rem;
+      left: 0.55rem;
+      right: auto;
     }
 
     @media (max-width: 820px) {
@@ -201,14 +197,16 @@
 <body>
   <div id="app">
     <aside id="rail" aria-label="Diagram chapters">
-      <div class="rail-actions">
-        <button type="button" id="collapse-rail" title="Hide chapter list">Hide</button>
-        <button type="button" id="open-tab">Open full page</button>
+      <div class="rail-meta">
         <a href="./viz_index.html">Legacy index</a>
       </div>
     </aside>
     <div id="stage">
-      <button type="button" id="rail-toggle" aria-controls="rail" aria-expanded="true" title="Show or hide chapter list">Hide list</button>
+      <button type="button" id="rail-toggle" aria-controls="rail" aria-expanded="true" aria-label="Collapse chapter list" title="Collapse chapter list">
+        <svg viewBox="0 0 16 16" aria-hidden="true" focusable="false">
+          <path id="rail-toggle-icon" fill="currentColor" d="M10.2 3.2 5.4 8l4.8 4.8.9-.9L7.2 8l3.9-3.9-.9-.9z"/>
+        </svg>
+      </button>
       <div id="empty">Select a diagram</div>
       <iframe id="frame" title="Diagram viewer"></iframe>
     </div>
@@ -226,30 +224,43 @@
       "ssv_bubble_viz_omp.html": "Finale: which features fire as the sparse code grows with K.",
     };
 
+    const ICONS = {
+      collapse: "M10.2 3.2 5.4 8l4.8 4.8.9-.9L7.2 8l3.9-3.9-.9-.9z",
+      expand: "M5.8 3.2 4.9 4.1 8.8 8l-3.9 3.9.9.9L10.6 8 5.8 3.2z",
+    };
+
     const STORAGE_KEY = "viz-series-rail-collapsed";
     const chapters = (window.VIZ_SERIES && window.VIZ_SERIES.chapters) || [];
     const app = document.getElementById("app");
     const rail = document.getElementById("rail");
+    const stage = document.getElementById("stage");
     const frame = document.getElementById("frame");
     const empty = document.getElementById("empty");
-    const openTab = document.getElementById("open-tab");
     const railToggle = document.getElementById("rail-toggle");
-    const collapseRail = document.getElementById("collapse-rail");
+    const railToggleIcon = document.getElementById("rail-toggle-icon");
     let active = null;
+
+    function placeToggle(collapsed) {
+      if (collapsed) stage.appendChild(railToggle);
+      else rail.appendChild(railToggle);
+    }
 
     function setRailCollapsed(collapsed) {
       app.classList.toggle("rail-collapsed", collapsed);
       rail.setAttribute("aria-hidden", collapsed ? "true" : "false");
       railToggle.setAttribute("aria-expanded", collapsed ? "false" : "true");
-      railToggle.textContent = collapsed ? "Show list" : "Hide list";
-      railToggle.title = collapsed ? "Show chapter list" : "Hide chapter list";
+      const label = collapsed ? "Expand chapter list" : "Collapse chapter list";
+      railToggle.setAttribute("aria-label", label);
+      railToggle.title = label;
+      railToggleIcon.setAttribute("d", collapsed ? ICONS.expand : ICONS.collapse);
+      placeToggle(collapsed);
       try { localStorage.setItem(STORAGE_KEY, collapsed ? "1" : "0"); } catch (_) {}
     }
-    function toggleRail() {
+
+    railToggle.addEventListener("click", () => {
       setRailCollapsed(!app.classList.contains("rail-collapsed"));
-    }
-    railToggle.addEventListener("click", toggleRail);
-    collapseRail.addEventListener("click", () => setRailCollapsed(true));
+    });
+
     try {
       setRailCollapsed(localStorage.getItem(STORAGE_KEY) === "1");
     } catch (_) {
@@ -261,9 +272,10 @@
     }
 
     function renderRail() {
-      const actions = rail.querySelector(".rail-actions");
+      const keep = rail.querySelectorAll(".rail-meta, #rail-toggle");
+      const preserved = [...keep];
       rail.innerHTML = "";
-      if (actions) rail.appendChild(actions);
+      preserved.forEach((el) => rail.appendChild(el));
       let lastGroup = null;
       for (const ch of chapters) {
         if (ch.group !== lastGroup) {
@@ -286,13 +298,13 @@
         btn.addEventListener("click", () => select(ch.file));
         rail.appendChild(btn);
       }
+      placeToggle(app.classList.contains("rail-collapsed"));
     }
 
     function select(file) {
       active = file;
       frame.src = "./" + file + "?v=" + Date.now();
       empty.classList.add("hide");
-      openTab.onclick = () => window.open("./" + file, "_blank");
       history.replaceState(null, "", "#/" + file);
       renderRail();
     }
