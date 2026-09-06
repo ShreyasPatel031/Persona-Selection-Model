@@ -117,13 +117,15 @@ Cell labels: full names (“Lawful Good”), not LG/NG. Phrases secondary in `--
 
 | File | Role |
 |------|------|
-| `app/static/inferno_cone.html` | Canonical interactive reference |
-| `app/static/layer3d.html` | Same tokens + lawful/chaotic extensions |
-| `app/static/dnd_composition_board.html` | Composition 9-grid (must match this system) |
-| `app/static/big_five_persona.html` | Series finale — OCEAN inventory silhouette |
-| `app/static/big_five_sem.html` | MPI-120 CFA path diagram (latent factors + loadings) |
-| `app/static/viz_series.html` | Ordered chapter index for the Inferno set |
-| `app/static/viz_series.js` | Prev/next chapter footer injected by series pages |
+| `app/static/big_five_tsne.html` | **01** — embedding t-SNE + MPI-120 SEM (persona-in-activation) |
+| `app/static/big_five_persona.html` | **02** — OCEAN inventory silhouette / monotonic steer |
+| `app/static/layer3d.html` | **03** — Same tokens + lawful/chaotic extensions |
+| `app/static/inferno_cone.html` | **04** — Canonical interactive reference (α ladder) |
+| `app/static/dnd_composition_board.html` | **05** — Composition 9-grid (must match this system) |
+| `app/static/omp_reconstruction_3d.html` | **06** — Sparse SAE reconstruction |
+| `app/static/ssv_bubble_viz_omp.html` | **07** — Feature bubbles / code levels |
+| `app/static/viz_series.html` | Gallery hub — all diagrams in one sidebar + viewer |
+| `app/static/viz_series.js` | Chapter list + prev/next footer injected by series pages |
 | `viz/DESIGN_SYSTEM.md` | This document |
 
 When adding a new viz under `app/static/`, copy the `:root` block and fonts from Inferno first, then build.

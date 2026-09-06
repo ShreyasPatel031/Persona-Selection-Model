@@ -1,0 +1,26 @@
+---
+description: NEVER invert Big Five dose slider — low trait at bottom, high at top; chart is signed α L→R
+globs: app/static/big_five_persona.html, app/static/big_five_persona_data.json, **/big_five_persona*
+alwaysApply: true
+---
+
+# Dose slider polarity (NAIL THIS ON THE WALL)
+
+## Invariant — do not break, do not "fix," do not re-derive
+
+1. **Slider bottom (value 0) = low trait / −α** (low pole voice: concrete, reserved, …).
+2. **Slider top (value 100) = high trait / +α** (high pole voice: curious, outgoing, …).
+3. **Slider mid (50) = α = 0** (free baseline).
+4. **ΔEV chart X-axis = signed α**, continuous **left → right** (−α … 0 … +α). Same axis as the slider. One smooth motion. Never split into separate up/down charts that flip when the slider crosses mid.
+5. **Green = rising toward peak; red = post-peak degradation** on the +α side after the ★.
+
+## Forbidden
+
+- Mapping slider 0 → high EV or +α.
+- Putting α=0 at both slider ends (EV-sorted opposite-prior Frankenstein).
+- Switching the chart between "plus-only" and "minus-only" halves so left/right meaning changes with slider position.
+- `rotate(-90deg)` on the range input (that inverts low/high). Use `rotate(90deg)` so min is at the bottom.
+
+## Data
+
+Prefer `DATA.continuum[trait].points` (phase4b free-baseline signed continuum) for both the pentagon path and the ΔEV chart. Control = matched-norm random at the same `|α|`.

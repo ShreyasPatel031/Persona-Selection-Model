@@ -1,0 +1,396 @@
+{
+  "version": 1,
+  "source": "Obsidian Notes/01-Learn/Concepts (curated for viz sidebar)",
+  "chapters": {
+    "big_five_tsne.html": {
+      "n": "01",
+      "title": "Embedding + MPI-120",
+      "blurb": "A persona rung is a point in L15 activation space, scored by the same MPI-120 EV readout that builds the measurement graph.",
+      "implemented": [
+        {
+          "title": "Nine-level prompt ladder → answer-slot centroids",
+          "body": "Each point on the left is the mean of 120 answer-slot residuals at layer 15 under one system prompt (trait × intensity × variant). That is the operational “persona coordinate” next to the inventory."
+        },
+        {
+          "title": "EV Likert readout (not hard argmax)",
+          "body": "Item score is the expected value of options {1…5} under the constrained answer distribution, then keyed and averaged into domain scores. Locked admins are screened so fake midpoints do not invent structure."
+        },
+        {
+          "title": "PC1 of the ladder as the steer axis; Digman α/β on the right",
+          "body": "PC1 of the nine centroids (sign toward high pole, then unit-normalized) is the direction used later for steering. The right panel is the FA-style measurement story: items ↔ Big Five ↔ Digman Stability / Plasticity."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Centroid (one left-panel point)",
+          "tex": "c = \\frac{1}{120}\\sum_{i=1}^{120} h^{(i)}_{15}\\in\\mathbb{R}^{2560}",
+          "explain": "For one rung, take the residual at the answer slot of each of the 120 MPI items at layer 15, then average those vectors. That single mean is “where the model is” when it is about to answer the whole inventory under that persona prompt."
+        },
+        {
+          "name": "Expected-value item score",
+          "tex": "\\mathrm{EV}=\\sum_{k=1}^{5} k\\,p(k)",
+          "explain": "Softmax only over the five Likert option tokens, then take the expected rating. Soft mass moves before the mode flips, so EV tracks graded persona shifts that hard argmax would miss—especially under option lock."
+        },
+        {
+          "name": "PC1 direction (unit)",
+          "tex": "\\hat{v}=\\frac{\\pm V_{:1}}{\\|\\pm V_{:1}\\|}\\quad\\text{with}\\quad \\hat{v}^\\top(c_9-c_1)>0",
+          "explain": "Stack and center the nine ladder centroids, take SVD, keep PC1, flip so it points toward the high pole, then normalize. α later is only a step length along this pure direction."
+        },
+        {
+          "name": "t-SNE objective (layout)",
+          "tex": "\\min \\mathrm{KL}(P\\|Q)",
+          "explain": "P is fixed high-D “friendship” among centroids; Q is friendship on the 3D map. Moving points until Q matches P is why neighbors on the ladder stay neighbors in the viz—not a random scatterplot."
+        }
+      ],
+      "failed": [
+        {
+          "title": "Two-arm statement mean-diff as the persona point",
+          "body": "Classic CAA-style construct−antithesis mean-diff broke on Gemma+MPI (wrong-way O/C/A, heavy leakage) and only gave two piles—no graded 1→9 cloud to t-SNE. Replaced by the intensity ladder."
+        },
+        {
+          "title": "Free-text mean over assistant tokens",
+          "body": "Averaging a free reply mixes fluency/style with the Likert decision. Inventory points must be answer-slot states, the same surface as the score."
+        },
+        {
+          "title": "Argmax Likert without lock screening",
+          "body": "Under option lock, reverse-keying invents midpoints while every item looks answered. Those fake scores corrupted both t-SNE labels and the measurement graph. EV + lock drop replaced it."
+        }
+      ]
+    },
+    "big_five_persona.html": {
+      "n": "02",
+      "title": "Five personas",
+      "blurb": "Dial one Big Five trait by adding α·v̂ at L15; dose is a fraction of that trait’s PC1 span, checked against drift and matched-norm random.",
+      "implemented": [
+        {
+          "title": "Steer h₁₅ ← h₁₅ + α v̂ (PC1 only @ L15)",
+          "body": "Unit PC1 from the ladder is the only injected direction in final sweeps. Layer 15 was frozen by ladder order (ρ·monotone) before filling the dose table."
+        },
+        {
+          "title": "Dose = fraction of latent span",
+          "body": "|α| = f · |(c₉−c₁)ᵀv̂| with f ∈ {0.15…1.30}. One span ≈ one full prompted low→high trip along the same arrow you inject."
+        },
+        {
+          "title": "Opposite priors, EV pentagon, random + Digman checks",
+          "body": "Up starts from a low prior; down from a high prior. Off-target and signed drift are reported per rung; one matched-norm random control at the same |α|; Digman drift-discordant pairs (N vs C/A) separate metatrait from global slide."
+        },
+        {
+          "title": "Viz: signed-α slider + continuous ΔEV chart",
+          "body": "Bottom = low/−α, top = high/+α, mid = 0. Solid pentagon = trait PC1; dashed = random at same |α|. Chart X is signed α left→right; red = post-peak degradation."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Steering intervention",
+          "tex": "h_{15}\\leftarrow h_{15}+\\alpha\\,\\hat{v}",
+          "explain": "At layer 15 the residual is a 2560-vector. v̂ is the unit trait direction; α is how far you step along it during the inventory forward. Too small does nothing; too large collapses the respondent."
+        },
+        {
+          "name": "Latent span (dose unit)",
+          "tex": "\\mathrm{span}=\\big|(c_9-c_1)^\\top\\hat{v}\\big|",
+          "explain": "How far prompting already moved along the inject direction from level 1 to 9. Every grid dose is a known multiple of that psychologically meaningful displacement—not a copied paper scalar and not a multiple of ‖h‖."
+        },
+        {
+          "name": "Dose grid",
+          "tex": "|\\alpha_r|=f_r\\cdot\\mathrm{span},\\quad f_r\\in\\{0.15,\\ldots,1.30\\}",
+          "explain": "Sign chooses the pole (+ raises, − lowers). Size is always a fraction of one prompted trip, so the dial stays comparable across traits even when residual norms are huge (~27k)."
+        },
+        {
+          "name": "Dose–response ρ",
+          "tex": "\\rho=\\mathrm{Pearson}\\big(\\mathrm{rank}|\\alpha|,\\;\\mathrm{rank}\\,y\\big)",
+          "explain": "Spearman between dose size and intended EV across usable rungs. Final-cycle median ~0.97 says the dial is ordered; specificity still needs drift and random controls."
+        },
+        {
+          "name": "Drift vs off-target",
+          "tex": "\\mathrm{drift}=\\tfrac15\\sum_t\\Delta_t,\\quad \\mathrm{off}=\\tfrac14\\sum_{t\\ne t^*}|\\Delta_t|",
+          "explain": "Drift is the average signed slide of the whole pentagon (degradation signature). Off-target is absolute spillover onto the other four traits. Trust “beat random” only while random drift stays small."
+        }
+      ],
+      "failed": [
+        {
+          "title": "Paper / raw α ≈ 2 on a unit vector",
+          "body": "Length-2 add into a ~27k residual is a no-op. Dose must live in this model’s activation units."
+        },
+        {
+          "title": "Relative α × ‖h‖ as the personality dial",
+          "body": "Explains why paper α dies, but the same ruler for every trait undershoots the trait trip or overshoots into lock/corruption. Wrong unit for Big Five."
+        },
+        {
+          "title": "Calibrate off chat coherence / expect a clean parabola",
+          "body": "Inventory option-lock often binds first. Late drops are usually corruption, not a soft optimum (Openness free-baseline is the clearest inverted-U). Design for usable monotone rungs + controls."
+        }
+      ]
+    },
+    "layer3d.html": {
+      "n": "03",
+      "title": "Layer geometry",
+      "blurb": "Persona vectors (Good/Evil/Lawful/Chaotic) from contrastive rollouts + judge filter + mean-diff per layer; write layer chosen by elicited trait, not ‖v‖.",
+      "implemented": [
+        {
+          "title": "Contrastive rollouts → judge keep set",
+          "body": "Pos/neg system prompts, many generated replies, keep only on-persona transcripts (pos s>50, neg s<50). Direction is built from generated behavior, not inventory ladders."
+        },
+        {
+          "title": "Mean-diff residual over assistant tokens",
+          "body": "Teacher-forward, mean-pool assistant span per kept reply, average pos minus average neg at each layer → v_ℓ."
+        },
+        {
+          "title": "Split-half reliability + elicit-max layer",
+          "body": "Cosine of split-half vectors checks stability. Write layer ℓ★ = argmax trait score under steering—not largest ‖v_ℓ‖. D&D runs froze L15."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Mean residual over the reply",
+          "tex": "h^{(\\ell)}(y)=\\frac{1}{|T_{\\mathrm{resp}}|}\\sum_{t\\in T_{\\mathrm{resp}}} h_{\\ell,t}(y)",
+          "explain": "One kept reply becomes one vector per layer by averaging residuals over assistant tokens. That matches the Chen et al. persona-vector extraction surface."
+        },
+        {
+          "name": "Persona vector",
+          "tex": "v_\\ell=\\bar{h}^{+}_\\ell-\\bar{h}^{-}_\\ell",
+          "explain": "Mean of kept trait-on activations minus mean of kept trait-off activations. One difference vector per layer."
+        },
+        {
+          "name": "Split-half cosine",
+          "tex": "\\cos_\\ell=\\frac{(v^{(1)}_\\ell)^\\top v^{(2)}_\\ell}{\\|v^{(1)}_\\ell\\|\\|v^{(2)}_\\ell\\|}",
+          "explain": "Rebuild the vector on two random halves of kept rollouts. High cosine means the direction is stable; low means you still have noise."
+        },
+        {
+          "name": "Write + layer pick",
+          "tex": "h_\\ell\\leftarrow h_\\ell+\\alpha\\hat{v}_\\ell,\\quad \\ell^{\\star}=\\arg\\max_\\ell S_\\ell",
+          "explain": "Normalize and add at one layer. Choose the layer by how strongly steering actually elicits the trait score S_ℓ, not by how energetic the vector looks."
+        }
+      ],
+      "failed": [
+        {
+          "title": "Pick write layer by ‖v_ℓ‖ or residual geometry alone",
+          "body": "Largest activation size often picks global residual gain, not the persona. Layers that looked energetic did not move the trait. Rule that worked: elicit-max under steering."
+        }
+      ]
+    },
+    "inferno_cone.html": {
+      "n": "04",
+      "title": "Nine alphas",
+      "blurb": "With ℓ★ and v̂ frozen, climb α from a hard selfish baseline until asks flip refuse→accept—under a coherence floor.",
+      "implemented": [
+        {
+          "title": "Hard baseline at α=0, then climb",
+          "body": "Trait-off / selfish system with no add is the refuse end. Same questions at higher α are “more Good injected.”"
+        },
+        {
+          "title": "Trait score T(α) and coherence C(α) together",
+          "body": "Every rung records both. High T with dead C is not a working dose."
+        },
+        {
+          "title": "Flip doses per ask → nine-alpha ladder",
+          "body": "α_flip(q) = smallest α where reply turns YES. Costlier asks need larger push; the ordered flips are the cone."
+        },
+        {
+          "title": "Operating α★ under coherence floor",
+          "body": "Largest α with C≥C_min and trait on. Past that cliff, judges may still score the trait while text dies."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Steer at frozen layer",
+          "tex": "h_{\\ell^{\\star}}\\leftarrow h_{\\ell^{\\star}}+\\alpha\\hat{v}",
+          "explain": "Chapter four only varies α. Layer and unit direction are already fixed from chapter three."
+        },
+        {
+          "name": "Two scores per dose",
+          "tex": "T(\\alpha)=\\text{mean trait},\\quad C(\\alpha)=\\text{mean coherence}",
+          "explain": "T asks whether the persona showed up; C asks whether the text is still usable English. You need both."
+        },
+        {
+          "name": "Flip dose",
+          "tex": "\\alpha_{\\mathrm{flip}}(q)=\\min\\{\\alpha:\\mathrm{reply}(q,\\alpha)=\\mathrm{YES}\\}",
+          "explain": "For one fixed ask, the smallest push that crosses refuse→accept. Easier asks flip earlier; that graded list is the nine-alpha story."
+        },
+        {
+          "name": "Operating dose",
+          "tex": "\\alpha^{\\star}=\\max\\{\\alpha: C(\\alpha)\\ge C_{\\min}\\ \\&\\ T\\ \\mathrm{on}\\}",
+          "explain": "Strong enough to elicit the trait, not so strong coherence collapses. Recommended working dose for demos and composition."
+        }
+      ],
+      "failed": [
+        {
+          "title": "Copy raw α≈2 from a paper",
+          "body": "Portable naked constants are often no-ops on Gemma’s residual scale. Dose is not a universal integer."
+        },
+        {
+          "title": "Scale only by mean ‖h_ℓ‖",
+          "body": "Better than raw copy, but keys off activation size, not whether the ask flipped."
+        },
+        {
+          "title": "Maximize T with no C constraint / one α for every ask",
+          "body": "Trait-only max walks off the cliff. A dose that flips “tell the time” need not flip “risk injury”—that is why there are nine alphas."
+        }
+      ]
+    },
+    "dnd_composition_board.html": {
+      "n": "05",
+      "title": "Composition board",
+      "blurb": "Personas compose: Lawful Good is α_L v̂_L + α_G v̂_G at one layer—after orthogonalizing overlapping axes—and both judges must rise.",
+      "implemented": [
+        {
+          "title": "Linear superposition at one layer",
+          "body": "Sum scaled unit axes into one residual write. Corners are compositions, not newly extracted “LG” vectors."
+        },
+        {
+          "title": "Orthogonalize before composing",
+          "body": "Strip shared projection when cosines are high (use_ortho: true) so turning up B does not secretly turn up A."
+        },
+        {
+          "title": "Dual-judge cells",
+          "body": "Same reply scored on both axes; keep cells where both traits show up (Pareto floor), not single-score max."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Superposition",
+          "tex": "h_\\ell\\leftarrow h_\\ell+\\sum_i \\alpha_i\\hat{v}^{(i)}_\\ell",
+          "explain": "Each axis is a chapter-three persona vector; each α_i is how hard that axis is pushed. Same-layer terms sum into one hook—that is the composition claim."
+        },
+        {
+          "name": "Dual-axis cell",
+          "tex": "h\\leftarrow h+\\alpha_L\\hat{v}^{(L)}+\\alpha_G\\hat{v}^{(G)}",
+          "explain": "Lawful Good is the sum of lawful and good at chosen doses. Unused axes set α=0; True Neutral is all zeros."
+        },
+        {
+          "name": "Orthogonalize B against A",
+          "tex": "v_B^{\\perp}=v_B-(\\|v_B\\|\\cos\\theta)\\hat{v}_A",
+          "explain": "Remove the component of B along A before steering. After this, v_B^⊥ has no A component, so axis bleed drops."
+        },
+        {
+          "name": "Dual score",
+          "tex": "S_A=\\mathrm{Judge}_A(y),\\quad S_B=\\mathrm{Judge}_B(y)",
+          "explain": "One reply, two scores. Composition worked when both rose together for a corner—not when only one axis moved."
+        }
+      ],
+      "failed": [
+        {
+          "title": "Naive sum of correlated vectors",
+          "body": "High cosine means the second α mostly reinforces the first; the board collapses to one persona."
+        },
+        {
+          "title": "Max one score / norm budget without ortho",
+          "body": "Single-score max makes loud/dead cells. Shrinking the combined write does not fix bleed—orthogonalize first."
+        },
+        {
+          "title": "Re-extract “Lawful Good” as a new trait",
+          "body": "Unnecessary for the board story. Extract axes once, then compose."
+        }
+      ]
+    },
+    "omp_reconstruction_3d.html": {
+      "n": "06",
+      "title": "OMP reconstruction",
+      "blurb": "Rebuild a dense persona vector as a short weighted sum of SAE decoder columns via OMP; inventory claims still use dense residual PC1.",
+      "implemented": [
+        {
+          "title": "Sparse rebuild goal + joint least squares",
+          "body": "v ≈ Σ c_i W_i. Coefficients are fit jointly on all dimensions (overdetermined LS), including cross terms when features overlap."
+        },
+        {
+          "title": "OMP: pick by leftover alignment, refit all",
+          "body": "Greedy add the unused decoder column most aligned with residual r, then refit every active c_i and update r ← v−v̂ until budget K."
+        },
+        {
+          "title": "Score with cosine and leftover fraction",
+          "body": "Good runs reach mid/high 0.9s cosine by ~100 features. Main Big Five steering stays on dense v."
+        }
+      ],
+      "formulas": [
+        {
+          "name": "Sparse rebuild",
+          "tex": "\\hat{v}=c_1 W_1+\\cdots+c_n W_n",
+          "explain": "One dense persona vector as a weighted sum of a few SAE decoder directions. n unknowns, d equations—minimize squared error, do not solve one coordinate alone."
+        },
+        {
+          "name": "Least-squares objective",
+          "tex": "L(c)=\\|v-\\sum_i c_i W_i\\|^2",
+          "explain": "Each c_i scales a whole vector W_i; all coefficients are fit jointly. Cross terms W_i·W_j appear when features overlap—we do not assume orthogonality."
+        },
+        {
+          "name": "OMP pick step",
+          "tex": "j^{\\star}=\\arg\\max_{j\\notin\\mathcal{S}} |r\\cdot W_j|/\\|W_j\\|",
+          "explain": "Next feature is the unused column most aligned with the current leftover of v. Then refit the whole active set and update r."
+        },
+        {
+          "name": "Fit quality",
+          "tex": "\\cos(v,\\hat{v})=\\frac{v\\cdot\\hat{v}}{\\|v\\|\\|\\hat{v}\\|},\\quad r_K=\\|v-\\hat{v}\\|/\\|v\\|",
+          "explain": "Cosine near 1 means same direction; r_K is leftover length fraction. That is how the 3D viz knows the rebuild is working."
+        }
+      ],
+      "failed": [
+        {
+          "title": "Full encode→decode",
+          "body": "Gives many features, often polysemantic—a representation, not a short readable recipe."
+        },
+        {
+          "title": "Top-k by activation",
+          "body": "Loudest features win; not optimal for spanning the core of v."
+        },
+        {
+          "title": "SAE-SSV as the best sparse recipe",
+          "body": "Worked somewhat on judge demos; OMP gave the shortest useful feature list for explaining the dense vector."
+        }
+      ]
+    },
+    "ssv_bubble_viz_omp.html": {
+      "n": "07",
+      "title": "Feature bubbles",
+      "blurb": "K-sweep of OMP features as bubbles: as the sparse budget grows, which codes light up and does steered trait score rise? Explanation track—not the MPI proof.",
+      "implemented": [
+        {
+          "title": "OMP-ordered bubbles sized by |c_f|",
+          "body": "Feature 1 is the first grab at v; sliding K adds the next picks. Positive/negative coefficients are with/against the persona."
+        },
+        {
+          "title": "Steer with sparse reconstruction α v̂_K",
+          "body": "Same residual write hook, but the direction is the K-feature rebuild—inspectable “code levels.”"
+        },
+        {
+          "title": "Labels from lens/corpus, not Neuronpedia-only",
+          "body": "Custom logit-lens + corpus interp; drop titles that are just “polysemantic.”"
+        }
+      ],
+      "formulas": [
+        {
+          "name": "SAE encode / decode",
+          "tex": "z=\\mathrm{Encode}(h),\\quad \\tilde{h}\\approx W_{\\mathrm{dec}}^\\top z",
+          "explain": "Encoder maps residual to a wide sparse code; decode sends it back as a combination of decoder columns—the bridge from features to something you can add like a steering vector."
+        },
+        {
+          "name": "Sparse reconstruction of v",
+          "tex": "v\\approx\\sum_{f\\in\\mathcal{S}} c_f W_{\\mathrm{dec}}[f]",
+          "explain": "The dense Good/Evil vector is not an indivisible blob: a modest feature set reconstructs most of its direction (cosine into mid–high 0.9s by K~100 on Good OMP)."
+        },
+        {
+          "name": "OMP step (bubble order)",
+          "tex": "f_k=\\arg\\max_{f\\notin\\mathcal{S}}|W[f]^\\top r_{k-1}|",
+          "explain": "Pick the unused column that best explains leftover r, refit all coefficients, update residual. That ordered list is what the bubble chart reads."
+        },
+        {
+          "name": "Steer sparse rebuild",
+          "tex": "h\\leftarrow h+\\alpha\\,\\hat{v}_K,\\quad \\hat{v}_K=\\tilde{v}_K/\\|\\tilde{v}_K\\|",
+          "explain": "Add the unit OMP reconstruction built from only K features. Trait score vs K is the bubble sweep’s behavioral check."
+        }
+      ],
+      "failed": [
+        {
+          "title": "SAE-SSV as replacement for residual PC1 on MPI-120",
+          "body": "Real method on judge/D&D evals—not what produced inventory ρ≈0.97. Measurement claims stay dense PC1 @ L15."
+        },
+        {
+          "title": "Every bubble is monosemantic / activation-only ranking",
+          "body": "Many top features are polysemantic or format junk. Loud-on-Good ≠ load-bearing for rebuilding v; OMP order is the working story."
+        },
+        {
+          "title": "SAE as inventory write path / Neuronpedia-only labels",
+          "body": "Encoding inventory into SAE space did not beat residual adds. This SAE often had no useful Neuronpedia coverage—custom interp required."
+        }
+      ]
+    }
+  }
+}
