@@ -1,0 +1,10 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "outputDirectory": "viz-deploy",
+  "rewrites": [
+    { "source": "/", "destination": "/viz_series.html" }
+  ]
+}

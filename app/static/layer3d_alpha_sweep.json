@@ -1,0 +1,188 @@
+{
+  "source": "validate steering_effectiveness (Gate 3), Jun 2026 consolidation",
+  "coherence_floor": 80,
+  "traits": {
+    "good": {
+      "run_id": "dnd_good_scale",
+      "layer": 15,
+      "recommended_alpha": 2.0,
+      "max_alpha_coherence_ge_80": 2.5,
+      "rows": [
+        {
+          "alpha": 0.5,
+          "mean_trait": 0.5,
+          "mean_coherence": 95.3
+        },
+        {
+          "alpha": 1.0,
+          "mean_trait": 14.5,
+          "mean_coherence": 96.4
+        },
+        {
+          "alpha": 1.5,
+          "mean_trait": 47.0,
+          "mean_coherence": 96.1
+        },
+        {
+          "alpha": 2.0,
+          "mean_trait": 95.4,
+          "mean_coherence": 91.0
+        },
+        {
+          "alpha": 2.5,
+          "mean_trait": 90.4,
+          "mean_coherence": 85.5
+        },
+        {
+          "alpha": 3.0,
+          "mean_trait": 87.3,
+          "mean_coherence": 77.0
+        },
+        {
+          "alpha": 4.0,
+          "mean_trait": 73.8,
+          "mean_coherence": 39.0
+        },
+        {
+          "alpha": 5.0,
+          "mean_trait": 54.5,
+          "mean_coherence": 31.0
+        }
+      ]
+    },
+    "evil": {
+      "run_id": "dnd_evil",
+      "layer": 15,
+      "recommended_alpha": 4.0,
+      "max_alpha_coherence_ge_80": 4.0,
+      "rows": [
+        {
+          "alpha": 0.5,
+          "mean_trait": 9.5,
+          "mean_coherence": 98.6
+        },
+        {
+          "alpha": 1.0,
+          "mean_trait": 15.0,
+          "mean_coherence": 98.2
+        },
+        {
+          "alpha": 1.5,
+          "mean_trait": 67.5,
+          "mean_coherence": 97.9
+        },
+        {
+          "alpha": 2.0,
+          "mean_trait": 87.5,
+          "mean_coherence": 95.6
+        },
+        {
+          "alpha": 2.5,
+          "mean_trait": 97.0,
+          "mean_coherence": 89.0
+        },
+        {
+          "alpha": 3.0,
+          "mean_trait": 97.0,
+          "mean_coherence": 94.3
+        },
+        {
+          "alpha": 4.0,
+          "mean_trait": 98.3,
+          "mean_coherence": 80.0
+        },
+        {
+          "alpha": 5.0,
+          "mean_trait": 97.5,
+          "mean_coherence": 52.8
+        }
+      ]
+    },
+    "lawful": {
+      "run_id": "dnd_lawful",
+      "layer": 15,
+      "recommended_alpha": 3.0,
+      "max_alpha_coherence_ge_80": 2.5,
+      "rows": [
+        {
+          "alpha": 0.5,
+          "mean_trait": 28.5,
+          "mean_coherence": 95.6
+        },
+        {
+          "alpha": 1.0,
+          "mean_trait": 64.1,
+          "mean_coherence": 97.1
+        },
+        {
+          "alpha": 1.5,
+          "mean_trait": 59.8,
+          "mean_coherence": 97.6
+        },
+        {
+          "alpha": 2.0,
+          "mean_trait": 94.8,
+          "mean_coherence": 93.4
+        },
+        {
+          "alpha": 2.5,
+          "mean_trait": 91.0,
+          "mean_coherence": 97.2
+        },
+        {
+          "alpha": 3.0,
+          "mean_trait": 95.5,
+          "mean_coherence": 78.3
+        },
+        {
+          "alpha": 4.0,
+          "mean_trait": 95.6,
+          "mean_coherence": 64.0
+        },
+        {
+          "alpha": 5.0,
+          "mean_trait": 95.3,
+          "mean_coherence": 59.0
+        }
+      ]
+    },
+    "chaotic": {
+      "run_id": "dnd_chaotic",
+      "layer": 15,
+      "recommended_alpha": 2.0,
+      "max_alpha_coherence_ge_80": 2.0,
+      "rows": [
+        {
+          "alpha": 0.5,
+          "mean_trait": 5.5,
+          "mean_coherence": 97.5
+        },
+        {
+          "alpha": 1.0,
+          "mean_trait": 25.5,
+          "mean_coherence": 96.1
+        },
+        {
+          "alpha": 1.5,
+          "mean_trait": 52.2,
+          "mean_coherence": 85.5
+        },
+        {
+          "alpha": 2.0,
+          "mean_trait": 86.2,
+          "mean_coherence": 84.7
+        },
+        {
+          "alpha": 2.5,
+          "mean_trait": 97.4,
+          "mean_coherence": 59.3
+        },
+        {
+          "alpha": 3.0,
+          "mean_trait": 97.1,
+          "mean_coherence": 46.0
+        }
+      ]
+    }
+  }
+}

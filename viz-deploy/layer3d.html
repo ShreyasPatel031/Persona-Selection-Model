@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>D&D alignment traits — Layer Viz</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f6f3ee;
+      --ink: #1a1612;
+      --muted: #7a7268;
+      --line: #e4ddd3;
+      --yes: #3d8b6e;
+      --yes-dim: #a8d4c2;
+      --no: #c45c4a;
+      --no-dim: #e8b4aa;
+      --lawful: #2b6cb0;
+      --chaotic: #b7791f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      height: 100%; overflow: hidden;
+      background: var(--bg); color: var(--ink);
+      font-family: "Instrument Sans", system-ui, sans-serif;
+      line-height: 1.45;
+    }
+    canvas { display: block; }
+
+    #header {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 10;
+      display: flex; flex-wrap: wrap; align-items: flex-end;
+      justify-content: space-between; gap: 0.75rem 1.5rem;
+      padding: 0.85rem 1.25rem 0.55rem;
+      border-bottom: 1px solid var(--line);
+      background: rgba(246, 243, 238, 0.96);
+      pointer-events: none;
+    }
+    #header > * { pointer-events: auto; }
+    #header .title-block { min-width: 0; flex: 1 1 16rem; }
+    #header h1 {
+      font-family: "Newsreader", Georgia, serif;
+      font-size: 1.45rem; font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+    #header .sub {
+      font-size: 0.78rem; color: var(--muted);
+      margin-top: 0.25rem; line-height: 1.45;
+      max-width: 36rem;
+    }
+    #header .header-right {
+      display: flex; flex-direction: column; align-items: flex-end; gap: 0.45rem;
+      flex: 0 0 auto;
+    }
+    #trait-picker { display: flex; gap: 0.35rem; flex-wrap: wrap; justify-content: flex-end; }
+    #trait-picker button {
+      font: inherit; font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      padding: 0.35rem 0.7rem; border: 1px solid var(--line);
+      border-radius: 3px; background: transparent; color: var(--muted); cursor: pointer;
+    }
+    #trait-picker button:hover { color: var(--ink); border-color: var(--ink); }
+    #trait-picker button.active {
+      color: var(--ink); border-color: var(--ink);
+      background: rgba(26, 22, 18, 0.06);
+    }
+    #trait-picker button[data-trait="good"].active { border-color: var(--yes); color: var(--yes); }
+    #trait-picker button[data-trait="evil"].active { border-color: var(--no); color: var(--no); }
+    #trait-picker button[data-trait="lawful"].active { border-color: var(--lawful); color: var(--lawful); }
+    #trait-picker button[data-trait="chaotic"].active { border-color: var(--chaotic); color: var(--chaotic); }
+
+    #legend {
+      position: fixed; right: 1.25rem;
+      top: calc(var(--header-h, 5.5rem) + 0.65rem);
+      background: rgba(246, 243, 238, 0.96);
+      border: 1px solid var(--line); border-radius: 3px;
+      padding: 0.55rem 0.7rem; font-size: 0.72rem;
+      z-index: 10; min-width: 14rem; line-height: 1.35;
+      pointer-events: none;
+    }
+    #legend .ltitle {
+      font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--muted); margin-bottom: 0.45rem;
+    }
+    .leg-row {
+      display: flex; align-items: center; gap: 0.4rem;
+      margin-bottom: 0.3rem; color: var(--ink);
+    }
+    .leg-row:last-of-type { margin-bottom: 0; }
+    .leg-dot  { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; border: 1px solid rgba(26,22,18,0.15); }
+    .leg-sub  {
+      font-size: 0.62rem; color: var(--muted);
+      margin-top: 0.45rem; border-top: 1px solid var(--line);
+      padding-top: 0.45rem; line-height: 1.55;
+    }
+    .leg-sub code { font-size: 0.6rem; color: var(--muted); }
+
+    #tooltip {
+      position: fixed; background: rgba(246, 243, 238, 0.96);
+      border: 1px solid var(--line); border-radius: 3px;
+      padding: 0.55rem 0.7rem; font-size: 0.75rem; line-height: 1.4;
+      pointer-events: none; opacity: 0; transition: opacity 0.15s;
+      z-index: 20; width: 18rem; color: var(--ink);
+    }
+    #tooltip.on { opacity: 1; }
+    #tooltip strong { color: var(--ink); display: block; margin-bottom: 0.1rem; }
+    .tooltip-chart-title {
+      font-size: 0.68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--muted); margin-bottom: 0.2rem;
+    }
+    #traitChart, #alphaChart {
+      display: block; width: 100%; height: auto;
+      border-radius: 3px; background: transparent;
+      border: 1px solid var(--line);
+    }
+
+    #hint {
+      position: fixed; bottom: 0.75rem; left: 50%; transform: translateX(-50%);
+      font-size: 0.6rem; color: var(--muted); pointer-events: none; z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <header id="header">
+    <div class="title-block">
+      <h1>D&D alignment — layer activation</h1>
+      <p class="sub">Gemma-3-4B-IT · color = trait (grey when trait weak) · dot size = |v<sub>ℓ,d</sub>| · All traits steer @ L15 · validate α (Good 2.0, Evil 4.0, Lawful 3.0, Chaotic 2.0)</p>
+    </div>
+    <div class="header-right">
+      <div id="trait-picker">
+        <button type="button" data-trait="good" class="active">Good</button>
+        <button type="button" data-trait="evil">Evil</button>
+        <button type="button" data-trait="lawful">Lawful</button>
+        <button type="button" data-trait="chaotic">Chaotic</button>
+      </div>
+    </div>
+  </header>
+
+  <div id="legend">
+    <div class="ltitle">Steer layers</div>
+    <div class="leg-row">
+      <div class="leg-dot" style="background:var(--yes)"></div>
+      Good — L15 · α=2.0
+    </div>
+    <div class="leg-row">
+      <div class="leg-dot" style="background:var(--no)"></div>
+      Evil — L15 · α=4.0
+    </div>
+    <div class="leg-row">
+      <div class="leg-dot" style="background:var(--lawful)"></div>
+      Lawful — L15 · α=3.0
+    </div>
+    <div class="leg-row">
+      <div class="leg-dot" style="background:var(--chaotic)"></div>
+      Chaotic — L15 · α=2.0
+    </div>
+    <div class="leg-sub">
+      Layer scores @ α=1.5 sweep · grey = default<br>
+      Hover: trait vs layer + α–coherence tradeoff<br>
+      model: <code>google/gemma-placeholder</code>
+    </div>
+  </div>
+
+  <div id="tooltip">
+    <div class="tooltip-chart-title">Trait vs layer (α=1.5)</div>
+    <canvas id="traitChart" width="260" height="88"></canvas>
+    <div class="tooltip-chart-title" style="margin-top:0.45rem">Trait &amp; coherence vs α @ steer layer</div>
+    <canvas id="alphaChart" width="260" height="88"></canvas>
+  </div>
+  <div id="hint">drag orbit · 1–2 finger pan · right/shift-drag pan · WASD · pinch zoom</div>
+
+  <script type="module">
+    import * as THREE from 'https://esm.sh/three@0.158.0';
+    import { OrbitControls } from 'https://esm.sh/three@0.158.0/examples/jsm/controls/OrbitControls';
+
+    function syncHeaderHeight() {
+      const h = document.getElementById('header');
+      if (h) document.documentElement.style.setProperty('--header-h', `${h.offsetHeight}px`);
+    }
+    syncHeaderHeight();
+    window.addEventListener('resize', syncHeaderHeight);
+    const TRAIT_KEYS = ['good', 'evil', 'lawful', 'chaotic'];
+    const TRAIT_META = {
+      good:    { label: 'Good',    steerLayer: 15, steerAlpha: 2.0, cold: '#cfc8bc', mid: '#a8d4c2', hot: '#3d8b6e', labelY: 6.2 },
+      evil:    { label: 'Evil',    steerLayer: 15, steerAlpha: 4.0, cold: '#cfc8bc', mid: '#e8b4aa', hot: '#c45c4a', labelY: 4.8 },
+      lawful:  { label: 'Lawful',  steerLayer: 15, steerAlpha: 3.0, cold: '#cfc8bc', mid: '#9ec5e8', hot: '#2b6cb0', labelY: 6.2 },
+      chaotic: { label: 'Chaotic', steerLayer: 15, steerAlpha: 2.0, cold: '#cfc8bc', mid: '#e0c080', hot: '#b7791f', labelY: 4.8 },
+    };
+    const DATA_VERSION = 59;
+
+    async function loadTraitDoc(trait) {
+      const url = `layer3d_${trait}_trait_activation.json?v=${DATA_VERSION}`;
+      const r = await fetch(url);
+      if (!r.ok) throw new Error(`${url} HTTP ${r.status}`);
+      return r.json();
+    }
+
+    let traitDocs;
+    try {
+      const loaded = await Promise.all(TRAIT_KEYS.map(loadTraitDoc));
+      traitDocs = Object.fromEntries(TRAIT_KEYS.map((k, i) => [k, loaded[i]]));
+    } catch (err) {
+      console.error(err);
+      document.getElementById('hint').textContent =
+        `Failed to load activation data — serve via http.server (not file://). ${err.message}`;
+      throw err;
+    }
+
+    const traitActsByLayer = Object.fromEntries(
+      TRAIT_KEYS.map((trait) => [
+        trait,
+        Object.fromEntries(traitDocs[trait].layers.map((row) => [row.layer, row.activation])),
+      ]),
+    );
+    const traitGlobalMax = Object.fromEntries(
+      TRAIT_KEYS.map((trait) => {
+        const mx = traitDocs[trait].layers.reduce((acc, row) => {
+          const local = Math.max(...(row.activation || [0]));
+          return Math.max(acc, local);
+        }, 0.001);
+        return [trait, mx];
+      }),
+    );
+    const MAX_TRAIT_SCORE = Math.max(
+      98,
+      ...TRAIT_KEYS.flatMap((trait) =>
+        Object.values(traitDocs[trait].layer_trait_scores || {}).map((v) => Number(v) || 0),
+      ),
+    );
+
+    let activeTraitMode = 'good';
+
+    const NUM_LAYERS    = 34;
+    const LAYER_GAP     = 1.75;
+    const LAYER_HALF    = 8.5;
+    let towerXOffset = 10;
+    const HIDDEN_DIM    = 2560;
+    const GRID_COLS     = 64;
+    const GRID_ROWS     = 40;
+    const TOWER_LEN     = (NUM_LAYERS - 1) * LAYER_GAP;
+    // Fixed orbit anchor — does not move when tower shifts along +X
+    const CAMERA_MID_X  = TOWER_LEN / 2;
+
+    function layerTraitScore(trait, l) {
+      const scores = traitDocs[trait].layer_trait_scores || {};
+      const v = scores[String(l)];
+      return v != null ? v : null;
+    }
+
+    function traitScoresArray(trait) {
+      const fallback = Number(traitDocs[trait].default_score) || 5;
+      return Array.from({ length: NUM_LAYERS }, (_, l) => {
+        const s = layerTraitScore(trait, l);
+        return s != null ? s : fallback;
+      });
+    }
+
+    const _cellSpan = (LAYER_HALF * 2 * 0.94) / (GRID_COLS - 1);
+
+    function hiddenDimPositions(half) {
+      const pad = 0.94;
+      const spanY = half * 2 * pad;
+      const spanZ = half * 2 * pad;
+      const stepY = GRID_COLS > 1 ? spanY / (GRID_COLS - 1) : 0;
+      const stepZ = GRID_ROWS > 1 ? spanZ / (GRID_ROWS - 1) : 0;
+      const startY = -spanY / 2;
+      const startZ = -spanZ / 2;
+      const out = [];
+      for (let r = 0; r < GRID_ROWS; r++) {
+        for (let c = 0; c < GRID_COLS; c++) {
+          out.push({
+            y: startY + c * stepY,
+            z: startZ + r * stepZ,
+            dimIdx: r * GRID_COLS + c,
+            col: c,
+            row: r,
+          });
+        }
+      }
+      return out;
+    }
+
+    const BASE_POINT = Math.min(0.14, _cellSpan * 0.55);
+    const POINT_SIZE_SCALE = 22;
+    const PIXEL_RATIO = Math.min(devicePixelRatio, 2);
+    const POINTS_VERTEX_SHADER = `
+      attribute float activation;
+      attribute vec3 color;
+      uniform float uBaseSize;
+      uniform float uPixelRatio;
+      uniform float uHoverBoost;
+      varying vec3 vColor;
+      varying float vAct;
+      void main() {
+        vColor = color;
+        vAct = clamp(activation, 0.0, 1.0);
+        vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+        float sizeMul = 0.15 + 0.85 * vAct;
+        gl_PointSize = uBaseSize * uPixelRatio * uHoverBoost * sizeMul * (220.0 / max(-mvPosition.z, 1.0));
+        gl_Position = projectionMatrix * mvPosition;
+      }
+    `;
+
+    const LAYER_GREY = new THREE.Color('#cfc8bc');
+    let traitColorIntensity = 2.0;
+
+    const POINTS_FRAGMENT_SHADER = `
+      varying vec3 vColor;
+      varying float vAct;
+      uniform float uLayerAlpha;
+      void main() {
+        vec2 uv = gl_PointCoord - vec2(0.5);
+        if (dot(uv, uv) > 0.25) discard;
+        gl_FragColor = vec4(vColor, uLayerAlpha);
+      }
+    `;
+
+    function traitScoreNorm(score) {
+      const s = Math.max(0, Math.min(100, score));
+      return Math.pow(s / 100, 1.15);
+    }
+
+    function traitTintColor(intensity, hotHex) {
+      const hot = new THREE.Color(hotHex);
+      const mix = Math.min(1, intensity);
+      const out = LAYER_GREY.clone().lerp(hot, mix);
+      if (intensity > 1) {
+        const boost = 1 + (intensity - 1) * 0.38;
+        out.r = Math.min(1, out.r * boost);
+        out.g = Math.min(1, out.g * boost);
+        out.b = Math.min(1, out.b * boost);
+      }
+      return out;
+    }
+
+    function applyTraitVisuals(pts, trait, layer, palette, revealedIdx = NUM_LAYERS - 1) {
+      const score = layerTraitScore(trait, layer) ?? 5;
+      const scoreNorm = traitScoreNorm(score);
+      const layerColor = traitTintColor(traitColorIntensity, palette.hot);
+      const fullAlpha = 0.08 + 0.92 * scoreNorm;
+      const unrevealedAlpha = 0.05;
+      const isRevealed = layer <= revealedIdx;
+
+      const colors = pts.geometry.attributes.color;
+      if (isRevealed) {
+        for (let i = 0; i < HIDDEN_DIM; i++) {
+          colors.setXYZ(i, layerColor.r, layerColor.g, layerColor.b);
+        }
+        pts.material.uniforms.uLayerAlpha.value = fullAlpha;
+      } else {
+        for (let i = 0; i < HIDDEN_DIM; i++) {
+          colors.setXYZ(i, LAYER_GREY.r, LAYER_GREY.g, LAYER_GREY.b);
+        }
+        pts.material.uniforms.uLayerAlpha.value = unrevealedAlpha;
+      }
+      colors.needsUpdate = true;
+    }
+
+    function refreshAllTraitVisuals(revealedIdx = NUM_LAYERS - 1) {
+      for (const trait of TRAIT_KEYS) {
+        const meta = TRAIT_META[trait];
+        const palette = { hot: meta.hot };
+        for (const pts of traitPointClouds[trait]) {
+          applyTraitVisuals(pts, trait, pts.userData.layer, palette, revealedIdx);
+        }
+      }
+    }
+
+    function buildLayerPoints(layer, layerActs, dimPositions, trait, palette) {
+      const positions = new Float32Array(HIDDEN_DIM * 3);
+      const colors = new Float32Array(HIDDEN_DIM * 3);
+      const activations = new Float32Array(HIDDEN_DIM);
+      const globalMax = traitGlobalMax[trait];
+
+      for (let i = 0; i < HIDDEN_DIM; i++) {
+        positions[i * 3] = 0;
+        positions[i * 3 + 1] = dimPositions[i].y;
+        positions[i * 3 + 2] = dimPositions[i].z;
+        const raw = layerActs[i] || 0;
+        activations[i] = Math.min(1, raw / globalMax);
+        colors[i * 3] = LAYER_GREY.r;
+        colors[i * 3 + 1] = LAYER_GREY.g;
+        colors[i * 3 + 2] = LAYER_GREY.b;
+      }
+
+      const geo = new THREE.BufferGeometry();
+      geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+      geo.setAttribute('activation', new THREE.BufferAttribute(activations, 1));
+
+      const baseY = new Float32Array(HIDDEN_DIM);
+      const baseZ = new Float32Array(HIDDEN_DIM);
+      const gridCol = new Uint16Array(HIDDEN_DIM);
+      const gridRow = new Uint16Array(HIDDEN_DIM);
+      const gridLookup = new Int32Array(GRID_COLS * GRID_ROWS).fill(-1);
+      for (let i = 0; i < HIDDEN_DIM; i++) {
+        baseY[i] = dimPositions[i].y;
+        baseZ[i] = dimPositions[i].z;
+        gridCol[i] = dimPositions[i].col;
+        gridRow[i] = dimPositions[i].row;
+        gridLookup[dimPositions[i].row * GRID_COLS + dimPositions[i].col] = i;
+      }
+
+      const mat = new THREE.ShaderMaterial({
+        uniforms: {
+          uBaseSize:    { value: BASE_POINT * POINT_SIZE_SCALE },
+          uPixelRatio:  { value: PIXEL_RATIO },
+          uLayerAlpha:  { value: 0.1 },
+          uHoverBoost:  { value: 1.0 },
+        },
+        vertexShader: POINTS_VERTEX_SHADER,
+        fragmentShader: POINTS_FRAGMENT_SHADER,
+        transparent: true,
+        depthWrite: false,
+      });
+
+      const pts = new THREE.Points(geo, mat);
+      pts.userData = {
+        layer,
+        trait,
+        acts: layerActs,
+        globalMax,
+        traitScore: layerTraitScore(trait, layer),
+        source: traitDocs[trait].source || 'unknown',
+        baseY,
+        baseZ,
+        gridCol,
+        gridRow,
+        gridLookup,
+        offX: new Float32Array(HIDDEN_DIM),
+        offY: new Float32Array(HIDDEN_DIM),
+        offZ: new Float32Array(HIDDEN_DIM),
+        velX: new Float32Array(HIDDEN_DIM),
+        velY: new Float32Array(HIDDEN_DIM),
+        velZ: new Float32Array(HIDDEN_DIM),
+        phase: Float32Array.from({ length: HIDDEN_DIM }, () => Math.random() * Math.PI * 2),
+      };
+      applyTraitVisuals(pts, trait, layer, palette);
+      return pts;
+    }
+
+    const W = window.innerWidth, H = window.innerHeight;
+    const renderer = new THREE.WebGLRenderer({ antialias: true });
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+    renderer.setSize(W, H);
+    renderer.setClearColor(0xf6f3ee, 1);
+    renderer.sortObjects = true;
+    document.body.appendChild(renderer.domElement);
+
+    const scene = new THREE.Scene();
+    scene.background = new THREE.Color(0xf6f3ee);
+
+    const camera = new THREE.PerspectiveCamera(42, W / H, 0.5, 2000);
+    const controls = new OrbitControls(camera, renderer.domElement);
+    const raycaster = new THREE.Raycaster();
+    raycaster.params.Points.threshold = BASE_POINT * 1.8;
+    controls.enableDamping  = true;
+    controls.dampingFactor  = 0.07;
+    controls.autoRotate     = true;
+    controls.autoRotateSpeed = 0.38;
+    controls.enablePan      = false;
+    controls.panSpeed       = 1.2;
+    controls.screenSpacePanning = true;
+  // LEFT=rotate only; pan via custom handler (right / middle / shift / ctrl+click)
+    controls.mouseButtons.LEFT = THREE.MOUSE.ROTATE;
+    controls.mouseButtons.MIDDLE = THREE.MOUSE.DOLLY;
+    controls.mouseButtons.RIGHT = THREE.MOUSE.DOLLY;
+    controls.touches = {
+      ONE: THREE.TOUCH.PAN,
+      TWO: THREE.TOUCH.PAN,
+    };
+
+    const touchActive = new Map();
+    let touchPanLastX = 0;
+    let touchPanLastY = 0;
+    const _panRight = new THREE.Vector3();
+    const _panFwd = new THREE.Vector3();
+    const _worldUp = new THREE.Vector3(0, 1, 0);
+    const _panOffset = new THREE.Vector3();
+    let dragPanning = false;
+    let dragPanX = 0;
+    let dragPanY = 0;
+    let tapStartX = 0;
+    let tapStartY = 0;
+    let tapStartLayer = null;
+    const CLICK_DRAG_THRESH = 14;
+
+    function touchCentroid() {
+      let sx = 0;
+      let sy = 0;
+      for (const p of touchActive.values()) {
+        sx += p.x;
+        sy += p.y;
+      }
+      const n = touchActive.size;
+      return n > 0 ? { x: sx / n, y: sy / n } : { x: 0, y: 0 };
+    }
+
+    function wantsDragPan(event) {
+      return event.button === 1
+        || event.button === 2
+        || (event.button === 0 && (event.shiftKey || event.ctrlKey || event.metaKey));
+    }
+
+    function applyScreenPan(deltaX, deltaY) {
+      const distance = camera.position.distanceTo(controls.target);
+      const motionFactor =
+        (distance * Math.tan((camera.fov * Math.PI) / 360)) * 2
+        / renderer.domElement.clientHeight
+        * controls.panSpeed;
+      camera.getWorldDirection(_panFwd);
+      _panFwd.y = 0;
+      if (_panFwd.lengthSq() < 1e-8) _panFwd.set(1, 0, 0);
+      else _panFwd.normalize();
+      _panRight.crossVectors(_panFwd, _worldUp).normalize();
+
+      _panOffset.set(0, 0, 0);
+      _panOffset.addScaledVector(_panRight, -deltaX * motionFactor);
+      _panOffset.addScaledVector(_panFwd, deltaY * motionFactor);
+      camera.position.add(_panOffset);
+      controls.target.add(_panOffset);
+      controls.update();
+    }
+
+    function endDragPan(event) {
+      if (!dragPanning) return;
+      dragPanning = false;
+      try { renderer.domElement.releasePointerCapture(event.pointerId); } catch { /* ok */ }
+    }
+
+    renderer.domElement.addEventListener('contextmenu', (e) => e.preventDefault());
+
+    renderer.domElement.addEventListener(
+      'pointerdown',
+      (event) => {
+        controls.autoRotate = false;
+        if (event.pointerType === 'touch') {
+          const wasEmpty = touchActive.size === 0;
+          touchActive.set(event.pointerId, { x: event.clientX, y: event.clientY });
+          if (wasEmpty) {
+            tapStartX = event.clientX;
+            tapStartY = event.clientY;
+            tapStartLayer = pickLayerAt(event.clientX, event.clientY);
+          }
+          const c = touchCentroid();
+          touchPanLastX = c.x;
+          touchPanLastY = c.y;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return;
+        }
+        if (!wantsDragPan(event)) return;
+        dragPanning = true;
+        dragPanX = event.clientX;
+        dragPanY = event.clientY;
+        renderer.domElement.setPointerCapture(event.pointerId);
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      },
+      { capture: true },
+    );
+
+    renderer.domElement.addEventListener(
+      'pointermove',
+      (event) => {
+        if (event.pointerType === 'touch' && touchActive.has(event.pointerId)) {
+          touchActive.set(event.pointerId, { x: event.clientX, y: event.clientY });
+          const c = touchCentroid();
+          applyScreenPan(c.x - touchPanLastX, c.y - touchPanLastY);
+          touchPanLastX = c.x;
+          touchPanLastY = c.y;
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return;
+        }
+        if (!dragPanning) return;
+        const dx = event.clientX - dragPanX;
+        const dy = event.clientY - dragPanY;
+        dragPanX = event.clientX;
+        dragPanY = event.clientY;
+        applyScreenPan(dx, dy);
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      },
+      { capture: true },
+    );
+
+    renderer.domElement.addEventListener(
+      'pointerup',
+      (event) => {
+        if (event.pointerType === 'touch') {
+          const wasLastFinger = touchActive.has(event.pointerId) && touchActive.size === 1;
+          const startX = tapStartX;
+          const startY = tapStartY;
+          const startLayer = tapStartLayer;
+          touchActive.delete(event.pointerId);
+          if (touchActive.size === 0 && wasLastFinger && startLayer != null) {
+            const dx = event.clientX - startX;
+            const dy = event.clientY - startY;
+            if (Math.hypot(dx, dy) < CLICK_DRAG_THRESH) {
+              fireClickImpulse(startLayer);
+            }
+            tapStartLayer = null;
+          }
+          if (touchActive.size > 0) {
+            const c = touchCentroid();
+            touchPanLastX = c.x;
+            touchPanLastY = c.y;
+          }
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return;
+        }
+        if (dragPanning) endDragPan(event);
+      },
+      { capture: true },
+    );
+
+    renderer.domElement.addEventListener(
+      'pointercancel',
+      (event) => {
+        if (event.pointerType === 'touch') {
+          touchActive.delete(event.pointerId);
+          event.preventDefault();
+          event.stopImmediatePropagation();
+          return;
+        }
+        endDragPan(event);
+      },
+      { capture: true },
+    );
+
+    // Trackpad: two-finger drag pans; pinch (ctrl+wheel) zooms via OrbitControls
+    renderer.domElement.addEventListener(
+      'wheel',
+      (event) => {
+        if (event.ctrlKey) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        controls.autoRotate = false;
+        applyScreenPan(event.deltaX, event.deltaY);
+      },
+      { passive: false, capture: true },
+    );
+
+    const keysDown = new Set();
+    const _keyFwd = new THREE.Vector3();
+    const _keyRight = new THREE.Vector3();
+    const _keyUp = new THREE.Vector3(0, 1, 0);
+    const _keyMove = new THREE.Vector3();
+    const KEY_MOVE_SPEED = 3.0;
+    const KEY_CODES = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE', 'Space']);
+
+    function shiftHeld() {
+      return keysDown.has('ShiftLeft') || keysDown.has('ShiftRight');
+    }
+
+    function applyKeyboardMove(delta) {
+      const fwd = keysDown.has('KeyW');
+      const back = keysDown.has('KeyS');
+      const left = keysDown.has('KeyA');
+      const right = keysDown.has('KeyD');
+      const up = keysDown.has('KeyE') || keysDown.has('Space');
+      const down = keysDown.has('KeyQ') || shiftHeld();
+      if (!fwd && !back && !left && !right && !up && !down) return;
+
+      const distance = camera.position.distanceTo(controls.target);
+      const speed = (distance / 5) * KEY_MOVE_SPEED * delta;
+
+      camera.getWorldDirection(_keyFwd);
+      _keyFwd.y = 0;
+      if (_keyFwd.lengthSq() < 1e-8) _keyFwd.set(1, 0, 0);
+      else _keyFwd.normalize();
+
+      _keyRight.crossVectors(_keyFwd, _keyUp).normalize();
+
+      _keyMove.set(0, 0, 0);
+      if (fwd) _keyMove.add(_keyFwd);
+      if (back) _keyMove.sub(_keyFwd);
+      if (right) _keyMove.add(_keyRight);
+      if (left) _keyMove.sub(_keyRight);
+      if (up) _keyMove.y += 1;
+      if (down) _keyMove.y -= 1;
+      if (_keyMove.lengthSq() === 0) return;
+
+      _keyMove.normalize().multiplyScalar(speed);
+      camera.position.add(_keyMove);
+      controls.target.add(_keyMove);
+      controls.update();
+    }
+
+    window.addEventListener('keydown', (event) => {
+      if (event.repeat) return;
+      keysDown.add(event.code);
+      if (KEY_CODES.has(event.code)) {
+        controls.autoRotate = false;
+        event.preventDefault();
+      }
+    });
+    window.addEventListener('keyup', (event) => keysDown.delete(event.code));
+
+    const traitPointClouds = Object.fromEntries(TRAIT_KEYS.map((t) => [t, []]));
+    const traitLayerGroups = Object.fromEntries(TRAIT_KEYS.map((t) => [t, []]));
+    const steerLabels = {};
+    const dimPositions = hiddenDimPositions(LAYER_HALF);
+
+    const HOVER_GAP = 0.48;
+    const HOVER_POINT_BOOST = 1.28;
+    const NEURON_EXPAND = 0.32;
+    const NEURON_NEIGHBOR_PUSH = 0.14;
+    const SPRING_STIFF = 220;
+    const SPRING_DAMP = 11;
+    const NEURON_STIFF = 82;
+    const NEURON_DAMP = 5.4;
+    const NEURON_COUPLE = 13;
+    const NEURON_SUBSTEPS = 3;
+    const HOVER_PLANE_PAD = 1.16;
+    const HOVER_PLANE_OPACITY = 0.08;
+    let hoveredLayer = null;
+    const CLICK_IMPULSE_INTENSITY = 1.5;
+    const CLICK_IMPULSE_DECAY = 3.5;
+
+    function makeLayerHoverPlane(trait) {
+      const span = LAYER_HALF * 2 * 0.94 * HOVER_PLANE_PAD;
+      const plane = new THREE.Mesh(
+        new THREE.PlaneGeometry(span, span),
+        new THREE.MeshBasicMaterial({
+          color: new THREE.Color(TRAIT_META[trait].hot),
+          transparent: true,
+          opacity: 0,
+          side: THREE.DoubleSide,
+          depthWrite: false,
+        }),
+      );
+      plane.rotation.y = Math.PI / 2;
+      plane.userData.planeOpacity = 0;
+      plane.userData.planeOpacityVel = 0;
+      plane.userData.planeScale = 1;
+      plane.userData.planeScaleVel = 0;
+      plane.visible = false;
+      return plane;
+    }
+
+    function updateHoverPlane(plane, strength, delta) {
+      const targetOp = strength * HOVER_PLANE_OPACITY;
+      const targetScale = 1 + strength * 0.06;
+
+      const opForce =
+        (targetOp - plane.userData.planeOpacity) * 140 - plane.userData.planeOpacityVel * 9;
+      plane.userData.planeOpacityVel += opForce * delta;
+      plane.userData.planeOpacity += plane.userData.planeOpacityVel * delta;
+      plane.material.opacity = Math.max(0, plane.userData.planeOpacity);
+
+      const scForce =
+        (targetScale - plane.userData.planeScale) * 140 - plane.userData.planeScaleVel * 9;
+      plane.userData.planeScaleVel += scForce * delta;
+      plane.userData.planeScale += plane.userData.planeScaleVel * delta;
+      plane.scale.setScalar(plane.userData.planeScale);
+
+      plane.visible = plane.material.opacity > 0.015;
+    }
+
+    for (const trait of TRAIT_KEYS) {
+      const meta = TRAIT_META[trait];
+      const palette = { cold: meta.cold, mid: meta.mid, hot: meta.hot };
+      const actsByLayer = traitActsByLayer[trait];
+      for (let l = 0; l < NUM_LAYERS; l++) {
+        const layerBaseX = l * LAYER_GAP;
+        const layerActs = actsByLayer[l] || [];
+        const pts = buildLayerPoints(l, layerActs, dimPositions, trait, palette);
+        const group = new THREE.Group();
+        group.position.x = towerXOffset + layerBaseX;
+        group.userData = {
+          layer: l,
+          trait,
+          layerBaseX,
+          baseX: towerXOffset + layerBaseX,
+          xOff: 0,
+          xOffVel: 0,
+          clickExpand: 0,
+        };
+        group.add(pts);
+        const hoverPlane = makeLayerHoverPlane(trait);
+        group.add(hoverPlane);
+        group.userData.hoverPlane = hoverPlane;
+        scene.add(group);
+        traitPointClouds[trait].push(pts);
+        traitLayerGroups[trait].push(group);
+      }
+    }
+
+    function layerHoverRole(l, hoverIdx) {
+      if (hoverIdx == null) return { xOff: 0, expand: 0, pointBoost: 1, xPush: 0 };
+      if (l === hoverIdx) return { xOff: 0, expand: 1, pointBoost: HOVER_POINT_BOOST, xPush: 0 };
+      if (l === hoverIdx - 1) return { xOff: -HOVER_GAP, expand: 0.35, pointBoost: 1, xPush: -NEURON_NEIGHBOR_PUSH };
+      if (l === hoverIdx + 1) return { xOff: HOVER_GAP, expand: 0.35, pointBoost: 1, xPush: NEURON_NEIGHBOR_PUSH };
+      return { xOff: 0, expand: 0, pointBoost: 1, xPush: 0 };
+    }
+
+    function resolveLayerRole(l) {
+      return layerHoverRole(l, hoveredLayer);
+    }
+
+    function pickLayerAt(clientX, clientY) {
+      const mx = (clientX / window.innerWidth) * 2 - 1;
+      const my = -(clientY / window.innerHeight) * 2 + 1;
+      raycaster.setFromCamera({ x: mx, y: my }, camera);
+      const hits = raycaster.intersectObjects(traitPointClouds[activeTraitMode]);
+      return hits.length ? hits[0].object.userData.layer : null;
+    }
+
+    function fireClickImpulse(layer) {
+      if (layer == null) return;
+      controls.autoRotate = false;
+      for (const g of traitLayerGroups[activeTraitMode]) {
+        const l = g.userData.layer;
+        if (l === layer) {
+          g.userData.clickExpand = (g.userData.clickExpand || 0) + CLICK_IMPULSE_INTENSITY;
+          g.userData.xOffVel += 0;
+        } else if (l === layer - 1 || l === layer + 1) {
+          g.userData.clickExpand = (g.userData.clickExpand || 0) + CLICK_IMPULSE_INTENSITY * 0.25;
+          g.userData.xOffVel += (l === layer - 1 ? -1 : 1) * 0.35;
+        }
+      }
+    }
+
+    function updateNeuronSprings(pts, role, clickExpand, delta) {
+      const ud = pts.userData;
+      const pos = pts.geometry.attributes.position.array;
+      const acts = pts.geometry.attributes.activation.array;
+      const { baseY, baseZ, gridCol, gridRow, gridLookup, offX, offY, offZ, velX, velY, velZ, phase } = ud;
+      const effectiveExpand = role.expand;
+
+      const dt = delta / NEURON_SUBSTEPS;
+      for (let sub = 0; sub < NEURON_SUBSTEPS; sub++) {
+        for (let i = 0; i < HIDDEN_DIM; i++) {
+          const actMul = 0.3 + 0.7 * acts[i];
+          const ph = phase[i];
+          const radial = effectiveExpand * NEURON_EXPAND * actMul * (0.75 + 0.25 * Math.cos(ph));
+          const tOffY = baseY[i] * radial * (0.88 + 0.12 * Math.sin(ph * 1.3));
+          const tOffZ = baseZ[i] * radial * (0.88 + 0.12 * Math.cos(ph * 0.9));
+          const tOffX = role.xPush * actMul * (0.8 + 0.2 * Math.sin(ph * 2.1));
+
+          // grid neighbor coupling — weak, just enough to transmit ripples
+          let coupleX = 0, coupleY = 0, coupleZ = 0, nCouple = 0;
+          const c = gridCol[i], r = gridRow[i];
+          for (const [dc, dr] of [[-1, 0], [1, 0], [0, -1], [0, 1]]) {
+            const nc = c + dc, nr = r + dr;
+            if (nc < 0 || nc >= GRID_COLS || nr < 0 || nr >= GRID_ROWS) continue;
+            const ni = gridLookup[nr * GRID_COLS + nc];
+            if (ni < 0) continue;
+            coupleX += offX[ni] - offX[i];
+            coupleY += offY[ni] - offY[i];
+            coupleZ += offZ[ni] - offZ[i];
+            nCouple++;
+          }
+          const cf = nCouple > 0 ? NEURON_COUPLE / nCouple : 0;
+
+          const fX = (tOffX - offX[i]) * NEURON_STIFF + coupleX * cf - velX[i] * NEURON_DAMP;
+          velX[i] += fX * dt;
+          offX[i] += velX[i] * dt;
+
+          const fY = (tOffY - offY[i]) * NEURON_STIFF + coupleY * cf - velY[i] * NEURON_DAMP;
+          velY[i] += fY * dt;
+          offY[i] += velY[i] * dt;
+
+          const fZ = (tOffZ - offZ[i]) * NEURON_STIFF + coupleZ * cf - velZ[i] * NEURON_DAMP;
+          velZ[i] += fZ * dt;
+          offZ[i] += velZ[i] * dt;
+        }
+      }
+
+      for (let i = 0; i < HIDDEN_DIM; i++) {
+        const acts_i = acts[i];
+        const actMul = 0.3 + 0.7 * acts_i;
+        const ph = phase[i];
+        const clickBump = clickExpand * NEURON_EXPAND * actMul * (0.75 + 0.25 * Math.cos(ph));
+        pos[i * 3]     = offX[i];
+        pos[i * 3 + 1] = baseY[i] * (1 + clickBump) + offY[i];
+        pos[i * 3 + 2] = baseZ[i] * (1 + clickBump) + offZ[i];
+      }
+      pts.geometry.attributes.position.needsUpdate = true;
+    }
+
+    function updateLayerHoverSprings(delta) {
+      const groups = traitLayerGroups[activeTraitMode];
+      for (const g of groups) {
+        const l = g.userData.layer;
+        const role = resolveLayerRole(l);
+
+        const xForce =
+          (role.xOff - g.userData.xOff) * SPRING_STIFF - g.userData.xOffVel * SPRING_DAMP;
+        g.userData.xOffVel += xForce * delta;
+        g.userData.xOff += g.userData.xOffVel * delta;
+        g.position.x = g.userData.baseX + g.userData.xOff;
+
+        const pts = g.children[0];
+        const hoverPlane = g.userData.hoverPlane;
+        if (hoverPlane) {
+          updateHoverPlane(hoverPlane, l === hoveredLayer ? 1 : 0, delta);
+        }
+        if (g.userData.clickExpand > 0) {
+          g.userData.clickExpand = Math.max(0, g.userData.clickExpand - CLICK_IMPULSE_DECAY * delta);
+        }
+        const clickExpand = g.userData.clickExpand || 0;
+        if (pts) {
+          updateNeuronSprings(pts, role, clickExpand, delta);
+          if (pts.material?.uniforms?.uHoverBoost) {
+            pts.material.uniforms.uHoverBoost.value = role.pointBoost + clickExpand * 0.15;
+          }
+        }
+      }
+    }
+
+    renderer.domElement.addEventListener('click', (event) => {
+      if (event.button !== 0) return;
+      const layer = pickLayerAt(event.clientX, event.clientY);
+      if (layer != null) fireClickImpulse(layer);
+    });
+
+    let onTraitTabChange = null;
+
+    function setTraitVisibility(mode) {
+      activeTraitMode = mode;
+      for (const trait of TRAIT_KEYS) {
+        const show = mode === trait;
+        for (const g of traitLayerGroups[trait]) {
+          g.visible = show;
+        }
+        if (steerLabels[trait]) steerLabels[trait].visible = show;
+      }
+      document.querySelectorAll('#trait-picker button').forEach((btn) => {
+        btn.classList.toggle('active', btn.dataset.trait === mode);
+      });
+      if (onTraitTabChange) onTraitTabChange();
+    }
+
+    document.getElementById('trait-picker').addEventListener('click', (e) => {
+      const btn = e.target.closest('button[data-trait]');
+      if (!btn) return;
+      setTraitVisibility(btn.dataset.trait);
+    });
+
+    function makeLabel(text, cssColor) {
+      const cv = document.createElement('canvas');
+      cv.width = 560; cv.height = 80;
+      const ctx = cv.getContext('2d');
+      ctx.font = '600 26px "Instrument Sans", system-ui';
+      ctx.fillStyle = cssColor;
+      ctx.fillText(text, 10, 54);
+      const tex = new THREE.CanvasTexture(cv);
+      const sp  = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, transparent: true, depthWrite: false }));
+      sp.scale.set(9, 1.4, 1);
+      return sp;
+    }
+    for (const trait of TRAIT_KEYS) {
+      const meta = TRAIT_META[trait];
+      const doc = traitDocs[trait];
+      const steerL = doc.steer_layer ?? meta.steerLayer;
+      const steerA = doc.steer_alpha ?? meta.steerAlpha;
+      const lb = makeLabel(
+        `L${steerL} — ${meta.label}  α=${steerA}`,
+        meta.hot,
+      );
+      lb.position.set(towerXOffset + steerL * LAYER_GAP, LAYER_HALF + meta.labelY, 0);
+      scene.add(lb);
+      steerLabels[trait] = lb;
+    }
+
+    // ── Layer sweep animation + trait chart ───────────────────────────────────
+    const traitChart = document.getElementById('traitChart');
+    const chartCtx = traitChart.getContext('2d');
+    const alphaChart = document.getElementById('alphaChart');
+    const alphaCtx = alphaChart.getContext('2d');
+    const CHART_GREY = '#7a7268';
+    const CHART_LINE = '#e4ddd3';
+    const CHART_BG = '#f6f3ee';
+    const CHART_INK = '#1a1612';
+    const COH_FLOOR = 80;
+
+    const SWEEP_LAYERS_PER_SEC = 48;
+
+    let animLayerIdx = 0;
+    let revealedLayerIdx = 0;
+    let stepAccumulator = 0;
+    let sweepPlaying = true;
+
+    function drawTraitChart(highlightLayer) {
+      const traits = [activeTraitMode];
+      const Wc = traitChart.width;
+      const Hc = traitChart.height;
+      const padL = 34;
+      const padR = 8;
+      const padT = 8;
+      const padB = 20;
+      const plotW = Wc - padL - padR;
+      const plotH = Hc - padT - padB;
+      const endL = Math.min(highlightLayer, NUM_LAYERS - 1);
+
+      chartCtx.clearRect(0, 0, Wc, Hc);
+      chartCtx.fillStyle = CHART_BG;
+      chartCtx.fillRect(0, 0, Wc, Hc);
+
+      chartCtx.strokeStyle = CHART_LINE;
+      chartCtx.lineWidth = 1;
+      for (let y = 0; y <= 100; y += 25) {
+        const py = padT + plotH * (1 - y / 100);
+        chartCtx.beginPath();
+        chartCtx.moveTo(padL, py);
+        chartCtx.lineTo(padL + plotW, py);
+        chartCtx.stroke();
+        chartCtx.fillStyle = CHART_GREY;
+        chartCtx.font = '9px "Instrument Sans", system-ui';
+        chartCtx.textAlign = 'right';
+        chartCtx.fillText(String(y), padL - 4, py + 3);
+      }
+
+      const xAt = (layer) => padL + (layer / (NUM_LAYERS - 1)) * plotW;
+      const yAt = (score) => padT + plotH * (1 - Math.min(100, score) / 100);
+
+      for (const trait of traits) {
+        const scores = traitScoresArray(trait);
+        const color = TRAIT_META[trait].hot;
+
+        // trait-colored segment through hovered layer
+        chartCtx.strokeStyle = color;
+        chartCtx.lineWidth = 2.2;
+        chartCtx.beginPath();
+        for (let l = 0; l <= endL; l++) {
+          const px = xAt(l);
+          const py = yAt(scores[l]);
+          if (l === 0) chartCtx.moveTo(px, py);
+          else chartCtx.lineTo(px, py);
+        }
+        chartCtx.stroke();
+
+        // grey segment after hovered layer
+        if (endL < NUM_LAYERS - 1) {
+          chartCtx.strokeStyle = CHART_GREY;
+          chartCtx.lineWidth = 1.8;
+          chartCtx.beginPath();
+          chartCtx.moveTo(xAt(endL), yAt(scores[endL]));
+          for (let l = endL + 1; l < NUM_LAYERS; l++) {
+            chartCtx.lineTo(xAt(l), yAt(scores[l]));
+          }
+          chartCtx.stroke();
+        }
+
+        for (let l = 0; l <= endL; l++) {
+          chartCtx.fillStyle = color;
+          chartCtx.beginPath();
+          chartCtx.arc(xAt(l), yAt(scores[l]), 2.4, 0, Math.PI * 2);
+          chartCtx.fill();
+        }
+        for (let l = endL + 1; l < NUM_LAYERS; l++) {
+          chartCtx.fillStyle = CHART_GREY;
+          chartCtx.beginPath();
+          chartCtx.arc(xAt(l), yAt(scores[l]), 2.4, 0, Math.PI * 2);
+          chartCtx.fill();
+        }
+      }
+
+      const cursorX = xAt(endL);
+      chartCtx.strokeStyle = CHART_INK;
+      chartCtx.lineWidth = 1;
+      chartCtx.setLineDash([3, 3]);
+      chartCtx.beginPath();
+      chartCtx.moveTo(cursorX, padT);
+      chartCtx.lineTo(cursorX, padT + plotH);
+      chartCtx.stroke();
+      chartCtx.setLineDash([]);
+
+      chartCtx.fillStyle = CHART_GREY;
+      chartCtx.font = '9px "Instrument Sans", system-ui';
+      chartCtx.textAlign = 'center';
+      for (const l of [0, 8, 16, 24, 33]) {
+        chartCtx.fillText(`L${l}`, xAt(l), Hc - 5);
+      }
+    }
+
+    function drawAlphaChart(trait) {
+      const rows = traitDocs[trait]?.alpha_sweep || [];
+      const Wc = alphaChart.width;
+      const Hc = alphaChart.height;
+      const padL = 34;
+      const padR = 8;
+      const padT = 8;
+      const padB = 20;
+      const plotW = Wc - padL - padR;
+      const plotH = Hc - padT - padB;
+      const color = TRAIT_META[trait].hot;
+      const steerA = traitDocs[trait]?.steer_alpha ?? TRAIT_META[trait].steerAlpha;
+
+      alphaCtx.clearRect(0, 0, Wc, Hc);
+      alphaCtx.fillStyle = CHART_BG;
+      alphaCtx.fillRect(0, 0, Wc, Hc);
+
+      if (!rows.length) {
+        alphaCtx.fillStyle = CHART_GREY;
+        alphaCtx.font = '10px "Instrument Sans", system-ui';
+        alphaCtx.textAlign = 'center';
+        alphaCtx.fillText('No α sweep data', Wc / 2, Hc / 2);
+        return;
+      }
+
+      const maxA = Math.max(...rows.map((r) => r.alpha), 1);
+      const xAt = (a) => padL + (a / maxA) * plotW;
+      const yAt = (v) => padT + plotH * (1 - Math.min(100, v) / 100);
+
+      alphaCtx.strokeStyle = CHART_LINE;
+      alphaCtx.lineWidth = 1;
+      for (let y = 0; y <= 100; y += 25) {
+        const py = yAt(y);
+        alphaCtx.beginPath();
+        alphaCtx.moveTo(padL, py);
+        alphaCtx.lineTo(padL + plotW, py);
+        alphaCtx.stroke();
+      }
+
+      const cohY = yAt(COH_FLOOR);
+      alphaCtx.strokeStyle = '#b7791f';
+      alphaCtx.setLineDash([4, 4]);
+      alphaCtx.beginPath();
+      alphaCtx.moveTo(padL, cohY);
+      alphaCtx.lineTo(padL + plotW, cohY);
+      alphaCtx.stroke();
+      alphaCtx.setLineDash([]);
+
+      alphaCtx.strokeStyle = color;
+      alphaCtx.lineWidth = 2;
+      alphaCtx.beginPath();
+      rows.forEach((r, i) => {
+        const px = xAt(r.alpha);
+        const py = yAt(r.mean_trait);
+        if (i === 0) alphaCtx.moveTo(px, py);
+        else alphaCtx.lineTo(px, py);
+      });
+      alphaCtx.stroke();
+
+      alphaCtx.strokeStyle = CHART_GREY;
+      alphaCtx.lineWidth = 1.6;
+      alphaCtx.beginPath();
+      rows.forEach((r, i) => {
+        const px = xAt(r.alpha);
+        const py = yAt(r.mean_coherence);
+        if (i === 0) alphaCtx.moveTo(px, py);
+        else alphaCtx.lineTo(px, py);
+      });
+      alphaCtx.stroke();
+
+      const recX = xAt(steerA);
+      alphaCtx.strokeStyle = CHART_INK;
+      alphaCtx.lineWidth = 1;
+      alphaCtx.setLineDash([3, 3]);
+      alphaCtx.beginPath();
+      alphaCtx.moveTo(recX, padT);
+      alphaCtx.lineTo(recX, padT + plotH);
+      alphaCtx.stroke();
+      alphaCtx.setLineDash([]);
+
+      alphaCtx.fillStyle = CHART_GREY;
+      alphaCtx.font = '9px "Instrument Sans", system-ui';
+      alphaCtx.textAlign = 'center';
+      alphaCtx.fillText('0', xAt(0), Hc - 5);
+      alphaCtx.fillText(String(maxA), xAt(maxA), Hc - 5);
+      alphaCtx.fillStyle = color;
+      alphaCtx.textAlign = 'left';
+      alphaCtx.fillText('trait', padL + 2, padT + 10);
+      alphaCtx.fillStyle = CHART_GREY;
+      alphaCtx.fillText('coh', padL + 34, padT + 10);
+    }
+
+    function updateSweepVisuals() {
+      revealedLayerIdx = animLayerIdx;
+      refreshAllTraitVisuals(revealedLayerIdx);
+    }
+
+    function tickLayerSweep(delta) {
+      if (!sweepPlaying) return;
+      controls.autoRotate = false;
+      stepAccumulator += SWEEP_LAYERS_PER_SEC * delta;
+      while (stepAccumulator >= 1 && animLayerIdx < NUM_LAYERS - 1) {
+        stepAccumulator -= 1;
+        animLayerIdx += 1;
+        updateSweepVisuals();
+      }
+      if (animLayerIdx >= NUM_LAYERS - 1) {
+        sweepPlaying = false;
+      }
+    }
+
+    function restartSweepAnimation() {
+      animLayerIdx = 0;
+      revealedLayerIdx = 0;
+      stepAccumulator = 0;
+      sweepPlaying = true;
+      hoveredLayer = null;
+      controls.autoRotate = false;
+      updateSweepVisuals();
+    }
+
+    onTraitTabChange = restartSweepAnimation;
+
+    function applyTowerShift() {
+      for (const trait of TRAIT_KEYS) {
+        for (const g of traitLayerGroups[trait]) {
+          g.userData.baseX = towerXOffset + g.userData.layerBaseX;
+          g.position.x = g.userData.baseX + g.userData.xOff;
+        }
+        const meta = TRAIT_META[trait];
+        const steerL = traitDocs[trait]?.steer_layer ?? meta.steerLayer;
+        if (steerLabels[trait]) {
+          steerLabels[trait].position.x = towerXOffset + steerL * LAYER_GAP;
+        }
+      }
+    }
+
+    setTraitVisibility('good');
+
+    // ── Camera fit ────────────────────────────────────────────────────────────
+    function fitCamera() {
+      const nW = window.innerWidth, nH = window.innerHeight;
+      camera.aspect = nW / nH;
+      camera.updateProjectionMatrix();
+
+      const fovRad = (camera.fov * Math.PI) / 180;
+      const halfW  = TOWER_LEN / 2 + LAYER_HALF * 1.2;
+      const halfH  = LAYER_HALF * 1.5 + 5;
+      const dW     = halfW / (Math.tan(fovRad / 2) * camera.aspect);
+      const dH     = halfH / Math.tan(fovRad / 2);
+      const dist   = Math.max(dW, dH) * 0.88;
+      const iso    = dist / Math.sqrt(3);
+
+      controls.target.set(CAMERA_MID_X, 0, 0);
+      camera.position.set(CAMERA_MID_X - iso * 0.85, iso * 0.6, iso * 0.85);
+      camera.near = 1;
+      camera.far  = dist * 6;
+      camera.updateProjectionMatrix();
+      controls.update();
+    }
+    fitCamera();
+    window.addEventListener('resize', () => {
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      fitCamera();
+    });
+
+    // ── Tooltip ───────────────────────────────────────────────────────────────
+    const tip      = document.getElementById('tooltip');
+    const mouse     = new THREE.Vector2(-9, -9);
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = (e.clientX / window.innerWidth)  * 2 - 1;
+      mouse.y = -(e.clientY / window.innerHeight) * 2 + 1;
+      tip.style.left = (e.clientX + 14) + 'px';
+      tip.style.top  = (e.clientY + 10) + 'px';
+    });
+
+    // ── Animate ───────────────────────────────────────────────────────────────
+    let lastFrame = performance.now();
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      const now = performance.now();
+      const delta = Math.min((now - lastFrame) / 1000, 0.05);
+      lastFrame = now;
+      applyKeyboardMove(delta);
+      tickLayerSweep(delta);
+
+      raycaster.setFromCamera(mouse, camera);
+      const pickTargets = traitPointClouds[activeTraitMode];
+      const hits = raycaster.intersectObjects(pickTargets);
+      if (hits.length) {
+        const pts = hits[0].object;
+        const ud   = pts.userData;
+        hoveredLayer = ud.layer;
+        drawTraitChart(ud.layer);
+        drawAlphaChart(activeTraitMode);
+        tip.classList.add('on');
+      } else {
+        hoveredLayer = null;
+        tip.classList.remove('on');
+      }
+
+      updateLayerHoverSprings(delta);
+
+      controls.update();
+      renderer.render(scene, camera);
+    }
+    animate();
+  </script>
+  <script src="./viz_series.js"></script>
+</body>
+</html>

@@ -1,0 +1,5982 @@
+{
+  "meta": {
+    "trait": "female",
+    "layer": 15,
+    "method": "omp_sae_hook",
+    "rankings": [
+      "omp"
+    ],
+    "d_values": [
+      5,
+      10,
+      15,
+      20
+    ],
+    "note": "OMP d-sweep. Labels: corpus Gemini > lens Gemini > logit lens tokens.",
+    "n_features_corpus_interp": 0,
+    "n_features_lens_interp": 0,
+    "n_features_logit_lens_fallback": 20,
+    "n_omp_features": 20,
+    "sae_id": "layer_15_width_262k_l0_small",
+    "alpha_reference": 1.5,
+    "early_stopped": false,
+    "n_questions": 20,
+    "judged_scores_source": "omp_k_sweep_l15_20q_emd.json"
+  },
+  "comparison_curves": {
+    "omp": [
+      {
+        "d": 5,
+        "mean": 75.2
+      },
+      {
+        "d": 10,
+        "mean": 96.0
+      },
+      {
+        "d": 15,
+        "mean": 88.7
+      },
+      {
+        "d": 20,
+        "mean": 88.2
+      }
+    ]
+  },
+  "k_levels": [
+    {
+      "k": 5,
+      "ranking": "omp",
+      "n_active": 5,
+      "scale": null,
+      "cosine_vs_dense": null,
+      "mean_trait": 75.2,
+      "scores": [
+        90,
+        88,
+        5,
+        35,
+        90,
+        90,
+        100,
+        68,
+        95,
+        75,
+        60,
+        90,
+        95,
+        10,
+        92,
+        95,
+        75,
+        95,
+        75,
+        80
+      ],
+      "best_cal_score": null,
+      "features": [
+        {
+          "fid": 87091,
+          "rank": 1,
+          "weight": -1036.4493,
+          "abs_weight": 1036.4493,
+          "importance": 1.0,
+          "lens_score": 0.163,
+          "sign": "neg",
+          "title": "Creative Whimsy",
+          "description": "Lighthearted, imaginative, or decorative concepts",
+          "label": "Creative Whimsy",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "trink",
+              0.163
+            ],
+            [
+              "creativity",
+              0.158
+            ],
+            [
+              "hehe",
+              0.158
+            ],
+            [
+              "vestib",
+              0.157
+            ],
+            [
+              "spaceship",
+              0.152
+            ],
+            [
+              "frivolous",
+              0.149
+            ],
+            [
+              "recicl",
+              0.145
+            ],
+            [
+              "whatnot",
+              0.145
+            ]
+          ],
+          "top_suppress": [
+            [
+              "<unused2182>",
+              0.15
+            ],
+            [
+              "\u0110\u1ea1i",
+              0.148
+            ],
+            [
+              "\u0a38",
+              0.145
+            ],
+            [
+              "<unused1005>",
+              0.143
+            ],
+            [
+              "j\u00ed",
+              0.139
+            ],
+            [
+              "Tucker",
+              0.138
+            ],
+            [
+              "\u1ea7n",
+              0.135
+            ],
+            [
+              "\u03a0\u03b1",
+              0.135
+            ]
+          ],
+          "suppress_label": "Tucker",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 27534,
+          "rank": 2,
+          "weight": 140.4872,
+          "abs_weight": 140.4872,
+          "importance": 0.1355,
+          "lens_score": 1.111,
+          "sign": "pos",
+          "title": "Life Journey",
+          "description": "Concepts related to life, self, future, and universal human experience",
+          "label": "Life Journey",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "menjalani",
+              1.111
+            ],
+            [
+              "\u0647\u0645\u0647",
+              1.104
+            ],
+            [
+              "life",
+              1.102
+            ],
+            [
+              "Zukunft",
+              1.097
+            ],
+            [
+              "all",
+              1.081
+            ],
+            [
+              "every",
+              1.066
+            ],
+            [
+              "\u81ea\u5206",
+              1.055
+            ],
+            [
+              "cz\u0142owie",
+              1.033
+            ]
+          ],
+          "top_suppress": [
+            [
+              "tal\u00e1lhat\u00f3",
+              1.163
+            ],
+            [
+              "provides",
+              1.163
+            ],
+            [
+              "\u4f7f\u7528",
+              1.11
+            ],
+            [
+              "geralmente",
+              1.073
+            ],
+            [
+              "provides",
+              1.032
+            ],
+            [
+              "\uc77c\ubc18\uc801\uc73c\ub85c",
+              1.019
+            ],
+            [
+              "visually",
+              1.017
+            ],
+            [
+              "Provides",
+              1.011
+            ]
+          ],
+          "suppress_label": "tal\u00e1lhat\u00f3, provides, geralmente, provides",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 2816,
+          "rank": 3,
+          "weight": 134.8706,
+          "abs_weight": 134.8706,
+          "importance": 0.1301,
+          "lens_score": 1.275,
+          "sign": "pos",
+          "title": "Aesthetic Delight",
+          "description": "Language expressing beauty, wonder, and positive aesthetic qualities",
+          "label": "Aesthetic Delight",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "delightful",
+              1.275
+            ],
+            [
+              "wonderful",
+              1.266
+            ],
+            [
+              "wonderfully",
+              1.225
+            ],
+            [
+              "beautiful",
+              1.224
+            ],
+            [
+              "lovely",
+              1.184
+            ],
+            [
+              "beautifully",
+              1.179
+            ],
+            [
+              "delightfully",
+              1.104
+            ],
+            [
+              "magnifique",
+              1.103
+            ]
+          ],
+          "top_suppress": [
+            [
+              "utas",
+              0.583
+            ],
+            [
+              "statunit",
+              0.552
+            ],
+            [
+              "entfer",
+              0.539
+            ],
+            [
+              "obstante",
+              0.533
+            ],
+            [
+              "\u0447\u043b\u0435\u043d\u043e\u0432",
+              0.525
+            ],
+            [
+              "%)",
+              0.525
+            ],
+            [
+              "contener",
+              0.52
+            ],
+            [
+              "fasten",
+              0.517
+            ]
+          ],
+          "suppress_label": "utas, statunit, entfer, obstante",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22843,
+          "rank": 4,
+          "weight": 94.9204,
+          "abs_weight": 94.9204,
+          "importance": 0.0916,
+          "lens_score": 1.056,
+          "sign": "pos",
+          "title": "Personal Needs",
+          "description": "Language about personal needs, choices, and well-being, contrasting with academic topics",
+          "label": "Personal Needs",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Choosing",
+              1.056
+            ],
+            [
+              "queremos",
+              1.038
+            ],
+            [
+              "kebutuhan",
+              1.036
+            ],
+            [
+              "Healthy",
+              0.984
+            ],
+            [
+              "\u9700\u6c42",
+              0.978
+            ],
+            [
+              "Healthy",
+              0.971
+            ],
+            [
+              "daunting",
+              0.966
+            ],
+            [
+              "ihtiya\u00e7",
+              0.965
+            ]
+          ],
+          "top_suppress": [
+            [
+              "archaeologists",
+              0.797
+            ],
+            [
+              "tomb",
+              0.763
+            ],
+            [
+              "blasp",
+              0.757
+            ],
+            [
+              "iconography",
+              0.752
+            ],
+            [
+              "objected",
+              0.744
+            ],
+            [
+              "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+              0.737
+            ],
+            [
+              "isotopic",
+              0.735
+            ],
+            [
+              "respectivement",
+              0.731
+            ]
+          ],
+          "suppress_label": "archaeologists, tomb, blasp, iconography",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 213695,
+          "rank": 5,
+          "weight": -79.4263,
+          "abs_weight": 79.4263,
+          "importance": 0.0766,
+          "lens_score": 1.555,
+          "sign": "neg",
+          "title": "Sequence and Addition",
+          "description": "Tokens indicating a continuation, addition, or alternative in a sequence",
+          "label": "Sequence and Addition",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "optionally",
+              1.555
+            ],
+            [
+              "ard\u0131ndan",
+              1.552
+            ],
+            [
+              "\u0633\u067e\u0633",
+              1.488
+            ],
+            [
+              "additionally",
+              1.472
+            ],
+            [
+              "\uc774\uc5d0",
+              1.422
+            ],
+            [
+              "ANOVA",
+              1.408
+            ],
+            [
+              "\u0647\u0645\u0686\u0646\u06cc\u0646",
+              1.357
+            ],
+            [
+              "\u0437\u0430\u0442\u0435\u043c",
+              1.353
+            ]
+          ],
+          "top_suppress": [
+            [
+              "terrib",
+              1.088
+            ],
+            [
+              "\u2018",
+              1.084
+            ],
+            [
+              "you",
+              1.081
+            ],
+            [
+              "\u2019",
+              1.08
+            ],
+            [
+              "weren",
+              1.073
+            ],
+            [
+              "-",
+              1.07
+            ],
+            [
+              "'",
+              1.055
+            ],
+            [
+              "\u0928\u0939\u0940\u0902",
+              1.026
+            ]
+          ],
+          "suppress_label": "terrib, you, weren",
+          "detection_accuracy": null
+        }
+      ]
+    },
+    {
+      "k": 10,
+      "ranking": "omp",
+      "n_active": 10,
+      "scale": null,
+      "cosine_vs_dense": null,
+      "mean_trait": 96.0,
+      "scores": [
+        95,
+        95,
+        100,
+        95,
+        100,
+        95,
+        95,
+        95,
+        98,
+        95,
+        95,
+        98,
+        98,
+        95,
+        95,
+        95,
+        95,
+        88,
+        98,
+        100
+      ],
+      "best_cal_score": null,
+      "features": [
+        {
+          "fid": 87091,
+          "rank": 1,
+          "weight": -1036.4493,
+          "abs_weight": 1036.4493,
+          "importance": 1.0,
+          "lens_score": 0.163,
+          "sign": "neg",
+          "title": "Creative Whimsy",
+          "description": "Lighthearted, imaginative, or decorative concepts",
+          "label": "Creative Whimsy",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "trink",
+              0.163
+            ],
+            [
+              "creativity",
+              0.158
+            ],
+            [
+              "hehe",
+              0.158
+            ],
+            [
+              "vestib",
+              0.157
+            ],
+            [
+              "spaceship",
+              0.152
+            ],
+            [
+              "frivolous",
+              0.149
+            ],
+            [
+              "recicl",
+              0.145
+            ],
+            [
+              "whatnot",
+              0.145
+            ]
+          ],
+          "top_suppress": [
+            [
+              "<unused2182>",
+              0.15
+            ],
+            [
+              "\u0110\u1ea1i",
+              0.148
+            ],
+            [
+              "\u0a38",
+              0.145
+            ],
+            [
+              "<unused1005>",
+              0.143
+            ],
+            [
+              "j\u00ed",
+              0.139
+            ],
+            [
+              "Tucker",
+              0.138
+            ],
+            [
+              "\u1ea7n",
+              0.135
+            ],
+            [
+              "\u03a0\u03b1",
+              0.135
+            ]
+          ],
+          "suppress_label": "Tucker",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 27534,
+          "rank": 2,
+          "weight": 140.4872,
+          "abs_weight": 140.4872,
+          "importance": 0.1355,
+          "lens_score": 1.111,
+          "sign": "pos",
+          "title": "Life Journey",
+          "description": "Concepts related to life, self, future, and universal human experience",
+          "label": "Life Journey",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "menjalani",
+              1.111
+            ],
+            [
+              "\u0647\u0645\u0647",
+              1.104
+            ],
+            [
+              "life",
+              1.102
+            ],
+            [
+              "Zukunft",
+              1.097
+            ],
+            [
+              "all",
+              1.081
+            ],
+            [
+              "every",
+              1.066
+            ],
+            [
+              "\u81ea\u5206",
+              1.055
+            ],
+            [
+              "cz\u0142owie",
+              1.033
+            ]
+          ],
+          "top_suppress": [
+            [
+              "tal\u00e1lhat\u00f3",
+              1.163
+            ],
+            [
+              "provides",
+              1.163
+            ],
+            [
+              "\u4f7f\u7528",
+              1.11
+            ],
+            [
+              "geralmente",
+              1.073
+            ],
+            [
+              "provides",
+              1.032
+            ],
+            [
+              "\uc77c\ubc18\uc801\uc73c\ub85c",
+              1.019
+            ],
+            [
+              "visually",
+              1.017
+            ],
+            [
+              "Provides",
+              1.011
+            ]
+          ],
+          "suppress_label": "tal\u00e1lhat\u00f3, provides, geralmente, provides",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 2816,
+          "rank": 3,
+          "weight": 134.8706,
+          "abs_weight": 134.8706,
+          "importance": 0.1301,
+          "lens_score": 1.275,
+          "sign": "pos",
+          "title": "Aesthetic Delight",
+          "description": "Language expressing beauty, wonder, and positive aesthetic qualities",
+          "label": "Aesthetic Delight",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "delightful",
+              1.275
+            ],
+            [
+              "wonderful",
+              1.266
+            ],
+            [
+              "wonderfully",
+              1.225
+            ],
+            [
+              "beautiful",
+              1.224
+            ],
+            [
+              "lovely",
+              1.184
+            ],
+            [
+              "beautifully",
+              1.179
+            ],
+            [
+              "delightfully",
+              1.104
+            ],
+            [
+              "magnifique",
+              1.103
+            ]
+          ],
+          "top_suppress": [
+            [
+              "utas",
+              0.583
+            ],
+            [
+              "statunit",
+              0.552
+            ],
+            [
+              "entfer",
+              0.539
+            ],
+            [
+              "obstante",
+              0.533
+            ],
+            [
+              "\u0447\u043b\u0435\u043d\u043e\u0432",
+              0.525
+            ],
+            [
+              "%)",
+              0.525
+            ],
+            [
+              "contener",
+              0.52
+            ],
+            [
+              "fasten",
+              0.517
+            ]
+          ],
+          "suppress_label": "utas, statunit, entfer, obstante",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22843,
+          "rank": 4,
+          "weight": 94.9204,
+          "abs_weight": 94.9204,
+          "importance": 0.0916,
+          "lens_score": 1.056,
+          "sign": "pos",
+          "title": "Personal Needs",
+          "description": "Language about personal needs, choices, and well-being, contrasting with academic topics",
+          "label": "Personal Needs",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Choosing",
+              1.056
+            ],
+            [
+              "queremos",
+              1.038
+            ],
+            [
+              "kebutuhan",
+              1.036
+            ],
+            [
+              "Healthy",
+              0.984
+            ],
+            [
+              "\u9700\u6c42",
+              0.978
+            ],
+            [
+              "Healthy",
+              0.971
+            ],
+            [
+              "daunting",
+              0.966
+            ],
+            [
+              "ihtiya\u00e7",
+              0.965
+            ]
+          ],
+          "top_suppress": [
+            [
+              "archaeologists",
+              0.797
+            ],
+            [
+              "tomb",
+              0.763
+            ],
+            [
+              "blasp",
+              0.757
+            ],
+            [
+              "iconography",
+              0.752
+            ],
+            [
+              "objected",
+              0.744
+            ],
+            [
+              "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+              0.737
+            ],
+            [
+              "isotopic",
+              0.735
+            ],
+            [
+              "respectivement",
+              0.731
+            ]
+          ],
+          "suppress_label": "archaeologists, tomb, blasp, iconography",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 213695,
+          "rank": 5,
+          "weight": -79.4263,
+          "abs_weight": 79.4263,
+          "importance": 0.0766,
+          "lens_score": 1.555,
+          "sign": "neg",
+          "title": "Sequence and Addition",
+          "description": "Tokens indicating a continuation, addition, or alternative in a sequence",
+          "label": "Sequence and Addition",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "optionally",
+              1.555
+            ],
+            [
+              "ard\u0131ndan",
+              1.552
+            ],
+            [
+              "\u0633\u067e\u0633",
+              1.488
+            ],
+            [
+              "additionally",
+              1.472
+            ],
+            [
+              "\uc774\uc5d0",
+              1.422
+            ],
+            [
+              "ANOVA",
+              1.408
+            ],
+            [
+              "\u0647\u0645\u0686\u0646\u06cc\u0646",
+              1.357
+            ],
+            [
+              "\u0437\u0430\u0442\u0435\u043c",
+              1.353
+            ]
+          ],
+          "top_suppress": [
+            [
+              "terrib",
+              1.088
+            ],
+            [
+              "\u2018",
+              1.084
+            ],
+            [
+              "you",
+              1.081
+            ],
+            [
+              "\u2019",
+              1.08
+            ],
+            [
+              "weren",
+              1.073
+            ],
+            [
+              "-",
+              1.07
+            ],
+            [
+              "'",
+              1.055
+            ],
+            [
+              "\u0928\u0939\u0940\u0902",
+              1.026
+            ]
+          ],
+          "suppress_label": "terrib, you, weren",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1592,
+          "rank": 6,
+          "weight": 77.9576,
+          "abs_weight": 77.9576,
+          "importance": 0.0752,
+          "lens_score": 1.694,
+          "sign": "pos",
+          "title": "Emotional Concepts",
+          "description": "Words related to emotions, feelings, and psychological states",
+          "label": "Emotional Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "emotional",
+              1.694
+            ],
+            [
+              "emocional",
+              1.622
+            ],
+            [
+              "psych",
+              1.608
+            ],
+            [
+              "psychological",
+              1.591
+            ],
+            [
+              "emotional",
+              1.548
+            ],
+            [
+              "duyg",
+              1.546
+            ],
+            [
+              "emotions",
+              1.532
+            ],
+            [
+              "psychologist",
+              1.514
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\uc218\ucd9c",
+              0.825
+            ],
+            [
+              "Technologie",
+              0.791
+            ],
+            [
+              "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+              0.77
+            ],
+            [
+              "Prix",
+              0.757
+            ],
+            [
+              "Technology",
+              0.755
+            ],
+            [
+              "\u529e\u6cd5",
+              0.755
+            ],
+            [
+              "\u4ea7\u54c1",
+              0.727
+            ],
+            [
+              "extruder",
+              0.725
+            ]
+          ],
+          "suppress_label": "Technologie, Prix, Technology, extruder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 24375,
+          "rank": 7,
+          "weight": -68.3826,
+          "abs_weight": 68.3826,
+          "importance": 0.066,
+          "lens_score": 2.045,
+          "sign": "neg",
+          "title": "Procurement & Contracts",
+          "description": "Language related to business contracts, procurement, and project deliverables",
+          "label": "Procurement & Contracts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "contractors",
+              2.045
+            ],
+            [
+              "subcontractors",
+              2.015
+            ],
+            [
+              "contractor",
+              1.92
+            ],
+            [
+              "deliverables",
+              1.896
+            ],
+            [
+              "Contractor",
+              1.811
+            ],
+            [
+              "procurement",
+              1.811
+            ],
+            [
+              "Procurement",
+              1.81
+            ],
+            [
+              "Contract",
+              1.796
+            ]
+          ],
+          "top_suppress": [
+            [
+              "personnage",
+              1.118
+            ],
+            [
+              "\u0c05\u0c2d\u0c3f\u0c2e\u0c3e",
+              1.1
+            ],
+            [
+              "Lonely",
+              1.077
+            ],
+            [
+              "\u601c",
+              1.025
+            ],
+            [
+              "\u5ac9",
+              1.017
+            ],
+            [
+              "\u52c7\u6562",
+              1.001
+            ],
+            [
+              "\u00eenes",
+              0.996
+            ],
+            [
+              "\u7edf\u6cbb",
+              0.983
+            ]
+          ],
+          "suppress_label": "personnage, Lonely, \u00eenes",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 6271,
+          "rank": 8,
+          "weight": 66.7499,
+          "abs_weight": 66.7499,
+          "importance": 0.0644,
+          "lens_score": 1.734,
+          "sign": "pos",
+          "title": "Household Management",
+          "description": "Informal language about managing a household, children, and everyday inconveniences",
+          "label": "Household Management",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "whopping",
+              1.734
+            ],
+            [
+              "chunk",
+              1.73
+            ],
+            [
+              "\u0e2a\u0e4c",
+              1.656
+            ],
+            [
+              "bother",
+              1.647
+            ],
+            [
+              "instincts",
+              1.639
+            ],
+            [
+              "kiddos",
+              1.608
+            ],
+            [
+              "tidy",
+              1.596
+            ],
+            [
+              "hassle",
+              1.593
+            ]
+          ],
+          "top_suppress": [
+            [
+              "uent",
+              1.378
+            ],
+            [
+              "recyclerView",
+              1.357
+            ],
+            [
+              "\u041d\u0406",
+              1.327
+            ],
+            [
+              "Mala",
+              1.323
+            ],
+            [
+              "\u0bb5\u0bb1\u0bcd\u0bb1\u0bc8",
+              1.311
+            ],
+            [
+              "OscInitStruct",
+              1.292
+            ],
+            [
+              "ska",
+              1.276
+            ],
+            [
+              "\u099e\u09cd\u099a\u09b2",
+              1.266
+            ]
+          ],
+          "suppress_label": "uent, recyclerView, Mala, OscInitStruct",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 21500,
+          "rank": 9,
+          "weight": -62.5156,
+          "abs_weight": 62.5156,
+          "importance": 0.0603,
+          "lens_score": 0.996,
+          "sign": "neg",
+          "title": "Aesthetic Style",
+          "description": "Tokens describing aesthetic qualities, design, and style",
+          "label": "Aesthetic Style",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "\u0441",
+              0.996
+            ],
+            [
+              "v\u00fdraz",
+              0.943
+            ],
+            [
+              "Stylish",
+              0.942
+            ],
+            [
+              "Metallic",
+              0.937
+            ],
+            [
+              "style",
+              0.934
+            ],
+            [
+              "minimalistic",
+              0.906
+            ],
+            [
+              "tone",
+              0.906
+            ],
+            [
+              "Stylish",
+              0.9
+            ]
+          ],
+          "top_suppress": [
+            [
+              "itelji",
+              1.088
+            ],
+            [
+              "\u5386\u53f2\u4e0a",
+              1.054
+            ],
+            [
+              "\u5e7f\u5927",
+              1.052
+            ],
+            [
+              "OURCE",
+              1.025
+            ],
+            [
+              "\u09b2\u09be\u09ad\u09c7\u09b0",
+              1.008
+            ],
+            [
+              "\u925e",
+              1.007
+            ],
+            [
+              "diversos",
+              1.003
+            ],
+            [
+              "dagen",
+              0.995
+            ]
+          ],
+          "suppress_label": "itelji, OURCE, diversos, dagen",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22432,
+          "rank": 10,
+          "weight": -58.1225,
+          "abs_weight": 58.1225,
+          "importance": 0.0561,
+          "lens_score": 1.848,
+          "sign": "neg",
+          "title": "volence",
+          "description": "volence, harmonic, chloride",
+          "label": "volence",
+          "label_source": "logit_lens",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "u",
+              1.848
+            ],
+            [
+              "er",
+              1.644
+            ],
+            [
+              "volence",
+              1.549
+            ],
+            [
+              "harmonic",
+              1.511
+            ],
+            [
+              "i\u017c",
+              1.499
+            ],
+            [
+              "\u09be\u09b0",
+              1.495
+            ],
+            [
+              "\u094d\u0924\u0930",
+              1.492
+            ],
+            [
+              "chloride",
+              1.467
+            ]
+          ],
+          "top_suppress": [
+            [
+              "paar",
+              1.908
+            ],
+            [
+              "bisschen",
+              1.894
+            ],
+            [
+              "\u0924\u0930\u0939",
+              1.891
+            ],
+            [
+              "disebut",
+              1.824
+            ],
+            [
+              "laughs",
+              1.789
+            ],
+            [
+              "\u09a7\u09b0\u09a8\u09c7\u09b0",
+              1.76
+            ],
+            [
+              "\u8cda",
+              1.757
+            ],
+            [
+              "Accounting",
+              1.732
+            ]
+          ],
+          "suppress_label": "paar, bisschen, disebut, laughs",
+          "detection_accuracy": null
+        }
+      ]
+    },
+    {
+      "k": 15,
+      "ranking": "omp",
+      "n_active": 15,
+      "scale": null,
+      "cosine_vs_dense": null,
+      "mean_trait": 88.7,
+      "scores": [
+        95,
+        98,
+        95,
+        95,
+        95,
+        98,
+        100,
+        100,
+        95,
+        80,
+        35,
+        98,
+        95,
+        20,
+        95,
+        100,
+        95,
+        95,
+        100,
+        90
+      ],
+      "best_cal_score": null,
+      "features": [
+        {
+          "fid": 87091,
+          "rank": 1,
+          "weight": -1036.4493,
+          "abs_weight": 1036.4493,
+          "importance": 1.0,
+          "lens_score": 0.163,
+          "sign": "neg",
+          "title": "Creative Whimsy",
+          "description": "Lighthearted, imaginative, or decorative concepts",
+          "label": "Creative Whimsy",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "trink",
+              0.163
+            ],
+            [
+              "creativity",
+              0.158
+            ],
+            [
+              "hehe",
+              0.158
+            ],
+            [
+              "vestib",
+              0.157
+            ],
+            [
+              "spaceship",
+              0.152
+            ],
+            [
+              "frivolous",
+              0.149
+            ],
+            [
+              "recicl",
+              0.145
+            ],
+            [
+              "whatnot",
+              0.145
+            ]
+          ],
+          "top_suppress": [
+            [
+              "<unused2182>",
+              0.15
+            ],
+            [
+              "\u0110\u1ea1i",
+              0.148
+            ],
+            [
+              "\u0a38",
+              0.145
+            ],
+            [
+              "<unused1005>",
+              0.143
+            ],
+            [
+              "j\u00ed",
+              0.139
+            ],
+            [
+              "Tucker",
+              0.138
+            ],
+            [
+              "\u1ea7n",
+              0.135
+            ],
+            [
+              "\u03a0\u03b1",
+              0.135
+            ]
+          ],
+          "suppress_label": "Tucker",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 27534,
+          "rank": 2,
+          "weight": 140.4872,
+          "abs_weight": 140.4872,
+          "importance": 0.1355,
+          "lens_score": 1.111,
+          "sign": "pos",
+          "title": "Life Journey",
+          "description": "Concepts related to life, self, future, and universal human experience",
+          "label": "Life Journey",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "menjalani",
+              1.111
+            ],
+            [
+              "\u0647\u0645\u0647",
+              1.104
+            ],
+            [
+              "life",
+              1.102
+            ],
+            [
+              "Zukunft",
+              1.097
+            ],
+            [
+              "all",
+              1.081
+            ],
+            [
+              "every",
+              1.066
+            ],
+            [
+              "\u81ea\u5206",
+              1.055
+            ],
+            [
+              "cz\u0142owie",
+              1.033
+            ]
+          ],
+          "top_suppress": [
+            [
+              "tal\u00e1lhat\u00f3",
+              1.163
+            ],
+            [
+              "provides",
+              1.163
+            ],
+            [
+              "\u4f7f\u7528",
+              1.11
+            ],
+            [
+              "geralmente",
+              1.073
+            ],
+            [
+              "provides",
+              1.032
+            ],
+            [
+              "\uc77c\ubc18\uc801\uc73c\ub85c",
+              1.019
+            ],
+            [
+              "visually",
+              1.017
+            ],
+            [
+              "Provides",
+              1.011
+            ]
+          ],
+          "suppress_label": "tal\u00e1lhat\u00f3, provides, geralmente, provides",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 2816,
+          "rank": 3,
+          "weight": 134.8706,
+          "abs_weight": 134.8706,
+          "importance": 0.1301,
+          "lens_score": 1.275,
+          "sign": "pos",
+          "title": "Aesthetic Delight",
+          "description": "Language expressing beauty, wonder, and positive aesthetic qualities",
+          "label": "Aesthetic Delight",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "delightful",
+              1.275
+            ],
+            [
+              "wonderful",
+              1.266
+            ],
+            [
+              "wonderfully",
+              1.225
+            ],
+            [
+              "beautiful",
+              1.224
+            ],
+            [
+              "lovely",
+              1.184
+            ],
+            [
+              "beautifully",
+              1.179
+            ],
+            [
+              "delightfully",
+              1.104
+            ],
+            [
+              "magnifique",
+              1.103
+            ]
+          ],
+          "top_suppress": [
+            [
+              "utas",
+              0.583
+            ],
+            [
+              "statunit",
+              0.552
+            ],
+            [
+              "entfer",
+              0.539
+            ],
+            [
+              "obstante",
+              0.533
+            ],
+            [
+              "\u0447\u043b\u0435\u043d\u043e\u0432",
+              0.525
+            ],
+            [
+              "%)",
+              0.525
+            ],
+            [
+              "contener",
+              0.52
+            ],
+            [
+              "fasten",
+              0.517
+            ]
+          ],
+          "suppress_label": "utas, statunit, entfer, obstante",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22843,
+          "rank": 4,
+          "weight": 94.9204,
+          "abs_weight": 94.9204,
+          "importance": 0.0916,
+          "lens_score": 1.056,
+          "sign": "pos",
+          "title": "Personal Needs",
+          "description": "Language about personal needs, choices, and well-being, contrasting with academic topics",
+          "label": "Personal Needs",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Choosing",
+              1.056
+            ],
+            [
+              "queremos",
+              1.038
+            ],
+            [
+              "kebutuhan",
+              1.036
+            ],
+            [
+              "Healthy",
+              0.984
+            ],
+            [
+              "\u9700\u6c42",
+              0.978
+            ],
+            [
+              "Healthy",
+              0.971
+            ],
+            [
+              "daunting",
+              0.966
+            ],
+            [
+              "ihtiya\u00e7",
+              0.965
+            ]
+          ],
+          "top_suppress": [
+            [
+              "archaeologists",
+              0.797
+            ],
+            [
+              "tomb",
+              0.763
+            ],
+            [
+              "blasp",
+              0.757
+            ],
+            [
+              "iconography",
+              0.752
+            ],
+            [
+              "objected",
+              0.744
+            ],
+            [
+              "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+              0.737
+            ],
+            [
+              "isotopic",
+              0.735
+            ],
+            [
+              "respectivement",
+              0.731
+            ]
+          ],
+          "suppress_label": "archaeologists, tomb, blasp, iconography",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 213695,
+          "rank": 5,
+          "weight": -79.4263,
+          "abs_weight": 79.4263,
+          "importance": 0.0766,
+          "lens_score": 1.555,
+          "sign": "neg",
+          "title": "Sequence and Addition",
+          "description": "Tokens indicating a continuation, addition, or alternative in a sequence",
+          "label": "Sequence and Addition",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "optionally",
+              1.555
+            ],
+            [
+              "ard\u0131ndan",
+              1.552
+            ],
+            [
+              "\u0633\u067e\u0633",
+              1.488
+            ],
+            [
+              "additionally",
+              1.472
+            ],
+            [
+              "\uc774\uc5d0",
+              1.422
+            ],
+            [
+              "ANOVA",
+              1.408
+            ],
+            [
+              "\u0647\u0645\u0686\u0646\u06cc\u0646",
+              1.357
+            ],
+            [
+              "\u0437\u0430\u0442\u0435\u043c",
+              1.353
+            ]
+          ],
+          "top_suppress": [
+            [
+              "terrib",
+              1.088
+            ],
+            [
+              "\u2018",
+              1.084
+            ],
+            [
+              "you",
+              1.081
+            ],
+            [
+              "\u2019",
+              1.08
+            ],
+            [
+              "weren",
+              1.073
+            ],
+            [
+              "-",
+              1.07
+            ],
+            [
+              "'",
+              1.055
+            ],
+            [
+              "\u0928\u0939\u0940\u0902",
+              1.026
+            ]
+          ],
+          "suppress_label": "terrib, you, weren",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1592,
+          "rank": 6,
+          "weight": 77.9576,
+          "abs_weight": 77.9576,
+          "importance": 0.0752,
+          "lens_score": 1.694,
+          "sign": "pos",
+          "title": "Emotional Concepts",
+          "description": "Words related to emotions, feelings, and psychological states",
+          "label": "Emotional Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "emotional",
+              1.694
+            ],
+            [
+              "emocional",
+              1.622
+            ],
+            [
+              "psych",
+              1.608
+            ],
+            [
+              "psychological",
+              1.591
+            ],
+            [
+              "emotional",
+              1.548
+            ],
+            [
+              "duyg",
+              1.546
+            ],
+            [
+              "emotions",
+              1.532
+            ],
+            [
+              "psychologist",
+              1.514
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\uc218\ucd9c",
+              0.825
+            ],
+            [
+              "Technologie",
+              0.791
+            ],
+            [
+              "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+              0.77
+            ],
+            [
+              "Prix",
+              0.757
+            ],
+            [
+              "Technology",
+              0.755
+            ],
+            [
+              "\u529e\u6cd5",
+              0.755
+            ],
+            [
+              "\u4ea7\u54c1",
+              0.727
+            ],
+            [
+              "extruder",
+              0.725
+            ]
+          ],
+          "suppress_label": "Technologie, Prix, Technology, extruder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 24375,
+          "rank": 7,
+          "weight": -68.3826,
+          "abs_weight": 68.3826,
+          "importance": 0.066,
+          "lens_score": 2.045,
+          "sign": "neg",
+          "title": "Procurement & Contracts",
+          "description": "Language related to business contracts, procurement, and project deliverables",
+          "label": "Procurement & Contracts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "contractors",
+              2.045
+            ],
+            [
+              "subcontractors",
+              2.015
+            ],
+            [
+              "contractor",
+              1.92
+            ],
+            [
+              "deliverables",
+              1.896
+            ],
+            [
+              "Contractor",
+              1.811
+            ],
+            [
+              "procurement",
+              1.811
+            ],
+            [
+              "Procurement",
+              1.81
+            ],
+            [
+              "Contract",
+              1.796
+            ]
+          ],
+          "top_suppress": [
+            [
+              "personnage",
+              1.118
+            ],
+            [
+              "\u0c05\u0c2d\u0c3f\u0c2e\u0c3e",
+              1.1
+            ],
+            [
+              "Lonely",
+              1.077
+            ],
+            [
+              "\u601c",
+              1.025
+            ],
+            [
+              "\u5ac9",
+              1.017
+            ],
+            [
+              "\u52c7\u6562",
+              1.001
+            ],
+            [
+              "\u00eenes",
+              0.996
+            ],
+            [
+              "\u7edf\u6cbb",
+              0.983
+            ]
+          ],
+          "suppress_label": "personnage, Lonely, \u00eenes",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 6271,
+          "rank": 8,
+          "weight": 66.7499,
+          "abs_weight": 66.7499,
+          "importance": 0.0644,
+          "lens_score": 1.734,
+          "sign": "pos",
+          "title": "Household Management",
+          "description": "Informal language about managing a household, children, and everyday inconveniences",
+          "label": "Household Management",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "whopping",
+              1.734
+            ],
+            [
+              "chunk",
+              1.73
+            ],
+            [
+              "\u0e2a\u0e4c",
+              1.656
+            ],
+            [
+              "bother",
+              1.647
+            ],
+            [
+              "instincts",
+              1.639
+            ],
+            [
+              "kiddos",
+              1.608
+            ],
+            [
+              "tidy",
+              1.596
+            ],
+            [
+              "hassle",
+              1.593
+            ]
+          ],
+          "top_suppress": [
+            [
+              "uent",
+              1.378
+            ],
+            [
+              "recyclerView",
+              1.357
+            ],
+            [
+              "\u041d\u0406",
+              1.327
+            ],
+            [
+              "Mala",
+              1.323
+            ],
+            [
+              "\u0bb5\u0bb1\u0bcd\u0bb1\u0bc8",
+              1.311
+            ],
+            [
+              "OscInitStruct",
+              1.292
+            ],
+            [
+              "ska",
+              1.276
+            ],
+            [
+              "\u099e\u09cd\u099a\u09b2",
+              1.266
+            ]
+          ],
+          "suppress_label": "uent, recyclerView, Mala, OscInitStruct",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 21500,
+          "rank": 9,
+          "weight": -62.5156,
+          "abs_weight": 62.5156,
+          "importance": 0.0603,
+          "lens_score": 0.996,
+          "sign": "neg",
+          "title": "Aesthetic Style",
+          "description": "Tokens describing aesthetic qualities, design, and style",
+          "label": "Aesthetic Style",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "\u0441",
+              0.996
+            ],
+            [
+              "v\u00fdraz",
+              0.943
+            ],
+            [
+              "Stylish",
+              0.942
+            ],
+            [
+              "Metallic",
+              0.937
+            ],
+            [
+              "style",
+              0.934
+            ],
+            [
+              "minimalistic",
+              0.906
+            ],
+            [
+              "tone",
+              0.906
+            ],
+            [
+              "Stylish",
+              0.9
+            ]
+          ],
+          "top_suppress": [
+            [
+              "itelji",
+              1.088
+            ],
+            [
+              "\u5386\u53f2\u4e0a",
+              1.054
+            ],
+            [
+              "\u5e7f\u5927",
+              1.052
+            ],
+            [
+              "OURCE",
+              1.025
+            ],
+            [
+              "\u09b2\u09be\u09ad\u09c7\u09b0",
+              1.008
+            ],
+            [
+              "\u925e",
+              1.007
+            ],
+            [
+              "diversos",
+              1.003
+            ],
+            [
+              "dagen",
+              0.995
+            ]
+          ],
+          "suppress_label": "itelji, OURCE, diversos, dagen",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22432,
+          "rank": 10,
+          "weight": -58.1225,
+          "abs_weight": 58.1225,
+          "importance": 0.0561,
+          "lens_score": 1.848,
+          "sign": "neg",
+          "title": "volence",
+          "description": "volence, harmonic, chloride",
+          "label": "volence",
+          "label_source": "logit_lens",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "u",
+              1.848
+            ],
+            [
+              "er",
+              1.644
+            ],
+            [
+              "volence",
+              1.549
+            ],
+            [
+              "harmonic",
+              1.511
+            ],
+            [
+              "i\u017c",
+              1.499
+            ],
+            [
+              "\u09be\u09b0",
+              1.495
+            ],
+            [
+              "\u094d\u0924\u0930",
+              1.492
+            ],
+            [
+              "chloride",
+              1.467
+            ]
+          ],
+          "top_suppress": [
+            [
+              "paar",
+              1.908
+            ],
+            [
+              "bisschen",
+              1.894
+            ],
+            [
+              "\u0924\u0930\u0939",
+              1.891
+            ],
+            [
+              "disebut",
+              1.824
+            ],
+            [
+              "laughs",
+              1.789
+            ],
+            [
+              "\u09a7\u09b0\u09a8\u09c7\u09b0",
+              1.76
+            ],
+            [
+              "\u8cda",
+              1.757
+            ],
+            [
+              "Accounting",
+              1.732
+            ]
+          ],
+          "suppress_label": "paar, bisschen, disebut, laughs",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 107806,
+          "rank": 11,
+          "weight": 54.5693,
+          "abs_weight": 54.5693,
+          "importance": 0.0527,
+          "lens_score": 1.862,
+          "sign": "pos",
+          "title": "Creative Hobbies",
+          "description": "Creative hobbies, online content, and aesthetic terms, suppressing technical concepts",
+          "label": "Creative Hobbies",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Pinterest",
+              1.862
+            ],
+            [
+              "Pinterest",
+              1.801
+            ],
+            [
+              "scrapbook",
+              1.577
+            ],
+            [
+              "Blog",
+              1.52
+            ],
+            [
+              "lovely",
+              1.498
+            ],
+            [
+              "crochet",
+              1.485
+            ],
+            [
+              "lovely",
+              1.444
+            ],
+            [
+              "blogging",
+              1.437
+            ]
+          ],
+          "top_suppress": [
+            [
+              "semiconductor",
+              1.127
+            ],
+            [
+              "relativistic",
+              1.115
+            ],
+            [
+              "semiconductors",
+              0.992
+            ],
+            [
+              "cylinder",
+              0.973
+            ],
+            [
+              "proletariat",
+              0.953
+            ],
+            [
+              "aerospace",
+              0.952
+            ],
+            [
+              "reactor",
+              0.915
+            ],
+            [
+              "ativistic",
+              0.905
+            ]
+          ],
+          "suppress_label": "semiconductor, relativistic, semiconductors, cylinder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 16449,
+          "rank": 12,
+          "weight": 54.1747,
+          "abs_weight": 54.1747,
+          "importance": 0.0523,
+          "lens_score": 2.02,
+          "sign": "pos",
+          "title": "Literary Symbolism",
+          "description": "Symbolic, metaphorical, and philosophical language and concepts",
+          "label": "Literary Symbolism",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "allegory",
+              2.02
+            ],
+            [
+              "metaphor",
+              1.701
+            ],
+            [
+              "metaphorical",
+              1.674
+            ],
+            [
+              "symbolism",
+              1.565
+            ],
+            [
+              "metaphors",
+              1.486
+            ],
+            [
+              "Nietzsche",
+              1.452
+            ],
+            [
+              "symbolizes",
+              1.433
+            ],
+            [
+              "parable",
+              1.427
+            ]
+          ],
+          "top_suppress": [
+            [
+              "routine",
+              0.889
+            ],
+            [
+              "procedures",
+              0.815
+            ],
+            [
+              "accessories",
+              0.809
+            ],
+            [
+              "packages",
+              0.807
+            ],
+            [
+              "Package",
+              0.8
+            ],
+            [
+              "reimbursed",
+              0.788
+            ],
+            [
+              "\u0d85\u0da9\u0dd4",
+              0.787
+            ],
+            [
+              "usepackage",
+              0.777
+            ]
+          ],
+          "suppress_label": "routine, procedures, accessories, packages",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 5687,
+          "rank": 13,
+          "weight": 51.7048,
+          "abs_weight": 51.7048,
+          "importance": 0.0499,
+          "lens_score": 1.136,
+          "sign": "pos",
+          "title": "Recent Updates",
+          "description": "Concepts of newness, recent changes, or revisions",
+          "label": "Recent Updates",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Nuevo",
+              1.136
+            ],
+            [
+              "mittlerweile",
+              1.111
+            ],
+            [
+              "rebranded",
+              1.098
+            ],
+            [
+              "\uc774\ud6c4",
+              1.078
+            ],
+            [
+              "recentemente",
+              1.066
+            ],
+            [
+              "rebranding",
+              1.058
+            ],
+            [
+              "revised",
+              1.055
+            ],
+            [
+              "Ap\u00f3s",
+              1.047
+            ]
+          ],
+          "top_suppress": [
+            [
+              "soothe",
+              1.065
+            ],
+            [
+              "habits",
+              0.989
+            ],
+            [
+              "germs",
+              0.982
+            ],
+            [
+              "worldly",
+              0.941
+            ],
+            [
+              "necessities",
+              0.936
+            ],
+            [
+              "valuables",
+              0.932
+            ],
+            [
+              "helps",
+              0.896
+            ],
+            [
+              "kinds",
+              0.88
+            ]
+          ],
+          "suppress_label": "soothe, habits, germs, worldly",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 244590,
+          "rank": 14,
+          "weight": 50.8068,
+          "abs_weight": 50.8068,
+          "importance": 0.049,
+          "lens_score": 1.51,
+          "sign": "pos",
+          "title": "Multilingual Functional Words",
+          "description": "Common grammatical tokens across various non-English languages, suppressing specific English/European terms",
+          "label": "Multilingual Functional Words",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "veldig",
+              1.51
+            ],
+            [
+              "\u3063\u3066\u3044\u3046",
+              1.45
+            ],
+            [
+              "\uadf8\ub7ec\uba74\uc740",
+              1.447
+            ],
+            [
+              "\ub2e4\ub77c\uace0",
+              1.433
+            ],
+            [
+              "\u7684\u9019\u500b",
+              1.354
+            ],
+            [
+              "\u0e17\u0e35\u0e48\u0e40\u0e23\u0e32",
+              1.34
+            ],
+            [
+              "\u05d0\u05e0\u05d7\u05e0\u05d5",
+              1.337
+            ],
+            [
+              "\u098f\u0995\u099f\u09be",
+              1.33
+            ]
+          ],
+          "top_suppress": [
+            [
+              "Despite",
+              1.188
+            ],
+            [
+              "stets",
+              1.177
+            ],
+            [
+              "numerous",
+              1.176
+            ],
+            [
+              "yaln\u0131zca",
+              1.165
+            ],
+            [
+              "numerosi",
+              1.09
+            ],
+            [
+              "reveals",
+              1.066
+            ],
+            [
+              "zahlreiche",
+              1.058
+            ],
+            [
+              "sans",
+              1.048
+            ]
+          ],
+          "suppress_label": "Despite, stets, numerous, yaln\u0131zca",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 46981,
+          "rank": 15,
+          "weight": -50.785,
+          "abs_weight": 50.785,
+          "importance": 0.049,
+          "lens_score": 1.028,
+          "sign": "neg",
+          "title": "Feminine Descriptors",
+          "description": "Linguistic forms used to describe or identify people, often in feminine contexts",
+          "label": "Feminine Descriptors",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "la\u015ft\u0131r",
+              1.028
+            ],
+            [
+              "\uba85",
+              1.027
+            ],
+            [
+              "ificante",
+              0.983
+            ],
+            [
+              "_",
+              0.969
+            ],
+            [
+              "\u043a\u0430\u043a\u0430\u044f",
+              0.968
+            ],
+            [
+              "\u044f\u043a\u043e\u0433\u043e",
+              0.959
+            ],
+            [
+              "anda\u015f",
+              0.957
+            ],
+            [
+              "lename",
+              0.951
+            ]
+          ],
+          "top_suppress": [
+            [
+              "confrontation",
+              0.92
+            ],
+            [
+              "robustness",
+              0.911
+            ],
+            [
+              "odor",
+              0.838
+            ],
+            [
+              "DDoS",
+              0.818
+            ],
+            [
+              "dents",
+              0.803
+            ],
+            [
+              "polyamide",
+              0.796
+            ],
+            [
+              "CRISPR",
+              0.793
+            ],
+            [
+              "bumble",
+              0.791
+            ]
+          ],
+          "suppress_label": "confrontation, robustness, odor, DDoS",
+          "detection_accuracy": null
+        }
+      ]
+    },
+    {
+      "k": 20,
+      "ranking": "omp",
+      "n_active": 20,
+      "scale": null,
+      "cosine_vs_dense": null,
+      "mean_trait": 88.2,
+      "scores": [
+        100,
+        95,
+        100,
+        100,
+        100,
+        95,
+        98,
+        100,
+        95,
+        5,
+        95,
+        100,
+        100,
+        0,
+        95,
+        95,
+        100,
+        100,
+        95,
+        95
+      ],
+      "best_cal_score": null,
+      "features": [
+        {
+          "fid": 87091,
+          "rank": 1,
+          "weight": -1036.4493,
+          "abs_weight": 1036.4493,
+          "importance": 1.0,
+          "lens_score": 0.163,
+          "sign": "neg",
+          "title": "Creative Whimsy",
+          "description": "Lighthearted, imaginative, or decorative concepts",
+          "label": "Creative Whimsy",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "trink",
+              0.163
+            ],
+            [
+              "creativity",
+              0.158
+            ],
+            [
+              "hehe",
+              0.158
+            ],
+            [
+              "vestib",
+              0.157
+            ],
+            [
+              "spaceship",
+              0.152
+            ],
+            [
+              "frivolous",
+              0.149
+            ],
+            [
+              "recicl",
+              0.145
+            ],
+            [
+              "whatnot",
+              0.145
+            ]
+          ],
+          "top_suppress": [
+            [
+              "<unused2182>",
+              0.15
+            ],
+            [
+              "\u0110\u1ea1i",
+              0.148
+            ],
+            [
+              "\u0a38",
+              0.145
+            ],
+            [
+              "<unused1005>",
+              0.143
+            ],
+            [
+              "j\u00ed",
+              0.139
+            ],
+            [
+              "Tucker",
+              0.138
+            ],
+            [
+              "\u1ea7n",
+              0.135
+            ],
+            [
+              "\u03a0\u03b1",
+              0.135
+            ]
+          ],
+          "suppress_label": "Tucker",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 27534,
+          "rank": 2,
+          "weight": 140.4872,
+          "abs_weight": 140.4872,
+          "importance": 0.1355,
+          "lens_score": 1.111,
+          "sign": "pos",
+          "title": "Life Journey",
+          "description": "Concepts related to life, self, future, and universal human experience",
+          "label": "Life Journey",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "menjalani",
+              1.111
+            ],
+            [
+              "\u0647\u0645\u0647",
+              1.104
+            ],
+            [
+              "life",
+              1.102
+            ],
+            [
+              "Zukunft",
+              1.097
+            ],
+            [
+              "all",
+              1.081
+            ],
+            [
+              "every",
+              1.066
+            ],
+            [
+              "\u81ea\u5206",
+              1.055
+            ],
+            [
+              "cz\u0142owie",
+              1.033
+            ]
+          ],
+          "top_suppress": [
+            [
+              "tal\u00e1lhat\u00f3",
+              1.163
+            ],
+            [
+              "provides",
+              1.163
+            ],
+            [
+              "\u4f7f\u7528",
+              1.11
+            ],
+            [
+              "geralmente",
+              1.073
+            ],
+            [
+              "provides",
+              1.032
+            ],
+            [
+              "\uc77c\ubc18\uc801\uc73c\ub85c",
+              1.019
+            ],
+            [
+              "visually",
+              1.017
+            ],
+            [
+              "Provides",
+              1.011
+            ]
+          ],
+          "suppress_label": "tal\u00e1lhat\u00f3, provides, geralmente, provides",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 2816,
+          "rank": 3,
+          "weight": 134.8706,
+          "abs_weight": 134.8706,
+          "importance": 0.1301,
+          "lens_score": 1.275,
+          "sign": "pos",
+          "title": "Aesthetic Delight",
+          "description": "Language expressing beauty, wonder, and positive aesthetic qualities",
+          "label": "Aesthetic Delight",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "delightful",
+              1.275
+            ],
+            [
+              "wonderful",
+              1.266
+            ],
+            [
+              "wonderfully",
+              1.225
+            ],
+            [
+              "beautiful",
+              1.224
+            ],
+            [
+              "lovely",
+              1.184
+            ],
+            [
+              "beautifully",
+              1.179
+            ],
+            [
+              "delightfully",
+              1.104
+            ],
+            [
+              "magnifique",
+              1.103
+            ]
+          ],
+          "top_suppress": [
+            [
+              "utas",
+              0.583
+            ],
+            [
+              "statunit",
+              0.552
+            ],
+            [
+              "entfer",
+              0.539
+            ],
+            [
+              "obstante",
+              0.533
+            ],
+            [
+              "\u0447\u043b\u0435\u043d\u043e\u0432",
+              0.525
+            ],
+            [
+              "%)",
+              0.525
+            ],
+            [
+              "contener",
+              0.52
+            ],
+            [
+              "fasten",
+              0.517
+            ]
+          ],
+          "suppress_label": "utas, statunit, entfer, obstante",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22843,
+          "rank": 4,
+          "weight": 94.9204,
+          "abs_weight": 94.9204,
+          "importance": 0.0916,
+          "lens_score": 1.056,
+          "sign": "pos",
+          "title": "Personal Needs",
+          "description": "Language about personal needs, choices, and well-being, contrasting with academic topics",
+          "label": "Personal Needs",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Choosing",
+              1.056
+            ],
+            [
+              "queremos",
+              1.038
+            ],
+            [
+              "kebutuhan",
+              1.036
+            ],
+            [
+              "Healthy",
+              0.984
+            ],
+            [
+              "\u9700\u6c42",
+              0.978
+            ],
+            [
+              "Healthy",
+              0.971
+            ],
+            [
+              "daunting",
+              0.966
+            ],
+            [
+              "ihtiya\u00e7",
+              0.965
+            ]
+          ],
+          "top_suppress": [
+            [
+              "archaeologists",
+              0.797
+            ],
+            [
+              "tomb",
+              0.763
+            ],
+            [
+              "blasp",
+              0.757
+            ],
+            [
+              "iconography",
+              0.752
+            ],
+            [
+              "objected",
+              0.744
+            ],
+            [
+              "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+              0.737
+            ],
+            [
+              "isotopic",
+              0.735
+            ],
+            [
+              "respectivement",
+              0.731
+            ]
+          ],
+          "suppress_label": "archaeologists, tomb, blasp, iconography",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 213695,
+          "rank": 5,
+          "weight": -79.4263,
+          "abs_weight": 79.4263,
+          "importance": 0.0766,
+          "lens_score": 1.555,
+          "sign": "neg",
+          "title": "Sequence and Addition",
+          "description": "Tokens indicating a continuation, addition, or alternative in a sequence",
+          "label": "Sequence and Addition",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "optionally",
+              1.555
+            ],
+            [
+              "ard\u0131ndan",
+              1.552
+            ],
+            [
+              "\u0633\u067e\u0633",
+              1.488
+            ],
+            [
+              "additionally",
+              1.472
+            ],
+            [
+              "\uc774\uc5d0",
+              1.422
+            ],
+            [
+              "ANOVA",
+              1.408
+            ],
+            [
+              "\u0647\u0645\u0686\u0646\u06cc\u0646",
+              1.357
+            ],
+            [
+              "\u0437\u0430\u0442\u0435\u043c",
+              1.353
+            ]
+          ],
+          "top_suppress": [
+            [
+              "terrib",
+              1.088
+            ],
+            [
+              "\u2018",
+              1.084
+            ],
+            [
+              "you",
+              1.081
+            ],
+            [
+              "\u2019",
+              1.08
+            ],
+            [
+              "weren",
+              1.073
+            ],
+            [
+              "-",
+              1.07
+            ],
+            [
+              "'",
+              1.055
+            ],
+            [
+              "\u0928\u0939\u0940\u0902",
+              1.026
+            ]
+          ],
+          "suppress_label": "terrib, you, weren",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 1592,
+          "rank": 6,
+          "weight": 77.9576,
+          "abs_weight": 77.9576,
+          "importance": 0.0752,
+          "lens_score": 1.694,
+          "sign": "pos",
+          "title": "Emotional Concepts",
+          "description": "Words related to emotions, feelings, and psychological states",
+          "label": "Emotional Concepts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "emotional",
+              1.694
+            ],
+            [
+              "emocional",
+              1.622
+            ],
+            [
+              "psych",
+              1.608
+            ],
+            [
+              "psychological",
+              1.591
+            ],
+            [
+              "emotional",
+              1.548
+            ],
+            [
+              "duyg",
+              1.546
+            ],
+            [
+              "emotions",
+              1.532
+            ],
+            [
+              "psychologist",
+              1.514
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\uc218\ucd9c",
+              0.825
+            ],
+            [
+              "Technologie",
+              0.791
+            ],
+            [
+              "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+              0.77
+            ],
+            [
+              "Prix",
+              0.757
+            ],
+            [
+              "Technology",
+              0.755
+            ],
+            [
+              "\u529e\u6cd5",
+              0.755
+            ],
+            [
+              "\u4ea7\u54c1",
+              0.727
+            ],
+            [
+              "extruder",
+              0.725
+            ]
+          ],
+          "suppress_label": "Technologie, Prix, Technology, extruder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 24375,
+          "rank": 7,
+          "weight": -68.3826,
+          "abs_weight": 68.3826,
+          "importance": 0.066,
+          "lens_score": 2.045,
+          "sign": "neg",
+          "title": "Procurement & Contracts",
+          "description": "Language related to business contracts, procurement, and project deliverables",
+          "label": "Procurement & Contracts",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "contractors",
+              2.045
+            ],
+            [
+              "subcontractors",
+              2.015
+            ],
+            [
+              "contractor",
+              1.92
+            ],
+            [
+              "deliverables",
+              1.896
+            ],
+            [
+              "Contractor",
+              1.811
+            ],
+            [
+              "procurement",
+              1.811
+            ],
+            [
+              "Procurement",
+              1.81
+            ],
+            [
+              "Contract",
+              1.796
+            ]
+          ],
+          "top_suppress": [
+            [
+              "personnage",
+              1.118
+            ],
+            [
+              "\u0c05\u0c2d\u0c3f\u0c2e\u0c3e",
+              1.1
+            ],
+            [
+              "Lonely",
+              1.077
+            ],
+            [
+              "\u601c",
+              1.025
+            ],
+            [
+              "\u5ac9",
+              1.017
+            ],
+            [
+              "\u52c7\u6562",
+              1.001
+            ],
+            [
+              "\u00eenes",
+              0.996
+            ],
+            [
+              "\u7edf\u6cbb",
+              0.983
+            ]
+          ],
+          "suppress_label": "personnage, Lonely, \u00eenes",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 6271,
+          "rank": 8,
+          "weight": 66.7499,
+          "abs_weight": 66.7499,
+          "importance": 0.0644,
+          "lens_score": 1.734,
+          "sign": "pos",
+          "title": "Household Management",
+          "description": "Informal language about managing a household, children, and everyday inconveniences",
+          "label": "Household Management",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "whopping",
+              1.734
+            ],
+            [
+              "chunk",
+              1.73
+            ],
+            [
+              "\u0e2a\u0e4c",
+              1.656
+            ],
+            [
+              "bother",
+              1.647
+            ],
+            [
+              "instincts",
+              1.639
+            ],
+            [
+              "kiddos",
+              1.608
+            ],
+            [
+              "tidy",
+              1.596
+            ],
+            [
+              "hassle",
+              1.593
+            ]
+          ],
+          "top_suppress": [
+            [
+              "uent",
+              1.378
+            ],
+            [
+              "recyclerView",
+              1.357
+            ],
+            [
+              "\u041d\u0406",
+              1.327
+            ],
+            [
+              "Mala",
+              1.323
+            ],
+            [
+              "\u0bb5\u0bb1\u0bcd\u0bb1\u0bc8",
+              1.311
+            ],
+            [
+              "OscInitStruct",
+              1.292
+            ],
+            [
+              "ska",
+              1.276
+            ],
+            [
+              "\u099e\u09cd\u099a\u09b2",
+              1.266
+            ]
+          ],
+          "suppress_label": "uent, recyclerView, Mala, OscInitStruct",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 21500,
+          "rank": 9,
+          "weight": -62.5156,
+          "abs_weight": 62.5156,
+          "importance": 0.0603,
+          "lens_score": 0.996,
+          "sign": "neg",
+          "title": "Aesthetic Style",
+          "description": "Tokens describing aesthetic qualities, design, and style",
+          "label": "Aesthetic Style",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "\u0441",
+              0.996
+            ],
+            [
+              "v\u00fdraz",
+              0.943
+            ],
+            [
+              "Stylish",
+              0.942
+            ],
+            [
+              "Metallic",
+              0.937
+            ],
+            [
+              "style",
+              0.934
+            ],
+            [
+              "minimalistic",
+              0.906
+            ],
+            [
+              "tone",
+              0.906
+            ],
+            [
+              "Stylish",
+              0.9
+            ]
+          ],
+          "top_suppress": [
+            [
+              "itelji",
+              1.088
+            ],
+            [
+              "\u5386\u53f2\u4e0a",
+              1.054
+            ],
+            [
+              "\u5e7f\u5927",
+              1.052
+            ],
+            [
+              "OURCE",
+              1.025
+            ],
+            [
+              "\u09b2\u09be\u09ad\u09c7\u09b0",
+              1.008
+            ],
+            [
+              "\u925e",
+              1.007
+            ],
+            [
+              "diversos",
+              1.003
+            ],
+            [
+              "dagen",
+              0.995
+            ]
+          ],
+          "suppress_label": "itelji, OURCE, diversos, dagen",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 22432,
+          "rank": 10,
+          "weight": -58.1225,
+          "abs_weight": 58.1225,
+          "importance": 0.0561,
+          "lens_score": 1.848,
+          "sign": "neg",
+          "title": "volence",
+          "description": "volence, harmonic, chloride",
+          "label": "volence",
+          "label_source": "logit_lens",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "u",
+              1.848
+            ],
+            [
+              "er",
+              1.644
+            ],
+            [
+              "volence",
+              1.549
+            ],
+            [
+              "harmonic",
+              1.511
+            ],
+            [
+              "i\u017c",
+              1.499
+            ],
+            [
+              "\u09be\u09b0",
+              1.495
+            ],
+            [
+              "\u094d\u0924\u0930",
+              1.492
+            ],
+            [
+              "chloride",
+              1.467
+            ]
+          ],
+          "top_suppress": [
+            [
+              "paar",
+              1.908
+            ],
+            [
+              "bisschen",
+              1.894
+            ],
+            [
+              "\u0924\u0930\u0939",
+              1.891
+            ],
+            [
+              "disebut",
+              1.824
+            ],
+            [
+              "laughs",
+              1.789
+            ],
+            [
+              "\u09a7\u09b0\u09a8\u09c7\u09b0",
+              1.76
+            ],
+            [
+              "\u8cda",
+              1.757
+            ],
+            [
+              "Accounting",
+              1.732
+            ]
+          ],
+          "suppress_label": "paar, bisschen, disebut, laughs",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 107806,
+          "rank": 11,
+          "weight": 54.5693,
+          "abs_weight": 54.5693,
+          "importance": 0.0527,
+          "lens_score": 1.862,
+          "sign": "pos",
+          "title": "Creative Hobbies",
+          "description": "Creative hobbies, online content, and aesthetic terms, suppressing technical concepts",
+          "label": "Creative Hobbies",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Pinterest",
+              1.862
+            ],
+            [
+              "Pinterest",
+              1.801
+            ],
+            [
+              "scrapbook",
+              1.577
+            ],
+            [
+              "Blog",
+              1.52
+            ],
+            [
+              "lovely",
+              1.498
+            ],
+            [
+              "crochet",
+              1.485
+            ],
+            [
+              "lovely",
+              1.444
+            ],
+            [
+              "blogging",
+              1.437
+            ]
+          ],
+          "top_suppress": [
+            [
+              "semiconductor",
+              1.127
+            ],
+            [
+              "relativistic",
+              1.115
+            ],
+            [
+              "semiconductors",
+              0.992
+            ],
+            [
+              "cylinder",
+              0.973
+            ],
+            [
+              "proletariat",
+              0.953
+            ],
+            [
+              "aerospace",
+              0.952
+            ],
+            [
+              "reactor",
+              0.915
+            ],
+            [
+              "ativistic",
+              0.905
+            ]
+          ],
+          "suppress_label": "semiconductor, relativistic, semiconductors, cylinder",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 16449,
+          "rank": 12,
+          "weight": 54.1747,
+          "abs_weight": 54.1747,
+          "importance": 0.0523,
+          "lens_score": 2.02,
+          "sign": "pos",
+          "title": "Literary Symbolism",
+          "description": "Symbolic, metaphorical, and philosophical language and concepts",
+          "label": "Literary Symbolism",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "allegory",
+              2.02
+            ],
+            [
+              "metaphor",
+              1.701
+            ],
+            [
+              "metaphorical",
+              1.674
+            ],
+            [
+              "symbolism",
+              1.565
+            ],
+            [
+              "metaphors",
+              1.486
+            ],
+            [
+              "Nietzsche",
+              1.452
+            ],
+            [
+              "symbolizes",
+              1.433
+            ],
+            [
+              "parable",
+              1.427
+            ]
+          ],
+          "top_suppress": [
+            [
+              "routine",
+              0.889
+            ],
+            [
+              "procedures",
+              0.815
+            ],
+            [
+              "accessories",
+              0.809
+            ],
+            [
+              "packages",
+              0.807
+            ],
+            [
+              "Package",
+              0.8
+            ],
+            [
+              "reimbursed",
+              0.788
+            ],
+            [
+              "\u0d85\u0da9\u0dd4",
+              0.787
+            ],
+            [
+              "usepackage",
+              0.777
+            ]
+          ],
+          "suppress_label": "routine, procedures, accessories, packages",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 5687,
+          "rank": 13,
+          "weight": 51.7048,
+          "abs_weight": 51.7048,
+          "importance": 0.0499,
+          "lens_score": 1.136,
+          "sign": "pos",
+          "title": "Recent Updates",
+          "description": "Concepts of newness, recent changes, or revisions",
+          "label": "Recent Updates",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "Nuevo",
+              1.136
+            ],
+            [
+              "mittlerweile",
+              1.111
+            ],
+            [
+              "rebranded",
+              1.098
+            ],
+            [
+              "\uc774\ud6c4",
+              1.078
+            ],
+            [
+              "recentemente",
+              1.066
+            ],
+            [
+              "rebranding",
+              1.058
+            ],
+            [
+              "revised",
+              1.055
+            ],
+            [
+              "Ap\u00f3s",
+              1.047
+            ]
+          ],
+          "top_suppress": [
+            [
+              "soothe",
+              1.065
+            ],
+            [
+              "habits",
+              0.989
+            ],
+            [
+              "germs",
+              0.982
+            ],
+            [
+              "worldly",
+              0.941
+            ],
+            [
+              "necessities",
+              0.936
+            ],
+            [
+              "valuables",
+              0.932
+            ],
+            [
+              "helps",
+              0.896
+            ],
+            [
+              "kinds",
+              0.88
+            ]
+          ],
+          "suppress_label": "soothe, habits, germs, worldly",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 244590,
+          "rank": 14,
+          "weight": 50.8068,
+          "abs_weight": 50.8068,
+          "importance": 0.049,
+          "lens_score": 1.51,
+          "sign": "pos",
+          "title": "Multilingual Functional Words",
+          "description": "Common grammatical tokens across various non-English languages, suppressing specific English/European terms",
+          "label": "Multilingual Functional Words",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "veldig",
+              1.51
+            ],
+            [
+              "\u3063\u3066\u3044\u3046",
+              1.45
+            ],
+            [
+              "\uadf8\ub7ec\uba74\uc740",
+              1.447
+            ],
+            [
+              "\ub2e4\ub77c\uace0",
+              1.433
+            ],
+            [
+              "\u7684\u9019\u500b",
+              1.354
+            ],
+            [
+              "\u0e17\u0e35\u0e48\u0e40\u0e23\u0e32",
+              1.34
+            ],
+            [
+              "\u05d0\u05e0\u05d7\u05e0\u05d5",
+              1.337
+            ],
+            [
+              "\u098f\u0995\u099f\u09be",
+              1.33
+            ]
+          ],
+          "top_suppress": [
+            [
+              "Despite",
+              1.188
+            ],
+            [
+              "stets",
+              1.177
+            ],
+            [
+              "numerous",
+              1.176
+            ],
+            [
+              "yaln\u0131zca",
+              1.165
+            ],
+            [
+              "numerosi",
+              1.09
+            ],
+            [
+              "reveals",
+              1.066
+            ],
+            [
+              "zahlreiche",
+              1.058
+            ],
+            [
+              "sans",
+              1.048
+            ]
+          ],
+          "suppress_label": "Despite, stets, numerous, yaln\u0131zca",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 46981,
+          "rank": 15,
+          "weight": -50.785,
+          "abs_weight": 50.785,
+          "importance": 0.049,
+          "lens_score": 1.028,
+          "sign": "neg",
+          "title": "Feminine Descriptors",
+          "description": "Linguistic forms used to describe or identify people, often in feminine contexts",
+          "label": "Feminine Descriptors",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "la\u015ft\u0131r",
+              1.028
+            ],
+            [
+              "\uba85",
+              1.027
+            ],
+            [
+              "ificante",
+              0.983
+            ],
+            [
+              "_",
+              0.969
+            ],
+            [
+              "\u043a\u0430\u043a\u0430\u044f",
+              0.968
+            ],
+            [
+              "\u044f\u043a\u043e\u0433\u043e",
+              0.959
+            ],
+            [
+              "anda\u015f",
+              0.957
+            ],
+            [
+              "lename",
+              0.951
+            ]
+          ],
+          "top_suppress": [
+            [
+              "confrontation",
+              0.92
+            ],
+            [
+              "robustness",
+              0.911
+            ],
+            [
+              "odor",
+              0.838
+            ],
+            [
+              "DDoS",
+              0.818
+            ],
+            [
+              "dents",
+              0.803
+            ],
+            [
+              "polyamide",
+              0.796
+            ],
+            [
+              "CRISPR",
+              0.793
+            ],
+            [
+              "bumble",
+              0.791
+            ]
+          ],
+          "suppress_label": "confrontation, robustness, odor, DDoS",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 12650,
+          "rank": 16,
+          "weight": 48.4704,
+          "abs_weight": 48.4704,
+          "importance": 0.0468,
+          "lens_score": 1.606,
+          "sign": "pos",
+          "title": "Human Connection",
+          "description": "Tokens related to love, intimacy, and close human relationships, suppressing industrial terms",
+          "label": "Human Connection",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "intimacy",
+              1.606
+            ],
+            [
+              "love",
+              1.593
+            ],
+            [
+              "\u7231\u60c5",
+              1.495
+            ],
+            [
+              "friendships",
+              1.474
+            ],
+            [
+              "\u043b\u044e\u0431\u043e\u0432",
+              1.418
+            ],
+            [
+              "\u043b\u044e\u0431\u0432\u0438",
+              1.408
+            ],
+            [
+              "companionship",
+              1.366
+            ],
+            [
+              "Relationships",
+              1.361
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u6c61\u67d3",
+              0.908
+            ],
+            [
+              "\u0438\u0437\u0433\u043e\u0442\u043e\u0432",
+              0.876
+            ],
+            [
+              "\u043f\u0440\u0438\u043c\u0435\u043d\u044f",
+              0.857
+            ],
+            [
+              "implement",
+              0.855
+            ],
+            [
+              "promulgated",
+              0.851
+            ],
+            [
+              "\u5ec3\u68c4",
+              0.849
+            ],
+            [
+              "\u0645\u0635\u0631\u0641",
+              0.822
+            ],
+            [
+              "implement",
+              0.819
+            ]
+          ],
+          "suppress_label": "implement, promulgated, implement",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 12429,
+          "rank": 17,
+          "weight": -46.3974,
+          "abs_weight": 46.3974,
+          "importance": 0.0448,
+          "lens_score": 0.916,
+          "sign": "neg",
+          "title": "DEPENDENCIA",
+          "description": "DEPENDENCIA",
+          "label": "DEPENDENCIA",
+          "label_source": "logit_lens",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "\u0628\u0634\u0643\u0644",
+              0.916
+            ],
+            [
+              "\uc7ac",
+              0.911
+            ],
+            [
+              "\u049a",
+              0.902
+            ],
+            [
+              "DEPENDENCIA",
+              0.888
+            ],
+            [
+              "($_",
+              0.877
+            ],
+            [
+              "\uba00",
+              0.866
+            ],
+            [
+              "\u17c9\u17bb",
+              0.851
+            ],
+            [
+              "\u5525",
+              0.849
+            ]
+          ],
+          "top_suppress": [
+            [
+              "",
+              1.226
+            ],
+            [
+              "\u0442\u043e\u0436\u0435",
+              0.987
+            ],
+            [
+              ").",
+              0.929
+            ],
+            [
+              "\u3053\u3068\u3082",
+              0.863
+            ],
+            [
+              "1",
+              0.851
+            ],
+            [
+              "Ciebie",
+              0.83
+            ],
+            [
+              "\u4e5f\u80fd",
+              0.827
+            ],
+            [
+              "formerly",
+              0.823
+            ]
+          ],
+          "suppress_label": "Ciebie, formerly",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 254263,
+          "rank": 18,
+          "weight": -43.3474,
+          "abs_weight": 43.3474,
+          "importance": 0.0418,
+          "lens_score": 2.476,
+          "sign": "neg",
+          "title": "Closing Punctuation",
+          "description": "Closing punctuation marks, especially parentheses and their various combinations",
+          "label": "Closing Punctuation",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "~)",
+              2.476
+            ],
+            [
+              "?).",
+              2.434
+            ],
+            [
+              "?),",
+              2.398
+            ],
+            [
+              "%),",
+              2.144
+            ],
+            [
+              "/)",
+              2.132
+            ],
+            [
+              ";;)",
+              2.124
+            ],
+            [
+              "nonatomic",
+              2.102
+            ],
+            [
+              "..)",
+              2.078
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u043d",
+              2.116
+            ],
+            [
+              "er",
+              1.79
+            ],
+            [
+              "[",
+              1.727
+            ],
+            [
+              "\u0410\u0440\u0445\u0456\u0432\u043e\u0432\u0430\u043d\u043e",
+              1.703
+            ],
+            [
+              "$('#",
+              1.621
+            ],
+            [
+              "\u3059\u308b",
+              1.615
+            ],
+            [
+              "\u0e14\u0e49\u0e27\u0e22",
+              1.517
+            ],
+            [
+              "inactivated",
+              1.499
+            ]
+          ],
+          "suppress_label": "inactivated",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 36137,
+          "rank": 19,
+          "weight": 41.0925,
+          "abs_weight": 41.0925,
+          "importance": 0.0396,
+          "lens_score": 1.504,
+          "sign": "pos",
+          "title": "appease",
+          "description": "appease, icollis, subtly, kts",
+          "label": "appease",
+          "label_source": "logit_lens",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "appease",
+              1.504
+            ],
+            [
+              "\u0e23\u0e32\u0e30\u0e2b\u0e4c",
+              1.306
+            ],
+            [
+              "\u043e\u0441\u043d\u043e\u0432",
+              1.272
+            ],
+            [
+              "icollis",
+              1.27
+            ],
+            [
+              "M\u00e9",
+              1.266
+            ],
+            [
+              "\u0648\u0627\u0644\u062d",
+              1.257
+            ],
+            [
+              "subtly",
+              1.243
+            ],
+            [
+              "kts",
+              1.238
+            ]
+          ],
+          "top_suppress": [
+            [
+              "\u015bla",
+              1.549
+            ],
+            [
+              "ism",
+              1.371
+            ],
+            [
+              "dikeluarkan",
+              1.363
+            ],
+            [
+              "\u0935\u0940\u0938",
+              1.325
+            ],
+            [
+              "years",
+              1.296
+            ],
+            [
+              "oxid",
+              1.296
+            ],
+            [
+              "universe",
+              1.291
+            ],
+            [
+              "mlabeledtr",
+              1.286
+            ]
+          ],
+          "suppress_label": "\u015bla, ism, dikeluarkan, years",
+          "detection_accuracy": null
+        },
+        {
+          "fid": 4893,
+          "rank": 20,
+          "weight": -39.6449,
+          "abs_weight": 39.6449,
+          "importance": 0.0383,
+          "lens_score": 1.908,
+          "sign": "neg",
+          "title": "Rules and Guidelines",
+          "description": "Tokens related to rules, guidelines, and proper conduct",
+          "label": "Rules and Guidelines",
+          "label_source": "lens_gemini",
+          "theme": "Other",
+          "top_tokens": [
+            [
+              "etiquette",
+              1.908
+            ],
+            [
+              "guidelines",
+              1.816
+            ],
+            [
+              "precautions",
+              1.746
+            ],
+            [
+              "Guidelines",
+              1.709
+            ],
+            [
+              "checklists",
+              1.608
+            ],
+            [
+              "\u0441\u043e\u0431\u043b\u044e",
+              1.589
+            ],
+            [
+              "r\u00e8gles",
+              1.545
+            ],
+            [
+              "Guidelines",
+              1.481
+            ]
+          ],
+          "top_suppress": [
+            [
+              "geopolitical",
+              0.926
+            ],
+            [
+              "speculative",
+              0.925
+            ],
+            [
+              "otherworldly",
+              0.908
+            ],
+            [
+              "conglomerate",
+              0.875
+            ],
+            [
+              "\u0634\u06c1\u0631",
+              0.854
+            ],
+            [
+              "NASDAQ",
+              0.846
+            ],
+            [
+              "powerhouse",
+              0.838
+            ],
+            [
+              "Atlant",
+              0.823
+            ]
+          ],
+          "suppress_label": "geopolitical, speculative, otherworldly, conglomerate",
+          "detection_accuracy": null
+        }
+      ]
+    }
+  ],
+  "feature_meta": {
+    "1592": {
+      "fid": 1592,
+      "title": "Emotional Concepts",
+      "description": "Words related to emotions, feelings, and psychological states",
+      "label": "Emotional Concepts",
+      "label_source": "lens_gemini",
+      "lens_score": 1.694,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "emotional",
+          1.694
+        ],
+        [
+          "emocional",
+          1.622
+        ],
+        [
+          "psych",
+          1.608
+        ],
+        [
+          "psychological",
+          1.591
+        ],
+        [
+          "emotional",
+          1.548
+        ],
+        [
+          "duyg",
+          1.546
+        ],
+        [
+          "emotions",
+          1.532
+        ],
+        [
+          "psychologist",
+          1.514
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\uc218\ucd9c",
+          0.825
+        ],
+        [
+          "Technologie",
+          0.791
+        ],
+        [
+          "\u0e1c\u0e25\u0e34\u0e15\u0e20\u0e31\u0e13\u0e11\u0e4c",
+          0.77
+        ],
+        [
+          "Prix",
+          0.757
+        ],
+        [
+          "Technology",
+          0.755
+        ],
+        [
+          "\u529e\u6cd5",
+          0.755
+        ],
+        [
+          "\u4ea7\u54c1",
+          0.727
+        ],
+        [
+          "extruder",
+          0.725
+        ]
+      ],
+      "suppress_label": "Technologie, Prix, Technology, extruder",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/1592",
+      "detection_accuracy": null
+    },
+    "2816": {
+      "fid": 2816,
+      "title": "Aesthetic Delight",
+      "description": "Language expressing beauty, wonder, and positive aesthetic qualities",
+      "label": "Aesthetic Delight",
+      "label_source": "lens_gemini",
+      "lens_score": 1.275,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "delightful",
+          1.275
+        ],
+        [
+          "wonderful",
+          1.266
+        ],
+        [
+          "wonderfully",
+          1.225
+        ],
+        [
+          "beautiful",
+          1.224
+        ],
+        [
+          "lovely",
+          1.184
+        ],
+        [
+          "beautifully",
+          1.179
+        ],
+        [
+          "delightfully",
+          1.104
+        ],
+        [
+          "magnifique",
+          1.103
+        ]
+      ],
+      "top_suppress": [
+        [
+          "utas",
+          0.583
+        ],
+        [
+          "statunit",
+          0.552
+        ],
+        [
+          "entfer",
+          0.539
+        ],
+        [
+          "obstante",
+          0.533
+        ],
+        [
+          "\u0447\u043b\u0435\u043d\u043e\u0432",
+          0.525
+        ],
+        [
+          "%)",
+          0.525
+        ],
+        [
+          "contener",
+          0.52
+        ],
+        [
+          "fasten",
+          0.517
+        ]
+      ],
+      "suppress_label": "utas, statunit, entfer, obstante",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/2816",
+      "detection_accuracy": null
+    },
+    "4893": {
+      "fid": 4893,
+      "title": "Rules and Guidelines",
+      "description": "Tokens related to rules, guidelines, and proper conduct",
+      "label": "Rules and Guidelines",
+      "label_source": "lens_gemini",
+      "lens_score": 1.908,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "etiquette",
+          1.908
+        ],
+        [
+          "guidelines",
+          1.816
+        ],
+        [
+          "precautions",
+          1.746
+        ],
+        [
+          "Guidelines",
+          1.709
+        ],
+        [
+          "checklists",
+          1.608
+        ],
+        [
+          "\u0441\u043e\u0431\u043b\u044e",
+          1.589
+        ],
+        [
+          "r\u00e8gles",
+          1.545
+        ],
+        [
+          "Guidelines",
+          1.481
+        ]
+      ],
+      "top_suppress": [
+        [
+          "geopolitical",
+          0.926
+        ],
+        [
+          "speculative",
+          0.925
+        ],
+        [
+          "otherworldly",
+          0.908
+        ],
+        [
+          "conglomerate",
+          0.875
+        ],
+        [
+          "\u0634\u06c1\u0631",
+          0.854
+        ],
+        [
+          "NASDAQ",
+          0.846
+        ],
+        [
+          "powerhouse",
+          0.838
+        ],
+        [
+          "Atlant",
+          0.823
+        ]
+      ],
+      "suppress_label": "geopolitical, speculative, otherworldly, conglomerate",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/4893",
+      "detection_accuracy": null
+    },
+    "5687": {
+      "fid": 5687,
+      "title": "Recent Updates",
+      "description": "Concepts of newness, recent changes, or revisions",
+      "label": "Recent Updates",
+      "label_source": "lens_gemini",
+      "lens_score": 1.136,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "Nuevo",
+          1.136
+        ],
+        [
+          "mittlerweile",
+          1.111
+        ],
+        [
+          "rebranded",
+          1.098
+        ],
+        [
+          "\uc774\ud6c4",
+          1.078
+        ],
+        [
+          "recentemente",
+          1.066
+        ],
+        [
+          "rebranding",
+          1.058
+        ],
+        [
+          "revised",
+          1.055
+        ],
+        [
+          "Ap\u00f3s",
+          1.047
+        ]
+      ],
+      "top_suppress": [
+        [
+          "soothe",
+          1.065
+        ],
+        [
+          "habits",
+          0.989
+        ],
+        [
+          "germs",
+          0.982
+        ],
+        [
+          "worldly",
+          0.941
+        ],
+        [
+          "necessities",
+          0.936
+        ],
+        [
+          "valuables",
+          0.932
+        ],
+        [
+          "helps",
+          0.896
+        ],
+        [
+          "kinds",
+          0.88
+        ]
+      ],
+      "suppress_label": "soothe, habits, germs, worldly",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/5687",
+      "detection_accuracy": null
+    },
+    "6271": {
+      "fid": 6271,
+      "title": "Household Management",
+      "description": "Informal language about managing a household, children, and everyday inconveniences",
+      "label": "Household Management",
+      "label_source": "lens_gemini",
+      "lens_score": 1.734,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "whopping",
+          1.734
+        ],
+        [
+          "chunk",
+          1.73
+        ],
+        [
+          "\u0e2a\u0e4c",
+          1.656
+        ],
+        [
+          "bother",
+          1.647
+        ],
+        [
+          "instincts",
+          1.639
+        ],
+        [
+          "kiddos",
+          1.608
+        ],
+        [
+          "tidy",
+          1.596
+        ],
+        [
+          "hassle",
+          1.593
+        ]
+      ],
+      "top_suppress": [
+        [
+          "uent",
+          1.378
+        ],
+        [
+          "recyclerView",
+          1.357
+        ],
+        [
+          "\u041d\u0406",
+          1.327
+        ],
+        [
+          "Mala",
+          1.323
+        ],
+        [
+          "\u0bb5\u0bb1\u0bcd\u0bb1\u0bc8",
+          1.311
+        ],
+        [
+          "OscInitStruct",
+          1.292
+        ],
+        [
+          "ska",
+          1.276
+        ],
+        [
+          "\u099e\u09cd\u099a\u09b2",
+          1.266
+        ]
+      ],
+      "suppress_label": "uent, recyclerView, Mala, OscInitStruct",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/6271",
+      "detection_accuracy": null
+    },
+    "12429": {
+      "fid": 12429,
+      "title": "DEPENDENCIA",
+      "description": "DEPENDENCIA",
+      "label": "DEPENDENCIA",
+      "label_source": "logit_lens",
+      "lens_score": 0.916,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "\u0628\u0634\u0643\u0644",
+          0.916
+        ],
+        [
+          "\uc7ac",
+          0.911
+        ],
+        [
+          "\u049a",
+          0.902
+        ],
+        [
+          "DEPENDENCIA",
+          0.888
+        ],
+        [
+          "($_",
+          0.877
+        ],
+        [
+          "\uba00",
+          0.866
+        ],
+        [
+          "\u17c9\u17bb",
+          0.851
+        ],
+        [
+          "\u5525",
+          0.849
+        ]
+      ],
+      "top_suppress": [
+        [
+          "",
+          1.226
+        ],
+        [
+          "\u0442\u043e\u0436\u0435",
+          0.987
+        ],
+        [
+          ").",
+          0.929
+        ],
+        [
+          "\u3053\u3068\u3082",
+          0.863
+        ],
+        [
+          "1",
+          0.851
+        ],
+        [
+          "Ciebie",
+          0.83
+        ],
+        [
+          "\u4e5f\u80fd",
+          0.827
+        ],
+        [
+          "formerly",
+          0.823
+        ]
+      ],
+      "suppress_label": "Ciebie, formerly",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/12429",
+      "detection_accuracy": null
+    },
+    "12650": {
+      "fid": 12650,
+      "title": "Human Connection",
+      "description": "Tokens related to love, intimacy, and close human relationships, suppressing industrial terms",
+      "label": "Human Connection",
+      "label_source": "lens_gemini",
+      "lens_score": 1.606,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "intimacy",
+          1.606
+        ],
+        [
+          "love",
+          1.593
+        ],
+        [
+          "\u7231\u60c5",
+          1.495
+        ],
+        [
+          "friendships",
+          1.474
+        ],
+        [
+          "\u043b\u044e\u0431\u043e\u0432",
+          1.418
+        ],
+        [
+          "\u043b\u044e\u0431\u0432\u0438",
+          1.408
+        ],
+        [
+          "companionship",
+          1.366
+        ],
+        [
+          "Relationships",
+          1.361
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u6c61\u67d3",
+          0.908
+        ],
+        [
+          "\u0438\u0437\u0433\u043e\u0442\u043e\u0432",
+          0.876
+        ],
+        [
+          "\u043f\u0440\u0438\u043c\u0435\u043d\u044f",
+          0.857
+        ],
+        [
+          "implement",
+          0.855
+        ],
+        [
+          "promulgated",
+          0.851
+        ],
+        [
+          "\u5ec3\u68c4",
+          0.849
+        ],
+        [
+          "\u0645\u0635\u0631\u0641",
+          0.822
+        ],
+        [
+          "implement",
+          0.819
+        ]
+      ],
+      "suppress_label": "implement, promulgated, implement",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/12650",
+      "detection_accuracy": null
+    },
+    "16449": {
+      "fid": 16449,
+      "title": "Literary Symbolism",
+      "description": "Symbolic, metaphorical, and philosophical language and concepts",
+      "label": "Literary Symbolism",
+      "label_source": "lens_gemini",
+      "lens_score": 2.02,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "allegory",
+          2.02
+        ],
+        [
+          "metaphor",
+          1.701
+        ],
+        [
+          "metaphorical",
+          1.674
+        ],
+        [
+          "symbolism",
+          1.565
+        ],
+        [
+          "metaphors",
+          1.486
+        ],
+        [
+          "Nietzsche",
+          1.452
+        ],
+        [
+          "symbolizes",
+          1.433
+        ],
+        [
+          "parable",
+          1.427
+        ]
+      ],
+      "top_suppress": [
+        [
+          "routine",
+          0.889
+        ],
+        [
+          "procedures",
+          0.815
+        ],
+        [
+          "accessories",
+          0.809
+        ],
+        [
+          "packages",
+          0.807
+        ],
+        [
+          "Package",
+          0.8
+        ],
+        [
+          "reimbursed",
+          0.788
+        ],
+        [
+          "\u0d85\u0da9\u0dd4",
+          0.787
+        ],
+        [
+          "usepackage",
+          0.777
+        ]
+      ],
+      "suppress_label": "routine, procedures, accessories, packages",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/16449",
+      "detection_accuracy": null
+    },
+    "21500": {
+      "fid": 21500,
+      "title": "Aesthetic Style",
+      "description": "Tokens describing aesthetic qualities, design, and style",
+      "label": "Aesthetic Style",
+      "label_source": "lens_gemini",
+      "lens_score": 0.996,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "\u0441",
+          0.996
+        ],
+        [
+          "v\u00fdraz",
+          0.943
+        ],
+        [
+          "Stylish",
+          0.942
+        ],
+        [
+          "Metallic",
+          0.937
+        ],
+        [
+          "style",
+          0.934
+        ],
+        [
+          "minimalistic",
+          0.906
+        ],
+        [
+          "tone",
+          0.906
+        ],
+        [
+          "Stylish",
+          0.9
+        ]
+      ],
+      "top_suppress": [
+        [
+          "itelji",
+          1.088
+        ],
+        [
+          "\u5386\u53f2\u4e0a",
+          1.054
+        ],
+        [
+          "\u5e7f\u5927",
+          1.052
+        ],
+        [
+          "OURCE",
+          1.025
+        ],
+        [
+          "\u09b2\u09be\u09ad\u09c7\u09b0",
+          1.008
+        ],
+        [
+          "\u925e",
+          1.007
+        ],
+        [
+          "diversos",
+          1.003
+        ],
+        [
+          "dagen",
+          0.995
+        ]
+      ],
+      "suppress_label": "itelji, OURCE, diversos, dagen",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/21500",
+      "detection_accuracy": null
+    },
+    "22432": {
+      "fid": 22432,
+      "title": "volence",
+      "description": "volence, harmonic, chloride",
+      "label": "volence",
+      "label_source": "logit_lens",
+      "lens_score": 1.848,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "u",
+          1.848
+        ],
+        [
+          "er",
+          1.644
+        ],
+        [
+          "volence",
+          1.549
+        ],
+        [
+          "harmonic",
+          1.511
+        ],
+        [
+          "i\u017c",
+          1.499
+        ],
+        [
+          "\u09be\u09b0",
+          1.495
+        ],
+        [
+          "\u094d\u0924\u0930",
+          1.492
+        ],
+        [
+          "chloride",
+          1.467
+        ]
+      ],
+      "top_suppress": [
+        [
+          "paar",
+          1.908
+        ],
+        [
+          "bisschen",
+          1.894
+        ],
+        [
+          "\u0924\u0930\u0939",
+          1.891
+        ],
+        [
+          "disebut",
+          1.824
+        ],
+        [
+          "laughs",
+          1.789
+        ],
+        [
+          "\u09a7\u09b0\u09a8\u09c7\u09b0",
+          1.76
+        ],
+        [
+          "\u8cda",
+          1.757
+        ],
+        [
+          "Accounting",
+          1.732
+        ]
+      ],
+      "suppress_label": "paar, bisschen, disebut, laughs",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/22432",
+      "detection_accuracy": null
+    },
+    "22843": {
+      "fid": 22843,
+      "title": "Personal Needs",
+      "description": "Language about personal needs, choices, and well-being, contrasting with academic topics",
+      "label": "Personal Needs",
+      "label_source": "lens_gemini",
+      "lens_score": 1.056,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "Choosing",
+          1.056
+        ],
+        [
+          "queremos",
+          1.038
+        ],
+        [
+          "kebutuhan",
+          1.036
+        ],
+        [
+          "Healthy",
+          0.984
+        ],
+        [
+          "\u9700\u6c42",
+          0.978
+        ],
+        [
+          "Healthy",
+          0.971
+        ],
+        [
+          "daunting",
+          0.966
+        ],
+        [
+          "ihtiya\u00e7",
+          0.965
+        ]
+      ],
+      "top_suppress": [
+        [
+          "archaeologists",
+          0.797
+        ],
+        [
+          "tomb",
+          0.763
+        ],
+        [
+          "blasp",
+          0.757
+        ],
+        [
+          "iconography",
+          0.752
+        ],
+        [
+          "objected",
+          0.744
+        ],
+        [
+          "\u0438\u0441\u043f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u043b\u0438",
+          0.737
+        ],
+        [
+          "isotopic",
+          0.735
+        ],
+        [
+          "respectivement",
+          0.731
+        ]
+      ],
+      "suppress_label": "archaeologists, tomb, blasp, iconography",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/22843",
+      "detection_accuracy": null
+    },
+    "24375": {
+      "fid": 24375,
+      "title": "Procurement & Contracts",
+      "description": "Language related to business contracts, procurement, and project deliverables",
+      "label": "Procurement & Contracts",
+      "label_source": "lens_gemini",
+      "lens_score": 2.045,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "contractors",
+          2.045
+        ],
+        [
+          "subcontractors",
+          2.015
+        ],
+        [
+          "contractor",
+          1.92
+        ],
+        [
+          "deliverables",
+          1.896
+        ],
+        [
+          "Contractor",
+          1.811
+        ],
+        [
+          "procurement",
+          1.811
+        ],
+        [
+          "Procurement",
+          1.81
+        ],
+        [
+          "Contract",
+          1.796
+        ]
+      ],
+      "top_suppress": [
+        [
+          "personnage",
+          1.118
+        ],
+        [
+          "\u0c05\u0c2d\u0c3f\u0c2e\u0c3e",
+          1.1
+        ],
+        [
+          "Lonely",
+          1.077
+        ],
+        [
+          "\u601c",
+          1.025
+        ],
+        [
+          "\u5ac9",
+          1.017
+        ],
+        [
+          "\u52c7\u6562",
+          1.001
+        ],
+        [
+          "\u00eenes",
+          0.996
+        ],
+        [
+          "\u7edf\u6cbb",
+          0.983
+        ]
+      ],
+      "suppress_label": "personnage, Lonely, \u00eenes",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/24375",
+      "detection_accuracy": null
+    },
+    "27534": {
+      "fid": 27534,
+      "title": "Life Journey",
+      "description": "Concepts related to life, self, future, and universal human experience",
+      "label": "Life Journey",
+      "label_source": "lens_gemini",
+      "lens_score": 1.111,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "menjalani",
+          1.111
+        ],
+        [
+          "\u0647\u0645\u0647",
+          1.104
+        ],
+        [
+          "life",
+          1.102
+        ],
+        [
+          "Zukunft",
+          1.097
+        ],
+        [
+          "all",
+          1.081
+        ],
+        [
+          "every",
+          1.066
+        ],
+        [
+          "\u81ea\u5206",
+          1.055
+        ],
+        [
+          "cz\u0142owie",
+          1.033
+        ]
+      ],
+      "top_suppress": [
+        [
+          "tal\u00e1lhat\u00f3",
+          1.163
+        ],
+        [
+          "provides",
+          1.163
+        ],
+        [
+          "\u4f7f\u7528",
+          1.11
+        ],
+        [
+          "geralmente",
+          1.073
+        ],
+        [
+          "provides",
+          1.032
+        ],
+        [
+          "\uc77c\ubc18\uc801\uc73c\ub85c",
+          1.019
+        ],
+        [
+          "visually",
+          1.017
+        ],
+        [
+          "Provides",
+          1.011
+        ]
+      ],
+      "suppress_label": "tal\u00e1lhat\u00f3, provides, geralmente, provides",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/27534",
+      "detection_accuracy": null
+    },
+    "36137": {
+      "fid": 36137,
+      "title": "appease",
+      "description": "appease, icollis, subtly, kts",
+      "label": "appease",
+      "label_source": "logit_lens",
+      "lens_score": 1.504,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "appease",
+          1.504
+        ],
+        [
+          "\u0e23\u0e32\u0e30\u0e2b\u0e4c",
+          1.306
+        ],
+        [
+          "\u043e\u0441\u043d\u043e\u0432",
+          1.272
+        ],
+        [
+          "icollis",
+          1.27
+        ],
+        [
+          "M\u00e9",
+          1.266
+        ],
+        [
+          "\u0648\u0627\u0644\u062d",
+          1.257
+        ],
+        [
+          "subtly",
+          1.243
+        ],
+        [
+          "kts",
+          1.238
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u015bla",
+          1.549
+        ],
+        [
+          "ism",
+          1.371
+        ],
+        [
+          "dikeluarkan",
+          1.363
+        ],
+        [
+          "\u0935\u0940\u0938",
+          1.325
+        ],
+        [
+          "years",
+          1.296
+        ],
+        [
+          "oxid",
+          1.296
+        ],
+        [
+          "universe",
+          1.291
+        ],
+        [
+          "mlabeledtr",
+          1.286
+        ]
+      ],
+      "suppress_label": "\u015bla, ism, dikeluarkan, years",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/36137",
+      "detection_accuracy": null
+    },
+    "46981": {
+      "fid": 46981,
+      "title": "Feminine Descriptors",
+      "description": "Linguistic forms used to describe or identify people, often in feminine contexts",
+      "label": "Feminine Descriptors",
+      "label_source": "lens_gemini",
+      "lens_score": 1.028,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "la\u015ft\u0131r",
+          1.028
+        ],
+        [
+          "\uba85",
+          1.027
+        ],
+        [
+          "ificante",
+          0.983
+        ],
+        [
+          "_",
+          0.969
+        ],
+        [
+          "\u043a\u0430\u043a\u0430\u044f",
+          0.968
+        ],
+        [
+          "\u044f\u043a\u043e\u0433\u043e",
+          0.959
+        ],
+        [
+          "anda\u015f",
+          0.957
+        ],
+        [
+          "lename",
+          0.951
+        ]
+      ],
+      "top_suppress": [
+        [
+          "confrontation",
+          0.92
+        ],
+        [
+          "robustness",
+          0.911
+        ],
+        [
+          "odor",
+          0.838
+        ],
+        [
+          "DDoS",
+          0.818
+        ],
+        [
+          "dents",
+          0.803
+        ],
+        [
+          "polyamide",
+          0.796
+        ],
+        [
+          "CRISPR",
+          0.793
+        ],
+        [
+          "bumble",
+          0.791
+        ]
+      ],
+      "suppress_label": "confrontation, robustness, odor, DDoS",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/46981",
+      "detection_accuracy": null
+    },
+    "87091": {
+      "fid": 87091,
+      "title": "Creative Whimsy",
+      "description": "Lighthearted, imaginative, or decorative concepts",
+      "label": "Creative Whimsy",
+      "label_source": "lens_gemini",
+      "lens_score": 0.163,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "trink",
+          0.163
+        ],
+        [
+          "creativity",
+          0.158
+        ],
+        [
+          "hehe",
+          0.158
+        ],
+        [
+          "vestib",
+          0.157
+        ],
+        [
+          "spaceship",
+          0.152
+        ],
+        [
+          "frivolous",
+          0.149
+        ],
+        [
+          "recicl",
+          0.145
+        ],
+        [
+          "whatnot",
+          0.145
+        ]
+      ],
+      "top_suppress": [
+        [
+          "<unused2182>",
+          0.15
+        ],
+        [
+          "\u0110\u1ea1i",
+          0.148
+        ],
+        [
+          "\u0a38",
+          0.145
+        ],
+        [
+          "<unused1005>",
+          0.143
+        ],
+        [
+          "j\u00ed",
+          0.139
+        ],
+        [
+          "Tucker",
+          0.138
+        ],
+        [
+          "\u1ea7n",
+          0.135
+        ],
+        [
+          "\u03a0\u03b1",
+          0.135
+        ]
+      ],
+      "suppress_label": "Tucker",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/87091",
+      "detection_accuracy": null
+    },
+    "107806": {
+      "fid": 107806,
+      "title": "Creative Hobbies",
+      "description": "Creative hobbies, online content, and aesthetic terms, suppressing technical concepts",
+      "label": "Creative Hobbies",
+      "label_source": "lens_gemini",
+      "lens_score": 1.862,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "Pinterest",
+          1.862
+        ],
+        [
+          "Pinterest",
+          1.801
+        ],
+        [
+          "scrapbook",
+          1.577
+        ],
+        [
+          "Blog",
+          1.52
+        ],
+        [
+          "lovely",
+          1.498
+        ],
+        [
+          "crochet",
+          1.485
+        ],
+        [
+          "lovely",
+          1.444
+        ],
+        [
+          "blogging",
+          1.437
+        ]
+      ],
+      "top_suppress": [
+        [
+          "semiconductor",
+          1.127
+        ],
+        [
+          "relativistic",
+          1.115
+        ],
+        [
+          "semiconductors",
+          0.992
+        ],
+        [
+          "cylinder",
+          0.973
+        ],
+        [
+          "proletariat",
+          0.953
+        ],
+        [
+          "aerospace",
+          0.952
+        ],
+        [
+          "reactor",
+          0.915
+        ],
+        [
+          "ativistic",
+          0.905
+        ]
+      ],
+      "suppress_label": "semiconductor, relativistic, semiconductors, cylinder",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/107806",
+      "detection_accuracy": null
+    },
+    "213695": {
+      "fid": 213695,
+      "title": "Sequence and Addition",
+      "description": "Tokens indicating a continuation, addition, or alternative in a sequence",
+      "label": "Sequence and Addition",
+      "label_source": "lens_gemini",
+      "lens_score": 1.555,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "optionally",
+          1.555
+        ],
+        [
+          "ard\u0131ndan",
+          1.552
+        ],
+        [
+          "\u0633\u067e\u0633",
+          1.488
+        ],
+        [
+          "additionally",
+          1.472
+        ],
+        [
+          "\uc774\uc5d0",
+          1.422
+        ],
+        [
+          "ANOVA",
+          1.408
+        ],
+        [
+          "\u0647\u0645\u0686\u0646\u06cc\u0646",
+          1.357
+        ],
+        [
+          "\u0437\u0430\u0442\u0435\u043c",
+          1.353
+        ]
+      ],
+      "top_suppress": [
+        [
+          "terrib",
+          1.088
+        ],
+        [
+          "\u2018",
+          1.084
+        ],
+        [
+          "you",
+          1.081
+        ],
+        [
+          "\u2019",
+          1.08
+        ],
+        [
+          "weren",
+          1.073
+        ],
+        [
+          "-",
+          1.07
+        ],
+        [
+          "'",
+          1.055
+        ],
+        [
+          "\u0928\u0939\u0940\u0902",
+          1.026
+        ]
+      ],
+      "suppress_label": "terrib, you, weren",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/213695",
+      "detection_accuracy": null
+    },
+    "244590": {
+      "fid": 244590,
+      "title": "Multilingual Functional Words",
+      "description": "Common grammatical tokens across various non-English languages, suppressing specific English/European terms",
+      "label": "Multilingual Functional Words",
+      "label_source": "lens_gemini",
+      "lens_score": 1.51,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "veldig",
+          1.51
+        ],
+        [
+          "\u3063\u3066\u3044\u3046",
+          1.45
+        ],
+        [
+          "\uadf8\ub7ec\uba74\uc740",
+          1.447
+        ],
+        [
+          "\ub2e4\ub77c\uace0",
+          1.433
+        ],
+        [
+          "\u7684\u9019\u500b",
+          1.354
+        ],
+        [
+          "\u0e17\u0e35\u0e48\u0e40\u0e23\u0e32",
+          1.34
+        ],
+        [
+          "\u05d0\u05e0\u05d7\u05e0\u05d5",
+          1.337
+        ],
+        [
+          "\u098f\u0995\u099f\u09be",
+          1.33
+        ]
+      ],
+      "top_suppress": [
+        [
+          "Despite",
+          1.188
+        ],
+        [
+          "stets",
+          1.177
+        ],
+        [
+          "numerous",
+          1.176
+        ],
+        [
+          "yaln\u0131zca",
+          1.165
+        ],
+        [
+          "numerosi",
+          1.09
+        ],
+        [
+          "reveals",
+          1.066
+        ],
+        [
+          "zahlreiche",
+          1.058
+        ],
+        [
+          "sans",
+          1.048
+        ]
+      ],
+      "suppress_label": "Despite, stets, numerous, yaln\u0131zca",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/244590",
+      "detection_accuracy": null
+    },
+    "254263": {
+      "fid": 254263,
+      "title": "Closing Punctuation",
+      "description": "Closing punctuation marks, especially parentheses and their various combinations",
+      "label": "Closing Punctuation",
+      "label_source": "lens_gemini",
+      "lens_score": 2.476,
+      "theme": "Other",
+      "top_tokens": [
+        [
+          "~)",
+          2.476
+        ],
+        [
+          "?).",
+          2.434
+        ],
+        [
+          "?),",
+          2.398
+        ],
+        [
+          "%),",
+          2.144
+        ],
+        [
+          "/)",
+          2.132
+        ],
+        [
+          ";;)",
+          2.124
+        ],
+        [
+          "nonatomic",
+          2.102
+        ],
+        [
+          "..)",
+          2.078
+        ]
+      ],
+      "top_suppress": [
+        [
+          "\u043d",
+          2.116
+        ],
+        [
+          "er",
+          1.79
+        ],
+        [
+          "[",
+          1.727
+        ],
+        [
+          "\u0410\u0440\u0445\u0456\u0432\u043e\u0432\u0430\u043d\u043e",
+          1.703
+        ],
+        [
+          "$('#",
+          1.621
+        ],
+        [
+          "\u3059\u308b",
+          1.615
+        ],
+        [
+          "\u0e14\u0e49\u0e27\u0e22",
+          1.517
+        ],
+        [
+          "inactivated",
+          1.499
+        ]
+      ],
+      "suppress_label": "inactivated",
+      "neuronpedia": "https://www.neuronpedia.org/gemma-3-4b-it/15-gemmascope-2-transcoder-262k/254263",
+      "detection_accuracy": null
+    }
+  }
+}
