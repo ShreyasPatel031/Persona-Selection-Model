@@ -8,7 +8,7 @@ export DISABLE_SAE=1
 export GEMMA_MAX_NEW_TOKENS=128
 export GEMMA_URL="${GEMMA_URL:-http://127.0.0.1:8080}"
 # Vertex judges (step-c / validate)
-export GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-applied-ai-practice00}"
+export GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-your-gcp-project}"
 export VERTEX_LOCATION="${VERTEX_LOCATION:-us-central1}"
 
 log() { echo "[$(date -Iseconds)] $*"; }

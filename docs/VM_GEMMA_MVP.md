@@ -5,9 +5,9 @@
 | Field | Value |
 |--------|--------|
 | **Name** | `gemma-mvp` |
-| **Project** | `applied-ai-practice00` (or your `GOOGLE_CLOUD_PROJECT`) |
+| **Project** | `your-gcp-project` (or your `GOOGLE_CLOUD_PROJECT`) |
 | **Zone** | `us-central1-a` |
-| **SSH (IAP)** | `gcloud compute ssh gemma-mvp --project=applied-ai-practice00 --zone=us-central1-a --tunnel-through-iap` |
+| **SSH (IAP)** | `gcloud compute ssh gemma-mvp --project=your-gcp-project --zone=us-central1-a --tunnel-through-iap` |
 
 Work directory on the VM: **`~/gemma-chat-probe`** (sync `app/`, `requirements.txt`, and `persona_runs/<run-id>/` here).
 

@@ -2,7 +2,7 @@
 # Re-run SSV optimization with full feature ID/weight export (no steering/judging).
 set -euo pipefail
 cd "$HOME/gemma-chat"
-export GOOGLE_CLOUD_PROJECT=applied-ai-practice00
+export GOOGLE_CLOUD_PROJECT=your-gcp-project
 export PYTHONPATH="$HOME/gemma-chat"
 
 OUT="persona_runs/dnd_good_scale/sae/sae_ssv_full_sweep_262k_l16.json"

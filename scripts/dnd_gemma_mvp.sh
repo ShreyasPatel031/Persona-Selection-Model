@@ -3,7 +3,7 @@
 # Requires: gcloud auth, IAP access, VM at ~/gemma-chat with .venv and Uvicorn for step-c.
 set -euo pipefail
 
-PROJECT="${GCP_PROJECT:-applied-ai-practice00}"
+PROJECT="${GCP_PROJECT:-your-gcp-project}"
 ZONE="${GCP_ZONE:-us-central1-a}"
 INSTANCE="${GEMMA_MVP_INSTANCE:-gemma-mvp}"
 # Remote repo root (literal for gcloud scp); use \$HOME in SSH heredocs for cd/pythonpath.

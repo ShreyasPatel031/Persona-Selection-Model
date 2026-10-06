@@ -4,7 +4,7 @@
 
 Minimal **FastAPI** app that loads **`google/gemma-3-4b-it`** with Hugging Face **Transformers** on **CPU**, serves a tiny web UI, and exposes `POST /chat`.
 
-## Deployed VM (project `applied-ai-practice00`)
+## Deployed VM (project `your-gcp-project`)
 
 - **Instance:** `gemma-mvp` in **`us-central1-a`**, **`n1-standard-8`**, Ubuntu 22.04; app in **`~/gemma-chat`**. Persona / GPU workflows use **`~/gemma-chat-probe`** — see **[docs/VM_GEMMA_MVP.md](docs/VM_GEMMA_MVP.md)** (default VM, attach/remove GPU, drivers).
 - **SSH:** This org often allows SSH only via **IAP** (not your public IP). Use **`--tunnel-through-iap`** for `gcloud compute ssh` / `scp`.
@@ -22,7 +22,7 @@ chmod +x scripts/ssh-tunnel.sh
 Or manually:
 
 ```bash
-gcloud compute ssh gemma-mvp --project=applied-ai-practice00 --zone=us-central1-a \
+gcloud compute ssh gemma-mvp --project=your-gcp-project --zone=us-central1-a \
   --tunnel-through-iap -- -L 8080:127.0.0.1:8080 -N
 ```
 
@@ -67,10 +67,10 @@ After `pip install -r requirements.txt` (adds **`sae-lens`**), the server loads 
 **Enable Gemma on the VM** (one-time; replace with your real token):
 
 ```bash
-gcloud compute ssh gemma-mvp --project=applied-ai-practice00 --zone=us-central1-a \
+gcloud compute ssh gemma-mvp --project=your-gcp-project --zone=us-central1-a \
   --tunnel-through-iap --command='pkill -f "uvicorn app.main:app" || true'
 # Paste token only in your own terminal (not in chat logs):
-gcloud compute ssh gemma-mvp --project=applied-ai-practice00 --zone=us-central1-a \
+gcloud compute ssh gemma-mvp --project=your-gcp-project --zone=us-central1-a \
   --tunnel-through-iap --command="cd ~/gemma-chat && export HF_TOKEN='YOUR_HF_TOKEN' && nohup .venv/bin/uvicorn app.main:app --host 127.0.0.1 --port 8080 > /tmp/gemma-uvicorn.log 2>&1 &"
 ```
 

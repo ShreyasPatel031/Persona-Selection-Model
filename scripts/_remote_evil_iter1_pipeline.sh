@@ -2,7 +2,7 @@
 set -euo pipefail
 cd ~/gemma-chat-probe
 export PYTHONPATH=.
-export GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-applied-ai-practice00}"
+export GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-your-gcp-project}"
 export HF_TOKEN=$(cat .hf_token_once)
 PROJ="$GOOGLE_CLOUD_PROJECT"
 LOC="${VERTEX_LOCATION:-us-central1}"

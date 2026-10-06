@@ -15,16 +15,16 @@ This run matches paper §2.1–§2.2 counts: **5** contrast pairs, **20** extrac
 # From repo root on your laptop
 gcloud compute scp --recurse --tunnel-through-iap \
   app/persona/ app/main.py gemma-mvp:~/gemma-chat/ \
-  --zone us-central1-a --project applied-ai-practice00
+  --zone us-central1-a --project your-gcp-project
 
 # Or copy app/main.py into app/ on VM if your layout is ~/gemma-chat/app/main.py:
 gcloud compute scp --tunnel-through-iap \
   app/main.py gemma-mvp:~/gemma-chat/app/main.py \
-  --zone us-central1-a --project applied-ai-practice00
+  --zone us-central1-a --project your-gcp-project
 
 gcloud compute scp --recurse --tunnel-through-iap \
   persona_runs/evil_paper_v0 gemma-mvp:~/gemma-chat/persona_runs/ \
-  --zone us-central1-a --project applied-ai-practice00
+  --zone us-central1-a --project your-gcp-project
 ```
 
 ## 2. Restart Gemma server (VM)
@@ -53,7 +53,7 @@ cd ~/gemma-chat && PYTHONPATH=. .venv/bin/python -m app.persona.run step-c \
 
 ```bash
 cd ~/gemma-chat || exit 1
-nohup env PYTHONPATH=. GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-applied-ai-practice00}" \
+nohup env PYTHONPATH=. GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-your-gcp-project}" \
   .venv/bin/python -m app.persona.run step-c \
   --run-id evil_paper_v0 \
   --bundle ~/gemma-chat/persona_runs/evil_paper_v0/artifacts/trait_bundle.json \
@@ -61,7 +61,7 @@ nohup env PYTHONPATH=. GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-applied-ai-
   --rollouts-per-q 10 \
   --sampling-temperature 1.0 \
   --no-paragraph-cap \
-  --project "${GOOGLE_CLOUD_PROJECT:-applied-ai-practice00}" \
+  --project "${GOOGLE_CLOUD_PROJECT:-your-gcp-project}" \
   --location us-central1 \
   > /tmp/stepc_evil_paper_v0.log 2>&1 &
 echo $! | tee /tmp/stepc_evil.pid

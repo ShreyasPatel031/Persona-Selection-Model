@@ -23,7 +23,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "applied-ai-practice00")
+os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "your-gcp-project")
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from app.persona.activations import load_model_and_tokenizer

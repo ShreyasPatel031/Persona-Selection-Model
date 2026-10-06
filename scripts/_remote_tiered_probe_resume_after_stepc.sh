@@ -5,7 +5,7 @@ RUN_ID="${1:?run_id}"
 cd ~/gemma-chat-probe
 export PYTHONPATH=.
 export HF_TOKEN=$(cat .hf_token_once)
-export GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-applied-ai-practice00}"
+export GOOGLE_CLOUD_PROJECT="${GOOGLE_CLOUD_PROJECT:-your-gcp-project}"
 export DISABLE_SAE=1
 export GEMMA_MAX_NEW_TOKENS=128
 PROJ="$GOOGLE_CLOUD_PROJECT"

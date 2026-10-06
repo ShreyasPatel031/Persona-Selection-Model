@@ -82,7 +82,7 @@ Exact filenames will match the implementing modules; the table above is the inte
 
 ## Deployed VM layout (reference)
 
-On the **GCE** instance (`gemma-mvp` in `applied-ai-practice00`, zone `us-central1-a`), the app is typically checked out as **`~/gemma-chat`** with a **`.venv`** there and Uvicorn bound to **`127.0.0.1:8080`**. That path is deployment convention, not enforced by this repo’s directory tree.
+On the **GCE** instance (`gemma-mvp` in `your-gcp-project`, zone `us-central1-a`), the app is typically checked out as **`~/gemma-chat`** with a **`.venv`** there and Uvicorn bound to **`127.0.0.1:8080`**. That path is deployment convention, not enforced by this repo’s directory tree.
 
 ## Environment variables tied to layout / cloud
 

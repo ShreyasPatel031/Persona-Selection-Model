@@ -2,7 +2,7 @@
 # Corpus-based SSV feature interpretation + cluster causal validation on gemma-mvp.
 set -euo pipefail
 cd "$HOME/gemma-chat"
-export GOOGLE_CLOUD_PROJECT=applied-ai-practice00
+export GOOGLE_CLOUD_PROJECT=your-gcp-project
 export PYTHONPATH="$HOME/gemma-chat"
 
 # Step 1: Install deps (delphi optional; custom corpus script is primary)

@@ -16,7 +16,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
-os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "applied-ai-practice00")
+os.environ.setdefault("GOOGLE_CLOUD_PROJECT", "your-gcp-project")
 REPO = Path(__file__).resolve().parents[1]
 if str(REPO) not in sys.path:
     sys.path.insert(0, str(REPO))

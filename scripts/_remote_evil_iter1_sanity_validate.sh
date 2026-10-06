@@ -3,7 +3,7 @@ set -euo pipefail
 cd ~/gemma-chat-probe
 export PYTHONPATH=.
 export HF_TOKEN=$(cat .hf_token_once)
-export GOOGLE_CLOUD_PROJECT=applied-ai-practice00
+export GOOGLE_CLOUD_PROJECT=your-gcp-project
 
 echo "=== stop uvicorn (free VRAM for teacher model) ==="
 pkill -f "uvicorn app.main:app" 2>/dev/null || true
@@ -17,7 +17,7 @@ echo "=== validate ==="
   --n-candidate-layers 3 \
   --n-questions 2 \
   --alphas 0.5,1.0,1.5,2.0 \
-  --project applied-ai-practice00 \
+  --project your-gcp-project \
   --location us-central1
 
 echo "=== restart uvicorn ==="
